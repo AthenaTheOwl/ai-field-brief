@@ -1,0 +1,33 @@
+{
+  "name": "ai-field-brief",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-tenant AI field-brief product: source ingestion, transcription, retrieval, brief generation, publishing, and action backlog. Spec-first.",
+  "license": "Apache-2.0",
+  "author": "Vignesh Gopalakrishnan",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:e2e": "turbo run test:e2e",
+    "test:eval": "turbo run test:eval",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "voice_lint": "python scripts/voice_lint.py",
+    "spec_check": "python scripts/spec_check.py",
+    "validate_schemas": "python scripts/validate_schemas.py",
+    "validate_registry": "python scripts/validate_registry.py",
+    "verify": "pnpm voice_lint && pnpm spec_check && pnpm validate_schemas && pnpm lint && pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.3"
+  }
+}
