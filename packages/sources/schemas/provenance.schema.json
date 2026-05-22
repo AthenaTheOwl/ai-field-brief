@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/provenance.schema.json",
+  "title": "Provenance",
+  "description": "Where this item came from. Must survive into brief citations (R-BOOT-002).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fetcher", "fetched_at", "source_id"],
+  "properties": {
+    "fetcher": {
+      "type": "string",
+      "description": "Name of the connector that produced this item, e.g. `rss@1.0.0`, `youtube-data-v3`, `octokit-releases@1`."
+    },
+    "fetched_at": { "type": "string", "format": "date-time" },
+    "source_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "FK to source registry entry."
+    },
+    "source_version": {
+      "type": ["string", "null"],
+      "description": "Optional registry-entry version (sources/registry.yaml is versioned)."
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Connector-specific request bag (etag, last-modified, cursor)."
+    },
+    "response_status": {
+      "type": ["integer", "null"],
+      "minimum": 100,
+      "maximum": 599
+    },
+    "rate_limit": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Surface-of-record for rate-limit/quotas the connector observed."
+    }
+  }
+}

@@ -1,0 +1,206 @@
+[
+  {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000001",
+    "source_type": "rss",
+    "title": "Why agent eval is the bottleneck, not capability",
+    "url": "https://example.com/blog/agent-eval-bottleneck",
+    "canonical_url": "https://example.com/blog/agent-eval-bottleneck",
+    "published_at": "2026-05-15T14:00:00Z",
+    "ingested_at": "2026-05-19T12:00:01Z",
+    "raw_text": "Most agent demos fail in production not on capability but on observability and eval coverage.",
+    "raw_html": null,
+    "raw_html_blob_url": "https://blob.example/raw/rss/11111111.html",
+    "audio_url": null,
+    "audio_blob_url": null,
+    "content_hash": "d41d8cd98f00b204e9800998ecf8427e1111111111111111111111111111111111",
+    "status": "ingested",
+    "metadata": {
+      "feed_url": "https://example.com/blog/rss.xml",
+      "guid": "https://example.com/blog/agent-eval-bottleneck",
+      "categories": ["agents", "eval"]
+    },
+    "provenance": {
+      "fetcher": "rss@1.0.0",
+      "fetched_at": "2026-05-19T12:00:00Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000001",
+      "source_version": "registry@1",
+      "request": { "etag": "W/\"abc123\"", "if_modified_since": "Mon, 19 May 2026 11:50:00 GMT" },
+      "response_status": 200,
+      "rate_limit": null
+    },
+    "error": null
+  },
+  {
+    "id": "22222222-2222-4222-8222-222222222222",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000002",
+    "source_type": "podcast-rss",
+    "title": "Episode 142: Building durable agent runtimes",
+    "url": "https://example.com/podcast/episodes/142",
+    "canonical_url": "https://example.com/podcast/episodes/142",
+    "published_at": "2026-05-14T08:00:00Z",
+    "ingested_at": "2026-05-19T12:00:02Z",
+    "raw_text": "Hosts discuss interrupt + resume patterns in long-running agent workflows.",
+    "raw_html": null,
+    "audio_url": "https://media.example/podcast/142.mp3",
+    "audio_blob_url": "https://blob.example/raw/podcast/142.mp3",
+    "content_hash": "098f6bcd4621d373cade4e832627b4f62222222222222222222222222222222222",
+    "status": "transcribing",
+    "metadata": {
+      "feed_url": "https://example.com/podcast/rss.xml",
+      "episode_number": 142,
+      "duration_seconds": 3540
+    },
+    "provenance": {
+      "fetcher": "podcast-rss@1.0.0",
+      "fetched_at": "2026-05-19T12:00:02Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000002",
+      "source_version": "registry@1",
+      "response_status": 200,
+      "rate_limit": null
+    },
+    "error": null
+  },
+  {
+    "id": "33333333-3333-4333-8333-333333333333",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000003",
+    "source_type": "youtube-channel",
+    "title": "What changed in agent SDKs this month",
+    "url": "https://www.youtube.com/watch?v=abc123XYZ",
+    "canonical_url": "https://www.youtube.com/watch?v=abc123xyz",
+    "published_at": "2026-05-12T18:30:00Z",
+    "ingested_at": "2026-05-19T12:00:03Z",
+    "raw_text": "Channel summary of recent agent-SDK releases across providers.",
+    "audio_url": "https://media.example/yt/abc123XYZ.m4a",
+    "audio_blob_url": "https://blob.example/raw/youtube/abc123XYZ.m4a",
+    "content_hash": "ad0234829205b9033196ba818f7a872b3333333333333333333333333333333333",
+    "status": "ingested",
+    "metadata": {
+      "channel_id": "UCExampleChannel",
+      "channel_handle": "@example-channel",
+      "video_id": "abc123XYZ",
+      "duration_seconds": 612
+    },
+    "provenance": {
+      "fetcher": "youtube-data-v3@1.0.0",
+      "fetched_at": "2026-05-19T12:00:03Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000003",
+      "response_status": 200,
+      "rate_limit": {
+        "quota_remaining": 9500,
+        "quota_reset_at": "2026-05-20T00:00:00Z"
+      }
+    }
+  },
+  {
+    "id": "44444444-4444-4444-8444-444444444444",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000004",
+    "source_type": "article-url",
+    "title": "RAG retrieval quality is mostly a chunking problem",
+    "url": "https://example.com/posts/rag-chunking",
+    "canonical_url": "https://example.com/posts/rag-chunking",
+    "published_at": "2026-05-10T11:15:00Z",
+    "ingested_at": "2026-05-19T12:00:04Z",
+    "raw_text": "Author argues that boundary-aware chunking lifts recall@5 more than reranking does.",
+    "raw_html_blob_url": "https://blob.example/raw/article/44444444.html",
+    "content_hash": "f7c3bc1d808e04732adf679965ccc34ca4444444444444444444444444444444444",
+    "status": "extracted",
+    "metadata": {
+      "byline": "J. Doe",
+      "reading_time_minutes": 7,
+      "language": "en"
+    },
+    "provenance": {
+      "fetcher": "article-url@1.0.0",
+      "fetched_at": "2026-05-19T12:00:04Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000004",
+      "response_status": 200
+    }
+  },
+  {
+    "id": "55555555-5555-4555-8555-555555555555",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000005",
+    "source_type": "github-releases",
+    "title": "anthropic-sdk-python v1.42.0",
+    "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.42.0",
+    "canonical_url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.42.0",
+    "published_at": "2026-05-18T20:00:00Z",
+    "ingested_at": "2026-05-19T12:00:05Z",
+    "raw_text": "Release notes covering prompt caching, file ID inputs, and retry behavior.",
+    "content_hash": "e99a18c428cb38d5f260853678922e035555555555555555555555555555555555",
+    "status": "ingested",
+    "metadata": {
+      "repo": "anthropics/anthropic-sdk-python",
+      "tag": "v1.42.0",
+      "release_id": 12345678
+    },
+    "provenance": {
+      "fetcher": "octokit-releases@1.0.0",
+      "fetched_at": "2026-05-19T12:00:05Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000005",
+      "response_status": 200,
+      "rate_limit": {
+        "remaining": 4900,
+        "reset_at": "2026-05-19T13:00:00Z"
+      }
+    }
+  },
+  {
+    "id": "66666666-6666-4666-8666-666666666666",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000006",
+    "source_type": "webhook-push",
+    "title": "saved by extension: anatomy of a durable agent",
+    "url": "https://example.com/notes/durable-agents",
+    "canonical_url": "https://example.com/notes/durable-agents",
+    "published_at": null,
+    "ingested_at": "2026-05-19T12:00:06Z",
+    "raw_text": "User clipped this URL from the browser extension; payload includes selected text.",
+    "content_hash": "5d41402abc4b2a76b9719d911017c5926666666666666666666666666666666666",
+    "status": "ingested",
+    "metadata": {
+      "client": "browser-extension/0.1.0",
+      "user_agent": "Mozilla/5.0",
+      "selected_text": "the runtime is the product, not the model"
+    },
+    "provenance": {
+      "fetcher": "webhook-push@1.0.0",
+      "fetched_at": "2026-05-19T12:00:06Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000006",
+      "request": {
+        "signature": "v0=hmac-sha256:..."
+      },
+      "response_status": 200
+    }
+  },
+  {
+    "id": "77777777-7777-4777-8777-777777777777",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000007",
+    "source_type": "inbox-forward",
+    "title": "Forwarded: Latent Space — weekly digest",
+    "url": "mailto:workspace+brief@inbox.aifieldbrief.app",
+    "canonical_url": "mailto:workspace+brief@inbox.aifieldbrief.app",
+    "published_at": "2026-05-19T07:45:00Z",
+    "ingested_at": "2026-05-19T12:00:07Z",
+    "raw_text": "Newsletter forwarded by editor; dedupe key is the original Message-ID.",
+    "content_hash": "25d55ad283aa400af464c76d713c07ad7777777777777777777777777777777777",
+    "status": "ingested",
+    "metadata": {
+      "message_id": "<digest-2026-05-19@latent.space>",
+      "from": "newsletter@latent.space",
+      "forwarded_by": "editor@example.com"
+    },
+    "provenance": {
+      "fetcher": "inbox-forward@1.0.0",
+      "fetched_at": "2026-05-19T12:00:07Z",
+      "source_id": "aaaaaaaa-0000-4000-8000-000000000007",
+      "response_status": 200
+    }
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "name": "@aifieldbrief/sources",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Canonical source-item contract, transcripts, citations, provenance. Connector code lives here in later phases; this package ships schemas + fixtures first so connectors are gated on contracts that already exist.",
+  "type": "module",
+  "exports": {
+    "./schemas/source-item": "./schemas/source-item.schema.json",
+    "./schemas/transcript": "./schemas/transcript.schema.json",
+    "./schemas/citation": "./schemas/citation.schema.json",
+    "./schemas/provenance": "./schemas/provenance.schema.json"
+  },
+  "files": [
+    "schemas",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo \"@aifieldbrief/sources: lint placeholder\"",
+    "typecheck": "echo \"@aifieldbrief/sources: typecheck placeholder\"",
+    "test": "echo \"@aifieldbrief/sources: tests land with connectors\"",
+    "build": "echo \"@aifieldbrief/sources: build placeholder\""
+  }
+}

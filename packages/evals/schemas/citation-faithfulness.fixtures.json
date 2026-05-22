@@ -1,0 +1,54 @@
+[
+  {
+    "id": "cf-001",
+    "description": "Verbatim span: should pass.",
+    "claim": "Most agent demos fail in production on eval coverage, not capability.",
+    "target": {
+      "kind": "source_item",
+      "text": "Most agent demos fail in production not on capability but on observability and eval coverage."
+    },
+    "span_text": "Most agent demos fail in production not on capability but on observability and eval coverage.",
+    "expected_pass": true,
+    "expected_reason": "span appears verbatim in target",
+    "tags": ["happy-path", "source-item"]
+  },
+  {
+    "id": "cf-002",
+    "description": "Span text not present in target: should fail (seeded bad citation).",
+    "claim": "Capability is the only thing that matters for production agents.",
+    "target": {
+      "kind": "source_item",
+      "text": "Most agent demos fail in production not on capability but on observability and eval coverage."
+    },
+    "span_text": "Capability is the only thing that matters for production agents.",
+    "expected_pass": false,
+    "expected_reason": "span text not present in target",
+    "tags": ["adversarial", "source-item"]
+  },
+  {
+    "id": "cf-003",
+    "description": "Transcript span: should pass when present.",
+    "claim": "Interrupt and resume is the hard part of durable agents.",
+    "target": {
+      "kind": "transcript",
+      "text": "The thing nobody warns you about is that interrupt and resume is the hard part, not the model."
+    },
+    "span_text": "interrupt and resume is the hard part, not the model.",
+    "expected_pass": true,
+    "expected_reason": "case-insensitive span appears in transcript segment",
+    "tags": ["happy-path", "transcript"]
+  },
+  {
+    "id": "cf-004",
+    "description": "Near-verbatim drift: target paraphrases the claim — verifier should fail.",
+    "claim": "Reranking lifts retrieval recall more than chunking changes do.",
+    "target": {
+      "kind": "source_item",
+      "text": "Author argues that boundary-aware chunking lifts recall@5 more than reranking does."
+    },
+    "span_text": "Reranking lifts retrieval recall more than chunking changes do.",
+    "expected_pass": false,
+    "expected_reason": "claim inverts the target's argument",
+    "tags": ["adversarial", "inversion"]
+  }
+]

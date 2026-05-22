@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/citation.schema.json",
+  "title": "Citation",
+  "description": "A span-level citation backing one claim in an extracted insight or a published brief. Required on every brief claim (R-BOOT-004). Span text must exist verbatim in the cited target (R-EXT-004).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "workspace_id", "claim_id", "target", "span"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "workspace_id": { "type": "string", "format": "uuid" },
+    "claim_id": {
+      "type": "string",
+      "description": "ID of the claim this citation supports. Claim lives on an extracted_insight or a brief section."
+    },
+    "target": {
+      "type": "object",
+      "description": "What the span lives in.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "source_item_id"],
+          "properties": {
+            "kind": { "const": "source_item" },
+            "source_item_id": { "type": "string", "format": "uuid" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "transcript_id"],
+          "properties": {
+            "kind": { "const": "transcript" },
+            "transcript_id": { "type": "string", "format": "uuid" },
+            "segment_index": { "type": ["integer", "null"], "minimum": 0 }
+          }
+        }
+      ]
+    },
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "start_offset", "end_offset"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact (or near-verbatim) substring of the target. Verifier rejects citations whose text does not appear in the target."
+        },
+        "start_offset": { "type": "integer", "minimum": 0 },
+        "end_offset": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "verified": {
+      "type": ["boolean", "null"],
+      "description": "Set by the citation-faithfulness pass. Null until verified."
+    },
+    "verifier_model": {
+      "type": ["string", "null"],
+      "description": "Provider + model that ran the verification pass."
+    },
+    "verified_at": { "type": ["string", "null"], "format": "date-time" }
+  }
+}

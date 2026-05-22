@@ -1,0 +1,23 @@
+{
+  "name": "@aifieldbrief/evals",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Eval datasets, graders, reports, thresholds. Phase 0 ships the dataset shape; runners land with the extraction + synthesis specs.",
+  "type": "module",
+  "exports": {
+    "./schemas/citation-faithfulness": "./schemas/citation-faithfulness.schema.json",
+    "./schemas/hallucination": "./schemas/hallucination.schema.json"
+  },
+  "files": [
+    "schemas",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "echo \"@aifieldbrief/evals: lint placeholder\"",
+    "typecheck": "echo \"@aifieldbrief/evals: typecheck placeholder\"",
+    "test": "echo \"@aifieldbrief/evals: tests land with the runner\"",
+    "test:eval": "echo \"@aifieldbrief/evals: eval runner lands with spec 0005\"",
+    "build": "echo \"@aifieldbrief/evals: build placeholder\""
+  }
+}

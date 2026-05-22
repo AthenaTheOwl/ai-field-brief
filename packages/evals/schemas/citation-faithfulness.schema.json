@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/citation-faithfulness.schema.json",
+  "title": "CitationFaithfulnessCase",
+  "description": "One case in the citation-faithfulness eval suite. The runner asserts that the claim's cited span exists in the cited target (R-EXT-004). A case is `expected_pass=false` when the seed represents a known-bad citation we want the verifier to catch.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "claim", "target", "span_text", "expected_pass"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^cf-[0-9]{3,}$",
+      "description": "Stable case id, e.g. `cf-001`."
+    },
+    "description": { "type": "string", "minLength": 1 },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The claim language as it would appear in a brief."
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "text"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["source_item", "transcript"]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The full target text the verifier sees. Span_text must (or must not) appear here per expected_pass."
+        }
+      }
+    },
+    "span_text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The verbatim span the citation claims to back the claim with."
+    },
+    "expected_pass": {
+      "type": "boolean",
+      "description": "true when the span genuinely supports the claim; false when this is a seeded bad citation we want the verifier to reject."
+    },
+    "expected_reason": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

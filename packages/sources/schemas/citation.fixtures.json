@@ -1,0 +1,37 @@
+[
+  {
+    "id": "cccc1111-cccc-4ccc-8ccc-cccccccccccc",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "claim_id": "insight:11111111-1111-4111-8111-111111111111:c1",
+    "target": {
+      "kind": "source_item",
+      "source_item_id": "11111111-1111-4111-8111-111111111111"
+    },
+    "span": {
+      "text": "Most agent demos fail in production not on capability but on observability and eval coverage.",
+      "start_offset": 0,
+      "end_offset": 91
+    },
+    "verified": true,
+    "verifier_model": "openai:gpt-4o-mini@2026-04-01",
+    "verified_at": "2026-05-19T12:10:00Z"
+  },
+  {
+    "id": "cccc2222-cccc-4ccc-8ccc-cccccccccccc",
+    "workspace_id": "00000000-0000-4000-8000-000000000001",
+    "claim_id": "insight:22222222-2222-4222-8222-222222222222:c1",
+    "target": {
+      "kind": "transcript",
+      "transcript_id": "aaaa1111-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "segment_index": 1
+    },
+    "span": {
+      "text": "interrupt and resume is the hard part, not the model.",
+      "start_offset": 41,
+      "end_offset": 94
+    },
+    "verified": true,
+    "verifier_model": "openai:gpt-4o-mini@2026-04-01",
+    "verified_at": "2026-05-19T12:10:05Z"
+  }
+]

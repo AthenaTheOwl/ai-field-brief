@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/source-item.schema.json",
+  "title": "SourceItem",
+  "description": "Canonical shape for any item ingested from any source type. Multi-tenant: workspace_id is required. Required on every connector path.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "workspace_id",
+    "source_id",
+    "source_type",
+    "title",
+    "url",
+    "canonical_url",
+    "ingested_at",
+    "content_hash",
+    "status",
+    "provenance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Stable UUID of this item; primary key in source_items table."
+    },
+    "workspace_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Tenant scope; every row keyed by workspace_id (R-FND-001)."
+    },
+    "source_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "FK to the source registry entry that produced this item."
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "rss",
+        "podcast-rss",
+        "blog-rss",
+        "newsletter-rss",
+        "youtube-channel",
+        "youtube-playlist",
+        "article-url",
+        "vendor-changelog",
+        "arxiv-feed",
+        "hf-papers",
+        "inbox-forward",
+        "slack-channel",
+        "discord-channel",
+        "twitter-list",
+        "reddit-subreddit",
+        "hn-feed",
+        "github-releases",
+        "webhook-push"
+      ]
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "url": { "type": "string", "format": "uri" },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Normalized URL for dedupe (utm stripped, trailing slash trimmed, lowercase host)."
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Publication time at the source; null when the source does not expose one."
+    },
+    "ingested_at": { "type": "string", "format": "date-time" },
+    "raw_text": { "type": ["string", "null"] },
+    "raw_html": { "type": ["string", "null"] },
+    "raw_html_blob_url": { "type": ["string", "null"], "format": "uri" },
+    "audio_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Set for podcast and video items; transcript pipeline fans out on this."
+    },
+    "audio_blob_url": { "type": ["string", "null"], "format": "uri" },
+    "content_hash": {
+      "type": "string",
+      "minLength": 32,
+      "description": "Hash over title + canonical_url + body. Used for dedupe across last N briefs."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ingested",
+        "normalized",
+        "transcribing",
+        "transcribed",
+        "extracted",
+        "scored",
+        "included",
+        "dropped",
+        "failed"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Per-source-type bag (channel id, feed url, episode number, repo + tag, etc.). Free-form; not validated here."
+    },
+    "provenance": { "$ref": "./provenance.schema.json" },
+    "error": { "type": ["string", "null"] }
+  }
+}

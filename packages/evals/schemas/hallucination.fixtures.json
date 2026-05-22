@@ -1,0 +1,73 @@
+[
+  {
+    "id": "hl-001",
+    "description": "Insight is grounded in citations: should not flag.",
+    "insight": {
+      "what_changed": "Anthropic SDK 1.42 ships prompt caching for file inputs.",
+      "actionable_takeaway": "Pin to 1.42.0 and start caching the system prompt.",
+      "area": "agents",
+      "confidence": "high"
+    },
+    "citations": [
+      {
+        "target_text": "Release notes covering prompt caching, file ID inputs, and retry behavior.",
+        "span_text": "prompt caching, file ID inputs"
+      }
+    ],
+    "expected_flag": false,
+    "expected_reason": "what_changed claim is directly supported by the cited release note",
+    "tags": ["happy-path"]
+  },
+  {
+    "id": "hl-002",
+    "description": "Insight adds unsupported numeric claim: should flag.",
+    "insight": {
+      "what_changed": "Anthropic SDK 1.42 reduces token cost by 70 percent on cached prompts.",
+      "actionable_takeaway": "Cut LLM spend by switching every workspace prompt to cached mode.",
+      "area": "agents",
+      "confidence": "high"
+    },
+    "citations": [
+      {
+        "target_text": "Release notes covering prompt caching, file ID inputs, and retry behavior.",
+        "span_text": "prompt caching"
+      }
+    ],
+    "expected_flag": true,
+    "expected_reason": "70-percent figure is not in the cited target",
+    "tags": ["adversarial", "unsupported-number"]
+  },
+  {
+    "id": "hl-003",
+    "description": "Insight has zero citations: should flag.",
+    "insight": {
+      "what_changed": "Everyone is moving off OpenAI to Anthropic this quarter.",
+      "actionable_takeaway": "Migrate the next workspace to Anthropic as default.",
+      "area": "market",
+      "confidence": "medium"
+    },
+    "citations": [],
+    "expected_flag": true,
+    "expected_reason": "no citations support the claim",
+    "tags": ["adversarial", "no-citations"]
+  },
+  {
+    "id": "hl-004",
+    "description": "Insight applies cited finding to scope the source did not name: should flag.",
+    "insight": {
+      "what_changed": "Boundary-aware chunking lifts recall@5 by 30 percent across all retrieval setups.",
+      "actionable_takeaway": "Rewrite our chunker to boundary-aware before next release.",
+      "area": "rag",
+      "confidence": "high"
+    },
+    "citations": [
+      {
+        "target_text": "Author argues that boundary-aware chunking lifts recall@5 more than reranking does.",
+        "span_text": "boundary-aware chunking lifts recall@5 more than reranking does"
+      }
+    ],
+    "expected_flag": true,
+    "expected_reason": "cited source has no `30 percent` and no `all retrieval setups` scope claim",
+    "tags": ["adversarial", "scope-creep"]
+  }
+]

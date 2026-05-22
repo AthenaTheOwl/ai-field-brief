@@ -1,0 +1,25 @@
+[
+  {
+    "fetcher": "rss@1.0.0",
+    "fetched_at": "2026-05-19T12:00:00Z",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000001",
+    "source_version": "registry@1",
+    "request": {
+      "etag": "W/\"abc123\"",
+      "if_modified_since": "Mon, 19 May 2026 11:50:00 GMT"
+    },
+    "response_status": 200,
+    "rate_limit": null
+  },
+  {
+    "fetcher": "octokit-releases@1.0.0",
+    "fetched_at": "2026-05-19T12:00:05Z",
+    "source_id": "aaaaaaaa-0000-4000-8000-000000000005",
+    "source_version": "registry@1",
+    "response_status": 200,
+    "rate_limit": {
+      "remaining": 4900,
+      "reset_at": "2026-05-19T13:00:00Z"
+    }
+  }
+]

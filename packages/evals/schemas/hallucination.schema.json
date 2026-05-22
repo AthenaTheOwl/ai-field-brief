@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/hallucination.schema.json",
+  "title": "HallucinationCase",
+  "description": "One case in the hallucination eval suite. Given an insight (what_changed + actionable_takeaway) and its citations, the runner asserts whether a hallucination flag should fire (R-EXT-005).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "insight",
+    "citations",
+    "expected_flag"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^hl-[0-9]{3,}$"
+    },
+    "description": { "type": "string", "minLength": 1 },
+    "insight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["what_changed", "actionable_takeaway"],
+      "properties": {
+        "what_changed": { "type": "string", "minLength": 1 },
+        "actionable_takeaway": { "type": "string", "minLength": 1 },
+        "area": { "type": ["string", "null"] },
+        "confidence": {
+          "type": ["string", "null"],
+          "enum": ["low", "medium", "high", null]
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_text", "span_text"],
+        "properties": {
+          "target_text": { "type": "string", "minLength": 1 },
+          "span_text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "expected_flag": {
+      "type": "boolean",
+      "description": "true means the runner should flag the insight as a hallucination candidate."
+    },
+    "expected_reason": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

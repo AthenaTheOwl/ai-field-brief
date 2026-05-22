@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-field-brief.dev/schemas/transcript.schema.json",
+  "title": "Transcript",
+  "description": "Diarized transcript for an audio or video source item. R-BOOT-002: audio/video sources must be transcribed by default; transcription is the default path, not keyword-gated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source_item_id",
+    "workspace_id",
+    "model",
+    "language",
+    "duration_seconds",
+    "created_at",
+    "segments"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "source_item_id": { "type": "string", "format": "uuid" },
+    "workspace_id": { "type": "string", "format": "uuid" },
+    "model": {
+      "type": "string",
+      "description": "Provider + model + version, e.g. `openai:gpt-4o-transcribe-diarize@2026-04-01`."
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP-47 language tag detected at transcription time."
+    },
+    "duration_seconds": { "type": "number", "minimum": 0 },
+    "cost_usd": { "type": ["number", "null"], "minimum": 0 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "audio_blob_url": { "type": ["string", "null"], "format": "uri" },
+    "audio_retention_until": { "type": ["string", "null"], "format": "date" },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["start", "end", "text", "speaker"],
+        "properties": {
+          "start": { "type": "number", "minimum": 0 },
+          "end": { "type": "number", "minimum": 0 },
+          "speaker": {
+            "type": "string",
+            "description": "Diarization label, e.g. `S1`, `S2`, or a resolved name."
+          },
+          "text": { "type": "string", "minLength": 1 },
+          "confidence": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

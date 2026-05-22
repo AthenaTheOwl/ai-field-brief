@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: install python deps
+        run: python -m pip install --quiet "jsonschema>=4.21" "referencing>=0.35" "pyyaml>=6.0"
       - name: spec_check
         run: python scripts/spec_check.py
       - name: voice_lint

@@ -81,8 +81,37 @@ def validate_schema(path: Path, violations: list[str]) -> dict[str, Any] | None:
     return doc
 
 
+def build_registry(schemas: list[Path]) -> Any:
+    """Build a referencing.Registry of every discovered schema, keyed by $id.
+
+    Without this, jsonschema tries to fetch `$ref` targets over the network
+    when they resolve to absolute URLs (the $id values intentionally are URLs
+    for portability). CI runs offline; local dev shouldn't depend on DNS.
+    """
+    try:
+        from referencing import Registry, Resource  # type: ignore[import-not-found]
+        from referencing.jsonschema import DRAFT202012  # type: ignore[import-not-found]
+    except ImportError:
+        return None
+
+    registry: Any = Registry()
+    for schema_path in schemas:
+        try:
+            doc = load_json(schema_path)
+        except json.JSONDecodeError:
+            continue
+        sid = doc.get("$id") if isinstance(doc, dict) else None
+        if isinstance(sid, str):
+            resource = Resource.from_contents(doc, default_specification=DRAFT202012)
+            registry = registry.with_resource(uri=sid, resource=resource)
+    return registry
+
+
 def validate_fixtures(
-    schema_path: Path, schema_doc: dict[str, Any], violations: list[str]
+    schema_path: Path,
+    schema_doc: dict[str, Any],
+    violations: list[str],
+    registry: Any,
 ) -> None:
     fixture_path = schema_path.with_name(schema_path.name.replace(".schema.json", ".fixtures.json"))
     if not fixture_path.is_file():
@@ -111,7 +140,10 @@ def validate_fixtures(
 
     validator_cls = jsonschema.validators.validator_for(schema_doc)
     validator_cls.check_schema(schema_doc)
-    validator = validator_cls(schema_doc)
+    if registry is not None:
+        validator = validator_cls(schema_doc, registry=registry)
+    else:
+        validator = validator_cls(schema_doc)
     for index, fixture in enumerate(fixtures):
         errors = list(validator.iter_errors(fixture))
         for err in errors:
@@ -127,10 +159,11 @@ def main() -> int:
         print("validate_schemas OK (0 schemas — Phase 0)")
         return 0
 
+    registry = build_registry(schemas)
     for schema_path in schemas:
         doc = validate_schema(schema_path, violations)
         if doc is not None:
-            validate_fixtures(schema_path, doc, violations)
+            validate_fixtures(schema_path, doc, violations, registry)
 
     if violations:
         print("validate_schemas: violations found", file=sys.stderr)
