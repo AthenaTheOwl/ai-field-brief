@@ -57,3 +57,6 @@ private/
 # blob/temp
 tmp/
 .cache/
+
+# build-time snapshots (briefs/ copied into apps/web for static rendering)
+apps/web/.briefs-snapshot/
