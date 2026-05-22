@@ -203,8 +203,11 @@ TARGETS = [
     "inngest/functions/**/*.ts",
     "templates/*.md",
     "playbook/*.md",
+    "playbook/**/*.md",
     "docs/*.md",
     "legal/*.md",
+    "briefs/*.md",
+    "briefs/**/*.md",
 ]
 
 SKIP_DIRS = {

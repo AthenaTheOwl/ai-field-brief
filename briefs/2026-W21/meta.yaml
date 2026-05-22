@@ -1,0 +1,85 @@
+# meta — 2026-W21 weekly brief
+# auto-written by the playbook; edit in place when the brief gets revised.
+
+iso_week: 2026-W21
+through_date: 2026-05-22
+generated_at: 2026-05-22T11:00:00Z
+generated_by: claude-opus-4-7 (manual playbook run)
+title: "Contract speed, not model speed"
+volume: 1
+
+registry_version: 1
+sweep:
+  attempted: 8
+  succeeded: 6
+  failed: 2
+
+sources_reviewed:
+  - id: anthropic-news
+    status: ok
+    items_captured: 6
+    items_included: 4   # acquires-stainless, kpmg, gates, glasswing, pwc (5 actually; one pick bundles 3)
+    last_item_date: 2026-05-22
+  - id: openai-news
+    status: failed
+    error: HTTP 403 on https://openai.com/news during sweep
+    items_captured: 0
+  - id: simon-willison
+    status: ok
+    items_captured: 8
+    items_included: 2   # 5-minute-llms, datasette-agent
+    last_item_date: 2026-05-22
+  - id: latent-space
+    status: partial
+    error: landing page does not expose archive in fetched HTML
+    items_captured: 0
+  - id: hamel-husain
+    status: ok
+    items_captured: 5
+    items_included: 1   # evals-skills (older but tied to Stainless thread)
+    last_item_date: 2026-03-26
+  - id: eugene-yan
+    status: ok
+    items_captured: 5
+    items_included: 1   # working-with-ai
+    last_item_date: 2026-05-03
+  - id: zvi-mowshowitz
+    status: partial
+    error: landing page does not expose post list in fetched HTML
+    items_captured: 0
+  - id: dwarkesh-podcast
+    status: partial
+    error: landing page does not expose episode list in fetched HTML
+    items_captured: 0
+
+sources_not_swept_this_run:
+  - id: anthropic-engineering
+    reason: not in v1 sweep set; capture next week
+  - id: anthropic-alignment
+    reason: not in v1 sweep set; capture next week
+  - id: openai-research
+    reason: not in v1 sweep set
+  - id: openai-cookbook
+    reason: not in v1 sweep set
+  - id: applied-llms
+    reason: not in v1 sweep set
+  - id: trenton-bricken
+    reason: not in v1 sweep set
+  - id: the-ai-corner
+    reason: not in v1 sweep set
+
+notes:
+  - "v1 sweep is intentionally narrow — 8 of 15 sources. Spec 0002 connectors
+    + spec 0003 run workflow expand this."
+  - "Three sources (latent-space, zvi, dwarkesh) returned only landing
+    pages; archive paths or RSS feeds need to be added to the registry
+    entry's metadata when connectors land."
+  - "OpenAI news 403 is a regular fetch-from-Anthropic-IP-range issue;
+    will resolve when the OpenAI connector lands in spec 0002 with proper
+    user-agent + retry."
+
+next_run_actions:
+  - capture anthropic-engineering, anthropic-alignment
+  - add archive-URL field to registry entries that didn't expose a feed
+  - decide whether to include OpenAI news via a different path (RSS at
+    openai.com/news/rss.xml is documented but not yet wired)
