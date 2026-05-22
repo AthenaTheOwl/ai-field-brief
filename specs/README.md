@@ -17,6 +17,12 @@ Active specs:
 - `0000-bootstrap/acceptance.md`
 - `0000-bootstrap/research.md`
 - `0000-bootstrap/traceability.md`
+- `0001-foundation/requirements.md`
+- `0001-foundation/design.md`
+- `0001-foundation/tasks.md`
+- `0001-foundation/acceptance.md`
+- `0001-foundation/research.md`
+- `0001-foundation/traceability.md`
 
 Development loop:
 

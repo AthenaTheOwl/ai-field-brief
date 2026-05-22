@@ -1,0 +1,36 @@
+{
+  "name": "@aifieldbrief/web",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "AI Field Brief web app (Next.js 15 App Router). Phase 1 scaffold: Clerk middleware wired, env validated at boot, healthz + readyz routes, tenant-scoped db client via @aifieldbrief/db.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "echo \"@aifieldbrief/web: lint placeholder\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "@aifieldbrief/db": "workspace:*",
+    "@clerk/nextjs": "^6.9.6",
+    "next": "^15.2.3",
+    "react": "~19.0.3",
+    "react-dom": "~19.0.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "happy-dom": "^15.11.7",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
