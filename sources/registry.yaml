@@ -1,0 +1,317 @@
+# source registry — ai-field-brief
+#
+# Curated list of feeds, podcasts, and personal sites that anchor weekly
+# briefs. Selection rule: each entry has a verifiable tie to a tier-1
+# operator — either an Anthropic / OpenAI primary surface, an explicit
+# endorsement by a recognized practitioner (e.g. Karpathy subscribes), or
+# a track record of being read inside both labs (e.g. Applied LLMs
+# instructors teaching at OpenAI + Anthropic).
+#
+# Wider candidate pool lives in `sources/candidates.md`; promote into this
+# file after a manual review pass. Anything in this file is consumed by
+# the run workflow once that lands.
+
+version: 1
+last_curated: 2026-05-22
+default_review_frequency: weekly
+
+lanes:
+  - id: primary-source
+    label: "Primary source — verification, not discovery"
+  - id: fast-signal
+    label: "Fast signal — what happened this week"
+  - id: builder-practice
+    label: "Builder practice — how teams build with LLMs"
+  - id: strategy
+    label: "Strategy — what does it mean"
+
+sources:
+  # ---------- primary-source: vendor official ----------
+  - id: anthropic-news
+    name: Anthropic News
+    type: vendor-news
+    lane: primary-source
+    url: https://www.anthropic.com/news
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Canonical for model releases, policy updates, and research-paper
+      announcements. No official RSS; community feed at
+      https://raw.githubusercontent.com/taobojlen/anthropic-rss-feed/main/anthropic_news_rss.xml.
+
+  - id: anthropic-engineering
+    name: Anthropic Engineering Blog
+    type: vendor-engineering
+    lane: primary-source
+    url: https://www.anthropic.com/engineering
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Agent SDK design notes, prompt-caching, infra postmortems
+      (recent example: the Claude Code quality-issue postmortem).
+      Community RSS at https://raw.githubusercontent.com/conoro/anthropic-engineering-rss-feed/main/anthropic_engineering_rss.xml.
+
+  - id: anthropic-alignment
+    name: Anthropic Alignment Science Blog
+    type: vendor-research
+    lane: primary-source
+    url: https://alignment.anthropic.com
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Official Anthropic safety-research outlet. Where post-deployment
+      risk research lives.
+
+  - id: openai-news
+    name: OpenAI News
+    type: vendor-news
+    lane: primary-source
+    url: https://openai.com/news
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Official RSS at https://openai.com/news/rss.xml. Verify any
+      OpenAI claim heard via podcasts/newsletters here first.
+
+  - id: openai-research
+    name: OpenAI Research Index
+    type: vendor-research
+    lane: primary-source
+    url: https://openai.com/research
+    cadence: irregular
+    review_frequency: biweekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      No official RSS for the research index; community feed exists
+      (see https://community.openai.com thread). Lower cadence than news.
+
+  - id: openai-cookbook
+    name: OpenAI Cookbook
+    type: github-releases
+    lane: primary-source
+    url: https://github.com/openai/openai-cookbook
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Canonical OpenAI recipes — Structured Outputs, function-calling,
+      agent loops, evals. Watch repo releases + the changelog file.
+
+  # ---------- fast-signal: tier-1 super-user feeds ----------
+  - id: simon-willison
+    name: Simon Willison
+    type: blog
+    lane: fast-signal
+    url: https://simonwillison.net
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Karpathy publicly subscribes via NetNewsWire and reads
+      "everything" (x.com/karpathy/status/1933582359347278246).
+      Atom feed at https://simonwillison.net/atom/everything/. The
+      single highest signal-to-noise individual source on prompt
+      injection, model capability shifts, and shipped-LLM patterns.
+
+  - id: latent-space
+    name: Latent Space (swyx + Alessio)
+    type: podcast+newsletter
+    lane: fast-signal
+    url: https://www.latent.space
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Breaks news / runs exclusive interviews with founders + builders
+      from OpenAI, Anthropic, Gemini, Meta (Soumith Chintala), Sierra,
+      tiny (George Hotz), Databricks/MosaicML, Modular, Answer.ai.
+      10M+ readers/listeners in 2025.
+
+  - id: dwarkesh-podcast
+    name: Dwarkesh Podcast
+    type: podcast
+    lane: fast-signal
+    url: https://www.dwarkesh.com
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Substack podcast RSS at https://api.substack.com/feed/podcast/69345.rss.
+      Long-form interviews with Dario Amodei (Anthropic CEO), Sholto
+      Douglas + Trenton Bricken (Anthropic researchers), Jensen Huang
+      (NVIDIA). Substantive, not press-tour.
+
+  # ---------- builder-practice: applied-LLM canon ----------
+  - id: applied-llms
+    name: Applied LLMs (Yan / Bischof / Frye / Husain / Liu / Shankar)
+    type: collection+book
+    lane: builder-practice
+    url: https://applied-llms.org
+    cadence: irregular
+    review_frequency: biweekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      "What We Learned From A Year of Building with LLMs" — the 42
+      lessons report. Taught by Eugene Yan + Hamel Husain to engineers
+      at OpenAI, Anthropic, Google (3000+ students). Closest thing to
+      a canonical applied reference both labs read.
+
+  - id: eugene-yan
+    name: Eugene Yan
+    type: blog+newsletter
+    lane: builder-practice
+    url: https://eugeneyan.com
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Member of Technical Staff at Anthropic (building recsys + AI
+      products). Newsletter to 11.8k+ readers. Direct insider signal
+      on what Anthropic ships and how.
+
+  - id: hamel-husain
+    name: Hamel Husain
+    type: blog
+    lane: builder-practice
+    url: https://hamel.dev
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Ex-Airbnb / GitHub ML; early LLM research used by OpenAI for
+      code understanding. Co-teaches AI Evals for Engineers + PMs.
+      "A Field Guide to Rapidly Improving AI Products" is required
+      reading inside both labs.
+
+  - id: trenton-bricken
+    name: Trenton Bricken
+    type: blog
+    lane: builder-practice
+    url: https://www.trentonbricken.com
+    cadence: irregular
+    review_frequency: biweekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Anthropic researcher (mechanistic interpretability). Personal
+      site; sparse but high-signal posts on how Claude thinks.
+
+  # ---------- strategy: analysis layer ----------
+  - id: zvi-mowshowitz
+    name: Don't Worry About the Vase (Zvi Mowshowitz)
+    type: newsletter
+    lane: strategy
+    url: https://thezvi.substack.com
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      Granular weekly AI roundup with explicit links to primary
+      sources. Recent example: "On Dwarkesh Patel's 2026 Podcast With
+      Dario Amodei". Strong filter against hype.
+
+  - id: the-ai-corner
+    name: The AI Corner (Ruben Dominguez)
+    type: newsletter
+    lane: strategy
+    url: https://www.the-ai-corner.com
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: medium
+      actionability: medium
+      credibility: medium
+    status: active
+    last_reviewed: 2026-05-22
+    notes: >-
+      LinkedIn-surfaced Substack focused on Anthropic / Claude
+      product moves. Higher hype-penalty than the other strategy
+      sources; included for vendor-watch breadth, not depth.
