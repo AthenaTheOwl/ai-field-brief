@@ -59,3 +59,41 @@ deferred:
     note: SSR by default; backfill pending
   - id: R-FND-014
     note: UTC storage + per-workspace timezone; backfill pending
+
+  # R-SRC-* — Phase 2 source-registry requirements. The spec ledger
+  # landed (specs/0002-source-registry/) ahead of the connector
+  # implementation; DECs land alongside each connector that closes its
+  # matching R-SRC-NNN. Removing an entry here requires shipping both
+  # the connector and the DEC in the same commit.
+  - id: R-SRC-001
+    note: phase 2 source-type enum (18 types); connector + DEC pending
+  - id: R-SRC-002
+    note: per-source quality + cadence metadata; connector + DEC pending
+  - id: R-SRC-003
+    note: source-reliability auto-tuning; connector + DEC pending
+  - id: R-SRC-004
+    note: add-source URL + RSS validation; connector + DEC pending
+  - id: R-SRC-005
+    note: inbox-forward intake address; connector + DEC pending
+  - id: R-SRC-006
+    note: slack + discord emoji ingest; connector + DEC pending
+  - id: R-SRC-007
+    note: twitter list intake; connector + DEC pending
+  - id: R-SRC-008
+    note: github release notes intake; connector + DEC pending
+  - id: R-SRC-009
+    note: arxiv per-category feeds; connector + DEC pending
+  - id: R-SRC-010
+    note: hugging face daily papers; connector + DEC pending
+  - id: R-SRC-011
+    note: generic webhook intake with HMAC; connector + DEC pending
+  - id: R-SRC-012
+    note: source registry CRUD UI; UI + DEC pending
+  - id: R-SRC-013
+    note: source registry YAML import/export; connector + DEC pending
+  - id: R-SRC-014
+    note: source-quality dashboard; UI + DEC pending
+  - id: R-SRC-015
+    note: workspace area taxonomy; schema + DEC pending
+  - id: R-SRC-016
+    note: first-run seeded source registry; data + DEC pending
