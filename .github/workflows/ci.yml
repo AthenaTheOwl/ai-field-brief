@@ -33,6 +33,8 @@ jobs:
         run: python scripts/validate_schemas.py
       - name: validate_registry
         run: python scripts/validate_registry.py
+      - name: validate_decisions
+        run: python scripts/validate_decisions.py
 
   node:
     name: node (lint + typecheck + test + build)

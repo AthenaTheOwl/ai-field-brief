@@ -1,0 +1,61 @@
+# spec-check allowlist for deferred decision backfills.
+#
+# Every R-* requirement defined in specs/NNNN-*/requirements.md must
+# carry at least one decisions/DEC-*.md file whose front-matter
+# `requirement:` field names that ID. The R-* IDs listed below are
+# deferred backfills: the requirements shipped before the CDCP
+# scaffold landed; the matching DEC files land in a later pass.
+#
+# Format: a YAML list of R-* IDs under the `deferred` key.
+# Each entry carries a short note for context.
+#
+# Removing an entry from this list requires landing the matching DEC
+# in the same commit.
+
+deferred:
+  # R-BOOT-* — Phase 0 bootstrap requirements. The bootstrap predates
+  # the decisions ledger; backfilling decisions for the seven bootstrap
+  # requirements lands in a later pass after the first non-foundation
+  # spec ships.
+  - id: R-BOOT-001
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-002
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-003
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-004
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-005
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-006
+    note: phase 0 bootstrap; backfill pending
+  - id: R-BOOT-007
+    note: phase 0 bootstrap; backfill pending
+
+  # R-FND-* — Phase 1 foundation requirements. DEC-FND-001 and
+  # DEC-FND-007 land in this commit; the remaining twelve land in a
+  # later pass.
+  - id: R-FND-002
+    note: org-above-workspace identity model; backfill pending
+  - id: R-FND-003
+    note: workspace member roles + invite flow; backfill pending
+  - id: R-FND-004
+    note: 2FA + SSO architecture; backfill pending
+  - id: R-FND-005
+    note: drizzle migration discipline; backfill pending
+  - id: R-FND-006
+    note: strict TypeScript across workspace; backfill pending
+  - id: R-FND-008
+    note: Apache-2.0 + CC BY 4.0 license boundary; backfill pending
+  - id: R-FND-009
+    note: README hook + setup steps; backfill pending
+  - id: R-FND-010
+    note: gate scripts block PRs; backfill pending
+  - id: R-FND-011
+    note: audit log table; backfill pending
+  - id: R-FND-012
+    note: workspace settings JSONB column; backfill pending
+  - id: R-FND-013
+    note: SSR by default; backfill pending
+  - id: R-FND-014
+    note: UTC storage + per-workspace timezone; backfill pending

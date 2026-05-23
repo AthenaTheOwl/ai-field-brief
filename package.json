@@ -24,7 +24,8 @@
     "spec_check": "python scripts/spec_check.py",
     "validate_schemas": "python scripts/validate_schemas.py",
     "validate_registry": "python scripts/validate_registry.py",
-    "verify": "pnpm voice_lint && pnpm spec_check && pnpm validate_schemas && pnpm lint && pnpm typecheck && pnpm test"
+    "validate_decisions": "python scripts/validate_decisions.py",
+    "verify": "pnpm voice_lint && pnpm spec_check && pnpm validate_schemas && pnpm validate_registry && pnpm validate_decisions && pnpm lint && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "next": "^15.2.3",

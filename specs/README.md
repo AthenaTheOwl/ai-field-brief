@@ -23,6 +23,12 @@ Active specs:
 - `0001-foundation/acceptance.md`
 - `0001-foundation/research.md`
 - `0001-foundation/traceability.md`
+- `0010-cognitive-delivery-control-plane/requirements.md`
+- `0010-cognitive-delivery-control-plane/design.md`
+- `0010-cognitive-delivery-control-plane/tasks.md`
+- `0010-cognitive-delivery-control-plane/acceptance.md`
+- `0010-cognitive-delivery-control-plane/research.md`
+- `0010-cognitive-delivery-control-plane/traceability.md`
 
 Development loop:
 

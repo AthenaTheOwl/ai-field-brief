@@ -6,12 +6,20 @@ Phase 0 rules — every active spec under `specs/NNNN-*/` must:
   2. Define at least one R-* requirement in requirements.md, with the
      R-PREFIX-NNN shape: `### R-PREFIX-001: ...`.
   3. Use an R-* prefix from the planned set (BOOT, FND, SRC, RUN, TRN,
-     EXT, BRF, PUB, ACT, SCH, INT, BIL, OBS, SEC, MOB, PORT).
+     EXT, BRF, PUB, ACT, SCH, INT, BIL, OBS, SEC, MOB, PORT, CDCP).
   4. Have a traceability.md that names every requirement defined in
      requirements.md (no orphan reqs).
   5. Avoid referencing R-* IDs in traceability.md that are not
      defined in requirements.md (no phantom IDs).
   6. Be listed in specs/README.md.
+
+CDCP rule (added by spec 0010):
+  7. Every R-* requirement defined in any requirements.md must be
+     resolved by at least one decisions/DEC-*.md file whose
+     front-matter `requirement:` field names that ID, OR be listed in
+     `decisions/.spec-check-allowlist.yaml` under the `deferred` key,
+     OR carry an R-CDCP-* prefix (covered collectively by
+     DEC-CDCP-001-install-cdcp-governance.md).
 
 Exit codes: 0 OK, 1 violations found.
 """
@@ -26,6 +34,12 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 SPECS_ROOT = ROOT / "specs"
 SPECS_INDEX = SPECS_ROOT / "README.md"
+DECISIONS_ROOT = ROOT / "decisions"
+ALLOWLIST_PATH = DECISIONS_ROOT / ".spec-check-allowlist.yaml"
+
+# R-* requirements with this prefix do not need a per-ID DEC; they are
+# resolved collectively by DEC-CDCP-001-install-cdcp-governance.md.
+DEC_BOOTSTRAP_PREFIXES = {"CDCP"}
 
 REQUIRED_FILES = (
     "requirements.md",
@@ -55,6 +69,7 @@ ALLOWED_PREFIXES = {
     "SEC",   # 0013 security + compliance
     "MOB",   # 0014 mobile + extension
     "PORT",  # 0015 portfolio integration
+    "CDCP",  # 0010 cognitive delivery control plane
 }
 
 REQ_RE = re.compile(r"^###\s+(R-[A-Z]+-\d{3,}):", re.MULTILINE)
@@ -72,6 +87,81 @@ def active_specs() -> list[Path]:
     )
 
 
+def parse_dec_requirement(text: str) -> str | None:
+    """Pull the `requirement:` value from a DEC file's YAML front-matter.
+
+    A DEC file starts with `---` on line 1, has YAML key/value pairs,
+    and closes with another `---`. We do a tiny line-based parse rather
+    than pulling in PyYAML at this layer.
+    """
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return None
+    for line in lines[1:]:
+        stripped = line.strip()
+        if stripped == "---":
+            break
+        if stripped.startswith("requirement:"):
+            value = stripped.split(":", 1)[1].strip()
+            value = value.strip("\"'")
+            return value or None
+    return None
+
+
+def collect_dec_requirements() -> set[str]:
+    """Return the set of R-* IDs that at least one DEC file resolves."""
+    resolved: set[str] = set()
+    if not DECISIONS_ROOT.is_dir():
+        return resolved
+    for path in DECISIONS_ROOT.glob("DEC-*.md"):
+        if not path.is_file():
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        rid = parse_dec_requirement(text)
+        if rid:
+            resolved.add(rid)
+    return resolved
+
+
+def collect_allowlisted() -> set[str]:
+    """Return the set of R-* IDs deferred via the allowlist file."""
+    if not ALLOWLIST_PATH.is_file():
+        return set()
+    try:
+        import yaml  # type: ignore[import-not-found]
+    except ImportError:
+        print(
+            f"spec_check: PyYAML not installed; "
+            f"cannot read {ALLOWLIST_PATH.relative_to(ROOT).as_posix()}",
+            file=sys.stderr,
+        )
+        return set()
+    try:
+        data = yaml.safe_load(ALLOWLIST_PATH.read_text(encoding="utf-8"))
+    except yaml.YAMLError as exc:
+        print(
+            f"spec_check: failed to parse "
+            f"{ALLOWLIST_PATH.relative_to(ROOT).as_posix()}: {exc}",
+            file=sys.stderr,
+        )
+        return set()
+    if not isinstance(data, dict):
+        return set()
+    deferred = data.get("deferred")
+    if not isinstance(deferred, list):
+        return set()
+    ids: set[str] = set()
+    for entry in deferred:
+        if isinstance(entry, dict) and isinstance(entry.get("id"), str):
+            ids.add(entry["id"])
+        elif isinstance(entry, str):
+            ids.add(entry)
+    return ids
+
+
 def main() -> int:
     violations: list[str] = []
     spec_dirs = active_specs()
@@ -80,6 +170,10 @@ def main() -> int:
         return 1
 
     index_text = SPECS_INDEX.read_text(encoding="utf-8") if SPECS_INDEX.exists() else ""
+
+    # CDCP rule prep: collect all R-* IDs across every spec, then check
+    # each against the DEC + allowlist + bootstrap-prefix exemptions.
+    all_req_ids: set[str] = set()
 
     for spec_dir in spec_dirs:
         rel = spec_dir.relative_to(ROOT).as_posix()
@@ -98,6 +192,7 @@ def main() -> int:
 
         req_text = req_path.read_text(encoding="utf-8")
         ids = REQ_RE.findall(req_text)
+        all_req_ids.update(ids)
 
         # 2. At least one R-* defined
         if not ids:
@@ -153,6 +248,25 @@ def main() -> int:
             violations.append(
                 f"specs/README.md: missing entry for spec folder `{spec_dir.name}`"
             )
+
+    # 7. CDCP rule: every R-* requirement must be resolved by a DEC,
+    # listed in the allowlist, or carry a bootstrap-exempt prefix.
+    dec_resolved = collect_dec_requirements()
+    allowlisted = collect_allowlisted()
+    for rid in sorted(all_req_ids):
+        prefix = rid.split("-", 2)[1]
+        if prefix in DEC_BOOTSTRAP_PREFIXES:
+            continue
+        if rid in dec_resolved:
+            continue
+        if rid in allowlisted:
+            continue
+        violations.append(
+            f"decisions/: no DEC-* file resolves `{rid}` "
+            f"(add a decisions/DEC-*.md with `requirement: {rid}` in "
+            f"front-matter, or list {rid} under `deferred` in "
+            f"decisions/.spec-check-allowlist.yaml)"
+        )
 
     if violations:
         print("spec_check: violations found", file=sys.stderr)

@@ -208,6 +208,11 @@ TARGETS = [
     "legal/*.md",
     "briefs/*.md",
     "briefs/**/*.md",
+    ".agents/AGENTS.md",
+    ".agents/skills/**/*.md",
+    "decisions/*.md",
+    "dreams/**/*.md",
+    "ops/*.md",
 ]
 
 SKIP_DIRS = {
