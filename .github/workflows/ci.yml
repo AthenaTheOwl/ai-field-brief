@@ -75,6 +75,8 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+      - name: install
+        run: pnpm install --frozen-lockfile=false
       - name: pnpm audit
         run: pnpm audit --audit-level high || true
       - name: gitleaks
