@@ -33,32 +33,10 @@ deferred:
     note: phase 0 bootstrap; backfill pending
 
   # R-FND-* — Phase 1 foundation requirements. DEC-FND-001 and
-  # DEC-FND-007 land in this commit; the remaining twelve land in a
-  # later pass.
-  - id: R-FND-002
-    note: org-above-workspace identity model; backfill pending
-  - id: R-FND-003
-    note: workspace member roles + invite flow; backfill pending
-  - id: R-FND-004
-    note: 2FA + SSO architecture; backfill pending
-  - id: R-FND-005
-    note: drizzle migration discipline; backfill pending
-  - id: R-FND-006
-    note: strict TypeScript across workspace; backfill pending
-  - id: R-FND-008
-    note: Apache-2.0 + CC BY 4.0 license boundary; backfill pending
-  - id: R-FND-009
-    note: README hook + setup steps; backfill pending
-  - id: R-FND-010
-    note: gate scripts block PRs; backfill pending
-  - id: R-FND-011
-    note: audit log table; backfill pending
-  - id: R-FND-012
-    note: workspace settings JSONB column; backfill pending
-  - id: R-FND-013
-    note: SSR by default; backfill pending
-  - id: R-FND-014
-    note: UTC storage + per-workspace timezone; backfill pending
+  # DEC-FND-007 landed earlier. The remaining 12 (R-FND-002..006 and
+  # R-FND-008..014) landed in the 2026-05-24 backfill commit; their
+  # allowlist entries have been removed. roles_deferred entries stay
+  # until traceability.md gets owner_role tokens.
 
   # R-SRC-* — Phase 2 source-registry requirements. The spec ledger
   # landed (specs/0002-source-registry/) ahead of the connector
