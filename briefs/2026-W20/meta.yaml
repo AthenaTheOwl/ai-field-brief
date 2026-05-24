@@ -1,0 +1,86 @@
+# meta — 2026-W20 weekly brief
+# auto-written by the playbook; edit in place when the brief gets revised.
+
+iso_week: 2026-W20
+through_date: 2026-05-17
+generated_at: 2026-05-17T11:00:00Z
+generated_by: claude-opus-4-7 (manual playbook run; backdated to establish cadence)
+title: "The audience sorts into shapes"
+volume: 2
+
+registry_version: 1
+sweep:
+  attempted: 8
+  succeeded: 6
+  failed: 2
+
+sources_reviewed:
+  - id: anthropic-news
+    status: ok
+    items_captured: 6
+    items_included: 3   # claude-for-small-business, pwc-expanded, gates-foundation; spacex picked up as carry-over
+    last_item_date: 2026-05-14
+  - id: openai-news
+    status: failed
+    error: HTTP 403 on https://openai.com/news during sweep
+    items_captured: 0
+  - id: simon-willison
+    status: ok
+    items_captured: 9
+    items_included: 2   # not-so-locked-in, llm-shebang
+    last_item_date: 2026-05-17
+  - id: latent-space
+    status: partial
+    error: landing page does not expose archive in fetched HTML
+    items_captured: 0
+  - id: hamel-husain
+    status: ok
+    items_captured: 5
+    items_included: 1   # revenge-of-the-data-scientist (older but tied to evals thread)
+    last_item_date: 2026-03-26
+  - id: eugene-yan
+    status: ok
+    items_captured: 5
+    items_included: 0   # latest post predates this window; saved for W21
+    last_item_date: 2026-05-03
+  - id: zvi-mowshowitz
+    status: partial
+    error: landing page does not expose post list in fetched HTML
+    items_captured: 0
+  - id: dwarkesh-podcast
+    status: partial
+    error: landing page does not expose episode list in fetched HTML
+    items_captured: 0
+
+sources_not_swept_this_run:
+  - id: anthropic-engineering
+    reason: not in v1 sweep set; capture next week
+  - id: anthropic-alignment
+    reason: not in v1 sweep set; capture next week
+  - id: openai-research
+    reason: not in v1 sweep set
+  - id: openai-cookbook
+    reason: not in v1 sweep set
+  - id: applied-llms
+    reason: not in v1 sweep set
+  - id: trenton-bricken
+    reason: not in v1 sweep set
+  - id: the-ai-corner
+    reason: not in v1 sweep set
+
+notes:
+  - "Backdated brief — written 2026-05-23 to establish cadence by covering
+    the prior week. Honest editorial framing: the picks are real items
+    from W20 sources, the analysis is written looking back at the week
+    that just closed."
+  - "Carry-over: SpaceX compute deal (anthropic.com/news/higher-limits-spacex,
+    May 6) lands in W20 framing because the implications for vendor
+    capacity and rate-limit math show up in week-after conversations."
+  - "v1 sweep is intentionally narrow — same 8-source slice as W21.
+    Spec 0002 connectors expand this."
+
+next_run_actions:
+  - capture anthropic-engineering, anthropic-alignment, latent-space
+    archive (R-SRC-005)
+  - resolve OpenAI news 403 via spec 0002 connector with proper UA
+  - add archive-URL field to registry entries that didn't expose a feed
