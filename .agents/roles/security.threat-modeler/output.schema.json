@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecurityThreatModelerOutput",
+  "description": "Output shape for security.threat-modeler runs: the threat model DEC and the optional tenant-isolation report.",
+  "type": "object",
+  "required": ["surface", "dec_path", "stride_rows"],
+  "additionalProperties": false,
+  "properties": {
+    "surface": {
+      "type": "string",
+      "description": "External surface under review (endpoint, webhook, queue, file upload)."
+    },
+    "dec_path": {
+      "type": "string",
+      "description": "Repo-relative path to the threat-model DEC, e.g. decisions/DEC-SEC-NNN-<slug>.md."
+    },
+    "stride_rows": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["category", "attack", "mitigation", "residual_risk"],
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "spoofing",
+              "tampering",
+              "repudiation",
+              "information_disclosure",
+              "denial_of_service",
+              "elevation_of_privilege"
+            ]
+          },
+          "attack": {"type": "string"},
+          "mitigation": {"type": "string"},
+          "residual_risk": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          }
+        }
+      }
+    },
+    "tenant_isolation_report_path": {
+      "type": "string",
+      "description": "Optional path to the tenant-isolation report under reports/security/, when the surface touches tenant-scoped tables."
+    }
+  }
+}

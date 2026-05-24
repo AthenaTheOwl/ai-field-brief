@@ -84,16 +84,12 @@ deferred:
 #
 # R-CDCP-011..016 are deliberately absent; their traceability.md
 # already names owner roles.
+#
+# R-BOOT-006 and R-CDCP-007 graduated to security.threat-modeler and
+# learning.skill-curator on 2026-05-24; their allowlist entries have
+# been removed.
 
 roles_deferred:
-  # R-BOOT-006 keeps a deferred entry because its closest installed
-  # owner role is engineering.implementation; the natural owner
-  # (security.threat-modeler) sits in CATALOG.md and has not yet
-  # graduated. The traceability row carries both the installed owner
-  # and the pending-graduation marker.
-  - id: R-BOOT-006
-    note: owner_role mapped to engineering.implementation pending security.threat-modeler graduation
-
   # R-SRC-* — Phase 2 source-registry; owner_role backfill lands
   # alongside each connector.
   - id: R-SRC-001
@@ -128,11 +124,3 @@ roles_deferred:
     note: phase 2 source-registry; owner_role backfill pending
   - id: R-SRC-016
     note: phase 2 source-registry; owner_role backfill pending
-
-  # R-CDCP-007 keeps a deferred entry because its closest installed
-  # owner role is learning.dream-orchestrator; the natural owner
-  # (learning.skill-curator) sits in CATALOG.md and has not yet
-  # graduated. The traceability row carries both the installed owner
-  # and the pending-graduation marker.
-  - id: R-CDCP-007
-    note: owner_role mapped to learning.dream-orchestrator pending learning.skill-curator graduation

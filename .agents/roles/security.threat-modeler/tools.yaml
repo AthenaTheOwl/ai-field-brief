@@ -1,0 +1,8 @@
+# Tool subset the security.threat-modeler role calls.
+# Full registry lives at .agents/tools.yaml.
+# The threat-modeler is read-only; the matching DEC is drafted via a
+# hand-off to product.spec-writer.
+
+- id: repo.read
+  description: Read specs, design docs, schema files, and prior threat models.
+  risk_level: low

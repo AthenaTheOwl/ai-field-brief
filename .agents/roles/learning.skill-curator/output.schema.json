@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LearningSkillCuratorOutput",
+  "description": "Output shape for learning.skill-curator runs: the SKILL patch path, the matching DEC path, and the recurrence evidence.",
+  "type": "object",
+  "required": ["skill_id", "skill_path", "skill_version", "dec_path", "recurrence_count"],
+  "additionalProperties": false,
+  "properties": {
+    "skill_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Skill identifier matching the cross-repo skill.schema.json id pattern."
+    },
+    "skill_path": {
+      "type": "string",
+      "description": "Repo-relative path to the SKILL.md, e.g. .agents/skills/run-weekly-brief/SKILL.md."
+    },
+    "skill_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version. New skills start at 0.1.0."
+    },
+    "dec_path": {
+      "type": "string",
+      "description": "Repo-relative path to the graduation DEC, e.g. decisions/DEC-CDCP-NNN-<slug>.md."
+    },
+    "recurrence_count": {
+      "type": "integer",
+      "minimum": 3,
+      "description": "Number of documented recurrences that justify the graduation. The curator refuses to graduate below three."
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Commit SHA, dream report path, or prior SKILL id that justifies the recurrence."
+      }
+    },
+    "human_approval_required": {
+      "type": "boolean",
+      "const": true,
+      "description": "Always true. The DEC moves to status: approved only after a human signs off."
+    }
+  }
+}

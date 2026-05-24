@@ -1,0 +1,50 @@
+id: product.subscriber-experience
+guild: product
+mission: Own the read-only subscriber journey -- landing, comprehension, return -- for the laypeople and commercial visitors who consume briefs without authoring them.
+inputs:
+  - name: site_analytics
+    kind: signal
+    required: false
+  - name: published_brief
+    kind: artifact
+    required: true
+  - name: index_page
+    kind: artifact
+    required: true
+allowed_tools:
+  - repo.read
+forbidden_actions:
+  - apply_patch
+  - merge_pr
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+  - rewrite_brief_voice
+required_gates:
+  - voice_lint
+  - landing_path_review
+  - return_path_review
+escalation:
+  - condition: voice_drift_detected
+    escalate_to: control.coordinator
+  - condition: comprehension_gap_detected
+    escalate_to: product.spec-writer
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: subscriber_journey_review
+    kind: artifact
+    artifact_type: review
+    required: true
+  - name: comprehension_findings
+    kind: artifact
+    artifact_type: review
+    required: false
+examples_dir: .agents/roles/product.subscriber-experience/examples

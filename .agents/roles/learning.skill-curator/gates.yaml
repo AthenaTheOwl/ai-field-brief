@@ -1,0 +1,12 @@
+# Gates the learning.skill-curator role must clear.
+
+- name: skill_schema
+  description: Every SKILL.md front-matter parses against skill.schema.json from athena-site. A future validate_skills.py enforces this on every PR.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: The SKILL.md body passes the banlist and structural rules.
+- name: human_approval_on_graduation
+  description: The matching DEC carries status approved only after a human signs off. The skill-graduation-requires-human-approval policy enforces this.
+- name: validate_decisions
+  script: scripts/validate_decisions.py
+  description: The matching DEC parses against decision.schema.json before the PR lands.

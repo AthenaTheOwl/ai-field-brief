@@ -1,0 +1,9 @@
+# Gates the product.subscriber-experience role must clear.
+
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: Every review report under reports/subscriber/ passes the banlist and structural rules.
+- name: landing_path_review
+  description: The brief's first paragraph names the week, the theme, and the five-pick budget. The index sentence per brief names the move.
+- name: return_path_review
+  description: The brief carries a forward pointer (cadence note, next-week placeholder, or archive link) for the return visitor.

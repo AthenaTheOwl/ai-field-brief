@@ -20,6 +20,9 @@
     - engineering.code-reviewer
     - science.proof-gate-runner
     - learning.dream-orchestrator
+    - learning.skill-curator
+    - security.threat-modeler
+    - product.subscriber-experience
   requires_approval: false
   forbidden_paths: []
   emits_events:
@@ -34,6 +37,7 @@
   allowed_roles:
     - engineering.implementation
     - product.spec-writer
+    - learning.skill-curator
   requires_approval: false
   forbidden_paths:
     - .env
@@ -182,6 +186,7 @@
   allowed_roles:
     - control.coordinator
     - learning.dream-orchestrator
+    - learning.skill-curator
   requires_approval: false
   forbidden_paths: []
   emits_events:

@@ -1,0 +1,12 @@
+# Gates the security.threat-modeler role must clear.
+
+- name: threat_model_schema
+  description: The DEC carrying the threat model parses against decision.schema.json with STRIDE rows as evidence entries.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: The threat model body passes the banlist and structural rules.
+- name: tenant_isolation_review
+  description: For tenant-scoped surfaces, the report under reports/security/ exists and names every reviewed query path plus the helper functions confirmed.
+- name: validate_decisions
+  script: scripts/validate_decisions.py
+  description: The matching DEC parses against decision.schema.json before the PR lands.

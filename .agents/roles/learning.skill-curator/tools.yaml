@@ -1,0 +1,20 @@
+# Tool subset the learning.skill-curator role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read commit history, dream candidates, and existing skills.
+  risk_level: low
+- id: dream.read_recent_commits
+  description: Pull the commit window with per-commit gate snapshots.
+  risk_level: low
+- id: repo.apply_patch
+  description: Write SKILL.md files and matching DECs.
+  risk_level: medium
+  forbidden_paths:
+    - apps/**
+    - packages/**
+    - inngest/**
+    - scripts/**
+    - templates/**
+    - .agents/AGENTS.md
+    - .agents/roles/**

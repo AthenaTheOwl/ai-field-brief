@@ -1,0 +1,52 @@
+id: learning.skill-curator
+guild: learning
+mission: Own the skill registry under .agents/skills/ and the graduation cadence; a pattern earns a SKILL.md only after three documented recurrences.
+inputs:
+  - name: dream_candidates
+    kind: artifact
+    required: false
+  - name: commit_history
+    kind: context
+    required: true
+  - name: existing_skills
+    kind: context
+    required: false
+allowed_tools:
+  - repo.read
+  - dream.read_recent_commits
+  - repo.apply_patch
+forbidden_actions:
+  - apply_patch_outside_skills
+  - merge_pr
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+  - auto_promote_skill
+required_gates:
+  - skill_schema
+  - voice_lint
+  - human_approval_on_graduation
+escalation:
+  - condition: skill_drift_detected
+    escalate_to: control.coordinator
+  - condition: recurrence_threshold_unclear
+    escalate_to: learning.dream-orchestrator
+permissions:
+  read_repo: true
+  write_code: true
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: skill_patch
+    kind: artifact
+    artifact_type: skill_patch
+    required: true
+  - name: graduation_decision
+    kind: artifact
+    artifact_type: decision_memo
+    required: false
+examples_dir: .agents/roles/learning.skill-curator/examples

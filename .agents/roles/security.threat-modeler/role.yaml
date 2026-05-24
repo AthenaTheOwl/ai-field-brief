@@ -1,0 +1,50 @@
+id: security.threat-modeler
+guild: security
+mission: Draft STRIDE threat models for every new external surface; own tenant-isolation and audit-trail review for the multi-tenant baseline.
+inputs:
+  - name: design_doc
+    kind: spec
+    required: true
+  - name: prior_threat_model
+    kind: context
+    required: false
+  - name: schema_changes
+    kind: artifact
+    required: false
+allowed_tools:
+  - repo.read
+forbidden_actions:
+  - apply_patch
+  - merge_pr
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+  - bypass_audit_gate
+required_gates:
+  - threat_model_schema
+  - voice_lint
+  - tenant_isolation_review
+escalation:
+  - condition: critical_threat_found
+    escalate_to: control.coordinator
+  - condition: tenant_isolation_gap_detected
+    escalate_to: engineering.code-reviewer
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: custom_python
+outputs:
+  - name: threat_model
+    kind: artifact
+    artifact_type: decision_memo
+    required: true
+  - name: tenant_isolation_report
+    kind: artifact
+    artifact_type: review
+    required: false
+examples_dir: .agents/roles/security.threat-modeler/examples

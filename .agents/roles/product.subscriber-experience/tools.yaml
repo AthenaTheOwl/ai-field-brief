@@ -1,0 +1,8 @@
+# Tool subset the product.subscriber-experience role calls.
+# Full registry lives at .agents/tools.yaml.
+# The role is read-only; voice edits route through domain.editorial
+# or product.spec-writer.
+
+- id: repo.read
+  description: Read briefs, meta files, the index, and the deployed site snapshot under apps/web/.
+  risk_level: low
