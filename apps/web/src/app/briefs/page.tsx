@@ -19,9 +19,14 @@ export default function BriefsIndexPage() {
       <header className="space-y-3">
         <h1 className="text-3xl font-semibold tracking-tight">briefs</h1>
         <p className="text-neutral-600 dark:text-neutral-300">
-          Weekly digest of what changed in AI this week, plus concrete
-          moves you can run before next Friday. Short reflections, picks
-          with comment, worked examples. Five-to-fifteen-minute read.
+          The archive of every published weekly brief. Each entry
+          covers one ISO week, names the pattern of the week in a
+          short opening reflection, and lists four to six picks with
+          one concrete move and a worked artifact per pick.
+        </p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">
+          Cadence: Friday weekly. Each brief reads in 10 to 15
+          minutes.
         </p>
       </header>
 

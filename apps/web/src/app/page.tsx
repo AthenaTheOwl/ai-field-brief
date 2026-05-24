@@ -11,22 +11,57 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-      <SiteNav />
+      <SiteNav tagline="weekly AI digest with concrete moves" />
       <main className="mx-auto max-w-3xl space-y-12 px-4 py-12">
         <section className="space-y-4">
           <h1 className="text-4xl font-semibold tracking-tight">
             ai-field-brief
           </h1>
           <p className="text-lg text-neutral-700 dark:text-neutral-200">
-            Weekly digest of what changed in AI. Less news, more
-            insight. Every pick comes with a concrete move you can run
-            before next Friday and a worked example.
+            A weekly AI digest for builder-TPMs. Each pick names one
+            thing to do before next Friday and shows the artifact — a
+            contract test, an incident runbook, a procurement
+            checklist, a unit-economics table, a judge prompt.
           </p>
           <p className="text-neutral-600 dark:text-neutral-300">
             Sources curated for primary-source signal: Anthropic,
-            OpenAI, Latent Space, Simon Willison, Dwarkesh, Eugene Yan,
-            Hamel Husain, plus a small set of strategy reads.
+            OpenAI, Latent Space, Simon Willison, Dwarkesh, Eugene
+            Yan, Hamel Husain, Applied LLMs, plus a small set of
+            strategy reads.
           </p>
+        </section>
+
+        <section className="space-y-4">
+          <h3 className="text-sm font-medium uppercase tracking-wide text-neutral-500">
+            what makes this different
+          </h3>
+          <ul className="space-y-3 text-neutral-700 dark:text-neutral-200">
+            <li>
+              <strong className="font-medium">
+                Concrete moves, not summaries.
+              </strong>{" "}
+              Every pick ends with one move you can run this week, and
+              the worked artifact that goes with it.
+            </li>
+            <li>
+              <strong className="font-medium">
+                Voice-lint enforced.
+              </strong>{" "}
+              The eight-gate CI runs <code>scripts/voice_lint.py</code>{" "}
+              against every brief. The banlist covers the usual AI
+              cadence and the antithetical-reversal patterns; failure
+              blocks the merge.
+            </li>
+            <li>
+              <strong className="font-medium">
+                Primary-source curated.
+              </strong>{" "}
+              The source list lives in{" "}
+              <code>sources/registry.yaml</code> with lane, cadence,
+              and quality tags. Selection rule: each entry has a
+              verifiable tie to a tier-one operator.
+            </li>
+          </ul>
         </section>
 
         {latest ? (
@@ -80,6 +115,24 @@ export default function HomePage() {
               see all {briefs.length} →
             </Link>
           ) : null}
+        </section>
+
+        <section className="space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
+          <h3 className="text-sm font-medium uppercase tracking-wide text-neutral-500">
+            subscribe
+          </h3>
+          <p>
+            RSS lands with spec 0007 (publishing). For now, watch{" "}
+            <a
+              href="https://github.com/AthenaTheOwl/ai-field-brief"
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              the repo
+            </a>{" "}
+            to get notified when each Friday's brief ships.
+          </p>
         </section>
       </main>
       <SiteFooter />

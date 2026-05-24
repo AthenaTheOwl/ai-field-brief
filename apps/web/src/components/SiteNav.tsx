@@ -1,12 +1,23 @@
 import Link from "next/link";
 
-export function SiteNav() {
+interface SiteNavProps {
+  tagline?: string;
+}
+
+export function SiteNav({ tagline }: SiteNavProps) {
   return (
     <header className="border-b border-neutral-200 dark:border-neutral-800">
-      <nav className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-base font-medium tracking-tight">
-          ai-field-brief
-        </Link>
+      <nav className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4">
+        <div className="flex items-baseline gap-3">
+          <Link href="/" className="text-base font-medium tracking-tight">
+            ai-field-brief
+          </Link>
+          {tagline ? (
+            <span className="hidden text-sm text-neutral-500 dark:text-neutral-400 sm:inline">
+              {tagline}
+            </span>
+          ) : null}
+        </div>
         <ul className="flex gap-6 text-sm text-neutral-600 dark:text-neutral-300">
           <li>
             <Link href="/briefs" className="hover:underline">
