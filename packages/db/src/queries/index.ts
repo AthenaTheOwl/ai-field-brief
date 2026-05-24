@@ -14,3 +14,16 @@ export {
   log,
   type AuditLogInput,
 } from "./audit";
+
+export {
+  createSource,
+  getSource,
+  listSources,
+  retireSource,
+  SourceTypeError,
+  updateSource,
+  type CreateSourceInput,
+  type ListSourcesOptions,
+  type SourceQueryOptions,
+  type UpdateSourcePatch,
+} from "./sources";

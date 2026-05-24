@@ -23,6 +23,12 @@ Active specs:
 - `0001-foundation/acceptance.md`
 - `0001-foundation/research.md`
 - `0001-foundation/traceability.md`
+- `0002-source-registry/requirements.md`
+- `0002-source-registry/design.md`
+- `0002-source-registry/tasks.md`
+- `0002-source-registry/acceptance.md`
+- `0002-source-registry/research.md`
+- `0002-source-registry/traceability.md`
 - `0010-cognitive-delivery-control-plane/requirements.md`
 - `0010-cognitive-delivery-control-plane/design.md`
 - `0010-cognitive-delivery-control-plane/tasks.md`

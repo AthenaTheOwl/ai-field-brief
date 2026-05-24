@@ -5,7 +5,21 @@ go at the top.
 
 ## [Unreleased]
 
-### Phase 1 — foundation (spec 0001)
+### Phase 2 - source registry + ingestion (spec 0002)
+
+- `specs/0002-source-registry/` ledger lands with R-SRC-001..016 traced.
+- `packages/sources` ships the connector contract, registry, URL
+  canonicalization, content hashing, four full connectors (`rss`,
+  `podcast-rss`, `article-url`, `github-releases`), and registered
+  stubs for the remaining source types.
+- `packages/db` ships `sources` and `source_reliability_history` tables,
+  tenant-scoped source query helpers, and a seed loader for
+  `sources/registry.yaml`.
+- R-SRC-001..016 now have DEC coverage and owner roles in traceability.
+- HTTP fetch, Inngest runner logic, OAuth connectors, CRUD UI, and
+  reliability writes stay deferred to their owning specs.
+
+### Phase 1 - foundation (spec 0001)
 
 - `specs/0001-foundation/` ledger lands with R-FND-001..014 traced.
 - `packages/db` ships Drizzle schema (identity, workspaces, audit,
@@ -19,7 +33,7 @@ go at the top.
 - pgvector is deferred to spec 0005; Stripe billing to spec 0011;
   Inngest workflow tables to spec 0003.
 
-### Phase 0 — bootstrap
+### Phase 0 - bootstrap
 
 - Specs scaffold under `specs/0000-bootstrap/` (7 R-BOOT-* requirements).
 - Monorepo skeleton: pnpm workspaces, Turborepo, TypeScript strict baseline.
