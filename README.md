@@ -21,6 +21,46 @@ checklist, a unit-economics table, a judge prompt.
   is a hard PR gate; the banlist covers the usual AI cadence and the
   antithetical-reversal pattern.
 
+## For your role
+
+**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W21)
+in ten minutes. Five picks. Each pick names one move you can run
+before next Friday and shows the worked artifact — a contract test,
+an incident playbook, a procurement checklist, a unit-economics
+table, a judge prompt.
+
+**Builder-TPM.** The brief is written for you. `briefs/INDEX.md`
+tracks the rolling cadence; `briefs/2026-W21/brief.md` is the live
+issue. Every pick lands a move you can route to a teammate the same
+afternoon. The five-pick budget is a hard rule, so the signal-to-noise
+ratio stays high.
+
+**Engineer who might fork the pattern.** The operating model is the
+[Cognitive Delivery Control Plane](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
+`.agents/AGENTS.md` is the coding-agent contract. `scripts/spec_check.py`
+plus seven sibling gate scripts enforce the spec / decision /
+traceability / role / tool / policy contracts on every PR. Fork
+`specs/`, `decisions/`, and `dreams/` directly; the schemas live
+under `ops/schemas-cache/` and point back to athena-site.
+
+**Science / eval-discipline reader.** Every brief and every public
+markdown file passes `scripts/voice_lint.py` before merge. The
+banlist holds 90+ phrases plus structural rules (the antithetical-
+reversal pattern, empty adverbial openers, the "not X but Y" cadence).
+The first weekly dream pass under `dreams/2026-W21/report.md` landed
+three memory edits, one graduated SKILL.md, and two pytest regression
+candidates — each carrying `human_review_required: true` per the
+cross-repo `dream-output.schema.json`.
+
+**Hiring manager.** Sixty seconds of evidence. The brief is deployed
+at [ai-field-brief.vercel.app](https://ai-field-brief.vercel.app/).
+The repo carries 16 DEC records under `decisions/`, six worked-example
+role contracts under `.agents/roles/`, a release ledger at
+`ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md`.
+Three product repos run the same operating model; the throughline is
+documented in the
+[control-plane charter](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
+
 ## How it works
 
 Spec-driven multi-tenant SaaS. Phase 1 ships the public archive plus
