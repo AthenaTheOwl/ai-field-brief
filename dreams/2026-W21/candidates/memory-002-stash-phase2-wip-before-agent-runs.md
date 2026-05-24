@@ -3,6 +3,8 @@ id: memory-002-stash-phase2-wip-before-agent-runs
 target_kind: memory_update
 target: .agents/AGENTS.md
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: commit
     ref: d2186d2 — added R-SRC-001..016 to the spec_check allowlist after Phase 2 WIP got re-surfaced from a stash and broke the gate

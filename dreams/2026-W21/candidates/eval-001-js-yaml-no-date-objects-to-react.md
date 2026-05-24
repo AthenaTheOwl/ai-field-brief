@@ -2,8 +2,10 @@
 id: eval-001-js-yaml-no-date-objects-to-react
 target_kind: test_generation
 spec_id: specs/0001-foundation
-test_path: apps/web/src/test/briefs-meta-no-date-objects.test.ts
+test_path: apps/web/src/lib/briefs.date-safety.test.ts
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: file
     ref: apps/web/src/lib/briefs.ts lines 70–72 — the comment "JSON_SCHEMA keeps dates as strings — otherwise React refuses to render the Date objects js-yaml deserializes by default" records the bug and the fix

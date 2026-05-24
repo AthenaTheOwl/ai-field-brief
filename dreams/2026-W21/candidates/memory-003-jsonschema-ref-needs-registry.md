@@ -3,6 +3,8 @@ id: memory-003-jsonschema-ref-needs-registry
 target_kind: memory_update
 target: .agents/AGENTS.md
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: file
     ref: scripts/validate_schemas.py lines 84–107 — build_registry() exists because $ref-by-URL was reaching for DNS during CI

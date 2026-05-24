@@ -149,6 +149,32 @@ role the route plan pins the run to.
 | add a new decision | `decisions/README.md` |
 | add a new role | the "How to add a new role" section above |
 
+## Lessons promoted from weekly dreams
+
+### Voice rules at commit time · promoted from 2026-W21 dream
+
+Three commits across one week (`c29b7ac`, `d2186d2`, `b4b9cf2`) named `voice_lint` as a verified gate in the commit body; each push paid the cost of a late rewrite. The recurring hits cluster around antithetical structures, banned corporate verbs, and empty adverbial openers.
+
+- do: run `python scripts/voice_lint.py` against staged markdown before `git commit`, and fix hits as prose edits, not as per-line allowlist additions.
+- don't: ship `voice_lint:allow <label>` without a one-line note naming why the rule mis-fires on that line.
+- source: [dreams/2026-W21/candidates/memory-001-voice-lint-pre-commit-discipline.md](../dreams/2026-W21/candidates/memory-001-voice-lint-pre-commit-discipline.md).
+
+### Phase 2 WIP stash before agent runs · promoted from 2026-W21 dream
+
+Until source-registry connectors ship, the working tree carries uncommitted Phase 2 WIP under `packages/sources/` plus `specs/0002-source-registry/`. Multi-step agent runs that touch gates, schemas, or commits stash the WIP first and pop it after, with a stash message prefixed `phase 2 WIP:` so the pop is unambiguous.
+
+- do: stash the seven-file WIP set under a `phase 2 WIP: <job>` message before any gate-running or commit-pushing agent run, and pop on exit.
+- don't: leave Phase 2 WIP in the working tree across a `spec_check` or `validate_decisions` pass; the orphan R-SRC-* IDs surface as gate noise.
+- source: [dreams/2026-W21/candidates/memory-002-stash-phase2-wip-before-agent-runs.md](../dreams/2026-W21/candidates/memory-002-stash-phase2-wip-before-agent-runs.md).
+
+### Cross-repo schema `$ref` needs a registry · promoted from 2026-W21 dream
+
+A `*.schema.json` file that uses an absolute `$ref` URL fails in offline CI by default, because `jsonschema` resolves `$ref` by HTTP fetch. The repo's existing pattern builds a `referencing.Registry` of every local schema (see `scripts/validate_schemas.py` `build_registry()`) and falls back from a 5-second remote fetch to `ops/schemas-cache/<name>.json` (see `scripts/validate_decisions.py`). A new `validate_<thing>.py` script copies one of the two existing scripts as a starting point.
+
+- do: when a new validator consumes a schema with `$ref` to a sibling, build a `referencing.Registry` keyed by `$id` and pass it to the validator constructor.
+- don't: rely on `jsonschema.Draft202012Validator(schema)` alone for any cross-repo schema; the bare instance walks `$ref` URLs over the network.
+- source: [dreams/2026-W21/candidates/memory-003-jsonschema-ref-needs-registry.md](../dreams/2026-W21/candidates/memory-003-jsonschema-ref-needs-registry.md).
+
 ## Failure modes the agent watches for
 
 - A new R-* requirement without a DEC: `spec_check` fails. Fix by

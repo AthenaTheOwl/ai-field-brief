@@ -2,8 +2,10 @@
 id: eval-002-validate-decisions-cross-schema-ref
 target_kind: test_generation
 spec_id: specs/0010-cognitive-delivery-control-plane
-test_path: scripts/test_validate_decisions_cross_ref.py
+test_path: tests/scripts/test_validate_decisions_offline.py
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: file
     ref: scripts/validate_decisions.py — fetches the cross-repo decision.schema.json from athena-site and falls back to ops/schemas-cache/decision.schema.json

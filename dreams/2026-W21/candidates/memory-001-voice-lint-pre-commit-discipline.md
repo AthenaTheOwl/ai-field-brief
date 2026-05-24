@@ -3,6 +3,8 @@ id: memory-001-voice-lint-pre-commit-discipline
 target_kind: memory_update
 target: .agents/AGENTS.md
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: commit
     ref: d2186d2 — voice_lint clean reported in commit body after 47 files scanned at the end of the push

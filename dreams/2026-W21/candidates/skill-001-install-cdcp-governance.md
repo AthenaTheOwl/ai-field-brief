@@ -4,6 +4,8 @@ target_kind: skill_patch
 target: .agents/skills/install-cdcp-governance/SKILL.md
 skill_id: install-cdcp-governance
 human_review_required: true
+status: promoted
+promotion_date: 2026-05-24
 evidence:
   - kind: commit
     ref: 5b3b792 — spec 0010 install in ai-field-brief (Cognitive Delivery Control Plane governance + executable DEC enforcement)

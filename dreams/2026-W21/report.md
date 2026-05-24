@@ -140,3 +140,20 @@ human approval the coordinator gates.
 This run produced six candidate files and one report. The dream-job
 event lands in `ops/event-log/2026-05-24.jsonl` with the run id, the
 modes run, the candidate count, and the cost line.
+
+## Promotion record
+
+The 2026-05-24 promotion pass moved all six candidates to their target
+files. Each candidate file carries `status: promoted` and
+`promotion_date: 2026-05-24` in its front-matter; the
+`human_review_required: true` field stays as the audit trail of the
+review record.
+
+| Candidate ID | Promoted on | Target file |
+|---|---|---|
+| memory-001-voice-lint-pre-commit-discipline | 2026-05-24 | `.agents/AGENTS.md` (under `## Lessons promoted from weekly dreams`) |
+| memory-002-stash-phase2-wip-before-agent-runs | 2026-05-24 | `.agents/AGENTS.md` (under `## Lessons promoted from weekly dreams`) |
+| memory-003-jsonschema-ref-needs-registry | 2026-05-24 | `.agents/AGENTS.md` (under `## Lessons promoted from weekly dreams`) |
+| skill-001-install-cdcp-governance | 2026-05-24 | `.agents/skills/install-cdcp-governance/SKILL.md` |
+| eval-001-js-yaml-no-date-objects-to-react | 2026-05-24 | `apps/web/src/lib/briefs.date-safety.test.ts` |
+| eval-002-validate-decisions-cross-schema-ref | 2026-05-24 | `tests/scripts/test_validate_decisions_offline.py` + env-var override in `scripts/validate_decisions.py` |
