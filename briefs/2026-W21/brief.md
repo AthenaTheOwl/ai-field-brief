@@ -331,3 +331,15 @@ years, and treat the upkeep as a non-negotiable monthly hour.
 Write down one decision you're delaying because you're not sure
 whether AI changes it. Date the entry. Revisit in 30 days. The
 entry is the artifact — the decision is downstream.
+
+---
+
+## Postscript: 2026-W21 dream candidates
+
+The week's offline-cognition pass landed alongside this brief. Six
+promotion candidates surfaced from the last seven days of commits, the
+brief itself, and the CI run history. Three propose memory updates to
+`.agents/AGENTS.md`, one proposes a new skill, two propose regression
+tests. The candidates are proposals, not patches; each one carries
+`human_review_required: true` and waits for a reviewer to pick it up.
+Full report at [`dreams/2026-W21/report.md`](../../dreams/2026-W21/report.md).

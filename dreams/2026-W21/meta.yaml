@@ -1,0 +1,103 @@
+# meta — 2026-W21 dream pass (first weekly retrospective)
+# auto-written by the dream-orchestrator role; edit in place when the dream gets revised.
+
+id: dream-2026-W21
+week: 2026-W21
+generated_at: 2026-05-24T19:30:00Z
+generated_by: learning.dream-orchestrator (claude-opus-4-7, hosted in Claude Code session)
+run_id: 7109c7ce-d2f8-4e33-b76d-ab6d939628ed
+
+scope:
+  repos:
+    - ai-field-brief
+  lookback_days: 7
+  window_start: 2026-05-18
+  window_end: 2026-05-24
+  sources_scanned:
+    - kind: git_log
+      ref: "git log --since=2026-05-18 --until=2026-05-25"
+      count: 12
+    - kind: brief
+      ref: briefs/2026-W21/brief.md
+      count: 1
+    - kind: brief_meta
+      ref: briefs/2026-W21/meta.yaml
+      count: 1
+    - kind: release_ledger
+      ref: ops/RELEASE_LEDGER.md
+      count: 1
+    - kind: changelog
+      ref: CHANGELOG.md
+      count: 1
+    - kind: spec_dir
+      ref: specs/0010-cognitive-delivery-control-plane/
+      count: 1
+    - kind: spec_dir
+      ref: specs/0011-cdcp-operating-model/
+      count: 1
+    - kind: ci_runs
+      ref: "gh run list --workflow=ci.yml --limit 20"
+      count: 7
+    - kind: event_log
+      ref: ops/event-log/2026-05-24.jsonl
+      count: 2
+
+modes:
+  run:
+    - memory_consolidation
+    - skill_extraction
+    - eval_generation
+  skipped:
+    - id: failure_clustering
+      reason: only one CI failure in the window; one failure does not cluster
+    - id: adversarial_simulation
+      reason: no named fragile parser, regex, or prompt path in the spec ledger yet
+    - id: counterfactual
+      reason: no replayable baseline run with recorded inputs, outputs, and cost
+    - id: architecture_drift_detection
+      reason: spec ledger and file tree match cleanly; allowlist deferrals are deliberate
+    - id: prompt_patch_generation
+      reason: no versioned prompt files exist in the repo yet
+
+candidates_produced:
+  total: 6
+  by_kind:
+    memory_update: 3
+    skill_patch: 1
+    test_generation: 2
+  files:
+    - candidates/memory-001-voice-lint-pre-commit-discipline.md
+    - candidates/memory-002-stash-phase2-wip-before-agent-runs.md
+    - candidates/memory-003-jsonschema-ref-needs-registry.md
+    - candidates/skill-001-install-cdcp-governance.md
+    - candidates/eval-001-js-yaml-no-date-objects-to-react.md
+    - candidates/eval-002-validate-decisions-cross-schema-ref.md
+
+report_path: dreams/2026-W21/report.md
+
+human_review_required: true
+
+cost:
+  model: claude-opus-4-7
+  tokens_input_estimated: 38000
+  tokens_output_estimated: 9500
+  cost_usd_estimated: 1.30
+  note: |
+    Estimates from a single Claude Code session reading specs, commits,
+    schemas, and validator scripts. Exact billing lives in the upstream
+    Anthropic console.
+
+handoff:
+  next_role: control.coordinator
+  workflow: .agents/workflows/weekly-dream.yaml
+  step: human-review
+  gate: candidates_human_gated
+
+notes:
+  - "First weekly dream pass; prior-week dream does not exist, so the
+    'read prior open items' input is empty by construction."
+  - "Three modes run, five deferred. The deferral reasons get re-evaluated
+    each Friday; a mode moves to 'run' when its named precondition lands."
+  - "Phase 2 WIP was stashed before this run per the standing convention
+    and gets popped at the end. The stash entry is the trace of the
+    convention named in memory candidate 002."

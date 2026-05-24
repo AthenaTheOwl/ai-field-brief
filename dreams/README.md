@@ -112,3 +112,9 @@ when they exist; the dream job runs first, the brief job runs second.
   broken file lands.
 - A candidate that lacks evidence: rejected at the schema layer
   (`evidence` is required).
+
+## Published
+
+| week | date | candidates | report |
+|---|---|---|---|
+| 2026-W21 | 2026-05-24 | 6 (memory: 3, skill: 1, eval: 2) | [`2026-W21/report.md`](2026-W21/report.md) |
