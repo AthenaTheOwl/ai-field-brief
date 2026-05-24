@@ -12,7 +12,7 @@ evidence:
   - kind: commit
     ref: c29b7ac — brief 2026-W21 rewrite + public reader; the public reader code is where the bug surfaced and the fix landed
   - kind: file
-    ref: briefs/2026-W21/meta.yaml — production fixture; carries `last_item_date: 2026-05-22` values that round-trip through js-yaml in the build pipeline
+    ref: "briefs/2026-W21/meta.yaml — production fixture; carries `last_item_date: 2026-05-22` values that round-trip through js-yaml in the build pipeline"
 ---
 
 ## proposal
