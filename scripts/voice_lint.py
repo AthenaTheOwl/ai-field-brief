@@ -205,6 +205,7 @@ TARGETS = [
     "playbook/*.md",
     "playbook/**/*.md",
     "docs/*.md",
+    "docs/**/*.md",
     "legal/*.md",
     "briefs/*.md",
     "briefs/**/*.md",
