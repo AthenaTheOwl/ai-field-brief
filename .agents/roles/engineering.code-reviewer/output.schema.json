@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EngineeringCodeReviewerOutput",
+  "description": "Output shape for engineering.code-reviewer runs: the structured review.",
+  "type": "object",
+  "required": ["requirement_id", "decision", "checklist", "comments"],
+  "additionalProperties": false,
+  "properties": {
+    "requirement_id": {
+      "type": "string",
+      "pattern": "^R-[A-Z]+-\\d{3,}$"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["approve", "request_changes", "block"]
+    },
+    "checklist": {
+      "type": "object",
+      "required": [
+        "spec_match",
+        "dec_match",
+        "test_coverage",
+        "security_smell_scan",
+        "voice_on_markdown",
+        "secret_scan",
+        "dependency_drift"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "spec_match": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "dec_match": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "test_coverage": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "security_smell_scan": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "voice_on_markdown": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "secret_scan": {"type": "string", "enum": ["pass", "fail", "n/a"]},
+        "dependency_drift": {"type": "string", "enum": ["pass", "fail", "n/a"]}
+      }
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "line", "severity", "note"],
+        "additionalProperties": false,
+        "properties": {
+          "file": {"type": "string"},
+          "line": {"type": "integer", "minimum": 1},
+          "severity": {"type": "string", "enum": ["info", "warn", "fail"]},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  }
+}

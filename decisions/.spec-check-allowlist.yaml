@@ -97,3 +97,122 @@ deferred:
     note: workspace area taxonomy; schema + DEC pending
   - id: R-SRC-016
     note: first-run seeded source registry; data + DEC pending
+
+# roles_deferred lists R-* IDs that pre-date the spec 0011
+# owner-role rule. Each entry waits on a traceability backfill that
+# adds an `owner_role: <role-id>` token to the matching row. The
+# operating-model gate skips these IDs for the owner-role check while
+# the backfill is pending.
+#
+# R-CDCP-011..016 are deliberately absent; their traceability.md
+# already names owner roles.
+
+roles_deferred:
+  # R-BOOT-* — Phase 0 bootstrap; traceability predates the
+  # owner_role field. Backfill lands alongside the first revisit of
+  # the bootstrap spec.
+  - id: R-BOOT-001
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-002
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-003
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-004
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-005
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-006
+    note: bootstrap; owner_role backfill pending
+  - id: R-BOOT-007
+    note: bootstrap; owner_role backfill pending
+
+  # R-FND-* — Phase 1 foundation; traceability predates the
+  # owner_role field. Backfill lands alongside Phase 1's later
+  # implementation passes.
+  - id: R-FND-001
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-002
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-003
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-004
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-005
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-006
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-007
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-008
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-009
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-010
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-011
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-012
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-013
+    note: phase 1 foundation; owner_role backfill pending
+  - id: R-FND-014
+    note: phase 1 foundation; owner_role backfill pending
+
+  # R-SRC-* — Phase 2 source-registry; owner_role backfill lands
+  # alongside each connector.
+  - id: R-SRC-001
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-002
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-003
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-004
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-005
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-006
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-007
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-008
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-009
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-010
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-011
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-012
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-013
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-014
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-015
+    note: phase 2 source-registry; owner_role backfill pending
+  - id: R-SRC-016
+    note: phase 2 source-registry; owner_role backfill pending
+
+  # R-CDCP-001..010 — spec 0010 base; the operating-model gate
+  # arrived in spec 0011 and owner_role tokens land in the spec 0010
+  # traceability in a later pass.
+  - id: R-CDCP-001
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-002
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-003
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-004
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-005
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-006
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-007
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-008
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-009
+    note: spec 0010 base; owner_role backfill pending
+  - id: R-CDCP-010
+    note: spec 0010 base; owner_role backfill pending

@@ -1,0 +1,10 @@
+# Tool subset the control.coordinator role calls.
+# Full registry lives at .agents/tools.yaml; this file mirrors only the
+# entries this role is permitted to invoke.
+
+- id: repo.read
+  description: Read repository contents (files, directories, git history).
+  risk_level: low
+- id: dream.read_recent_commits
+  description: Read the last N commits as context for routing decisions.
+  risk_level: low

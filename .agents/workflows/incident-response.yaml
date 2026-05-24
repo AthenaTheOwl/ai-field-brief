@@ -1,0 +1,53 @@
+id: incident-response
+description: The path an incident moves through, from signal to postmortem and eval generation. Each step pins to one role; the coordinator routes and the gate runner confirms the fix.
+trigger:
+  kind: signal
+  detail: incident
+steps:
+  - id: triage
+    role: control.coordinator
+    input_from: []
+    output_to:
+      - diagnose
+    gate: all_gates_executed
+    on_failure: halt
+    on_success: continue
+  - id: diagnose
+    role: science.proof-gate-runner
+    input_from:
+      - triage
+    output_to:
+      - mitigate
+    gate: all_gates_executed
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: mitigate
+    role: engineering.implementation
+    input_from:
+      - diagnose
+    output_to:
+      - postmortem
+    gate: tests_pass
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: postmortem
+    role: product.spec-writer
+    input_from:
+      - mitigate
+    output_to:
+      - eval-generation
+    gate: voice_lint
+    on_failure: route_to:product.spec-writer
+    on_success: continue
+  - id: eval-generation
+    role: learning.dream-orchestrator
+    input_from:
+      - postmortem
+    output_to: []
+    gate: candidates_human_gated
+    on_failure: route_to:control.coordinator
+    on_success: await_approval
+on_complete: await_approval
+human_checkpoints:
+  - mitigate
+  - eval-generation

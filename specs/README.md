@@ -29,6 +29,12 @@ Active specs:
 - `0010-cognitive-delivery-control-plane/acceptance.md`
 - `0010-cognitive-delivery-control-plane/research.md`
 - `0010-cognitive-delivery-control-plane/traceability.md`
+- `0011-cdcp-operating-model/requirements.md`
+- `0011-cdcp-operating-model/design.md`
+- `0011-cdcp-operating-model/tasks.md`
+- `0011-cdcp-operating-model/acceptance.md`
+- `0011-cdcp-operating-model/research.md`
+- `0011-cdcp-operating-model/traceability.md`
 
 Development loop:
 

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LearningDreamOrchestratorOutput",
+  "description": "Output shape for learning.dream-orchestrator runs: the report path plus the candidate index.",
+  "type": "object",
+  "required": ["week", "report_path", "candidates"],
+  "additionalProperties": false,
+  "properties": {
+    "week": {
+      "type": "string",
+      "pattern": "^\\d{4}-W\\d{2}$",
+      "description": "ISO week of the run, e.g. 2026-W21."
+    },
+    "report_path": {
+      "type": "string",
+      "description": "Repo-relative path to the dream report."
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "mode", "kind", "path", "human_review_required"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "mode": {
+            "type": "string",
+            "enum": [
+              "memory_consolidation",
+              "failure_clustering",
+              "adversarial_simulation",
+              "counterfactual",
+              "skill_extraction",
+              "golden_test_generation",
+              "documentation_consolidation",
+              "contract_audit"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "memory_update",
+              "backlog_item",
+              "test_generation",
+              "skill_patch",
+              "prompt_patch",
+              "config_patch"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "Repo-relative path to the candidate file under dreams/YYYY-WNN/candidates/."
+          },
+          "human_review_required": {
+            "type": "boolean",
+            "const": true,
+            "description": "Always true. The orchestrator never auto-applies a candidate."
+          },
+          "summary": {"type": "string"}
+        }
+      }
+    }
+  }
+}

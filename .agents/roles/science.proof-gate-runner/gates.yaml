@@ -1,0 +1,4 @@
+# Gates the science.proof-gate-runner role must clear on its own run.
+
+- name: all_gates_executed
+  description: Every gate in the request ran to a terminal state (pass, fail, or crashed). A skipped gate must carry a reason.

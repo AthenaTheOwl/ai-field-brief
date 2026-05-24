@@ -1,0 +1,14 @@
+# Gates the engineering.implementation role must clear.
+
+- name: typecheck
+  script: pnpm turbo run typecheck
+  description: Workspace typecheck passes across every affected package.
+- name: tests_pass
+  script: pnpm turbo run test
+  description: Vitest suites for the affected packages exit zero.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: Any markdown the patch touches passes the banlist and structural rules.
+- name: spec_check
+  script: scripts/spec_check.py
+  description: The R-* the patch closes still parses against the spec ledger.

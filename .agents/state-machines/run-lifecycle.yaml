@@ -1,0 +1,51 @@
+id: run-lifecycle
+applies_to: log
+initial_state: running
+states:
+  - name: running
+    description: A role started the run; tools are firing; the run has not handed off yet.
+    terminal: false
+  - name: needs_review
+    description: The role produced its outputs and is awaiting a reviewer or a human decision.
+    terminal: false
+  - name: done
+    description: The reviewer approved the outputs and every required gate exited zero.
+    terminal: true
+  - name: failed
+    description: A gate refused to pass or a tool refused to allow the action and no escalation path resolved the block.
+    terminal: true
+  - name: cancelled
+    description: A human or the coordinator stopped the run before completion. No further state transitions.
+    terminal: true
+transitions:
+  - from: running
+    to: needs_review
+    trigger: role.completed
+    allowed_if:
+      - all required outputs produced
+  - from: running
+    to: failed
+    trigger: gate.failed_terminal
+    allowed_if:
+      - escalation exhausted
+  - from: running
+    to: cancelled
+    trigger: human.cancelled
+    allowed_if: []
+  - from: needs_review
+    to: done
+    trigger: reviewer.approved
+    allowed_if:
+      - all required gates passed
+  - from: needs_review
+    to: running
+    trigger: reviewer.changes_requested
+    allowed_if: []
+  - from: needs_review
+    to: failed
+    trigger: reviewer.blocked
+    allowed_if: []
+  - from: needs_review
+    to: cancelled
+    trigger: human.cancelled
+    allowed_if: []

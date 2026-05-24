@@ -1,0 +1,20 @@
+# Tool subset the learning.dream-orchestrator role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read prior dream reports, spec ledgers, and the catalog.
+  risk_level: low
+- id: dream.read_recent_commits
+  description: Pull the last N commits with per-commit gate result snapshots.
+  risk_level: low
+- id: dream.write_candidate
+  description: Write a candidate file under dreams/YYYY-WNN/candidates/.
+  risk_level: low
+  forbidden_paths:
+    - apps/**
+    - packages/**
+    - inngest/**
+    - scripts/**
+    - .agents/AGENTS.md
+    - .agents/skills/**
+    - templates/**

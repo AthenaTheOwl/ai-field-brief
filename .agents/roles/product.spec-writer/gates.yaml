@@ -1,0 +1,11 @@
+# Gates the product.spec-writer role must clear.
+
+- name: spec_check
+  script: scripts/spec_check.py
+  description: Every R-* in requirements.md appears in traceability.md, names an owner role, and resolves to a DEC or allowlist entry.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: Every markdown file the run produces passes the banlist and structural rules.
+- name: validate_decisions
+  script: scripts/validate_decisions.py
+  description: Any DEC the run drafts parses against the schema.

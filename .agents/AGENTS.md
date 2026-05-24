@@ -48,8 +48,9 @@ why. This file names how the agent behaves while building.
 
 - Push to main directly. The repo's branch protection runs the CI
   gates on push; a failed gate blocks the merge.
-- Five gates run on every push: `spec_check`, `voice_lint`,
-  `validate_schemas`, `validate_registry`, `validate_decisions`.
+- Eight gates run on every push: `spec_check`, `voice_lint`,
+  `validate_schemas`, `validate_registry`, `validate_decisions`,
+  `validate_roles`, `validate_tools`, `validate_policies`.
   Plus turbo's `lint`, `typecheck`, `test`, `build`.
 - Every shipped R-* requirement gets at least one DEC-* file before
   the commit reaches main. `spec_check` flags an orphan R-* and
@@ -66,6 +67,56 @@ why. This file names how the agent behaves while building.
 - Phase 2 source-registry work is in flight; Phase 1 backfill DECs
   for R-FND-002..006 and R-FND-008..014 land in a later pass and the
   allowlist defers them.
+
+## Role catalog
+
+The operating-model layer (spec 0011) ships six worked-example roles
+plus the deferred-role TODO list. Read the role contract for whichever
+role the route plan pins the run to.
+
+- `.agents/roles/` — six worked examples (control.coordinator,
+  product.spec-writer, engineering.implementation,
+  engineering.code-reviewer, science.proof-gate-runner,
+  learning.dream-orchestrator). Each role carries `role.yaml`,
+  `instructions.md`, `tools.yaml`, `output.schema.json`, and
+  `gates.yaml`.
+- `.agents/tools.yaml` — tool registry. 16 seed entries. Every
+  tool call cross-checks the calling role's `allowed_tools` list
+  against the tool's `allowed_roles` list.
+- `.agents/policies/` — declarative permission rules. Default-deny
+  baseline at priority 0; explicit allows at priority 100; the
+  reviewer-cannot-edit-code deny at priority 200.
+- `.agents/state-machines/` — artifact lifecycles for spec, run, and
+  release.
+- `.agents/workflows/` — step graphs for single-change, weekly-dream,
+  and incident-response. Each step pins to one role and one gate.
+- `.agents/CATALOG.md` — the 44 deferred roles tracked by guild.
+  Promotion off the catalog and into `.agents/roles/` requires a PR
+  with the file set, a DEC, and the catalog entry removal in the
+  same commit.
+- `ops/event-log/` — append-only JSONL events. One file per UTC day.
+
+### How to add a new role
+
+1. Pick a role from `.agents/CATALOG.md`. Confirm the guild and the
+   one-line mission.
+2. Scaffold `.agents/roles/<id>/role.yaml` against the cross-repo
+   `role.schema.json`. The `id` field matches the directory name.
+3. Write `.agents/roles/<id>/instructions.md` (80–120 lines) naming
+   mission, inputs, outputs, allowed tools, forbidden actions,
+   required gates, escalation paths, runtime hint.
+4. Write `.agents/roles/<id>/tools.yaml` listing the tool subset the
+   role calls.
+5. Write `.agents/roles/<id>/output.schema.json` for the role's
+   outputs.
+6. Write `.agents/roles/<id>/gates.yaml` listing the gates the
+   role's run must clear.
+7. Add `owner_role: <new-role-id>` to the R-* rows in any spec
+   `traceability.md` the role takes over.
+8. Remove the role from `.agents/CATALOG.md`.
+9. File a DEC under `decisions/DEC-*.md` recording the promotion.
+10. Ship in one commit. `validate_roles.py` confirms the role file
+    parses; `spec_check.py` confirms the owner-role token resolves.
 
 ## Cross-repo links
 
@@ -87,10 +138,16 @@ why. This file names how the agent behaves while building.
 | understand the why | `decisions/DEC-*.md` |
 | understand what we learned last week | `dreams/YYYY-WNN/report.md` |
 | run the weekly brief | `.agents/skills/run-weekly-brief/SKILL.md` |
+| find a role contract | `.agents/roles/<id>/instructions.md` |
+| read the tool registry | `.agents/tools.yaml` |
+| read the policy set | `.agents/policies/*.yaml` |
+| read the deferred-role catalog | `.agents/CATALOG.md` |
+| audit a workflow event | `ops/event-log/YYYY-MM-DD.jsonl` |
 | audit a release | `ops/RELEASE_LEDGER.md` |
 | audit a history rewrite | `ops/RESET_LEDGER.md` |
 | add a new spec | `specs/README.md` plus the six-file pattern |
 | add a new decision | `decisions/README.md` |
+| add a new role | the "How to add a new role" section above |
 
 ## Failure modes the agent watches for
 

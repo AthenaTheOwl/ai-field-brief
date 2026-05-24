@@ -1,0 +1,52 @@
+id: weekly-dream
+description: The Friday offline-cognition pass. Reads the last seven days of commits and gate failures, clusters the failures, drafts candidates, writes the report, and hands the candidates to the human for review. No candidate auto-applies.
+trigger:
+  kind: scheduled
+  detail: "0 17 * * 5"
+steps:
+  - id: read-commits
+    role: learning.dream-orchestrator
+    input_from: []
+    output_to:
+      - cluster-failures
+    gate: dream_output_schema
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: cluster-failures
+    role: learning.dream-orchestrator
+    input_from:
+      - read-commits
+    output_to:
+      - generate-candidates
+    gate: dream_output_schema
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: generate-candidates
+    role: learning.dream-orchestrator
+    input_from:
+      - cluster-failures
+    output_to:
+      - write-report
+    gate: candidates_human_gated
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: write-report
+    role: learning.dream-orchestrator
+    input_from:
+      - generate-candidates
+    output_to:
+      - human-review
+    gate: voice_lint
+    on_failure: route_to:learning.dream-orchestrator
+    on_success: continue
+  - id: human-review
+    role: control.coordinator
+    input_from:
+      - write-report
+    output_to: []
+    gate: candidates_human_gated
+    on_failure: halt
+    on_success: await_approval
+on_complete: await_approval
+human_checkpoints:
+  - human-review

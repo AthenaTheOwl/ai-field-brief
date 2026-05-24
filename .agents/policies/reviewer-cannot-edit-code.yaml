@@ -1,0 +1,14 @@
+id: reviewer-cannot-edit-code
+description: The code-reviewer role is denied repo.apply_patch under every condition. A lower-priority allow does not override this rule.
+rationale: A reviewer who edits the code under review removes the second pair of eyes. The reviewer files a comment; the implementation role applies the fix.
+priority: 200
+decision: deny
+applies_to:
+  roles:
+    - engineering.code-reviewer
+  tools:
+    - repo.apply_patch
+  actions:
+    - "*"
+conditions: []
+owner: engineering

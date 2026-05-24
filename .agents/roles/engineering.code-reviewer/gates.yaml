@@ -1,0 +1,10 @@
+# Gates the engineering.code-reviewer role must clear.
+
+- name: review_checklist_complete
+  description: Every checklist item in the review output carries pass, fail, or n/a.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: Any markdown the review writes passes the banlist and structural rules.
+- name: validate_decisions
+  script: scripts/validate_decisions.py
+  description: The DEC the patch references parses against the cross-repo schema.

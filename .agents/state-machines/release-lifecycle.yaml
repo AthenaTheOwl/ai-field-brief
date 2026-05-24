@@ -1,0 +1,48 @@
+id: release-lifecycle
+applies_to: release_note
+initial_state: proposed
+states:
+  - name: proposed
+    description: A merged PR proposes a release. The release entry is drafted but not yet shipped.
+    terminal: false
+  - name: canary
+    description: The release shipped to a canary slice. Observability watches error rate and latency.
+    terminal: false
+  - name: monitoring
+    description: The release shipped to full traffic. Observability watches the first N hours for regressions.
+    terminal: false
+  - name: stable
+    description: The monitoring window passed clean. The release is part of baseline.
+    terminal: true
+  - name: rolled_back
+    description: A regression fired during canary or monitoring; the release reverted. An entry lands in ops/RESET_LEDGER.md in the same push that performs the rollback.
+    terminal: true
+transitions:
+  - from: proposed
+    to: canary
+    trigger: deploy.canary
+    allowed_if:
+      - PR merged to main
+      - release ledger entry drafted
+  - from: canary
+    to: monitoring
+    trigger: deploy.full_traffic
+    allowed_if:
+      - canary window passed
+      - error rate within bound
+  - from: canary
+    to: rolled_back
+    trigger: deploy.rollback
+    allowed_if:
+      - canary error rate or latency over bound
+  - from: monitoring
+    to: stable
+    trigger: monitor.window_passed
+    allowed_if:
+      - N hour window complete
+      - no SEV2 or worse fired
+  - from: monitoring
+    to: rolled_back
+    trigger: deploy.rollback
+    allowed_if:
+      - SEV2 or worse fired

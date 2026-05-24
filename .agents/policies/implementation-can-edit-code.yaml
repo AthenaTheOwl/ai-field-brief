@@ -1,0 +1,19 @@
+id: implementation-can-edit-code
+description: The implementation role can apply patches across the workspace except where the tool registry's forbidden_paths field blocks the write.
+rationale: Code edits belong to the implementation role. The forbidden_paths field on repo.apply_patch already blocks .env, secrets/, and production/*; this policy grants the rest.
+priority: 100
+decision: allow
+applies_to:
+  roles:
+    - engineering.implementation
+  tools:
+    - repo.apply_patch
+    - tests.run
+    - pnpm.install
+    - pnpm.build
+    - pnpm.test
+    - repo.read
+  actions:
+    - "*"
+conditions: []
+owner: engineering

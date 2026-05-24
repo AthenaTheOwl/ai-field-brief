@@ -1,0 +1,26 @@
+# Tool subset the engineering.implementation role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read repository contents.
+  risk_level: low
+- id: repo.apply_patch
+  description: Write code under apps/, packages/, inngest/, scripts/.
+  risk_level: medium
+  forbidden_paths:
+    - .env
+    - .env.*
+    - secrets/**
+    - production/**
+- id: tests.run
+  description: Run vitest on the affected packages.
+  risk_level: low
+- id: pnpm.install
+  description: Install workspace dependencies.
+  risk_level: low
+- id: pnpm.build
+  description: Build the workspace.
+  risk_level: low
+- id: pnpm.test
+  description: Run the workspace test suite.
+  risk_level: low

@@ -1,0 +1,9 @@
+# Tool subset the product.spec-writer role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read repository contents for context.
+  risk_level: low
+- id: repo.apply_patch
+  description: Write spec files under specs/NNNN-<slug>/.
+  risk_level: medium

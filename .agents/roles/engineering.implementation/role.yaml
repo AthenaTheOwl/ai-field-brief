@@ -1,0 +1,58 @@
+id: engineering.implementation
+guild: engineering
+mission: Write the narrowest traceable code slice that closes an assigned R-* requirement and passes every gate the spec names.
+inputs:
+  - name: spec_ledger
+    kind: spec
+    required: true
+  - name: task_ticket
+    kind: signal
+    required: true
+  - name: prior_code
+    kind: context
+    required: true
+allowed_tools:
+  - repo.read
+  - repo.apply_patch
+  - tests.run
+  - pnpm.install
+  - pnpm.build
+  - pnpm.test
+forbidden_actions:
+  - deploy_to_production
+  - modify_secrets
+  - delete_tests
+  - approve_own_work
+  - promote_memory
+  - merge_pr
+  - rewrite_history
+required_gates:
+  - typecheck
+  - tests_pass
+  - voice_lint
+  - spec_check
+escalation:
+  - condition: gate_failed_twice
+    escalate_to: science.proof-gate-runner
+  - condition: spec_unclear
+    escalate_to: product.spec-writer
+  - condition: scope_creep_detected
+    escalate_to: control.coordinator
+permissions:
+  read_repo: true
+  write_code: true
+  run_tests: true
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: patch
+    kind: artifact
+    artifact_type: patch
+    required: true
+  - name: test_report
+    kind: artifact
+    artifact_type: test_report
+    required: true
+examples_dir: .agents/roles/engineering.implementation/examples

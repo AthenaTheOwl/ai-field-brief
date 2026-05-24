@@ -1,0 +1,57 @@
+id: spec-lifecycle
+applies_to: spec
+initial_state: draft
+states:
+  - name: draft
+    description: The spec-writer drafted requirements.md and traceability.md. Other ledger files may still be partial.
+    terminal: false
+  - name: review
+    description: Design, tasks, acceptance, research are complete; awaiting review.
+    terminal: false
+  - name: approved
+    description: A human or the coordinator approved the spec for implementation.
+    terminal: false
+  - name: in_progress
+    description: The implementation role has picked up at least one task ticket against the spec.
+    terminal: false
+  - name: released
+    description: Every R-* in the spec has shipped, with at least one DEC each, and the release is recorded in ops/RELEASE_LEDGER.md.
+    terminal: false
+  - name: closed
+    description: The spec is archived. No new tickets land against it; superseding work moves to a new spec id.
+    terminal: true
+transitions:
+  - from: draft
+    to: review
+    trigger: spec_writer.completed
+    allowed_if:
+      - requirements.md exists
+      - traceability.md exists
+      - design.md exists
+      - acceptance.md exists
+  - from: review
+    to: approved
+    trigger: reviewer.approved
+    allowed_if:
+      - spec_check passed
+      - voice_lint passed
+  - from: review
+    to: draft
+    trigger: reviewer.changes_requested
+    allowed_if: []
+  - from: approved
+    to: in_progress
+    trigger: implementation.started
+    allowed_if:
+      - at least one task ticket assigned
+  - from: in_progress
+    to: released
+    trigger: release.shipped
+    allowed_if:
+      - every R-* has a DEC or an allowlist entry
+      - ops/RELEASE_LEDGER.md has the release entry
+  - from: released
+    to: closed
+    trigger: coordinator.archived
+    allowed_if:
+      - 90 days since release with no new tickets

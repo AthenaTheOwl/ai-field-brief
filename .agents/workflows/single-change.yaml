@@ -1,0 +1,88 @@
+id: single-change
+description: The nine-step path a single change moves through, from intake signal to release. Each step pins to exactly one role and one gate.
+trigger:
+  kind: signal
+  detail: change.requested
+steps:
+  - id: intake
+    role: control.coordinator
+    input_from: []
+    output_to:
+      - spec
+    gate: spec_check
+    on_failure: halt
+    on_success: continue
+  - id: spec
+    role: product.spec-writer
+    input_from:
+      - intake
+    output_to:
+      - architecture
+    gate: spec_check
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: architecture
+    role: product.spec-writer
+    input_from:
+      - spec
+    output_to:
+      - implementation
+    gate: validate_decisions
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: implementation
+    role: engineering.implementation
+    input_from:
+      - architecture
+    output_to:
+      - code-review
+    gate: tests_pass
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: code-review
+    role: engineering.code-reviewer
+    input_from:
+      - implementation
+    output_to:
+      - tests
+    gate: review_checklist_complete
+    on_failure: route_to:engineering.implementation
+    on_success: continue
+  - id: tests
+    role: science.proof-gate-runner
+    input_from:
+      - code-review
+    output_to:
+      - proof-gates
+    gate: all_gates_executed
+    on_failure: route_to:engineering.implementation
+    on_success: continue
+  - id: proof-gates
+    role: science.proof-gate-runner
+    input_from:
+      - tests
+    output_to:
+      - human-approval
+    gate: all_gates_executed
+    on_failure: route_to:engineering.implementation
+    on_success: continue
+  - id: human-approval
+    role: control.coordinator
+    input_from:
+      - proof-gates
+    output_to:
+      - release
+    gate: review_checklist_complete
+    on_failure: halt
+    on_success: await_approval
+  - id: release
+    role: control.coordinator
+    input_from:
+      - human-approval
+    output_to: []
+    gate: all_gates_executed
+    on_failure: route_to:control.coordinator
+    on_success: continue
+on_complete: release
+human_checkpoints:
+  - human-approval

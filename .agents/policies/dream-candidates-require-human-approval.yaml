@@ -1,0 +1,21 @@
+id: dream-candidates-require-human-approval
+description: A dream candidate written under dreams/YYYY-WNN/candidates/ requires a human approval before any patch lands on AGENTS.md, SKILL.md, a test, a memory file, or any other target file the candidate names.
+rationale: Dream candidates are proposals, not patches. Auto-application of a candidate is a recipe for silent drift; the human review is the structural guard.
+priority: 100
+decision: require_approval
+applies_to:
+  roles:
+    - learning.dream-orchestrator
+  tools:
+    - dream.write_candidate
+  actions:
+    - promote_candidate
+    - apply_to_agents_md
+    - apply_to_skill_md
+    - apply_to_test
+    - apply_to_memory
+conditions:
+  - field: request.path
+    op: startswith
+    value: dreams/
+owner: learning

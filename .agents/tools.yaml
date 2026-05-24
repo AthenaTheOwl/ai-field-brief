@@ -1,0 +1,252 @@
+# .agents/tools.yaml
+#
+# The tool registry. Each entry matches the cross-repo tool.schema.json
+# at https://athena.dev/ops/schemas/tool.schema.json. The policy engine
+# cross-checks every tool call against this registry plus the calling
+# role's allowed_tools list.
+#
+# allowed_roles uses the role ids from .agents/roles/<id>/role.yaml.
+# A tool referenced by no role is dead code; spec_check does not catch
+# this yet, but validate_tools will once the linkage rule lands.
+
+- id: repo.read
+  description: Read repository contents (files, directories, git history).
+  category: repo
+  risk_level: low
+  allowed_roles:
+    - control.coordinator
+    - product.spec-writer
+    - engineering.implementation
+    - engineering.code-reviewer
+    - science.proof-gate-runner
+    - learning.dream-orchestrator
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: repo.apply_patch
+  description: Write or modify files in the repository.
+  category: repo
+  risk_level: medium
+  allowed_roles:
+    - engineering.implementation
+    - product.spec-writer
+  requires_approval: false
+  forbidden_paths:
+    - .env
+    - .env.*
+    - secrets/**
+    - production/**
+  emits_events:
+    - artifact.produced
+    - tool.call.completed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: tests.run
+  description: Run vitest on the affected packages.
+  category: shell
+  risk_level: low
+  allowed_roles:
+    - engineering.implementation
+    - engineering.code-reviewer
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: gates.run_voice_lint
+  description: Run scripts/voice_lint.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: gates.run_spec_check
+  description: Run scripts/spec_check.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: gates.run_validate_decisions
+  description: Run scripts/validate_decisions.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: true
+
+- id: gates.run_validate_schemas
+  description: Run scripts/validate_schemas.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: gates.run_validate_registry
+  description: Run scripts/validate_registry.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: gates.run_validate_roles
+  description: Run scripts/validate_roles.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: true
+
+- id: gates.run_validate_tools
+  description: Run scripts/validate_tools.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: true
+
+- id: gates.run_validate_policies
+  description: Run scripts/validate_policies.py.
+  category: eval
+  risk_level: low
+  allowed_roles:
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: true
+
+- id: dream.read_recent_commits
+  description: Read the last N commits with per-commit gate snapshots.
+  category: repo
+  risk_level: low
+  allowed_roles:
+    - control.coordinator
+    - learning.dream-orchestrator
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: dream.write_candidate
+  description: Write a candidate file under dreams/YYYY-WNN/candidates/.
+  category: filesystem
+  risk_level: low
+  allowed_roles:
+    - learning.dream-orchestrator
+  requires_approval: false
+  forbidden_paths:
+    - apps/**
+    - packages/**
+    - inngest/**
+    - scripts/**
+    - .agents/AGENTS.md
+    - .agents/skills/**
+    - templates/**
+  emits_events:
+    - dream.candidate.generated
+  output_schema: https://athena.dev/ops/schemas/dream-output.schema.json
+  network_required: false
+
+- id: pnpm.install
+  description: Install workspace dependencies.
+  category: shell
+  risk_level: low
+  allowed_roles:
+    - engineering.implementation
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: true
+
+- id: pnpm.build
+  description: Build the workspace.
+  category: shell
+  risk_level: low
+  allowed_roles:
+    - engineering.implementation
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false
+
+- id: pnpm.test
+  description: Run the workspace test suite via pnpm turbo.
+  category: shell
+  risk_level: low
+  allowed_roles:
+    - engineering.implementation
+    - science.proof-gate-runner
+  requires_approval: false
+  forbidden_paths: []
+  emits_events:
+    - tool.call.completed
+    - proof.gate.passed
+    - proof.gate.failed
+  output_schema: https://athena.dev/ops/schemas/artifact.schema.json
+  network_required: false

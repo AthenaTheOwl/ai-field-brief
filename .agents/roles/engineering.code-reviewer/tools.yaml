@@ -1,0 +1,9 @@
+# Tool subset the engineering.code-reviewer role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read the patch, the spec, the DEC, and the surrounding code.
+  risk_level: low
+- id: tests.run
+  description: Run the affected vitest suites to confirm the implementation report.
+  risk_level: low

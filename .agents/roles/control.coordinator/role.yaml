@@ -1,0 +1,55 @@
+id: control.coordinator
+guild: control
+mission: Route a single change from intake signal through release while keeping every step pinned to one owning role and one passing gate.
+inputs:
+  - name: change_signal
+    kind: signal
+    required: true
+  - name: spec_ledger
+    kind: spec
+    required: false
+  - name: catalog
+    kind: context
+    required: true
+allowed_tools:
+  - repo.read
+  - dream.read_recent_commits
+forbidden_actions:
+  - write_code
+  - merge_pr
+  - deploy_to_production
+  - approve_own_work
+  - approve_change
+  - promote_memory
+  - modify_secrets
+required_gates:
+  - spec_check
+  - validate_decisions
+  - validate_roles
+  - validate_tools
+  - validate_policies
+escalation:
+  - condition: gate_failed_twice
+    escalate_to: science.proof-gate-runner
+  - condition: scope_unclear
+    escalate_to: product.spec-writer
+  - condition: human_decision_required
+    escalate_to: control.coordinator
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: true
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: route_plan
+    kind: artifact
+    artifact_type: plan
+    required: true
+  - name: handoff_log
+    kind: artifact
+    artifact_type: log
+    required: true
+examples_dir: .agents/roles/control.coordinator/examples

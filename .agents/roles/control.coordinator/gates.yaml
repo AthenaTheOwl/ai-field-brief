@@ -1,0 +1,18 @@
+# Gates the control.coordinator role must clear before its own run
+# is marked done. Names mirror scripts/ and the workflow gate names.
+
+- name: spec_check
+  script: scripts/spec_check.py
+  description: Route plan references only specs the ledger names.
+- name: validate_decisions
+  script: scripts/validate_decisions.py
+  description: Route plan references only DECs that parse against the schema.
+- name: validate_roles
+  script: scripts/validate_roles.py
+  description: Route plan names only roles in .agents/roles/.
+- name: validate_tools
+  script: scripts/validate_tools.py
+  description: Route plan names only tools in the registry.
+- name: validate_policies
+  script: scripts/validate_policies.py
+  description: Route plan does not bypass any policy.

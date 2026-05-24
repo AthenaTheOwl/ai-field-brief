@@ -21,6 +21,15 @@ CDCP rule (added by spec 0010):
      OR carry an R-CDCP-* prefix (covered collectively by
      DEC-CDCP-001-install-cdcp-governance.md).
 
+Operating-model rule (added by spec 0011):
+  8. Every R-* requirement should name at least one owning role from
+     the catalog. The check reads `traceability.md` for an
+     `owner_role: <role-id>` token associated with each R-* ID
+     (typically inside the R-* row of the traceability table). An R-*
+     without an owner role can ship if and only if the ID appears in
+     `decisions/.spec-check-allowlist.yaml` under the `roles_deferred`
+     key.
+
 Exit codes: 0 OK, 1 violations found.
 """
 
@@ -126,8 +135,8 @@ def collect_dec_requirements() -> set[str]:
     return resolved
 
 
-def collect_allowlisted() -> set[str]:
-    """Return the set of R-* IDs deferred via the allowlist file."""
+def _load_allowlist_list(key: str) -> set[str]:
+    """Read a named list (deferred, roles_deferred) from the allowlist file."""
     if not ALLOWLIST_PATH.is_file():
         return set()
     try:
@@ -150,16 +159,49 @@ def collect_allowlisted() -> set[str]:
         return set()
     if not isinstance(data, dict):
         return set()
-    deferred = data.get("deferred")
-    if not isinstance(deferred, list):
+    entries = data.get(key)
+    if not isinstance(entries, list):
         return set()
     ids: set[str] = set()
-    for entry in deferred:
+    for entry in entries:
         if isinstance(entry, dict) and isinstance(entry.get("id"), str):
             ids.add(entry["id"])
         elif isinstance(entry, str):
             ids.add(entry)
     return ids
+
+
+def collect_allowlisted() -> set[str]:
+    """Return the set of R-* IDs deferred via the allowlist file."""
+    return _load_allowlist_list("deferred")
+
+
+def collect_roles_deferred() -> set[str]:
+    """Return the set of R-* IDs exempt from the owner-role check."""
+    return _load_allowlist_list("roles_deferred")
+
+
+def collect_owner_roles(trace_text: str) -> dict[str, list[str]]:
+    """Read traceability.md text; for each R-* ID find owner_role tokens.
+
+    Looks at every line containing an R-* ID. Any `owner_role: <role-id>`
+    token on the same line is attributed to that R-*. The role id must
+    match the cross-repo role.schema.json pattern (guild.slug).
+    """
+    owner_token = re.compile(
+        r"owner_role:\s*([a-z][a-z0-9_]*\.[a-z][a-z0-9_-]*)"
+    )
+    owners: dict[str, list[str]] = {}
+    for line in trace_text.splitlines():
+        ids_on_line = {f"R-{p}-{n}" for p, n in ID_RE.findall(line)}
+        if not ids_on_line:
+            continue
+        role_hits = owner_token.findall(line)
+        if not role_hits:
+            continue
+        for rid in ids_on_line:
+            owners.setdefault(rid, []).extend(role_hits)
+    return owners
 
 
 def main() -> int:
@@ -173,7 +215,11 @@ def main() -> int:
 
     # CDCP rule prep: collect all R-* IDs across every spec, then check
     # each against the DEC + allowlist + bootstrap-prefix exemptions.
+    # Operating-model rule prep: collect owner_role tokens per R-* ID
+    # from each traceability.md so the owner-role check below can read
+    # which IDs name an owner.
     all_req_ids: set[str] = set()
+    all_owners: dict[str, list[str]] = {}
 
     for spec_dir in spec_dirs:
         rel = spec_dir.relative_to(ROOT).as_posix()
@@ -243,6 +289,11 @@ def main() -> int:
                     f"{', '.join(phantom_unknown)}"
                 )
 
+            # Operating-model rule prep: pick up owner_role tokens.
+            owners_in_trace = collect_owner_roles(trace_text)
+            for rid, owner_list in owners_in_trace.items():
+                all_owners.setdefault(rid, []).extend(owner_list)
+
         # 6. Spec listed in index
         if SPECS_INDEX.exists() and spec_dir.name not in index_text:
             violations.append(
@@ -265,6 +316,22 @@ def main() -> int:
             f"decisions/: no DEC-* file resolves `{rid}` "
             f"(add a decisions/DEC-*.md with `requirement: {rid}` in "
             f"front-matter, or list {rid} under `deferred` in "
+            f"decisions/.spec-check-allowlist.yaml)"
+        )
+
+    # 8. Operating-model rule: every R-* requirement should name an
+    # owner role from the catalog in its traceability row, or be
+    # listed under `roles_deferred` in the allowlist.
+    roles_deferred = collect_roles_deferred()
+    for rid in sorted(all_req_ids):
+        if rid in all_owners and all_owners[rid]:
+            continue
+        if rid in roles_deferred:
+            continue
+        violations.append(
+            f"traceability: `{rid}` names no owner role "
+            f"(add `owner_role: <role-id>` to the row in "
+            f"traceability.md, or list {rid} under `roles_deferred` in "
             f"decisions/.spec-check-allowlist.yaml)"
         )
 

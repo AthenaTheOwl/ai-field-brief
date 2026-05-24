@@ -1,0 +1,33 @@
+# Tool subset the science.proof-gate-runner role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read gate scripts, schemas cache, and artifacts under test.
+  risk_level: low
+- id: gates.run_voice_lint
+  description: Run scripts/voice_lint.py.
+  risk_level: low
+- id: gates.run_spec_check
+  description: Run scripts/spec_check.py.
+  risk_level: low
+- id: gates.run_validate_decisions
+  description: Run scripts/validate_decisions.py.
+  risk_level: low
+- id: gates.run_validate_schemas
+  description: Run scripts/validate_schemas.py.
+  risk_level: low
+- id: gates.run_validate_registry
+  description: Run scripts/validate_registry.py.
+  risk_level: low
+- id: gates.run_validate_roles
+  description: Run scripts/validate_roles.py.
+  risk_level: low
+- id: gates.run_validate_tools
+  description: Run scripts/validate_tools.py.
+  risk_level: low
+- id: gates.run_validate_policies
+  description: Run scripts/validate_policies.py.
+  risk_level: low
+- id: tests.run
+  description: Run vitest on the affected packages.
+  risk_level: low

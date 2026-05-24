@@ -1,0 +1,14 @@
+id: default-deny
+description: Baseline deny on every role and every tool. Explicit allow rules at higher priority grant the actions a role needs.
+rationale: The CDCP charter names default-deny as the baseline. A request that matches no higher-priority allow rule is refused.
+priority: 0
+decision: deny
+applies_to:
+  roles:
+    - "*"
+  tools:
+    - "*"
+  actions:
+    - "*"
+conditions: []
+owner: control

@@ -1,0 +1,50 @@
+id: product.spec-writer
+guild: product
+mission: Turn a change signal or human request into an R-* requirement set with acceptance criteria the implementation role can build against.
+inputs:
+  - name: change_signal
+    kind: signal
+    required: true
+  - name: prior_spec
+    kind: spec
+    required: false
+  - name: catalog
+    kind: context
+    required: true
+allowed_tools:
+  - repo.read
+  - repo.apply_patch
+forbidden_actions:
+  - merge_pr
+  - deploy_to_production
+  - approve_own_work
+  - modify_secrets
+  - promote_memory
+  - write_application_code
+required_gates:
+  - spec_check
+  - voice_lint
+  - validate_decisions
+escalation:
+  - condition: signal_ambiguous
+    escalate_to: control.coordinator
+  - condition: owner_role_missing
+    escalate_to: control.coordinator
+permissions:
+  read_repo: true
+  write_code: true
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: spec_ledger
+    kind: spec
+    artifact_type: spec
+    required: true
+  - name: traceability_update
+    kind: artifact
+    artifact_type: spec
+    required: true
+examples_dir: .agents/roles/product.spec-writer/examples

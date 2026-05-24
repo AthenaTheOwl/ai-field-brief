@@ -1,0 +1,15 @@
+id: coordinator-routing-only
+description: The coordinator can read the repo and read recent commits. The coordinator cannot write code or invoke any write-capable tool.
+rationale: Routing must stay separate from execution. A coordinator that also writes code can hide a missed handoff inside the diff.
+priority: 100
+decision: allow
+applies_to:
+  roles:
+    - control.coordinator
+  tools:
+    - repo.read
+    - dream.read_recent_commits
+  actions:
+    - "*"
+conditions: []
+owner: control

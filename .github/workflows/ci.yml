@@ -35,6 +35,12 @@ jobs:
         run: python scripts/validate_registry.py
       - name: validate_decisions
         run: python scripts/validate_decisions.py
+      - name: validate_roles
+        run: python scripts/validate_roles.py
+      - name: validate_tools
+        run: python scripts/validate_tools.py
+      - name: validate_policies
+        run: python scripts/validate_policies.py
 
   node:
     name: node (lint + typecheck + test + build)

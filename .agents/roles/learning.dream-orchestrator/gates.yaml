@@ -1,0 +1,9 @@
+# Gates the learning.dream-orchestrator role must clear.
+
+- name: dream_output_schema
+  description: Every candidate file parses against dream-output.schema.json from athena-site.
+- name: candidates_human_gated
+  description: Every candidate carries human_review_required = true. No candidate auto-applies.
+- name: voice_lint
+  script: scripts/voice_lint.py
+  description: The dream report under dreams/YYYY-WNN/report.md passes the banlist and structural rules.

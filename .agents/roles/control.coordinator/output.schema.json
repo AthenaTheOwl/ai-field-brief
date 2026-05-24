@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ControlCoordinatorOutput",
+  "description": "Output shape for control.coordinator runs: the route plan and the handoff log.",
+  "type": "object",
+  "required": ["route_plan", "handoff_log"],
+  "additionalProperties": false,
+  "properties": {
+    "route_plan": {
+      "type": "object",
+      "required": ["signal_id", "steps"],
+      "additionalProperties": false,
+      "properties": {
+        "signal_id": {
+          "type": "string",
+          "description": "Identifier of the originating change signal."
+        },
+        "spec_id": {
+          "type": "string",
+          "description": "Spec folder name once one exists. Optional on the first pass."
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["step", "role", "gate"],
+            "additionalProperties": false,
+            "properties": {
+              "step": {
+                "type": "string",
+                "description": "Step id from the single-change workflow."
+              },
+              "role": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_-]*$",
+                "description": "Role id that owns the step."
+              },
+              "gate": {
+                "type": "string",
+                "description": "Name of the gate that proves the step done."
+              }
+            }
+          }
+        }
+      }
+    },
+    "handoff_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["at", "from_role", "to_role", "artifact_id"],
+        "additionalProperties": false,
+        "properties": {
+          "at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC 3339 timestamp of the handoff."
+          },
+          "from_role": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_-]*$"
+          },
+          "to_role": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_-]*$"
+          },
+          "artifact_id": {
+            "type": "string",
+            "description": "Identifier of the artifact passed across the handoff."
+          },
+          "note": {
+            "type": "string",
+            "description": "Free-form context for the handoff."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+id: learning.dream-orchestrator
+guild: learning
+mission: Run the weekly offline-cognition pass over the last seven days of commits and failures, then file promotion candidates the human reviews.
+inputs:
+  - name: recent_commits
+    kind: context
+    required: true
+  - name: gate_failures
+    kind: context
+    required: false
+  - name: prior_dream
+    kind: context
+    required: false
+allowed_tools:
+  - repo.read
+  - dream.read_recent_commits
+  - dream.write_candidate
+forbidden_actions:
+  - apply_patch
+  - merge_pr
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+  - auto_apply_candidate
+required_gates:
+  - dream_output_schema
+  - candidates_human_gated
+  - voice_lint
+escalation:
+  - condition: source_data_missing
+    escalate_to: control.coordinator
+  - condition: candidate_drift_detected
+    escalate_to: control.coordinator
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: langgraph
+outputs:
+  - name: dream_report
+    kind: artifact
+    artifact_type: dream_report
+    required: true
+  - name: candidates
+    kind: artifact
+    artifact_type: memory_update
+    required: true
+examples_dir: .agents/roles/learning.dream-orchestrator/examples

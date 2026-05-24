@@ -21,13 +21,22 @@ athena-site repo at `../athena-site/ops/control-plane.md`.
   promotion candidates.
 - `.agents/AGENTS.md` — the single contract a coding agent reads first.
 - `.agents/skills/<id>/SKILL.md` — graduated reuse packages.
+- `.agents/roles/<id>/` — six worked-example role contracts.
+- `.agents/tools.yaml` — the tool registry every role calls against.
+- `.agents/policies/` — declarative permission rules with a
+  default-deny baseline.
+- `.agents/state-machines/` — artifact lifecycles for spec, run,
+  release.
+- `.agents/workflows/` — step graphs for single-change, weekly-dream,
+  incident-response.
+- `.agents/CATALOG.md` — the 44 deferred roles tracked by guild.
+- `ops/event-log/YYYY-MM-DD.jsonl` — append-only workflow events.
 - `ops/RELEASE_LEDGER.md` — every release with date, SHA, scope, proof.
 - `ops/RESET_LEDGER.md` — every force-push, history rewrite, rollback.
-- `control-plane/workflows/single-change.yaml` — the nine-step
-  declarative workflow.
 
-Five python gates run on every push: `spec_check`, `voice_lint`,
-`validate_schemas`, `validate_registry`, `validate_decisions`. A failed
+Eight python gates run on every push: `spec_check`, `voice_lint`,
+`validate_schemas`, `validate_registry`, `validate_decisions`,
+`validate_roles`, `validate_tools`, `validate_policies`. A failed
 gate blocks the merge.
 
 ## Planned shape
