@@ -121,17 +121,16 @@ export default function HomePage() {
           <h3 className="text-sm font-medium uppercase tracking-wide text-neutral-500">
             subscribe
           </h3>
-          <p>
-            RSS lands with spec 0007 (publishing). For now, watch{" "}
-            <a
-              href="https://github.com/AthenaTheOwl/ai-field-brief"
-              className="hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              the repo
-            </a>{" "}
-            to get notified when each Friday's brief ships.
+          <p className="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="/feed.xml" className="hover:underline">
+              RSS
+            </a>
+            <a href="/atom.xml" className="hover:underline">
+              Atom
+            </a>
+            <a href="/feed.json" className="hover:underline">
+              JSON Feed
+            </a>
           </p>
         </section>
       </main>

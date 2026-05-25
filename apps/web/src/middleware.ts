@@ -17,6 +17,9 @@ const isPublicRoute = createRouteMatcher([
   "/api/readyz",
   "/briefs",
   "/briefs/(.*)",
+  "/feed.xml",
+  "/atom.xml",
+  "/feed.json",
 ]);
 
 const hasClerkKeys = Boolean(

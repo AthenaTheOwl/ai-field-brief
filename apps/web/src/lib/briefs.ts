@@ -17,6 +17,7 @@ export interface BriefMeta {
   generated_at: string;
   generated_by: string;
   title: string;
+  summary?: string;
   volume: number;
   registry_version?: number;
   sweep?: { attempted: number; succeeded: number; failed: number };

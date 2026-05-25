@@ -7,6 +7,10 @@ checklist, a unit-economics table, a judge prompt.
 
 **Live:** [ai-field-brief.vercel.app](https://ai-field-brief.vercel.app/)
 
+**Feeds:** [RSS](https://ai-field-brief.vercel.app/feed.xml),
+[Atom](https://ai-field-brief.vercel.app/atom.xml),
+[JSON Feed](https://ai-field-brief.vercel.app/feed.json)
+
 **Latest:** [Contract speed, not model speed (2026-W21)](https://ai-field-brief.vercel.app/briefs/2026-W21)
 
 ## Read it for
@@ -70,7 +74,8 @@ generation, billing, integrations, and the publishing surface.
 
 The brief itself is a markdown file per ISO week under `briefs/`. The
 deployed site is a Next.js static prerender of those files; the
-publishing pipeline lands with spec 0007.
+public RSS, Atom, and JSON Feed routes are generated from the same
+snapshot.
 
 See [Governance](#governance) below for the operating model.
 
