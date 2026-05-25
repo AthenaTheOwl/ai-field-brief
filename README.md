@@ -11,6 +11,10 @@ checklist, a unit-economics table, a judge prompt.
 [Atom](https://ai-field-brief.vercel.app/atom.xml),
 [JSON Feed](https://ai-field-brief.vercel.app/feed.json)
 
+**Email:** weekly digest delivery uses Resend contacts and broadcasts
+when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
+`CRON_SECRET` are set on the deployed app.
+
 **Latest:** [Contract speed, not model speed (2026-W21)](https://ai-field-brief.vercel.app/briefs/2026-W21)
 
 ## Read it for
@@ -58,7 +62,7 @@ cross-repo `dream-output.schema.json`.
 
 **Hiring manager.** Sixty seconds of evidence. The brief is deployed
 at [ai-field-brief.vercel.app](https://ai-field-brief.vercel.app/).
-The repo carries 16 DEC records under `decisions/`, six worked-example
+The repo carries 28 DEC records under `decisions/`, nine worked-example
 role contracts under `.agents/roles/`, a release ledger at
 `ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md`.
 Three product repos run the same operating model; the throughline is
@@ -74,8 +78,8 @@ generation, billing, integrations, and the publishing surface.
 
 The brief itself is a markdown file per ISO week under `briefs/`. The
 deployed site is a Next.js static prerender of those files; the
-public RSS, Atom, and JSON Feed routes are generated from the same
-snapshot.
+public RSS, Atom, JSON Feed, and weekly email digest routes are
+generated from the same snapshot.
 
 See [Governance](#governance) below for the operating model.
 
@@ -118,7 +122,7 @@ operating model.
 - `.agents/AGENTS.md` — the single contract a coding agent reads
   first.
 - `.agents/skills/<id>/SKILL.md` — graduated reuse packages.
-- `.agents/roles/<id>/` — six worked-example role contracts.
+- `.agents/roles/<id>/` — nine worked-example role contracts.
 - `.agents/tools.yaml` — the tool registry every role calls against.
 - `.agents/policies/` — declarative permission rules with a
   default-deny baseline.

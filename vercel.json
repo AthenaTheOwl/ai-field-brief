@@ -4,5 +4,11 @@
   "installCommand": "pnpm install --frozen-lockfile=false",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
-  "ignoreCommand": "echo 'force build'"
+  "ignoreCommand": "echo 'force build'",
+  "crons": [
+    {
+      "path": "/api/cron/weekly-digest",
+      "schedule": "0 14 * * 5"
+    }
+  ]
 }

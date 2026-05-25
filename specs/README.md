@@ -29,6 +29,12 @@ Active specs:
 - `0002-source-registry/acceptance.md`
 - `0002-source-registry/research.md`
 - `0002-source-registry/traceability.md`
+- `0007-publishing/requirements.md`
+- `0007-publishing/design.md`
+- `0007-publishing/tasks.md`
+- `0007-publishing/acceptance.md`
+- `0007-publishing/research.md`
+- `0007-publishing/traceability.md`
 - `0010-cognitive-delivery-control-plane/requirements.md`
 - `0010-cognitive-delivery-control-plane/design.md`
 - `0010-cognitive-delivery-control-plane/tasks.md`

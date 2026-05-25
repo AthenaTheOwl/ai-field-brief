@@ -132,6 +132,29 @@ export default function HomePage() {
               JSON Feed
             </a>
           </p>
+          <form
+            action="/api/subscribe"
+            method="post"
+            className="flex flex-col gap-2 pt-2 sm:flex-row"
+          >
+            <label className="sr-only" htmlFor="email">
+              Email address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+              className="min-w-0 flex-1 rounded border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            />
+            <button
+              type="submit"
+              className="rounded border border-neutral-900 px-3 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 dark:border-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-900"
+            >
+              Email me Fridays
+            </button>
+          </form>
         </section>
       </main>
       <SiteFooter />
