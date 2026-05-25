@@ -131,6 +131,9 @@ export default function HomePage() {
             <a href="/feed.json" className="hover:underline">
               JSON Feed
             </a>
+            <Link href="/ops/subscriber" className="hover:underline">
+              Subscriber ops
+            </Link>
           </p>
           <form
             action="/api/subscribe"

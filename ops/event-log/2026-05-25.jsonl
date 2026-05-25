@@ -1,0 +1,1 @@
+{"event_id": "8d2708c6-c365-487d-8126-ed69fb69d2bf", "type": "decision.recorded", "created_at": "2026-05-25T23:20:00Z", "actor": {"kind": "role", "id": "product.subscriber-experience"}, "spec_id": "specs/0007-publishing", "payload": {"decision_id": "DEC-PUB-003-credential-safe-subscriber-ops-page", "requirement": "R-PUB-003", "spec": "specs/0007-publishing/"}}

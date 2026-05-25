@@ -27,3 +27,18 @@ Acceptance:
   present and valid.
 - The digest body links to the canonical brief and includes the
   Resend unsubscribe token.
+
+### R-PUB-003: subscriber operations readiness
+
+The public site exposes a credential-safe operator page for the weekly
+email surface.
+
+Acceptance:
+
+- The page shows the latest digest week, subject, and preview text.
+- The page reports whether the required Resend and cron environment
+  keys are configured without printing secret values.
+- The page links to the subscriber capture, dry-run, RSS, and JSON
+  Feed endpoints.
+- Tests cover the readiness model for missing and configured
+  environments.
