@@ -210,3 +210,24 @@ Acceptance:
   `REGISTRY_TYPE_TO_SOURCE_TYPE` mapping that covers every distinct
   `type` value in `sources/registry.yaml`.
 - A vitest case asserts the mapping is total over the registry contents.
+
+### R-SRC-017: static source ops queue
+
+WHEN an operator checks source operations, THE SYSTEM SHALL render a
+server-side page backed by local registry and connector metadata that
+shows source freshness and connector readiness without crawling source
+URLs during page render.
+
+Owner role: `product.subscriber-experience`.
+
+Acceptance:
+- `packages/sources/src/ops.ts` loads `sources/registry.yaml`, maps
+  registry types to canonical `SourceType` values, reads registered
+  connector versions, and computes source ops rows.
+- `apps/web/src/app/ops/sources/page.tsx` lists source id, lane, registry
+  type, cadence, freshness, connector type, connector version, and
+  readiness status.
+- A vitest case covers readiness computation against the current registry
+  and fixture rows for review-due, stub-connector, and missing-mapping
+  states.
+- The request path performs no live network fetch.

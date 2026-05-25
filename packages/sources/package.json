@@ -9,6 +9,7 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./ops": "./src/ops.ts",
     "./schemas/source-item": "./schemas/source-item.schema.json",
     "./schemas/transcript": "./schemas/transcript.schema.json",
     "./schemas/citation": "./schemas/citation.schema.json",

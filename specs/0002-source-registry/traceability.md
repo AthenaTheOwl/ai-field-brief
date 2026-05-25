@@ -18,3 +18,4 @@
 | R-SRC-014 owner_role: engineering.implementation | `packages/db/src/schema/sources.ts` (`source_reliability_history` table) | `DEC-SRC-014-reliability-history-table-now-writes-later` | drizzle typecheck; write path lands in spec 0003 |
 | R-SRC-015 owner_role: engineering.implementation | `packages/db/src/seeds/sources-from-registry.ts` (`loadSeedSources`) | `DEC-SRC-015-seed-loader-reads-registry-yaml` | `packages/db/src/test/seeds.test.ts` |
 | R-SRC-016 owner_role: science.proof-gate-runner | `packages/db/src/seeds/sources-from-registry.ts` (`REGISTRY_TYPE_TO_SOURCE_TYPE`) | `DEC-SRC-016-registry-type-map-to-source-type` | seeds test asserts mapping is total over `sources/registry.yaml` |
+| R-SRC-017 owner_role: product.subscriber-experience | `packages/sources/src/ops.ts`; `apps/web/src/app/ops/sources/page.tsx` | `DEC-SRC-017-static-registry-connector-readiness` | `packages/sources/test/ops.test.ts`; web typecheck/build |

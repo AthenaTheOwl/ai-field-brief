@@ -17,6 +17,12 @@
   `sources.ts` schema + queries in place.
 - `pnpm --filter @aifieldbrief/db test` runs the tenant-scoping cases for
   the new source helpers and the seed loader case green.
+- `pnpm --filter @aifieldbrief/sources test` includes the source ops queue
+  readiness cases against the current registry and deterministic fixture
+  rows.
+- `pnpm --filter @aifieldbrief/web typecheck` and
+  `pnpm --filter @aifieldbrief/web build` both exit 0 with `/ops/sources`
+  in the app tree.
 - `pnpm turbo run typecheck` and `pnpm turbo run test` both exit 0.
 
 ## Connector fixtures rule
@@ -69,6 +75,7 @@ Phase 2 is done when:
 ## Explicit non-acceptance
 
 - No HTTP fetch in the connector code path (runner owns that, spec 0003).
+- No live source URL fetch in the `/ops/sources` render path.
 - No Inngest function code in this phase.
 - No source-registry CRUD UI in this phase.
 - No OAuth flows in this phase.

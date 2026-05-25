@@ -126,6 +126,19 @@ source_reliability_history (
 `SourceType` union changes faster than enum migrations are worth.
 Validation runs at the application layer in `createSource`.
 
+## Static source ops queue
+
+`packages/sources/src/ops.ts` is the first operator queue boundary for
+sources. It reads the local `sources/registry.yaml`, maps each registry
+label to a canonical `SourceType`, inspects the already-registered
+connector metadata, and returns rows for `/ops/sources`.
+
+The queue is static by design: it checks registry freshness from
+`last_reviewed` plus `review_frequency`, and connector readiness from
+registered connector versions. It does not fetch source URLs, inspect
+provider dashboards, or compute reliability from ingested items. Those
+paths stay in the later runner and reliability specs.
+
 ## Out of scope here
 
 - HTTP fetch + caching layer (spec 0003 runner).

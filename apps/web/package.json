@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@aifieldbrief/db": "workspace:*",
+    "@aifieldbrief/sources": "workspace:*",
     "@clerk/nextjs": "^6.9.6",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",

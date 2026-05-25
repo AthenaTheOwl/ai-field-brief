@@ -92,6 +92,11 @@ export function buildSubscriberOpsStatus(
         href: "/feed.json",
         purpose: "Machine-readable archive for feed clients and agents.",
       },
+      {
+        label: "Source ops",
+        href: "/ops/sources",
+        purpose: "Inspect registry freshness and connector readiness.",
+      },
     ],
     nextActions:
       missing.length === 0

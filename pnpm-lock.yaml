@@ -23,6 +23,9 @@ importers:
       '@aifieldbrief/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@aifieldbrief/sources':
+        specifier: workspace:*
+        version: link:../../packages/sources
       '@clerk/nextjs':
         specifier: ^6.9.6
         version: 6.39.3(next@15.5.18(react-dom@19.0.6(react@19.0.6))(react@19.0.6))(react-dom@19.0.6(react@19.0.6))(react@19.0.6)

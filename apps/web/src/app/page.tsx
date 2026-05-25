@@ -134,6 +134,9 @@ export default function HomePage() {
             <Link href="/ops/subscriber" className="hover:underline">
               Subscriber ops
             </Link>
+            <Link href="/ops/sources" className="hover:underline">
+              Source ops
+            </Link>
           </p>
           <form
             action="/api/subscribe"

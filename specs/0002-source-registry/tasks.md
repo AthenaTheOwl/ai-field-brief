@@ -56,6 +56,15 @@
 - [x] `pnpm install` resolves the workspace; `pnpm turbo run typecheck`
   + `pnpm turbo run test` exit 0.
 
+## Source ops queue MVP
+
+- [x] `packages/sources/src/ops.ts` loads the static registry and computes
+  freshness/readiness rows from registered connector metadata.
+- [x] `apps/web/src/app/ops/sources/page.tsx` renders the operator queue
+  without source URL fetches.
+- [x] `packages/sources/test/ops.test.ts` covers current registry readiness
+  plus review-due, stub connector, and missing mapping states.
+
 ## Out of scope for Phase 2 (booked for later)
 
 - Inngest functions + per-workspace cron (spec 0003).
