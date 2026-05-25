@@ -1,0 +1,126 @@
+# meta — 2026-W22 weekly brief
+# auto-written by the playbook; edit in place when the brief gets revised.
+
+iso_week: 2026-W22
+through_date: 2026-05-25
+generated_at: 2026-05-25T15:00:00Z
+generated_by: claude-opus-4-7 (manual playbook run)
+title: "The agents outran the humans downstream"
+volume: 3
+
+registry_version: 1
+sweep:
+  attempted: 10
+  succeeded: 6
+  failed: 4
+
+sources_reviewed:
+  - id: anthropic-news
+    status: ok
+    items_captured: 5
+    items_included: 3   # glasswing-initial-update, kpmg, widening-conversation-ai
+    last_item_date: 2026-05-25
+  - id: anthropic-engineering
+    status: ok
+    items_captured: 5
+    items_included: 0   # most recent April; nothing in the W22 window
+    last_item_date: 2026-04-23
+  - id: openai-news
+    status: failed
+    error: HTTP 403 on https://openai.com/news/ during sweep; routed via WebSearch + developers.openai.com/codex/changelog instead
+    items_captured: 0
+    items_included_via_alt: 2  # OpenAI Deployment Company + Codex Locked Use
+  - id: simon-willison
+    status: ok
+    items_captured: 8
+    items_included: 3   # datasette-agent 0.1a4, armin-ronacher on issue quality, spacex-s1 compute deal
+    last_item_date: 2026-05-24
+  - id: latent-space
+    status: partial
+    error: landing page does not expose post archive; needs RSS connector
+    items_captured: 0
+  - id: hamel-husain
+    status: ok
+    items_captured: 5
+    items_included: 0   # no new posts in May 2026 window
+    last_item_date: 2026-03-26
+  - id: eugene-yan
+    status: ok
+    items_captured: 5
+    items_included: 0   # last post 2026-05-03, already covered in W21
+    last_item_date: 2026-05-03
+  - id: zvi-mowshowitz
+    status: partial
+    error: landing page does not expose post list; needs RSS connector
+    items_captured: 0
+  - id: dwarkesh-podcast
+    status: partial
+    error: landing page does not expose episode list; needs RSS connector
+    items_captured: 0
+  - id: the-ai-corner
+    status: partial
+    error: landing page does not expose post list; needs RSS connector
+    items_captured: 0
+
+sources_not_swept_this_run:
+  - id: anthropic-alignment
+    reason: not in v1 sweep set; capture next week
+  - id: openai-research
+    reason: not in v1 sweep set
+  - id: openai-cookbook
+    reason: not in v1 sweep set
+  - id: applied-llms
+    reason: not in v1 sweep set
+  - id: trenton-bricken
+    reason: not in v1 sweep set
+
+picks_this_week:
+  - slug: glasswing-10000-bugs
+    headline: "Project Glasswing 10,000-bug update — write a queue overflow policy this week"
+    primary_source: https://www.anthropic.com/research/glasswing-initial-update
+    artifact_type: queue-overflow-policy table
+  - slug: codex-locked-use
+    headline: "Codex Locked Use — write the long-running agent charter your security partner will ask for"
+    primary_source: https://developers.openai.com/codex/changelog
+    artifact_type: long-running-agent-charter (markdown spec)
+  - slug: widening-conversation
+    headline: "Anthropic widens the conversation — pick the two outside readers your AGENTS.md is missing"
+    primary_source: https://www.anthropic.com/news/widening-conversation-ai
+    artifact_type: AGENTS.md finance + legal sections
+  - slug: kpmg-digital-gateway
+    headline: "KPMG Digital Gateway Powered by Claude — write your consultancy-grade audit-log answer this quarter"
+    primary_source: https://www.anthropic.com/news/anthropic-kpmg
+    artifact_type: reseller-audit-questions.yaml
+  - slug: openai-deployment-company
+    headline: "OpenAI Deployment Company — re-read your build vs partner memo"
+    primary_source: https://openai.com/index/openai-launches-the-deployment-company/
+    artifact_type: 2024-vs-2026 score table
+
+worth_your_time:
+  - simon-willison: datasette-agent 0.1a4 + Datasette 1.0a30 (May 24)
+  - armin-ronacher: AI-rewritten issue reports degrade open-source workflows (via Simon, May 24)
+  - spacex-s1: $1.25B/month Anthropic compute deal confirmed (via Simon, May 20)
+
+notes:
+  - "Sweep widened from W20/W21's 8 sources to 10 by adding anthropic-engineering
+    and the-ai-corner; 6 returned usable signal."
+  - "OpenAI news still 403s from this run's IP range. Worked around via WebSearch
+    + developers.openai.com/codex/changelog. The two OpenAI items (Deployment
+    Company + Codex Locked Use) are sourced through secondary surfaces and
+    cross-checked against the OpenAI developer changelog. Spec 0002 OpenAI
+    connector still pending."
+  - "Pattern of the week: agent output rate exceeding human absorption rate
+    downstream. Glasswing 10k bugs + Codex Locked Use are the two anchor
+    items; KPMG + OpenAI Deployment Company are the consultancy-side
+    rhyme; Datasette Agent + SpaceX S-1 round out the carry-over thread."
+  - "Postscript flags two procurement-lab + supplier-risk-rag commits
+    (schema-cache freshness, owner-role coverage) as executable-gate signal
+    without modifying those repos."
+
+next_run_actions:
+  - capture anthropic-alignment posts in next sweep (R-SRC-005)
+  - resolve OpenAI news 403 via spec 0002 connector with proper UA + retry
+  - add archive-URL / RSS field to registry entries that returned only
+    landing pages (latent-space, zvi, dwarkesh, the-ai-corner)
+  - watch for follow-up Glasswing updates — slow-mode disclosure policy
+    is a story to track
