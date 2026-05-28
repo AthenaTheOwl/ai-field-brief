@@ -22,7 +22,9 @@ The CLI is offline: it talks only to the local filesystem and ``git``.
 from __future__ import annotations
 
 import argparse
+import datetime as dt_module
 import sys
+from datetime import timezone
 from pathlib import Path
 from typing import Any
 
@@ -67,6 +69,10 @@ def _started_at_from_meta(meta: dict[str, Any], brief_dir: Path) -> str:
     raw = meta.get("generated_at")
     if isinstance(raw, str) and raw.strip():
         return raw.strip()
+    if isinstance(raw, dt_module.datetime):
+        if raw.tzinfo is None:
+            raw = raw.replace(tzinfo=timezone.utc)
+        return raw.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return run_evidence.iso_week_dir_to_started_at(brief_dir.name)
 
 
