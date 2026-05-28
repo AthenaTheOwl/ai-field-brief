@@ -61,11 +61,19 @@ def test_compute_sha256_shape() -> None:
 
 def test_emit_event_writes_valid_jsonl(tmp_path: pathlib.Path) -> None:
     ledger = tmp_path / "ledger" / "run-abc.jsonl"
+    # The cross-repo event schema enforces typed payloads on
+    # pipeline.start (prompt_snapshot_hash + tool_schemas_snapshot_hash
+    # are required); we pass real-shaped hashes so the writer's
+    # schema-validation step accepts the record.
     event = run_evidence.make_event(
         event_type="pipeline.start",
         actor_kind="role",
         actor_id="product.brief-author",
-        payload={"brief": "2026-W22"},
+        payload={
+            "brief": "2026-W22",
+            "prompt_snapshot_hash": "a" * 64,
+            "tool_schemas_snapshot_hash": "b" * 64,
+        },
         run_id="run-abcabcabcabc",
         spec_id="specs/0007-publishing/",
     )
@@ -76,7 +84,7 @@ def test_emit_event_writes_valid_jsonl(tmp_path: pathlib.Path) -> None:
     parsed = json.loads(line)
     assert parsed["type"] == "pipeline.start"
     assert parsed["run_id"] == "run-abcabcabcabc"
-    assert parsed["payload"] == {"brief": "2026-W22"}
+    assert parsed["payload"]["brief"] == "2026-W22"
 
 
 def test_emit_run_writes_valid_record(tmp_path: pathlib.Path) -> None:

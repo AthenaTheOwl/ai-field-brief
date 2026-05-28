@@ -182,28 +182,51 @@ def main(argv: list[str] | None = None) -> int:
     run_evidence.emit_event(start_event, ledger_path)
 
     for gate in gates_spec:
+        passed = gate.get("status", "passed").lower() in {
+            "passed",
+            "pass",
+            "ok",
+            "true",
+        }
+        gate_payload: dict[str, Any] = {"gate_name": gate["name"]}
+        if not passed:
+            # The schema requires `reason` on gate.check.failed; the CLI
+            # gates string does not carry one, so we name the missing
+            # context rather than fabricating it.
+            gate_payload["reason"] = gate.get("reason") or (
+                "gate marked failed via --gates argument"
+            )
         gate_event = run_evidence.make_event(
-            event_type=(
-                "gate.check.passed"
-                if gate.get("status", "passed").lower()
-                in {"passed", "pass", "ok", "true"}
-                else "gate.check.failed"
-            ),
+            event_type="gate.check.passed" if passed else "gate.check.failed",
             actor_kind="system",
             actor_id="ci.gate-runner",
             run_id=run_id,
             spec_id=spec_id,
-            payload={"gate_name": gate["name"]},
+            payload=gate_payload,
         )
         run_evidence.emit_event(gate_event, ledger_path)
 
+    # The pipeline.complete payload carries the typed `status` field
+    # required by event.schema.json (one of done|failed|cancelled). A
+    # finalize call only fires on a successful publish, so status is
+    # always "done" here; live failures stop short of finalize. We also
+    # clone gate_results_summary into the closing event so the consumer
+    # can cross-check the Run record's claimed rollup against the ledger
+    # without re-aggregating gate events.
+    complete_payload: dict[str, Any] = {
+        "brief": brief_dir.name,
+        "status": "done",
+    }
+    summary = evidence.fields.get("gate_results_summary")
+    if isinstance(summary, dict):
+        complete_payload["gate_results_summary"] = summary
     complete_event = run_evidence.make_event(
         event_type="pipeline.complete",
         actor_kind=run_evidence.BRIEF_ACTOR_KIND,
         actor_id=run_evidence.BRIEF_ACTOR_ID,
         run_id=run_id,
         spec_id=spec_id,
-        payload={"brief": brief_dir.name, "outcome": "published"},
+        payload=complete_payload,
         parent_event_id=start_event["event_id"],
         created_at=finished_at,
     )

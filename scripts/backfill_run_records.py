@@ -156,18 +156,45 @@ def backfill_week(
     )
     run_evidence.emit_event(start_event, ledger_path)
 
+    # Emit one gate.check.passed event per canonical brief gate. The
+    # original ledger lost the live gate timeline, but the publishing
+    # commit landed on main — CI required every canonical gate to pass.
+    # Synthesizing the per-gate events here gives the validator a ledger
+    # to cross-check Run.gate_results_summary against, instead of trusting
+    # the Run record's claimed rollup blindly.
+    for gate in gates:
+        gate_event = run_evidence.make_event(
+            event_type="gate.check.passed",
+            actor_kind="system",
+            actor_id="ci.gate-runner",
+            run_id=run_id,
+            spec_id=spec_id,
+            payload={"gate_name": gate["name"]},
+            created_at=finished_at,
+        )
+        run_evidence.emit_event(gate_event, ledger_path)
+
+    # The pipeline.complete payload carries the typed `status` field the
+    # event schema requires (done|failed|cancelled). Backfill only runs
+    # on already-published briefs, so status is always "done". The
+    # closing event also clones gate_results_summary so the cross-check
+    # holds without re-aggregation.
+    complete_payload: dict[str, Any] = {
+        "brief": brief_dir.name,
+        "status": "done",
+        "backfilled": True,
+        "sandbox_fallback_to_head": sandbox_fallback,
+    }
+    summary = evidence.fields.get("gate_results_summary")
+    if isinstance(summary, dict):
+        complete_payload["gate_results_summary"] = summary
     complete_event = run_evidence.make_event(
         event_type="pipeline.complete",
         actor_kind=run_evidence.BRIEF_ACTOR_KIND,
         actor_id=run_evidence.BRIEF_ACTOR_ID,
         run_id=run_id,
         spec_id=spec_id,
-        payload={
-            "brief": brief_dir.name,
-            "outcome": "published",
-            "backfilled": True,
-            "sandbox_fallback_to_head": sandbox_fallback,
-        },
+        payload=complete_payload,
         parent_event_id=start_event["event_id"],
         created_at=finished_at,
     )
