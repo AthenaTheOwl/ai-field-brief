@@ -119,6 +119,9 @@ operating model.
 - `decisions/` — why we chose what we chose (DEC-* with alternatives
   and rollback).
 - `dreams/` — what each week's retrospective surfaced.
+- `promotions/` — the bridge from brief picks to portfolio changes;
+  PROM-* candidates name a target repo and artifact type for picks
+  mature enough to land elsewhere.
 - `.agents/AGENTS.md` — the single contract a coding agent reads
   first.
 - `.agents/skills/<id>/SKILL.md` — graduated reuse packages.
