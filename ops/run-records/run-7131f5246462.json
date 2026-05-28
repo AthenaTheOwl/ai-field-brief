@@ -47,7 +47,7 @@
   ],
   "prompt_snapshot_hash": "b0f549651e7d4d23907038bf53d431ba2d2db4a3a4172ef56b0e5fb9cd25fcf7",
   "runtime": "claude-code-cli",
-  "sandbox_image_ref": "E:/claude_code/random-apps/ai-field-brief@23a3efd6fb676bf903fbd0b282708f663c24d923",
+  "sandbox_image_ref": "E:/claude_code/random-apps/ai-field-brief@f87ada5dc8e4ca9b21cc0328d9c98646d694b4ac",
   "spec_id": "specs/0007-publishing/",
   "started_at": "2026-05-25T15:00:00Z",
   "status": "done",
