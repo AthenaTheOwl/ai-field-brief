@@ -49,6 +49,8 @@ jobs:
         run: python scripts/validate_dreams.py
       - name: check_schema_cache_freshness
         run: python scripts/check_schema_cache_freshness.py
+      - name: validate_run_evidence
+        run: python scripts/validate_run_evidence.py
 
   node:
     name: node (lint + typecheck + test + build)
