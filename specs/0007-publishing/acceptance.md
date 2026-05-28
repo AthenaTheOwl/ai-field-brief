@@ -37,3 +37,14 @@ Run-evidence verifiability conditions:
   mismatch, or `gate_results_summary` mismatch with the ledger). Each
   cross-check is covered by a focused negative test in
   `tests/scripts/test_validate_run_evidence_cross_checks.py`.
+- `python scripts/replay_run.py --run-id run-874c5e341e13`,
+  `--run-id run-d223cf166b70`, and `--run-id run-7131f5246462` each
+  exit 0 with `replay_equivalent: true` at the recorded HEAD. The
+  emitted replay artifacts land under
+  `ops/event-ledger/replay-<run-id>-<ISO>.jsonl` and
+  `ops/replay-records/<run-id>/<replay-event-id>.json`.
+- The replay CLI exits 1 with a `git checkout <sha>` instruction on
+  any HEAD mismatch, flips `replay_equivalent` to false on a missing
+  output artifact or a snapshot-hash mismatch, and exits 1 on a
+  missing Run record. Each surface is covered by a focused test in
+  `tests/scripts/test_replay_run.py`.

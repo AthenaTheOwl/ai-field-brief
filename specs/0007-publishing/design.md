@@ -69,3 +69,43 @@ syntactically valid Run + ledger pair can still drift (a claimed hash
 the ledger does not corroborate, or a rollup the gate events do not
 support), and the cross-checks fail loudly with a message naming the
 run_id and the specific check.
+
+## equivalence replay
+
+`scripts/replay_run.py` is the per-Run replay command. It loads the
+Run record and its event ledger, extracts the recorded SHA from
+`sandbox_image_ref`, and exits 1 with a `git checkout <sha>`
+instruction when `git rev-parse HEAD` does not match. At a matching
+HEAD the CLI re-computes `prompt_snapshot_hash` and
+`tool_schemas_snapshot_hash` against the current tree using the same
+canonicalization the emitter uses (`scripts/run_evidence.py`), walks
+every `Run.outputs[]` to verify the artifact exists at the recorded
+path (hashing the file when the output carries a recorded hash), and
+aggregates a verdict. `replay_equivalent` is true iff every check
+matches; any divergence is named in the report's `divergences[]`
+list.
+
+The CLI writes two artifacts:
+
+- `ops/event-ledger/replay-<run-id>-<ISO>.jsonl` is a new per-replay
+  ledger carrying one `run.evidence.replayed` event with
+  `replay_method: equivalence`. The source-of-truth ledger at
+  `ops/event-ledger/<run-id>.jsonl` is not modified.
+- `ops/replay-records/<run-id>/<replay-event-id>.json` carries the
+  full verdict (per-check booleans plus aggregate
+  `replay_equivalent` plus the recorded vs current value pairs).
+
+The replay is equivalence-only because brief generation is an LLM-
+agent playbook pass with no pinned model state; byte-replay is not
+reachable. The `replay_method: equivalence` field on every emitted
+event is the schema-level anchor for that boundary so a future
+contributor reading the artifact does not conflate it with
+deterministic replay.
+
+For backfilled briefs, `sandbox_image_ref` records the SHA at which
+the recorded snapshot hashes are reproducible (the records-
+regeneration commit), not the brief-publishing commit. The publishing
+commit stays recoverable via
+`git log --diff-filter=A -- briefs/YYYY-WNN/brief.md`; the SHA the
+replay verifies against is the one the Run record names. DEC-PUB-007
+documents the semantic clarification.

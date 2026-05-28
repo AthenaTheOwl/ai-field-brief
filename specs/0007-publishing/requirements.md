@@ -193,3 +193,76 @@ Acceptance:
 - Any mismatch on any of the three fields fails the validator with a
   message naming the run_id, the field, the Run-side value, and the
   ledger-derived value.
+
+### R-PUB-014: equivalence replay command per Run
+
+ai-field-brief ships `scripts/replay_run.py` performing equivalence
+replay against any backfilled or live brief Run record. The CLI is
+HEAD-strict and does not re-call the LLM.
+
+Acceptance:
+
+- `python scripts/replay_run.py --run-id <id>` reads
+  `ops/run-records/<id>.json` and `ops/event-ledger/<id>.jsonl`.
+- The CLI extracts the recorded SHA from `sandbox_image_ref` and exits
+  1 with a `git checkout <sha>` instruction when `git rev-parse HEAD`
+  does not match.
+- The emitted `run.evidence.replayed` event carries
+  `replay_method: equivalence` so the boundary against deterministic
+  replay is explicit on every event.
+- A missing Run record exits 1 with a pointer to the records
+  directory layout.
+
+### R-PUB-015: replay re-computes both snapshot hashes
+
+At a matching HEAD the replay CLI re-computes
+`prompt_snapshot_hash` and `tool_schemas_snapshot_hash` against the
+current tree and compares to the recorded Run-side values.
+
+Acceptance:
+
+- `prompt_snapshot_hash` is recomputed against the current playbook +
+  extraction prompts + synthesis prompts using
+  `run_evidence.canonicalize_prompt`.
+- `tool_schemas_snapshot_hash` is recomputed against the current
+  source registry + extraction schema + active LLM identifier using
+  `run_evidence.canonicalize_tool_surface`.
+- Any mismatch flips `replay_equivalent` to false and names the
+  diverged field in `divergences[]` on the replay report.
+
+### R-PUB-016: replay verifies every Run output
+
+The replay CLI walks `Run.outputs[]`, verifies each named artifact
+exists at the recorded path, and hashes the current file when the
+output carries a recorded hash.
+
+Acceptance:
+
+- A missing output file flips `outputs_check.all_ok` to false and
+  records `divergence: "artifact missing at recorded path"` for the
+  output in `outputs_check.details`.
+- When an output carries a recorded hash (`content_sha256`, `hash`,
+  or `sha256`), the CLI hashes the current file and compares.
+- When no hash is recorded on the output, the check is
+  existence-only and the report records `hash_recorded: false` for
+  that output (backfills currently take this path).
+
+### R-PUB-017: replay emits a typed event and a verdict report
+
+Each replay run appends one `run.evidence.replayed` event to a new
+per-replay ledger file and writes the full verdict to a replay record.
+
+Acceptance:
+
+- The new per-replay ledger lands at
+  `ops/event-ledger/replay-<run-id>-<ISO>.jsonl`; the source-of-truth
+  ledger at `ops/event-ledger/<run-id>.jsonl` is not appended to.
+- The verdict report lands at
+  `ops/replay-records/<run-id>/<replay-event-id>.json` with the per-
+  check booleans (`head_check`, `prompt_snapshot_hash_check`,
+  `tool_schemas_snapshot_hash_check`, `outputs_check`), the
+  aggregate `replay_equivalent` verdict, and the `divergences[]`
+  list.
+- The emitted event passes `event.schema.json` envelope validation
+  under the typed `run.evidence.replayed` branch.
+- The CLI exits 0 on equivalent and 1 on any divergence.

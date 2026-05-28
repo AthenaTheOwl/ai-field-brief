@@ -53,4 +53,17 @@ deferred:
   - id: R-PUB-013
     note: resolved by DEC-PUB-006 (collective coverage)
 
+  # R-PUB-014 is resolved by DEC-PUB-007 directly via front-matter.
+  # R-PUB-015..017 are resolved collectively by the same DEC: the
+  # replay command ships as one CLI under one DEC, and splintering
+  # the four replay requirements into four near-identical DECs would
+  # add noise without adding signal. Same shape as the R-PUB-011..013
+  # entry above.
+  - id: R-PUB-015
+    note: resolved by DEC-PUB-007 (collective coverage)
+  - id: R-PUB-016
+    note: resolved by DEC-PUB-007 (collective coverage)
+  - id: R-PUB-017
+    note: resolved by DEC-PUB-007 (collective coverage)
+
 roles_deferred: []

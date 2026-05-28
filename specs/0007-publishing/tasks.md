@@ -30,3 +30,11 @@
   positive case plus one negative case per check).
 - [x] Regenerate the W20/W21/W22 sample Run + ledger pairs through
   the fixed emitters.
+- [x] Add `scripts/replay_run.py` equivalence replay CLI plus
+  `tests/scripts/test_replay_run.py` (positive cases for W20/W21/W22
+  plus HEAD-mismatch, missing-record, missing-artifact, and
+  prompt-hash-mismatch negatives).
+- [x] Re-anchor `sandbox_image_ref` on the three sample Run records
+  to the SHA at which the recorded snapshot hashes are reproducible
+  (the records-regeneration commit), and commit the replay artifacts
+  produced by running the CLI against that SHA.
