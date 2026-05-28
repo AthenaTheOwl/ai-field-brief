@@ -33,6 +33,8 @@ broad community conventions second. The first place you'll feel it is
 in error handling, because that's where the "improvements" tend to
 land.
 
+**Action surface:** config, eval
+
 **Concrete moves this week.**
 
 1. Stop using `anthropic@latest` in `package.json` or `pyproject.toml`.
@@ -80,6 +82,8 @@ three workflows tend to break first: incident response, audit, and
 new-hire training. Customer-success teams at vendors get pulled into
 roles they weren't staffed for. Most internal playbooks haven't been
 updated since the team rolled out Slack.
+
+**Action surface:** workflow
 
 **Concrete moves this week.**
 
@@ -134,6 +138,8 @@ product in the customer's eyes before any single feature does. The
 review questions stop being about model quality and start being about
 the vendor's audit log.
 
+**Action surface:** tool-policy
+
 **Concrete moves this week.** Add these five items to your next AI
 vendor review, and refuse "industry-standard" as an answer to any of
 them.
@@ -187,6 +193,8 @@ Google made the new one the default for users without a paid plan.
 math behind your last six months of LLM cost projections is wrong.
 Most teams haven't reopened the sheet.
 
+**Action surface:** config
+
 **Concrete moves this week.** Pull last quarter's LLM cost line. Build
 the table below for your actual call volume; the directional shape of
 this example is wrong for you, but the spreadsheet shape is the move.
@@ -224,6 +232,8 @@ is still operating on November 2025 assumptions. They're shaping
 decisions — vendor selection, hiring screens, tooling buys — that you
 inherit. Six months out of date in this space is closer to two years
 out of date in a normal one.
+
+**Action surface:** workflow
 
 **Concrete move this week.** Forward the link to the two teammates
 whose AI assumptions you suspect are six months stale. Schedule 15
@@ -269,6 +279,8 @@ Keep it under 200 lines. Update when a decision changes; delete when
 it doesn't apply.
 [eugeneyan.com/writing/working-with-ai](https://eugeneyan.com/writing/working-with-ai/)
 
+**Action surface:** agent-role
+
 **Hamel Husain, *Evals Skills for Coding Agents*** (Mar 2). The eval
 gap on coding agents is mostly a labeling problem; "did the PR fix
 the bug as intended" is the hard part, not the runner. Pick one
@@ -298,6 +310,8 @@ your team on more than 20% of them, the judge prompt is wrong — or
 your team's review bar is. Either answer is useful.
 [hamel.dev/blog/posts/evals-skills](https://hamel.dev/blog/posts/evals-skills/index.html)
 
+**Action surface:** eval
+
 **Simon Willison, *Datasette Agent*** (May 21). Three years of work on
 the `llm` library, finally merged with Datasette. The artifact is
 small next to the time horizon — Simon's personal infra has compounded
@@ -306,6 +320,8 @@ can't copy the path. The discipline behind it is the part that
 travels: pick one personal tool you intend to own for the next five
 years, and treat the upkeep as a non-negotiable monthly hour.
 [simonwillison.net/2026/May/21/datasette-agent](https://simonwillison.net/2026/May/21/datasette-agent/)
+
+**Action surface:** architecture, experiment
 
 ---
 

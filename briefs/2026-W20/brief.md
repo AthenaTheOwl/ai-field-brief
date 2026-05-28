@@ -41,6 +41,8 @@ underneath are different — the small-shop owner toggles a workflow,
 the CIO runs a procurement review, the foundation runs a grant
 process. One UI cannot land all three.
 
+**Action surface:** prompt, architecture
+
 **Concrete move this week.** Open the page where your AI feature is
 sold. Write down the literal sentence the buyer would say to a
 peer to recommend it. If the sentence works for both a small-shop
@@ -102,6 +104,8 @@ made last quarter?"). The questions land in three different
 inboxes inside your company and converge on one answer your
 security partner has to be ready to give.
 
+**Action surface:** tool-policy
+
 **Concrete move this week.** Pre-write the answers to the three
 questions below in a one-page security FAQ. The doc lives in your
 shared drive, links from your security@ inbox auto-responder, and
@@ -153,6 +157,8 @@ sense in 2023 is a tax in 2026. The teams that move first to
 revisit one of those choices have a one-cycle window before
 everyone else does the same calculation.
 
+**Action surface:** architecture
+
 **Concrete move this week.** Write down the one technology
 decision your team has been afraid to revisit. Score it on the
 table below. If two of the three scores are green, run the spike
@@ -201,6 +207,8 @@ for Anthropic at the same time multiple OSS-on-cloud paths are
 maturing. The team that benchmarked vendors in November and
 shipped a routing decision in January is now ranking by stale data.
 
+**Action surface:** runtime-adapter
+
 **Concrete move this week.** Re-rank your inference vendors on
 the four-axis table below. The exercise takes 90 minutes if you
 have your last quarter's traffic logs handy.
@@ -245,6 +253,8 @@ on the eval pipeline. None of those buyers will accept "we use
 GPT-4 to judge helpfulness on a 1-5 scale" as an answer to "how do
 you know the model output is correct?" The judge has to be a
 classifier the buyer can interrogate.
+
+**Action surface:** eval
 
 **Concrete move this week.** Pick one LLM judge already running
 in your stack. Label 50 historical responses by hand. Compute

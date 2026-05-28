@@ -50,6 +50,8 @@ review them: customer-support tickets, code-review queues,
 compliance flags, sales-call follow-ups. The work for builders this
 quarter is to find those queues before they back up.
 
+**Action surface:** workflow, tool-policy
+
 **Concrete move this week.** Pull a list of every queue an AI agent
 writes to in your stack. For each one, fill the table below with two
 real numbers: the agent's output rate and the human absorption rate
@@ -100,6 +102,8 @@ agents in your stack hold credentials or session state across a
 locked screen? The current honest answer for most teams is "I don't
 know, let me check," because the controls weren't there until this
 week.
+
+**Action surface:** agent-role, tool-policy
 
 **Concrete move this week.** Write a one-page long-running agent
 charter that any team can use as the answer to "what is this agent
@@ -163,6 +167,8 @@ versions are written by and for engineers. The two outside readers
 who'd most improve it are the ones already on your team — finance and
 legal — but their input rarely lands in the file.
 
+**Action surface:** agent-role
+
 **Concrete move this week.** Add two sections to your repo's
 AGENTS.md (or create one if missing). Source the content from two
 30-minute conversations with the two readers above.
@@ -217,6 +223,8 @@ portfolio company's. The three rarely line up. The procurement
 question your security partner has to answer this quarter is which
 log governs when they disagree, and how fast a customer can get all
 three pulled in a regulator-shaped event.
+
+**Action surface:** tool-policy, architecture
 
 **Concrete move this week.** If you sell into firms that resell
 AI-powered workflows (PE, consultancy, accounting, legal), add a
@@ -274,6 +282,8 @@ for white-glove deployment work inside your largest accounts? The build-vs-partn
 wrote in 2024 was about whether to build a model. The same memo in
 2026 is about whether to build the deployment surface, and whether
 your lab vendor will resell against you.
+
+**Action surface:** architecture, experiment
 
 **Concrete move this week.** Pull the build-vs-partner memo your
 team wrote at any point in the last two years. Re-score the four

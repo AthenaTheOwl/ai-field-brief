@@ -12,8 +12,14 @@ together by a frame.>
 
 ### <pick 1 — name the thing, not the headline>
 
-<2–4 sentences. What changed. Why it matters. The slow read. End with
-the primary-source link in plain markdown.>
+<2–4 sentences. What changed. Why it matters. The slow read.>
+
+**Action surface:** <one or two of: prompt, config, eval, workflow,
+agent-role, tool-policy, runtime-adapter, source-registry, architecture,
+experiment, watchlist>
+
+<Concrete move this week — the specific artifact or change the reader
+runs before next Friday. End with the primary-source link.>
 
 [<source name>](<url>)
 
@@ -21,12 +27,16 @@ the primary-source link in plain markdown.>
 
 <same shape>
 
+**Action surface:** <label>
+
 [<source>](<url>)
 
 ### <pick 3>
 
 <same shape — vary the cadence; one pick can be a short paragraph, one
 can be a longer comment.>
+
+**Action surface:** <label>
 
 [<source>](<url>)
 
@@ -57,4 +67,18 @@ a primary source. Not a summary.>
   - no empty adverbial openers (Importantly, Notably, etc.)
   - every claim links to a primary source where possible
   - the brief is published; it reads in 5–10 minutes
+  - every pick needs an Action surface line. Pick the dominant surface;
+    if two are needed, comma-separate (e.g., `architecture, runtime-adapter`).
+    Allowed labels:
+      prompt
+      config
+      eval
+      workflow
+      agent-role
+      tool-policy
+      runtime-adapter
+      source-registry
+      architecture
+      experiment
+      watchlist
 -->
