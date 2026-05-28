@@ -54,9 +54,14 @@ Acceptance:
   `ops/schemas-cache/event.schema.json`.
 - The ledger carries at least `pipeline.start`, `pipeline.complete`,
   and `gate.run.evidence_recorded` for every Run.
-- Live runs additionally carry `gate.check.passed` or
-  `gate.check.failed` per gate; backfills omit per-gate events because
-  the live timeline is lost.
+- Both live runs and backfills carry one `gate.check.passed` or
+  `gate.check.failed` event per gate. Live runs derive the timeline
+  from the gate runner; backfills synthesize a `gate.check.passed`
+  per canonical brief gate (the publishing commit landed on main, so
+  CI required every canonical gate to pass).
+- The `pipeline.complete` payload carries the typed `status` field
+  (one of `done`, `failed`, `cancelled`) plus an optional
+  `gate_results_summary` cloned from the Run record.
 
 ### R-PUB-005: brief generation emits a run record
 
@@ -128,3 +133,63 @@ Acceptance:
   matching Run record file.
 - The script is wired into `.github/workflows/ci.yml` next to the
   other `validate_*.py` gates.
+
+### R-PUB-010: required-for-done fields gate every published Run
+
+For every Run record with `status == "done"`,
+`scripts/validate_run_evidence.py` enforces that the four
+replay-equivalence fields ai-field-brief populates are all present
+and non-empty.
+
+Acceptance:
+
+- The required-for-done field set is `prompt_snapshot_hash`,
+  `tool_schemas_snapshot_hash`, `sandbox_image_ref`, and
+  `gate_results_summary`.
+- A missing or empty value on any of the four fails the validator
+  with a message naming the run_id and the missing field.
+- The ledger for every done Run carries at least one
+  `gate.run.evidence_recorded` event; a missing terminal event also
+  fails the validator.
+
+### R-PUB-011: hash agreement between Run and pipeline.start
+
+`Run.prompt_snapshot_hash` and `Run.tool_schemas_snapshot_hash` must
+each equal the matching `pipeline.start` event payload field.
+
+Acceptance:
+
+- The validator reads the first `pipeline.start` event from the
+  Run's ledger and compares both hashes.
+- Any mismatch fails the validator with a message naming the run_id,
+  the field, the Run-side value, and the event-side value.
+
+### R-PUB-012: fields_populated matches Run's populated fields
+
+The closing `gate.run.evidence_recorded` event's
+`payload.fields_populated` list must equal the sorted set of
+replay-equivalence fields actually populated on the Run record.
+
+Acceptance:
+
+- The validator computes the sorted populated subset from the Run
+  (over the six canonical field names) and compares against the
+  sorted event payload list.
+- Any mismatch fails the validator with a message naming the run_id,
+  the claimed list, and the actual list.
+
+### R-PUB-013: gate_results_summary matches ledger gate events
+
+`Run.gate_results_summary` must match what scanning the ledger's
+`gate.check.passed` and `gate.check.failed` events produces.
+
+Acceptance:
+
+- `gates_passed` equals the sorted list of `gate_name` from
+  `gate.check.passed` events.
+- `gates_failed` equals the sorted list of `gate_name` from
+  `gate.check.failed` events.
+- `all_passed` equals `len(gates_failed) == 0`.
+- Any mismatch on any of the three fields fails the validator with a
+  message naming the run_id, the field, the Run-side value, and the
+  ledger-derived value.

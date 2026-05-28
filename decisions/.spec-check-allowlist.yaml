@@ -40,4 +40,17 @@ deferred:
   - id: R-PUB-009
     note: resolved by DEC-PUB-005 (collective coverage)
 
+  # R-PUB-010 is resolved by DEC-PUB-006 directly via front-matter.
+  # R-PUB-011..013 are resolved collectively by the same DEC: each
+  # cross-check is a separate requirement but the four cross-checks
+  # ship as one validator extension under one DEC, so splintering
+  # would produce four near-identical files. Same shape as the
+  # R-PUB-005..009 collective coverage above.
+  - id: R-PUB-011
+    note: resolved by DEC-PUB-006 (collective coverage)
+  - id: R-PUB-012
+    note: resolved by DEC-PUB-006 (collective coverage)
+  - id: R-PUB-013
+    note: resolved by DEC-PUB-006 (collective coverage)
+
 roles_deferred: []

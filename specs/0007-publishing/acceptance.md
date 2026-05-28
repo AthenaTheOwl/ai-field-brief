@@ -9,7 +9,7 @@ pnpm --filter @aifieldbrief/web build
 python scripts/spec_check.py
 python scripts/voice_lint.py
 python scripts/validate_run_evidence.py
-python -m pytest tests/scripts/test_run_evidence.py tests/scripts/test_run_evidence_cli.py
+python -m pytest tests/scripts/test_run_evidence.py tests/scripts/test_run_evidence_cli.py tests/scripts/test_validate_run_evidence_cross_checks.py
 ```
 
 Manual checks:
@@ -31,3 +31,9 @@ Run-evidence verifiability conditions:
   `sandbox_image_ref`, and `gate_results_summary`.
 - `validate_run_evidence.py` exits 1 on any malformed record (covered
   by `tests/scripts/test_run_evidence_cli.py`).
+- `validate_run_evidence.py` exits 1 on any cross-check violation
+  (missing required-for-done field, missing terminal evidence event,
+  hash mismatch between Run and pipeline.start, fields_populated
+  mismatch, or `gate_results_summary` mismatch with the ledger). Each
+  cross-check is covered by a focused negative test in
+  `tests/scripts/test_validate_run_evidence_cross_checks.py`.
