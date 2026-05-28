@@ -38,18 +38,39 @@ weekly pass. Read this top-to-bottom before starting.
    `templates/weekly-brief.md`. The opening reflection names the
    pattern; the picks earn their place with comment, not link-dumps.
 
-5. **Voice pass.** Run `python scripts/voice_lint.py`. Fix every FAIL.
+5. **Faithfulness audit.** Before voice-lint, re-read each pick with
+   these questions:
+
+   - Did we overstate? Is there a claim that goes beyond what the
+     source supports?
+   - Did we drop a caveat? Did the source include conditions that we
+     lost?
+   - Does every claim have a source link? "Per Anthropic's blog"
+     without a link is not citation.
+   - Did we invent consensus? Are we describing one analyst's take as
+     if it were a field thesis?
+   - Did we mistake hype for mechanism? Is the "what changed" a
+     specific behavior change, or a narrative claim wearing the same
+     clothes?
+
+   For each pick that fails any of these, fix before voice-lint. If a
+   claim can't be backed by a source link, drop it.
+
+   This pass takes 10-15 minutes per brief. Not optional. Captured as
+   DEC-PUB-004.
+
+6. **Voice pass.** Run `python scripts/voice_lint.py`. Fix every FAIL.
    Re-read the draft top-to-bottom — does the rhythm sound like a
    considered weekly letter, or like an aggregator?
 
-6. **Meta log.** Write `briefs/YYYY-WNN/meta.yaml`: sources reviewed,
+7. **Meta log.** Write `briefs/YYYY-WNN/meta.yaml`: sources reviewed,
    items captured per source, items included, failures during sweep,
    notes for next run.
 
-7. **Update the index.** Add the new row to `briefs/INDEX.md`. Newest
+8. **Update the index.** Add the new row to `briefs/INDEX.md`. Newest
    first.
 
-8. **Verify.** Run all four gates:
+9. **Verify.** Run all four gates:
    ```
    python scripts/spec_check.py
    python scripts/voice_lint.py
@@ -58,11 +79,11 @@ weekly pass. Read this top-to-bottom before starting.
    ```
    All must be green.
 
-9. **Pause for human review.** Output a short summary: sources swept,
-   items included, surprises, any sources to add. The human reads
-   `brief.md` + `meta.yaml`, edits voice, then approves.
+10. **Pause for human review.** Output a short summary: sources swept,
+    items included, surprises, any sources to add. The human reads
+    `brief.md` + `meta.yaml`, edits voice, then approves.
 
-10. **Commit.** Match the existing commit-message style. One commit
+11. **Commit.** Match the existing commit-message style. One commit
     per brief; subject `brief 2026-WNN: <one-line frame>`.
 
 ## What this playbook is not
