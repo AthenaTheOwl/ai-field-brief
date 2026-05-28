@@ -83,8 +83,21 @@ weekly pass. Read this top-to-bottom before starting.
     items included, surprises, any sources to add. The human reads
     `brief.md` + `meta.yaml`, edits voice, then approves.
 
-11. **Commit.** Match the existing commit-message style. One commit
-    per brief; subject `brief 2026-WNN: <one-line frame>`.
+11. **Emit run evidence.** Before commit, write the Run record and
+    event ledger for this run:
+    ```
+    python scripts/finalize_run.py \
+        --brief briefs/YYYY-WNN/ \
+        --gates "voice_lint:passed,spec_check:passed,check_no_bom:passed,validate_schemas:passed,validate_registry:passed,validate_decisions:passed"
+    ```
+    The CLI writes `ops/run-records/<run-id>.json` and
+    `ops/event-ledger/<run-id>.jsonl`. The validator gate
+    `scripts/validate_run_evidence.py` will catch any malformed
+    record before the push lands.
+
+12. **Commit.** Match the existing commit-message style. One commit
+    per brief; subject `brief 2026-WNN: <one-line frame>`. The Run
+    record and event ledger go in the same commit as the brief.
 
 ## What this playbook is not
 

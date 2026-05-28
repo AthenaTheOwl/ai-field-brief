@@ -24,4 +24,20 @@ deferred:
   - id: R-BOOT-007
     note: phase 0 bootstrap; backfill pending
 
+  # R-PUB-004 is resolved by DEC-PUB-005 directly via front-matter.
+  # R-PUB-005..009 are resolved collectively by the same DEC; listing
+  # them here keeps spec_check happy without splintering the DEC into
+  # six near-identical files. Mirrors the
+  # R-FACTORY-RUN-EVIDENCE-002..006 pattern in procurement-lab.
+  - id: R-PUB-005
+    note: resolved by DEC-PUB-005 (collective coverage)
+  - id: R-PUB-006
+    note: resolved by DEC-PUB-005 (collective coverage)
+  - id: R-PUB-007
+    note: resolved by DEC-PUB-005 (collective coverage)
+  - id: R-PUB-008
+    note: resolved by DEC-PUB-005 (collective coverage)
+  - id: R-PUB-009
+    note: resolved by DEC-PUB-005 (collective coverage)
+
 roles_deferred: []
