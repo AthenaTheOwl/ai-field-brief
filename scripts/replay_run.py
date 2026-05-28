@@ -464,9 +464,13 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     # Step 9 + 10: append the replay event to a NEW per-replay JSONL
-    # file so the source-of-truth ledger stays immutable.
+    # file so the source-of-truth ledger stays immutable. The ISO
+    # timestamp is sanitized for filesystem-safe form (Windows rejects
+    # ":" in filenames); the in-event created_at keeps the canonical
+    # RFC 3339 shape so downstream consumers see the unsanitized value.
+    safe_timestamp = replay_timestamp.replace(":", "")
     replay_ledger_path = (
-        args.event_ledger_dir / f"replay-{run_id}-{replay_timestamp}.jsonl"
+        args.event_ledger_dir / f"replay-{run_id}-{safe_timestamp}.jsonl"
     )
     _emit_replay_event(
         run_id=run_id,
