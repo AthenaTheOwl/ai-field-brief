@@ -6,10 +6,17 @@ weekly pass. Read this top-to-bottom before starting.
 ## Inputs
 
 - `sources/registry.yaml` — the active source list.
-- `templates/weekly-brief.md` — the format.
+- `templates/weekly-brief.md` — the Brief OS digest format.
+- `config/profiles.yaml` — profile registry; pin the run to one.
+- `config/scoring_model.yaml` — three-axis score plus penalties; gates
+  promotion to Top signals / Watchlist / Archive.
+- `config/action_surface_taxonomy.yaml` — canonical action surfaces;
+  every action candidate cites one.
+- `config/prompt_lenses.yaml` — Pass 1 / Pass 2 / Pass 3 lens map.
 - `briefs/INDEX.md` — index of past briefs.
 - Last 2 brief markdown files under `briefs/YYYY-WNN/` for continuity.
 - `scripts/voice_lint.py` — voice rules the brief must pass.
+- `AGENTS.md` — evidence-spine rules and quality gates.
 
 ## Steps
 
@@ -34,43 +41,65 @@ weekly pass. Read this top-to-bottom before starting.
    The rubric is informal in v1; spec 0005 (R-EXT) lands the scored
    version.
 
-4. **Matrix cell production.** For each captured source item that
-   survived triage, apply every `required: true` lens from
-   `config/prompt_lenses.yaml` (and any optional lens the profile
-   selects) to produce one matrix cell per source-item-lens pair.
-   Each cell records: source-item id, lens id, extraction mode,
-   answer text, source refs (every claim cites a span), confidence
-   (`high`/`medium`/`low`), and `faithfulness_status: not_checked`.
-   Cells land in the run-evidence path so the brief generation can
-   reference them later. The cell shape matches
-   `schemas/matrix_cell.schema.json`; the lens prompts live at
-   `prompts/lenses/`. This step pins to the `science.matrix-runner`
-   role; see `.agents/roles/science.matrix-runner/instructions.md`
-   for the run-time contract.
+4. **Matrix cell production (Pass 1 — Structured source note).**
+   For each captured source item that survived triage, apply every
+   `required: true` lens from `config/prompt_lenses.yaml` (and any
+   optional lens the profile selects) to produce one matrix cell per
+   source-item-lens pair. Pass 1 lenses: `source_gist`,
+   `claims_and_bets`, `mechanism_extraction`. Each cell records:
+   source-item id, lens id, extraction mode, answer text, source
+   refs (every claim cites a span), confidence (`high`/`medium`/
+   `low`), and `faithfulness_status: not_checked`. Cells land in the
+   run-evidence path so the brief generation can reference them
+   later. The cell shape matches `schemas/matrix_cell.schema.json`;
+   the lens prompts live at `prompts/lenses/`. This step pins to the
+   `science.matrix-runner` role; see
+   `.agents/roles/science.matrix-runner/instructions.md` for the
+   run-time contract.
 
-5. **Cell faithfulness verification.** Read every cell from step 4
-   against the source body. Apply the seven-question check in
-   `prompts/cell_faithfulness.md`: unsupported claim, overstated
-   certainty, missing caveat, invented consensus, wrong source span,
-   too generic, action recommendation not supported by the source.
-   Each cell receives one verdict: `PASS`, `PATCH_CELL`, or
-   `FAIL_CELL`. Patched cells move to `verified`; failed cells drop.
-   This step pins to the `science.cell-verifier` role.
+5. **Cell faithfulness verification (Pass 2 — Faithfulness audit).**
+   Read every cell from step 4 against the source body. Apply the
+   seven-question check in `prompts/cell_faithfulness.md`:
+   unsupported claim, overstated certainty, missing caveat, invented
+   consensus, wrong source span, too generic, action recommendation
+   not supported by the source. Each cell receives one verdict:
+   `PASS`, `PATCH_CELL`, or `FAIL_CELL`. Patched cells move to
+   `verified`; failed cells drop. This step pins to the
+   `science.cell-verifier` role.
 
-6. **Theme and row synthesis.** Cluster verified cells by theme and
-   draft row summaries from cell evidence. Every sentence in a row
-   summary, theme cluster, or action candidate carries an inline
-   cell-id reference. Action candidates that cannot point at a
-   verified cell drop. This step pins to the
-   `science.matrix-synthesis-editor` role and produces the input the
-   brief author pulls from in step 7.
+6. **Theme and row synthesis (Pass 3 — Action extraction).**
+   Cluster verified cells by theme and draft row summaries from cell
+   evidence. Apply the Pass 3 lenses: `reusable_pattern`,
+   `adoption_action`, `risk_and_caveats`. Score each promoted item
+   against `config/scoring_model.yaml` under the active profile from
+   `config/profiles.yaml`. Apply the score thresholds:
+
+   - `final_score >= 12` — eligible for Top signals
+   - `final_score in [9, 12)` — drops to Watchlist with a revisit
+     trigger
+   - `final_score < 9` — Archive notes (kept searchable, not
+     surfaced)
+
+   Every sentence in a row summary, theme cluster, or action
+   candidate carries an inline cell-id reference. Action candidates
+   that cannot point at a verified cell drop. Action candidates
+   without all six required fields (source support, action surface,
+   test plan, expected benefit, risk, disposition) drop. The action
+   surface must resolve against `config/action_surface_taxonomy.yaml`.
+   This step pins to the `science.matrix-synthesis-editor` role and
+   produces the input the brief author pulls from in step 7.
 
 7. **Synthesize.** Draft `briefs/YYYY-WNN/brief.md` against
    `templates/weekly-brief.md`, drawing on the row summaries from
-   step 6. Every pick names the cell ids it leans on as inline
-   comments (the rendered markdown stays clean; the cell-id stays in
-   a comment alongside the link). The opening reflection names the
-   pattern; the picks earn their place with comment, not link-dumps.
+   step 6. The template's Brief OS sections — Field thesis, Top
+   signals (per-pick Source / Payload / Mechanism / Why it matters /
+   Reusable pattern / Action surface / Try / Confidence / Evidence),
+   Reusable patterns, Action queue, Watchlist, Archive notes,
+   Sources reviewed — are the contract. Each Top signal carries an
+   `Evidence:` line listing the verified cell ids it leans on and a
+   `Confidence:` label. Each watchlist item carries a revisit
+   trigger. The opening Field thesis names the pattern; the picks
+   earn their place with comment, not link-dumps.
 
 8. **Faithfulness audit (per cell).** Before voice-lint, re-read
    each pick with these questions:
