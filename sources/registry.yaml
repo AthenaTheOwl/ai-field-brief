@@ -11,7 +11,7 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 2
+version: 3
 last_curated: 2026-05-29
 default_review_frequency: weekly
 
@@ -26,7 +26,6 @@ lanes:
     label: "Strategy — what does it mean"
 
 sources:
-  # ---------- primary-source: vendor official ----------
   - id: anthropic-news
     name: Anthropic News
     type: vendor-news
@@ -42,9 +41,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Canonical for model releases, policy updates, and research-paper
-      announcements. No official RSS; community feed at
-      https://raw.githubusercontent.com/taobojlen/anthropic-rss-feed/main/anthropic_news_rss.xml.
+      Canonical for model releases, policy updates, and research-paper announcements. No official RSS; community feed at https://raw.githubusercontent.com/taobojlen/anthropic-rss-feed/main/anthropic_news_rss.xml.
 
   - id: anthropic-engineering
     name: Anthropic Engineering Blog
@@ -61,9 +58,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Agent SDK design notes, prompt-caching, infra postmortems
-      (recent example: the Claude Code quality-issue postmortem).
-      Community RSS at https://raw.githubusercontent.com/conoro/anthropic-engineering-rss-feed/main/anthropic_engineering_rss.xml.
+      Agent SDK design notes, prompt-caching, infra postmortems (recent example: the Claude Code quality-issue postmortem). Community RSS at https://raw.githubusercontent.com/conoro/anthropic-engineering-rss-feed/main/anthropic_engineering_rss.xml.
 
   - id: anthropic-alignment
     name: Anthropic Alignment Science Blog
@@ -80,8 +75,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Official Anthropic safety-research outlet. Where post-deployment
-      risk research lives.
+      Official Anthropic safety-research outlet. Where post-deployment risk research lives.
 
   - id: openai-news
     name: OpenAI News
@@ -98,8 +92,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Official RSS at https://openai.com/news/rss.xml. Verify any
-      OpenAI claim heard via podcasts/newsletters here first.
+      Official RSS at https://openai.com/news/rss.xml. Verify any OpenAI claim heard via podcasts/newsletters here first.
 
   - id: openai-research
     name: OpenAI Research Index
@@ -116,8 +109,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      No official RSS for the research index; community feed exists
-      (see https://community.openai.com thread). Lower cadence than news.
+      No official RSS for the research index; community feed exists (see https://community.openai.com thread). Lower cadence than news.
 
   - id: openai-cookbook
     name: OpenAI Cookbook
@@ -134,10 +126,8 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Canonical OpenAI recipes — Structured Outputs, function-calling,
-      agent loops, evals. Watch repo releases + the changelog file.
+      Canonical OpenAI recipes — Structured Outputs, function-calling, agent loops, evals. Watch repo releases + the changelog file.
 
-  # ---------- fast-signal: tier-1 super-user feeds ----------
   - id: simon-willison
     name: Simon Willison
     type: blog
@@ -153,17 +143,13 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Karpathy publicly subscribes via NetNewsWire and reads
-      "everything" (x.com/karpathy/status/1933582359347278246).
-      Atom feed at https://simonwillison.net/atom/everything/. The
-      single highest signal-to-noise individual source on prompt
-      injection, model capability shifts, and shipped-LLM patterns.
+      Karpathy publicly subscribes via NetNewsWire and reads "everything" (x.com/karpathy/status/1933582359347278246). Atom feed at https://simonwillison.net/atom/everything/. The single highest signal-to-noise individual source on prompt injection, model capability shifts, and shipped-LLM patterns.
 
   - id: latent-space
     name: Latent Space (swyx + Alessio)
     type: podcast+newsletter
     lane: fast-signal
-    url: https://www.latent.space
+    url: https://www.latent.space/feed
     cadence: weekly
     review_frequency: weekly
     intake: full
@@ -172,12 +158,9 @@ sources:
       actionability: high
       credibility: high
     status: active
-    last_reviewed: 2026-05-22
+    last_reviewed: 2026-05-29
     notes: >-
-      Breaks news / runs exclusive interviews with founders + builders
-      from OpenAI, Anthropic, Gemini, Meta (Soumith Chintala), Sierra,
-      tiny (George Hotz), Databricks/MosaicML, Modular, Answer.ai.
-      10M+ readers/listeners in 2025.
+      Breaks news / runs exclusive interviews with founders + builders from OpenAI, Anthropic, Gemini, Meta (Soumith Chintala), Sierra, tiny (George Hotz), Databricks/MosaicML, Modular, Answer.ai. 10M+ readers/listeners in 2025.
 
   - id: dwarkesh-podcast
     name: Dwarkesh Podcast
@@ -194,12 +177,8 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Substack podcast RSS at https://api.substack.com/feed/podcast/69345.rss.
-      Long-form interviews with Dario Amodei (Anthropic CEO), Sholto
-      Douglas + Trenton Bricken (Anthropic researchers), Jensen Huang
-      (NVIDIA). Substantive, not press-tour.
+      Substack podcast RSS at https://api.substack.com/feed/podcast/69345.rss. Long-form interviews with Dario Amodei (Anthropic CEO), Sholto Douglas + Trenton Bricken (Anthropic researchers), Jensen Huang (NVIDIA). Substantive, not press-tour.
 
-  # ---------- builder-practice: applied-LLM canon ----------
   - id: applied-llms
     name: Applied LLMs (Yan / Bischof / Frye / Husain / Liu / Shankar)
     type: collection+book
@@ -215,10 +194,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      "What We Learned From A Year of Building with LLMs" — the 42
-      lessons report. Taught by Eugene Yan + Hamel Husain to engineers
-      at OpenAI, Anthropic, Google (3000+ students). Closest thing to
-      a canonical applied reference both labs read.
+      "What We Learned From A Year of Building with LLMs" — the 42 lessons report. Taught by Eugene Yan + Hamel Husain to engineers at OpenAI, Anthropic, Google (3000+ students). Closest thing to a canonical applied reference both labs read.
 
   - id: eugene-yan
     name: Eugene Yan
@@ -235,9 +211,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Member of Technical Staff at Anthropic (building recsys + AI
-      products). Newsletter to 11.8k+ readers. Direct insider signal
-      on what Anthropic ships and how.
+      Member of Technical Staff at Anthropic (building recsys + AI products). Newsletter to 11.8k+ readers. Direct insider signal on what Anthropic ships and how.
 
   - id: hamel-husain
     name: Hamel Husain
@@ -254,10 +228,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Ex-Airbnb / GitHub ML; early LLM research used by OpenAI for
-      code understanding. Co-teaches AI Evals for Engineers + PMs.
-      "A Field Guide to Rapidly Improving AI Products" is required
-      reading inside both labs.
+      Ex-Airbnb / GitHub ML; early LLM research used by OpenAI for code understanding. Co-teaches AI Evals for Engineers + PMs. "A Field Guide to Rapidly Improving AI Products" is required reading inside both labs.
 
   - id: trenton-bricken
     name: Trenton Bricken
@@ -274,12 +245,10 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Anthropic researcher (mechanistic interpretability). Personal
-      site; sparse but high-signal posts on how Claude thinks.
+      Anthropic researcher (mechanistic interpretability). Personal site; sparse but high-signal posts on how Claude thinks.
 
-  # ---------- strategy: analysis layer ----------
   - id: zvi-mowshowitz
-    name: Don't Worry About the Vase (Zvi Mowshowitz)
+    name: "Don't Worry About the Vase (Zvi Mowshowitz)"
     type: newsletter
     lane: strategy
     url: https://thezvi.substack.com
@@ -293,9 +262,7 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      Granular weekly AI roundup with explicit links to primary
-      sources. Recent example: "On Dwarkesh Patel's 2026 Podcast With
-      Dario Amodei". Strong filter against hype.
+      Granular weekly AI roundup with explicit links to primary sources. Recent example: "On Dwarkesh Patel's 2026 Podcast With Dario Amodei". Strong filter against hype.
 
   - id: the-ai-corner
     name: The AI Corner (Ruben Dominguez)
@@ -312,11 +279,8 @@ sources:
     status: active
     last_reviewed: 2026-05-22
     notes: >-
-      LinkedIn-surfaced Substack focused on Anthropic / Claude
-      product moves. Higher hype-penalty than the other strategy
-      sources; included for vendor-watch breadth, not depth.
+      LinkedIn-surfaced Substack focused on Anthropic / Claude product moves. Higher hype-penalty than the other strategy sources; included for vendor-watch breadth, not depth.
 
-  # ---------- W22 expansion: primary-source vendor breadth ----------
   - id: deepmind-blog
     name: Google DeepMind Blog
     type: blog
@@ -332,9 +296,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Vendor research outlet for Google DeepMind. RSS at
-      https://deepmind.google/discover/blog/rss.xml. Verify Gemini /
-      AlphaProof / robotics claims here before relaying.
+      Vendor research outlet for Google DeepMind. RSS at https://deepmind.google/discover/blog/rss.xml. Verify Gemini / AlphaProof / robotics claims here before relaying.
 
   - id: google-ai-blog
     name: Google Research Blog
@@ -351,8 +313,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Sister publication to DeepMind covering Google Research outside
-      DeepMind's banner. RSS at https://research.google/blog/rss/.
+      Sister publication to DeepMind covering Google Research outside DeepMind's banner. RSS at https://research.google/blog/rss/.
 
   - id: meta-ai-blog
     name: Meta AI Blog
@@ -369,14 +330,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Llama releases, FAIR papers, PyTorch ecosystem updates. RSS at
-      https://ai.meta.com/blog/rss/.
+      Llama releases, FAIR papers, PyTorch ecosystem updates. RSS at https://ai.meta.com/blog/rss/.
 
   - id: microsoft-ai-blog
     name: Microsoft AI Blog
     type: blog
     lane: primary-source
-    url: https://blogs.microsoft.com/ai/
+    url: https://www.microsoft.com/en-us/research/blog/feed/
     cadence: weekly
     review_frequency: weekly
     intake: full
@@ -387,9 +347,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Copilot product moves, Azure AI Studio updates, OpenAI deal
-      context. RSS at https://blogs.microsoft.com/ai/feed/. Higher
-      marketing-noise ratio than other vendor blogs.
+      Copilot product moves, Azure AI Studio updates, OpenAI deal context. RSS at https://blogs.microsoft.com/ai/feed/. Higher marketing-noise ratio than other vendor blogs.
 
   - id: aws-ml-blog
     name: AWS Machine Learning Blog
@@ -406,8 +364,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Bedrock, SageMaker, Anthropic-on-AWS recipes. RSS at
-      https://aws.amazon.com/blogs/machine-learning/feed/.
+      Bedrock, SageMaker, Anthropic-on-AWS recipes. RSS at https://aws.amazon.com/blogs/machine-learning/feed/.
 
   - id: nvidia-dev-blog
     name: NVIDIA Developer Blog
@@ -424,9 +381,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Hardware + CUDA + Triton + TensorRT-LLM updates. RSS at
-      https://developer.nvidia.com/blog/feed/. Where inference-perf
-      announcements land first.
+      Hardware + CUDA + Triton + TensorRT-LLM updates. RSS at https://developer.nvidia.com/blog/feed/. Where inference-perf announcements land first.
 
   - id: mistral-news
     name: Mistral News
@@ -443,15 +398,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Mistral model + API releases. No reliable official RSS; check
-      community feeds or scrape the news page until an official one
-      lands.
+      Mistral model + API releases. No reliable official RSS; check community feeds or scrape the news page until an official one lands.
 
   - id: cohere-blog
     name: Cohere Blog
     type: blog
     lane: primary-source
-    url: https://cohere.com/blog/
+    url: https://cohere.com/blog
     cadence: weekly
     review_frequency: weekly
     intake: full
@@ -462,8 +415,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Command R / Aya / enterprise RAG product moves. RSS at
-      https://cohere.com/blog/rss.xml.
+      Command R / Aya / enterprise RAG product moves. RSS at https://cohere.com/blog/rss.xml.
 
   - id: huggingface-blog
     name: Hugging Face Blog
@@ -480,11 +432,8 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Open-weight model launches, fine-tuning recipes, Transformers /
-      Diffusers / TRL release posts. RSS at
-      https://huggingface.co/blog/feed.xml.
+      Open-weight model launches, fine-tuning recipes, Transformers / Diffusers / TRL release posts. RSS at https://huggingface.co/blog/feed.xml.
 
-  # ---------- W22 expansion: fast-signal podcasts + newsletters ----------
   - id: latent-space-podcast
     name: Latent Space Podcast
     type: podcast
@@ -500,10 +449,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake — no auto-transcripts; cite the show
-      notes and link audio. Substack podcast RSS at
-      https://api.substack.com/feed/podcast/1064197.rss. Sibling of
-      the latent-space newsletter entry.
+      Show-notes only intake — no auto-transcripts; cite the show notes and link audio. Substack podcast RSS at https://api.substack.com/feed/podcast/1064197.rss. Sibling of the latent-space newsletter entry.
 
   - id: ai-daily-brief
     name: The AI Daily Brief (Nathaniel Whittemore)
@@ -520,15 +466,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Megaphone RSS at
-      https://feeds.megaphone.fm/MLN2155636147. Daily news + analysis;
-      higher hype-penalty than Latent Space.
+      Show-notes only intake. Megaphone RSS at https://feeds.megaphone.fm/MLN2155636147. Daily news + analysis; higher hype-penalty than Latent Space.
 
   - id: last-week-in-ai
     name: Last Week in AI
     type: podcast
     lane: fast-signal
-    url: https://lastweekin.ai
+    url: https://lastweekin.ai/feed
     cadence: weekly
     review_frequency: weekly
     intake: show-notes-only
@@ -539,9 +483,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at
-      https://lastweekin.ai/feed/podcast. Andrey Kurenkov +
-      Jeremie Harris; full weekly roundup of model + tooling news.
+      Show-notes only intake. RSS at https://lastweekin.ai/feed/podcast. Andrey Kurenkov + Jeremie Harris; full weekly roundup of model + tooling news.
 
   - id: no-priors
     name: No Priors (Sarah Guo + Elad Gil)
@@ -558,15 +500,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Simplecast RSS at
-      https://feeds.simplecast.com/JGE3yC0V. Founder + investor
-      interviews; complementary to Dwarkesh / Latent Space.
+      Show-notes only intake. Simplecast RSS at https://feeds.simplecast.com/JGE3yC0V. Founder + investor interviews; complementary to Dwarkesh / Latent Space.
 
   - id: thursdai
     name: ThursdAI (Alex Volkov)
     type: podcast
     lane: fast-signal
-    url: https://sub.thursdai.news
+    url: https://api.substack.com/feed/podcast/1801228.rss
     cadence: weekly
     review_frequency: weekly
     intake: show-notes-only
@@ -577,9 +517,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at
-      https://sub.thursdai.news/feed/podcast. Weekly recap of new
-      open-weight model releases; strong on OSS launches.
+      Show-notes only intake. RSS at https://sub.thursdai.news/feed/podcast. Weekly recap of new open-weight model releases; strong on OSS launches.
 
   - id: import-ai
     name: Import AI (Jack Clark)
@@ -596,9 +534,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Anthropic co-founder + policy lead's weekly Substack. RSS at
-      https://importai.substack.com/feed. Standout for policy +
-      capabilities-trajectory framing.
+      Anthropic co-founder + policy lead's weekly Substack. RSS at https://importai.substack.com/feed. Standout for policy + capabilities-trajectory framing.
 
   - id: stratechery
     name: Stratechery (Ben Thompson)
@@ -615,9 +551,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Paywalled — intake limited to human-curated notes from public
-      posts. RSS at https://stratechery.com/feed/ exposes summaries
-      only. Strategy framing for AI platform moves.
+      Paywalled — intake limited to human-curated notes from public posts. RSS at https://stratechery.com/feed/ exposes summaries only. Strategy framing for AI platform moves.
 
   - id: astral-codex-ten
     name: Astral Codex Ten (Scott Alexander)
@@ -634,8 +568,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      RSS at https://www.astralcodexten.com/feed. Long-form essays;
-      AI safety + interpretability framing when it lands on topic.
+      RSS at https://www.astralcodexten.com/feed. Long-form essays; AI safety + interpretability framing when it lands on topic.
 
   - id: hard-fork
     name: Hard Fork (NYT)
@@ -652,12 +585,8 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Simplecast RSS at
-      https://feeds.simplecast.com/l2i9YnTd. Mainstream tech-press
-      framing; useful for tracking how AI lands outside builder
-      circles.
+      Show-notes only intake. Simplecast RSS at https://feeds.simplecast.com/l2i9YnTd. Mainstream tech-press framing; useful for tracking how AI lands outside builder circles.
 
-  # ---------- W22 expansion: builder-practice practitioners + podcasts ----------
   - id: lilian-weng
     name: Lilian Weng
     type: blog
@@ -673,16 +602,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Ex-OpenAI safety + applied research; survey-grade long-form
-      posts on agents, RLHF, hallucination. RSS at
-      https://lilianweng.github.io/index.xml. Required reading inside
-      both labs.
+      Ex-OpenAI safety + applied research; survey-grade long-form posts on agents, RLHF, hallucination. RSS at https://lilianweng.github.io/index.xml. Required reading inside both labs.
 
   - id: chip-huyen
     name: Chip Huyen
     type: blog
     lane: builder-practice
-    url: https://huyenchip.com
+    url: https://huyenchip.com/feed
     cadence: irregular
     review_frequency: biweekly
     intake: full
@@ -693,8 +619,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      "AI Engineering" (O'Reilly) author; ML systems + eval framing.
-      RSS at https://huyenchip.com/feed.xml.
+      "AI Engineering" (O'Reilly) author; ML systems + eval framing. RSS at https://huyenchip.com/feed.xml.
 
   - id: karpathy
     name: Andrej Karpathy
@@ -711,16 +636,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Founding OpenAI + ex-Tesla AI; Eureka Labs founder. Sparse posts
-      but each one anchors a week of discourse. Feed at
-      https://karpathy.ai/feed.xml when populated; YouTube channel is
-      the primary surface for long-form lectures.
+      Founding OpenAI + ex-Tesla AI; Eureka Labs founder. Sparse posts but each one anchors a week of discourse. Feed at https://karpathy.ai/feed.xml when populated; YouTube channel is the primary surface for long-form lectures.
 
   - id: practical-ai
     name: Practical AI (Changelog)
     type: podcast
     lane: builder-practice
-    url: https://changelog.com/practicalai
+    url: https://feeds.transistor.fm/practical-ai-machine-learning-data-science-llm
     cadence: weekly
     review_frequency: weekly
     intake: show-notes-only
@@ -731,15 +653,13 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at
-      https://changelog.com/practicalai/feed. Daniel Whitenack +
-      Chris Benson; applied ML / MLOps focus.
+      Show-notes only intake. RSS at https://changelog.com/practicalai/feed. Daniel Whitenack + Chris Benson; applied ML / MLOps focus.
 
   - id: mlops-community
     name: MLOps Community Podcast
     type: podcast
     lane: builder-practice
-    url: https://mlops.community
+    url: https://podcast.mlops.community/
     cadence: weekly
     review_frequency: weekly
     intake: show-notes-only
@@ -750,9 +670,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Transistor RSS at
-      https://feeds.transistor.fm/mlops-community-podcast. Strong on
-      shipped production-system patterns.
+      Show-notes only intake. Transistor RSS at https://feeds.transistor.fm/mlops-community-podcast. Strong on shipped production-system patterns.
 
   - id: twiml
     name: The TWIML AI Podcast (Sam Charrington)
@@ -769,9 +687,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Verify the feed URL before runner
-      ingest — Phase 1 plan listed the AI Daily Brief Megaphone ID by
-      mistake. Long-running interview show with researchers.
+      Show-notes only intake. Verify the feed URL before runner ingest — Phase 1 plan listed the AI Daily Brief Megaphone ID by mistake. Long-running interview show with researchers.
 
   - id: ai-engineer-podcast
     name: AI Engineer Podcast
@@ -788,11 +704,8 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. YouTube channel feed at
-      https://www.youtube.com/feeds/videos.xml?channel_id=UCB1aw7M8jLnGzqWGoYpV5SQ.
-      AIE conference + recordings.
+      Show-notes only intake. YouTube channel feed at https://www.youtube.com/feeds/videos.xml?channel_id=UCB1aw7M8jLnGzqWGoYpV5SQ. AIE conference + recordings.
 
-  # ---------- W22 expansion: arXiv + paper aggregators (research lane) ----------
   - id: arxiv-cs-ai
     name: arXiv cs.AI
     type: blog
@@ -808,9 +721,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.AI.
-      High volume; filter through HF Papers or Zvi before pulling
-      into briefs.
+      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.AI. High volume; filter through HF Papers or Zvi before pulling into briefs.
 
   - id: arxiv-cs-cl
     name: arXiv cs.CL
@@ -827,9 +738,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.CL.
-      Computational linguistics; closest arXiv category to LLM
-      research.
+      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.CL. Computational linguistics; closest arXiv category to LLM research.
 
   - id: arxiv-cs-lg
     name: arXiv cs.LG
@@ -846,8 +755,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.LG.
-      Machine learning umbrella; highest-volume arXiv category.
+      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.LG. Machine learning umbrella; highest-volume arXiv category.
 
   - id: arxiv-cs-cr
     name: arXiv cs.CR
@@ -864,9 +772,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.CR.
-      Cryptography + security; covers prompt-injection +
-      jailbreak papers.
+      Show-notes only intake. RSS at http://export.arxiv.org/rss/cs.CR. Cryptography + security; covers prompt-injection + jailbreak papers.
 
   - id: hf-papers
     name: Hugging Face Daily Papers
@@ -883,11 +789,8 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. Community-voted daily paper digest;
-      better signal than raw arXiv. No official RSS; scrape the page
-      or use community feeds.
+      Show-notes only intake. Community-voted daily paper digest; better signal than raw arXiv. No official RSS; scrape the page or use community feeds.
 
-  # ---------- W22 expansion: aggregators (fast-signal noise lane) ----------
   - id: hn-frontpage
     name: Hacker News (front page)
     type: blog
@@ -903,9 +806,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at https://hnrss.org/frontpage.
-      Aggregator — use for what builders are reading, not for
-      primary claims. High hype-penalty.
+      Show-notes only intake. RSS at https://hnrss.org/frontpage. Aggregator — use for what builders are reading, not for primary claims. High hype-penalty.
 
   - id: reddit-mlearning
     name: r/MachineLearning
@@ -922,9 +823,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at
-      https://www.reddit.com/r/MachineLearning/.rss. Aggregator —
-      research-leaning subreddit; cross-check before relaying.
+      Show-notes only intake. RSS at https://www.reddit.com/r/MachineLearning/.rss. Aggregator — research-leaning subreddit; cross-check before relaying.
 
   - id: reddit-localllama
     name: r/LocalLLaMA
@@ -941,12 +840,8 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. RSS at
-      https://www.reddit.com/r/LocalLLaMA/.rss. Aggregator —
-      open-weight tinkerer surface; quantization + local-inference
-      patterns land here first.
+      Show-notes only intake. RSS at https://www.reddit.com/r/LocalLLaMA/.rss. Aggregator — open-weight tinkerer surface; quantization + local-inference patterns land here first.
 
-  # ---------- W22 expansion: GitHub release feeds (primary-source code) ----------
   - id: gh-anthropic-claude-code
     name: anthropics/claude-code releases
     type: github-releases
@@ -962,9 +857,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Atom feed at
-      https://github.com/anthropics/claude-code/releases.atom. CLI +
-      SDK release notes — primary source for what Claude Code shipped.
+      Atom feed at https://github.com/anthropics/claude-code/releases.atom. CLI + SDK release notes — primary source for what Claude Code shipped.
 
   - id: gh-openai-agents-sdk
     name: openai/openai-agents-python releases
@@ -981,9 +874,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Atom feed at
-      https://github.com/openai/openai-agents-python/releases.atom.
-      OpenAI Agents SDK release notes.
+      Atom feed at https://github.com/openai/openai-agents-python/releases.atom. OpenAI Agents SDK release notes.
 
   - id: gh-langgraph
     name: langchain-ai/langgraph releases
@@ -1000,10 +891,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Atom feed at
-      https://github.com/langchain-ai/langgraph/releases.atom.
-      Agent-graph framework release notes; useful as a watch on
-      framework convergence.
+      Atom feed at https://github.com/langchain-ai/langgraph/releases.atom. Agent-graph framework release notes; useful as a watch on framework convergence.
 
   - id: gh-openai-cookbook-releases
     name: openai/openai-cookbook commits
@@ -1020,8 +908,1399 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Atom feed at
-      https://github.com/openai/openai-cookbook/commits.atom. Tracks
-      recipe additions before they show up in openai-cookbook
-      releases — finer-grained surface than the existing
-      `openai-cookbook` entry.
+      Atom feed at https://github.com/openai/openai-cookbook/commits.atom. Tracks recipe additions before they show up in openai-cookbook releases — finer-grained surface than the existing `openai-cookbook` entry.
+
+  # ---------- W22 expansion: tier-1 ecosystem sweep (2026-05-29) ----------
+  - id: google-research-blog
+    name: Google Research Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://research.google/blog/rss/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified RSS feed; deeper mechanism content than blog.google.
+
+  - id: microsoft-research-blog
+    name: Microsoft Research Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://www.microsoft.com/en-us/research/blog/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      RECOVERED W22 failure; feed live and current.
+
+  - id: microsoft-official-blog
+    name: The Official Microsoft Blog
+    type: blog-rss
+    lane: primary-source
+    url: https://blogs.microsoft.com/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      AI / Copilot focus; corporate-news-heavy but useful for enterprise AI signal.
+
+  - id: meta-newsroom
+    name: Meta Newsroom
+    type: blog-rss
+    lane: primary-source
+    url: https://about.fb.com/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Llama and Meta AI announcements appear here; ai.meta.com/blog has no official RSS.
+
+  - id: meta-engineering
+    name: Engineering at Meta
+    type: blog-rss
+    lane: builder-practice
+    url: https://engineering.fb.com/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Infra deep-dives; ML/inference content valuable for builder lane.
+
+  - id: nvidia-corp-blog
+    name: NVIDIA Blog
+    type: blog-rss
+    lane: primary-source
+    url: https://blogs.nvidia.com/feed/
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Corporate news angle; pairs with developer blog for full NVIDIA signal.
+
+  - id: vercel-news
+    name: Vercel News and Changelog
+    type: blog-rss
+    lane: builder-practice
+    url: https://vercel.com/blog/feed.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Atom feed; AI Gateway and Sandbox updates relevant to builders.
+
+  - id: replicate-blog
+    name: Replicate Blog
+    type: blog-rss
+    lane: builder-practice
+    url: https://replicate.com/blog/rss
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Working RSS feed; model deployment tutorials.
+
+  - id: cursor-changelog
+    name: Cursor Changelog
+    type: blog-rss
+    lane: builder-practice
+    url: https://cursor.com/changelog/rss.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Working RSS for product changelog; reflects coding-agent evolution.
+
+  - id: hamel-husain-substack
+    name: "Hamel Husain's Substack"
+    type: newsletter-rss
+    lane: builder-practice
+    url: https://hamelhusain.substack.com/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Active substack mirror of evals work.
+
+  - id: sebastian-raschka
+    name: Ahead of AI (Sebastian Raschka)
+    type: newsletter-rss
+    lane: builder-practice
+    url: https://magazine.sebastianraschka.com/feed
+    cadence: biweekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Architecture and training deep-dives; 150k subscribers but content stays technical.
+
+  - id: jay-alammar
+    name: Jay Alammar Blog
+    type: blog-rss
+    lane: primary-source
+    url: https://jalammar.github.io/feed.xml
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Mostly archive (moved to Substack); kept for reference content like Illustrated Transformer.
+
+  - id: karpathy-bearblog
+    name: Andrej Karpathy Bearblog
+    type: blog-rss
+    lane: fast-signal
+    url: https://karpathy.bearblog.dev/feed/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Active long-form surface; last updated 2026-05-29.
+
+  - id: fast-ai
+    name: fast.ai Blog
+    type: blog-rss
+    lane: builder-practice
+    url: https://www.fast.ai/index.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Working feed at /index.xml (not /atom.xml). Howard + Thomas + Answer.AI cross-posts.
+
+  - id: rachel-thomas
+    name: Rachel Thomas Blog
+    type: blog-rss
+    lane: strategy
+    url: https://rachel.fast.ai/index.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      AI ethics and pedagogy; complements fast.ai feed.
+
+  - id: erik-bernhardsson
+    name: Erik Bernhardsson
+    type: blog-rss
+    lane: builder-practice
+    url: https://erikbern.com/index.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Modal founder; infra + ML systems.
+
+  - id: patrick-mckenzie-bits
+    name: Bits about Money (Patrick McKenzie)
+    type: newsletter-rss
+    lane: strategy
+    url: https://www.bitsaboutmoney.com/archive/rss/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Finance/infra angle; AI-adjacent but useful for distribution/regulation framing. Kalzumeus.com largely dormant.
+
+  - id: vicki-boykis-substack
+    name: Normcore Tech (Vicki Boykis)
+    type: newsletter-rss
+    lane: strategy
+    url: https://vicki.substack.com/feed
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      vickiboykis.com/feed 404s; substack mirror works.
+
+  - id: interconnects-nathan-lambert
+    name: Interconnects (Nathan Lambert)
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://www.interconnects.ai/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Post-training and open-model commentary; high signal.
+
+  - id: swyx-blog
+    name: swyx.io
+    type: blog-rss
+    lane: fast-signal
+    url: https://www.swyx.io/rss.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Latent Space adjacent; current and active.
+
+  - id: drew-breunig
+    name: Drew Breunig
+    type: blog-rss
+    lane: fast-signal
+    url: https://www.dbreunig.com/feed.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Sharp posts on agent harnesses and prompt engineering.
+
+  - id: runpod-blog
+    name: RunPod Blog
+    type: blog-rss
+    lane: builder-practice
+    url: https://www.runpod.io/blog/rss.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      GPU infra vendor; practical deployment content.
+
+  - id: deep-papers
+    name: Deep Papers (Arize AI)
+    type: podcast-rss
+    lane: primary-source
+    url: https://www.deeppapers.dev/
+    cadence: biweekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Arize AI engineers walk through important new papers; show-notes intake since no clean RSS surfaced.
+
+  - id: cognitive-revolution
+    name: The Cognitive Revolution
+    type: podcast-rss
+    lane: strategy
+    url: https://feeds.megaphone.fm/RINTP3108857801
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Nathan Labenz + Erik Torenberg; AI builders + researchers; technical-strategic crossover.
+
+  - id: eye-on-ai
+    name: Eye on AI
+    type: podcast-rss
+    lane: strategy
+    url: https://aneyeonai.libsyn.com/rss
+    cadence: biweekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Craig S. Smith (ex-NYT) interviews AI researchers; broader sweep, less technical depth.
+
+  - id: robot-brains
+    name: The Robot Brains Podcast
+    type: podcast-rss
+    lane: primary-source
+    url: https://feeds.acast.com/public/shows/the-robot-brains
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Pieter Abbeel (Berkeley/Covariant) interviews top robotics + AI researchers; primary-source caliber.
+
+  - id: gradient-dissent
+    name: Gradient Dissent (Weights & Biases)
+    type: podcast-rss
+    lane: builder-practice
+    url: https://feeds.captivate.fm/gradient-dissent/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Lukas Biewald (W&B CEO) interviews AI builders; practitioner-leaning.
+
+  - id: lex-fridman-podcast
+    name: Lex Fridman Podcast
+    type: podcast-rss
+    lane: primary-source
+    url: https://lexfridman.com/feed/podcast/
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Broad guest list; only AI episodes are in scope; filter by guest; long form.
+
+  - id: machine-learning-street-talk
+    name: Machine Learning Street Talk (MLST)
+    type: podcast-rss
+    lane: primary-source
+    url: https://anchor.fm/s/1e4a0eac/podcast/rss
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Tim Scarfe deep technical AI/cognitive-science interviews; highest-rated technical AI podcast.
+
+  - id: openai-podcast
+    name: The OpenAI Podcast
+    type: podcast-rss
+    lane: primary-source
+    url: https://shows.acast.com/openai-podcast
+    cadence: biweekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      OpenAI-produced; Andrew Mayne interviews OpenAI staff/users; primary-source for OpenAI framing.
+
+  - id: google-deepmind-podcast
+    name: "Google DeepMind: The Podcast"
+    type: podcast-rss
+    lane: primary-source
+    url: https://feeds.simplecast.com/JT6pbPkg
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Hannah Fry interviews DeepMind researchers; primary-source DeepMind framing; season-based.
+
+  - id: ai-plus-a16z
+    name: AI + a16z
+    type: podcast-rss
+    lane: strategy
+    url: https://feeds.simplecast.com/Hb_IuXOo
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      a16z partners + AI builders; VC strategy lens; useful for ecosystem reads, watch for hype.
+
+  - id: interconnects-podcast
+    name: Interconnects Podcast (Nathan Lambert)
+    type: podcast-rss
+    lane: primary-source
+    url: https://api.substack.com/feed/podcast/48206.rss
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Nathan Lambert (AI2/RLHF) essays + interviews; primary-source for post-training/RLHF lens.
+
+  - id: training-data-sequoia
+    name: Training Data (Sequoia)
+    type: podcast-rss
+    lane: strategy
+    url: https://feeds.megaphone.fm/trainingdata
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Sonya Huang + Pat Grady interview AI builders/researchers; VC lens but high-quality guests.
+
+  - id: yannic-kilcher
+    name: Yannic Kilcher (YouTube)
+    type: youtube-channel
+    lane: primary-source
+    url: https://www.youtube.com/channel/UCZHmQk67mSJgfCCTn7xBfew
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Deep technical paper reviews; reads papers end to end, calls out weak claims.
+
+  - id: two-minute-papers
+    name: Two Minute Papers (Karoly Zsolnai-Feher)
+    type: youtube-channel
+    lane: fast-signal
+    url: https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 2
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Short visual paper summaries skewed toward graphics/vision; enthusiastic tone, shallow technical depth.
+
+  - id: ai-explained
+    name: AI Explained (Philip)
+    type: youtube-channel
+    lane: fast-signal
+    url: https://www.youtube.com/@aiexplained-official
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Frontier-model news + capability analysis; author of SimpleBench; sober tone vs. typical YouTube.
+
+  - id: computerphile
+    name: Computerphile
+    type: youtube-channel
+    lane: primary-source
+    url: https://www.youtube.com/@Computerphile
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Brady Haran's CS channel; AI/ML episodes interview academics (Rob Miles on alignment, etc.).
+
+  - id: three-blue-one-brown-deep-learning
+    name: "3Blue1Brown: Neural Networks"
+    type: youtube-playlist
+    lane: primary-source
+    url: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+    cadence: irregular
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Grant Sanderson's visual deep-learning series including transformer episodes; canonical reference.
+
+  - id: fast-ai-practical-dl
+    name: fast.ai Practical Deep Learning for Coders
+    type: article-url
+    lane: builder-practice
+    url: https://course.fast.ai/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Jeremy Howard's free top-down DL course; canonical practitioner path; YouTube companion at @howardjeremyp.
+
+  - id: karpathy-zero-to-hero
+    name: "Andrej Karpathy: Neural Networks Zero to Hero"
+    type: youtube-playlist
+    lane: primary-source
+    url: https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+    cadence: irregular
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 5
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Karpathy's from-scratch nn/transformer/GPT/tokenizer lectures; companion at karpathy.ai/zero-to-hero.html.
+
+  - id: stanford-cs25
+    name: "Stanford CS25: Transformers United"
+    type: youtube-playlist
+    lane: primary-source
+    url: https://www.youtube.com/playlist?list=PLoROMvodv4rNiJRchCzutFw5ItR_Z27CM
+    cadence: irregular
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Stanford seminar series with Karpathy, Hinton, etc.; companion at web.stanford.edu/class/cs25/.
+
+  - id: mit-6s191
+    name: MIT 6.S191 Introduction to Deep Learning
+    type: youtube-playlist
+    lane: primary-source
+    url: https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+    cadence: irregular
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Alexander Amini's MIT DL bootcamp; refreshed yearly; canonical intro material.
+
+  - id: stanford-hai-youtube
+    name: Stanford HAI (YouTube)
+    type: youtube-channel
+    lane: strategy
+    url: https://www.youtube.com/channel/UChugFTK0KyrES9terTid8vA
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Stanford Human-Centered AI talks; policy + research panels; lower actionability, high credibility.
+
+  - id: google-deepmind-youtube
+    name: Google DeepMind (YouTube)
+    type: youtube-channel
+    lane: primary-source
+    url: https://www.youtube.com/channel/UCP7jMXSY2xbc3KCAE0MHQ-A
+    cadence: irregular
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      DeepMind primary channel; research video drops, AlphaFold/Gemini announcements.
+
+  - id: hugging-face-youtube
+    name: Hugging Face (YouTube)
+    type: youtube-channel
+    lane: builder-practice
+    url: https://www.youtube.com/@HuggingFace
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      HF official channel with course + ecosystem tutorials; high actionability for builders.
+
+  - id: hf-papers-daily-feed-takara
+    name: HF Daily Papers (takara unofficial RSS mirror)
+    type: hf-papers
+    lane: fast-signal
+    url: https://papers.takara.ai/api/feed
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Unofficial RSS mirror of HF Daily Papers; redirects to Vercel blob with date-stamped XML. Credibility lower than official because intermediary.
+
+  - id: cool-papers-cs-ai
+    name: Cool Papers (papers.cool) cs.AI
+    type: arxiv-feed
+    lane: fast-signal
+    url: https://papers.cool/arxiv/cs.AI/feed
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Atom feed of arxiv cs.AI with Kimi-AI-generated summaries layered on. Useful as a more skimmable arxiv mirror.
+
+  - id: alphaxiv
+    name: alphaXiv
+    type: arxiv-feed
+    lane: fast-signal
+    url: https://www.alphaxiv.org/
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Open discussion layer on arXiv; surfaces papers with active discussion. No native RSS.
+
+  - id: arxiv-sanity-lite
+    name: arxiv-sanity-lite (Karpathy)
+    type: arxiv-feed
+    lane: fast-signal
+    url: https://arxiv-sanity-lite.com/
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Tag-based personal arxiv recommender. Endpoint intermittently down at fetch time; keep on watchlist.
+
+  - id: apple-ml-research
+    name: Apple Machine Learning Research
+    type: research-lab-blog
+    lane: primary-source
+    url: https://machinelearning.apple.com/rss.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Lower cadence but high-signal Apple ML publications and posts.
+
+  - id: bair-blog
+    name: Berkeley AI Research (BAIR) Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://bair.berkeley.edu/blog/feed.xml
+    cadence: biweekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Berkeley grad-student / faculty long-form posts on their own papers; about one post every 2-4 weeks. High actionability with a clean writeup of a real paper.
+
+  - id: mit-csail-news
+    name: MIT CSAIL News (via MIT News topic feed)
+    type: research-lab-blog
+    lane: primary-source
+    url: https://news.mit.edu/rss/topic/computer-science-and-artificial-intelligence-laboratory-csail
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      MIT News CSAIL topic feed; csail.mit.edu/rss.xml 403s for WebFetch. Newsroom-style writeups, less primary than BAIR/CMU.
+
+  - id: ai2-blog-medium
+    name: Allen Institute for AI (Ai2) Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://medium.com/feed/ai2-blog
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Ai2 publishes via Medium with full RSS. Covers OLMo, Tulu, preference learning; important open-model lab.
+
+  - id: stanford-crfm-blog
+    name: Stanford CRFM (Center for Research on Foundation Models)
+    type: research-lab-blog
+    lane: primary-source
+    url: https://crfm.stanford.edu/feed.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Atom feed; HELM benchmarks, foundation-model evals. Active in May 2026.
+
+  - id: stanford-hai-news
+    name: Stanford HAI News
+    type: research-lab-blog
+    lane: strategy
+    url: https://hai.stanford.edu/news
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Stanford HAI; both hai.stanford.edu/rss.xml and /news/rss.xml return 404. Strategy/policy lane more than primary research.
+
+  - id: cmu-ml-blog
+    name: ML@CMU Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://blog.ml.cmu.edu/feed/
+    cadence: biweekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      CMU ML faculty/student writeups; bi-weekly cadence per their own description.
+
+  - id: princeton-nlp-blog
+    name: Princeton NLP Group Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://princeton-nlp.github.io/feed.xml
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Jekyll-generated RSS, valid. Low cadence (last update Jan 2024 in feed) but high-signal when posted.
+
+  - id: distill-pub-archive
+    name: Distill (archive)
+    type: blog-rss
+    lane: primary-source
+    url: https://distill.pub/rss.xml
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Indefinite hiatus since July 2021; RSS still serves the 57-article archive. Worth keeping for backfill / reference reading, not new signal.
+
+  - id: hn-frontpage-ai
+    name: Hacker News (AI-filtered front page)
+    type: hn-feed
+    lane: fast-signal
+    url: https://hnrss.org/frontpage?q=AI
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      hnrss.org keyword-filtered HN frontpage; high noise but catches launches and discussions early.
+
+  - id: hn-newest-llm-ai
+    name: Hacker News newest (LLM/AI)
+    type: hn-feed
+    lane: fast-signal
+    url: https://hnrss.org/newest?q=LLM+OR+AI
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 2
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Very noisy but catches Show HN posts and early tooling releases before they reach frontpage.
+
+  - id: reddit-claudeai
+    name: r/ClaudeAI
+    type: reddit-subreddit
+    lane: fast-signal
+    url: https://www.reddit.com/r/ClaudeAI/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit. About 860k members; Claude Code workflow tips and bug reports surface here first. Anthropic does not operate this subreddit.
+
+  - id: reddit-openai
+    name: r/OpenAI
+    type: reddit-subreddit
+    lane: fast-signal
+    url: https://www.reddit.com/r/OpenAI/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 2
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit. High noise, occasional product-change leaks; low signal otherwise.
+
+  - id: reddit-singularity
+    name: r/singularity
+    type: reddit-subreddit
+    lane: fast-signal
+    url: https://www.reddit.com/r/singularity/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 1
+      actionability: 1
+      credibility: 1
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit. 3.9M members but mostly hype/speculation; included for narrative-monitoring only.
+
+  - id: lesswrong-curated
+    name: LessWrong curated feed
+    type: rss
+    lane: strategy
+    url: https://www.lesswrong.com/feed.xml?view=curated
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 2
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Curated view filters lowest-effort posts; alignment + rationality long-form. Verified live 2026-05-29.
+
+  - id: alignment-forum
+    name: AI Alignment Forum
+    type: rss
+    lane: strategy
+    url: https://www.alignmentforum.org/feed.xml
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Primary technical alignment discussion venue; high credibility, low actionability for builders. Verified live.
+
+  - id: github-trending
+    name: GitHub Trending
+    type: article-url
+    lane: builder-practice
+    url: https://github.com/trending?since=daily
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      No official RSS; html-scrape required. AI repos surface early here before AlphaSignal/TLDR pick them up.
+
+  - id: eleutherai-blog
+    name: EleutherAI Blog
+    type: research-lab-blog
+    lane: primary-source
+    url: https://blog.eleuther.ai/index.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live; open-source AI research community. Slow cadence but high-rigor posts (reward hacking, interp).
+
+  - id: stanford-cs324
+    name: "Stanford CS324: Large Language Models"
+    type: article-url
+    lane: primary-source
+    url: https://stanford-cs324.github.io/winter2022/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Winter 2022 lecture notes by Liang/Hashimoto/Re; canonical LLM-fundamentals reference. Winter 2023 syllabus also at stanford-cs324.github.io/winter2023/.
+
+  - id: raschka-llms-from-scratch
+    name: Build a Large Language Model (From Scratch) Raschka
+    type: article-url
+    lane: builder-practice
+    url: https://sebastianraschka.com/llms-from-scratch/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Companion hub for the Manning book; code at github.com/rasbt/LLMs-from-scratch. Releases atom feed currently empty.
+
+  - id: cohere-llmu
+    name: Cohere LLM University
+    type: article-url
+    lane: builder-practice
+    url: https://cohere.com/llmu
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Vendor-published but technically substantive; RAG, deployment, semantic search modules. Verified live.
+
+  - id: anthropic-academy
+    name: Anthropic Academy (Building with Claude)
+    type: article-url
+    lane: builder-practice
+    url: https://anthropic.skilljar.com/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live. 13 free courses including 'Building with the Claude API' (84 lessons). Direct primary source for Claude builders.
+
+  - id: hf-llm-course
+    name: Hugging Face LLM Course (formerly NLP Course)
+    type: article-url
+    lane: builder-practice
+    url: https://huggingface.co/learn/llm-course/chapter1/1
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live 2026-05-29. 12 chapters covering Transformers, Datasets, Tokenizers, agents, fine-tuning. Free, Apache 2.0.
+
+  - id: d2l-textbook
+    name: Dive into Deep Learning (d2l.ai)
+    type: article-url
+    lane: primary-source
+    url: https://d2l.ai/
+    cadence: monthly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Interactive textbook adopted at 500 universities; PyTorch/TF/JAX/MXNet implementations. Cambridge UP 2023 print + free web.
+
+  - id: slp3-jurafsky
+    name: Speech and Language Processing 3rd ed. draft (Jurafsky+Martin)
+    type: article-url
+    lane: primary-source
+    url: https://web.stanford.edu/~jurafsky/slp3/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Latest release 2026-01-06; CC-licensed draft with active 3rd-edition updates including BERT/DPO/ASR/TTS chapters.
+
+  - id: huyen-aie-book
+    name: AI Engineering (Chip Huyen) book repo
+    type: github-releases
+    lane: builder-practice
+    url: https://github.com/chiphuyen/aie-book
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Companion repo for O'Reilly 2025 book; WIP but contains ToC, summaries, case studies, prompts. 15.8k stars.
+
+  - id: tldr-ai
+    name: TLDR AI
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://tldr.tech/api/rss/ai
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live RSS. 500k+ subscribers; daily 5-min digest, decent triage value but vendor-news-heavy.
+
+  - id: alphasignal
+    name: AlphaSignal
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://alphasignalai.substack.com/feed
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Substack mirror; alphasignal.ai returned 403 to WebFetch. Technical daily digest, 200k+ devs; models/papers/repos focus.
+
+  - id: the-batch
+    name: The Batch (DeepLearning.AI / Andrew Ng)
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://www.deeplearning.ai/the-batch
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      No working official RSS (both /feed and /rss/ returned 404). Use html-scrape on archive index or kill-the-newsletter bridge.
+
+  - id: ai-snake-oil
+    name: AI as Normal Technology (formerly AI Snake Oil)
+    type: newsletter-rss
+    lane: strategy
+    url: https://www.normaltech.ai/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 2
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      aisnakeoil.com now 301-redirects to normaltech.ai. Narayanan + Kapoor (Princeton); strategy/critique lens, low-hype.
+
+  - id: rundown-ai
+    name: The Rundown AI
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://www.therundown.ai/
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 2
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      No discoverable RSS. 2M+ subscribers but hype-heavy vendor-news; included for breadth/narrative-tracking only.
+
+  - id: bens-bites
+    name: "Ben's Bites"
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://www.bensbites.com/feed
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 2
+      actionability: 2
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified RSS live; recent posts skew SaaS/business not AI mechanism. Has shifted away from pure AI focus.
