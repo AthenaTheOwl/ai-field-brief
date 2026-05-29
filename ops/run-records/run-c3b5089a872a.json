@@ -1,0 +1,75 @@
+{
+  "agent_id": "claude-opus-4-7",
+  "events": [],
+  "finished_at": "2026-05-29T23:30:00Z",
+  "gate_results_summary": {
+    "all_passed": true,
+    "gates_failed": [],
+    "gates_passed": [
+      "voice_lint",
+      "spec_check",
+      "check_no_bom",
+      "validate_schemas",
+      "validate_registry",
+      "validate_decisions",
+      "validate_run_evidence"
+    ]
+  },
+  "id": "run-c3b5089a872a",
+  "inputs": [
+    {
+      "kind": "playbook",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/playbook/run-weekly-brief.md"
+    },
+    {
+      "kind": "source-registry",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/sources/registry.yaml"
+    },
+    {
+      "kind": "meta",
+      "ref": "repo://ai-field-brief@21174d3280cfee1c9a30e68d7f2ed4faeab5a754/briefs/2026-W22/meta.yaml"
+    },
+    {
+      "kind": "matrix-cells",
+      "ref": "repo://ai-field-brief@fac511aeb412e6633a73af83c019ddd10d220027/briefs/2026-W22/matrix/cells.yaml"
+    },
+    {
+      "kind": "prompt",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/prompts/matrix_synthesis.md"
+    },
+    {
+      "kind": "prompt",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/prompts/lenses/systems_thinking.md"
+    },
+    {
+      "kind": "prompt",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/prompts/lenses/transferable_principle.md"
+    },
+    {
+      "kind": "prompt",
+      "ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/prompts/lenses/falsification_test.md"
+    }
+  ],
+  "outputs": [
+    {
+      "artifact_id": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/briefs/2026-W22/brief.md",
+      "type": "brief"
+    },
+    {
+      "artifact_id": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/briefs/2026-W22/meta.yaml",
+      "type": "meta"
+    },
+    {
+      "artifact_id": "repo://ai-field-brief@fac511aeb412e6633a73af83c019ddd10d220027/briefs/2026-W22/matrix/cells.yaml",
+      "type": "matrix-cells"
+    }
+  ],
+  "prompt_snapshot_hash": "32917c119791576641b1c5e51053981529e2d40ff5c36a96f35d4377df7e5a1c",
+  "runtime": "claude-code-cli",
+  "sandbox_image_ref": "repo://ai-field-brief@54034edd9da69caa3071179abe7ea95a255e8045/",
+  "spec_id": "specs/0012-prompt-matrix-plane/",
+  "started_at": "2026-05-29T23:00:00Z",
+  "status": "done",
+  "tool_schemas_snapshot_hash": "a21e8a19060caa591861e46c55c664d283b0b78a4ad10eb873a69a707ef6023d",
+  "workspace_id": "ai-field-brief"
+}
