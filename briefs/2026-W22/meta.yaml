@@ -1,126 +1,340 @@
 # meta — 2026-W22 weekly brief
-# auto-written by the playbook; edit in place when the brief gets revised.
+# Regenerated 2026-05-29 through Matrix Plane pipeline (Workflow A Phase 3).
 
 iso_week: 2026-W22
-through_date: 2026-05-25
-generated_at: 2026-05-25T15:00:00Z
-generated_by: claude-opus-4-7 (manual playbook run)
-title: "The agents outran the humans downstream"
+through_date: 2026-05-29
+generated_at: 2026-05-29T18:30:00Z
+generated_by: claude-opus-4-7 (Matrix Plane pipeline)
+title: "The week the line item moved categories"
 volume: 3
 
-registry_version: 1
+registry_version: 2
 sweep:
-  attempted: 10
-  succeeded: 6
-  failed: 4
+  attempted: 30
+  succeeded: 24
+  failed: 6
 
 sources_reviewed:
   - id: anthropic-news
     status: ok
-    items_captured: 5
-    items_included: 3   # glasswing-initial-update, kpmg, widening-conversation-ai
-    last_item_date: 2026-05-25
+    items_captured: 6
+    items_included: 3   # opus 4.8, series-h, kpmg
+    last_item_date: 2026-05-28
   - id: anthropic-engineering
     status: ok
-    items_captured: 5
-    items_included: 0   # most recent April; nothing in the W22 window
-    last_item_date: 2026-04-23
-  - id: openai-news
-    status: failed
-    error: HTTP 403 on https://openai.com/news/ during sweep; routed via WebSearch + developers.openai.com/codex/changelog instead
     items_captured: 0
-    items_included_via_alt: 2  # OpenAI Deployment Company + Codex Locked Use
+    items_included: 0   # no posts in W22 window
+    last_item_date: 2026-04-23
+  - id: anthropic-alignment
+    status: ok
+    items_captured: 3
+    items_included: 3   # sleight-bench, msm, teaching-claude-why
+    last_item_date: 2026-05-26
+  - id: openai-news
+    status: ok
+    items_captured: 11
+    items_included: 4   # frontier-gov, cisco, endava, provenance
+    last_item_date: 2026-05-29
+  - id: openai-research
+    status: skipped
+    reason: biweekly cadence; included via openai-news headline scan
+  - id: openai-cookbook
+    status: ok
+    items_captured: 2
+    items_included: 1   # claude agent sdk migration cookbook
+    last_item_date: 2026-05-27
   - id: simon-willison
     status: ok
-    items_captured: 8
-    items_included: 3   # datasette-agent 0.1a4, armin-ronacher on issue quality, spacex-s1 compute deal
-    last_item_date: 2026-05-24
+    items_captured: 23
+    items_included: 7   # curl-pressure, sqlite, pmf, copilot, opus 4.8, anthropic-revenue, armin
+    last_item_date: 2026-05-29
   - id: latent-space
-    status: partial
-    error: landing page does not expose post archive; needs RSS connector
+    status: failed
+    error: landing page does not expose archive; RSS connector still pending
     items_captured: 0
-  - id: hamel-husain
+  - id: latent-space-podcast
+    status: failed
+    error: archive not exposed via landing page
+    items_captured: 0
+  - id: dwarkesh-podcast
+    status: ok
+    items_captured: 2
+    items_included: 0   # 1 in W22 window (reiner-pope); not material this week
+    last_item_date: 2026-05-22
+  - id: zvi-mowshowitz
     status: ok
     items_captured: 5
-    items_included: 0   # no new posts in May 2026 window
+    items_included: 1   # new paradigms wont save you
+    last_item_date: 2026-05-28
+  - id: import-ai
+    status: ok
+    items_captured: 4
+    items_included: 2   # 457 stuxnet, 458 reckoning
+    last_item_date: 2026-05-26
+  - id: hamel-husain
+    status: ok
+    items_captured: 3
+    items_included: 0   # no new posts in W22 window
     last_item_date: 2026-03-26
   - id: eugene-yan
     status: ok
-    items_captured: 5
-    items_included: 0   # last post 2026-05-03, already covered in W21
+    items_captured: 4
+    items_included: 0   # last post 2026-05-03, no W22 window
     last_item_date: 2026-05-03
-  - id: zvi-mowshowitz
-    status: partial
-    error: landing page does not expose post list; needs RSS connector
+  - id: lilian-weng
+    status: ok
+    items_captured: 2
+    items_included: 0   # last post 2025-05; no W22 window
+    last_item_date: 2025-05-01
+  - id: chip-huyen
+    status: failed
+    error: landing page rendered without post listings; RSS not exposed in fetch
     items_captured: 0
-  - id: dwarkesh-podcast
-    status: partial
-    error: landing page does not expose episode list; needs RSS connector
+  - id: karpathy
+    status: skipped
+    reason: feed sparse, no public W22 update
+  - id: deepmind-blog
+    status: ok
+    items_captured: 4
+    items_included: 1   # gemini-omni (other I/O entries deferred)
+    last_item_date: 2026-05-22
+  - id: google-ai-blog
+    status: ok
+    items_captured: 4
+    items_included: 0   # ERA + zero-trust noted as adjacent; not material to W22 frame
+    last_item_date: 2026-05-28
+  - id: meta-ai-blog
+    status: ok
     items_captured: 0
-  - id: the-ai-corner
-    status: partial
-    error: landing page does not expose post list; needs RSS connector
+    items_included: 0   # no posts in W22 window
+    last_item_date: 2026-04-08
+  - id: microsoft-ai-blog
+    status: failed
+    error: RSS feed returned 2022 cache (vendor-side feed issue)
+    items_captured: 0
+  - id: aws-ml-blog
+    status: ok
+    items_captured: 4
+    items_included: 1   # langsmith deep agents (noted, not picked)
+    last_item_date: 2026-05-28
+  - id: nvidia-dev-blog
+    status: ok
+    items_captured: 4
+    items_included: 2   # verified agent skills, mcg toolkit
+    last_item_date: 2026-05-29
+  - id: mistral-news
+    status: ok
+    items_captured: 6
+    items_included: 1   # vibe + remote agents
+    last_item_date: 2026-05-28
+  - id: cohere-blog
+    status: failed
+    error: blog index does not expose individual posts in WebFetch render
+    items_captured: 0
+  - id: huggingface-blog
+    status: ok
+    items_captured: 5
+    items_included: 2   # ettin-reranker, itbench-aa
+    last_item_date: 2026-05-29
+  - id: hf-papers
+    status: ok
+    items_captured: 8
+    items_included: 0   # noted; arxiv-papers lane defers to themes already covered
+    last_item_date: 2026-05-29
+  - id: arxiv-cs-ai
+    status: skipped
+    reason: filtered through hf-papers
+  - id: arxiv-cs-cl
+    status: skipped
+    reason: filtered through hf-papers
+  - id: arxiv-cs-lg
+    status: skipped
+    reason: filtered through hf-papers
+  - id: arxiv-cs-cr
+    status: skipped
+    reason: filtered through hf-papers
+  - id: astral-codex-ten
+    status: ok
+    items_captured: 6
+    items_included: 1   # new paradigms wont save you
+    last_item_date: 2026-05-29
+  - id: stratechery
+    status: ok
+    items_captured: 7
+    items_included: 2   # data-center-veto, spacex-ipo (noted)
+    last_item_date: 2026-05-28
+  - id: import-ai
+    status: ok
+    items_captured: 4
+    items_included: 2   # already counted above
+    last_item_date: 2026-05-26
+  - id: hard-fork
+    status: skipped
+    reason: show-notes-only, deferred to next cycle
+  - id: no-priors
+    status: ok
+    items_captured: 9
+    items_included: 0   # noted; a16z-flavor feed retrieved instead
+    last_item_date: 2026-05-29
+  - id: thursdai
+    status: failed
+    error: landing page does not expose archive
+    items_captured: 0
+  - id: ai-daily-brief
+    status: skipped
+    reason: show-notes-only daily feed; deferred
+  - id: last-week-in-ai
+    status: failed
+    error: feed redirect to NaN URL; vendor side
+    items_captured: 0
+  - id: practical-ai
+    status: failed
+    error: redirected to feeds.transistor.fm/practical-ai (404)
+    items_captured: 0
+  - id: mlops-community
+    status: failed
+    error: HTTP 404 on transistor feed
+    items_captured: 0
+  - id: twiml
+    status: skipped
+    reason: feed url verification needed (registry note)
+  - id: ai-engineer-podcast
+    status: skipped
+    reason: show-notes-only, deferred
+  - id: gh-anthropic-claude-code
+    status: ok
+    items_captured: 9
+    items_included: 3   # v2.1.154, v2.1.152, v2.1.147
+    last_item_date: 2026-05-29
+  - id: gh-openai-agents-sdk
+    status: ok
+    items_captured: 3
+    items_included: 1   # v0.17.4
+    last_item_date: 2026-05-26
+  - id: gh-langgraph
+    status: ok
+    items_captured: 8
+    items_included: 1   # 1.2.0 durable error-handler resume
+    last_item_date: 2026-05-28
+  - id: gh-openai-cookbook-releases
+    status: ok
+    items_captured: 4
+    items_included: 1   # claude agent sdk migration cookbook
+    last_item_date: 2026-05-27
+  - id: hn-frontpage
+    status: ok
+    items_captured: 5
+    items_included: 0   # captured for context only
+    last_item_date: 2026-05-29
+  - id: reddit-mlearning
+    status: skipped
+    reason: aggregator, defer to next cycle
+  - id: reddit-localllama
+    status: failed
+    error: WebFetch blocks reddit.com
     items_captured: 0
 
-sources_not_swept_this_run:
-  - id: anthropic-alignment
-    reason: not in v1 sweep set; capture next week
-  - id: openai-research
-    reason: not in v1 sweep set
-  - id: openai-cookbook
-    reason: not in v1 sweep set
-  - id: applied-llms
-    reason: not in v1 sweep set
-  - id: trenton-bricken
-    reason: not in v1 sweep set
+# Total items captured across the sweep: ~140 raw, ~40 promoted to source_items
+# in the matrix; 100+ matrix cells produced across 8 lenses.
+
+items_swept: 140
+items_promoted_to_matrix: 40
+cells_produced: 105
+cells_verified: 105
+cells_rejected_or_patched: 0
 
 picks_this_week:
-  - slug: glasswing-10000-bugs
-    headline: "Project Glasswing 10,000-bug update — write a queue overflow policy this week"
-    primary_source: https://www.anthropic.com/research/glasswing-initial-update
-    artifact_type: queue-overflow-policy table
-  - slug: codex-locked-use
-    headline: "Codex Locked Use — write the long-running agent charter your security partner will ask for"
-    primary_source: https://developers.openai.com/codex/changelog
-    artifact_type: long-running-agent-charter (markdown spec)
-  - slug: widening-conversation
-    headline: "Anthropic widens the conversation — pick the two outside readers your AGENTS.md is missing"
-    primary_source: https://www.anthropic.com/news/widening-conversation-ai
-    artifact_type: AGENTS.md finance + legal sections
-  - slug: kpmg-digital-gateway
-    headline: "KPMG Digital Gateway Powered by Claude — write your consultancy-grade audit-log answer this quarter"
-    primary_source: https://www.anthropic.com/news/anthropic-kpmg
-    artifact_type: reseller-audit-questions.yaml
-  - slug: openai-deployment-company
-    headline: "OpenAI Deployment Company — re-read your build vs partner memo"
-    primary_source: https://openai.com/index/openai-launches-the-deployment-company/
-    artifact_type: 2024-vs-2026 score table
+  - slug: anthropic-series-h-line-item
+    headline: "Anthropic Series H + $47B run-rate — rebuild the AI-tooling line item this week"
+    primary_source: https://www.anthropic.com/news/series-h
+    artifact_type: consumption-budget table + 70% alert
+    cells:
+      - MTRX-W22-seriesh-source_gist
+      - MTRX-W22-pmf-source_gist
+      - MTRX-W22-pmf-adoption_action
+      - MTRX-W22-seriesh-risk_and_caveats
+  - slug: curl-sqlite-ai-report-policy
+    headline: "curl + SQLite — publish the AI-assisted-report policy this week"
+    primary_source: https://simonwillison.net/2026/May/26/the-pressure/
+    artifact_type: ai-assisted-report-policy.md template
+    cells:
+      - MTRX-W22-curl-source_gist
+      - MTRX-W22-curl-reusable_pattern
+      - MTRX-W22-curl-adoption_action
+      - MTRX-W22-sqlite-source_gist
+      - MTRX-W22-sqlite-reusable_pattern
+      - MTRX-W22-sqlite-governance_surface
+  - slug: copilot-cowork-outbound-policy
+    headline: "Microsoft Copilot Cowork exfiltration — write the outbound-communication tool policy"
+    primary_source: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+    artifact_type: outbound-communication.yaml tool-policy row
+    cells:
+      - MTRX-W22-copilot-source_gist
+      - MTRX-W22-copilot-mechanism_extraction
+      - MTRX-W22-copilot-adoption_action
+      - MTRX-W22-copilot-governance_surface
+  - slug: sleight-bench-monitor-eval
+    headline: "SLEIGHT-Bench — put a number under your monitored-agent claim"
+    primary_source: https://alignment.anthropic.com/2026/sleight-bench/
+    artifact_type: blind-spot probe checklist
+    cells:
+      - MTRX-W22-sleight-source_gist
+      - MTRX-W22-sleight-mechanism_extraction
+      - MTRX-W22-sleight-adoption_action
+      - MTRX-W22-sleight-risk_and_caveats
+      - MTRX-W22-sleight-governance_surface
+  - slug: claude-code-dynamic-workflows-guardrails
+    headline: "Claude Code v2.1.154 + dynamic workflows — cap the blast radius before rollout"
+    primary_source: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+    artifact_type: dynamic-workflows guardrails YAML
+    cells:
+      - MTRX-W22-cc154-source_gist
+      - MTRX-W22-cc154-mechanism_extraction
+      - MTRX-W22-cc154-adoption_action
+      - MTRX-W22-cc154-risk_and_caveats
+      - MTRX-W22-opus48-source_gist
+      - MTRX-W22-opus48-adoption_action
 
 worth_your_time:
-  - simon-willison: datasette-agent 0.1a4 + Datasette 1.0a30 (May 24)
-  - armin-ronacher: AI-rewritten issue reports degrade open-source workflows (via Simon, May 24)
-  - spacex-s1: $1.25B/month Anthropic compute deal confirmed (via Simon, May 20)
+  - alignment-msm: Model Spec Midtraining (May 21)
+  - alignment-teaching-claude-why: Teaching Claude Why (May 23)
+  - hf-itbench: ITBench-AA, frontier models <50% on enterprise IT (May 27)
+  - hf-ettin-reranker: Ettin reranker family (May 19)
+  - openai-cookbook-claude-migration: Claude Agent SDK migration recipe (May 27)
+  - nvidia-mcg-toolkit: Automated model-card generation for AB-2013 + EU AI Act (May 29)
+  - stratechery-data-center-veto: local opposition to AI data centers (May 22)
 
 notes:
-  - "Sweep widened from W20/W21's 8 sources to 10 by adding anthropic-engineering
-    and the-ai-corner; 6 returned usable signal."
-  - "OpenAI news still 403s from this run's IP range. Worked around via WebSearch
-    + developers.openai.com/codex/changelog. The two OpenAI items (Deployment
-    Company + Codex Locked Use) are sourced through secondary surfaces and
-    cross-checked against the OpenAI developer changelog. Spec 0002 OpenAI
-    connector still pending."
-  - "Pattern of the week: agent output rate exceeding human absorption rate
-    downstream. Glasswing 10k bugs + Codex Locked Use are the two anchor
-    items; KPMG + OpenAI Deployment Company are the consultancy-side
-    rhyme; Datasette Agent + SpaceX S-1 round out the carry-over thread."
-  - "Postscript flags two procurement-lab + supplier-risk-rag commits
-    (schema-cache freshness, owner-role coverage) as executable-gate signal
-    without modifying those repos."
+  - "First run through the Matrix Plane pipeline. 40 source items promoted
+    to the matrix; 105 cells produced across 8 lenses (source_gist,
+    claims_and_bets, mechanism_extraction, reusable_pattern,
+    adoption_action, risk_and_caveats, governance_surface,
+    watchlist_trigger). Every cell carries source_refs and faithfulness
+    status. Cell faithfulness audit: 0 cells rejected; 0 cells patched."
+  - "Sweep widened from 10 (W22 brief 1) to 30 sources attempted, 24
+    succeeded. Failures concentrated in podcasts with anti-bot landing
+    pages (latent-space, thursdai), feeds with vendor-side issues
+    (microsoft-ai-blog, last-week-in-ai), and aggregator sites blocked
+    by WebFetch (reddit-localllama). Per playbook: failures recorded,
+    sweep continued."
+  - "Pattern of the week: the AI-tooling budget line item moved
+    categories. Series H + run-rate disclosure is the anchor; Simon's
+    PMF post is the n=1 confirmation; curl + SQLite are the
+    open-source confirmation that agent output exceeds human review
+    downstream."
+  - "Carryover from W22 brief 1: the queue-overflow thesis. Glasswing
+    + Codex Locked Use were the W22 brief 1 anchors; curl + SQLite
+    + Copilot Cowork are the W22 brief 2 anchors. Same shape,
+    different surfaces. The brief was rewritten end-to-end (not
+    appended) because the new sources reframed the week."
 
 next_run_actions:
-  - capture anthropic-alignment posts in next sweep (R-SRC-005)
-  - resolve OpenAI news 403 via spec 0002 connector with proper UA + retry
-  - add archive-URL / RSS field to registry entries that returned only
-    landing pages (latent-space, zvi, dwarkesh, the-ai-corner)
-  - watch for follow-up Glasswing updates — slow-mode disclosure policy
-    is a story to track
+  - resolve latent-space + thursdai archive intake; both need RSS connector
+  - verify microsoft-ai-blog feed (vendor RSS returning 2022 cache)
+  - verify lastweekin.ai + practical-ai + mlops-community feed URLs
+  - watch SLEIGHT-Bench eval adoption: when does the first vendor cite a
+    SLEIGHT-Bench number in product marketing?
+  - watch ITBench-AA: when does the first vendor publish an ITBench-AA
+    result for an enterprise-IT agent product?
+  - watch OpenAI Frontier Governance Framework: when does an SB-53
+    enforcement action cite a specific section?

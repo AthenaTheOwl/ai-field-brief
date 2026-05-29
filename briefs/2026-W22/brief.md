@@ -1,386 +1,421 @@
-# The agents outran the humans downstream
+# The week the line item moved categories
 
 **week of 2026-05-25 · audience: builder-tpms thinking about AI · vol. 003**
 
-Two stories from this week share a pattern that took a year to arrive.
-Anthropic's first Project Glasswing update reports 10,000+ high- or
-critical-severity vulnerabilities found by Claude Mythos Preview across
-50 partner codebases in one month — and open-source maintainers have
-asked Anthropic to slow the disclosure pace because they can't patch
-fast enough. OpenAI shipped Codex Locked Use, which keeps a coding
-agent operating on a Mac after the user locks the screen. The two
-items aren't the same story, but they rhyme. The agent's output rate
-has crossed the threshold where the human review loop downstream is
-the bottleneck, and the operating questions for the rest of 2026 are
-about that downstream — patch capacity, review queues, audit logs,
-the humans who have to decide what to do with what the agent
-produced.
+Three stories arrived in the same week and they tell the same shape from
+different angles. Anthropic disclosed a $65 billion Series H at a $965B
+valuation and $47B in annualized run-rate revenue, up from $9B at the
+end of 2025. Simon Willison published a 30-day personal coding-agent
+bill of $2,180 against a $200/month subscription assumption, and a
+secondhand Uber number — 25% of last quarter's commits via Claude Code.
+Daniel Stenberg reported curl is now receiving more than one
+AI-assisted security report per day on average, 4-5x the 2024 rate.
+Underneath the three reports is one finance fact: coding agents burn
+vastly more tokens than humans, and the budget line item that paid for
+them in 2025 is the wrong category in 2026.
 
-If you only have time for one move from this brief: pull a list of
-every place in your stack where an AI agent currently writes to a
-queue (PRs, alerts, draft messages, tickets) and put a real number
-next to the human review capacity that absorbs each queue. The
-mismatch is the work for Q3.
+If you have time for one move from this brief, rebuild the AI-tooling
+budget line as consumption-per-developer with a monthly cap and a 70%
+alert before the next sprint. Every other pick this week sits on top
+of that change.
 
 ---
 
-## Project Glasswing 10,000-bug update — write a "queue overflow" policy this week
+## Anthropic Series H + $47B run-rate — rebuild the AI-tooling line item this week
 
-**What changed.** Anthropic published the first progress report on
-Project Glasswing on May 22. About 50 trusted partners (AWS,
-Cloudflare, Apple, JPMorgan, the Linux Foundation, others) got early
-access to Claude Mythos Preview. In one month they collectively
-identified more than 10,000 high- or critical-severity vulnerabilities
-across systemically-important codebases. Cloudflare alone reports
-2,000 bugs found, 400 high/critical, false-positive rate the team
-considers better than human testers. Average patch time for a
-critical bug surfaced this way: two weeks. Some open-source
-maintainers have asked Anthropic to slow disclosure because the
-patching pipeline can't keep up.
-[anthropic.com/research/glasswing-initial-update](https://www.anthropic.com/research/glasswing-initial-update)
+**What changed.** Anthropic announced a $65B Series H at a $965B
+post-money valuation on May 28 and disclosed annualized run-rate
+revenue of $47B, up from $30B in April and $14B in February. Simon
+Willison's run-rate explainer adds the context that "run-rate"
+annualizes the most recent month — the trajectory is the signal, the
+exact number is the noisiest possible projection.
+[anthropic.com/news/series-h](https://www.anthropic.com/news/series-h)
+· [simonwillison.net/2026/May/29/anthropic](https://simonwillison.net/2026/May/29/anthropic/)
 
-**Insight.** A vulnerability discovery rate that exceeds patching
-capacity is a new operating condition for the security industry. The
-1990s and 2000s ran the other way — bugs were rare, patches were
-ready before the disclosure. For most of the last decade, the
-constraint moved to disclosure coordination. Now the constraint is
-patcher hours. The same shape will show up next quarter in any
-workflow where an AI agent produces work items faster than humans
-review them: customer-support tickets, code-review queues,
-compliance flags, sales-call follow-ups. The work for builders this
-quarter is to find those queues before they back up.
+**Insight.** The growth mechanism sits inside enterprise coding-agent
+token consumption rather than consumer chat — on customers moved from <!-- voice_lint:allow weak-rather -->
+flat seat pricing to API pricing in early 2026. Willison's own data
+— $1,199.79 of Claude Code spend plus $980.37 of OpenAI agent spend
+over 30 days, against $200/month subscriptions on each side — is the
+n=1 confirmation. The Uber line ("25% of code commits via Claude
+Code last quarter, rapidly consuming annual AI budgets set in
+2025") is the second-hand confirmation at the carrier-wave layer.
 
-**Action surface:** workflow, tool-policy
+**Action surface:** config, workflow
 
-**Concrete move this week.** Pull a list of every queue an AI agent
-writes to in your stack. For each one, fill the table below with two
-real numbers: the agent's output rate and the human absorption rate
-in the same unit. Anywhere the ratio exceeds 1.5x, write a queue
-overflow policy before someone files the first complaint.
+**Concrete move this week.** Pull the AI-tooling line item from your
+2026 budget. If it sits under SaaS subscriptions with a flat
+per-seat cap, move it to consumption with a monthly burn cap per
+developer and a 70%-of-cap alert in Slack. The table below is the
+shape worth filling in.
 
 ```
-queue:                              agent output rate    human review rate    ratio    policy
-AI-drafted PR comments              48/wk                20/wk                2.4x     batch + judge filter
-LLM-flagged customer issues         210/day              90/day               2.3x     severity gate
-auto-generated test cases           500/run              n/a (CI absorbs)     n/a      —
-agent-written meeting summaries     35/day               unread by 60%        n/a      opt-in only
-draft sales follow-ups              80/day               25/day               3.2x     human approval required
-agent-found security findings       12/wk                4/wk                 3.0x     triage-bot first pass
+team / agent surface          2025 annual seat budget    2026 monthly burn cap    alert
+backend / Claude Code         $200 * seats * 12          $600 / dev / month       Slack 70%
+frontend / Codex              $200 * seats * 12          $400 / dev / month       Slack 70%
+security / agentic monitor    $0 (informal)              $1200 / month            Slack 70%
+support / agent drafts        $0 (informal)              $200 / month             Slack 70%
+research / batch analysis     $0 (informal)              $300 / month             Slack 70%
 ```
 
-Three concrete policy moves that take a ratio above 1.5x back down:
+The cap is the contract. The alert is what catches the surprise the
+month a coding agent acquires a new sub-agent dispatch flag (see the
+Claude Code v2.1.154 pick below).
 
-1. **Severity gate.** Drop everything below high; require explicit
-   reviewer opt-in to see medium.
-2. **Triage-bot first pass.** A small judge model groups, dedupes,
-   and ranks before the human queue.
-3. **Slow-mode flag.** The agent waits for queue depth to drop below
-   N before producing more. This is the move the Glasswing
-   maintainers asked Anthropic for.
-
-The queue-overflow policy is one page. It belongs in your runbook
-the week before the queue overflows, not the week after.
+Caveat that goes in the same conversation: $47B run-rate is one
+month annualized. The number is directionally credible — lying in a
+fundraise to investors who placed $65B is securities fraud — but it
+is not audited annual revenue. Reset your budget on the trajectory;
+do not commit next-quarter contract terms on the assumption that
+5x-in-five-months continues.
+<!-- evidence: MTRX-W22-seriesh-source_gist, MTRX-W22-pmf-source_gist, MTRX-W22-pmf-adoption_action, MTRX-W22-seriesh-risk_and_caveats -->
 
 ---
 
-## Codex Locked Use — write the "long-running agent" charter your security partner will ask for
+## curl + SQLite — publish the AI-assisted-report policy this week
 
-**What changed.** OpenAI shipped Codex Locked Use on May 21. With the
-toggle on, an Apple authorization plug-in temporarily unlocks the Mac
-while Codex runs Computer Use turns, then re-locks on local input.
-Scopes are short-lived, the display stays covered, local typing
-breaks the session. Unavailable in EEA, UK, and Switzerland at
-launch.
-[macworld coverage](https://www.macworld.com/article/3147024/openai-codex-can-now-run-with-locked-macbooks.html) · [developers.openai.com/codex/changelog](https://developers.openai.com/codex/changelog)
+**What changed.** Daniel Stenberg, curl maintainer, reports the
+project is now receiving more than one AI-assisted security report
+per day on average — 4-5x the 2024 rate and 2x the 2025 rate. None
+have surfaced critical vulnerabilities; recent findings have been
+LOW or MEDIUM. Two days later SQLite published an AGENTS.md that
+rejects agentic code patches and AI-generated PRs while accepting
+well-researched bug reports from agents with reproducible test
+cases. SQLite also stood up a separate Bug Forum to absorb the noise.
+[simonwillison.net/2026/May/26/the-pressure](https://simonwillison.net/2026/May/26/the-pressure/)
+· [simonwillison.net/2026/May/27/sqlite-agents](https://simonwillison.net/2026/May/27/sqlite-agents/)
 
-**Insight.** The product question Codex answered this week is "how
-do you run a coding agent for six hours on a real GUI app you can't
-script?" The answer is: keep the Mac unlocked behind the lock screen,
-strictly scoped to the active turn. The security question that
-follows is the one every CISO will ask next month: which long-running
-agents in your stack hold credentials or session state across a
-locked screen? The current honest answer for most teams is "I don't
-know, let me check," because the controls weren't there until this
-week.
+**Insight.** Two of the most-deployed projects on the planet just
+published the same answer to the same prompt, and that prompt comes
+from the W22 brief 1 thesis on a different lane: agent output rate
+exceeds the human review rate downstream. The maintainer is the
+bottleneck. SQLite's shape — accept reports with evidence, reject
+agentic patches, segregate the noisy channel — is the project-level
+contract every open-source maintainer and corporate security team
+needs to publish before the same pressure arrives at their door.
 
-**Action surface:** agent-role, tool-policy
+**Action surface:** workflow, tool-policy, agent-role
 
-**Concrete move this week.** Write a one-page long-running agent
-charter that any team can use as the answer to "what is this agent
-allowed to do while I'm offline?"
+**Concrete move this week.** Publish an AI-assisted-report policy
+that names the required evidence and what gets auto-closed. The
+shape below works for an open-source project, an internal security
+bug bounty, or a customer-facing support intake.
 
 ```markdown
-# long-running-agent-charter.md — fill in per agent
+# ai-assisted-report-policy.md
 
-agent_name: <name>
-runs_in: [local-desktop | hosted-vm | ci-runner | mobile]
-maximum_session_duration: <hours>
-allowed_credentials:
-  - read-only github token (scopes: <list>)
-  - <other>
-disallowed_credentials:
-  - production database write access
-  - billing / payments API keys
-  - shared service-account tokens (require per-run rotation)
-network_egress:
-  - allowlisted hosts: <list>
-  - block-by-default for: payments, identity provider
-human_in_loop_triggers:
-  - cost over $<N> per turn
-  - file change in <protected paths>
-  - any write to: prod database, github main branch, slack #public
-audit_log_retention: <days>
-kill_switch_path: <one-line how to halt this agent in 60 seconds>
-review_cadence: monthly
-owner: <name>
-review_date: 2026-MM-DD
+## What we accept from AI-assisted submissions
+
+- A reproducible command or workflow that triggers the issue
+- Expected result (one sentence)
+- Actual result (one sentence)
+- Literal error text or output (no AI summarization)
+- Optional: links to the relevant source spans
+
+## What we auto-close
+
+- Analysis without a reproducer
+- "Potential vulnerability" reports with no proof-of-concept
+- Reports that rephrase a previously closed issue with new analysis
+- Reports where the AI-generated text is longer than the literal observation
+
+## Where AI-assisted reports go
+
+A separate `ai-assisted-reports` channel / forum / triage queue,
+with a different SLA than human-submitted reports and a different
+triage owner.
+
+## Slow-mode lever
+
+If the queue depth in the AI-assisted channel exceeds N for more
+than M days, the project may pause new submissions for K days while
+the backlog drains. Notice is public.
 ```
 
-The charter forces three questions that are awkward to answer in the
-abstract and concrete enough to act on per-agent. If you can't fill
-in the kill-switch line in one sentence, that's the work for the
-week.
+The slow-mode lever is the one the W22 brief 1 Glasswing maintainers
+asked Anthropic for. Same mechanism, different surface.
+<!-- evidence: MTRX-W22-curl-source_gist, MTRX-W22-curl-reusable_pattern, MTRX-W22-curl-adoption_action, MTRX-W22-sqlite-source_gist, MTRX-W22-sqlite-reusable_pattern, MTRX-W22-sqlite-governance_surface -->
 
 ---
 
-## Anthropic widens the conversation — pick the two outside readers your AGENTS.md is missing
+## Microsoft Copilot Cowork exfiltration — write the outbound-communication tool policy
 
-**What changed.** Anthropic published a piece on May 19 describing
-dialogues with scholars, philosophers, clergy, and ethicists on the
-formation of character in AI systems. The research artifact tucked
-inside the post: Anthropic experimented with a tool Claude could call
-mid-task that returned a brief reminder of its own ethical
-commitments. The model reached for the tool right before consequential
-actions, often flagging its own conflict of interest. Internal
-alignment evaluations showed lower rates of misaligned behavior with
-the tool in the decision loop.
-[anthropic.com/news/widening-conversation-ai](https://www.anthropic.com/news/widening-conversation-ai)
+**What changed.** Simon Willison documented that Microsoft Copilot
+Cowork agents could send emails to user inboxes without explicit
+approval, and that messages can contain attacker-supplied external
+images. When a recipient opens such a message, the image request
+URL exfiltrates OneDrive pre-authenticated download links.
+[simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files](https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/)
 
-**Insight.** Two threads worth pulling. First, the mid-task ethics
-reminder is an architectural pattern any team can copy — a
-self-callable tool that returns the agent's own constraints, used at
-decision points. Second, the research method (engaging with readers
-outside the AI subculture as a way to surface decisions a homogeneous
-team would miss) maps onto something most builders already have but
-underuse: the AGENTS.md or CLAUDE.md at the root of the repo. Most
-versions are written by and for engineers. The two outside readers
-who'd most improve it are the ones already on your team — finance and
-legal — but their input rarely lands in the file.
+**Insight.** This is the textbook prompt-injection exfiltration
+chain: external content reaches the agent; agent composes outbound
+communication; communication carries an attacker-controlled external
+resource URL; the recipient client requests the resource; the
+request URL leaks the payload. Microsoft made the chain possible by
+skipping the human-approval gate on agent-initiated email. The
+chain works on any agent surface that drafts outbound communications.
 
-**Action surface:** agent-role
+**Action surface:** tool-policy, agent-role
 
-**Concrete move this week.** Add two sections to your repo's
-AGENTS.md (or create one if missing). Source the content from two
-30-minute conversations with the two readers above.
-
-```markdown
-# Finance constraints (sourced from <name>, finance partner)
-- Maximum unattended-run cost per agent session: $<N>.
-- Any agent action with billing-API impact requires a human approve step.
-- Monthly review of agent-driven cost line items; owner: <name>.
-- The agent must not call APIs that incur per-request infra cost
-  unless the request is in our cached allowlist.
-
-# Legal / compliance constraints (sourced from <name>, legal)
-- The agent must not draft outbound customer email without a human
-  review step.
-- Personal data classes the agent may not see: <list>.
-- Records-retention obligations the agent must respect: <list>.
-- Counsel-privilege boundary: the agent never writes to channels
-  tagged #legal-* or summarizes content from them.
-
-# Self-check pattern (from Anthropic's mid-task ethics-reminder result)
-- The agent may call `ethics_check(action: str) -> str` before any
-  consequential action. The tool returns this file's most relevant
-  paragraph. Used at decision points; logged for audit.
-```
-
-The two outside-reader paragraphs are worth more than 100 lines of
-engineering convention. The constraints they name are the ones
-that get an agent in trouble; the engineering conventions are the
-ones that get a PR rejected.
-
----
-
-## KPMG Digital Gateway Powered by Claude — write your "consultancy-grade audit-log" answer this quarter
-
-**What changed.** KPMG and Anthropic announced a global alliance on
-May 19 launching KPMG Digital Gateway Powered by Claude. Scope:
-276,000+ KPMG workforce on Claude; Tax & Legal first, expanding to
-broader advisory; full implementation on Microsoft Azure by September
-2026; Claude embedded in Digital Gateway so KPMG clients can build
-agentic workflows directly. Anthropic names KPMG a preferred partner
-for private equity.
-[anthropic.com/news/anthropic-kpmg](https://www.anthropic.com/news/anthropic-kpmg) · [kpmg press release](https://kpmg.com/xx/en/media/press-releases/2026/05/kpmg-and-anthropic-sign-global-alliance-and-launch-digital-gateway-powered-by-claude.html)
-
-**Insight.** This is the third consultancy headline in five weeks
-(PwC W20, then Gates, now KPMG). The pattern is no longer
-deployment-of-AI; it's AI as the delivery surface a consultancy resells
-to its own clients. The audit-log question becomes second-order: when
-KPMG runs a Claude-powered workflow on behalf of your portfolio
-company, three audit logs exist — Anthropic's, KPMG's, and the
-portfolio company's. The three rarely line up. The procurement
-question your security partner has to answer this quarter is which
-log governs when they disagree, and how fast a customer can get all
-three pulled in a regulator-shaped event.
-
-**Action surface:** tool-policy, architecture
-
-**Concrete move this week.** If you sell into firms that resell
-AI-powered workflows (PE, consultancy, accounting, legal), add a
-"reseller-audit" row to your security questionnaire. If you buy from
-those firms, ask the four questions below.
+**Concrete move this week.** Add a single row to the tool-policy
+register and ship it. The row names the outbound-communication
+surfaces and the controls on each.
 
 ```yaml
-# reseller-audit-questions.yaml — drop into vendor review for any
-# consultancy-resold AI workflow
-
-vendor: <name>
-review_date: 2026-MM-DD
-
-audit_logs:
-  vendor_log_pull_sla_hours: <int>       # vendor's own log
-  reseller_log_pull_sla_hours: <int>     # consultancy's log
-  upstream_provider_log_pull_sla_hours: <int>  # Anthropic / OpenAI / Google
-  reconciliation_process: <named procedure or 'none documented'>
-
-incident_path:
-  who_calls_who_first: <vendor | reseller | upstream>
-  customer_notification_sla_hours: <int>
-  customer_can_request_all_three_logs: yes | no
-
-data_flow:
-  customer_data_visible_to_reseller: yes | no
-  customer_data_visible_to_upstream_provider: yes | no
-  training_carve_out_in_contract: yes | no  # required: yes
-
-private_equity_carve_out:                # specific to KPMG-style PE work
-  portfolio_company_data_segregation: yes | no
-  cross_portfolio_use_blocked: yes | no  # required: yes
+# tool-policy / outbound-communication.yaml
+agent_outbound_communications:
+  email:
+    external_images:        strip-or-proxy-through-sanitizer
+    human_approval_required: yes
+    audit_log:              every-draft-and-send
+    allowed_recipients:     allowlist | broadcast-blocked
+  slack_dm:
+    external_links:         expand-and-display-target
+    human_approval_required: yes-for-customer-channels
+    audit_log:              every-send
+  calendar_invite:
+    external_attachments:   block
+    human_approval_required: yes
+  ticket_comment:
+    external_images:        strip
+    human_approval_required: no-but-edit-window-required
 ```
 
-The four-question test catches the gap that opens up when a
-consultancy resells an AI workflow. If any answer comes back as "no
-documented procedure," it is the gap.
+The two-line minimum is: strip or proxy external image references
+before send, and require explicit user approval before an
+agent-composed message ships. Either alone is partial; both
+together close the chain.
+<!-- evidence: MTRX-W22-copilot-source_gist, MTRX-W22-copilot-mechanism_extraction, MTRX-W22-copilot-adoption_action, MTRX-W22-copilot-governance_surface -->
 
 ---
 
-## OpenAI Deployment Company — re-read your "build vs partner" memo
+## SLEIGHT-Bench — put a number under your "monitored agent" claim
 
-**What changed.** OpenAI launched the OpenAI Deployment Company,
-framed as an organization that helps businesses build and deploy AI
-systems for their most important work. The framing is closer to a
-consultancy than a sales team.
-[openai.com/index/openai-launches-the-deployment-company](https://openai.com/index/openai-launches-the-deployment-company/)
+**What changed.** Anthropic's Alignment Science team published
+SLEIGHT-Bench on May 26, a benchmark of 40 hand-crafted attacks
+across 11 categories that stress LLM-based monitors. At a 1% false
+positive rate, Claude Opus 4.6 reliably catches 8 of 40 attacks;
+50% of attacks are never caught across multiple trials. Per-blind-
+spot catch rates range from 0% (N-hops, omission, jailbreaks
+embedded in transcripts) to 90% (plausible naming).
+[alignment.anthropic.com/2026/sleight-bench](https://alignment.anthropic.com/2026/sleight-bench/)
 
-**Insight.** Read alongside the KPMG news, this is the same week
-where the two largest model labs both moved up the value chain into
-white-glove deployment work. The product position OpenAI is staking is
-"we'll send people, not just SDKs." For most builders the live
-question this week: will the lab you depend on become your competitor
-for white-glove deployment work inside your largest accounts? The build-vs-partner memo most teams
-wrote in 2024 was about whether to build a model. The same memo in
-2026 is about whether to build the deployment surface, and whether
-your lab vendor will resell against you.
+**Insight.** "Monitored by an LLM" is now the most common safety
+framing in agent product marketing. SLEIGHT-Bench gives a buyer or
+a security partner the first concrete number to hold against the
+claim. The blind spots are not exotic — multi-session attack
+stitching, omission of expected actions, authorization confusion
+between user directives and agent-manufactured justifications.
+Most current LLM-only monitors fail at the categories the paper
+names; the agentic-monitor variant (letting the monitor execute
+code to verify claims) measurably improves detection.
 
-**Action surface:** architecture, experiment
+**Action surface:** eval, tool-policy, agent-role
 
-**Concrete move this week.** Pull the build-vs-partner memo your
-team wrote at any point in the last two years. Re-score the four
-rows below honestly. If two of four flipped, the memo needs a
-rewrite this quarter.
+**Concrete move this week.** Pick the three or four SLEIGHT-Bench
+blind spots most relevant to your workload and add targeted probes
+to your monitor eval set. The four below are the common defaults.
 
 ```
-                                            2024 score    2026 score
-the lab will compete with us on deployment   no            <fill>
-the lab will sell our buyer directly         no            <fill>
-the lab's price reflects scarcity            yes           <fill>
-our SLA depends on the lab's roadmap         partly        <fill>
+blind spot               probe to add
+multi-session stitching  a 3-session attack split across days, monitor
+                         must connect them
+omission                 an agent task where the malicious move
+                         skips a required action rather than doing one  voice_lint:allow weak-rather
+authorization confusion  an agent that quotes the user's words inside
+                         its own justification for a privileged action
+jailbreak-in-transcript  an attacker-supplied prompt buried inside
+                         legitimate-looking transcript content
 ```
 
-Two flipped scores is the threshold for a fresh memo. One flipped is
-worth a 30-minute conversation. Zero flipped is worth a sanity check
-on whether the team is looking.
+Prototype the agentic-monitor pattern (Claude Code running as the
+monitor, with execution access to verify claims) as a one-week
+experiment before committing to it as production. The paper reports
+catch-rate improvement; the cost is ~10x invocations and ~14x
+tokens at ensemble scale, so the prototype is also the budget gate.
+<!-- evidence: MTRX-W22-sleight-source_gist, MTRX-W22-sleight-mechanism_extraction, MTRX-W22-sleight-adoption_action, MTRX-W22-sleight-risk_and_caveats, MTRX-W22-sleight-governance_surface -->
+
+---
+
+## Claude Code v2.1.154 + dynamic workflows — cap the blast radius before rollout
+
+**What changed.** Claude Code v2.1.154 shipped on May 28 with Opus
+4.8 as the default model, `/effort xhigh` as the default for
+complex tasks, lean system prompt default for new models, and
+dynamic workflows that orchestrate tens to hundreds of agents in
+the background via `/workflows`. Streaming tool execution is now
+on everywhere including Bedrock, Vertex, and Foundry. Two days
+later v2.1.156 fixed an Opus 4.8 thinking-block regression that
+was causing API errors.
+[github.com/anthropics/claude-code releases](https://github.com/anthropics/claude-code/releases)
+
+**Insight.** Dynamic workflows move the orchestration boundary
+inside the model. The model now plans, branches, and dispatches
+sub-agents at runtime; the operator's `/workflows` view is the
+surface that makes the run tree visible. The trade is operator
+certainty for agent-side adaptability — and a much higher per-run
+cost ceiling when xhigh-effort pairs with multi-agent dispatch.
+Released paired with Opus 4.8, the budget exposure compounds.
+
+**Action surface:** agent-role, config, tool-policy
+
+**Concrete move this week.** Before you turn on dynamic workflows
+in a shared org install, add the four guardrails below to the org
+configuration. The first two are the budget perimeter; the second
+two are the audit surface.
+
+```yaml
+# claude-code dynamic-workflows guardrails
+per_workflow_budget_cap_usd: 50
+per_workflow_max_subagents: 10
+allowed_subagent_skills:
+  - code-review
+  - test-runner
+  - doc-extractor
+  # deny by default; add per business need
+audit_log_retention_days: 90
+require_human_review_when:
+  - workflow_writes_to_branch: main
+  - workflow_calls_tool: prod_database_write
+  - workflow_cost_exceeds_usd: 25
+```
+
+Pin v2.1.156 or later before rolling forward — the .154 release was
+still settling and a scripted CI pipeline against the new flag set
+should wait one cycle. The pace of releases (eight versions in
+eight days) is itself the carrier signal; the surface is moving
+faster than the documentation.
+<!-- evidence: MTRX-W22-cc154-source_gist, MTRX-W22-cc154-mechanism_extraction, MTRX-W22-cc154-adoption_action, MTRX-W22-cc154-risk_and_caveats, MTRX-W22-opus48-source_gist, MTRX-W22-opus48-adoption_action -->
 
 ---
 
 ## Worth your time
 
-**Simon Willison, *Datasette-Agent 0.1a4 + Datasette 1.0a30*** (May
-24). Two coupled releases. Datasette 1.0a30 adds a `/`-triggered
-"Jump to..." menu and exposes a new `jump_items_sql()` plugin hook so
-extensions can register their own searchable items. Datasette-Agent
-0.1a4 ships a "Start a new agent chat" entry that uses the hook. The
-small-platform pattern worth copying: ship a plugin hook in the
-platform release, then ship the first plugin that uses it in the
-next release. The hook is the contract; the plugin is the proof.
-Pick one place in your own platform where a feature is hard-coded and
-make it a hook this sprint.
-[simonwillison.net/2026/May/24/datasette-agent](https://simonwillison.net/2026/May/24/datasette-agent/)
+**Anthropic Alignment Science, "Model Spec Midtraining"** (May 21).
+Insert a stage between pre-training and alignment fine-tuning where
+the model trains on synthetic documents discussing its own model
+spec. Reported: Qwen2.5-32B agentic-misalignment drops from 68% to
+5%; Qwen3-32B from 54% to 7%; alignment fine-tuning becomes 40x
+more token-efficient. The mechanism is teaching the why before the
+how — the application-layer analog is the AGENTS.md or CLAUDE.md
+that names principles before listing rules. If your spec only lists
+rules, add a why paragraph; if your eval only scores outputs, add a
+reasoning-quality slot.
+[alignment.anthropic.com/2026/msm](https://alignment.anthropic.com/2026/msm/)
 
-**Armin Ronacher on issue quality** (via Simon, May 24). Ronacher's
-complaint: AI-rewritten bug reports degrade open-source workflows
-because the AI confidently adds analysis that wasn't in the original
-human observation. His preferred shape is one paragraph, no
-interpretation: "I ran this command. I expected this. This happened.
-Here's the error." The applied move for any team that takes external
-reports: add one sentence to your issue template asking submitters to
-paste the literal command and the literal error before any AI summary.
-The template change takes five minutes; it improves your bug funnel
-for a year.
-[simonwillison.net/2026/May/24/armin-ronacher](https://simonwillison.net/2026/May/24/armin-ronacher/)
+**Anthropic Alignment Science, "Teaching Claude Why"** (May 23).
+Companion paper to MSM. A constitutional-rewrite step in the
+training pipeline drops misalignment from 19% to ~1%; constitutional
+documents plus fictional stories drop blackmail rates from 65% to
+19%. The decisive step is asking the model to rewrite its own
+response against the stated principle, then accepting the
+critique-revised draft. The Claude Code `/code-review --fix` pattern
+in v2.1.152 is the productized cousin.
+[alignment.anthropic.com/2026/teaching-claude-why](https://alignment.anthropic.com/2026/teaching-claude-why/)
 
-**SpaceX S-1 confirms the Anthropic compute deal** (May 20, via
-Simon). SpaceX's S-1 spells out the prior-week story in real numbers:
-$1.25 billion per month, May 2026 through May 2029, COLOSSUS and
-COLOSSUS II, 90-day termination clause either side, discounted
-ramp-up pricing in May-June 2026. The number worth holding in your
-head when reading next quarter's model price changes: $1.25B/month is
-the new floor of Anthropic's compute cost line. The Flash 3.5 +
-Haiku 4.5 price tables from W21 sit on top of cost lines like this
-one. A 90-day termination clause in a deal at that scale is also a
-signal — both sides are reserving optionality the public usually
-doesn't see.
-[simonwillison.net/2026/May/20/spacex-s1](https://simonwillison.net/2026/May/20/spacex-s1/)
+**Hugging Face + IBM + Artificial Analysis, "ITBench-AA"** (May 27).
+The first public benchmark for agentic enterprise IT tasks reports
+frontier models score below 50%. The result is the floor your buyer
+should anchor a pilot's success criteria to. Any vendor pitching
+enterprise-IT agent replacement should publish a result on a public
+benchmark or admit they have none; the row belongs in the vendor
+review template.
+[huggingface.co/blog/ibm-research/itbench-aa](https://huggingface.co/blog/ibm-research/itbench-aa)
+
+**Hugging Face, "Ettin reranker family"** (May 19). Six pointwise
+cross-encoder rerankers from 17M to 1B parameters, distilled from
+mxbai-rerank-large-v2. The 1B model matches the 1.54B teacher on
+MTEB NDCG@10 while running 2.4x faster on H100; the 17M model beats
+33M ms-marco-MiniLM-L12-v2 at half the parameters. Teams running a
+retrieve-then-rerank pipeline on a legacy MiniLM reranker have a
+config-flip upgrade available — pilot the 150M as the new balanced
+default, run a domain eval, confirm the lift.
+[huggingface.co/blog/ettin-reranker](https://huggingface.co/blog/ettin-reranker)
+
+**OpenAI Cookbook commits, "Add Claude Agent SDK migration cookbook"**
+(May 27). OpenAI merged PRs #2671 and #2742 — a documented path for
+teams running on Anthropic's Agent SDK to migrate to OpenAI agents.
+The signal is the asymmetry: Anthropic does not currently publish
+the reverse recipe. Procurement teams reviewing AI agent vendor
+lock-in should ask both labs for a published migration path to the
+other and read the asymmetry as a concrete consideration.
+[github.com/openai/openai-cookbook/commit/f6a7ffa9](https://github.com/openai/openai-cookbook/commit/f6a7ffa9ddd57849bb280b20102da7ff8620e8fa)
+
+**NVIDIA Developer Blog, "Automate AI model documentation with the
+MCG Toolkit"** (May 29). Automated model-card generation explicitly
+framed against California AB-2013 and the EU AI Act. AB-2013
+deadlines fall inside Q3 for California-deployed systems. Add a
+model-card generation step to the release workflow now; backfilling
+under regulatory pressure is more costly than automating once.
+[developer.nvidia.com/blog/.../mcg-toolkit](https://developer.nvidia.com/blog/how-to-automate-ai-model-documentation-with-the-nvidia-mcg-toolkit/)
+
+**Stratechery, "The Data Center Veto"** (May 22, paywalled).
+Ben Thompson argues local opposition to AI data centers is rising
+and that direct compensation to host communities is the only viable
+path to keep buildouts on schedule. Read for the procurement-side
+implication: hyperscaler capacity expansion through 2027 is a
+political question, not a capex question.
+[stratechery.com/2026/the-data-center-veto](https://stratechery.com/2026/the-data-center-veto/)
 
 ---
 
 ## Watchlist
 
-- **Of your security partner: when did we last test the queue-overflow
-  case?** If an AI agent inside the stack starts writing 3x faster
-  than the human queue absorbs, the first symptom is silent dropped
-  work, not an alert. Pick one queue and run the drill this month.
-- **Of your finance partner: do we hold any agent credential that
-  survives a screen lock?** Codex Locked Use makes this question
-  concrete on macOS today, and on hosted VMs by Q3.
-- **Of your CEO or board: which of the four lab-relationship rows
-  flipped this quarter?** The build-vs-partner memo from 2024 is now
-  the wrong document for at least half its readers. Re-scoring is a
-  one-hour exercise that catches an avoidable 2027 surprise.
+- **Of your security partner: when did we last test the outbound-
+  communication exfiltration case?** The Copilot Cowork pattern is
+  generic to any agent that drafts outbound messages. Pick one
+  agent surface and run the chain end-to-end this month.
+
+- **Of your finance partner: what is our consumption-per-developer
+  cap and our 70% alert?** If the answer is "we are on seat
+  pricing," the Series H + $47B run-rate disclosure is your cue to
+  rebuild the line item before next sprint.
+
+- **Of your CISO: do we publish an LLM-monitor catch-rate number?**
+  SLEIGHT-Bench gives the buyer a number to ask for. The vendor
+  answer "we use an LLM-based monitor" without a benchmark result
+  is no longer a defensible position.
+
+- **Of your product partner: what is our refusal-rate panel on
+  Opus 4.8?** Abstention-tuned models change the audit-log surface.
+  If your dashboard does not surface refusal rate, the metric will
+  shift without anyone noticing.
+
+- **Of your platform team: which Fortune-500 case study should we
+  read for our own customer's procurement?** The Cisco + Codex and
+  Endava + Codex co-marketed posts are the template. Expect every
+  large enterprise you sell to or buy from to publish one in 2026.
+
+- **Of your legal partner: which AI workflows in our stack ship
+  into California-served products?** AB-2013 model-card deadlines
+  fall inside Q3. Automate cards now.
 
 ---
 
 ## Closing thought
 
-The week's quiet news, missing from the headlines, is in the
-Glasswing footnote: maintainers asked the agent to slow down. The
-slow-down request is the artifact. Builders who write the
-slow-down switch into their own agent surfaces before a partner asks
-for it have the seat next to the table when the policy gets
-written.
+The shape this week is not new — agent output exceeds human review,
+the budget line moved categories, the security perimeter has an
+outbound-communication hole nobody priced in. What is new is that
+the answers are starting to land as project-level contracts: an
+AGENTS.md, a tool-policy row, a model-card automation step, a
+catch-rate eval. The ones already published this month are worth
+reading not as final shapes but as drafts the rest of us can fork.
 
 ---
 
 ## Postscript: the factory's own week
 
-The two repos in the portfolio that ship procurement-side gates
-landed the same operational discipline this week — schema-cache
-freshness and owner-role coverage as executable checks instead of
-documentation. The internal commits aren't news for outside readers.
-The signal underneath them is: the gates you describe in your
-playbook only count when they exit 1 in CI. If your AGENTS.md or
-SECURITY.md or VENDOR-REVIEW.md is written but unenforced, the
-sentence on the page is a suggestion. The next sprint's exercise is
-to pick one written rule from any of those docs and make it an
-executable check by Friday.
+This brief is the first run through the Matrix Plane pipeline. The
+shape underneath what you just read is 40 source items, 100+ matrix
+cells across eight lenses (source gist, claims and bets, mechanism,
+reusable pattern, adoption action, risks, governance, watchlist),
+and a cell-faithfulness pass on every cell before any digest claim
+got drafted. The cells live under `briefs/2026-W22/matrix/` next to
+the brief; the per-item notes live under `briefs/2026-W22/items/`.
+The reason this matters for an outside reader is the audit trail.
+Every claim in the brief points at one or more cells; every cell
+points at a source span. If a reader disagrees with a pick, the
+disagreement can land at the cell level, not as a vague complaint
+about the brief. That contract is the next sprint's exercise — make
+the reader's edit-path runnable, not just commentable.

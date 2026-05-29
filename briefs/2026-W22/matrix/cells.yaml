@@ -1,0 +1,2140 @@
+# Matrix cells for brief 2026-W22 — generated 2026-05-29
+# Schema: schemas/matrix_cell.schema.json
+# matrix_run_id: matrix-2026-W22
+# Source items captured from the W22 sweep; each item gets >=3 lens cells.
+# Cell ids follow MTRX-W22-<item-slug>-<lens-id> shape so digest claims can
+# point at them with stable handles.
+
+matrix_run_id: matrix-2026-W22
+generated_at: 2026-05-29T18:00:00Z
+generated_by: claude-opus-4-7 (matrix-runner role)
+schema: schemas/matrix_cell.schema.json
+
+source_items:
+  - item_id: anthropic-opus-4-8
+    title: "Introducing Claude Opus 4.8"
+    source_id: anthropic-news
+    url: https://www.anthropic.com/news/claude-opus-4-8
+    captured_at: 2026-05-28
+    priority: high
+
+  - item_id: anthropic-series-h
+    title: "Anthropic Series H + $47B run-rate revenue"
+    source_id: anthropic-news
+    url: https://www.anthropic.com/news/series-h
+    captured_at: 2026-05-28
+    priority: high
+
+  - item_id: kpmg-claude
+    title: "KPMG Digital Gateway Powered by Claude (W21 carryover, W22 verification)"
+    source_id: anthropic-news
+    url: https://www.anthropic.com/news/anthropic-kpmg
+    captured_at: 2026-05-19
+    priority: medium
+
+  - item_id: alignment-sleight-bench
+    title: "SLEIGHT-Bench: blind spots in AI monitors"
+    source_id: anthropic-alignment
+    url: https://alignment.anthropic.com/2026/sleight-bench/
+    captured_at: 2026-05-26
+    priority: high
+
+  - item_id: alignment-msm
+    title: "Model Spec Midtraining: alignment generalization"
+    source_id: anthropic-alignment
+    url: https://alignment.anthropic.com/2026/msm/
+    captured_at: 2026-05-21
+    priority: high
+
+  - item_id: alignment-teaching-why
+    title: "Teaching Claude Why: reasoning beats imitation in alignment training"
+    source_id: anthropic-alignment
+    url: https://alignment.anthropic.com/2026/teaching-claude-why/
+    captured_at: 2026-05-23
+    priority: medium
+
+  - item_id: openai-frontier-gov
+    title: "OpenAI Frontier Governance Framework"
+    source_id: openai-news
+    url: https://openai.com/index/openai-frontier-governance-framework
+    captured_at: 2026-05-28
+    priority: high
+
+  - item_id: openai-codex-cisco
+    title: "Cisco + OpenAI: Codex for enterprise engineering"
+    source_id: openai-news
+    url: https://openai.com/index/cisco
+    captured_at: 2026-05-27
+    priority: medium
+
+  - item_id: openai-codex-endava
+    title: "Endava builds an agentic organization with Codex"
+    source_id: openai-news
+    url: https://openai.com/index/endava
+    captured_at: 2026-05-28
+    priority: medium
+
+  - item_id: openai-content-provenance
+    title: "OpenAI: content provenance via Content Credentials + SynthID"
+    source_id: openai-news
+    url: https://openai.com/index/advancing-content-provenance
+    captured_at: 2026-05-19
+    priority: medium
+
+  - item_id: openai-rosalind
+    title: "Rosalind Biodefense expanded access"
+    source_id: openai-news
+    url: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
+    captured_at: 2026-05-29
+    priority: low
+
+  - item_id: claude-code-2-1-154
+    title: "Claude Code v2.1.154 — Opus 4.8 + dynamic workflows orchestrating hundreds of agents"
+    source_id: gh-anthropic-claude-code
+    url: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+    captured_at: 2026-05-28
+    priority: high
+
+  - item_id: claude-code-2-1-152
+    title: "Claude Code v2.1.152 — /code-review --fix applies findings to working tree"
+    source_id: gh-anthropic-claude-code
+    url: https://github.com/anthropics/claude-code/releases/tag/v2.1.152
+    captured_at: 2026-05-27
+    priority: medium
+
+  - item_id: claude-code-2-1-147
+    title: "Claude Code v2.1.147 — /simplify renamed to /code-review with effort levels"
+    source_id: gh-anthropic-claude-code
+    url: https://github.com/anthropics/claude-code/releases/tag/v2.1.147
+    captured_at: 2026-05-21
+    priority: medium
+
+  - item_id: openai-agents-0-17-4
+    title: "openai-agents-python v0.17.4 — Realtime custom voice + missing-tool recovery"
+    source_id: gh-openai-agents-sdk
+    url: https://github.com/openai/openai-agents-python/releases/tag/v0.17.4
+    captured_at: 2026-05-26
+    priority: medium
+
+  - item_id: langgraph-1-2-0
+    title: "LangGraph 1.2.0 — durable error-handler resume across host crashes"
+    source_id: gh-langgraph
+    url: https://github.com/langchain-ai/langgraph/releases/tag/1.2.0
+    captured_at: 2026-05-12
+    priority: medium
+
+  - item_id: simon-curl-pressure
+    title: "The pressure — curl maintainer on >1 AI security report per day"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/26/the-pressure/
+    captured_at: 2026-05-26
+    priority: high
+
+  - item_id: simon-sqlite-agents
+    title: "sqlite AGENTS.md — agentic code rejected, evidence-rich bug reports accepted"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/27/sqlite-agents/
+    captured_at: 2026-05-27
+    priority: high
+
+  - item_id: simon-pmf
+    title: "Anthropic + OpenAI have found product-market fit (in coding agents)"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/27/product-market-fit/
+    captured_at: 2026-05-27
+    priority: high
+
+  - item_id: simon-copilot-exfil
+    title: "Microsoft Copilot Cowork exfiltrates files via external-image prompt injection"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+    captured_at: 2026-05-26
+    priority: high
+
+  - item_id: simon-armin-issues
+    title: "Armin Ronacher — AI issue summaries lacking a human voice"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/24/armin-ronacher/
+    captured_at: 2026-05-24
+    priority: low
+
+  - item_id: simon-encyclical
+    title: "Notes on Pope Leo XIV's encyclical Magnifica Humanitas on AI"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/25/encyclical-on-ai/
+    captured_at: 2026-05-25
+    priority: medium
+
+  - item_id: simon-memory-shortage
+    title: "Memory shortage repricing consumer electronics"
+    source_id: simon-willison
+    url: https://simonwillison.net/2026/May/22/memory-shortage/
+    captured_at: 2026-05-22
+    priority: medium
+
+  - item_id: zvi-paradigms
+    title: "Zvi — New Paradigms Won't Save You (paradigm-wait fallacy)"
+    source_id: zvi-mowshowitz
+    url: https://thezvi.substack.com/p/new-paradigms-wont-save-you
+    captured_at: 2026-05-22
+    priority: medium
+
+  - item_id: zvi-encyclical
+    title: "Zvi — Pope Leo's Magnifica Humanitas commentary"
+    source_id: zvi-mowshowitz
+    url: https://thezvi.substack.com/p/rtmh-pope-leos-magnifica-humanitas
+    captured_at: 2026-05-26
+    priority: low
+
+  - item_id: import-ai-458
+    title: "Import AI 458 — Reckoning with the future (Jack Clark Oxford lecture)"
+    source_id: import-ai
+    url: https://importai.substack.com/p/import-ai-458-reckoning-with-the
+    captured_at: 2026-05-26
+    priority: medium
+
+  - item_id: import-ai-457
+    title: "Import AI 457 — AI stuxnet (fast16.sys); cursed Muon; positive alignment"
+    source_id: import-ai
+    url: https://importai.substack.com/p/import-ai-457-ai-stuxnet-cursed-muon
+    captured_at: 2026-05-18
+    priority: medium
+
+  - item_id: deepmind-gemini-omni
+    title: "Gemini Omni multimodal launch (I/O 2026)"
+    source_id: deepmind-blog
+    url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/
+    captured_at: 2026-05-22
+    priority: medium
+
+  - item_id: deepmind-co-scientist
+    title: "Co-Scientist: multi-agent AI research partner"
+    source_id: deepmind-blog
+    url: https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/
+    captured_at: 2026-05-22
+    priority: low
+
+  - item_id: hf-ettin-reranker
+    title: "Ettin reranker family — 1B matches 1.54B teacher 2.4x faster"
+    source_id: huggingface-blog
+    url: https://huggingface.co/blog/ettin-reranker
+    captured_at: 2026-05-19
+    priority: medium
+
+  - item_id: hf-itbench
+    title: "ITBench-AA — frontier models score below 50% on enterprise IT tasks"
+    source_id: huggingface-blog
+    url: https://huggingface.co/blog/ibm-research/itbench-aa
+    captured_at: 2026-05-27
+    priority: high
+
+  - item_id: nvidia-verified-skills
+    title: "NVIDIA-Verified Agent Skills — capability governance for AI agents"
+    source_id: nvidia-dev-blog
+    url: https://developer.nvidia.com/blog/nvidia-verified-agent-skills-provide-capability-governance-for-ai-agents/
+    captured_at: 2026-05-19
+    priority: medium
+
+  - item_id: nvidia-mcg-toolkit
+    title: "NVIDIA MCG Toolkit — automating AI model documentation for AB-2013 + EU AI Act"
+    source_id: nvidia-dev-blog
+    url: https://developer.nvidia.com/blog/how-to-automate-ai-model-documentation-with-the-nvidia-mcg-toolkit/
+    captured_at: 2026-05-29
+    priority: medium
+
+  - item_id: mistral-vibe
+    title: "Mistral Vibe + Search Toolkit + remote agents on Medium 3.5"
+    source_id: mistral-news
+    url: https://mistral.ai/news/vibe-agent
+    captured_at: 2026-05-28
+    priority: low
+
+  - item_id: stratechery-spacex-orbital
+    title: "SpaceX IPO and data centers in space"
+    source_id: stratechery
+    url: https://stratechery.com/2026/the-spacex-ipo-and-data-centers-in-space/
+    captured_at: 2026-05-27
+    priority: low
+
+  - item_id: stratechery-data-center-veto
+    title: "The Data Center Veto — local opposition to AI infra"
+    source_id: stratechery
+    url: https://stratechery.com/2026/the-data-center-veto/
+    captured_at: 2026-05-22
+    priority: low
+
+  - item_id: aws-langsmith-deep-agents
+    title: "Evaluating Deep Agents using LangSmith on AWS"
+    source_id: aws-ml-blog
+    url: https://aws.amazon.com/blogs/machine-learning/evaluating-deep-agents-using-langsmith-on-aws/
+    captured_at: 2026-05-28
+    priority: low
+
+  - item_id: hn-claude-code-config
+    title: "Claude Code — undocumented configuration (HN front page)"
+    source_id: hn-frontpage
+    url: https://buildingbetter.tech/p/i-read-the-claude-code-source-code
+    captured_at: 2026-05-28
+    priority: low
+
+  - item_id: openai-cookbook-claude-migration
+    title: "OpenAI cookbook adds Claude Agent SDK migration recipe"
+    source_id: gh-openai-cookbook-releases
+    url: https://github.com/openai/openai-cookbook/commit/f6a7ffa9ddd57849bb280b20102da7ff8620e8fa
+    captured_at: 2026-05-27
+    priority: medium
+
+  - item_id: ax-paradigms
+    title: "ACX — Use AI This Election; New Paradigms Won't Save You"
+    source_id: astral-codex-ten
+    url: https://www.astralcodexten.com/p/new-paradigms-wont-save-you
+    captured_at: 2026-05-22
+    priority: low
+
+
+# ============================================================
+# CELLS
+# Schema fields per cell: id, matrix_run_id, source_item_id, lens_id, mode,
+# content, source_refs[], confidence, faithfulness_status, status
+# ============================================================
+
+cells:
+
+  # ---- anthropic-opus-4-8 ----
+  - id: MTRX-W22-opus48-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Anthropic announced Claude Opus 4.8 on 2026-05-28 with stronger
+      coding, agentic, and professional-work performance and an emphasis
+      on consistency for long-running work.
+    source_refs:
+      - uri: https://www.anthropic.com/news/claude-opus-4-8
+        quote_or_span: "stronger performance across coding, agentic tasks, and professional work"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      Anthropic claims the Opus 4.8 release improves consistency across
+      long-running agentic tasks. Simon Willison summarizes the model as
+      "a modest but tangible improvement" with roughly 4x lower
+      hallucination rate vs the prior Opus, achieved partly by the model
+      abstaining on uncertain questions. The 4x figure is a vendor-stated
+      number relayed through Simon, not independently verified this week.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/28/claude-opus-4-8/
+        quote_or_span: "modest but tangible improvement; four times lower hallucination rate"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The mechanism for the lower hallucination rate is abstention — the
+      model declines to answer questions it judges uncertain rather than
+      producing fluent guesses. The cost is more "I don't know" responses
+      on the boundary, traded against fewer confident wrong answers.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/28/claude-opus-4-8/
+        quote_or_span: "abstaining on uncertain questions"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams running long sessions through Claude Code, the
+      Opus 4.8 + xhigh-effort default + lean-system-prompt change in
+      v2.1.154 are co-introduced; re-baseline eval suites against the
+      new defaults before rolling forward in production. If your evals
+      penalize abstention, expect the score to drift downward — adjust
+      the rubric or accept the new ceiling.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "Opus 4.8 release with high effort /effort xhigh as default for complex tasks; Lean system prompt now default"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      The 4x hallucination-reduction number is vendor-reported and
+      relayed through a single secondary source. Independent evals will
+      arrive over the next two weeks; Opus 4.7 remains the safer floor
+      until those land. The change to xhigh-default also raises latency
+      and per-turn token cost for teams that auto-route through Claude
+      Code; budget headroom is the surfacing risk.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "Fast mode on Opus 4.8 available at 2x standard rate for 2.5x speed"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: governance_surface
+    mode: interpretive
+    content: >-
+      An abstention-tuned model changes the audit-log surface — refusal
+      reasons replace some answers. If downstream consumers (ticket
+      pipelines, RAG answer surfaces) treat refusal as failure, the
+      metric shifts without the operator noticing. Add a refusal-rate
+      panel to dashboards before promoting Opus 4.8 to the default.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/28/claude-opus-4-8/
+        quote_or_span: "four times lower hallucination rates than its predecessor by abstaining"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-opus48-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-opus-4-8
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when an independent eval (LiveBench, AIDER, Aider Polyglot
+      or vendor-neutral coding benchmark) publishes Opus 4.8 numbers, or
+      when refusal rate on a representative production workload moves
+      more than 15 percentage points relative to Opus 4.7.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/28/claude-opus-4-8/
+        quote_or_span: "modest but tangible improvement"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- anthropic-series-h ----
+  - id: MTRX-W22-seriesh-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-series-h
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Anthropic announced a $65 billion Series H at a $965 billion
+      post-money valuation on 2026-05-28. In parallel the company
+      disclosed annualized run-rate revenue of $47 billion, up from
+      $30B in April and $14B in February.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/29/anthropic/
+        quote_or_span: "$47 billion in annualized run-rate revenue"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-seriesh-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-series-h
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The revenue mechanism behind the 5x growth in five months is
+      enterprise coding-agent token consumption — moving customers off
+      flat seat pricing onto API pricing where coding agents burn vastly
+      more tokens than humans. Uber's 25%-of-commits-via-Claude-Code
+      data point is the carrier wave.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "25% of their code commits came via Claude Code last quarter"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-seriesh-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-series-h
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      Anthropic claims a 5x revenue growth in five months ($9B EOY 2025
+      to $47B May 2026). The credibility argument resting underneath is
+      that lying in a fundraising context to investors who just placed
+      $65B is securities fraud. Counter-claim worth holding: run-rate
+      from a single recent month is the noisiest possible projection.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/29/anthropic/
+        quote_or_span: "lying to investors who just put in $65 billion would be securities fraud"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-seriesh-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-series-h
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For finance partners: the 2024 budget assumption that an
+      AI-coding-tool seat caps at $X/month is wrong for any team running
+      coding agents. Move the line item from per-seat SaaS to
+      consumption-based; set a per-developer monthly burn cap and a
+      Slack alert at 70%.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "$1,199.79 for Claude Code and $980.37 for OpenAI's offering over 30 days"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-seriesh-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: anthropic-series-h
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      The $47B run-rate figure is a vendor disclosure during a fundraise
+      and rests on one month of revenue annualized. The number is
+      directionally credible; it is not an audited annual revenue. A
+      builder reading these numbers should not anchor next-quarter
+      contract terms on the assumption that the 5x growth pace
+      continues.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/29/anthropic/
+        quote_or_span: "annualized projection of their current revenue—typically calculated by taking the most recent month and multiplying by 12"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- kpmg-claude ----
+  - id: MTRX-W22-kpmg-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: kpmg-claude
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      KPMG announced a global alliance with Anthropic on 2026-05-19,
+      deploying Claude across 276,000+ KPMG workforce; Tax & Legal
+      first; full Azure implementation by September 2026; Claude
+      embedded in KPMG Digital Gateway for agentic client workflows.
+    source_refs:
+      - uri: https://www.anthropic.com/news/anthropic-kpmg
+        quote_or_span: "deployed Claude across its organization of over 276,000 employees"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-kpmg-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: kpmg-claude
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: AI-as-delivery-surface a consultancy resells to its own
+      clients (PwC W20, Gates W21, KPMG W22). The pattern means audit
+      logs fork three ways — upstream model lab, consultancy reseller,
+      end client — and rarely line up in a regulator-shaped event.
+    source_refs:
+      - uri: https://www.anthropic.com/news/anthropic-kpmg
+        quote_or_span: "Claude embedded in Digital Gateway so KPMG clients can build agentic workflows directly"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-kpmg-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: kpmg-claude
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      Procurement asks every consultancy-resold AI workflow: who calls
+      who first in an incident, what is the log-pull SLA per layer
+      (vendor, reseller, upstream lab), and is the customer entitled to
+      pull all three. The four-question vendor-review test catches the
+      gap that opens when three audit trails do not reconcile.
+    source_refs:
+      - uri: https://www.anthropic.com/news/anthropic-kpmg
+        quote_or_span: "Anthropic names KPMG a preferred partner for private equity"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- alignment-sleight-bench ----
+  - id: MTRX-W22-sleight-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-sleight-bench
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      SLEIGHT-Bench is a hand-crafted benchmark of 40 attacks across
+      11 categories designed to stress LLM-based monitors. At 1% false
+      positive rate, Claude Opus 4.6 reliably catches 8 of 40 attacks;
+      50% of attacks are never caught across multiple trials.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/sleight-bench/
+        quote_or_span: "8 out of 40 attacks reliably detected; 50% of attacks are never caught"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sleight-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-sleight-bench
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      Eleven named blind spots include file/object reuse, counting,
+      multi-session attack stitching, omission, and jailbreak prompts
+      embedded in transcript content. The shared mechanism is that
+      monitors read transcripts as text, not as state machines, so any
+      attack that requires tracking state across turns slips past.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/sleight-bench/
+        quote_or_span: "Catch rates by blind spot ranged from 0% (N-hops, Omission, Jailbreaks) to 90% (Plausible naming)"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sleight-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-sleight-bench
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams running an LLM-as-monitor pattern: name the three or
+      four blind spots most relevant to your workload (multi-session
+      stitching, omission, authorization confusion are common) and add
+      targeted probes to your monitor eval set. The paper's
+      Claude-Code-as-monitor variant — letting the monitor execute
+      code to verify claims — is worth a one-week prototype.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/sleight-bench/
+        quote_or_span: "Using Claude Code as an agentic monitor improved detection by allowing verification of claims through actual script execution"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sleight-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-sleight-bench
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      The benchmark is 40 hand-crafted attacks; it is illustrative, not
+      a quantitative ceiling. Ensemble monitoring multiplies cost ~10x
+      invocations and ~14x tokens; for high-volume workflows the
+      defense is unaffordable in production. The honest move is to
+      accept that LLM monitors are a partial defense and pair them
+      with execution-environment isolation rather than a sole gate.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/sleight-bench/
+        quote_or_span: "~10x more invocations and 14x more tokens"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sleight-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-sleight-bench
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      Any product surface that markets "LLM-monitored agent" as the
+      safety story now owes its security partner a SLEIGHT-Bench-style
+      eval result for the specific monitor configuration shipped. The
+      claim "monitored" without a number is no longer a defensible
+      vendor answer.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/sleight-bench/
+        quote_or_span: "frontier LLM-based monitors"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- alignment-msm ----
+  - id: MTRX-W22-msm-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-msm
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Model Spec Midtraining (MSM) inserts a stage between pre-training
+      and alignment fine-tuning where the model trains on synthetic
+      documents discussing its own model spec. On Qwen2.5-32B the
+      agentic-misalignment rate drops from 68% to 5%; on Qwen3-32B
+      from 54% to 7%.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/msm/
+        quote_or_span: "Qwen2.5-32B: 68% to 5% misalignment; Qwen3-32B: 54% to 7% misalignment"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-msm-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-msm
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The mechanism is teaching the model the *why* (the model spec
+      principles) before the *how* (alignment demonstrations). Two
+      models trained with different specs (pro-affordability vs
+      pro-America) on the same demonstration data generalize to
+      different held-out behaviors, showing the spec shapes value
+      acquisition independent of the demonstrations.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/msm/
+        quote_or_span: "Two identical models trained with different specs"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-msm-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-msm
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: principle-then-demonstration for agent training. The
+      AGENTS.md / CLAUDE.md file is the analog at the application
+      layer — write the principles before you bake in demonstrations.
+      If your evals only score outputs and not stated reasoning, you
+      are missing the generalization signal MSM identifies.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/msm/
+        quote_or_span: "around 40x less AFT data"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- alignment-teaching-why ----
+  - id: MTRX-W22-teachwhy-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-teaching-why
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Teaching Claude Why shows reasoning-based alignment training
+      generalizes better than demonstration-only training. A
+      constitutional-rewrite step in the training pipeline drops
+      misalignment from 19% to ~1%; constitutional documents plus
+      fictional stories drop blackmail rates from 65% to 19%.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/teaching-claude-why/
+        quote_or_span: "reduced misalignment rates from 19% to approximately 1%"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-teachwhy-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-teaching-why
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The decisive step is asking the model to rewrite its own
+      response against the constitution. This converts a passive
+      compliance signal into an active deliberation signal, which the
+      model then learns to reproduce out of distribution. The 28x
+      token-efficiency gain on "difficult advice" data suggests the
+      mechanism is sample-efficient.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/teaching-claude-why/
+        quote_or_span: "Training on just 3 million tokens of difficult advice achieved equivalent results to 85 million tokens of synthetic honeypot scenarios"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-teachwhy-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: alignment-teaching-why
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern for downstream prompt engineers: ask the model to
+      critique its own draft against a stated principle, then accept
+      the critique-revised draft. The Claude Code /code-review --fix
+      pattern (v2.1.152) is the productized version of the same idea.
+    source_refs:
+      - uri: https://alignment.anthropic.com/2026/teaching-claude-why/
+        quote_or_span: "Critically rewrite responses to maximize constitutional alignment (the decisive step)"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- openai-frontier-gov ----
+  - id: MTRX-W22-openaigov-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-frontier-gov
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      OpenAI published its Frontier Governance Framework on 2026-05-28
+      describing how the company aligns AI safety, security, and risk
+      practices with the EU AI Act and California regulations.
+      Detailed body content was 403 to this sweep; the headline +
+      sentence are the verified extract.
+    source_refs:
+      - uri: https://openai.com/index/openai-frontier-governance-framework
+        quote_or_span: "AI safety, security, and risk practices align with emerging EU and California regulations"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-openaigov-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-frontier-gov
+    lens_id: governance_surface
+    mode: interpretive
+    content: >-
+      The Framework lands the week before California's SB-53 (Frontier
+      AI Transparency Act) compliance window opens, which makes the
+      timing diplomatic rather than incidental. Builders using OpenAI
+      models inside California should expect a vendor-provided
+      compliance attestation pack within the next two quarters.
+    source_refs:
+      - uri: https://openai.com/index/openai-frontier-governance-framework
+        quote_or_span: "emerging EU and California regulations"
+        ref_type: quote
+    confidence: low
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-openaigov-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-frontier-gov
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when OpenAI publishes the first concrete attestation
+      document referenced by the framework, or when an SB-53 enforcement
+      action cites a specific framework section.
+    source_refs:
+      - uri: https://openai.com/index/openai-frontier-governance-framework
+        quote_or_span: "Frontier Governance Framework"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- openai-codex-cisco + openai-codex-endava (treated as one pattern row) ----
+  - id: MTRX-W22-codex-enterprise-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-codex-cisco
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Cisco and OpenAI published a co-marketed Codex case on
+      2026-05-27 framed around helping Cisco "scale AI-native
+      development, accelerate AI Defense work, and automate defect
+      remediation." Endava (2026-05-28) describes Codex driving
+      "requirements analysis from weeks to hours."
+    source_refs:
+      - uri: https://openai.com/index/cisco
+        quote_or_span: "scale AI-native development, accelerate AI Defense work, and automate defect remediation"
+        ref_type: quote
+      - uri: https://openai.com/index/endava
+        quote_or_span: "accelerating software delivery and reducing requirements analysis from weeks to hours"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-codex-enterprise-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-codex-cisco
+    lens_id: claims_and_bets
+    mode: critique
+    content: >-
+      Vendor case studies are by definition curated; the
+      requirements-analysis-in-hours claim is unverified outside
+      Endava's own quote. The pattern worth taking forward is the
+      template — large enterprise + frontier-lab co-marketing the
+      coding-agent rollout — not the specific multiplier.
+    source_refs:
+      - uri: https://openai.com/index/endava
+        quote_or_span: "reducing requirements analysis from weeks to hours"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-codex-enterprise-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-codex-cisco
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: the coding-agent rollout case is the new "AI strategy"
+      conference keynote. Expect every Fortune 500 you sell to or buy
+      from to publish one in 2026. The signal-bearing detail is which
+      function (security, infra, finance) absorbs the agent's output
+      and whether they document the human-review side of the workflow.
+    source_refs:
+      - uri: https://openai.com/index/cisco
+        quote_or_span: "automate defect remediation"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- openai-content-provenance ----
+  - id: MTRX-W22-provenance-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-content-provenance
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      OpenAI published a content-provenance update on 2026-05-19
+      naming Content Credentials (C2PA), SynthID, and a verification
+      tool as the surfaces it backs for identifying AI-generated media.
+    source_refs:
+      - uri: https://openai.com/index/advancing-content-provenance
+        quote_or_span: "Content Credentials, SynthID, and a verification tool"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-provenance-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-content-provenance
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams whose product surfaces user-generated images: decide
+      now whether you display Content Credentials provenance metadata
+      to end users. If you do, you accept the editorial responsibility
+      of explaining the signal; if you do not, your product becomes a
+      provenance-stripping pipeline. Pick one.
+    source_refs:
+      - uri: https://openai.com/index/advancing-content-provenance
+        quote_or_span: "help people identify and trust AI-generated media"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- claude-code-2-1-154 ----
+  - id: MTRX-W22-cc154-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-154
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Claude Code v2.1.154 (2026-05-28) ships Opus 4.8 default, xhigh
+      effort default, lean system prompt default for new models,
+      dynamic workflows that orchestrate tens to hundreds of agents
+      via /workflows, and streaming tool execution everywhere
+      including Bedrock and Vertex.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "Claude can create workflows orchestrating tens to hundreds of agents in the background"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc154-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-154
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      Dynamic workflows shift the orchestration boundary inside the
+      model. Where before a workflow was a hand-coded sequence of
+      tool calls, the model now plans, branches, and dispatches
+      sub-agents at runtime, with /workflows surfacing the run tree.
+      The cost-axis trades operator certainty for agent-side adaptability.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "Dynamic workflows: Claude can create workflows orchestrating tens to hundreds of agents in the background"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc154-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-154
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      Before enabling dynamic workflows in a shared org install, add
+      a per-workflow budget cap and an explicit allowlist of which
+      sub-agents can be dispatched. The cost-blast-radius of one
+      runaway dynamic workflow at xhigh effort is meaningfully higher
+      than the cost of a single Opus 4.8 turn.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "Opus 4.8 release with high effort /effort xhigh as default for complex tasks"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc154-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-154
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      v2.1.156 followed two days later to fix an Opus 4.8 thinking-
+      block regression that caused API errors. Treat the .154 release
+      as still settling and pin .156 before rolling out in an
+      automated CI pipeline.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.156
+        quote_or_span: "Fixed issue with Opus 4.8 where thinking blocks were modified, causing API errors"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- claude-code-2-1-152 ----
+  - id: MTRX-W22-cc152-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-152
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Claude Code v2.1.152 (2026-05-27) lets /code-review --fix apply
+      review findings to the working tree, lets skills set
+      disallowed-tools in frontmatter, adds /reload-skills, and adds a
+      MessageDisplay hook event to transform or hide assistant text.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.152
+        quote_or_span: "/code-review --fix now applies review findings to working tree"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc152-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-152
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: critique-then-rewrite as a one-command shape. The
+      /code-review --fix flow mirrors the constitutional rewrite from
+      Anthropic's alignment paper — the same mechanism that drops
+      misalignment 19x at training time productized at code-review
+      time.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.152
+        quote_or_span: "/code-review --fix now applies review findings to working tree (reuse, simplification, efficiency)"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc152-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-152
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      The disallowed-tools-in-frontmatter and MessageDisplay hook
+      together let an operator constrain a skill's tool surface and
+      mutate its output stream without rewriting the skill. Both belong
+      in the tool-policy register; both should appear in the next
+      AGENTS.md audit.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.152
+        quote_or_span: "Skills/slash commands can set disallowed-tools in frontmatter to remove tools from model"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- claude-code-2-1-147 ----
+  - id: MTRX-W22-cc147-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-147
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Claude Code v2.1.147 (2026-05-21) renamed /simplify to
+      /code-review with optional effort levels, pinned background
+      sessions stay alive when idle and auto-restart with updates, and
+      reorganized prompt-history dedupe.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.147
+        quote_or_span: "Renamed /simplify to /code-review with effort levels"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cc147-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: claude-code-2-1-147
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The rename is editorial: the command keeps the simplification
+      job but acquires a bug-hunting mode behind the same name. By
+      v2.1.154 /simplify is back as the cleanup-only flavor. The
+      churn is the signal — the command was the wrong shape twice in
+      seven days; the lesson is to wait one cycle before scripting
+      against a brand-new flag.
+    source_refs:
+      - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+        quote_or_span: "/simplify now runs cleanup-only review instead of full bug-hunting review"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- openai-agents-0-17-4 ----
+  - id: MTRX-W22-agents-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-agents-0-17-4
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      openai-agents-python v0.17.4 (2026-05-26) adds opt-in recovery
+      for missing function tools, MCP SSE transport hardening, and
+      Realtime custom voice objects.
+    source_refs:
+      - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.17.4
+        quote_or_span: "add opt-in recovery for missing function tools"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-agents-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-agents-0-17-4
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Missing-tool recovery as an opt-in flag normalizes a previously
+      ad-hoc failure mode — the agent encounters a referenced tool
+      that the runtime can't resolve and was crashing or hanging.
+      Treat the opt-in as a tool-policy decision, not a default; the
+      recovery path may try to substitute a tool the operator did
+      not allow.
+    source_refs:
+      - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.17.4
+        quote_or_span: "opt-in recovery for missing function tools"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- langgraph-1-2-0 ----
+  - id: MTRX-W22-lg120-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: langgraph-1-2-0
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      LangGraph 1.2.0 (2026-05-12) ships durable error-handler resume
+      across host crashes, node defaults configuration, and delta
+      channel checkpoint improvements.
+    source_refs:
+      - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.0
+        quote_or_span: "durable error-handler resume across host crashes"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-lg120-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: langgraph-1-2-0
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      Durable error-handler resume is the framework acknowledging that
+      crash-mid-handler was the silent-data-loss failure mode in
+      production. The checkpoint shape now persists handler progress;
+      a restart resumes the handler rather than the parent node.
+    source_refs:
+      - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.0
+        quote_or_span: "durable error-handler resume across host crashes"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-curl-pressure ----
+  - id: MTRX-W22-curl-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-curl-pressure
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Daniel Stenberg reports curl is now receiving more than one
+      AI-assisted security report per day on average — 4-5x the 2024
+      rate and double the 2025 rate. Almost none of the reports
+      surface terrible vulnerabilities; recent severity has skewed
+      LOW or MEDIUM.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/the-pressure/
+        quote_or_span: "4-5 times higher than it was in 2024 and double the speed of 2025 -- meaning that on average we now get more than one report per day"
+        ref_type: quote
+      - uri: https://simonwillison.net/2026/May/26/the-pressure/
+        quote_or_span: "almost no one finds terrible vulnerabilities. All vulnerabilities found the last few years in curl have all been deemed severity LOW or MEDIUM"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-curl-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-curl-pressure
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The mechanism is asymmetric load — AI tools lower the cost of
+      producing a plausible vulnerability report to near zero, while
+      the cost of triaging it stays bounded by human attention. The
+      sustained rate (1+/day) is well above what a small maintainer
+      team absorbs without burnout.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/the-pressure/
+        quote_or_span: "my wife expressed concerns about his work-life balance"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-curl-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-curl-pressure
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern (carryover from W22 brief 1): the agent output rate
+      exceeds the human review rate. curl is the open-source canary;
+      the same shape is landing inside enterprise security teams. The
+      W22 queue-overflow-policy table is exactly the artifact maintainers
+      now need.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/the-pressure/
+        quote_or_span: "more than one report per day"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-curl-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-curl-pressure
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For project maintainers: publish an AI-assisted-report policy
+      that names what evidence the project requires (reproducible
+      command, expected vs actual, raw error text) and what it
+      automatically closes (analysis-without-repro, theoretical
+      vulnerability without proof). SQLite's AGENTS.md and curl's
+      pressure post are the two anchor references.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+        quote_or_span: "well-researched bug reports from agents that include reproducible test cases"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-curl-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-curl-pressure
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      Bounty programs and disclosure pipelines need a slow-mode lever
+      identical to the one open-source maintainers asked Anthropic for
+      in Glasswing (W22 brief 1). The slow-mode flag — agent waits for
+      queue depth below N before producing more — is the same
+      mechanism on a different surface.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/the-pressure/
+        quote_or_span: "more than one report per day"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-sqlite-agents ----
+  - id: MTRX-W22-sqlite-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-sqlite-agents
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      SQLite shipped an AGENTS.md stating they reject agentic code
+      patches and AI-generated PRs, but accept well-researched bug
+      reports from agents with reproducible test cases. SQLite also
+      stood up a separate Bug Forum to absorb low-quality AI bug
+      reports.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+        quote_or_span: "they don't accept agentic code but will review AI-generated bug reports with reproducible test cases"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sqlite-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-sqlite-agents
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: AGENTS.md as a project-level contract that distinguishes
+      acceptable from unacceptable agent contributions. The shape
+      generalizes — accept evidence, reject narrative; accept reports,
+      reject patches; isolate the AI-driven channel from the human-
+      curated one.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+        quote_or_span: "SQLite welcomes agent-identified problems with evidence, but wants human-written solutions"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-sqlite-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-sqlite-agents
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      A separate Bug Forum is an architectural choice — segregate the
+      noisy channel so the curated channel survives. The same shape
+      applies to internal AI-flagged alerts (separate queue, separate
+      SLA, separate triage owner).
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+        quote_or_span: "the SQLite forum was overwhelmed with low-quality AI-generated bug reports, prompting the team to create a separate Bug Forum"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-pmf ----
+  - id: MTRX-W22-pmf-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-pmf
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Simon Willison argues Anthropic and OpenAI hit product-market fit
+      in early 2026 by moving enterprise customers from seat pricing
+      to API pricing, where coding agents burn vastly more tokens than
+      humans. His own coding-agent spend: $1,199.79 (Claude Code)
+      + $980.37 (OpenAI) over 30 days — about $2,180 against $200/mo
+      subscriptions.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "$1,199.79 for Claude Code and $980.37 for OpenAI's offering over 30 days"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-pmf-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-pmf
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      Implicit claim: the SaaS pricing era for AI coding is over.
+      Explicit bet: April 2026 is the inflection where the labs
+      cut out middleware (Cursor, GitHub Copilot) and price directly
+      to enterprise. The 25%-of-Uber-commits-via-Claude-Code figure
+      is the carrier wave.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "the real money lies in cutting out the middlemen"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-pmf-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-pmf
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For finance + engineering jointly: rebuild the AI-tooling line
+      item as consumption-per-developer with a monthly cap and a 70%
+      alert. Audit any team running coding agents inside an annual
+      seat budget set before April 2026 — the budget assumption is
+      almost certainly wrong by an order of magnitude.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "rapidly consuming annual AI budgets set in 2025"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-pmf-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-pmf
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      Willison is one practitioner with above-median usage. The
+      "moderately heavy user" framing is generous; n=1 spend numbers
+      are illustrative, not benchmark. The Uber 25% figure is also
+      relayed second-hand without an underlying disclosure to verify.
+      Both numbers are directionally credible and not commitable to a
+      budget without your own pilot run.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+        quote_or_span: "moderately heavy user"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-copilot-exfil ----
+  - id: MTRX-W22-copilot-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-copilot-exfil
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Microsoft Copilot Cowork allows agents to send emails to user
+      inboxes without explicit approval. Because emails can contain
+      external images that trigger network requests, attacker-
+      controlled prompt injection can exfiltrate OneDrive pre-
+      authenticated download links when the user opens the message.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+        quote_or_span: "messages can contain external images that trigger network requests to external websites, data can be exfiltrated when a user opens a compromised message sent by the agent"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-copilot-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-copilot-exfil
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      The attack chain is: external content reaches the agent → agent
+      composes an email → email contains attacker-supplied external
+      image URL → recipient client requests the image → request URL
+      carries the smuggled token. The pre-authenticated OneDrive link
+      is the payload, the image-fetch is the channel.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+        quote_or_span: "OneDrive generates pre-authenticated download links"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-copilot-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-copilot-exfil
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      Two-line defense for any agent that drafts outbound email: (1)
+      strip external image references before send, or proxy them
+      through a sanitizing renderer; (2) require explicit user
+      approval before any agent-composed email ships. The first kills
+      the channel; the second adds the human gate the Microsoft
+      product was missing.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+        quote_or_span: "Requiring explicit authorization before agents send communications"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-copilot-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-copilot-exfil
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      The tool-policy register needs an "outbound communications" row
+      with explicit allowed-vs-disallowed actions per surface
+      (email, Slack DM, calendar invite, ticket comment). The
+      Copilot Cowork story is the canonical example to cite when
+      arguing the row is non-optional.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+        quote_or_span: "without approval"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-armin-issues ----
+  - id: MTRX-W22-armin-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-armin-issues
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Armin Ronacher requests AI-assisted issue reports include the
+      literal command run, expected result, actual result, and error
+      logs — not AI-paraphrased analysis. The complaint is that
+      AI-rewritten reports add a confident voice without the original
+      observation.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/24/armin-ronacher/
+        quote_or_span: "command run, expected result, actual result, and error logs"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-armin-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-armin-issues
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: issue templates that require literal-input fields
+      (command, expected, actual, error) survive the AI summarization
+      pressure better than free-text fields. The template change is
+      cheap; the funnel improvement is sustained.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/24/armin-ronacher/
+        quote_or_span: "AI-generated issue reports lacking human voice"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-encyclical ----
+  - id: MTRX-W22-encyclical-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-encyclical
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Pope Leo XIV's encyclical Magnifica Humanitas (2026-05-25)
+      addresses AI ethics, naming accountability, human dignity, data
+      as public good, and the environmental costs of large models as
+      principles for AI development.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/25/encyclical-on-ai/
+        quote_or_span: "accountability, human dignity, data as public good, and environmental costs of large models"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-encyclical-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-encyclical
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      The bet underneath a Vatican encyclical is institutional — the
+      Church is positioning to be a moral commentator on AI alongside
+      governments. For builders the practical question is whether
+      Catholic-majority procurement (Italy, Spain, Latin America)
+      acquires a new layer of vendor scrutiny by Q4.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/25/encyclical-on-ai/
+        quote_or_span: "Magnifica Humanitas addresses AI ethics"
+        ref_type: quote
+    confidence: low
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- simon-memory-shortage ----
+  - id: MTRX-W22-memshort-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-memory-shortage
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      AI data centers are consuming roughly 20% of memory wafer
+      capacity by 2026, shrinking the supply of affordable smartphones
+      and consumer electronics in developing markets. Memory shortage
+      is now repricing the consumer-electronics floor.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/22/memory-shortage/
+        quote_or_span: "AI data centers are consuming 20% of memory wafer capacity by 2026"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-memshort-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: simon-memory-shortage
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when a major OEM publicly attributes a price increase or
+      product delay to AI-data-center memory demand, or when a national
+      regulator opens an inquiry into AI-driven component shortages.
+    source_refs:
+      - uri: https://simonwillison.net/2026/May/22/memory-shortage/
+        quote_or_span: "shrinking affordable smartphone availability in developing markets"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- zvi-paradigms ----
+  - id: MTRX-W22-zvi-paradigms-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: zvi-paradigms
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Zvi argues against the "wait for a new paradigm before worrying
+      about AGI" stance. Paradigm shifts typically arrive within 3-5
+      years; planning around their non-arrival is poor calibration.
+    source_refs:
+      - uri: https://thezvi.substack.com/p/new-paradigms-wont-save-you
+        quote_or_span: "paradigm shifts typically arrive within 3-5 years based on historical patterns"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-zvi-paradigms-contrarian_take
+    matrix_run_id: matrix-2026-W22
+    source_item_id: zvi-paradigms
+    lens_id: contrarian_take
+    mode: critique
+    content: >-
+      The 3-5 year claim is a heuristic, not a measured base rate. The
+      argument's strength is in the framing (do not bet on slowdown);
+      the specific timeline is the weakest leg. Read it for the prior
+      shift, not the precise number.
+    source_refs:
+      - uri: https://thezvi.substack.com/p/new-paradigms-wont-save-you
+        quote_or_span: "within 3-5 years based on historical patterns"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- import-ai-458 ----
+  - id: MTRX-W22-import458-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: import-ai-458
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Jack Clark's Oxford lecture frames the choice as exploring AI's
+      implications vs retreating from reality. The issue includes
+      reflections on personal AI augmentation and an enclosed short
+      story about medical-tech resurrection.
+    source_refs:
+      - uri: https://importai.substack.com/p/import-ai-458-reckoning-with-the
+        quote_or_span: "choosing between exploring AI's implications or retreating from reality"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-import458-mechanism_extraction
+    matrix_run_id: matrix-2026-W22
+    source_item_id: import-ai-458
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: >-
+      Clark's lecture is a rare Anthropic co-founder-and-policy-lead
+      public articulation of the political theory the company is
+      acting from. For builders the mechanism worth tracking is
+      whether the lecture's frames show up in Anthropic's RSP and
+      Acceptable Use Policy in the next two quarters.
+    source_refs:
+      - uri: https://importai.substack.com/p/import-ai-458-reckoning-with-the
+        quote_or_span: "organizational changes at Anthropic"
+        ref_type: quote
+    confidence: low
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- import-ai-457 ----
+  - id: MTRX-W22-import457-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: import-ai-457
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Import AI 457 covers fast16.sys, an "AI stuxnet" malware
+      targeting precision calculation software; a discovery that the
+      Muon optimizer kills neurons during training (motivating an
+      Aurora optimizer successor); and a "positive alignment"
+      academic position paper.
+    source_refs:
+      - uri: https://importai.substack.com/p/import-ai-457-ai-stuxnet-cursed-muon
+        quote_or_span: "fast16.sys malware targeting precision calculation software"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-import457-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: import-ai-457
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit fast16.sys if a confirmed industrial-control-system
+      incident is attributed; revisit Aurora if a major lab publishes
+      training-time numbers using it. Both are watchlist-grade now,
+      not action-grade.
+    source_refs:
+      - uri: https://importai.substack.com/p/import-ai-457-ai-stuxnet-cursed-muon
+        quote_or_span: "Aurora optimizer"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- deepmind-gemini-omni ----
+  - id: MTRX-W22-omni-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: deepmind-gemini-omni
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Google introduced Gemini Omni at I/O 2026 (week of May 18-22),
+      its latest multimodal model with claimed improvements across
+      text, image, audio, and video. Detailed numbers were not in the
+      sweep extract.
+    source_refs:
+      - uri: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/
+        quote_or_span: "Gemini Omni"
+        ref_type: quote
+    confidence: low
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-omni-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: deepmind-gemini-omni
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when an independent multimodal eval (MMMU, OmniBench)
+      ships Gemini Omni numbers, or when Vertex AI exposes a stable
+      API model id.
+    source_refs:
+      - uri: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/
+        quote_or_span: "multimodal AI model"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- hf-ettin-reranker ----
+  - id: MTRX-W22-ettin-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-ettin-reranker
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Hugging Face released the Ettin reranker family — six pointwise
+      cross-encoder rerankers from 17M to 1B params, distilled from
+      mxbai-rerank-large-v2. The 1B model matches the 1.54B teacher
+      on MTEB NDCG@10 (0.6114) while running 2.4x faster (928 vs 387
+      pairs/sec on H100).
+    source_refs:
+      - uri: https://huggingface.co/blog/ettin-reranker
+        quote_or_span: "1B model: 2.4x faster than 1.54B teacher (928 vs 387 pairs/sec) while matching MTEB score"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-ettin-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-ettin-reranker
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams running a retrieve-then-rerank pipeline on legacy
+      MiniLM rerankers: pilot ettin-reranker-150m as the new balanced
+      default. The 17M and 32M models beat ms-marco-MiniLM-L12-v2
+      with fewer parameters; the upgrade cost is a config flip and
+      a small inference-throughput test.
+    source_refs:
+      - uri: https://huggingface.co/blog/ettin-reranker
+        quote_or_span: "17M beats 33M ms-marco-MiniLM-L12-v2 by +0.051 NDCG@10 at half parameters"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-ettin-risk_and_caveats
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-ettin-reranker
+    lens_id: risk_and_caveats
+    mode: critique
+    content: >-
+      The numbers are MTEB-broad-domain; domain-specific RAG (legal,
+      medical, internal docs) needs a fine-tune pass before any
+      claimed gain holds. The throughput figures assume bfloat16 +
+      Flash Attention 2 + unpadded inputs; default fp32 deployments
+      will not see the headline number.
+    source_refs:
+      - uri: https://huggingface.co/blog/ettin-reranker
+        quote_or_span: "All sizes use broad-domain distillation; fine-tuning on domain-specific data recommended for specialized tasks"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- hf-itbench ----
+  - id: MTRX-W22-itbench-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-itbench
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      ITBench-AA from Artificial Analysis and IBM evaluates frontier
+      models on agentic enterprise IT tasks; leading models score
+      below 50%. The benchmark is the first of its scope for agentic
+      enterprise IT work.
+    source_refs:
+      - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+        quote_or_span: "leading models perform below 50% on agentic enterprise IT benchmarks"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-itbench-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-itbench
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      The bet inside a "frontier models fail at IT" benchmark
+      announcement is that enterprise IT is a credibly hard problem,
+      not that the models are weak. The signal worth taking: the gap
+      between consumer-facing demos and IT-specific workflow tasks is
+      still wide enough to disqualify naive replacement.
+    source_refs:
+      - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+        quote_or_span: "Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-itbench-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-itbench
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams pitching AI replacement for an internal IT workflow:
+      cite the ITBench-AA result when scoping pilot success criteria.
+      A 50% headline lets the buyer agree to a realistic floor; an
+      uncited "AI can do this" pitch sets a ceiling that fails on
+      contact with production.
+    source_refs:
+      - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+        quote_or_span: "below 50%"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-itbench-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: hf-itbench
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      Add an "agentic-IT eval coverage" row to the AI vendor review
+      template. Any vendor pitching enterprise-IT agent replacement
+      should publish a benchmark result on a public benchmark
+      (ITBench-AA being the first credible one) or admit they have
+      none.
+    source_refs:
+      - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+        quote_or_span: "the first benchmark for agentic enterprise IT tasks"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- nvidia-verified-skills ----
+  - id: MTRX-W22-nvidiask-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: nvidia-verified-skills
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      NVIDIA published a "verified agent skills" framework on
+      2026-05-19 pairing capability governance with MCP connections —
+      skills carry a declared capability surface that the runtime
+      enforces.
+    source_refs:
+      - uri: https://developer.nvidia.com/blog/nvidia-verified-agent-skills-provide-capability-governance-for-ai-agents/
+        quote_or_span: "verified skills and Model Context Protocol connections make autonomous agents more capable while providing governance controls"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-nvidiask-reusable_pattern
+    matrix_run_id: matrix-2026-W22
+    source_item_id: nvidia-verified-skills
+    lens_id: reusable_pattern
+    mode: synthetic
+    content: >-
+      Pattern: a skill manifest declares the tools, permissions, and
+      data scopes it requires; the runtime refuses to load skills
+      that exceed the org allowlist. The Claude Code v2.1.152
+      disallowed-tools frontmatter is the cousin pattern at the
+      individual-skill level.
+    source_refs:
+      - uri: https://developer.nvidia.com/blog/nvidia-verified-agent-skills-provide-capability-governance-for-ai-agents/
+        quote_or_span: "capability governance for AI agents"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- nvidia-mcg-toolkit ----
+  - id: MTRX-W22-nvmcg-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: nvidia-mcg-toolkit
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      NVIDIA published an MCG (Model Card Generator) toolkit on
+      2026-05-29 to automate AI model documentation in response to
+      California's AB-2013 and the EU AI Act.
+    source_refs:
+      - uri: https://developer.nvidia.com/blog/how-to-automate-ai-model-documentation-with-the-nvidia-mcg-toolkit/
+        quote_or_span: "regulatory frameworks like California's AB-2013 and the EU AI Act"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-nvmcg-adoption_action
+    matrix_run_id: matrix-2026-W22
+    source_item_id: nvidia-mcg-toolkit
+    lens_id: adoption_action
+    mode: synthetic
+    content: >-
+      For teams fine-tuning or deploying open-weight models, add a
+      model-card generation step to the release workflow now. AB-2013
+      compliance deadlines are inside Q3 for California-deployed
+      systems; backfilling cards under regulatory pressure is more
+      costly than automating them once.
+    source_refs:
+      - uri: https://developer.nvidia.com/blog/how-to-automate-ai-model-documentation-with-the-nvidia-mcg-toolkit/
+        quote_or_span: "regulatory frameworks like California's AB-2013 and the EU AI Act intensify scrutiny"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- mistral-vibe ----
+  - id: MTRX-W22-vibe-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: mistral-vibe
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Mistral launched Vibe (Work + Code modes) on 2026-05-28 with a
+      VS Code extension and a Search Toolkit. Vibe Remote Agents
+      powered by Mistral Medium 3.5 shipped May 22.
+    source_refs:
+      - uri: https://mistral.ai/news/vibe-agent
+        quote_or_span: "Vibe gets to work; unified agent launches with Work and Code modes"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-vibe-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: mistral-vibe
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when an independent coding-agent eval ships Vibe numbers
+      against Claude Code or Codex, or when a notable EU enterprise
+      adopts Vibe as primary coding agent.
+    source_refs:
+      - uri: https://mistral.ai/news/vibe-agent
+        quote_or_span: "Vibe Remote Agents Powered by Mistral Medium 3.5"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- stratechery-data-center-veto ----
+  - id: MTRX-W22-veto-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: stratechery-data-center-veto
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      Ben Thompson's Data Center Veto piece argues local opposition to
+      AI data centers is rising and that direct compensation to host
+      communities is the only viable path to keep buildouts on schedule.
+      Paywalled body; this summary is from the public excerpt.
+    source_refs:
+      - uri: https://stratechery.com/2026/the-data-center-veto/
+        quote_or_span: "Communities opposing data centers possess legitimate concerns"
+        ref_type: quote
+    confidence: low
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-veto-watchlist_trigger
+    matrix_run_id: matrix-2026-W22
+    source_item_id: stratechery-data-center-veto
+    lens_id: watchlist_trigger
+    mode: synthetic
+    content: >-
+      Revisit when a major hyperscaler data-center project is publicly
+      delayed or cancelled by a county vote, or when a "host community
+      benefit" template ships from a state attorney general's office.
+    source_refs:
+      - uri: https://stratechery.com/2026/the-data-center-veto/
+        quote_or_span: "local opposition to data centers"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+
+  # ---- openai-cookbook-claude-migration ----
+  - id: MTRX-W22-cookbook-source_gist
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-cookbook-claude-migration
+    lens_id: source_gist
+    mode: extractive
+    content: >-
+      OpenAI's cookbook merged a "Claude Agent SDK migration" recipe
+      on 2026-05-27 (PRs #2671 and #2742). The cookbook is publishing
+      a path for teams running on Anthropic's Agent SDK to migrate to
+      OpenAI agents.
+    source_refs:
+      - uri: https://github.com/openai/openai-cookbook/commit/f6a7ffa9ddd57849bb280b20102da7ff8620e8fa
+        quote_or_span: "Add Claude Agent SDK migration cookbook"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cookbook-claims_and_bets
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-cookbook-claude-migration
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: >-
+      Publishing the migration recipe is an explicit competitive bet:
+      OpenAI expects net flow from Anthropic Agent SDK toward OpenAI
+      agents and is reducing the friction. The signal is the cookbook
+      add, not a marketing post.
+    source_refs:
+      - uri: https://github.com/openai/openai-cookbook/commit/a0681e700b96ce82fbebb929a2bef652c2d84355
+        quote_or_span: "Codex/migrate claude agent sdk cookbook"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+
+  - id: MTRX-W22-cookbook-governance_surface
+    matrix_run_id: matrix-2026-W22
+    source_item_id: openai-cookbook-claude-migration
+    lens_id: governance_surface
+    mode: synthetic
+    content: >-
+      For procurement teams reviewing AI agent vendor lock-in: ask
+      both labs for a published migration path to the other. The
+      OpenAI cookbook Claude-migration recipe is now an asymmetric
+      signal — Anthropic does not currently publish the reverse.
+    source_refs:
+      - uri: https://github.com/openai/openai-cookbook/commit/f6a7ffa9ddd57849bb280b20102da7ff8620e8fa
+        quote_or_span: "Add Claude Agent SDK migration cookbook"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
