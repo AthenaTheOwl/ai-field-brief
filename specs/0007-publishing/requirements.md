@@ -339,3 +339,82 @@ Acceptance:
   message; the CLI also refuses the literal `PENDING`.
 - The CLI rewrites both `sandbox_image_ref` and every `inputs[].ref`
   and `outputs[].artifact_id` URI carrying `@PENDING/` in one pass.
+
+### R-PUB-022: CI workflow gates run-evidence chain on every PR
+
+ai-field-brief ships a CI workflow that enforces the run-evidence
+contract from DEC-CDCP-015 on every pull request and every push to
+main.
+
+Acceptance:
+
+- `.github/workflows/run-evidence-gates.yml` triggers on
+  `pull_request:` (no branch filter) and `push: branches: [main]`,
+  runs on `ubuntu-latest`, sets up Python 3.11 and Node 20, and is
+  reachable via `workflow_dispatch` for ad-hoc runs.
+- The universal gates from the contract (schema-cache freshness,
+  voice lint, no-BOM, spec-check, decisions validation,
+  validate_run_evidence, pnpm lint/typecheck/test/build) stay wired
+  under `.github/workflows/ci.yml` and continue to block merges.
+- The trace-to-eval-harness sibling is checked out at
+  `${{ github.workspace }}/trace-to-eval-harness` and pip-installed
+  into the runner so the harness CLI is callable.
+
+### R-PUB-023: CI gates packet generation and packet validation per sample
+
+The CI workflow runs packet generation from each canonical event
+ledger and packet validation against the produced packet for every
+canonical sample.
+
+Acceptance:
+
+- The `packet-generation-from-canonical-sample` step invokes
+  `python -m trace_to_eval evidence from-cdcp-events
+  ops/event-ledger/<sample>.jsonl --out /tmp/<sample>.packet.json
+  --portfolio-root ${{ github.workspace }}` and exits 0.
+- The `packet-validation` step invokes `python -m trace_to_eval
+  evidence validate /tmp/<sample>.packet.json` and exits 0.
+- Both steps run as a matrix over `run-36e307499472`,
+  `run-d74d787e6756`, and `run-1f1fc1f3d36d` so every sample is
+  exercised on every PR.
+
+### R-PUB-024: CI replay-smoke verifies sandbox SHA reachability + replay equivalence
+
+The CI workflow's replay-smoke step verifies that the recorded
+sandbox SHA is reachable in git history AND that the equivalence
+replay returns `replay_equivalent: true` against the recorded
+canonicalization at that SHA.
+
+Acceptance:
+
+- The step extracts the 40-char SHA from `sandbox_image_ref` via
+  `jq -r .sandbox_image_ref` plus a regex against
+  `repo://<repo>@<sha>/`.
+- The step verifies SHA reachability via `git cat-file -e
+  <sha>^{commit}` and exits 1 with a clear message on a
+  non-reachable SHA.
+- The step `git checkout`s the recorded sandbox SHA, then restores
+  `ops/run-records/` and `ops/event-ledger/` from main so the
+  on-disk `sandbox_image_ref` matches HEAD (closes the two-pass tail
+  from DEC-PUB-008 without modifying the canonical sample), then
+  runs `python scripts/replay_run.py --run-id <sample>` expecting
+  exit 0.
+- The step runs as a matrix over the three canonical samples; any
+  sample failing replay equivalence fails the job.
+
+### R-PUB-025: no contract gate is non-blocking or informational
+
+Every contract gate in the CI workflows is blocking. No
+`continue-on-error: true`, no `if: ${{ failure() }}` framing, no
+`--no-verify` bypass.
+
+Acceptance:
+
+- A grep over `.github/workflows/*.yml` returns zero matches for
+  `continue-on-error: true` against any DEC-CDCP-015 contract gate.
+  (The `pnpm audit` step in `ci.yml::security` carries `|| true`
+  because the dependency-advisory surface is not a contract gate per
+  DEC-CDCP-015; that exception is scoped and documented.)
+- No `if: ${{ failure() }}` short-circuits any contract step.
+- No workflow file runs `git commit --no-verify` or sets
+  `HUSKY=0`-style hook-bypass environment variables.

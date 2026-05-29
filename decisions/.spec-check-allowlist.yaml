@@ -80,4 +80,19 @@ deferred:
   - id: R-PUB-021
     note: resolved by DEC-PUB-008 (collective coverage)
 
+  # R-PUB-022 is resolved by DEC-PUB-009 directly via front-matter.
+  # R-PUB-023..025 are resolved collectively by the same DEC: the
+  # CI run-evidence-gates workflow ships as one cohesive change
+  # (matrix per sample + packet generation + packet validation +
+  # replay smoke + no-bypass discipline) under one DEC. Splintering
+  # the four requirements into four near-identical DECs would add
+  # noise without adding signal. Same shape as the R-PUB-019..021
+  # entry above.
+  - id: R-PUB-023
+    note: resolved by DEC-PUB-009 (collective coverage)
+  - id: R-PUB-024
+    note: resolved by DEC-PUB-009 (collective coverage)
+  - id: R-PUB-025
+    note: resolved by DEC-PUB-009 (collective coverage)
+
 roles_deferred: []
