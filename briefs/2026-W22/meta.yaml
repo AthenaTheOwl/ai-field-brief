@@ -1,16 +1,28 @@
 # meta — 2026-W22 weekly brief
-# Regenerated 2026-05-29 via the Matrix Plane massive-rerun pipeline.
-# The original W22 brief (vol. 1) drew on 30 sources; this rerun (vol. 4)
-# drew on 144 attempted across registry v3 (52 -> 134 active feeds),
-# 108 succeeded, 322 source items captured, 2112 matrix cells produced,
-# 1994 verified-passed after faithfulness review.
+# Vol. 5 (2026-05-29 systems-thinking upgrade) re-synthesizes vol. 4's
+# same evidence base (144 sources, 1,994 verified cells) through Pass 4
+# of the Matrix Plane: three new lens cells per Top Signal
+# (systems_thinking, transferable_principle, falsification_test) plus
+# one synthesis-time adoption_ladder per pick. The vol. 4 brief
+# (operating-boundary thesis) at git SHA 21174d3 remains the canonical
+# vol. 4 reference; vol. 5 supersedes it as the published reading.
 
 iso_week: 2026-W22
 through_date: 2026-05-29
-generated_at: 2026-05-29T22:00:00Z
-generated_by: claude-opus-4-7 (Matrix Plane massive-rerun pipeline)
-title: "The week the operating boundary became the product"
-volume: 4
+generated_at: 2026-05-29T23:30:00Z
+generated_by: claude-opus-4-7 (Matrix Plane Pass 4 systems-thinking re-synthesis)
+title: "The week the operating boundary became the product (systems-thinking cut)"
+volume: 5
+prior_version_sha: 21174d3
+upgrade_decisions:
+  - DEC-MTRX-007  # Pass 4 systems-thinking lens contract
+  - DEC-CDCP-020  # four Top-Signal fields evidence-spine rule
+
+# Vol. 5 specific Pass 4 outputs
+systems_thinking_cells_added: 21    # 3 lens cells x 7 Top Signals
+adoption_ladders_constructed: 7     # one per Top Signal (synthesis-time)
+top_signal_count: 7
+all_top_signals_have_4_fields: true
 
 registry_version: 3
 sweep:
@@ -20,15 +32,19 @@ sweep:
 matrix_run_id: MTRX-W22-massive-rerun
 
 matrix:
-  cells_produced: 2112
-  cells_verified: 1994
+  cells_produced: 2133              # 2112 vol. 4 + 21 vol. 5 Pass 4
+  cells_verified: 2015              # 1994 vol. 4 + 21 vol. 5 Pass 4
   cells_rejected_or_patched: 118
   cells_failed_faithfulness: 70
   cells_patched_on_revision: 48
   source_items_captured: 322
   source_items_promoted_to_matrix: 259
-  lenses_per_item: 8   # source_gist, claims_and_bets, mechanism_extraction, reusable_pattern,
-                       # adoption_action, risk_and_caveats, governance_surface, watchlist_trigger
+  lenses_per_item: 8   # vol. 4 base; Pass 4 lenses run only on Top picks (per DEC-MTRX-007)
+  pass_4_lenses_run_on: top_picks_only
+  pass_4_lens_ids:
+    - systems_thinking
+    - transferable_principle
+    - falsification_test
   artifact_path: briefs/2026-W22/matrix/cells.yaml
 
 # Per-lane sweep counts. The full source-by-source table for the rerun
