@@ -4,6 +4,28 @@ The single contract a coding agent (Claude, Codex, or other) reads
 before acting on this repo. Specs name what we build. Decisions name
 why. This file names how the agent behaves while building.
 
+## Evidence-spine rule
+
+The matrix plane is the join key between sources and the digest. The
+following are non-negotiable, in the same way the voice-lint banlist
+is non-negotiable:
+
+- No digest claim ships unless it traces to one or more verified
+  matrix cells. A cell is verified when
+  `faithfulness_status: passed` per `schemas/matrix_cell.schema.json`.
+- No matrix cell counts as verified unless it carries at least one
+  entry in `source_refs`. A cell with no source span is rejected at
+  write time and again at verify time.
+- No action candidate gets promoted unless it carries the six
+  required fields: source support (verified cell ids), action
+  surface, test plan, expected benefit, risk, and disposition (one
+  of `adopt_now`, `prototype`, `monitor`, `archive`, `reject`,
+  `promote_to_os_candidate`).
+
+The rule is recorded under DEC-MTRX-001 and lives in
+[docs/MATRIX_PLANE_DESIGN.md](../docs/MATRIX_PLANE_DESIGN.md). An
+amendment relaxing the rule requires a new DEC.
+
 ## Coding style
 
 - TypeScript strict everywhere. `tsconfig.base.json` carries

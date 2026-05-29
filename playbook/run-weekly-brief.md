@@ -34,12 +34,46 @@ weekly pass. Read this top-to-bottom before starting.
    The rubric is informal in v1; spec 0005 (R-EXT) lands the scored
    version.
 
-4. **Synthesize.** Draft `briefs/YYYY-WNN/brief.md` against
-   `templates/weekly-brief.md`. The opening reflection names the
+4. **Matrix cell production.** For each captured source item that
+   survived triage, apply every `required: true` lens from
+   `config/prompt_lenses.yaml` (and any optional lens the profile
+   selects) to produce one matrix cell per source-item-lens pair.
+   Each cell records: source-item id, lens id, extraction mode,
+   answer text, source refs (every claim cites a span), confidence
+   (`high`/`medium`/`low`), and `faithfulness_status: not_checked`.
+   Cells land in the run-evidence path so the brief generation can
+   reference them later. The cell shape matches
+   `schemas/matrix_cell.schema.json`; the lens prompts live at
+   `prompts/lenses/`. This step pins to the `science.matrix-runner`
+   role; see `.agents/roles/science.matrix-runner/instructions.md`
+   for the run-time contract.
+
+5. **Cell faithfulness verification.** Read every cell from step 4
+   against the source body. Apply the seven-question check in
+   `prompts/cell_faithfulness.md`: unsupported claim, overstated
+   certainty, missing caveat, invented consensus, wrong source span,
+   too generic, action recommendation not supported by the source.
+   Each cell receives one verdict: `PASS`, `PATCH_CELL`, or
+   `FAIL_CELL`. Patched cells move to `verified`; failed cells drop.
+   This step pins to the `science.cell-verifier` role.
+
+6. **Theme and row synthesis.** Cluster verified cells by theme and
+   draft row summaries from cell evidence. Every sentence in a row
+   summary, theme cluster, or action candidate carries an inline
+   cell-id reference. Action candidates that cannot point at a
+   verified cell drop. This step pins to the
+   `science.matrix-synthesis-editor` role and produces the input the
+   brief author pulls from in step 7.
+
+7. **Synthesize.** Draft `briefs/YYYY-WNN/brief.md` against
+   `templates/weekly-brief.md`, drawing on the row summaries from
+   step 6. Every pick names the cell ids it leans on as inline
+   comments (the rendered markdown stays clean; the cell-id stays in
+   a comment alongside the link). The opening reflection names the
    pattern; the picks earn their place with comment, not link-dumps.
 
-5. **Faithfulness audit.** Before voice-lint, re-read each pick with
-   these questions:
+8. **Faithfulness audit (per cell).** Before voice-lint, re-read
+   each pick with these questions:
 
    - Did we overstate? Is there a claim that goes beyond what the
      source supports?
@@ -59,31 +93,31 @@ weekly pass. Read this top-to-bottom before starting.
    This pass takes 10-15 minutes per brief. Not optional. Captured as
    DEC-PUB-004.
 
-6. **Voice pass.** Run `python scripts/voice_lint.py`. Fix every FAIL.
+9. **Voice pass.** Run `python scripts/voice_lint.py`. Fix every FAIL.
    Re-read the draft top-to-bottom — does the rhythm sound like a
    considered weekly letter, or like an aggregator?
 
-7. **Meta log.** Write `briefs/YYYY-WNN/meta.yaml`: sources reviewed,
-   items captured per source, items included, failures during sweep,
-   notes for next run.
+10. **Meta log.** Write `briefs/YYYY-WNN/meta.yaml`: sources reviewed,
+    items captured per source, items included, failures during sweep,
+    notes for next run.
 
-8. **Update the index.** Add the new row to `briefs/INDEX.md`. Newest
-   first.
+11. **Update the index.** Add the new row to `briefs/INDEX.md`. Newest
+    first.
 
-9. **Verify.** Run all four gates:
-   ```
-   python scripts/spec_check.py
-   python scripts/voice_lint.py
-   python scripts/validate_schemas.py
-   python scripts/validate_registry.py
-   ```
-   All must be green.
+12. **Verify.** Run all four gates:
+    ```
+    python scripts/spec_check.py
+    python scripts/voice_lint.py
+    python scripts/validate_schemas.py
+    python scripts/validate_registry.py
+    ```
+    All must be green.
 
-10. **Pause for human review.** Output a short summary: sources swept,
+13. **Pause for human review.** Output a short summary: sources swept,
     items included, surprises, any sources to add. The human reads
     `brief.md` + `meta.yaml`, edits voice, then approves.
 
-11. **Emit run evidence.** Before commit, write the Run record and
+14. **Emit run evidence.** Before commit, write the Run record and
     event ledger for this run:
     ```
     python scripts/finalize_run.py \
@@ -95,7 +129,7 @@ weekly pass. Read this top-to-bottom before starting.
     `scripts/validate_run_evidence.py` will catch any malformed
     record before the push lands.
 
-12. **Commit.** Match the existing commit-message style. One commit
+15. **Commit.** Match the existing commit-message style. One commit
     per brief; subject `brief 2026-WNN: <one-line frame>`. The Run
     record and event ledger go in the same commit as the brief.
 
