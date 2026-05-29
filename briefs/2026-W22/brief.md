@@ -251,7 +251,7 @@ month a coding agent acquires a new sub-agent dispatch flag (see
 pick 4 on dynamic workflows).
 
 **Systems map:** Unit-economics drift: when usage scales with
-intelligence-per-task rather than seats, any pricing model anchored
+intelligence-per-task and not with seats, any pricing model anchored
 to seats decouples from cost-of-goods and from value-delivered in
 opposite directions. The $47B run-rate, the n=1 $2,180 vs $200 gap,
 and the enterprise Codex roster are three measurements of the same
@@ -274,7 +274,7 @@ any vendor, and to per-pipeline CI spend on hosted runners.
 Anthropic or OpenAI publishes an audited TTM revenue alongside a
 run-rate and the TTM figure lands more than 35% below the
 annualized run-rate (i.e., the trajectory is a one-month marketing
-artifact rather than a durable level). The per-developer-burn
+artifact, not a durable level). The per-developer-burn
 thesis breaks if a procurement survey of 100+ engineering
 organizations using coding agents shows median monthly spend
 remains below the seat price for a sustained quarter; that would
@@ -405,7 +405,7 @@ extension that summarizes page content into a chat surface.
 of red-team data shows that strip-or-proxy controls and
 human-approval gates fail to reduce successful exfiltration
 attempts versus a control group with only post-hoc monitoring —
-i.e., the policy ladder is theatre rather than control. The
+i.e., the policy ladder is theatre and not control. The
 monitor-benchmark thesis breaks if vendors begin citing
 SLEIGHT-Bench numbers without those numbers correlating with
 real-world incident rates inside customer deployments (Goodhart on
@@ -546,7 +546,7 @@ consolidation-at-three-platforms claim breaks if by 2026-Q4 the
 surviving production agent platforms have converged on a flat
 capability-token model (one allowlist per tool with explicit
 scopes) and discarded the tier vocabulary. Either observation
-would mean the ladder is a transitional artifact rather than the
+would mean the ladder is a transitional artifact, not the
 long-run shape.
 
 **Adoption ladder:**
@@ -564,7 +564,7 @@ long-run shape.
     four-tier ladder, audit-log retention is contractually
     specified, per-workflow caps are owner-mutable only, and the
     gateway-side allowlist (vendor + model + region) is pinned
-    centrally rather than per application.
+    centrally and not per application.
   - Monitoring: tier hit rate per surface, classifier false-permit
     rate, human-prompt rate, per-workflow cost variance vs cap,
     audit-log completeness on every tool call.
@@ -646,7 +646,7 @@ for the dominant workload.
 
 **Transferable principle:** When execution moves to a shared
 substrate, retention policy and provider portability become
-primary architectural concerns rather than secondary ops detail.
+primary architectural concerns and not secondary ops detail.
 Example beyond coding agents: data-pipeline notebooks moving from
 laptops to managed runtimes (Hex, Deepnote, Databricks) where the
 persistence default is "cell outputs survive" and the privacy
@@ -769,7 +769,7 @@ system must scale by composition.
 saturates, diagnose bottlenecks at the system level before
 swapping the underlying engine. Example beyond agents: database
 performance work where past a CPU threshold the marginal gain is
-in indexing, query planning, and connection pooling rather than a
+in indexing, query planning, and connection pooling and not a
 faster CPU — the diagnostic toolkit is profile-first, not
 procure-first. The same shape applies to search-relevance work
 where retrieval and re-ranking dominate marginal model gains, to
@@ -887,10 +887,10 @@ of planning shifts from capacity-count to
 throughput-per-physical-unit. Example beyond AI infra: EV-charger
 rollout where the binding constraint moved from charger-count to
 grid-interconnect approval, and the right planning metric became
-kilowatt-hours-per-stall-per-day rather than total stall count. The
+kilowatt-hours-per-stall-per-day and not total stall count. The
 same shape applies to crypto-mining geography in 2018-2022, to
 commercial real-estate post-2020 where the binding constraint
-became municipal zoning rather than capital, and to undersea-cable
+became municipal zoning and not capital, and to undersea-cable
 buildouts.
 
 **Falsification test:** The HBM-bottleneck thesis breaks if
