@@ -1,0 +1,70 @@
+id: matrix-analysis-loop
+description: The multi-document multi-prompt matrix loop. Fill the matrix before any digest. Verify cells before any synthesis. Synthesize from verified cells only.
+trigger:
+  kind: event
+  detail: source_items.indexed
+steps:
+  - id: select-source-items
+    role: control.coordinator
+    input_from: []
+    output_to:
+      - select-lenses
+    gate: review_checklist_complete
+    on_failure: halt
+    on_success: continue
+  - id: select-lenses
+    role: science.lens-designer
+    input_from:
+      - select-source-items
+    output_to:
+      - run-matrix-cells
+    gate: lens_has_purpose
+    on_failure: route_to:control.coordinator
+    on_success: continue
+  - id: run-matrix-cells
+    role: science.matrix-runner
+    input_from:
+      - select-lenses
+    output_to:
+      - verify-cells
+    gate: every_cell_has_source_refs
+    on_failure: route_to:science.lens-designer
+    on_success: continue
+  - id: verify-cells
+    role: science.cell-verifier
+    input_from:
+      - run-matrix-cells
+    output_to:
+      - row-synthesis
+    gate: no_invented_claims
+    on_failure: route_to:science.matrix-runner
+    on_success: continue
+  - id: row-synthesis
+    role: science.matrix-synthesis-editor
+    input_from:
+      - verify-cells
+    output_to:
+      - profile-scoring
+    gate: every_digest_claim_links_to_verified_cell
+    on_failure: route_to:science.cell-verifier
+    on_success: continue
+  - id: profile-scoring
+    role: control.coordinator
+    input_from:
+      - row-synthesis
+    output_to:
+      - weekly-digest
+    gate: review_checklist_complete
+    on_failure: halt
+    on_success: continue
+  - id: weekly-digest
+    role: control.coordinator
+    input_from:
+      - profile-scoring
+    output_to: []
+    gate: review_checklist_complete
+    on_failure: halt
+    on_success: await_approval
+on_complete: await_approval
+human_checkpoints:
+  - weekly-digest

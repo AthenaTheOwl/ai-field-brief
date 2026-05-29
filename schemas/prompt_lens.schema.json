@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PromptLens",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "mode",
+    "category",
+    "prompt",
+    "purpose"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "extractive",
+        "extractive_plus_brief_abstractive",
+        "extractive_interpretive",
+        "interpretive_grounded",
+        "synthetic_grounded",
+        "critique"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "output_schema": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "allowed_source_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

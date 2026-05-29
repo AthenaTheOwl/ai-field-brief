@@ -1,0 +1,6 @@
+# Tool subset the science.matrix-runner role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read lens prompts, the source registry, and source-item bodies.
+  risk_level: low

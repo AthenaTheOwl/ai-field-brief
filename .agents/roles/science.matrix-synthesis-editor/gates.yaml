@@ -1,0 +1,8 @@
+# Gates the science.matrix-synthesis-editor role must clear on its own run.
+
+- name: every_digest_claim_links_to_verified_cell
+  description: Every synthesis sentence carries a cell-id reference to a cell with faithfulness_status passed.
+- name: every_action_has_test_plan
+  description: Every action candidate carries a non-empty test plan field drawn from the source cells.
+- name: watchlist_items_have_triggers
+  description: Every watchlist candidate carries a revisit trigger drawn from the watchlist-trigger lens cell.

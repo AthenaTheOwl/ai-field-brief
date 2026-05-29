@@ -1,0 +1,8 @@
+# Gates the science.cell-verifier role must clear on its own run.
+
+- name: no_invented_claims
+  description: Every cell claim ties back to a span the verifier can locate in the source body.
+- name: no_flattened_uncertainty
+  description: A hedged source produces a cell that carries the hedge or a low confidence value.
+- name: caveats_preserved
+  description: A caveat in the source body lands in the cell caveats field or the warnings list.

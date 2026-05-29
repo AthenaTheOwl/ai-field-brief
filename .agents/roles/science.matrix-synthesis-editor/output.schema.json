@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScienceMatrixSynthesisEditorOutput",
+  "description": "Output shape for science.matrix-synthesis-editor runs: row summaries, theme clusters, and action candidates, each anchored to verified cells.",
+  "type": "object",
+  "required": ["matrix_run_id", "row_summaries", "theme_clusters"],
+  "additionalProperties": false,
+  "properties": {
+    "matrix_run_id": {
+      "type": "string"
+    },
+    "row_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_item_id", "summary", "cell_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "source_item_id": {"type": "string"},
+          "summary": {"type": "string"},
+          "cell_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "theme_clusters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["theme", "cell_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "theme": {"type": "string"},
+          "lens_category": {"type": "string"},
+          "cell_ids": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "action_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "source_support", "surface", "test", "expected_benefit", "risk", "disposition"],
+        "additionalProperties": false,
+        "properties": {
+          "title": {"type": "string"},
+          "source_support": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string"}
+          },
+          "surface": {"type": "string"},
+          "test": {"type": "string"},
+          "expected_benefit": {"type": "string"},
+          "risk": {"type": "string"},
+          "disposition": {
+            "type": "string",
+            "enum": ["adopt_now", "prototype", "monitor", "archive", "reject", "promote_to_os_candidate"]
+          }
+        }
+      }
+    }
+  }
+}

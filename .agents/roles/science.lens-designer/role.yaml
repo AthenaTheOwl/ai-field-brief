@@ -1,0 +1,50 @@
+id: science.lens-designer
+guild: science
+mission: Curate the prompt-lens catalog and pick the lens set for a matrix run before any cell is produced.
+inputs:
+  - name: profile_id
+    kind: context
+    required: true
+  - name: source_types
+    kind: context
+    required: true
+  - name: lens_catalog
+    kind: artifact
+    required: true
+allowed_tools:
+  - repo.read
+forbidden_actions:
+  - publish_digest
+  - alter_verified_cells
+  - write_code
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+required_gates:
+  - lens_has_purpose
+  - lens_has_output_schema
+  - lens_forbids_source_free_claims
+escalation:
+  - condition: lens_catalog_missing_required_lens
+    escalate_to: control.coordinator
+  - condition: profile_guard_unresolved
+    escalate_to: product.spec-writer
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: lens_selection
+    kind: artifact
+    artifact_type: plan
+    required: true
+  - name: lens_candidate
+    kind: artifact
+    artifact_type: prompt_patch
+    required: false
+examples_dir: .agents/roles/science.lens-designer/examples

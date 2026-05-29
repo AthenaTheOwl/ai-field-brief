@@ -1,0 +1,8 @@
+# Gates the science.lens-designer role must clear on its own run.
+
+- name: lens_has_purpose
+  description: Every selected lens carries a non-empty purpose field in the catalog.
+- name: lens_has_output_schema
+  description: Every selected lens points at a schema the repo ships under schemas/.
+- name: lens_forbids_source_free_claims
+  description: Every selected lens prompt carries the source-grounding rule in its prompt body.

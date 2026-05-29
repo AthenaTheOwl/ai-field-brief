@@ -1,0 +1,39 @@
+matrix_run:
+  id: matrix_2026_05_27_personal
+  profile_id: personal
+  lookback_window:
+    start: 2026-05-20
+    end: 2026-05-27
+  source_item_ids:
+    - podcast_ai_daily_brief_2026_05_26
+    - repo_gstack_snapshot_2026_05_25
+    - article_agent_runtime_checkpointing_2026_05_24
+  lens_ids:
+    - source_gist
+    - claims_and_bets
+    - mechanism_extraction
+    - reusable_pattern
+    - adoption_action
+    - risk_and_caveats
+    - governance_surface
+    - creative_os_impact
+    - contrarian_take
+    - watchlist_trigger
+  status: completed
+
+example_cell:
+  id: cell_runtime_checkpointing_adoption_action
+  matrix_run_id: matrix_2026_05_27_personal
+  source_item_id: article_agent_runtime_checkpointing_2026_05_24
+  lens_id: adoption_action
+  mode: synthetic
+  content: Add run snapshot, replay transcript, workspace snapshot, and validation refs to the agent-run schema.
+  source_refs:
+    - uri: source://article_agent_runtime_checkpointing_2026_05_24
+      quote_or_span: section describing durable run snapshots and checkpoint restore
+      ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+    - Requires custom Creative OS validation; runtime snapshot alone is not proof.

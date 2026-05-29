@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MatrixRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "profile_id",
+    "lookback_window",
+    "source_item_ids",
+    "lens_ids",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "profile_id": {
+      "type": "string"
+    },
+    "lookback_window": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lens_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "running",
+        "failed",
+        "completed",
+        "synthesized",
+        "published"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "completed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cost_estimate": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

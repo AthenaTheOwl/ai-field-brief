@@ -1,0 +1,6 @@
+# Tool subset the science.cell-verifier role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read cell records, source-item bodies, and the originating lens prompt.
+  risk_level: low

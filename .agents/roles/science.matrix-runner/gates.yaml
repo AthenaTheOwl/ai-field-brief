@@ -1,0 +1,8 @@
+# Gates the science.matrix-runner role must clear on its own run.
+
+- name: every_cell_has_source_refs
+  description: Every cell carries at least one entry in its source_refs array.
+- name: extraction_mode_declared
+  description: Every cell declares mode from the matrix-cell enum.
+- name: confidence_declared
+  description: Every cell declares confidence from the matrix-cell enum.

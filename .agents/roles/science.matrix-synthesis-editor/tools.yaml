@@ -1,0 +1,6 @@
+# Tool subset the science.matrix-synthesis-editor role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read verified cells, the faithfulness report, and the synthesis prompt.
+  risk_level: low

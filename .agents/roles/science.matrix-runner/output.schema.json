@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScienceMatrixRunnerOutput",
+  "description": "Output shape for science.matrix-runner runs: the cells produced plus the run record header.",
+  "type": "object",
+  "required": ["matrix_run_id", "cells_produced", "cells_failed"],
+  "additionalProperties": false,
+  "properties": {
+    "matrix_run_id": {
+      "type": "string"
+    },
+    "cells_produced": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cells_failed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

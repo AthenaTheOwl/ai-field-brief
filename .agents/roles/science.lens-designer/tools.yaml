@@ -1,0 +1,6 @@
+# Tool subset the science.lens-designer role calls.
+# Full registry lives at .agents/tools.yaml.
+
+- id: repo.read
+  description: Read the lens catalog, lens prompts, and the lens-output schema.
+  risk_level: low

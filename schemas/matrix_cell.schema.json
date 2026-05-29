@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MatrixCell",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "matrix_run_id",
+    "source_item_id",
+    "lens_id",
+    "mode",
+    "content",
+    "source_refs",
+    "confidence",
+    "faithfulness_status",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "matrix_run_id": {
+      "type": "string"
+    },
+    "source_item_id": {
+      "type": "string"
+    },
+    "lens_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "extractive",
+        "abstractive",
+        "interpretive",
+        "synthetic",
+        "critique"
+      ]
+    },
+    "content": {
+      "type": "string"
+    },
+    "structured": {
+      "type": "object"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "uri",
+          "quote_or_span",
+          "ref_type"
+        ],
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "quote_or_span": {
+            "type": "string"
+          },
+          "ref_type": {
+            "type": "string",
+            "enum": [
+              "quote",
+              "timestamp",
+              "chunk",
+              "page",
+              "line",
+              "url"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "faithfulness_status": {
+      "type": "string",
+      "enum": [
+        "not_checked",
+        "passed",
+        "needs_patch",
+        "failed"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "verified",
+        "patched",
+        "rejected",
+        "synthesized"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

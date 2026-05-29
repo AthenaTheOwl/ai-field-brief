@@ -1,0 +1,51 @@
+id: science.matrix-runner
+guild: science
+mission: Run the selected prompt lenses over the chosen source items and write one matrix cell per source-item-lens pair.
+inputs:
+  - name: source_item_ids
+    kind: context
+    required: true
+  - name: lens_selection
+    kind: artifact
+    required: true
+  - name: lookback_window
+    kind: context
+    required: true
+allowed_tools:
+  - repo.read
+forbidden_actions:
+  - synthesize_digest
+  - promote_action_candidate
+  - drop_caveats
+  - write_code
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+required_gates:
+  - every_cell_has_source_refs
+  - extraction_mode_declared
+  - confidence_declared
+escalation:
+  - condition: source_item_unreachable
+    escalate_to: control.coordinator
+  - condition: lens_prompt_missing
+    escalate_to: science.lens-designer
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: matrix_cells
+    kind: artifact
+    artifact_type: log
+    required: true
+  - name: matrix_run_record
+    kind: artifact
+    artifact_type: trace
+    required: true
+examples_dir: .agents/roles/science.matrix-runner/examples

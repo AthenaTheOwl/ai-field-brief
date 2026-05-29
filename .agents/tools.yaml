@@ -19,6 +19,10 @@
     - engineering.implementation
     - engineering.code-reviewer
     - science.proof-gate-runner
+    - science.lens-designer
+    - science.matrix-runner
+    - science.cell-verifier
+    - science.matrix-synthesis-editor
     - learning.dream-orchestrator
     - learning.skill-curator
     - security.threat-modeler

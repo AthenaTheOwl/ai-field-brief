@@ -1,0 +1,25 @@
+creative_matrix:
+  id: resonance_v35_chapter_audit_matrix
+  rows:
+    - v35_ch01_scene01
+    - v35_ch01_scene02
+    - v35_ch01_interstitial
+  columns:
+    - scene_engine
+    - canon_state
+    - reveal_seed_discipline
+    - continuity
+    - relationship_movement
+    - voice_style
+    - prose_depth
+    - hidden_risk_owl
+    - state_delta
+    - patch_recommendation
+
+example_cell:
+  row: v35_ch01_scene01
+  column: reveal_seed_discipline
+  verdict: PATCH
+  finding: Scene reinforces a seed too directly and risks telegraphing a later reveal.
+  required_fix: Convert interpretation into observation and remove narrator emphasis.
+  promotion: none_until_patch_verified

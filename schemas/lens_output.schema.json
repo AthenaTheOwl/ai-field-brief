@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LensOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "answer",
+    "source_refs",
+    "confidence",
+    "caveats"
+  ],
+  "properties": {
+    "answer": {
+      "type": "string"
+    },
+    "bullets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "uri",
+          "supporting_text_or_span"
+        ],
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "supporting_text_or_span": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "action_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "surface": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string"
+          },
+          "test": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

@@ -26,7 +26,7 @@ removal in the same commit.
   published briefs (2026-W20 and 2026-W21) under `briefs/`, and no
   other role owns the comprehension surface.
 
-## Installed (nine worked examples)
+## Installed (thirteen worked examples)
 
 See `.agents/roles/` for the file sets.
 
@@ -36,9 +36,26 @@ See `.agents/roles/` for the file sets.
 - `engineering.implementation` — writes code on assigned tickets.
 - `engineering.code-reviewer` — blocks merges on quality or security smells.
 - `science.proof-gate-runner` — runs the gate suite and reports green or blocking.
+- `science.lens-designer` — curates the prompt-lens catalog and picks the lens set per matrix run. Graduated 2026-05-29 with the matrix plane install (DEC-MTRX-002).
+- `science.matrix-runner` — runs lens × source-item fanout and writes matrix cells. Graduated 2026-05-29 with the matrix plane install (DEC-MTRX-002).
+- `science.cell-verifier` — checks every cell against its source and marks pass/patch/fail. Graduated 2026-05-29 with the matrix plane install (DEC-MTRX-002).
+- `science.matrix-synthesis-editor` — clusters verified cells into row summaries, themes, and action candidates. Graduated 2026-05-29 with the matrix plane install (DEC-MTRX-002).
 - `security.threat-modeler` — drafts STRIDE passes on new external surfaces.
 - `learning.dream-orchestrator` — weekly offline cognition; files candidates.
 - `learning.skill-curator` — owns the skill registry and the graduation cadence.
+
+The four new science roles cover the matrix-analysis loop named in
+`.agents/workflows/matrix-analysis-loop.yaml`. The plan agent's
+Phase 1 map called this guild `analysis`; the install lands them under
+`science` because the cross-repo `role.schema.json` guild enum (control,
+product, research, design, engineering, science, security, operations,
+domain, learning, documentation, commercial) does not include
+`analysis` and per DEC-CDCP-010 cross-repo schemas live in athena-site.
+The matrix-plane work is evidence-grounded verification work, which
+sits cleanly under the science guild today; a future
+`analysis` guild can graduate via athena-site if and when other
+analysis-flavored roles accumulate enough mass to justify the schema
+amendment.
 
 ## Deferred (42 roles)
 

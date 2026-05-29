@@ -1,0 +1,52 @@
+id: science.matrix-synthesis-editor
+guild: science
+mission: Cluster verified matrix cells into row summaries, themes, and action candidates so the digest can trace every claim to a verified cell.
+inputs:
+  - name: verified_matrix_cells
+    kind: artifact
+    required: true
+  - name: lens_selection
+    kind: artifact
+    required: true
+allowed_tools:
+  - repo.read
+forbidden_actions:
+  - cite_unverified_cells
+  - force_action_angles
+  - publish_without_review
+  - write_code
+  - deploy_to_production
+  - modify_secrets
+  - approve_change
+  - promote_memory
+required_gates:
+  - every_digest_claim_links_to_verified_cell
+  - every_action_has_test_plan
+  - watchlist_items_have_triggers
+escalation:
+  - condition: cluster_lacks_verified_cells
+    escalate_to: science.cell-verifier
+  - condition: action_candidate_missing_test_plan
+    escalate_to: control.coordinator
+permissions:
+  read_repo: true
+  write_code: false
+  run_tests: false
+  approve: false
+  deploy: false
+  promote_memory: false
+runtime_hint: claude_code
+outputs:
+  - name: row_synthesis
+    kind: artifact
+    artifact_type: plan
+    required: true
+  - name: theme_cluster
+    kind: artifact
+    artifact_type: plan
+    required: true
+  - name: action_candidate
+    kind: artifact
+    artifact_type: plan
+    required: false
+examples_dir: .agents/roles/science.matrix-synthesis-editor/examples

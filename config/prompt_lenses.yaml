@@ -1,0 +1,96 @@
+# Prompt lens catalog for the matrix plane.
+# Paths are repo-relative. Schemas live at schemas/; lens prompts at
+# prompts/lenses/. Required lenses run on every brief profile; optional
+# lenses run only when the profile selects them.
+
+lenses:
+  - id: source_gist
+    name: Source Gist
+    mode: extractive_plus_brief_abstractive
+    category: baseline
+    required: true
+    prompt: prompts/lenses/source_gist.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Capture what the source actually says before interpreting it.
+
+  - id: claims_and_bets
+    name: Claims and Bets
+    mode: extractive_interpretive
+    category: analysis
+    required: true
+    prompt: prompts/lenses/claims_and_bets.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Extract explicit claims, predictions, bets, and uncertain statements.
+
+  - id: mechanism_extraction
+    name: Mechanism Extraction
+    mode: interpretive_grounded
+    category: analysis
+    required: true
+    prompt: prompts/lenses/mechanism_extraction.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Identify the mechanism under the news, tutorial, paper, repo, or interview.
+
+  - id: reusable_pattern
+    name: Reusable Pattern
+    mode: synthetic_grounded
+    category: pattern
+    required: true
+    prompt: prompts/lenses/reusable_pattern.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Convert the source into transferable patterns.
+
+  - id: adoption_action
+    name: Adoption Action
+    mode: synthetic_grounded
+    category: action
+    required: true
+    prompt: prompts/lenses/adoption_action.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Identify specific things worth adopting, prototyping, or rejecting.
+
+  - id: risk_and_caveats
+    name: Risks and Caveats
+    mode: interpretive_grounded
+    category: risk
+    required: true
+    prompt: prompts/lenses/risk_and_caveats.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Preserve uncertainty, limitations, downside, and failure modes.
+
+  - id: governance_surface
+    name: Governance Surface
+    mode: synthetic_grounded
+    category: governance
+    required: false
+    prompt: prompts/lenses/governance_surface.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Identify permissions, policy, audit, tool, data, runtime, and state implications.
+
+  - id: creative_os_impact
+    name: Creative OS Impact
+    mode: synthetic_grounded
+    category: creative_os
+    required: false
+    profile_guard: creative_os_only
+    prompt: prompts/lenses/creative_os_impact.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Map useful ideas into Creative OS roles, gates, workflows, ledgers, or runtime adapters.
+
+  - id: contrarian_take
+    name: Contrarian Take
+    mode: critique
+    category: critique
+    required: false
+    prompt: prompts/lenses/contrarian_take.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Stress-test whether this item is hype, weakly evidenced, or not worth acting on.
+
+  - id: watchlist_trigger
+    name: Watchlist Trigger
+    mode: synthetic_grounded
+    category: monitoring
+    required: false
+    prompt: prompts/lenses/watchlist_trigger.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Define what would make this item worth revisiting.
