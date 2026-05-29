@@ -95,6 +95,18 @@ deferred:
   - id: R-PUB-025
     note: resolved by DEC-PUB-009 (collective coverage)
 
+  # R-PUB-027 is resolved by DEC-PUB-011 directly via front-matter.
+  # R-PUB-028..029 are resolved collectively by the same DEC: the
+  # chaos test suite ships as one cohesive change (test module +
+  # CI wiring + on-disk-sample guard) under one DEC. Splintering
+  # the three requirements into three near-identical DECs would add
+  # noise without adding signal. Same shape as the R-PUB-023..025
+  # entry above.
+  - id: R-PUB-028
+    note: resolved by DEC-PUB-011 (collective coverage)
+  - id: R-PUB-029
+    note: resolved by DEC-PUB-011 (collective coverage)
+
   # R-MTRX-001 is resolved by DEC-MTRX-001 directly via front-matter.
   # R-MTRX-005 ships as part of the same install pass and is covered
   # collectively by DEC-MTRX-001 (the install DEC names the six-field

@@ -30,6 +30,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  chaos-validation:
+    name: chaos-validation (validate_run_evidence mutation coverage)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: install python deps
+        run: |
+          python -m pip install --quiet "jsonschema>=4.21" "referencing>=0.35" "pyyaml>=6.0" pytest
+
+      # The chaos suite walks seven mutation classes against the
+      # canonical sample (M1 prompt-hash, M2 tool-hash, M3 phantom
+      # gate, M4 dropped terminal event, M5 typed-payload regression,
+      # M6 fields_populated drift, M7 done-without-sandbox). Every
+      # mutation must trigger a non-zero exit in
+      # scripts/validate_run_evidence.py; a silent pass on any class
+      # is a real validator gap and fails the job loudly. Closes
+      # DEC-PUB-011.
+      - name: chaos-validation
+        run: |
+          python -m pytest tests/scripts/test_chaos_run_evidence.py -v
+
   packet-and-replay:
     name: packet-and-replay (${{ matrix.sample }})
     runs-on: ubuntu-latest

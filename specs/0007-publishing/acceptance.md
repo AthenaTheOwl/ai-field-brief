@@ -9,7 +9,7 @@ pnpm --filter @aifieldbrief/web build
 python scripts/spec_check.py
 python scripts/voice_lint.py
 python scripts/validate_run_evidence.py
-python -m pytest tests/scripts/test_run_evidence.py tests/scripts/test_run_evidence_cli.py tests/scripts/test_validate_run_evidence_cross_checks.py
+python -m pytest tests/scripts/test_run_evidence.py tests/scripts/test_run_evidence_cli.py tests/scripts/test_validate_run_evidence_cross_checks.py tests/scripts/test_chaos_run_evidence.py
 ```
 
 Manual checks:
@@ -68,3 +68,23 @@ Run-evidence verifiability conditions:
   landed in supplier-risk-rag-agent (DEC-EVL-011) and
   procurement-negotiation-lab (DEC-FACTORY-013). Covered by
   inspection of `scripts/replay_run.py::_now_filename_iso`.
+- `python -m pytest tests/scripts/test_chaos_run_evidence.py` walks
+  seven mutation classes against the canonical Run + ledger sample
+  and asserts `scripts/validate_run_evidence.py` exits non-zero on
+  every class. The classes cover Round 3's four cross-checks (M1
+  prompt-hash, M2 tool-hash, M3 phantom gate, M6 fields_populated
+  drift), Round 2's typed event payload schema (M5 pipeline.start
+  payload missing prompt_snapshot_hash), the required-terminal-event
+  check (M4 dropped gate.run.evidence_recorded), and the
+  required-for-done gate (M7 done Run missing sandbox_image_ref).
+  A zero exit code on any mutation fails the test with a message
+  flagging the silent pass as a real validator gap.
+- `.github/workflows/run-evidence-gates.yml` runs the chaos suite as
+  a blocking `chaos-validation` job on every pull request and every
+  push to main; the job carries no `continue-on-error: true` and is
+  independent of the `packet-and-replay` matrix.
+- Every chaos test copies the canonical sample into `tmp_path`
+  before mutating, and the
+  `test_canonical_sample_on_disk_is_not_modified` guard asserts the
+  load-bearing fields on the disk-resident sample are still present
+  after the run.

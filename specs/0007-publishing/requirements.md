@@ -442,3 +442,66 @@ Acceptance:
   procurement-negotiation-lab fix (DEC-FACTORY-013).
 - The existing `replay-<run-id>-*.jsonl` glob pattern used by
   `tests/scripts/test_replay_run.py` continues to match.
+
+### R-PUB-027: chaos test suite covers seven mutation classes
+
+ai-field-brief ships a chaos test suite that walks seven mutation
+classes against the canonical Run + ledger sample on disk and asserts
+that `scripts/validate_run_evidence.py` exits non-zero on every class.
+Without the suite a future regression in any check could let bad Runs
+through silently; with it, every check has a focused mutation that
+fires when the check stops working.
+
+Acceptance:
+
+- `tests/scripts/test_chaos_run_evidence.py` walks at least seven
+  mutation classes: M1 mutates `Run.prompt_snapshot_hash`, M2 mutates
+  `Run.tool_schemas_snapshot_hash`, M3 adds a phantom gate name to
+  `Run.gate_results_summary.gates_passed`, M4 drops the terminal
+  `gate.run.evidence_recorded` event, M5 drops `prompt_snapshot_hash`
+  from the `pipeline.start` payload, M6 claims a replay-equivalence
+  field on `gate.run.evidence_recorded.payload.fields_populated` that
+  the Run does not populate, and M7 keeps `Run.status = "done"` but
+  drops `sandbox_image_ref`.
+- Each mutation asserts the validator exited non-zero and that the
+  error message names the run_id plus the specific check that should
+  have caught the mutation.
+- A zero exit code on any mutation fails the test with a message
+  flagging the silent pass as a real validator gap.
+
+### R-PUB-028: chaos suite is a blocking CI gate
+
+The chaos suite is wired into
+`.github/workflows/run-evidence-gates.yml` as a blocking
+`chaos-validation` job that runs on every pull request and every
+push to main.
+
+Acceptance:
+
+- The workflow file declares a `chaos-validation` job whose final
+  step runs `python -m pytest
+  tests/scripts/test_chaos_run_evidence.py -v`.
+- The job carries no `continue-on-error: true` and no
+  `if: ${{ failure() }}` short-circuit; it blocks merges on failure.
+- The job is independent of the `packet-and-replay` matrix so a
+  chaos regression and a per-sample regression surface as separate
+  failures.
+
+### R-PUB-029: chaos suite never modifies the on-disk canonical sample
+
+Every chaos test copies the canonical Run + ledger pair into
+`tmp_path` before mutating, and a guard test asserts the on-disk
+sample is byte-identical to its committed shape after the test run.
+
+Acceptance:
+
+- The chaos suite reads
+  `ops/run-records/<canonical>.json` and
+  `ops/event-ledger/<canonical>.jsonl` once per mutation, deep-copies
+  the parsed content, and writes the mutated copy into `tmp_path`.
+- No chaos test calls `Path.write_text` or `open(..., "w")` against
+  any path under `ops/`.
+- A `test_canonical_sample_on_disk_is_not_modified` guard reads the
+  disk-resident sample and asserts the load-bearing fields
+  (`id`, `status`, `prompt_snapshot_hash`, `sandbox_image_ref`) are
+  still present and non-empty.
