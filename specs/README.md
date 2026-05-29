@@ -47,6 +47,12 @@ Active specs:
 - `0011-cdcp-operating-model/acceptance.md`
 - `0011-cdcp-operating-model/research.md`
 - `0011-cdcp-operating-model/traceability.md`
+- `0012-prompt-matrix-plane/requirements.md`
+- `0012-prompt-matrix-plane/design.md`
+- `0012-prompt-matrix-plane/tasks.md`
+- `0012-prompt-matrix-plane/acceptance.md`
+- `0012-prompt-matrix-plane/research.md`
+- `0012-prompt-matrix-plane/traceability.md`
 
 Development loop:
 

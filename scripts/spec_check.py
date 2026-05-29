@@ -60,7 +60,8 @@ REQUIRED_FILES = (
 )
 
 # R-* prefixes the v3 plan allocates for ai-field-brief specs.
-# BOOT is the Phase 0 bootstrap. The rest map to specs 0001-0015.
+# BOOT is the Phase 0 bootstrap. The rest map to specs 0001-0015 plus
+# the matrix-plane spec 0012.
 ALLOWED_PREFIXES = {
     "BOOT",  # 0000 bootstrap
     "FND",   # 0001 foundation
@@ -79,6 +80,7 @@ ALLOWED_PREFIXES = {
     "MOB",   # 0014 mobile + extension
     "PORT",  # 0015 portfolio integration
     "CDCP",  # 0010 cognitive delivery control plane
+    "MTRX",  # 0012 prompt matrix plane
 }
 
 REQ_RE = re.compile(r"^###\s+(R-[A-Z]+-\d{3,}):", re.MULTILINE)

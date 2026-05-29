@@ -1,0 +1,10 @@
+# traceability: prompt matrix plane
+
+| Requirement | Owner role | Decision | Design surface | Planned proof |
+|---|---|---|---|---|
+| R-MTRX-001 | owner_role: science.matrix-runner | [DEC-MTRX-001-prompt-matrix-plane-install](../../decisions/DEC-MTRX-001-prompt-matrix-plane-install.md) | `schemas/matrix_cell.schema.json`, `.agents/roles/science.matrix-runner/` | `validate_schemas.py` catches a malformed cell; runtime cell writer rejects empty `source_refs` |
+| R-MTRX-002 | owner_role: science.cell-verifier | [DEC-MTRX-001-prompt-matrix-plane-install](../../decisions/DEC-MTRX-001-prompt-matrix-plane-install.md) | `.agents/roles/science.cell-verifier/`, `prompts/cell_faithfulness.md` | cell verifier emits one verdict per cell; synthesis editor refuses non-passed cells |
+| R-MTRX-003 | owner_role: science.matrix-synthesis-editor | [DEC-MTRX-001-prompt-matrix-plane-install](../../decisions/DEC-MTRX-001-prompt-matrix-plane-install.md) | `.agents/roles/science.matrix-synthesis-editor/output.schema.json`, `templates/weekly-brief.md` | output schema rejects unanchored claims; published brief carries inline cell-id comments |
+| R-MTRX-004 | owner_role: science.lens-designer | [DEC-MTRX-003-lens-catalog-versioning-policy](../../decisions/DEC-MTRX-003-lens-catalog-versioning-policy.md) | `config/prompt_lenses.yaml`, `schemas/prompt_lens.schema.json`, `.agents/roles/science.lens-designer/` | `validate_schemas.py` catches a malformed lens; lens designer escalates on missing prompt or schema |
+| R-MTRX-005 | owner_role: science.matrix-synthesis-editor | [DEC-MTRX-001-prompt-matrix-plane-install](../../decisions/DEC-MTRX-001-prompt-matrix-plane-install.md) | `.agents/roles/science.matrix-synthesis-editor/output.schema.json` | output schema rejects an action candidate missing any of the six required fields |
+| R-MTRX-006 | owner_role: engineering.implementation | [DEC-MTRX-004-db-migration-parked-not-wired](../../decisions/DEC-MTRX-004-db-migration-parked-not-wired.md) | `packages/db/migrations/staged/001_prompt_matrix.sql`, follow-up DEC | drizzle config search path excludes `staged/`; no `packages/db/src/` import references the three table names |
