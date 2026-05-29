@@ -136,6 +136,62 @@ def test_finalize_sandbox_ref_idempotent(tmp_path: pathlib.Path) -> None:
     assert before == after
 
 
+def test_finalize_sandbox_ref_force_reanchors_real_sha(
+    tmp_path: pathlib.Path,
+) -> None:
+    """``--force`` re-anchors every repo:// URI to the new SHA."""
+    records_dir = tmp_path / "run-records"
+    records_dir.mkdir()
+    run_id = "run-reanchorforce0"
+    record = _pending_record(run_id)
+    # Bake in a real SHA first so default-mode would no-op.
+    old_sha = "a" * 40
+    record["sandbox_image_ref"] = f"repo://ai-field-brief@{old_sha}/"
+    for entry in record["inputs"]:  # type: ignore[union-attr]
+        entry["ref"] = entry["ref"].replace("@PENDING/", f"@{old_sha}/")
+    for entry in record["outputs"]:  # type: ignore[union-attr]
+        entry["artifact_id"] = entry["artifact_id"].replace(
+            "@PENDING/", f"@{old_sha}/"
+        )
+    record_path = records_dir / f"{run_id}.json"
+    record_path.write_text(
+        json.dumps(record, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
+    new_sha = "b" * 40
+    # Default mode is a no-op (no PENDING).
+    result = _run(
+        [
+            str(SCRIPTS / "finalize_sandbox_ref.py"),
+            "--all",
+            "--sha",
+            new_sha,
+            "--run-records-dir",
+            str(records_dir),
+        ]
+    )
+    assert result.returncode == 0
+    unchanged = json.loads(record_path.read_text(encoding="utf-8"))
+    assert unchanged["sandbox_image_ref"] == f"repo://ai-field-brief@{old_sha}/"
+    # --force re-anchors.
+    forced = _run(
+        [
+            str(SCRIPTS / "finalize_sandbox_ref.py"),
+            "--all",
+            "--sha",
+            new_sha,
+            "--force",
+            "--run-records-dir",
+            str(records_dir),
+        ]
+    )
+    assert forced.returncode == 0
+    rewritten = json.loads(record_path.read_text(encoding="utf-8"))
+    assert rewritten["sandbox_image_ref"] == f"repo://ai-field-brief@{new_sha}/"
+    for entry in rewritten["inputs"]:
+        assert f"@{new_sha}/" in entry["ref"]
+        assert f"@{old_sha}/" not in entry["ref"]
+
+
 def test_finalize_sandbox_ref_refuses_bad_sha(tmp_path: pathlib.Path) -> None:
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()

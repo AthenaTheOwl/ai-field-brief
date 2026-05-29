@@ -16,15 +16,23 @@ Typical invocation (after committing the regenerated Run records)::
     python scripts/finalize_sandbox_ref.py --all
     python scripts/finalize_sandbox_ref.py --run-id run-874c5e341e13
 
-The CLI is idempotent: running it twice on the same record is a no-op
-because no PENDING placeholders remain after the first pass. Records
-that already carry a real SHA are not touched.
+The CLI is idempotent in default mode: running it twice on the same
+record is a no-op because no PENDING placeholders remain after the
+first pass. Records that already carry a real SHA are not touched.
+
+A ``--force`` flag re-anchors every ``repo://<repo>@<sha>/`` URI to
+the new SHA (not just PENDING). Use ``--force`` to close the
+recursive tail: when committing the rewritten records bumps HEAD by
+one more SHA, the next pass with ``--force`` re-anchors records to
+the previous commit, which is now the sample-containing commit at
+that moment.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -37,12 +45,32 @@ import run_evidence  # noqa: E402
 PENDING = run_evidence.SANDBOX_SHA_PENDING
 
 
-def _rewrite_uri(value: str, sha: str) -> tuple[str, bool]:
-    """Rewrite a single URI string, swapping PENDING for the real SHA.
+# URI shape we rewrite. Matches the portable form from DEC-CDCP-014
+# with either PENDING or a 40-char hex SHA in the @<sha>/ position.
+_REWRITE_URI_RE = re.compile(
+    r"repo://(?P<repo>[a-z][a-z0-9-]*)@(?P<sha>[a-f0-9]{40}|PENDING)/"
+)
+
+
+def _rewrite_uri(value: str, sha: str, *, force: bool) -> tuple[str, bool]:
+    """Rewrite a single URI string, swapping the SHA segment.
+
+    By default only ``@PENDING/`` segments are rewritten (the
+    second-pass closure of the two-pass protocol). When ``force`` is
+    True every ``repo://<repo>@<any-sha>/`` segment is re-anchored to
+    the new SHA; this is the recursive-tail closure (commit N+1
+    rewrites records to the SHA of commit N, which is the
+    sample-containing commit at the moment the rewriter runs).
 
     Returns ``(new_value, changed)`` so the caller can count rewrites
     without re-comparing strings.
     """
+    if force:
+        def _swap(match: re.Match[str]) -> str:
+            return f"repo://{match.group('repo')}@{sha}/"
+
+        new_value, n = _REWRITE_URI_RE.subn(_swap, value)
+        return new_value, n > 0 and new_value != value
     placeholder = f"@{PENDING}/"
     replacement = f"@{sha}/"
     if placeholder in value:
@@ -50,8 +78,8 @@ def _rewrite_uri(value: str, sha: str) -> tuple[str, bool]:
     return value, False
 
 
-def _walk_and_rewrite(node: Any, sha: str) -> int:
-    """Recursively rewrite PENDING URIs anywhere in a JSON tree.
+def _walk_and_rewrite(node: Any, sha: str, *, force: bool) -> int:
+    """Recursively rewrite URIs anywhere in a JSON tree.
 
     Returns the number of string replacements made. Strings are
     rewritten in-place via the parent container; dicts and lists are
@@ -61,28 +89,28 @@ def _walk_and_rewrite(node: Any, sha: str) -> int:
     if isinstance(node, dict):
         for key, value in node.items():
             if isinstance(value, str):
-                new_value, changed = _rewrite_uri(value, sha)
+                new_value, changed = _rewrite_uri(value, sha, force=force)
                 if changed:
                     node[key] = new_value
                     count += 1
             else:
-                count += _walk_and_rewrite(value, sha)
+                count += _walk_and_rewrite(value, sha, force=force)
     elif isinstance(node, list):
         for idx, value in enumerate(node):
             if isinstance(value, str):
-                new_value, changed = _rewrite_uri(value, sha)
+                new_value, changed = _rewrite_uri(value, sha, force=force)
                 if changed:
                     node[idx] = new_value
                     count += 1
             else:
-                count += _walk_and_rewrite(value, sha)
+                count += _walk_and_rewrite(value, sha, force=force)
     return count
 
 
-def rewrite_record(record_path: Path, sha: str) -> int:
+def rewrite_record(record_path: Path, sha: str, *, force: bool = False) -> int:
     """Rewrite one Run record file; return the count of URIs updated."""
     record = json.loads(record_path.read_text(encoding="utf-8"))
-    count = _walk_and_rewrite(record, sha)
+    count = _walk_and_rewrite(record, sha, force=force)
     if count == 0:
         return 0
     record_path.write_text(
@@ -121,6 +149,17 @@ def main(argv: list[str] | None = None) -> int:
         default=run_evidence.RUN_RECORDS_DIR,
         help="override the run-records directory (default: ops/run-records/)",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help=(
+            "re-anchor every repo://<repo>@<sha>/ URI to the new SHA, "
+            "not just PENDING placeholders. Used to close the recursive "
+            "tail when committing the rewritten records bumps HEAD by "
+            "one more SHA (commit N+1 re-anchors records to commit N "
+            "which is now the sample-containing commit)."
+        ),
+    )
     args = parser.parse_args(argv)
 
     sha = args.sha or run_evidence.current_head_sha()
@@ -156,7 +195,7 @@ def main(argv: list[str] | None = None) -> int:
                 file=sys.stderr,
             )
             continue
-        count = rewrite_record(path, sha)
+        count = rewrite_record(path, sha, force=args.force)
         if count:
             try:
                 rel = path.relative_to(run_evidence.ROOT).as_posix()
