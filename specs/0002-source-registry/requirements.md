@@ -231,3 +231,28 @@ Acceptance:
   and fixture rows for review-due, stub-connector, and missing-mapping
   states.
 - The request path performs no live network fetch.
+
+### R-SRC-018: tier-1 ecosystem sweep registry
+
+WHEN the W22 brief expands beyond the 52-entry tier-1 seed, THE SYSTEM
+SHALL maintain a registry that spans vendor blogs, research-lab blogs,
+practitioner blogs, podcasts, video channels, course pages, textbook
+pages, forums, and aggregators, with verifiable URLs and per-entry
+quality triples.
+
+Owner role: `product.source-curator`.
+
+Acceptance:
+- `sources/registry.yaml` carries at least 130 active source entries
+  organized into the four lanes (primary-source, fast-signal,
+  builder-practice, strategy).
+- Every entry carries a `quality` mapping with `signal`, `actionability`,
+  and `credibility` keys; either band labels (high/medium/low) or
+  integer ratings 1-5.
+- Recoveries from prior W22 failures (`microsoft-ai-blog`, `cohere-blog`,
+  `chip-huyen`, `latent-space`, `thursdai`, `last-week-in-ai`,
+  `practical-ai`, `mlops-community`) carry the corrected URL and a
+  `last_reviewed: 2026-05-29` stamp.
+- The seed loader and ops queue (R-SRC-015, R-SRC-017) load the expanded
+  registry without changes to the loader contract.
+- `scripts/validate_registry.py` exits 0 against the expanded file.
