@@ -296,13 +296,13 @@ picks_this_week:
       - MTRX-W22-opus48-adoption_action
 
 worth_your_time:
-  - alignment-msm: Model Spec Midtraining (May 21)
-  - alignment-teaching-claude-why: Teaching Claude Why (May 23)
-  - hf-itbench: ITBench-AA, frontier models <50% on enterprise IT (May 27)
-  - hf-ettin-reranker: Ettin reranker family (May 19)
-  - openai-cookbook-claude-migration: Claude Agent SDK migration recipe (May 27)
-  - nvidia-mcg-toolkit: Automated model-card generation for AB-2013 + EU AI Act (May 29)
-  - stratechery-data-center-veto: local opposition to AI data centers (May 22)
+  - "alignment-msm — Model Spec Midtraining (May 21)"
+  - "alignment-teaching-claude-why — Teaching Claude Why (May 23)"
+  - "hf-itbench — ITBench-AA, frontier models <50% on enterprise IT (May 27)"
+  - "hf-ettin-reranker — Ettin reranker family (May 19)"
+  - "openai-cookbook-claude-migration — Claude Agent SDK migration recipe (May 27)"
+  - "nvidia-mcg-toolkit — Automated model-card generation for AB-2013 + EU AI Act (May 29)"
+  - "stratechery-data-center-veto — local opposition to AI data centers (May 22)"
 
 notes:
   - "First run through the Matrix Plane pipeline. 40 source items promoted
@@ -329,12 +329,9 @@ notes:
     appended) because the new sources reframed the week."
 
 next_run_actions:
-  - resolve latent-space + thursdai archive intake; both need RSS connector
-  - verify microsoft-ai-blog feed (vendor RSS returning 2022 cache)
-  - verify lastweekin.ai + practical-ai + mlops-community feed URLs
-  - watch SLEIGHT-Bench eval adoption: when does the first vendor cite a
-    SLEIGHT-Bench number in product marketing?
-  - watch ITBench-AA: when does the first vendor publish an ITBench-AA
-    result for an enterprise-IT agent product?
-  - watch OpenAI Frontier Governance Framework: when does an SB-53
-    enforcement action cite a specific section?
+  - "resolve latent-space + thursdai archive intake; both need RSS connector"
+  - "verify microsoft-ai-blog feed (vendor RSS returning 2022 cache)"
+  - "verify lastweekin.ai + practical-ai + mlops-community feed URLs"
+  - "watch SLEIGHT-Bench eval adoption — when does the first vendor cite a SLEIGHT-Bench number in product marketing?"
+  - "watch ITBench-AA — when does the first vendor publish an ITBench-AA result for an enterprise-IT agent product?"
+  - "watch OpenAI Frontier Governance Framework — when does an SB-53 enforcement action cite a specific section?"
