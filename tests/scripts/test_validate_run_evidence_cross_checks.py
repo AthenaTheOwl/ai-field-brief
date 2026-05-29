@@ -178,6 +178,10 @@ def _write_pair(
 
 
 def test_validate_passes_on_well_formed_pair(tmp_path: pathlib.Path) -> None:
+    """Baseline: well-formed Run + ledger pair passes every Round 3 check.
+
+    Covers: R-PUB-010, R-PUB-011.
+    """
     run, events = _well_formed_pair()
     ledger_dir, records_dir = _write_pair(tmp_path, run, events)
     result = _run_validate(ledger_dir, records_dir)
@@ -219,6 +223,10 @@ def test_missing_terminal_evidence_recorded_event_fails(
 def test_prompt_hash_mismatch_between_run_and_pipeline_start_fails(
     tmp_path: pathlib.Path,
 ) -> None:
+    """Cross-check #1: Run.prompt_snapshot_hash must match pipeline.start payload.
+
+    Covers: R-PUB-011.
+    """
     run, events = _well_formed_pair()
     run["prompt_snapshot_hash"] = "d" * 64
     ledger_dir, records_dir = _write_pair(tmp_path, run, events)
@@ -231,6 +239,10 @@ def test_prompt_hash_mismatch_between_run_and_pipeline_start_fails(
 
 
 def test_tool_schemas_hash_mismatch_fails(tmp_path: pathlib.Path) -> None:
+    """Cross-check #2: tool_schemas_snapshot_hash must match pipeline.start.
+
+    Covers: R-PUB-012.
+    """
     run, events = _well_formed_pair()
     run["tool_schemas_snapshot_hash"] = "e" * 64
     ledger_dir, records_dir = _write_pair(tmp_path, run, events)
@@ -243,6 +255,10 @@ def test_tool_schemas_hash_mismatch_fails(tmp_path: pathlib.Path) -> None:
 
 
 def test_fields_populated_mismatch_fails(tmp_path: pathlib.Path) -> None:
+    """Cross-check #3: gate.run.evidence_recorded.fields_populated must match Run.
+
+    Covers: R-PUB-013.
+    """
     run, events = _well_formed_pair()
     # The Run carries four populated replay-equivalence fields; claim
     # only three on the gate.run.evidence_recorded event.
@@ -264,6 +280,10 @@ def test_fields_populated_mismatch_fails(tmp_path: pathlib.Path) -> None:
 def test_gate_results_summary_mismatch_with_events_fails(
     tmp_path: pathlib.Path,
 ) -> None:
+    """Cross-check #4: Run.gate_results_summary must match ledger gate aggregate.
+
+    Covers: R-PUB-013.
+    """
     run, events = _well_formed_pair()
     # The Run claims three gates passed; emit only two events.
     new_events: list[dict[str, Any]] = []

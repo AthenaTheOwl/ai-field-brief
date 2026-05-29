@@ -24,12 +24,20 @@ CACHE = ROOT / "ops" / "schemas-cache" / "decision.schema.json"
 
 
 def test_offline_cache_path_resolves():
+    """Local decision.schema.json cache exists for the offline-fallback path.
+
+    Covers: R-CDCP-002.
+    """
     assert CACHE.exists(), (
         "ops/schemas-cache/decision.schema.json must exist for offline validation"
     )
 
 
 def test_validate_decisions_succeeds_with_offline_env():
+    """validate_decisions.py validates every DEC against the cached schema.
+
+    Covers: R-CDCP-002, R-CDCP-010.
+    """
     # Force the remote fetch to fail by pointing the script at a
     # non-resolvable host. The script should fall back to the cache.
     env = os.environ.copy()

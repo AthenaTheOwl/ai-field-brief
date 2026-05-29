@@ -69,6 +69,10 @@ def _pending_record(run_id: str) -> dict[str, object]:
 
 
 def test_finalize_sandbox_ref_rewrites_pending(tmp_path: pathlib.Path) -> None:
+    """Second-pass CLI rewrites PENDING placeholders to the real SHA.
+
+    Covers: R-PUB-018, R-PUB-019.
+    """
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()
     run_id = "run-pendingrewriter"
@@ -103,6 +107,10 @@ def test_finalize_sandbox_ref_rewrites_pending(tmp_path: pathlib.Path) -> None:
 
 
 def test_finalize_sandbox_ref_idempotent(tmp_path: pathlib.Path) -> None:
+    """A record with no PENDING markers is left byte-identical.
+
+    Covers: R-PUB-020.
+    """
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()
     run_id = "run-noopcheck001"
@@ -139,7 +147,10 @@ def test_finalize_sandbox_ref_idempotent(tmp_path: pathlib.Path) -> None:
 def test_finalize_sandbox_ref_force_reanchors_real_sha(
     tmp_path: pathlib.Path,
 ) -> None:
-    """``--force`` re-anchors every repo:// URI to the new SHA."""
+    """``--force`` re-anchors every repo:// URI to the new SHA.
+
+    Covers: R-PUB-021.
+    """
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()
     run_id = "run-reanchorforce0"

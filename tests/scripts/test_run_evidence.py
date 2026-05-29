@@ -60,6 +60,10 @@ def test_compute_sha256_shape() -> None:
 
 
 def test_emit_event_writes_valid_jsonl(tmp_path: pathlib.Path) -> None:
+    """emit_event writes a JSONL line that conforms to event.schema.json.
+
+    Covers: R-PUB-004, R-PUB-005.
+    """
     ledger = tmp_path / "ledger" / "run-abc.jsonl"
     # The cross-repo event schema enforces typed payloads on
     # pipeline.start (prompt_snapshot_hash + tool_schemas_snapshot_hash
@@ -88,6 +92,10 @@ def test_emit_event_writes_valid_jsonl(tmp_path: pathlib.Path) -> None:
 
 
 def test_emit_run_writes_valid_record(tmp_path: pathlib.Path) -> None:
+    """emit_run produces a Run record carrying the four replay-equivalence fields.
+
+    Covers: R-PUB-004, R-PUB-006, R-PUB-007, R-PUB-008.
+    """
     record_path = tmp_path / "run-xyz.json"
     fields = run_evidence.build_run_evidence_fields(
         head_sha="0" * 40,
@@ -169,7 +177,10 @@ def test_parse_gates_arg() -> None:
 
 
 def test_compose_repo_uri_round_trip() -> None:
-    """compose_repo_uri emits the DEC-CDCP-014 grammar exactly."""
+    """compose_repo_uri emits the DEC-CDCP-014 grammar exactly.
+
+    Covers: R-PUB-018, R-PUB-019.
+    """
     sha = "a" * 40
     uri = run_evidence.compose_repo_uri("playbook/run-weekly-brief.md", sha)
     assert uri == f"repo://ai-field-brief@{sha}/playbook/run-weekly-brief.md"
@@ -228,12 +239,20 @@ def test_resolve_uri_malformed_treated_as_legacy() -> None:
 
 
 def test_derive_sandbox_image_ref_uses_portable_uri() -> None:
+    """sandbox_image_ref is emitted in the portable repo:// form.
+
+    Covers: R-PUB-018, R-PUB-020.
+    """
     sha = "c" * 40
     ref = run_evidence.derive_sandbox_image_ref(head_sha=sha)
     assert ref == f"repo://ai-field-brief@{sha}/"
 
 
 def test_parse_sandbox_sha_handles_both_forms() -> None:
+    """Both legacy and portable sandbox_image_ref forms parse correctly.
+
+    Covers: R-PUB-021.
+    """
     sha = "9" * 40
     legacy = f"E:/claude_code/random-apps/ai-field-brief@{sha}"
     portable = f"repo://ai-field-brief@{sha}/"

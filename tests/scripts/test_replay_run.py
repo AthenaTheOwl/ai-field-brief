@@ -87,18 +87,30 @@ def _committed_records_use_current_head() -> bool:
 
 
 def test_replay_positive_w20(tmp_path: pathlib.Path) -> None:
+    """Positive: W20 sample run replays to replay_equivalent=true.
+
+    Covers: R-PUB-014, R-PUB-015.
+    """
     if not _committed_records_use_current_head():
         return
     _assert_positive_replay("run-d74d787e6756", tmp_path)
 
 
 def test_replay_positive_w21(tmp_path: pathlib.Path) -> None:
+    """Positive: W21 sample run replays equivalence-only.
+
+    Covers: R-PUB-014, R-PUB-016.
+    """
     if not _committed_records_use_current_head():
         return
     _assert_positive_replay("run-1f1fc1f3d36d", tmp_path)
 
 
 def test_replay_positive_w22(tmp_path: pathlib.Path) -> None:
+    """Positive: W22 sample run replays equivalence-only.
+
+    Covers: R-PUB-014, R-PUB-017, R-PUB-026.
+    """
     if not _committed_records_use_current_head():
         return
     _assert_positive_replay("run-36e307499472", tmp_path)
@@ -153,6 +165,10 @@ def _assert_positive_replay(run_id: str, tmp_path: pathlib.Path) -> None:
 def test_replay_head_mismatch_exits_with_checkout_message(
     tmp_path: pathlib.Path,
 ) -> None:
+    """HEAD mismatch surfaces a clear `git checkout <sha>` instruction.
+
+    Covers: R-PUB-015.
+    """
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()
     fake_sha = "0" * 40

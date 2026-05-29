@@ -30,6 +30,10 @@ def _run_python(args: list[str]) -> subprocess.CompletedProcess[str]:
 def test_backfill_produces_validated_records_for_w22(
     tmp_path: pathlib.Path,
 ) -> None:
+    """backfill_run_records synthesizes a conformant Run + ledger for W22.
+
+    Covers: R-PUB-004, R-PUB-005, R-PUB-007, R-PUB-009.
+    """
     ledger_dir = tmp_path / "event-ledger"
     records_dir = tmp_path / "run-records"
     result = _run_python(
@@ -94,6 +98,10 @@ def test_backfill_all_briefs(tmp_path: pathlib.Path) -> None:
 
 
 def test_finalize_run_emits_validated_records(tmp_path: pathlib.Path) -> None:
+    """finalize_run is the publish-time CLI that lands Run + ledger.
+
+    Covers: R-PUB-004, R-PUB-006, R-PUB-008.
+    """
     ledger_dir = tmp_path / "event-ledger"
     records_dir = tmp_path / "run-records"
     result = _run_python(
@@ -128,6 +136,10 @@ def test_finalize_run_emits_validated_records(tmp_path: pathlib.Path) -> None:
 def test_validate_run_evidence_passes_on_emitted_records(
     tmp_path: pathlib.Path,
 ) -> None:
+    """validate_run_evidence accepts records emitted by the canonical CLIs.
+
+    Covers: R-PUB-010, R-PUB-022, R-PUB-023.
+    """
     ledger_dir = tmp_path / "event-ledger"
     records_dir = tmp_path / "run-records"
     backfill = _run_python(
@@ -159,6 +171,10 @@ def test_validate_run_evidence_passes_on_emitted_records(
 
 
 def test_validate_run_evidence_catches_bad_record(tmp_path: pathlib.Path) -> None:
+    """validate_run_evidence flags non-conformant Run records.
+
+    Covers: R-PUB-010, R-PUB-024, R-PUB-025.
+    """
     records_dir = tmp_path / "run-records"
     records_dir.mkdir()
     bad = records_dir / "run-bad.json"

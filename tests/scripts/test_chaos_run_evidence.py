@@ -136,6 +136,8 @@ def test_canonical_sample_passes_validator(tmp_path: pathlib.Path) -> None:
 
     Every chaos test below starts from this pair and mutates one field;
     if the baseline does not pass, the mutation results are meaningless.
+
+    Covers: R-PUB-027, R-PUB-029.
     """
     run, events = _load_canonical_pair()
     ledger_dir, records_dir = _write_pair(tmp_path, run, events)
@@ -157,6 +159,8 @@ def test_m1_mutate_run_prompt_snapshot_hash_caught(
     Cross-check #1 (Run.prompt_snapshot_hash == pipeline.start payload
     field) should fire. The validator names the run_id and the
     pipeline.start surface in the violation message.
+
+    Covers: R-PUB-027, R-PUB-028.
     """
     run, events = _load_canonical_pair()
     run["prompt_snapshot_hash"] = "d" * 64
@@ -346,6 +350,8 @@ def test_canonical_sample_on_disk_is_not_modified() -> None:
     Every chaos test above copies the canonical pair into tmp_path
     before mutating. If a future test mutates the on-disk source by
     mistake, this guard fires.
+
+    Covers: R-PUB-029.
     """
     run = json.loads(CANONICAL_RUN_PATH.read_text(encoding="utf-8"))
     assert run.get("id") == CANONICAL_RUN_ID
