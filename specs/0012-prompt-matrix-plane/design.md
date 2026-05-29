@@ -70,3 +70,38 @@ out of the active drizzle migrator until a follow-up DEC turns it on.
   a UI implementation lands in a later spec.
 - Profile guards beyond the `creative_os_only` example. Future
   profiles add guards alongside the lens entries.
+
+## Brief OS refinement layer (DEC-MTRX-006)
+
+The Brief OS refinement layer sits on top of the matrix plane
+without rewiring the cell + verifier + synthesis loop. The three
+matrix passes get explicit names (Pass 1 = source note, Pass 2 =
+faithfulness audit, Pass 3 = action extraction); the lens-to-pass
+map is recorded in `AGENTS.md` and mirrors the lens entries under
+`config/prompt_lenses.yaml`. Three new configuration files land
+under `config/`:
+
+| File | Purpose | Read by |
+|---|---|---|
+| `scoring_model.yaml` | Three-axis rubric + four penalties + thresholds. | Pass 3 synthesis; brief author |
+| `profiles.yaml` | Named profiles + interests + negative preferences + optional scoring overrides. | Lens designer; Pass 3 synthesis; MatrixRun emitter |
+| `action_surface_taxonomy.yaml` | Canonical 14-surface taxonomy bounding action-candidate surfaces. | Pass 3 synthesis; brief author; voice review |
+
+The scoring model produces a `final_score` per item; the
+thresholds gate promotion (`>= 12` Top signals, `[9, 12)`
+Watchlist, `< 9` Archive). The profile is pinned per MatrixRun
+and recorded on the Run record so the replay CLI re-resolves the
+same configuration. The 14-surface taxonomy bounds the action
+vocabulary; extending the taxonomy requires a new DEC and a bump
+to the YAML.
+
+The evidence-spine rules in `AGENTS.md` enforce the chain
+end-to-end: no digest claim without verified cells; no cell
+verified without source refs; no action promoted without the six
+required fields plus a surface from the taxonomy plus a scoring
+entry against the rubric. The brief template
+(`templates/weekly-brief.md`) carries the matching section shape
+(Field thesis, Top signals, Reusable patterns, Action queue,
+Watchlist, Archive notes, Sources reviewed, Closing thought) so
+the brief-author surface and the role contracts read the same
+contract.

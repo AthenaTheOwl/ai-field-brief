@@ -104,4 +104,29 @@ deferred:
   - id: R-MTRX-005
     note: resolved by DEC-MTRX-001 (collective coverage)
 
+  # R-MTRX-007 is resolved by DEC-MTRX-006 directly via front-matter.
+  # R-MTRX-008..014 ship as part of the same Brief OS refinement
+  # pass and are covered collectively by DEC-MTRX-006: the DEC names
+  # the scoring model, the profiles registry, the action-surface
+  # taxonomy, the three-pass note system, the evidence-spine rules,
+  # the brief template shape, the playbook configuration references,
+  # and the MatrixRun profile pinning as one cohesive change.
+  # Splintering the seven requirements into seven near-identical
+  # DECs would add noise without adding signal. Same shape as the
+  # R-PUB-005..009 collective coverage above.
+  - id: R-MTRX-008
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-009
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-010
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-011
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-012
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-013
+    note: resolved by DEC-MTRX-006 (collective coverage)
+  - id: R-MTRX-014
+    note: resolved by DEC-MTRX-006 (collective coverage)
+
 roles_deferred: []

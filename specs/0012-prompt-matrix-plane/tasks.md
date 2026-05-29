@@ -21,6 +21,30 @@
 - [x] Extend `scripts/spec_check.py` ALLOWED_PREFIXES with `MTRX`.
 - [x] File the DEC set: DEC-MTRX-001..005.
 
+## Brief OS refinement pass (2026-05-29, DEC-MTRX-006)
+
+- [x] Land `config/scoring_model.yaml` (axes, penalties,
+      thresholds) — R-MTRX-007.
+- [x] Land `config/profiles.yaml` with `personal` and
+      `broad_builder` profiles — R-MTRX-008.
+- [x] Land `config/action_surface_taxonomy.yaml` with 14 canonical
+      surfaces — R-MTRX-009.
+- [x] Name the three-pass note system in `AGENTS.md` with the
+      pass-to-lens-to-role map — R-MTRX-010.
+- [x] Land the evidence-spine rules in `AGENTS.md` as a
+      non-negotiable section — R-MTRX-011.
+- [x] Update `templates/weekly-brief.md` with the Brief OS section
+      shape (Field thesis, Top signals, Reusable patterns, Action
+      queue, Watchlist, Archive notes, Sources reviewed) —
+      R-MTRX-012.
+- [x] Update `playbook/run-weekly-brief.md` Inputs and step 6 to
+      cite the three configuration files and the score thresholds —
+      R-MTRX-013.
+- [x] Record `profile_id` on every MatrixRun and Run record so the
+      replay CLI re-resolves the configuration at the recorded SHA —
+      R-MTRX-014.
+- [x] File the DEC: DEC-MTRX-006.
+
 ## Follow-up pass
 
 - [ ] Wire the staged DB migration once the cell store moves off
@@ -35,3 +59,9 @@
 - [ ] Build a `model.call` tool entry under `.agents/tools.yaml`
       with budget and rate-limit policies so the matrix runner stops
       sharing the brief workflow's harness.
+- [ ] Add per-profile scoring overrides under
+      `config/profiles.yaml` once a second profile needs a different
+      axis weighting than the personal profile.
+- [ ] Add an `actions/` backlog that promotes Pass 3 action
+      candidates carrying `disposition: adopt_now` or `prototype`
+      into a tracked queue with revisit triggers.
