@@ -1,0 +1,45 @@
+# Canonical action-surface taxonomy for AI Brief OS.
+#
+# Every digest claim with an attached action MUST cite one of these
+# surfaces. The taxonomy is intentionally bounded so the brief stays
+# legible week-to-week and so cross-week pattern detection is tractable.
+#
+# Extensions land via a DEC and a bump to this file. Do not invent a
+# new surface in a brief without first amending this taxonomy.
+
+version: 1
+
+description: |
+  Canonical action-surface taxonomy for AI Brief digest claims and
+  action candidates. Every digest claim with an action MUST cite one
+  of these surfaces.
+
+surfaces:
+  - id: prompt
+    notes: change to a prompt template, lens, or other model-input artifact
+  - id: config
+    notes: change to a config file (e.g. scoring weights, threshold)
+  - id: eval
+    notes: new eval suite, threshold change, eval method change
+  - id: workflow
+    notes: change to a workflow YAML or pipeline shape
+  - id: agent-role
+    notes: new or amended role contract
+  - id: tool-policy
+    notes: tool surface change (add, remove, scope)
+  - id: runtime-adapter
+    notes: change to runtime semantics (snapshots, checkpoints, replay)
+  - id: source-registry
+    notes: add, remove, or retire a source
+  - id: architecture
+    notes: structural change to schemas / refs / interop contracts
+  - id: experiment
+    notes: a bounded experiment to test a hypothesis
+  - id: watchlist
+    notes: monitor signal; revisit when trigger fires
+  - id: creative-os
+    notes: change to creative-OS surfaces (Starforge cluster)
+  - id: software-control-plane
+    notes: change to CDCP control-plane primitives
+  - id: personal-knowledge-base
+    notes: change to retrieval / index / corpus

@@ -1,0 +1,47 @@
+# Brief OS profiles.
+#
+# A profile encodes "for whom" the corpus is being scored. Multiple
+# profiles can score the same week's source items differently. Each
+# profile carries an interests list (positive signal) and a
+# negative_preferences list (signal we want to suppress).
+#
+# Profiles are referenced from a MatrixRun's `profile_id` field
+# (see schemas/matrix_run.schema.json). The scoring model in
+# config/scoring_model.yaml is the same across profiles unless a
+# profile sets `scoring_overrides`.
+
+version: 1
+
+profiles:
+  personal:
+    description: The user's working profile. Tracks the active portfolio plus the strategic bets behind it.
+    interests:
+      - agent runtimes
+      - multi-agent orchestration
+      - evals and verification
+      - coding agents
+      - creative OS
+      - runtime sandboxes
+      - workflow governance
+      - knowledge systems
+      - AI-native organizations
+      - supply chain + procurement intelligence
+      - semiconductor industry
+    negative_preferences:
+      - generic AI news
+      - funding-only stories
+      - shallow prompt hacks
+      - vendor claims with no mechanism
+
+  broad_builder:
+    description: A generic builder's profile. Useful as a sanity check that the brief is not over-fitted to the personal profile.
+    interests:
+      - practical adoption patterns
+      - implementation guides
+      - architecture patterns
+      - failure modes
+      - useful releases
+      - tools worth prototyping
+    negative_preferences:
+      - hype-only takes
+      - non-actionable funding/exit news
