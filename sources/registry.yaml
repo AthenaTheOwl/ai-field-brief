@@ -11,7 +11,7 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 3
+version: 4
 last_curated: 2026-05-29
 default_review_frequency: weekly
 
@@ -2304,3 +2304,430 @@ sources:
     last_reviewed: 2026-05-29
     notes: >-
       Verified RSS live; recent posts skew SaaS/business not AI mechanism. Has shifted away from pure AI focus.
+
+  # ---- W22 recovery sweep (2026-05-29): long-tail forums, courses, textbooks, aggregators ----
+
+  - id: lobsters-ai-tag
+    name: Lobsters AI tag
+    type: rss
+    lane: fast-signal
+    url: https://lobste.rs/t/ai.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live 2026-05-29; technical-community curation skews higher signal than HN frontpage, lower volume.
+
+  - id: hn-show-hn-ai
+    name: Hacker News Show HN (AI-filtered)
+    type: hn-feed
+    lane: fast-signal
+    url: https://hnrss.org/show?q=AI+OR+LLM+OR+GPT
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Show HN catches builder launches before AlphaSignal or TLDR pick them up. Higher actionability than frontpage filter.
+
+  - id: lesswrong-ai-tag
+    name: LessWrong AI tag
+    type: rss
+    lane: strategy
+    url: https://www.lesswrong.com/feed.xml?view=frontpage
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Frontpage feed; broader than the curated feed already in registry. Tag-filtered RSS not exposed, frontpage is the closest available endpoint.
+
+  - id: reddit-prompt-engineering
+    name: r/PromptEngineering
+    type: reddit-subreddit
+    lane: builder-practice
+    url: https://www.reddit.com/r/PromptEngineering/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 3
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit; feed exists but fetcher may not reach. Aspirational source for prompt-pattern surfacing.
+
+  - id: reddit-stable-diffusion
+    name: r/StableDiffusion
+    type: reddit-subreddit
+    lane: fast-signal
+    url: https://www.reddit.com/r/StableDiffusion/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 3
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit. Primary venue for open-weight image-model releases and tooling.
+
+  - id: reddit-ai-agents
+    name: r/AI_Agents
+    type: reddit-subreddit
+    lane: builder-practice
+    url: https://www.reddit.com/r/AI_Agents/.rss
+    cadence: daily
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: 2
+      actionability: 3
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      WebFetch blocks reddit. Agent-framework discourse; complements r/LocalLLaMA on the agents axis.
+
+  - id: deeplearning-ai-short-courses
+    name: DeepLearning.AI Short Courses
+    type: article-url
+    lane: builder-practice
+    url: https://www.deeplearning.ai/short-courses/
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live 2026-05-29; 98 short courses across GenAI apps, agents, RAG, LLMOps. Vendor-collab origin (Anthropic, OpenAI, LangChain partners) but technically substantive.
+
+  - id: stanford-cs229
+    name: "Stanford CS229: Machine Learning"
+    type: article-url
+    lane: primary-source
+    url: https://cs229.stanford.edu/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Spring 2026 iteration verified live; Tengyu Ma + Chris Ré. Canonical ML-fundamentals course; lecture notes feed the textbook canon.
+
+  - id: berkeley-llm-agents-course
+    name: "Berkeley LLM Agents course (Dawn Song)"
+    type: article-url
+    lane: builder-practice
+    url: https://llmagents-learning.org/f24
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Fall 2024 iteration complete; lecture videos remain. Spring 2025 follow-up runs. Dawn Song + Xinyun Chen; deep coverage of agent architectures + safety.
+
+  - id: anthropic-cookbook
+    name: Anthropic Cookbook (Claude recipes)
+    type: github-releases
+    lane: builder-practice
+    url: https://github.com/anthropics/anthropic-cookbook
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      44.6k stars. Notebooks for classification, RAG, tool use, multimodal, sub-agents, prompt caching. Primary builder reference from Anthropic.
+
+  - id: mlabonne-llm-course
+    name: Maxime Labonne LLM Course
+    type: github-releases
+    lane: builder-practice
+    url: https://github.com/mlabonne/llm-course
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      79.7k stars. Three tracks (Fundamentals, Scientist, Engineer) with Colab notebooks covering quantization, fine-tuning, RAG, deployment.
+
+  - id: lilianweng-blog-rss
+    name: Lilian Weng blog (RSS)
+    type: blog-rss
+    lane: builder-practice
+    url: https://lilianweng.github.io/index.xml
+    cadence: monthly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Ex-OpenAI Head of Safety Systems. Long-form citation-grade posts on RLHF, agent design, test-time compute. RSS verified live; complements human-notes entry candidates.md prior.
+
+  - id: probabilistic-ml-murphy
+    name: Probabilistic Machine Learning (Kevin Murphy)
+    type: article-url
+    lane: primary-source
+    url: https://probml.github.io/pml-book/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Three-volume series; Intro (2022) and Advanced Topics (2023) anchor the probabilistic ML reference shelf. Free PDFs.
+
+  - id: huyen-dmls-book
+    name: Designing Machine Learning Systems (Chip Huyen)
+    type: article-url
+    lane: builder-practice
+    url: https://huyenchip.com/books/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      O'Reilly 2022, Amazon #1 in AI; companion repo at github.com/chiphuyen/dmls-book. Holistic ML-system design canon predating the AI Engineering book.
+
+  - id: mml-book
+    name: Mathematics for Machine Learning
+    type: article-url
+    lane: primary-source
+    url: https://mml-book.github.io/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Deisenroth + Faisal + Ong; Cambridge UP 2020. Free PDF, actively maintained errata. Math foundations companion to D2L and PML.
+
+  - id: udlbook-prince
+    name: Understanding Deep Learning (Simon Prince)
+    type: article-url
+    lane: primary-source
+    url: https://udlbook.github.io/udlbook/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 3
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      MIT Press 2023; free PDF + slides + notebooks. Modern transformer-era textbook with diffusion + RLHF chapters.
+
+  - id: little-book-of-deep-learning
+    name: The Little Book of Deep Learning (Francois Fleuret)
+    type: article-url
+    lane: builder-practice
+    url: https://fleuret.org/francois/lbdl.html
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      v1.3 dated 2026-05-12; 950k downloads since 2022. Phone-readable distillation; useful for fast onboarding.
+
+  - id: islp-textbook
+    name: An Introduction to Statistical Learning with Python (ISLP)
+    type: article-url
+    lane: primary-source
+    url: https://www.statlearning.com/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 5
+      actionability: 4
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      James + Witten + Hastie + Tibshirani + Taylor; 2023 Python edition. Free PDFs; the entry-level statistical-learning canon.
+
+  - id: smol-ai-news
+    name: Smol AI News (AINews)
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://news.smol.ai/rss.xml
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Verified live 2026-05-29; swyx/latent-space-adjacent daily roundup. Auto-generated from Discord + Twitter + HN sweep, then editorialized.
+
+  - id: thesequence-newsletter
+    name: TheSequence (Jesus Rodriguez)
+    type: newsletter-rss
+    lane: strategy
+    url: https://thesequence.substack.com/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      165k subscribers across labs + universities + enterprises; weekly opinion + edge-of-research coverage. Verified live 2026-05-29.
+
+  - id: gradient-flow-newsletter
+    name: Gradient Flow (Ben Lorica)
+    type: newsletter-rss
+    lane: strategy
+    url: https://gradientflow.substack.com/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Ben Lorica (ex-O'Reilly chief data scientist); enterprise-AI deployment + agent-systems lens. Weekly Tuesday cadence verified 2026-05-29.
+
+  - id: marginal-revolution-ai
+    name: Marginal Revolution (AI tag, Tyler Cowen)
+    type: blog-rss
+    lane: strategy
+    url: https://marginalrevolution.com/?cat=ai-2
+    cadence: daily
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Tyler Cowen economist-lens on AI; tag-filtered feed not exposed, html-scrape the category page. Strategic + economic framing the tech-press feeds miss.
+
+  - id: synced-review
+    name: Synced Review (English)
+    type: newsletter-rss
+    lane: fast-signal
+    url: https://syncedreview.com/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 2
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      English arm of jiqizhixin (China AI publication); coverage of China-lab research the Western feeds underweight. Cadence slowed in 2025; included for breadth coverage.
+
+  - id: ai-supremacy-newsletter
+    name: AI Supremacy (Michael Spencer)
+    type: newsletter-rss
+    lane: strategy
+    url: https://aisupremacy.substack.com/feed
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 2
+      actionability: 2
+      credibility: 2
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      One of the larger AI Substacks by subscriber count; tracks narrative + adoption metrics. Lower signal-per-word, included for narrative-monitoring breadth.
+
+  - id: emerj-newsletter
+    name: Emerj AI Research (Daniel Faggella)
+    type: newsletter-rss
+    lane: strategy
+    url: https://emerj.com/feed/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-29
+    notes: >-
+      Enterprise-AI-adoption analysis with use-case taxonomies; complements the consumer-facing Rundown/TLDR feeds with B2B framing.
