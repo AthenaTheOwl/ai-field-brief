@@ -1,0 +1,120 @@
+name: run-evidence-gates
+
+# This workflow implements the run-evidence enforcement contract locked
+# by DEC-CDCP-015 (athena-site). On every pull_request and every push to
+# main, it gates packet generation from the canonical sample, packet
+# validation, and the replay smoke against the recorded sandbox SHA.
+#
+# Universal gates (schema cache freshness, voice lint, no-BOM, spec
+# check, decisions validation, validate_run_evidence, language tests)
+# already run under .github/workflows/ci.yml; this workflow adds the
+# product-repo-specific gates 8 through 10 from the contract and runs
+# them as a matrix over every canonical sample so the chain is exercised
+# end-to-end per Run.
+#
+# Per DEC-CDCP-008 and DEC-CDCP-015: no continue-on-error on any contract
+# gate, no path filters that would hide a real failure, no informational
+# `if: failure()` gating. Every step is blocking.
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: run-evidence-gates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  packet-and-replay:
+    name: packet-and-replay (${{ matrix.sample }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        sample:
+          - run-36e307499472
+          - run-d74d787e6756
+          - run-1f1fc1f3d36d
+    steps:
+      - name: checkout ai-field-brief
+        uses: actions/checkout@v4
+        with:
+          # fetch-depth: 0 is load-bearing for the replay smoke: the
+          # CLI checks out the recorded sandbox SHA, which is older
+          # than HEAD on the PR branch.
+          fetch-depth: 0
+          path: ai-field-brief
+
+      - name: checkout trace-to-eval-harness (sibling)
+        uses: actions/checkout@v4
+        with:
+          repository: AthenaTheOwl/trace-to-eval-harness
+          path: trace-to-eval-harness
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: install python deps
+        run: |
+          python -m pip install --quiet "jsonschema>=4.21" "referencing>=0.35" "pyyaml>=6.0"
+          python -m pip install --quiet -e ./trace-to-eval-harness
+
+      # ---------- gate 8: packet-generation-from-canonical-sample ----------
+      - name: packet-generation-from-canonical-sample
+        working-directory: ai-field-brief
+        run: |
+          python -m trace_to_eval evidence from-cdcp-events \
+            ops/event-ledger/${{ matrix.sample }}.jsonl \
+            --out /tmp/${{ matrix.sample }}.packet.json \
+            --portfolio-root ${{ github.workspace }}
+
+      # ---------- gate 9: packet-validation ----------
+      - name: packet-validation
+        working-directory: ai-field-brief
+        run: |
+          python -m trace_to_eval evidence validate /tmp/${{ matrix.sample }}.packet.json
+
+      # ---------- gate 10: replay-smoke ----------
+      # Extract the recorded sandbox SHA from the Run record, prove the
+      # SHA is reachable in git history, check out the working tree at
+      # that SHA, and run the equivalence replay CLI. The two-pass
+      # protocol from DEC-PUB-008 means the Run record AT the recorded
+      # SHA still carries a `@PENDING/` placeholder; the records-on-main
+      # carry the finalized SHA. Replay reads sandbox_image_ref from
+      # disk and compares to current HEAD, so the gate restores the
+      # finalized records and event ledger from main after the
+      # checkout. This proves: the recorded SHA is reachable, the
+      # canonicalization at that SHA reproduces the recorded snapshot
+      # hashes, and the outputs named in the Run still exist at the
+      # recorded paths.
+      - name: replay-smoke
+        working-directory: ai-field-brief
+        run: |
+          set -euo pipefail
+          SANDBOX_URI=$(jq -r .sandbox_image_ref ops/run-records/${{ matrix.sample }}.json)
+          SANDBOX_SHA=$(echo "$SANDBOX_URI" | sed -E 's|^repo://[^@]+@([a-f0-9]{40})/.*|\1|')
+          if ! echo "$SANDBOX_SHA" | grep -Eq '^[a-f0-9]{40}$'; then
+            echo "replay-smoke: could not extract 40-char SHA from sandbox_image_ref ($SANDBOX_URI)" >&2
+            exit 1
+          fi
+          echo "replay-smoke: verifying recorded sandbox SHA $SANDBOX_SHA is reachable"
+          git cat-file -e "$SANDBOX_SHA^{commit}"
+          MAIN_REF=$(git rev-parse HEAD)
+          echo "replay-smoke: checking out recorded sandbox SHA $SANDBOX_SHA"
+          git checkout "$SANDBOX_SHA"
+          # Restore finalized records + ledger from main so the on-disk
+          # sandbox_image_ref matches HEAD (closes the two-pass tail
+          # from DEC-PUB-008 without modifying the canonical sample).
+          git checkout "$MAIN_REF" -- ops/run-records/ ops/event-ledger/
+          python scripts/replay_run.py --run-id ${{ matrix.sample }}
