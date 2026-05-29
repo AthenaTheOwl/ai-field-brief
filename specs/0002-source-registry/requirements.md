@@ -256,3 +256,24 @@ Acceptance:
 - The seed loader and ops queue (R-SRC-015, R-SRC-017) load the expanded
   registry without changes to the loader contract.
 - `scripts/validate_registry.py` exits 0 against the expanded file.
+
+### R-SRC-019: long-tail recovery sweep (forums + courses + textbooks + aggregators)
+
+WHEN Workflow I's Phase 1 expansion drops a category mid-flight, THE
+SYSTEM SHALL ship a follow-up sweep that lands the missing long-tail
+sources (forums, community, courses, lectures, textbooks, long-form
+references, aggregators, newsletters) so the W23 brief sweeps over the
+full registry the W22 brief was meant to draw from.
+
+Owner role: `product.source-curator`.
+
+Acceptance:
+- `sources/registry.yaml` carries 25 additional active entries split
+  across forums + community (6), courses + lectures (7), textbooks +
+  long-form (5), and aggregators + newsletters (7).
+- Each new entry carries a verified canonical URL, a `quality` triple
+  on the 1-5 scale, `status: active`, `last_reviewed: 2026-05-29`, and
+  a `notes` line explaining quirks (e.g. WebFetch blocks Reddit).
+- `version` in `sources/registry.yaml` bumps to 4.
+- `scripts/validate_registry.py` exits 0 against the expanded file.
+- Total active sources sit at 159 after the sweep.

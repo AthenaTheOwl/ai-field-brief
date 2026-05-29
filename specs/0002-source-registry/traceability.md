@@ -20,3 +20,4 @@
 | R-SRC-016 owner_role: science.proof-gate-runner | `packages/db/src/seeds/sources-from-registry.ts` (`REGISTRY_TYPE_TO_SOURCE_TYPE`) | `DEC-SRC-016-registry-type-map-to-source-type` | seeds test asserts mapping is total over `sources/registry.yaml` |
 | R-SRC-017 owner_role: product.subscriber-experience | `packages/sources/src/ops.ts`; `apps/web/src/app/ops/sources/page.tsx` | `DEC-SRC-017-static-registry-connector-readiness` | `packages/sources/test/ops.test.ts`; web typecheck/build |
 | R-SRC-018 owner_role: product.source-curator | `sources/registry.yaml` (134 entries across 4 lanes) | `DEC-SRC-019-w22-tier-1-ecosystem-sweep` | `scripts/validate_registry.py` exits 0 |
+| R-SRC-019 owner_role: product.source-curator | `sources/registry.yaml` (159 entries; +25 long-tail sources) | `DEC-SRC-020-w22-forums-courses-textbooks-recovery` | `scripts/validate_registry.py` exits 0 |
