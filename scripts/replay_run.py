@@ -55,6 +55,7 @@ import hashlib
 import json
 import sys
 from collections.abc import Mapping
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -65,6 +66,32 @@ import run_evidence  # noqa: E402
 
 
 REPLAY_RECORDS_DIR = run_evidence.ROOT / "ops" / "replay-records"
+
+
+def _now_filename_iso() -> str:
+    """ISO-ish UTC timestamp safe for filenames, with microsecond resolution.
+
+    The replay ledger filename is
+    ``replay-<run-id>-<timestamp>.jsonl``; the legacy form derived from
+    ``run_evidence.now_iso()`` carried only second precision, so two
+    replays of the same run inside one wall-clock second collided on the
+    same filename and the second replay's event silently appended to the
+    first replay's ledger. The collision is latent in production (replay
+    is invoked manually, not in tight loops) but a determinism check or
+    rerun harness exposes it immediately. Microsecond precision closes
+    the window without a second uniqueness mechanism.
+
+    A single ``datetime.now(timezone.utc)`` call keeps the seconds field
+    and the microseconds field consistent (a two-call form could straddle
+    a second-boundary tick). The trailing ``Z`` mirrors the ISO-8601 UTC
+    marker the legacy ``now_iso()`` already used, and the ``.``-separator
+    before the microseconds is filesystem-safe on Windows + POSIX. The
+    same fix landed in supplier-risk-rag-agent (DEC-EVL-011) and
+    procurement-negotiation-lab (DEC-FACTORY-013); this is the third
+    Python repo carrying replay_run.py and gets the same treatment.
+    """
+    now = datetime.now(timezone.utc)
+    return f"{now:%Y-%m-%dT%H:%M:%S}.{now.microsecond:06d}Z"
 
 
 # ----------------------------------------------------------------- loaders
@@ -502,11 +529,16 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     # Step 9 + 10: append the replay event to a NEW per-replay JSONL
-    # file so the source-of-truth ledger stays immutable. The ISO
-    # timestamp is sanitized for filesystem-safe form (Windows rejects
-    # ":" in filenames); the in-event created_at keeps the canonical
-    # RFC 3339 shape so downstream consumers see the unsanitized value.
-    safe_timestamp = replay_timestamp.replace(":", "")
+    # file so the source-of-truth ledger stays immutable. The filename
+    # timestamp is a fresh microsecond-resolution UTC reading with
+    # colons stripped (Windows rejects ":" in filenames); the in-event
+    # created_at keeps the canonical RFC 3339 second-precision shape so
+    # downstream consumers see the unsanitized value. Microseconds keep
+    # rapid back-to-back replays from colliding on the same filename
+    # (closing the latent per-second bug flagged by Workflow B-Recovery
+    # and fixed in supplier-risk via DEC-EVL-011 and procurement-lab
+    # via DEC-FACTORY-013).
+    safe_timestamp = _now_filename_iso().replace(":", "")
     replay_ledger_path = (
         args.event_ledger_dir / f"replay-{run_id}-{safe_timestamp}.jsonl"
     )

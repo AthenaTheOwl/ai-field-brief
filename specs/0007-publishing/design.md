@@ -90,7 +90,12 @@ The CLI writes two artifacts:
 - `ops/event-ledger/replay-<run-id>-<ISO>.jsonl` is a new per-replay
   ledger carrying one `run.evidence.replayed` event with
   `replay_method: equivalence`. The source-of-truth ledger at
-  `ops/event-ledger/<run-id>.jsonl` is not modified.
+  `ops/event-ledger/<run-id>.jsonl` is not modified. The `<ISO>`
+  portion carries microsecond resolution
+  (`YYYY-MM-DDTHHMMSS.<micros>Z`) so back-to-back replays of the same
+  Run land on distinct files (DEC-PUB-010 closes the latent
+  per-second collision bug that supplier-risk and procurement-lab hit
+  first).
 - `ops/replay-records/<run-id>/<replay-event-id>.json` carries the
   full verdict (per-check booleans plus aggregate
   `replay_equivalent` plus the recorded vs current value pairs).

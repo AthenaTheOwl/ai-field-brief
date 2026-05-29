@@ -60,3 +60,11 @@ Run-evidence verifiability conditions:
   idempotent on records with no PENDING markers, and refuses to
   write a non-40-char SHA via `--sha`. Covered by
   `tests/scripts/test_finalize_sandbox_ref.py`.
+- The replay ledger filename carries microsecond resolution
+  (`ops/event-ledger/replay-<run-id>-YYYY-MM-DDTHHMMSS.<micros>Z.jsonl`)
+  so two replays of the same Run inside one wall-clock second land on
+  distinct files. Closes the latent per-second collision bug flagged
+  by the Workflow B-Recovery cross-portfolio audit; the same fix
+  landed in supplier-risk-rag-agent (DEC-EVL-011) and
+  procurement-negotiation-lab (DEC-FACTORY-013). Covered by
+  inspection of `scripts/replay_run.py::_now_filename_iso`.

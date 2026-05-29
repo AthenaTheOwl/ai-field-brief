@@ -418,3 +418,27 @@ Acceptance:
 - No `if: ${{ failure() }}` short-circuits any contract step.
 - No workflow file runs `git commit --no-verify` or sets
   `HUSKY=0`-style hook-bypass environment variables.
+
+### R-PUB-026: replay ledger filenames use microsecond-resolution timestamps
+
+The per-replay event ledger written by `scripts/replay_run.py` carries
+microsecond resolution in its filename so two replays of the same Run
+inside one wall-clock second land on distinct files instead of
+silently appending to one ledger.
+
+Acceptance:
+
+- The replay ledger lands at
+  `ops/event-ledger/replay-<run-id>-YYYY-MM-DDTHHMMSS.<micros>Z.jsonl`
+  where `<micros>` is the six-digit microsecond field, sourced from a
+  single `datetime.now(timezone.utc)` reading so seconds and
+  microseconds stay consistent across the call.
+- Two replays of the same `--run-id` invoked back to back produce two
+  distinct ledger files; neither file is appended to by the other run.
+- The in-event `created_at` keeps the canonical RFC 3339
+  second-precision shape from `run_evidence.now_iso()`; the
+  microsecond resolution is filename-local. This matches the
+  supplier-risk-rag-agent fix (DEC-EVL-011) and the
+  procurement-negotiation-lab fix (DEC-FACTORY-013).
+- The existing `replay-<run-id>-*.jsonl` glob pattern used by
+  `tests/scripts/test_replay_run.py` continues to match.
