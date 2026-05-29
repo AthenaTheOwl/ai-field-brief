@@ -146,3 +146,45 @@
 - The replay CLI reads the recorded `profile_id` and resolves it
   against `config/profiles.yaml` at the recorded SHA so the
   profile configuration that drove promotion is reproducible.
+
+## R-MTRX-015: Pass 4 lens catalog carries the three systems lenses
+
+- `python -c "import yaml; d=yaml.safe_load(open('config/prompt_lenses.yaml', encoding='utf-8')); ids={l['id'] for l in d['lenses']}; assert {'systems_thinking','transferable_principle','falsification_test'} <= ids"`
+  parses without error.
+- The three prompt files (`prompts/lenses/systems_thinking.md`,
+  `prompts/lenses/transferable_principle.md`,
+  `prompts/lenses/falsification_test.md`) exist on disk.
+- Each entry's `mode` matches the prompt header
+  (`interpretive`, `synthetic`, `critique`).
+
+## R-MTRX-016: synthesis prompt carries the Pass 4 contract
+
+- `prompts/matrix_synthesis.md` carries a `## Pass 4: systems
+  synthesis` section.
+- The section names all four fields (`systems_map`,
+  `transferable_principle`, `falsification_test`,
+  `adoption_ladder`) and records the non-negotiable rule.
+- The section names the four `adoption_ladder` sub-fields
+  (`minimum_viable`, `mid_adoption`, `full_adoption`,
+  `monitoring_signals`).
+
+## R-MTRX-017: brief template carries the four Top Signal fields
+
+- Each of the three Top Signal placeholders in
+  `templates/weekly-brief.md` carries the four new fields
+  (`Systems map`, `Transferable principle`, `Falsification test`,
+  `Adoption ladder`) between `Try:` and `Confidence:`.
+- The `Adoption ladder` placeholder carries four sub-bullets
+  (`Minimum viable`, `Mid`, `Full`, `Monitoring`).
+- The voice-notes block records the four-field rule and cites
+  DEC-MTRX-007 and DEC-CDCP-020.
+
+## R-MTRX-018: AGENTS.md records the four-field non-negotiable
+
+- `AGENTS.md` carries a paragraph under the evidence-spine section
+  naming the four fields and the demotion-to-Archive rule.
+- The three-pass note section carries a Pass 4 bullet with the
+  three lens ids and `science.matrix-synthesis-editor` as the
+  owning role.
+- The DEC references (`DEC-MTRX-007`, `DEC-CDCP-020`) appear
+  inline in the evidence-spine section.

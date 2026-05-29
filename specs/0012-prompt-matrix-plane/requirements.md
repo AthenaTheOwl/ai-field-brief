@@ -245,3 +245,76 @@ Acceptance:
 - The Run-record emitter records the `profile_id` alongside the
   run id so the replay CLI can re-resolve the profile under the
   same configuration.
+
+### R-MTRX-015: Pass 4 lens catalog carries the three systems lenses
+
+`config/prompt_lenses.yaml` carries three Pass 4 lens entries
+(`systems_thinking`, `transferable_principle`, `falsification_test`)
+under `category: synthesis`. Each entry names a markdown prompt
+under `prompts/lenses/` and runs on the Top picks the Pass 3
+scoring gate promoted, not on every source item swept.
+
+Acceptance:
+
+- `config/prompt_lenses.yaml` parses as YAML and carries the three
+  entries with ids `systems_thinking`, `transferable_principle`,
+  and `falsification_test`.
+- Each entry references a prompt file under `prompts/lenses/` that
+  exists on disk.
+- The three entries name modes (`interpretive`, `synthetic`,
+  `critique`) that match the prompt headers.
+
+### R-MTRX-016: synthesis prompt carries the Pass 4 contract
+
+`prompts/matrix_synthesis.md` carries a Pass 4 section that names
+the three lens cells the editor reads (`systems_map`,
+`transferable_principle`, `falsification_test`) and the
+synthesis-time `adoption_ladder` (four sub-fields:
+`minimum_viable`, `mid_adoption`, `full_adoption`,
+`monitoring_signals`). The prompt records the non-negotiable rule
+that a Top Signal missing any of the four fields demotes to
+Archive notes.
+
+Acceptance:
+
+- `prompts/matrix_synthesis.md` carries a `## Pass 4: systems
+  synthesis` section.
+- The section names all four fields and records the non-negotiable
+  rule.
+- The section explains that `adoption_ladder` is a synthesis-time
+  construct, not a per-source lens.
+
+### R-MTRX-017: brief template carries the four Top Signal fields
+
+`templates/weekly-brief.md` carries four new placeholders on every
+Top Signal (Systems map, Transferable principle, Falsification
+test, Adoption ladder) between the existing `Try:` and
+`Confidence:` lines. The Adoption ladder placeholder carries four
+sub-bullets (Minimum viable, Mid, Full, Monitoring).
+
+Acceptance:
+
+- The template's three Top Signal placeholders each carry the four
+  new fields in the same order.
+- The Adoption ladder placeholder carries four sub-bullets.
+- The voice-notes block at the bottom records the new evidence-spine
+  rule (every Top Signal carries all four fields, citing DEC-MTRX-007
+  and DEC-CDCP-020).
+
+### R-MTRX-018: AGENTS.md records the four-field non-negotiable
+
+`AGENTS.md` carries an addition to the evidence-spine section
+naming the four fields every Top Signal must carry per
+DEC-MTRX-007 and DEC-CDCP-020. The three-pass note section
+extends to name Pass 4 explicitly with the three lens ids and the
+adoption-ladder construct.
+
+Acceptance:
+
+- `AGENTS.md` carries a paragraph under the evidence-spine section
+  listing the four fields (`systems_map`,
+  `transferable_principle`, `falsification_test`,
+  `adoption_ladder`) and the demotion rule.
+- The three-pass note section carries a fourth bullet for Pass 4
+  with the three lens ids and the owning role.
+- The DEC reference (DEC-MTRX-007 + DEC-CDCP-020) appears inline.

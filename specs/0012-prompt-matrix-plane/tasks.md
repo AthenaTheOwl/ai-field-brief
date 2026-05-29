@@ -45,6 +45,24 @@
       R-MTRX-014.
 - [x] File the DEC: DEC-MTRX-006.
 
+## Systems-thinking upgrade pass (2026-05-29, DEC-MTRX-007)
+
+- [x] Land `prompts/lenses/systems_thinking.md`,
+      `prompts/lenses/transferable_principle.md`, and
+      `prompts/lenses/falsification_test.md` — R-MTRX-015.
+- [x] Extend `config/prompt_lenses.yaml` with the three Pass 4
+      lens entries — R-MTRX-015.
+- [x] Add the `## Pass 4: systems synthesis` section to
+      `prompts/matrix_synthesis.md` with the four-field contract —
+      R-MTRX-016.
+- [x] Add the four Top Signal fields (Systems map, Transferable
+      principle, Falsification test, Adoption ladder) to
+      `templates/weekly-brief.md` — R-MTRX-017.
+- [x] Extend `AGENTS.md` evidence-spine with the four-field
+      non-negotiable and the Pass 4 bullet in the three-pass
+      section — R-MTRX-018.
+- [x] File the DEC: DEC-MTRX-007.
+
 ## Follow-up pass
 
 - [ ] Wire the staged DB migration once the cell store moves off

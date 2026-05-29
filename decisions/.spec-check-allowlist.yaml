@@ -141,4 +141,20 @@ deferred:
   - id: R-MTRX-014
     note: resolved by DEC-MTRX-006 (collective coverage)
 
+  # R-MTRX-015 is resolved by DEC-MTRX-007 directly via front-matter.
+  # R-MTRX-016..018 ship as part of the same systems-thinking upgrade
+  # pass and are covered collectively by DEC-MTRX-007: the DEC names
+  # the three Pass 4 lenses, the synthesis prompt Pass 4 contract,
+  # the brief template four-field upgrade, and the AGENTS.md
+  # evidence-spine extension as one cohesive change. Splintering
+  # the three requirements into three near-identical DECs would add
+  # noise without adding signal. Same shape as the R-MTRX-008..014
+  # collective coverage above.
+  - id: R-MTRX-016
+    note: resolved by DEC-MTRX-007 (collective coverage)
+  - id: R-MTRX-017
+    note: resolved by DEC-MTRX-007 (collective coverage)
+  - id: R-MTRX-018
+    note: resolved by DEC-MTRX-007 (collective coverage)
+
 roles_deferred: []
