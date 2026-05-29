@@ -94,3 +94,38 @@ lenses:
     prompt: prompts/lenses/watchlist_trigger.md
     output_schema: schemas/lens_output.schema.json
     purpose: Define what would make this item worth revisiting.
+
+  # Pass 4 (systems synthesis) lenses. Per DEC-MTRX-007 and DEC-CDCP-020,
+  # these three lenses run on the TOP picks only, not on every source item
+  # swept. The synthesis editor invokes them after Pass 3 ranking selects
+  # the Top signals, then constructs the adoption_ladder per pick at
+  # synthesis time (adoption_ladder is not a per-source lens because
+  # adoption is about how the reader incorporates the signal, not what
+  # the source says). A Top signal missing any of the four fields is
+  # demoted to Archive notes.
+  - id: systems_thinking
+    name: Systems Thinking
+    mode: interpretive
+    category: synthesis
+    required: true
+    prompt: prompts/lenses/systems_thinking.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Name the underlying system or mechanism the Top-signal pick exposes.
+
+  - id: transferable_principle
+    name: Transferable Principle
+    mode: synthetic
+    category: synthesis
+    required: true
+    prompt: prompts/lenses/transferable_principle.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Name the principle the Top-signal pick generalizes beyond its source.
+
+  - id: falsification_test
+    name: Falsification Test
+    mode: critique
+    category: synthesis
+    required: true
+    prompt: prompts/lenses/falsification_test.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Name the observation that would prove the Top-signal pick's main claim wrong.
