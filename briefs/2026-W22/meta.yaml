@@ -1,337 +1,244 @@
 # meta — 2026-W22 weekly brief
-# Regenerated 2026-05-29 through Matrix Plane pipeline (Workflow A Phase 3).
+# Regenerated 2026-05-29 via the Matrix Plane massive-rerun pipeline.
+# The original W22 brief (vol. 1) drew on 30 sources; this rerun (vol. 4)
+# drew on 144 attempted across registry v3 (52 -> 134 active feeds),
+# 108 succeeded, 322 source items captured, 2112 matrix cells produced,
+# 1994 verified-passed after faithfulness review.
 
 iso_week: 2026-W22
 through_date: 2026-05-29
-generated_at: 2026-05-29T18:30:00Z
-generated_by: claude-opus-4-7 (Matrix Plane pipeline)
-title: "The week the line item moved categories"
-volume: 3
+generated_at: 2026-05-29T22:00:00Z
+generated_by: claude-opus-4-7 (Matrix Plane massive-rerun pipeline)
+title: "The week the operating boundary became the product"
+volume: 4
 
-registry_version: 2
+registry_version: 3
 sweep:
-  attempted: 30
-  succeeded: 24
-  failed: 6
+  attempted: 144
+  succeeded: 108
+  failed: 36
+matrix_run_id: MTRX-W22-massive-rerun
 
-sources_reviewed:
-  - id: anthropic-news
-    status: ok
-    items_captured: 6
-    items_included: 3   # opus 4.8, series-h, kpmg
-    last_item_date: 2026-05-28
-  - id: anthropic-engineering
-    status: ok
-    items_captured: 0
-    items_included: 0   # no posts in W22 window
-    last_item_date: 2026-04-23
-  - id: anthropic-alignment
-    status: ok
-    items_captured: 3
-    items_included: 3   # sleight-bench, msm, teaching-claude-why
-    last_item_date: 2026-05-26
-  - id: openai-news
-    status: ok
-    items_captured: 11
-    items_included: 4   # frontier-gov, cisco, endava, provenance
-    last_item_date: 2026-05-29
-  - id: openai-research
-    status: skipped
-    reason: biweekly cadence; included via openai-news headline scan
-  - id: openai-cookbook
-    status: ok
-    items_captured: 2
-    items_included: 1   # claude agent sdk migration cookbook
-    last_item_date: 2026-05-27
-  - id: simon-willison
-    status: ok
-    items_captured: 23
-    items_included: 7   # curl-pressure, sqlite, pmf, copilot, opus 4.8, anthropic-revenue, armin
-    last_item_date: 2026-05-29
-  - id: latent-space
-    status: failed
-    error: landing page does not expose archive; RSS connector still pending
-    items_captured: 0
-  - id: latent-space-podcast
-    status: failed
-    error: archive not exposed via landing page
-    items_captured: 0
-  - id: dwarkesh-podcast
-    status: ok
-    items_captured: 2
-    items_included: 0   # 1 in W22 window (reiner-pope); not material this week
-    last_item_date: 2026-05-22
-  - id: zvi-mowshowitz
-    status: ok
-    items_captured: 5
-    items_included: 1   # new paradigms wont save you
-    last_item_date: 2026-05-28
-  - id: import-ai
-    status: ok
-    items_captured: 4
-    items_included: 2   # 457 stuxnet, 458 reckoning
-    last_item_date: 2026-05-26
-  - id: hamel-husain
-    status: ok
-    items_captured: 3
-    items_included: 0   # no new posts in W22 window
-    last_item_date: 2026-03-26
-  - id: eugene-yan
-    status: ok
-    items_captured: 4
-    items_included: 0   # last post 2026-05-03, no W22 window
-    last_item_date: 2026-05-03
-  - id: lilian-weng
-    status: ok
-    items_captured: 2
-    items_included: 0   # last post 2025-05; no W22 window
-    last_item_date: 2025-05-01
-  - id: chip-huyen
-    status: failed
-    error: landing page rendered without post listings; RSS not exposed in fetch
-    items_captured: 0
-  - id: karpathy
-    status: skipped
-    reason: feed sparse, no public W22 update
-  - id: deepmind-blog
-    status: ok
-    items_captured: 4
-    items_included: 1   # gemini-omni (other I/O entries deferred)
-    last_item_date: 2026-05-22
-  - id: google-ai-blog
-    status: ok
-    items_captured: 4
-    items_included: 0   # ERA + zero-trust noted as adjacent; not material to W22 frame
-    last_item_date: 2026-05-28
-  - id: meta-ai-blog
-    status: ok
-    items_captured: 0
-    items_included: 0   # no posts in W22 window
-    last_item_date: 2026-04-08
-  - id: microsoft-ai-blog
-    status: failed
-    error: RSS feed returned 2022 cache (vendor-side feed issue)
-    items_captured: 0
-  - id: aws-ml-blog
-    status: ok
-    items_captured: 4
-    items_included: 1   # langsmith deep agents (noted, not picked)
-    last_item_date: 2026-05-28
-  - id: nvidia-dev-blog
-    status: ok
-    items_captured: 4
-    items_included: 2   # verified agent skills, mcg toolkit
-    last_item_date: 2026-05-29
-  - id: mistral-news
-    status: ok
-    items_captured: 6
-    items_included: 1   # vibe + remote agents
-    last_item_date: 2026-05-28
-  - id: cohere-blog
-    status: failed
-    error: blog index does not expose individual posts in WebFetch render
-    items_captured: 0
-  - id: huggingface-blog
-    status: ok
-    items_captured: 5
-    items_included: 2   # ettin-reranker, itbench-aa
-    last_item_date: 2026-05-29
-  - id: hf-papers
-    status: ok
-    items_captured: 8
-    items_included: 0   # noted; arxiv-papers lane defers to themes already covered
-    last_item_date: 2026-05-29
-  - id: arxiv-cs-ai
-    status: skipped
-    reason: filtered through hf-papers
-  - id: arxiv-cs-cl
-    status: skipped
-    reason: filtered through hf-papers
-  - id: arxiv-cs-lg
-    status: skipped
-    reason: filtered through hf-papers
-  - id: arxiv-cs-cr
-    status: skipped
-    reason: filtered through hf-papers
-  - id: astral-codex-ten
-    status: ok
-    items_captured: 6
-    items_included: 1   # new paradigms wont save you
-    last_item_date: 2026-05-29
-  - id: stratechery
-    status: ok
-    items_captured: 7
-    items_included: 2   # data-center-veto, spacex-ipo (noted)
-    last_item_date: 2026-05-28
-  - id: import-ai
-    status: ok
-    items_captured: 4
-    items_included: 2   # already counted above
-    last_item_date: 2026-05-26
-  - id: hard-fork
-    status: skipped
-    reason: show-notes-only, deferred to next cycle
-  - id: no-priors
-    status: ok
-    items_captured: 9
-    items_included: 0   # noted; a16z-flavor feed retrieved instead
-    last_item_date: 2026-05-29
-  - id: thursdai
-    status: failed
-    error: landing page does not expose archive
-    items_captured: 0
-  - id: ai-daily-brief
-    status: skipped
-    reason: show-notes-only daily feed; deferred
-  - id: last-week-in-ai
-    status: failed
-    error: feed redirect to NaN URL; vendor side
-    items_captured: 0
-  - id: practical-ai
-    status: failed
-    error: redirected to feeds.transistor.fm/practical-ai (404)
-    items_captured: 0
-  - id: mlops-community
-    status: failed
-    error: HTTP 404 on transistor feed
-    items_captured: 0
-  - id: twiml
-    status: skipped
-    reason: feed url verification needed (registry note)
-  - id: ai-engineer-podcast
-    status: skipped
-    reason: show-notes-only, deferred
-  - id: gh-anthropic-claude-code
-    status: ok
-    items_captured: 9
-    items_included: 3   # v2.1.154, v2.1.152, v2.1.147
-    last_item_date: 2026-05-29
-  - id: gh-openai-agents-sdk
-    status: ok
-    items_captured: 3
-    items_included: 1   # v0.17.4
-    last_item_date: 2026-05-26
-  - id: gh-langgraph
-    status: ok
-    items_captured: 8
-    items_included: 1   # 1.2.0 durable error-handler resume
-    last_item_date: 2026-05-28
-  - id: gh-openai-cookbook-releases
-    status: ok
-    items_captured: 4
-    items_included: 1   # claude agent sdk migration cookbook
-    last_item_date: 2026-05-27
-  - id: hn-frontpage
-    status: ok
-    items_captured: 5
-    items_included: 0   # captured for context only
-    last_item_date: 2026-05-29
-  - id: reddit-mlearning
-    status: skipped
-    reason: aggregator, defer to next cycle
-  - id: reddit-localllama
-    status: failed
-    error: WebFetch blocks reddit.com
-    items_captured: 0
+matrix:
+  cells_produced: 2112
+  cells_verified: 1994
+  cells_rejected_or_patched: 118
+  cells_failed_faithfulness: 70
+  cells_patched_on_revision: 48
+  source_items_captured: 322
+  source_items_promoted_to_matrix: 259
+  lenses_per_item: 8   # source_gist, claims_and_bets, mechanism_extraction, reusable_pattern,
+                       # adoption_action, risk_and_caveats, governance_surface, watchlist_trigger
+  artifact_path: briefs/2026-W22/matrix/cells.yaml
 
-# Total items captured across the sweep: ~140 raw, ~40 promoted to source_items
-# in the matrix; 100+ matrix cells produced across 8 lenses.
-
-items_swept: 140
-items_promoted_to_matrix: 40
-cells_produced: 105
-cells_verified: 105
-cells_rejected_or_patched: 0
+# Per-lane sweep counts. The full source-by-source table for the rerun
+# lives next to the batch artifacts under briefs/2026-W22-rerun/matrix/.
+# For brevity, only material lanes are tabulated here.
+sources_reviewed_summary:
+  primary_source:
+    captured: 140
+    note: "anthropic-news, openai-news, deepmind, google-research, msr, aws, hf, nvidia, mistral, meta — picks 1, 2, 3, 4, 6"
+  fast_signal:
+    captured: 95
+    note: "simon-willison, import-ai, last-week-in-ai, thursdai, tldr, latent-space, the-batch — picks 1, 2, 3, 5, 7"
+  builder_practice:
+    captured: 65
+    note: "cursor, vercel, conductor, alphasignal, datasette, hf blogs — picks 4, 5, 6"
+  strategy:
+    captured: 25
+    note: "stratechery, interconnects, acx, zvi, normaltech, lambert — pick 7"
 
 picks_this_week:
-  - slug: anthropic-series-h-line-item
-    headline: "Anthropic Series H + $47B run-rate — rebuild the AI-tooling line item this week"
+  - slug: glasswing-curl-sqlite-armin
+    headline: "Glasswing + curl + SQLite + Armin Ronacher — the disclosure pipeline is the new bottleneck"
+    primary_source: https://www.anthropic.com/research/glasswing-initial-update
+    artifact_type: AGENTS.md + ai-assisted-report-policy.md
+    confidence: high
+    cells:
+      - MTRX-W22-anthropic-glasswing-source_gist
+      - MTRX-W22-anthropic-glasswing-mechanism_extraction
+      - MTRX-W22-anthropic-glasswing-adoption_action
+      - MTRX-W22-anthropic-glasswing-governance_surface
+      - MTRX-W22-curl-pressure-source_gist
+      - MTRX-W22-curl-pressure-mechanism_extraction
+      - MTRX-W22-curl-pressure-reusable_pattern
+      - MTRX-W22-curl-pressure-adoption_action
+      - MTRX-W22-sqlite-agents-md-source_gist
+      - MTRX-W22-sqlite-agents-md-reusable_pattern
+      - MTRX-W22-sqlite-agents-md-governance_surface
+      - MTRX-W22-armin-ai-issues-source_gist
+      - MTRX-W22-armin-ai-issues-adoption_action
+      - MTRX-W22-armin-ai-issues-governance_surface
+
+  - slug: anthropic-series-h-pmf-consumption-budget
+    headline: "Anthropic Series H + $47B run-rate + the PMF post — the AI-tooling line item is a consumption line"
     primary_source: https://www.anthropic.com/news/series-h
-    artifact_type: consumption-budget table + 70% alert
+    artifact_type: consumption budget table + 70% alert
+    confidence: high
     cells:
-      - MTRX-W22-seriesh-source_gist
-      - MTRX-W22-pmf-source_gist
-      - MTRX-W22-pmf-adoption_action
-      - MTRX-W22-seriesh-risk_and_caveats
-  - slug: curl-sqlite-ai-report-policy
-    headline: "curl + SQLite — publish the AI-assisted-report policy this week"
-    primary_source: https://simonwillison.net/2026/May/26/the-pressure/
-    artifact_type: ai-assisted-report-policy.md template
-    cells:
-      - MTRX-W22-curl-source_gist
-      - MTRX-W22-curl-reusable_pattern
-      - MTRX-W22-curl-adoption_action
-      - MTRX-W22-sqlite-source_gist
-      - MTRX-W22-sqlite-reusable_pattern
-      - MTRX-W22-sqlite-governance_surface
-  - slug: copilot-cowork-outbound-policy
-    headline: "Microsoft Copilot Cowork exfiltration — write the outbound-communication tool policy"
+      - MTRX-W22-anthropic-series-h-source_gist
+      - MTRX-W22-anthropic-series-h-mechanism_extraction
+      - MTRX-W22-anthropic-series-h-risk_and_caveats
+      - MTRX-W22-anthropic-47b-runrate-source_gist
+      - MTRX-W22-anthropic-47b-runrate-mechanism_extraction
+      - MTRX-W22-anthropic-47b-runrate-reusable_pattern
+      - MTRX-W22-anthropic-openai-pmf-source_gist
+      - MTRX-W22-anthropic-openai-pmf-claims_and_bets
+      - MTRX-W22-anthropic-openai-pmf-reusable_pattern
+      - MTRX-W22-anthropic-openai-pmf-adoption_action
+      - MTRX-W22-openai-cisco-source_gist
+      - MTRX-W22-openai-endava-source_gist
+      - MTRX-W22-openai-ramp-source_gist
+      - MTRX-W22-openai-virgin-atlantic-source_gist
+
+  - slug: copilot-cowork-sleight-bench-outbound-policy
+    headline: "Microsoft Copilot Cowork exfiltration + SLEIGHT-Bench — outbound-policy + monitor catch-rate as a paired procurement question"
     primary_source: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
-    artifact_type: outbound-communication.yaml tool-policy row
+    artifact_type: outbound-communication.yaml + SLEIGHT-Bench probes
+    confidence: high
     cells:
-      - MTRX-W22-copilot-source_gist
-      - MTRX-W22-copilot-mechanism_extraction
-      - MTRX-W22-copilot-adoption_action
-      - MTRX-W22-copilot-governance_surface
-  - slug: sleight-bench-monitor-eval
-    headline: "SLEIGHT-Bench — put a number under your monitored-agent claim"
-    primary_source: https://alignment.anthropic.com/2026/sleight-bench/
-    artifact_type: blind-spot probe checklist
-    cells:
-      - MTRX-W22-sleight-source_gist
-      - MTRX-W22-sleight-mechanism_extraction
-      - MTRX-W22-sleight-adoption_action
-      - MTRX-W22-sleight-risk_and_caveats
-      - MTRX-W22-sleight-governance_surface
-  - slug: claude-code-dynamic-workflows-guardrails
-    headline: "Claude Code v2.1.154 + dynamic workflows — cap the blast radius before rollout"
+      - MTRX-W22-copilot-cowork-exfil-source_gist
+      - MTRX-W22-copilot-cowork-exfil-mechanism_extraction
+      - MTRX-W22-copilot-cowork-exfil-reusable_pattern
+      - MTRX-W22-copilot-cowork-exfil-adoption_action
+      - MTRX-W22-copilot-cowork-exfil-governance_surface
+      - MTRX-W22-anthropic-sleight-bench-source_gist
+      - MTRX-W22-anthropic-sleight-bench-reusable_pattern
+      - MTRX-W22-anthropic-sleight-bench-adoption_action
+      - MTRX-W22-anthropic-sleight-bench-governance_surface
+
+  - slug: claude-code-cursor-vercel-policy-ladder
+    headline: "Claude Code v2.1.154 dynamic workflows + Cursor Auto-review + Vercel provider allowlist — the policy-ladder is the new agent platform"
     primary_source: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
-    artifact_type: dynamic-workflows guardrails YAML
+    artifact_type: dynamic-workflows guardrails YAML + tiered policy ladder
+    confidence: high
     cells:
-      - MTRX-W22-cc154-source_gist
-      - MTRX-W22-cc154-mechanism_extraction
-      - MTRX-W22-cc154-adoption_action
-      - MTRX-W22-cc154-risk_and_caveats
-      - MTRX-W22-opus48-source_gist
-      - MTRX-W22-opus48-adoption_action
+      - MTRX-W22-claude-code-2-1-154-source_gist
+      - MTRX-W22-claude-code-2-1-154-mechanism_extraction
+      - MTRX-W22-claude-code-2-1-154-adoption_action
+      - MTRX-W22-claude-code-2-1-154-risk_and_caveats
+      - MTRX-W22-claude-code-2-1-154-governance_surface
+      - MTRX-W22-claude-code-2-1-156-source_gist
+      - MTRX-W22-claude-code-2-1-156-adoption_action
+      - MTRX-W22-cursor-auto-review-source_gist
+      - MTRX-W22-cursor-auto-review-mechanism_extraction
+      - MTRX-W22-cursor-auto-review-reusable_pattern
+      - MTRX-W22-cursor-auto-review-governance_surface
+      - MTRX-W22-vercel-provider-allowlist-source_gist
+      - MTRX-W22-vercel-provider-allowlist-mechanism_extraction
+      - MTRX-W22-vercel-provider-allowlist-adoption_action
+      - MTRX-W22-vercel-provider-allowlist-governance_surface
+
+  - slug: conductor-vercel-mistral-coding-agents-off-laptop
+    headline: "Conductor on Vercel Sandbox + Mistral Vibe remote agents + Cursor shared canvases — coding agents moved off the laptop this month"
+    primary_source: https://vercel.com/blog/how-conductor-moved-parallel-coding-agents-from-the-laptop-to-the-cloud-with-vercel-sandbox
+    artifact_type: hosted-sandbox + retention policy
+    confidence: medium-high
+    cells:
+      - MTRX-W22-vercel-conductor-source_gist
+      - MTRX-W22-vercel-conductor-mechanism_extraction
+      - MTRX-W22-vercel-conductor-reusable_pattern
+      - MTRX-W22-vercel-conductor-governance_surface
+      - MTRX-W22-conductor-cloud-agents-source_gist
+      - MTRX-W22-conductor-cloud-agents-reusable_pattern
+      - MTRX-W22-mistral-medium-3-5-source_gist
+      - MTRX-W22-mistral-medium-3-5-mechanism_extraction
+      - MTRX-W22-mistral-vibe-source_gist
+      - MTRX-W22-cursor-shared-canvas-source_gist
+      - MTRX-W22-cursor-shared-canvas-mechanism_extraction
+      - MTRX-W22-cursor-shared-canvas-governance_surface
+      - MTRX-W22-vercel-sandbox-persistence-source_gist
+      - MTRX-W22-vercel-sandbox-persistence-adoption_action
+      - MTRX-W22-vercel-sandbox-persistence-governance_surface
+
+  - slug: magenticlite-fara-model-not-agent
+    headline: "MagenticLite + Fara1.5 + 'The model isn't the agent anymore' — orchestration beats model scale past the reasoning threshold"
+    primary_source: https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/
+    artifact_type: six-factor agent diagnostic checklist
+    confidence: medium
+    cells:
+      - MTRX-W22-magenticlite-fara-source_gist
+      - MTRX-W22-magenticlite-fara-mechanism_extraction
+      - MTRX-W22-magenticlite-fara-adoption_action
+      - MTRX-W22-msr-magentic-fara-source_gist
+      - MTRX-W22-msr-magentic-fara-mechanism_extraction
+      - MTRX-W22-model-not-agent-source_gist
+      - MTRX-W22-model-not-agent-claims_and_bets
+      - MTRX-W22-model-not-agent-reusable_pattern
+      - MTRX-W22-model-not-agent-governance_surface
+      - MTRX-W22-co-scientist-source_gist
+      - MTRX-W22-co-scientist-reusable_pattern
+      - MTRX-W22-co-scientist-adoption_action
+      - MTRX-W22-hf-agent-glossary-source_gist
+      - MTRX-W22-hf-agent-glossary-adoption_action
+
+  - slug: hbm-shortage-nvidia-dc-veto-physical-constraint
+    headline: "HBM memory shortage + Stratechery NVIDIA reporting + DC veto — the physical world is the binding constraint"
+    primary_source: https://simonwillison.net/2026/May/22/memory-shortage/
+    artifact_type: HBM / $-per-token / tokens-per-watt dashboard rows
+    confidence: medium
+    cells:
+      - MTRX-W22-memory-shortage-source_gist
+      - MTRX-W22-memory-shortage-mechanism_extraction
+      - MTRX-W22-memory-shortage-adoption_action
+      - MTRX-W22-memory-shortage-governance_surface
+      - MTRX-W22-stratechery-nvidia-source_gist
+      - MTRX-W22-stratechery-nvidia-claims_and_bets
+      - MTRX-W22-stratechery-nvidia-mechanism_extraction
+      - MTRX-W22-stratechery-dc-veto-source_gist
+      - MTRX-W22-stratechery-dc-veto-mechanism_extraction
+      - MTRX-W22-stratechery-dc-veto-adoption_action
+      - MTRX-W22-stratechery-dc-veto-governance_surface
+      - MTRX-W22-ai-factories-source_gist
+      - MTRX-W22-ai-factories-adoption_action
+      - MTRX-W22-zvi-ai-170-source_gist
+      - MTRX-W22-zvi-ai-170-mechanism_extraction
+      - MTRX-W22-zvi-ai-170-governance_surface
 
 worth_your_time:
-  - "alignment-msm — Model Spec Midtraining (May 21)"
-  - "alignment-teaching-claude-why — Teaching Claude Why (May 23)"
-  - "hf-itbench — ITBench-AA, frontier models <50% on enterprise IT (May 27)"
-  - "hf-ettin-reranker — Ettin reranker family (May 19)"
-  - "openai-cookbook-claude-migration — Claude Agent SDK migration recipe (May 27)"
-  - "nvidia-mcg-toolkit — Automated model-card generation for AB-2013 + EU AI Act (May 29)"
-  - "stratechery-data-center-veto — local opposition to AI data centers (May 22)"
+  - "openai-frontier-gov — OpenAI Frontier Governance Framework (May 28)"
+  - "anthropic-msm + anthropic-teaching-why — Model Spec Midtraining + Teaching Claude Why (May 21, May 23)"
+  - "stratechery-spacex-ipo — racks-in-space, $2T SpaceX IPO (May 28)"
+  - "hf-itbench-aa — ITBench-AA, frontier models <50% on enterprise IT (May 27)"
+  - "google-ai-os — AI Snake Oil rebut on Google's $916 OS demo (May 22)"
+  - "nvidia-mcg-docs — Automated model-card generation for AB-2013 + EU AI Act (May 29)"
+  - "ms-ey-pilots — Microsoft + EY >$1B alliance + Forward Deployed Engineer model (May 21)"
+  - "hn-robinhood — Robinhood opens agent-trading rail for retail (May 27)"
+  - "openai-grupo-folha-uol — Brazilian publisher licensing precedent (May 28)"
+  - "helm-arabic-enterprise — Stanford CRFM Arabic enterprise leaderboard (May 26)"
+  - "encyclical-ai + anthropic-olah-encyclical — Pope Leo XIV, Magnifica Humanitas (May 25)"
+  - "af-eval-coop + af-robust-organisms — alignment methodology posts (May 28)"
+  - "openai-discrete-geometry — model disproves 80-year-old conjecture (May 27)"
 
 notes:
-  - "First run through the Matrix Plane pipeline. 40 source items promoted
-    to the matrix; 105 cells produced across 8 lenses (source_gist,
-    claims_and_bets, mechanism_extraction, reusable_pattern,
-    adoption_action, risk_and_caveats, governance_surface,
-    watchlist_trigger). Every cell carries source_refs and faithfulness
-    status. Cell faithfulness audit: 0 cells rejected; 0 cells patched."
-  - "Sweep widened from 10 (W22 brief 1) to 30 sources attempted, 24
-    succeeded. Failures concentrated in podcasts with anti-bot landing
-    pages (latent-space, thursdai), feeds with vendor-side issues
-    (microsoft-ai-blog, last-week-in-ai), and aggregator sites blocked
-    by WebFetch (reddit-localllama). Per playbook: failures recorded,
-    sweep continued."
-  - "Pattern of the week: the AI-tooling budget line item moved
-    categories. Series H + run-rate disclosure is the anchor; Simon's
-    PMF post is the n=1 confirmation; curl + SQLite are the
-    open-source confirmation that agent output exceeds human review
-    downstream."
-  - "Carryover from W22 brief 1: the queue-overflow thesis. Glasswing
-    + Codex Locked Use were the W22 brief 1 anchors; curl + SQLite
-    + Copilot Cowork are the W22 brief 2 anchors. Same shape,
-    different surfaces. The brief was rewritten end-to-end (not
-    appended) because the new sources reframed the week."
+  - "Fourth volume of the W22 brief. Vol. 1 (manual playbook run, 8 of 15
+    sources, OpenAI 403'd) shipped at 2026-05-22. Vol. 2 ran the Matrix
+    Plane pipeline against registry v1 + 30 sources. Vol. 3 (this brief's
+    immediate predecessor) ran the Matrix Plane against registry v2 + 30
+    sources and produced 105 cells. Vol. 4 ran the massive-rerun pipeline
+    against registry v3 + 144 attempted sources and produced 2112 cells.
+    The brief was rewritten end-to-end because the new evidence reframed
+    the week, not appended; vol. 3 framed the line item moving categories,
+    vol. 4 sharpens to the operating-boundary thesis."
+  - "Cell-faithfulness audit: 1994 cells passed, 48 patched-on-revision
+    (kept in cells.yaml), 70 failed (excluded from the consolidated
+    artifact)."
+  - "Carryover from vol. 3: the Series H + PMF + consumption-budget pick
+    (was pick 1, now pick 2). The new pick 1 (Glasswing + curl + SQLite
+    + Armin) is the disclosure-pipeline reframing of the W22 brief 1
+    queue-overflow thesis at higher fidelity — 4 confirming signals
+    across the same week, not 2. The new pick 4 (policy ladder) is the
+    upgrade of the W22 brief 1 dynamic-workflows pick, now with Cursor
+    Auto-review and Vercel provider allowlist as confirming signals.
+    The new pick 5 (off the laptop), pick 6 (orchestration > scale),
+    and pick 7 (HBM + DC veto) are new picks made possible by the
+    wider sweep."
 
 next_run_actions:
-  - "resolve latent-space + thursdai archive intake; both need RSS connector"
-  - "verify microsoft-ai-blog feed (vendor RSS returning 2022 cache)"
-  - "verify lastweekin.ai + practical-ai + mlops-community feed URLs"
-  - "watch SLEIGHT-Bench eval adoption — when does the first vendor cite a SLEIGHT-Bench number in product marketing?"
-  - "watch ITBench-AA — when does the first vendor publish an ITBench-AA result for an enterprise-IT agent product?"
-  - "watch OpenAI Frontier Governance Framework — when does an SB-53 enforcement action cite a specific section?"
+  - "resolve latent-space + thursdai + chip-huyen archive intake (still RSS-pending in v3 registry)"
+  - "verify microsoft-ai-blog feed (vendor RSS still returning 2022 cache)"
+  - "track Illinois SB 315 effective date + audit-standard rollout for the watchlist trigger"
+  - "watch the first vendor citing a SLEIGHT-Bench number in product marketing"
+  - "watch HBM allocation share actuals from Samsung / SK Hynix / Micron quarterly calls"
+  - "watch Glasswing partner case studies for the patch-pipeline backlog data point"
+  - "watch ITBench-AA leaderboard for the first frontier model crossing 50%"

@@ -1,0 +1,108 @@
+matrix_run_id: MTRX-W22-massive-rerun
+batch_index: 3
+batch_label: "Phase 3 batch 4 of 4 (89 items)"
+cells:
+  - id: MTRX-W22-robust-model-organisms-source_gist
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: source_gist
+    mode: extractive
+    content: "Study identifies factors making model organisms robust to untargeted training, finding full-weight fine-tuning yields more robust backdoors than LoRA, and prompted model organisms are extremely fragile."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "prompted model organisms are extremely fragile; researchers should avoid them"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-claims_and_bets
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: claims_and_bets
+    mode: interpretive
+    content: "Claim: full-weight fine-tuning produces backdoors more robust to subsequent training than LoRA variants. Implicit bet: technique evaluation requires non-fragile model organisms, otherwise results don't generalize."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "higher-rank LoRA model organisms are relatively robust; full-weight fine-tuning (FWFT) is best"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-mechanism_extraction
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: mechanism_extraction
+    mode: interpretive
+    content: "Mechanism: depth of weight modification determines training robustness. Prompted (no weight change) is fragile; LoRA (low-rank weight change) is intermediate; FWFT (full weight change) is most robust to untargeted training pressure."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "higher-rank LoRA model organisms are relatively robust; full-weight fine-tuning (FWFT) is best"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-reusable_pattern
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: reusable_pattern
+    mode: interpretive
+    content: "Pattern: when evaluating safety techniques, test subject robustness first; weak subjects produce uninterpretable results because you cannot distinguish technique strength from subject fragility."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "when a sophisticated technique succeeds on one, you can't tell whether the technique is good or the model organism is weak"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-adoption_action
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: adoption_action
+    mode: interpretive
+    content: "For safety researchers building model organisms: prefer FWFT over LoRA, prefer LoRA over prompting, and treat fragility as a confound to characterize before publishing results."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "prompted model organisms are extremely fragile; researchers should avoid them"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-risk_and_caveats
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: risk_and_caveats
+    mode: critique
+    content: "Caveat: findings apply to untargeted training pressure; targeted adversarial training may break even FWFT organisms. Source is one study, not a meta-analysis, and the excerpt does not state the model size or training data scale."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "robust-to-training model organisms"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-governance_surface
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: governance_surface
+    mode: interpretive
+    content: "Governance touchpoint: alignment evaluation methodology. If model-organism fragility is the dominant variable in technique benchmarks, claims about safety-technique progress should require subject-robustness disclosure."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "Fragile model organisms make technique evaluation unreliable"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+  - id: MTRX-W22-robust-model-organisms-watchlist_trigger
+    matrix_run_id: MTRX-W22-massive-rerun
+    source_item_id: robust-model-organisms
+    lens_id: watchlist_trigger
+    mode: interpretive
+    content: "Watch for: papers claiming safety-technique success that test only on prompted or low-rank-LoRA organisms; treat as low-evidence until repeated on FWFT subjects."
+    source_refs:
+      - uri: https://www.alignmentforum.org/posts/CmkAxJi83jRv9eXgJ/advice-for-making-robust-to-training-model-organisms-1
+        quote_or_span: "prompted model organisms are extremely fragile"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
