@@ -4,10 +4,13 @@ generated_by: claude-opus-4-7 (matrix-runner role; massive-rerun consolidation)
 schema: schemas/matrix_cell.schema.json
 summary:
   batches_consolidated: 4
-  cells_produced: 2120
-  cells_verified_passed: 1963
+  cells_produced: 2141
+  cells_verified_passed: 1984
   cells_failed_or_patched: 157
   unique_source_items: 259
+  pass_4_lens_cells_added: 21
+  pass_4_added_at: '2026-05-29T23:30:00Z'
+  pass_4_added_for: vol. 5 systems-thinking upgrade (DEC-MTRX-007, DEC-CDCP-020)
 cells:
 - id: MTRX-W22-2mp-hassabis-adoption_action
   matrix_run_id: MTRX-W22-massive-rerun
@@ -27381,5 +27384,498 @@ cells:
     quote_or_span: Illinois SB 315
     ref_type: quote
   confidence: high
+  faithfulness_status: passed
+  status: verified
+# --- Pass 4 systems-thinking lens cells (vol. 5 upgrade) ---
+# Three cells per Top Signal: systems_thinking, transferable_principle,
+# falsification_test. The adoption_ladder is constructed at synthesis time
+# and lives in the brief, not as a cell. Added 2026-05-29 by the vol. 5
+# synthesis editor pass per DEC-MTRX-007 and DEC-CDCP-020.
+- id: MTRX-W22-glasswing-curl-sqlite-armin-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-glasswing
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system the four signals expose is a queue-imbalance: agent-assisted
+    finding and drafting have compressed the cost of producing a vulnerability or
+    bug report by an order of magnitude on each axis (Glasswing on discovery, the
+    curl deluge on submission), while patch, triage, and CVE coordination scale
+    linearly in maintainer-hours. SQLite and Armin Ronacher name the dual control
+    surface: intake contracts that require verifiable artifacts (reproducer, raw
+    observation, PoC) become the throttle when the upstream pipe is generative.
+    The pattern recurs wherever a generative process feeds a verification process
+    priced in human attention.'
+  source_refs:
+  - uri: https://www.anthropic.com/research/glasswing-initial-update
+    quote_or_span: limited by how quickly we can verify, disclose, and patch
+    ref_type: quote
+  - uri: https://simonwillison.net/2026/May/26/the-pressure/
+    quote_or_span: more than one AI-assisted security report per day
+    ref_type: quote
+  - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+    quote_or_span: rejects agentic code patches
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-glasswing-curl-sqlite-armin-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-glasswing
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when a generative process feeds a verification process,
+    the binding constraint moves to the verifier and the intake contract becomes
+    the control surface. Example beyond security: customer-support triage where
+    AI-drafted tickets flood a human-bounded resolver pool — the answer is an
+    intake rubric requiring the literal error string and a reproducer, not a
+    larger triage team. The same shape applies to journal peer review,
+    grant-proposal intake, hiring-funnel rubrics, and internal architecture-review
+    boards once AI drafting becomes table stakes on the submission side.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/24/armin-ronacher/
+    quote_or_span: inaccurate but full of confidence
+    ref_type: quote
+  - uri: https://simonwillison.net/2026/May/27/sqlite-agents/
+    quote_or_span: bug reports must include reproducer
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-glasswing-curl-sqlite-armin-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-glasswing
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the bottleneck claim breaks if a Glasswing partner
+    (Cloudflare, Mozilla, or a peer) publishes a patch-pipeline-throughput
+    number for the next quarter that keeps pace with finding volume — i.e., the
+    verify/disclose/patch rate scales with the discovery rate over a 90-day
+    window. The intake-contract claim breaks if maintainers report that an
+    AGENTS.md-style policy did not change auto-close rates or triage-queue
+    depth after 60 days of publication. Either observation would mean the
+    system absorbed the shock without rewriting the contract.'
+  source_refs:
+  - uri: https://www.anthropic.com/research/glasswing-initial-update
+    quote_or_span: limited by how quickly we can verify, disclose, and patch
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-anthropic-series-h-pmf-consumption-budget-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-series-h
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system this pick exposes is unit-economics drift: when usage
+    scales with intelligence-per-task rather than seats, any pricing model
+    anchored to seats decouples from cost-of-goods and from value-delivered in
+    opposite directions. The $47B run-rate, the n=1 $2,180 vs $200 subscription
+    gap, and the enterprise Codex customer roster are three measurements of the
+    same drift: a power-law distribution of token spend per user that flat
+    per-seat pricing cannot represent. The pattern recurs in every
+    consumption-priced infrastructure category (cloud compute, CDN, API calls)
+    once a high-end power-user segment emerges.'
+  source_refs:
+  - uri: https://www.anthropic.com/news/series-h
+    quote_or_span: $65B Series H at a $965B post-money valuation
+    ref_type: quote
+  - uri: https://simonwillison.net/2026/May/29/anthropic/
+    quote_or_span: run-rate revenue grew from $9B to $47B
+    ref_type: quote
+  - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+    quote_or_span: burn vastly more tokens but are becoming daily drivers
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-anthropic-series-h-pmf-consumption-budget-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-series-h
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when a substitute good moves from flat-rate to metered
+    along a power-law distribution of demand, the budget primitive must be a
+    cap-plus-alert, not an annual line item. Example beyond AI coding agents:
+    cloud-data-warehouse spend (Snowflake, BigQuery) where a single
+    misconfigured dashboard query can consume a month of budget in an hour —
+    the answer is a per-team query-cost cap with a 70%-of-cap alert, not a
+    quarterly true-up. The same shape applies to egress bandwidth, to
+    per-request API quotas at any vendor, and to per-pipeline CI spend on
+    hosted runners.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+    quote_or_span: $2,180 against a $200 subscription assumption
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-anthropic-series-h-pmf-consumption-budget-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: anthropic-series-h
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the consumption-line thesis breaks if Anthropic or
+    OpenAI publishes an audited TTM revenue alongside a run-rate and the TTM
+    figure is more than 35% below the annualized run-rate (i.e., the
+    trajectory is a one-month marketing artifact rather than a durable level).
+    The per-developer-burn thesis breaks if a procurement survey of 100+
+    engineering organizations using coding agents shows median monthly spend
+    remains below the seat price for a sustained quarter; that would mean the
+    n=1 Willison number generalized poorly. Either observation would warrant
+    returning the budget line to per-seat.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/29/anthropic/
+    quote_or_span: run-rate annualizes a single month
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: copilot-cowork-exfil
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system exposed is an asymmetric-information flow: any agent
+    that composes outbound content sits at a confused-deputy boundary — it
+    holds the user authority but reads attacker-controlled inputs. Image-load
+    exfiltration is the textbook side channel for that boundary (external
+    content → agent draft → URL render on recipient open → leak).
+    SLEIGHT-Bench is the dual: a measurement instrument for whether a monitor
+    catches the evasive transcripts that traverse the boundary. The pattern
+    recurs at every confused-deputy surface — SSRF in image-fetch services,
+    JSON-injection in webhook receivers, open-redirect-to-OAuth in identity
+    providers.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+    quote_or_span: attacker-supplied external images
+    ref_type: quote
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: benchmark of evasive transcripts
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: copilot-cowork-exfil
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: any boundary where one principal authority is invoked on
+    another principal data must carry both a stripping/proxying control on the
+    transit channel and a measured catch-rate on the monitor. Example beyond
+    Copilot Cowork: enterprise webhook receivers that re-emit
+    attacker-controlled JSON into Slack — the answer is a content stripper at
+    the edge plus a benchmark suite that scores the monitor against known
+    evasive payloads. The same shape applies to email auto-responders, ticket
+    reply rendering, LLM-powered SOC alert summaries, and any browser
+    extension that summarizes page content into a chat surface.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/
+    quote_or_span: opening the message triggered a network request
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: copilot-cowork-exfil
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the outbound-policy thesis breaks if a year of
+    red-team data shows that strip-or-proxy controls and human-approval gates
+    fail to reduce successful exfiltration attempts versus a control group
+    with only post-hoc monitoring — i.e., the policy ladder is theatre rather
+    than control. The monitor-benchmark thesis breaks if vendors begin citing
+    SLEIGHT-Bench numbers without those numbers correlating with real-world
+    incident rates inside customer deployments (Goodhart on the benchmark).
+    Either observation would mean the procurement question needs a different
+    instrument.'
+  source_refs:
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: surface blind spots in frontier monitor systems
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-claude-code-cursor-vercel-policy-ladder-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: claude-code-2-1-154
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system the three platforms ship is a graded authority lattice
+    over agent actions, replacing the binary allow/prompt switch with four
+    layered tiers (allowlist immediate / sandboxed isolated / classifier-routed
+    / human prompt) plus a cost cap and an audit log. The mechanism mirrors
+    how operating systems generalized from setuid binaries to capability-based
+    permissions and from cron to scheduled, sandboxed, accountable tasks.
+    The pattern recurs wherever a new actor class enters a permission model
+    (mobile-app permissions in 2010, container-orchestration RBAC in 2017,
+    OAuth scopes in 2012); agentic tool-calls in 2026 are the same shape one
+    generation later.'
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+    quote_or_span: dynamic workflows that orchestrate tens to hundreds of background agents
+    ref_type: quote
+  - uri: https://cursor.com/changelog/auto-review
+    quote_or_span: three-tier action policy
+    ref_type: quote
+  - uri: https://vercel.com/changelog/team-wide-provider-allowlist-on-ai-gateway
+    quote_or_span: team-wide AI Gateway provider allowlist
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-claude-code-cursor-vercel-policy-ladder-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: claude-code-2-1-154
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when an automated actor action authority spans both safe
+    and unsafe operations, the right control structure is a graded ladder with
+    a classifier in the soft middle, not a binary switch with a prompt at the
+    boundary. Example beyond agent platforms: financial-trading pre-trade-risk
+    checks where a tiered ladder (allow / sandbox-as-paper-trade /
+    classifier-routed-to-desk-head / hard-block) outperforms either a single
+    risk-limit check or a per-trade human approval. The same shape applies to
+    moderator-tooling on social platforms, to deployment-promotion pipelines
+    in CI/CD, and to medical-decision-support systems where the binding
+    failure mode is excess friction at the wrong tier.'
+  source_refs:
+  - uri: https://cursor.com/changelog/auto-review
+    quote_or_span: permit / alternative / human prompt
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-claude-code-cursor-vercel-policy-ladder-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: claude-code-2-1-154
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the policy-ladder thesis breaks if an instrumented
+    rollout shows the classifier-routed middle tier does not measurably reduce
+    human-prompt fatigue at a stable false-permit rate over a 90-day window —
+    i.e., the soft middle just shifts the binary cliff one step. The
+    consolidation-at-three-platforms claim breaks if by 2026-Q4 the surviving
+    production agent platforms have converged on a flat capability-token model
+    (one allowlist per tool with explicit scopes) and discarded the tier
+    vocabulary. Either observation would mean the ladder is a transitional
+    artifact rather than the long-run shape.'
+  source_refs:
+  - uri: https://cursor.com/changelog/auto-review
+    quote_or_span: classifier-routed for the ambiguous middle
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: vercel-conductor
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system exposed is execution-substrate migration: as cold-start
+    latency on hosted sandboxes drops below the threshold where local feel
+    breaks, the default execution substrate for a class of work shifts from
+    the developer laptop to a managed environment. Conductor on Vercel
+    Sandbox, Mistral Vibe cloud-side agents, and Cursor shared canvases are
+    three independent instances of the same migration. The pattern recurs
+    every time a substrate change unlocks fan-out (mainframes to PCs in the
+    1980s, on-prem to cloud in the 2010s, containers to serverless in the
+    late 2010s); the moving piece is which substrate has the lowest sustained
+    latency for the dominant workload.'
+  source_refs:
+  - uri: https://vercel.com/blog/how-conductor-moved-parallel-coding-agents-from-the-laptop-to-the-cloud-with-vercel-sandbox
+    quote_or_span: feels just like the local version
+    ref_type: quote
+  - uri: https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5
+    quote_or_span: cloud-side coding agents
+    ref_type: quote
+  - uri: https://vercel.com/changelog/sandbox-persistence-is-now-ga
+    quote_or_span: filesystem persistence GA
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: vercel-conductor
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when execution moves to a shared substrate, retention
+    policy and provider portability become primary architectural concerns
+    rather than secondary ops detail. Example beyond coding agents:
+    data-pipeline notebooks moving from laptops to managed runtimes (Hex,
+    Deepnote, Databricks) where the persistence default is "cell outputs
+    survive" and the privacy consequence of that default is rarely surfaced
+    before incident review. The same shape applies to model-evaluation runners
+    moving to hosted services, to CI runners moving from self-hosted to
+    managed, and to LLM eval datasets moving from local files to managed
+    object stores.'
+  source_refs:
+  - uri: https://vercel.com/changelog/sandbox-persistence-is-now-ga
+    quote_or_span: persistence is now GA
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: vercel-conductor
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the migration thesis breaks if hosted-sandbox
+    cold-start latency widens versus laptop-execution latency through 2026 —
+    for example, a regression to 3+ seconds on Vercel Sandbox or peers under
+    load — or if a sustained PII-leak incident at one of the hosted-sandbox
+    vendors moves enterprise procurement back to local execution by default.
+    The model-agnostic-orchestrator claim breaks if Conductor or a peer
+    collapses its multi-SDK adapter into a single-vendor SDK before 2027-Q1,
+    signaling that vendor-lock economics outweigh hedging value. Either
+    observation would warrant pausing a hosted-sandbox migration.'
+  source_refs:
+  - uri: https://vercel.com/blog/how-conductor-moved-parallel-coding-agents-from-the-laptop-to-the-cloud-with-vercel-sandbox
+    quote_or_span: model-agnostic across Claude Code, Codex, and others
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-magenticlite-fara-model-not-agent-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: magenticlite-fara
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system exposed is factor decomposition of long-horizon agent
+    performance: past a reasoning capability threshold, the marginal return on
+    additional model scale falls and the marginal return on the surrounding
+    five factors (memory, retrieval, planning, tooling, feedback) rises.
+    MagenticLite splits the agent across MagenticBrain (planner) and Fara1.5
+    (browser executor) along exactly those factor lines; Co-Scientist applies
+    role specialization to the research domain. The pattern recurs in every
+    engineered system where a single dimension (compute, throughput, accuracy)
+    saturates and the system must scale by composition (databases moving from
+    single-node to distributed-with-coordinators in the 2010s; ML pipelines
+    moving from monolithic models to ensemble + tooling in the late 2010s).'
+  source_refs:
+  - uri: https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/
+    quote_or_span: agentic capability comes from orchestration and not from scale
+    ref_type: quote
+  - uri: https://alphasignalai.substack.com/p/the-model-isnt-the-agent-anymore
+    quote_or_span: six-factor decomposition of long-horizon agent performance
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-magenticlite-fara-model-not-agent-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: magenticlite-fara
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when a primary capability dimension saturates, diagnose
+    bottlenecks at the system level before swapping the underlying engine.
+    Example beyond agents: database performance work where past a CPU
+    threshold the marginal gain is in indexing, query planning, and connection
+    pooling rather than a faster CPU — the diagnostic toolkit is profile-first,
+    not procure-first. The same shape applies to search-relevance work where
+    retrieval and re-ranking dominate marginal model gains, to code-search
+    where chunking strategy matters more than embedding dimensionality, and
+    to recommendation systems where feature engineering dominates model
+    architecture past a baseline.'
+  source_refs:
+  - uri: https://alphasignalai.substack.com/p/the-model-isnt-the-agent-anymore
+    quote_or_span: marginal gains shift to the other five factors
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-magenticlite-fara-model-not-agent-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: magenticlite-fara
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the orchestration-beats-scale thesis breaks if a
+    public benchmark on long-horizon agent tasks shows that the next frontier
+    model (5-10x prior compute) opens a sustained gap of 10+ percentage points
+    over the best system-composition stack at smaller-model layers, on
+    horizon-H tasks where horizon H is held constant. The factor-decomposition
+    thesis breaks if independent measurement on a six-factor diagnostic shows
+    that the same factor (e.g., retrieval) dominates marginal gain across
+    every workload — i.e., the factorization is not actually orthogonal.
+    Either observation would mean reaching for a bigger model is the right
+    default move.'
+  source_refs:
+  - uri: https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/
+    quote_or_span: 14B-param MagenticBrain
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-systems_thinking
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: memory-shortage
+  lens_id: systems_thinking
+  mode: interpretive
+  content: 'The system exposed is physical-substrate binding: digital scaling
+    hits a constraint that demand-side response cannot relieve within the
+    capex cycle of the constrained resource. HBM allocation moving from ~2%
+    to ~20% of wafer capacity is a fab-side bound; municipal water and power
+    permits are a community-governance bound; the EO postponement plus
+    state-level audit bills shift the active US AI-policy regime down a
+    federal layer. The pattern recurs at every digital-to-physical
+    transition: the institution that owns the binding physical resource
+    becomes the binding decision-maker.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/22/memory-shortage/
+    quote_or_span: HBM allocation is moving from 2% to 20% of wafer capacity
+    ref_type: quote
+  - uri: https://stratechery.com/2026/the-data-center-veto/
+    quote_or_span: municipal zoning, water, and power-permit processes
+    ref_type: quote
+  - uri: https://blogs.nvidia.com/blog/ai-factories-the-new-infrastructure-of-intelligence/
+    quote_or_span: tokens-per-watt
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-transferable_principle
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: memory-shortage
+  lens_id: transferable_principle
+  mode: synthetic
+  content: 'Principle: when an industry hits a physical constraint, the
+    relevant governance surface moves to whoever issues the permit, owns the
+    fab, or controls the substation — and the unit of planning shifts from
+    capacity-count to throughput-per-physical-unit. Example beyond AI infra:
+    EV-charger rollout where the binding constraint moved from charger-count
+    to grid-interconnect approval, and the right planning metric became
+    kilowatt-hours-per-stall-per-day rather than total stall count. The same
+    shape applies to crypto-mining geography in 2018-2022, to commercial
+    real-estate post-2020 where the binding constraint became municipal
+    zoning rather than capital, and to undersea-cable buildouts.'
+  source_refs:
+  - uri: https://stratechery.com/2026/the-data-center-veto/
+    quote_or_span: state and local regimes are the dominant US AI-policy surface
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-falsification_test
+  matrix_run_id: MTRX-W22-massive-rerun
+  source_item_id: memory-shortage
+  lens_id: falsification_test
+  mode: critique
+  content: 'Falsification: the HBM-bottleneck thesis breaks if Samsung, SK
+    Hynix, or Micron announces a wafer-share expansion that crosses 25% by
+    end-2026 with no consumer-DRAM price relief — meaning the elasticity
+    assumption fails and price stays elevated regardless of share. The
+    data-center-veto thesis breaks if 2026-H2 brings a sequence of
+    successful brownfield approvals at the rate needed to absorb hyperscaler
+    capex plans — i.e., municipalities clear the queue and the federal layer
+    re-asserts. Either observation would mean the physical-constraint frame
+    is shifting and the dashboard rows need a different anchor.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/22/memory-shortage/
+    quote_or_span: consumer DRAM prices are rising
+    ref_type: quote
+  confidence: medium
   faithfulness_status: passed
   status: verified
