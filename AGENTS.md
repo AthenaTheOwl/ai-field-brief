@@ -37,6 +37,14 @@ Quality gates before publish:
 The rule is recorded under DEC-MTRX-001 and lives in
 `docs/MATRIX_PLANE_DESIGN.md`. Amending the rule requires a new DEC.
 
+Per DEC-CDCP-020 + DEC-MTRX-007 (this DEC), every Top Signal in the published digest MUST carry:
+- systems_map
+- transferable_principle
+- falsification_test
+- adoption_ladder (with minimum_viable / mid_adoption / full_adoption / monitoring_signals)
+
+These are not optional. A Top Signal without all 4 fields is not a Top Signal; it goes in the Archive notes section.
+
 ## Three-pass note system
 
 The Matrix Plane pipeline is the join key between sources and the
@@ -60,6 +68,14 @@ is gated by a role contract under `.agents/roles/`.
   test_plan, success_metric, risk, effort, confidence, disposition.
   Lenses: `reusable_pattern`, `adoption_action`, `risk_and_caveats`.
   Role: `science.matrix-synthesis-editor`.
+- **Pass 4 — Systems synthesis.** For each Top Signal that promoted
+  past the Pass 3 scoring gate, run the three Pass 4 lenses on the
+  pick and construct the adoption ladder at synthesis time. Lenses:
+  `systems_thinking`, `transferable_principle`, `falsification_test`.
+  Synthesis-time construct: `adoption_ladder` (minimum_viable,
+  mid_adoption, full_adoption, monitoring_signals). Role:
+  `science.matrix-synthesis-editor`. Recorded under DEC-MTRX-007 and
+  DEC-CDCP-020.
 
 ## Scoring model
 
