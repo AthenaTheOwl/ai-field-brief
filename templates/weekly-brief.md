@@ -35,6 +35,14 @@ agent-role, tool-policy, runtime-adapter, source-registry,
 architecture, experiment, watchlist, creative-os,
 software-control-plane, personal-knowledge-base>
 **Try:** <small testable action the reader runs before next Friday>
+**Systems map:** <1-2 sentences naming the underlying mechanism>
+**Transferable principle:** <1 sentence + 1 example of where else it applies>
+**Falsification test:** <what observation would prove this wrong>
+**Adoption ladder:**
+  - Minimum viable: <smallest useful step>
+  - Mid: <incremental expansion>
+  - Full: <complete enrollment>
+  - Monitoring: <signals to watch at each step>
 **Confidence:** <high / medium / low>
 **Evidence:** <cell_id_1>, <cell_id_2>, ...
 
@@ -50,6 +58,14 @@ longer comment.>
 **Reusable pattern:** <...>
 **Action surface:** <label>
 **Try:** <...>
+**Systems map:** <1-2 sentences naming the underlying mechanism>
+**Transferable principle:** <1 sentence + 1 example of where else it applies>
+**Falsification test:** <what observation would prove this wrong>
+**Adoption ladder:**
+  - Minimum viable: <smallest useful step>
+  - Mid: <incremental expansion>
+  - Full: <complete enrollment>
+  - Monitoring: <signals to watch at each step>
 **Confidence:** <high / medium / low>
 **Evidence:** <cell_ids>
 
@@ -64,6 +80,14 @@ longer comment.>
 **Reusable pattern:** <...>
 **Action surface:** <label>
 **Try:** <...>
+**Systems map:** <1-2 sentences naming the underlying mechanism>
+**Transferable principle:** <1 sentence + 1 example of where else it applies>
+**Falsification test:** <what observation would prove this wrong>
+**Adoption ladder:**
+  - Minimum viable: <smallest useful step>
+  - Mid: <incremental expansion>
+  - Full: <complete enrollment>
+  - Monitoring: <signals to watch at each step>
 **Confidence:** <high / medium / low>
 **Evidence:** <cell_ids>
 
@@ -124,6 +148,10 @@ a primary source. Not a summary.>
   - every Top signal carries an Evidence: line listing one or more
     verified matrix cell ids
   - every Top signal carries a Confidence: label (high / medium / low)
+  - every Top signal carries all four systems-thinking fields
+    (Systems map, Transferable principle, Falsification test,
+    Adoption ladder) per DEC-MTRX-007 and DEC-CDCP-020; a pick
+    missing any of the four belongs in Archive notes, not Top signals
   - every watchlist item carries a Revisit trigger
   - every action queue row carries a Test column
   - no forced action angle: if a source has nothing actionable, it
