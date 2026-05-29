@@ -116,6 +116,10 @@ def test_emit_run_writes_valid_record(tmp_path: pathlib.Path) -> None:
     assert "prompt_snapshot_hash" in parsed
     assert "tool_schemas_snapshot_hash" in parsed
     assert "sandbox_image_ref" in parsed
+    # DEC-CDCP-014 portable URI: derive_sandbox_image_ref now emits
+    # repo://ai-field-brief@<sha>/ rather than the legacy <abs-path>@<sha>.
+    assert parsed["sandbox_image_ref"].startswith("repo://ai-field-brief@")
+    assert parsed["sandbox_image_ref"].endswith("/")
     assert parsed["gate_results_summary"]["all_passed"] is True
 
 
@@ -159,3 +163,92 @@ def test_parse_gates_arg() -> None:
     names = [g["name"] for g in gates]
     assert names == ["voice_lint", "spec_check", "check_no_bom"]
     assert gates[2]["status"] == "passed"
+
+
+# ----------------------------------------------------------------- DEC-CDCP-014 URIs
+
+
+def test_compose_repo_uri_round_trip() -> None:
+    """compose_repo_uri emits the DEC-CDCP-014 grammar exactly."""
+    sha = "a" * 40
+    uri = run_evidence.compose_repo_uri("playbook/run-weekly-brief.md", sha)
+    assert uri == f"repo://ai-field-brief@{sha}/playbook/run-weekly-brief.md"
+
+
+def test_compose_repo_uri_strips_leading_slash() -> None:
+    sha = "a" * 40
+    uri = run_evidence.compose_repo_uri("/playbook/run-weekly-brief.md", sha)
+    assert uri == f"repo://ai-field-brief@{sha}/playbook/run-weekly-brief.md"
+
+
+def test_compose_repo_uri_accepts_pending_placeholder() -> None:
+    uri = run_evidence.compose_repo_uri("briefs/2026-W22/brief.md", "PENDING")
+    assert uri == "repo://ai-field-brief@PENDING/briefs/2026-W22/brief.md"
+
+
+def test_compose_artifact_uri_round_trip() -> None:
+    uri = run_evidence.compose_artifact_uri("watchlist-packet@run-abc")
+    assert uri == "artifact://ai-field-brief/watchlist-packet@run-abc"
+
+
+def test_resolve_uri_repo_form() -> None:
+    sha = "f" * 40
+    uri = f"repo://ai-field-brief@{sha}/playbook/run-weekly-brief.md"
+    resolved = run_evidence.resolve_uri(
+        uri, portfolio_root=pathlib.Path("/tmp/portfolio")
+    )
+    assert resolved == pathlib.Path(
+        "/tmp/portfolio/ai-field-brief/playbook/run-weekly-brief.md"
+    )
+
+
+def test_resolve_uri_artifact_form_returns_none() -> None:
+    uri = "artifact://ai-field-brief/watchlist-packet@run-abc"
+    assert (
+        run_evidence.resolve_uri(uri, portfolio_root=pathlib.Path("/tmp/portfolio"))
+        is None
+    )
+
+
+def test_resolve_uri_legacy_path_returned_unchanged() -> None:
+    legacy = "briefs/2026-W22/brief.md"
+    resolved = run_evidence.resolve_uri(
+        legacy, portfolio_root=pathlib.Path("/tmp/portfolio")
+    )
+    assert resolved == pathlib.Path(legacy)
+
+
+def test_resolve_uri_malformed_treated_as_legacy() -> None:
+    bogus = "repo://not-a-real-uri-without-sha"
+    resolved = run_evidence.resolve_uri(
+        bogus, portfolio_root=pathlib.Path("/tmp/portfolio")
+    )
+    # Does not match either scheme; treated as legacy Path.
+    assert resolved == pathlib.Path(bogus)
+
+
+def test_derive_sandbox_image_ref_uses_portable_uri() -> None:
+    sha = "c" * 40
+    ref = run_evidence.derive_sandbox_image_ref(head_sha=sha)
+    assert ref == f"repo://ai-field-brief@{sha}/"
+
+
+def test_parse_sandbox_sha_handles_both_forms() -> None:
+    sha = "9" * 40
+    legacy = f"E:/claude_code/random-apps/ai-field-brief@{sha}"
+    portable = f"repo://ai-field-brief@{sha}/"
+    assert run_evidence.parse_sandbox_sha(legacy) == sha
+    assert run_evidence.parse_sandbox_sha(portable) == sha
+    assert (
+        run_evidence.parse_sandbox_sha("repo://ai-field-brief@PENDING/")
+        == "PENDING"
+    )
+
+
+def test_build_run_evidence_fields_pending_placeholder() -> None:
+    """sandbox_sha_pending mode emits the PENDING placeholder URI."""
+    fields = run_evidence.build_run_evidence_fields(
+        gates=[{"name": "voice_lint", "status": "passed"}],
+        sandbox_sha_pending=True,
+    )
+    assert fields.fields["sandbox_image_ref"] == "repo://ai-field-brief@PENDING/"

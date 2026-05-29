@@ -111,6 +111,16 @@ def main(argv: list[str] | None = None) -> int:
         help="override repo HEAD SHA (default: derived from `git rev-parse HEAD`)",
     )
     parser.add_argument(
+        "--sandbox-pending",
+        action="store_true",
+        help=(
+            "write sandbox_image_ref as repo://ai-field-brief@PENDING/ so "
+            "scripts/finalize_sandbox_ref.py can rewrite to the actual "
+            "sample-containing commit SHA after the records land "
+            "(closes the emit-time HEAD off-by-one; see DEC-PUB-008)"
+        ),
+    )
+    parser.add_argument(
         "--event-ledger-dir",
         type=Path,
         default=run_evidence.EVENT_LEDGER_DIR,
@@ -153,6 +163,7 @@ def main(argv: list[str] | None = None) -> int:
         head_sha=head_sha,
         gates=gates_spec,
         llm_identifier=llm_identifier,
+        sandbox_sha_pending=args.sandbox_pending,
     )
 
     ledger_path: Path = args.event_ledger_dir / f"{run_id}.jsonl"
@@ -232,6 +243,19 @@ def main(argv: list[str] | None = None) -> int:
     )
     run_evidence.emit_event(complete_event, ledger_path)
 
+    # repo:// URIs per DEC-CDCP-014. The SHA tracks
+    # ``sandbox_image_ref``: when ``--sandbox-pending`` is in effect
+    # every URI carries the PENDING placeholder and
+    # ``scripts/finalize_sandbox_ref.py`` rewrites them in lockstep
+    # after the records-containing commit lands.
+    if args.sandbox_pending:
+        uri_sha = run_evidence.SANDBOX_SHA_PENDING
+    else:
+        uri_sha = (
+            head_sha
+            if head_sha and head_sha.strip()
+            else run_evidence.SANDBOX_SHA_PENDING
+        )
     record = run_evidence.assemble_run_record(
         run_id=run_id,
         spec_id=spec_id,
@@ -242,20 +266,36 @@ def main(argv: list[str] | None = None) -> int:
         finished_at=finished_at,
         status="done",
         inputs=[
-            {"kind": "playbook", "ref": "playbook/run-weekly-brief.md"},
+            {
+                "kind": "playbook",
+                "ref": run_evidence.compose_repo_uri(
+                    "playbook/run-weekly-brief.md", uri_sha
+                ),
+            },
             {
                 "kind": "source-registry",
-                "ref": "sources/registry.yaml",
+                "ref": run_evidence.compose_repo_uri(
+                    "sources/registry.yaml", uri_sha
+                ),
             },
-            {"kind": "meta", "ref": f"{brief_dir.name}/meta.yaml"},
+            {
+                "kind": "meta",
+                "ref": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/meta.yaml", uri_sha
+                ),
+            },
         ],
         outputs=[
             {
-                "artifact_id": f"briefs/{brief_dir.name}/brief.md",
+                "artifact_id": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/brief.md", uri_sha
+                ),
                 "type": "brief",
             },
             {
-                "artifact_id": f"briefs/{brief_dir.name}/meta.yaml",
+                "artifact_id": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/meta.yaml", uri_sha
+                ),
                 "type": "meta",
             },
         ],

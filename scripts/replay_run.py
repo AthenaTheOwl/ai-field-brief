@@ -120,20 +120,30 @@ def _load_ledger_lines(ledger_dir: Path, run_id: str) -> list[dict[str, Any]]:
 
 
 def _split_sandbox_ref(value: str) -> tuple[str, str]:
-    """Split ``<repo>@<sha>`` into the two parts.
+    """Split a sandbox_image_ref into ``(repo, sha)``.
 
-    Returns ``(repo, sha)``. Raises ``SystemExit`` if the shape is not
-    parseable so the operator sees a clear error instead of a silent
-    mismatch later.
+    Accepts both the portable form
+    (``repo://ai-field-brief@<sha>/``, per DEC-CDCP-014) and the legacy
+    form (``<absolute-path>@<sha>``). The replay continues to accept
+    both during the migration window; producers emit the portable form
+    going forward. Raises ``SystemExit`` if neither shape parses so the
+    operator sees a clear error instead of a silent mismatch later.
     """
-    if "@" not in value:
+    try:
+        sha = run_evidence.parse_sandbox_sha(value)
+    except ValueError as exc:
         raise SystemExit(
-            f"replay_run: sandbox_image_ref does not match <repo>@<sha>: "
-            f"{value!r}. The emitter writes this field as "
+            f"replay_run: sandbox_image_ref does not parse: "
+            f"{exc}. The emitter writes this field as "
             f"derive_sandbox_image_ref(); a malformed value blocks replay."
-        )
-    repo, sha = value.rsplit("@", 1)
-    return repo, sha.strip()
+        ) from exc
+    if value.startswith("repo://"):
+        # repo://<repo>@<sha>/<path> — repo is between scheme and @.
+        head = value[len("repo://") :]
+        repo = head.split("@", 1)[0]
+    else:
+        repo = value.rsplit("@", 1)[0]
+    return repo, sha
 
 
 def _sha256_file(path: Path) -> str:
@@ -160,15 +170,30 @@ def _output_recorded_hash(output: Mapping[str, Any]) -> str | None:
     return None
 
 
-def _resolve_output_path(artifact_id: str, repo_root: Path) -> Path:
+def _resolve_output_path(artifact_id: str, repo_root: Path) -> Path | None:
     """Resolve a Run output artifact_id into a filesystem path.
 
-    Run outputs in this repo carry ``artifact_id`` values like
-    ``briefs/2026-W22/brief.md`` (repo-relative POSIX paths). We resolve
-    them under ``repo_root`` so the check works regardless of the caller's
-    cwd.
+    Accepts three artifact_id shapes (DEC-CDCP-014 interop clause):
+
+    - ``repo://<repo>@<sha>/<rel-path>`` — resolves to
+      ``<portfolio-root>/<repo>/<rel-path>``. The portfolio root is the
+      parent of ``repo_root`` so cross-repo outputs resolve correctly.
+    - ``artifact://<repo>/<id>`` — returns ``None``; artifact refs are
+      not file paths and the existence check is skipped.
+    - Legacy local POSIX path (e.g. ``briefs/2026-W22/brief.md``) —
+      resolves under ``repo_root``.
     """
-    return repo_root / artifact_id
+    portfolio_root = repo_root.parent
+    resolved = run_evidence.resolve_uri(artifact_id, portfolio_root=portfolio_root)
+    if resolved is None:
+        return None
+    if not artifact_id.startswith("repo://") and not artifact_id.startswith(
+        "artifact://"
+    ):
+        # Legacy local path — keep the historical resolution under
+        # repo_root rather than the portfolio root.
+        return repo_root / artifact_id
+    return resolved
 
 
 # ----------------------------------------------------------------- main check
@@ -220,6 +245,19 @@ def _check_outputs(
         if not isinstance(artifact_id, str) or not artifact_id.strip():
             continue
         path = _resolve_output_path(artifact_id, repo_root)
+        if path is None:
+            # artifact:// URIs are logical references with no filesystem
+            # path; record the skip so the report stays explicit and
+            # move on without flipping the verdict.
+            details.append(
+                {
+                    "artifact_id": artifact_id,
+                    "exists": None,
+                    "hash_recorded": False,
+                    "skipped": "artifact:// URI is not a file path",
+                }
+            )
+            continue
         exists = path.is_file()
         recorded_hash = _output_recorded_hash(output)
         item: dict[str, Any] = {

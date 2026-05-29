@@ -53,11 +53,43 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Portable URI grammar (DEC-CDCP-014). The validator does not currently
+# open files from inputs[].ref or outputs[].artifact_id values (it only
+# enforces schema + cross-checks), but it ships ``resolve_uri`` for
+# consumers that walk Run records through this module, and for the
+# Round 7 file-existence gate that follows.
+_REPO_URI_RE = re.compile(
+    r"^repo://(?P<repo>[a-z][a-z0-9-]*)@(?P<sha>[a-f0-9]{40}|PENDING)/(?P<path>.*)$"
+)
+_ARTIFACT_URI_RE = re.compile(
+    r"^artifact://(?P<repo>[a-z][a-z0-9-]*)/(?P<id>.+)$"
+)
+
+
+def resolve_uri(uri: str, portfolio_root: Path | None = None) -> Path | None:
+    """Resolve a repo:// URI to a local path.
+
+    Mirrors ``run_evidence.resolve_uri``. ``repo://<repo>@<sha>/<path>``
+    resolves to ``<portfolio_root>/<repo>/<path>``;
+    ``artifact://<repo>/<id>`` returns ``None``; anything else is
+    treated as a legacy local path and returned as a ``Path``.
+    """
+    if portfolio_root is None:
+        portfolio_root = Path("e:/claude_code/random-apps")
+    repo_match = _REPO_URI_RE.match(uri)
+    if repo_match:
+        return portfolio_root / repo_match["repo"] / repo_match["path"]
+    artifact_match = _ARTIFACT_URI_RE.match(uri)
+    if artifact_match:
+        return None
+    return Path(uri)
 CACHE_DIR = ROOT / "ops" / "schemas-cache"
 DEFAULT_EVENT_LEDGER_DIR = ROOT / "ops" / "event-ledger"
 DEFAULT_RUN_RECORDS_DIR = ROOT / "ops" / "run-records"

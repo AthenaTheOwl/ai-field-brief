@@ -20,34 +20,34 @@
       "check_schema_cache_freshness"
     ]
   },
-  "id": "run-874c5e341e13",
+  "id": "run-d74d787e6756",
   "inputs": [
     {
       "kind": "playbook",
-      "ref": "playbook/run-weekly-brief.md"
+      "ref": "repo://ai-field-brief@PENDING/playbook/run-weekly-brief.md"
     },
     {
       "kind": "source-registry",
-      "ref": "sources/registry.yaml"
+      "ref": "repo://ai-field-brief@PENDING/sources/registry.yaml"
     },
     {
       "kind": "meta",
-      "ref": "2026-W20/meta.yaml"
+      "ref": "repo://ai-field-brief@PENDING/briefs/2026-W20/meta.yaml"
     }
   ],
   "outputs": [
     {
-      "artifact_id": "briefs/2026-W20/brief.md",
+      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W20/brief.md",
       "type": "brief"
     },
     {
-      "artifact_id": "briefs/2026-W20/meta.yaml",
+      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W20/meta.yaml",
       "type": "meta"
     }
   ],
   "prompt_snapshot_hash": "b0f549651e7d4d23907038bf53d431ba2d2db4a3a4172ef56b0e5fb9cd25fcf7",
   "runtime": "claude-code-cli",
-  "sandbox_image_ref": "E:/claude_code/random-apps/ai-field-brief@f87ada5dc8e4ca9b21cc0328d9c98646d694b4ac",
+  "sandbox_image_ref": "repo://ai-field-brief@PENDING/",
   "spec_id": "specs/0007-publishing/",
   "started_at": "2026-05-17T11:00:00Z",
   "status": "done",

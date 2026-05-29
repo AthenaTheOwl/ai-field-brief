@@ -29,9 +29,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
 
 POSITIVE_RUN_IDS = (
-    "run-874c5e341e13",
-    "run-d223cf166b70",
-    "run-7131f5246462",
+    "run-d74d787e6756",
+    "run-1f1fc1f3d36d",
+    "run-36e307499472",
 )
 
 
@@ -57,22 +57,31 @@ def _current_head_sha() -> str:
 def _committed_records_use_current_head() -> bool:
     """True iff the committed run records' sandbox_image_ref == HEAD.
 
-    The positive tests skip when the committed records anchor to a
-    different SHA than current HEAD, so we don't false-fail in
-    work-in-progress branches that have not yet refreshed the records.
+    Accepts both the new portable form
+    (``repo://ai-field-brief@<sha>/``) and the legacy form
+    (``<abs-path>@<sha>``). Skips work-in-progress branches whose
+    PENDING placeholders have not yet been rewritten by
+    ``scripts/finalize_sandbox_ref.py``.
     """
     head = _current_head_sha()
     if not head:
         return False
+    sys.path.insert(0, str(SCRIPTS))
+    import run_evidence  # type: ignore
+
     for run_id in POSITIVE_RUN_IDS:
         record_path = ROOT / "ops" / "run-records" / f"{run_id}.json"
         if not record_path.is_file():
             return False
         record = json.loads(record_path.read_text(encoding="utf-8"))
         sandbox = record.get("sandbox_image_ref")
-        if not isinstance(sandbox, str) or "@" not in sandbox:
+        if not isinstance(sandbox, str):
             return False
-        if sandbox.rsplit("@", 1)[1].strip() != head:
+        try:
+            recorded = run_evidence.parse_sandbox_sha(sandbox)
+        except ValueError:
+            return False
+        if recorded != head:
             return False
     return True
 
@@ -80,19 +89,19 @@ def _committed_records_use_current_head() -> bool:
 def test_replay_positive_w20(tmp_path: pathlib.Path) -> None:
     if not _committed_records_use_current_head():
         return
-    _assert_positive_replay("run-874c5e341e13", tmp_path)
+    _assert_positive_replay("run-d74d787e6756", tmp_path)
 
 
 def test_replay_positive_w21(tmp_path: pathlib.Path) -> None:
     if not _committed_records_use_current_head():
         return
-    _assert_positive_replay("run-d223cf166b70", tmp_path)
+    _assert_positive_replay("run-1f1fc1f3d36d", tmp_path)
 
 
 def test_replay_positive_w22(tmp_path: pathlib.Path) -> None:
     if not _committed_records_use_current_head():
         return
-    _assert_positive_replay("run-7131f5246462", tmp_path)
+    _assert_positive_replay("run-36e307499472", tmp_path)
 
 
 def _assert_positive_replay(run_id: str, tmp_path: pathlib.Path) -> None:

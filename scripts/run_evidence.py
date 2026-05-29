@@ -26,9 +26,12 @@ Field-population rules followed here:
 - ``determinism``: omitted; brief generation calls an LLM without
   pinned sampler knobs.
 - ``checkpoint_ref``: omitted; no managed brief-run checkpoint store.
-- ``sandbox_image_ref``: ``<repo-path>@<HEAD-sha>`` derived from the
-  ai-field-brief repo HEAD at finalize time, or the publishing commit
-  SHA for backfills.
+- ``sandbox_image_ref``: ``repo://ai-field-brief@<sha>/`` per the
+  portable URI grammar (DEC-CDCP-014). The emitter records the SHA at
+  which the prompt + tool-schema snapshot hashes are reproducible. The
+  backfill writes ``repo://ai-field-brief@PENDING/`` as a placeholder;
+  ``scripts/finalize_sandbox_ref.py`` rewrites it to the actual sample-
+  containing commit SHA in a second commit after the records land.
 - ``gate_results_summary``: aggregated from ``gate.check.*`` events on
   live runs; populated from the canonical brief-gate list on backfills
   (the brief was committed, so every required gate must have passed).
@@ -151,6 +154,88 @@ def compute_sha256(canonical: str) -> str:
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
+# ----------------------------------------------------------------- portable URI
+
+# The portable URI grammar lands in athena-site DEC-CDCP-014. This repo's
+# name in the portfolio is the kebab-case identifier under which it
+# appears in the portfolio root. Used by the emitter for cross-repo
+# references in run-evidence artifacts.
+REPO_NAME = "ai-field-brief"
+
+# Placeholder value for sandbox_image_ref before the records-regeneration
+# commit lands. scripts/finalize_sandbox_ref.py rewrites this to the
+# actual SHA once the commit containing the sample has a known SHA.
+SANDBOX_SHA_PENDING = "PENDING"
+
+_REPO_URI_RE = re.compile(
+    r"^repo://(?P<repo>[a-z][a-z0-9-]*)@(?P<sha>[a-f0-9]{40}|PENDING)/(?P<path>.*)$"
+)
+_ARTIFACT_URI_RE = re.compile(
+    r"^artifact://(?P<repo>[a-z][a-z0-9-]*)/(?P<id>.+)$"
+)
+
+
+def compose_repo_uri(rel_path: str, sha: str, repo: str = REPO_NAME) -> str:
+    """Compose a ``repo://<repo>@<sha>/<rel-path>`` URI.
+
+    ``rel_path`` is POSIX (forward slashes), repo-relative, no leading
+    slash. ``sha`` is a 40-char lowercase hex SHA-1 or the literal
+    ``PENDING`` placeholder used by the two-pass sandbox-ref protocol.
+    """
+    cleaned = rel_path.replace("\\", "/").lstrip("/")
+    return f"repo://{repo}@{sha}/{cleaned}"
+
+
+def compose_artifact_uri(artifact_id: str, repo: str = REPO_NAME) -> str:
+    """Compose an ``artifact://<repo>/<artifact-id>`` URI.
+
+    Used for logical artifact identifiers that are not file paths
+    (UUIDs, content hashes, scoped ids). Path-shaped outputs go through
+    :func:`compose_repo_uri` instead.
+    """
+    return f"artifact://{repo}/{artifact_id}"
+
+
+def resolve_uri(uri: str, portfolio_root: Path | None = None) -> Path | None:
+    """Resolve a repo:// URI to a local path.
+
+    - ``repo://<repo>@<sha>/<path>`` resolves to
+      ``<portfolio_root>/<repo>/<path>``. The ``<sha>`` is advisory
+      metadata; replay verifies it strictly against current HEAD.
+    - ``artifact://<repo>/<id>`` returns ``None`` (artifact refs are not
+      file paths).
+    - Anything else is returned as a ``Path`` for legacy interop.
+    """
+    if portfolio_root is None:
+        portfolio_root = Path("e:/claude_code/random-apps")
+    repo_match = _REPO_URI_RE.match(uri)
+    if repo_match:
+        return portfolio_root / repo_match["repo"] / repo_match["path"]
+    artifact_match = _ARTIFACT_URI_RE.match(uri)
+    if artifact_match:
+        return None
+    return Path(uri)
+
+
+def parse_sandbox_sha(sandbox_ref: str) -> str:
+    """Extract the SHA from a sandbox_image_ref in either form.
+
+    Accepts both the new portable form (``repo://ai-field-brief@<sha>/``)
+    and the legacy form (``<abs-path>@<sha>``). Returns the SHA string
+    (which may be ``PENDING``). Raises ``ValueError`` on a malformed
+    value so the caller surfaces the bad input instead of silently
+    accepting it.
+    """
+    repo_match = _REPO_URI_RE.match(sandbox_ref)
+    if repo_match:
+        return repo_match["sha"]
+    if "@" in sandbox_ref:
+        return sandbox_ref.rsplit("@", 1)[1].rstrip("/").strip()
+    raise ValueError(
+        f"sandbox_image_ref does not carry an extractable SHA: {sandbox_ref!r}"
+    )
+
+
 # ----------------------------------------------------------------- repo refs
 
 
@@ -158,19 +243,23 @@ def derive_sandbox_image_ref(
     repo_path: Path | None = None,
     head_sha: str | None = None,
 ) -> str | None:
-    """Return ``<repo-path>@<head-sha>`` for the ai-field-brief workspace.
+    """Return ``repo://ai-field-brief@<sha>/`` for the workspace.
 
-    The repo path defaults to the ai-field-brief root inferred from this
-    module location. The head SHA is supplied by the caller (the
-    finalize CLI reads ``git rev-parse HEAD``; the backfill reads the
-    publishing commit SHA per brief). Returns ``None`` when the SHA is
+    Emits the portable URI form defined in DEC-CDCP-014. The ``head_sha``
+    is supplied by the caller; the finalize CLI reads
+    ``git rev-parse HEAD`` for live runs, and the backfill writes
+    ``SANDBOX_SHA_PENDING`` as a placeholder that
+    ``scripts/finalize_sandbox_ref.py`` rewrites once the
+    records-regeneration commit lands. Returns ``None`` when the SHA is
     missing so the caller omits the field instead of writing a partial
-    ref.
+    ref. The ``repo_path`` argument is kept for backward signature
+    compatibility (the URI form names the repo by its kebab-case
+    identifier, not by absolute path).
     """
     if head_sha is None or not head_sha.strip():
         return None
-    base = (repo_path or ROOT).resolve()
-    return f"{base.as_posix()}@{head_sha.strip()}"
+    sha = head_sha.strip()
+    return f"repo://{REPO_NAME}@{sha}/"
 
 
 def current_head_sha(repo_path: Path | None = None) -> str | None:
@@ -410,6 +499,7 @@ def build_run_evidence_fields(
     extraction_schema: Mapping[str, Any] | None = None,
     llm_identifier: str = DEFAULT_LLM_IDENTIFIER,
     repo_path: Path | None = None,
+    sandbox_sha_pending: bool = False,
 ) -> RunEvidenceFields:
     """Compute the six replay-equivalence fields where derivable.
 
@@ -456,11 +546,21 @@ def build_run_evidence_fields(
     fields["tool_schemas_snapshot_hash"] = tool_hash
     populated.append("tool_schemas_snapshot_hash")
 
-    resolved_sha = head_sha
-    if resolved_sha is None and brief_path is not None:
-        resolved_sha = publishing_commit_sha(brief_path, repo_path=repo_path)
-    if resolved_sha is None:
-        resolved_sha = current_head_sha(repo_path=repo_path)
+    # Two-pass sandbox-ref protocol (DEC-PUB-008): when
+    # ``sandbox_sha_pending`` is True the emitter writes the placeholder
+    # ``repo://ai-field-brief@PENDING/`` and the caller is expected to
+    # run ``scripts/finalize_sandbox_ref.py`` after committing the Run
+    # record to rewrite the SHA to the actual sample-containing commit.
+    # This fixes the off-by-one where ``git rev-parse HEAD`` at emit
+    # time names the PARENT of the commit that lands the sample.
+    if sandbox_sha_pending:
+        resolved_sha: str | None = SANDBOX_SHA_PENDING
+    else:
+        resolved_sha = head_sha
+        if resolved_sha is None and brief_path is not None:
+            resolved_sha = publishing_commit_sha(brief_path, repo_path=repo_path)
+        if resolved_sha is None:
+            resolved_sha = current_head_sha(repo_path=repo_path)
     sandbox_ref = derive_sandbox_image_ref(
         repo_path=repo_path, head_sha=resolved_sha
     )

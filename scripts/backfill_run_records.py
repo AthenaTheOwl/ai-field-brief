@@ -110,15 +110,13 @@ def backfill_week(
     spec_id = "specs/0007-publishing/"
     workspace_id = run_evidence.ROOT.name
 
-    head_sha = run_evidence.publishing_commit_sha(brief_dir)
-    if head_sha is None:
-        # If we cannot resolve the publishing SHA, fall back to the
-        # current HEAD so the field stays populated. A note lands in the
-        # complete event payload.
-        head_sha = run_evidence.current_head_sha()
-        sandbox_fallback = True
-    else:
-        sandbox_fallback = False
+    # Two-pass sandbox-ref protocol (DEC-PUB-008): the backfill records
+    # ``repo://ai-field-brief@PENDING/`` so the off-by-one between
+    # ``git rev-parse HEAD`` at emit time (PARENT of the records-
+    # regeneration commit) and the actual sample-containing SHA is
+    # closed by a post-commit rewrite. ``scripts/finalize_sandbox_ref.py``
+    # finishes the second pass.
+    sandbox_fallback = False
 
     gates = [
         {"name": name, "status": "passed"}
@@ -127,9 +125,9 @@ def backfill_week(
 
     evidence = run_evidence.build_run_evidence_fields(
         brief_path=brief_dir,
-        head_sha=head_sha,
         gates=gates,
         llm_identifier=llm_identifier,
+        sandbox_sha_pending=True,
     )
 
     ledger_path = event_ledger_dir / f"{run_id}.jsonl"
@@ -200,6 +198,12 @@ def backfill_week(
     )
     run_evidence.emit_event(complete_event, ledger_path)
 
+    # repo:// URIs per DEC-CDCP-014. The SHA is PENDING here; the
+    # second pass (scripts/finalize_sandbox_ref.py) rewrites every
+    # PENDING placeholder to the actual records-regeneration commit
+    # SHA. The replay resolver accepts both URI forms and legacy
+    # local paths for interop.
+    pending = run_evidence.SANDBOX_SHA_PENDING
     record = run_evidence.assemble_run_record(
         run_id=run_id,
         spec_id=spec_id,
@@ -210,17 +214,36 @@ def backfill_week(
         finished_at=finished_at,
         status="done",
         inputs=[
-            {"kind": "playbook", "ref": "playbook/run-weekly-brief.md"},
-            {"kind": "source-registry", "ref": "sources/registry.yaml"},
-            {"kind": "meta", "ref": f"{brief_dir.name}/meta.yaml"},
+            {
+                "kind": "playbook",
+                "ref": run_evidence.compose_repo_uri(
+                    "playbook/run-weekly-brief.md", pending
+                ),
+            },
+            {
+                "kind": "source-registry",
+                "ref": run_evidence.compose_repo_uri(
+                    "sources/registry.yaml", pending
+                ),
+            },
+            {
+                "kind": "meta",
+                "ref": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/meta.yaml", pending
+                ),
+            },
         ],
         outputs=[
             {
-                "artifact_id": f"briefs/{brief_dir.name}/brief.md",
+                "artifact_id": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/brief.md", pending
+                ),
                 "type": "brief",
             },
             {
-                "artifact_id": f"briefs/{brief_dir.name}/meta.yaml",
+                "artifact_id": run_evidence.compose_repo_uri(
+                    f"briefs/{brief_dir.name}/meta.yaml", pending
+                ),
                 "type": "meta",
             },
         ],
