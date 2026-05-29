@@ -1,58 +1,110 @@
+<!--
+meta:
+  iso_week: <YYYY-WNN>
+  through_date: <YYYY-MM-DD>            # last date of the brief window
+  profile_id: <profile-id>              # from config/profiles.yaml (e.g. personal, broad_builder)
+  matrix_run_id: <run-id>               # from ops/run-records/, optional
+  sources_swept_count: <int>            # optional
+  cells_verified_count: <int>           # optional
+  volume: <NNN>
+-->
+
 # <title — what the week was about, not what shipped>
 
 **week of <YYYY-MM-DD> · audience: <one line> · vol. <NNN>**
 
-<Opening reflection — one or two short paragraphs that name the pattern
-of the week. Not a TL;DR. A viewpoint. The kind of opening you'd find
-in Farnam Street's *Brain Food*, Stratechery's day-after note, or a
-considered weekly letter. Two or three concrete things, threaded
-together by a frame.>
+## Field thesis
 
-## This week
+<One paragraph — the deepest pattern across the week. Not a TL;DR; a
+viewpoint. Names the frame that threads the picks together. The kind
+of opening you'd find in Farnam Street's *Brain Food*, Stratechery's
+day-after note, or a considered weekly letter.>
 
-### <pick 1 — name the thing, not the headline>
+## Top signals
 
-<2–4 sentences. What changed. Why it matters. The slow read.>
+### 1. <name the thing, not the headline>
 
+**Source:** [<source name>](<url>)
+**Payload:** <one-sentence summary of what the source says>
+**Mechanism:** <what changed, or what pattern is exposed — the
+concrete behavior or structural shift, not the narrative>
+**Why it matters:** <why this is useful to a reader in this profile>
+**Reusable pattern:** <what transfers beyond this source>
 **Action surface:** <one or two of: prompt, config, eval, workflow,
-agent-role, tool-policy, runtime-adapter, source-registry, architecture,
-experiment, watchlist>
+agent-role, tool-policy, runtime-adapter, source-registry,
+architecture, experiment, watchlist, creative-os,
+software-control-plane, personal-knowledge-base>
+**Try:** <small testable action the reader runs before next Friday>
+**Confidence:** <high / medium / low>
+**Evidence:** <cell_id_1>, <cell_id_2>, ...
 
-<Concrete move this week — the specific artifact or change the reader
-runs before next Friday. End with the primary-source link.>
+### 2. <pick 2>
 
-[<source name>](<url>)
+<same shape — vary the cadence; one pick can be tighter, one can be
+longer comment.>
 
-### <pick 2>
+**Source:** [<source>](<url>)
+**Payload:** <...>
+**Mechanism:** <...>
+**Why it matters:** <...>
+**Reusable pattern:** <...>
+**Action surface:** <label>
+**Try:** <...>
+**Confidence:** <high / medium / low>
+**Evidence:** <cell_ids>
+
+### 3. <pick 3>
 
 <same shape>
 
+**Source:** [<source>](<url>)
+**Payload:** <...>
+**Mechanism:** <...>
+**Why it matters:** <...>
+**Reusable pattern:** <...>
 **Action surface:** <label>
+**Try:** <...>
+**Confidence:** <high / medium / low>
+**Evidence:** <cell_ids>
 
-[<source>](<url>)
+## Reusable patterns
 
-### <pick 3>
+- **<pattern one>.** Where it applies: <one line>. Caveats: <one line>.
+- **<pattern two>.** Where it applies: <one line>. Caveats: <one line>.
+- **<pattern three>.** Where it applies: <one line>. Caveats: <one line>.
 
-<same shape — vary the cadence; one pick can be a short paragraph, one
-can be a longer comment.>
+## Action queue
 
-**Action surface:** <label>
-
-[<source>](<url>)
-
-## Worth your time
-
-**<author>, "<title>"** (<date>). <One paragraph of substantive
-comment. Why this matters to a builder-tpm reader. What the piece
-argues. End with the source link inline or trailing.> [<url>](<url>)
-
-**<author>, "<title>"** (<date>). <one paragraph> [<url>](<url>)
+| Candidate | Surface | Effort | Risk | Test |
+|---|---|---|---|---|
+| <action one> | <surface> | <S/M/L> | <low/med/high> | <one-line test plan> |
+| <action two> | <surface> | <S/M/L> | <low/med/high> | <one-line test plan> |
+| <action three> | <surface> | <S/M/L> | <low/med/high> | <one-line test plan> |
 
 ## Watchlist
 
-- **<question one>.** <one-line gloss>.
-- **<question two>.** <one-line gloss>.
-- **<question three>.** <one-line gloss>.
+- **<question one>.** Revisit trigger: <named event or date that
+  promotes this off the watchlist>.
+- **<question two>.** Revisit trigger: <...>.
+- **<question three>.** Revisit trigger: <...>.
+
+## Archive notes
+
+High-quality items the sweep surfaced but that did not earn a pick this
+week. Kept searchable, not surfaced — recorded so the corpus stays
+honest about what the week contained.
+
+- **<author>, "<title>"** ([<source>](<url>)). <one-line note on why
+  the item lands in archive instead of a Top signal>.
+- **<author>, "<title>"** ([<source>](<url>)). <one-line note>.
+
+## Sources reviewed
+
+| Source | Status | Note |
+|---|---|---|
+| <source id> | ok | items captured / items included |
+| <source id> | failed | <error from sweep> |
+| <source id> | skipped | <reason> |
 
 ## Closing thought
 
@@ -66,19 +118,30 @@ a primary source. Not a summary.>
   - no antithetical reversals (the "X isnt Y, Z is the W" cadence) voice_lint:allow antithetical-dash
   - no empty adverbial openers (Importantly, Notably, etc.)
   - every claim links to a primary source where possible
-  - the brief is published; it reads in 5–10 minutes
-  - every pick needs an Action surface line. Pick the dominant surface;
-    if two are needed, comma-separate (e.g., `architecture, runtime-adapter`).
-    Allowed labels:
-      prompt
-      config
-      eval
-      workflow
-      agent-role
-      tool-policy
-      runtime-adapter
-      source-registry
-      architecture
-      experiment
-      watchlist
+  - the brief is published; it reads in 5-10 minutes
+
+  evidence-spine rules (see AGENTS.md):
+  - every Top signal carries an Evidence: line listing one or more
+    verified matrix cell ids
+  - every Top signal carries a Confidence: label (high / medium / low)
+  - every watchlist item carries a Revisit trigger
+  - every action queue row carries a Test column
+  - no forced action angle: if a source has nothing actionable, it
+    belongs in Archive notes, not Top signals
+
+  action surface labels (from config/action_surface_taxonomy.yaml):
+    prompt
+    config
+    eval
+    workflow
+    agent-role
+    tool-policy
+    runtime-adapter
+    source-registry
+    architecture
+    experiment
+    watchlist
+    creative-os
+    software-control-plane
+    personal-knowledge-base
 -->
