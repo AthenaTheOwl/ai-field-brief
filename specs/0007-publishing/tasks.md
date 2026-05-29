@@ -38,3 +38,21 @@
   to the SHA at which the recorded snapshot hashes are reproducible
   (the records-regeneration commit), and commit the replay artifacts
   produced by running the CLI against that SHA.
+- [x] Migrate the emitter to the portable URI grammar from DEC-CDCP-014:
+  `sandbox_image_ref` becomes `repo://ai-field-brief@<sha>/`,
+  inputs/outputs wrap as `repo://...` or `artifact://...` per shape,
+  `workspace_id` stays the bare repo identifier.
+- [x] Add `resolve_uri(uri, portfolio_root)` to both
+  `scripts/validate_run_evidence.py` and `scripts/run_evidence.py`;
+  update `scripts/replay_run.py` to accept both URI and legacy
+  `sandbox_image_ref` shapes via the shared
+  `run_evidence.parse_sandbox_sha` helper.
+- [x] Add `scripts/finalize_sandbox_ref.py` (second-pass CLI) that
+  rewrites every `@PENDING/` placeholder to the actual SHA. The
+  emitter writes the placeholder; the regenerate flow runs the
+  rewriter after the first commit lands.
+- [x] Regenerate the W20/W21/W22 Run + ledger pairs through the
+  fixed emitter, run `finalize_sandbox_ref.py --all`, and commit the
+  rewritten records in a second commit.
+- [x] Add positive + negative coverage for the URI helpers + the
+  finalize_sandbox_ref CLI under `tests/scripts/`.

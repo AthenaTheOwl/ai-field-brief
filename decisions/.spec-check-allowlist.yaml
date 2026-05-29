@@ -66,4 +66,18 @@ deferred:
   - id: R-PUB-017
     note: resolved by DEC-PUB-007 (collective coverage)
 
+  # R-PUB-018 is resolved by DEC-PUB-008 directly via front-matter.
+  # R-PUB-019..021 are resolved collectively by the same DEC: the
+  # portable-URI migration ships as one cohesive change (emitter +
+  # validator + replay + second-pass CLI) under one DEC. Splintering
+  # the four requirements into four near-identical DECs would add
+  # noise without adding signal. Same shape as the R-PUB-015..017
+  # entry above.
+  - id: R-PUB-019
+    note: resolved by DEC-PUB-008 (collective coverage)
+  - id: R-PUB-020
+    note: resolved by DEC-PUB-008 (collective coverage)
+  - id: R-PUB-021
+    note: resolved by DEC-PUB-008 (collective coverage)
+
 roles_deferred: []

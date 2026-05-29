@@ -109,3 +109,50 @@ commit stays recoverable via
 `git log --diff-filter=A -- briefs/YYYY-WNN/brief.md`; the SHA the
 replay verifies against is the one the Run record names. DEC-PUB-007
 documents the semantic clarification.
+
+## portable repo:// + artifact:// URIs
+
+Round 6 (DEC-PUB-008) migrates ai-field-brief's run-evidence emitter
+to the portable URI grammar defined in DEC-CDCP-014 (athena-site).
+`sandbox_image_ref` becomes `repo://ai-field-brief@<sha>/`,
+`inputs[].ref` becomes `repo://ai-field-brief@<sha>/<rel-path>`, and
+`outputs[].artifact_id` becomes either `repo://ai-field-brief@<sha>/<rel-path>`
+for path-shaped outputs or `artifact://ai-field-brief/<id>` for
+logical artifact identifiers. `workspace_id` stays the bare repo
+identifier (`ai-field-brief`) because it is an identity string, not a
+file reference.
+
+The validator and replay CLI ship a shared `resolve_uri(uri, portfolio_root)`
+helper that accepts the new URI forms AND legacy local paths during the
+interop window. The replay CLI's `parse_sandbox_sha` helper extracts
+the SHA from both the new portable form and the legacy `<abs-path>@<sha>`
+shape, so Run records produced under the previous emitter still replay.
+
+## sandbox_image_ref off-by-one + two-pass protocol
+
+The systemic off-by-one observed across four Round 5 agent reports:
+the emitter reads `git rev-parse HEAD` BEFORE the regenerate commit
+lands, so the recorded SHA names the PARENT of the commit that
+actually contains the sample. DEC-PUB-008 closes this via a two-pass
+protocol.
+
+1. The emitter writes `repo://ai-field-brief@PENDING/` as a
+   placeholder when called with `sandbox_sha_pending=True`. Every
+   `inputs[].ref` and `outputs[].artifact_id` URI carries the same
+   placeholder so the rewrite is one-shot.
+   `scripts/backfill_run_records.py` always uses the placeholder;
+   `scripts/finalize_run.py` accepts a `--sandbox-pending` flag for
+   the same shape on live runs.
+
+2. `scripts/finalize_sandbox_ref.py --all` (or `--run-id <id>`) reads
+   the just-landed SHA via `git rev-parse HEAD` (or the `--sha`
+   override) and rewrites every `@PENDING/` occurrence to `@<sha>/`
+   in one or every Run record. The CLI is idempotent (no-op on
+   records with no PENDING placeholders) and refuses to write a
+   non-SHA value.
+
+The regenerate workflow becomes: emit-with-placeholder → commit →
+`finalize_sandbox_ref` → commit. The second commit's SHA is the SHA
+the Run record names, so replay HEAD-strict succeeds at HEAD without
+`git checkout` gymnastics. The Round 5 ad-hoc patches (hand-edit,
+publishing-commit anchor, `--head-sha` override) are subsumed.

@@ -48,3 +48,15 @@ Run-evidence verifiability conditions:
   output artifact or a snapshot-hash mismatch, and exits 1 on a
   missing Run record. Each surface is covered by a focused test in
   `tests/scripts/test_replay_run.py`.
+- The emitted sample Run records carry `sandbox_image_ref` in the
+  portable form (`repo://ai-field-brief@<sha>/`) per DEC-CDCP-014.
+  Every `inputs[].ref` and `outputs[].artifact_id` wraps as either
+  `repo://ai-field-brief@<sha>/<rel-path>` or
+  `artifact://ai-field-brief/<id>`. Covered by
+  `tests/scripts/test_run_evidence.py` (URI helpers) and by
+  inspection of `ops/run-records/run-*.json`.
+- `python scripts/finalize_sandbox_ref.py --all` rewrites every
+  `@PENDING/` placeholder to the actual SHA in one pass, is
+  idempotent on records with no PENDING markers, and refuses to
+  write a non-40-char SHA via `--sha`. Covered by
+  `tests/scripts/test_finalize_sandbox_ref.py`.

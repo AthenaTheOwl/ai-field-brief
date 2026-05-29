@@ -266,3 +266,76 @@ Acceptance:
 - The emitted event passes `event.schema.json` envelope validation
   under the typed `run.evidence.replayed` branch.
 - The CLI exits 0 on equivalent and 1 on any divergence.
+
+### R-PUB-018: emitter produces portable repo:// + artifact:// URIs
+
+ai-field-brief's run-evidence emitter writes the portable URI grammar
+defined in DEC-CDCP-014 (athena-site) for cross-repo refs.
+
+Acceptance:
+
+- `sandbox_image_ref` is `repo://ai-field-brief@<sha>/` (no trailing
+  path; the SHA is `PENDING` when the second-pass rewrite is still
+  outstanding).
+- `inputs[].ref` is `repo://ai-field-brief@<sha>/<rel-path>` where
+  `<rel-path>` is repo-relative POSIX.
+- `outputs[].artifact_id` is either
+  `repo://ai-field-brief@<sha>/<rel-path>` for path-shaped artifacts or
+  `artifact://ai-field-brief/<id>` for logical artifact identifiers.
+- `workspace_id` is the bare repo identifier (`ai-field-brief`); no
+  scheme prefix and no SHA.
+
+### R-PUB-019: validator and replay resolve URIs and accept legacy paths
+
+`scripts/validate_run_evidence.py` and `scripts/replay_run.py` ship a
+`resolve_uri(uri, portfolio_root)` helper that handles both URI forms
+and legacy local paths during the interop window.
+
+Acceptance:
+
+- `repo://<repo>@<sha>/<path>` resolves to
+  `<portfolio-root>/<repo>/<path>`.
+- `artifact://<repo>/<id>` returns `None` (artifact refs are not file
+  paths).
+- A legacy local path returns a `Path` as-is.
+- A malformed URI returns a `Path` as-is (treated as legacy for
+  interop).
+- The replay CLI's `parse_sandbox_sha` helper extracts the SHA from
+  both `repo://ai-field-brief@<sha>/` and the legacy
+  `<abs-path>@<sha>` shape so a Run record produced under the legacy
+  emitter still replays.
+
+### R-PUB-020: sandbox_image_ref off-by-one closed via two-pass protocol
+
+The emitter records `sandbox_image_ref` as a SHA-bearing URI that names
+the commit which actually contains the Run record on disk, not its
+parent. The emitter alone cannot satisfy this because the
+records-containing SHA is not known at emit time; a two-pass protocol
+closes the gap.
+
+Acceptance:
+
+- `scripts/backfill_run_records.py` writes
+  `repo://ai-field-brief@PENDING/` as the sandbox_image_ref
+  placeholder; `scripts/finalize_run.py` accepts a `--sandbox-pending`
+  flag for the same shape on live runs.
+- `scripts/finalize_sandbox_ref.py --all` (or `--run-id <id>`)
+  rewrites every `@PENDING/` occurrence to `@<sha>/` in one or every
+  Run record, defaulting `--sha` to `git rev-parse HEAD`.
+- The regenerate workflow becomes: emit-with-placeholder → commit →
+  `finalize_sandbox_ref` → commit. The second commit's SHA is the
+  SHA the Run record names.
+
+### R-PUB-021: finalize_sandbox_ref is idempotent and refuses bad SHAs
+
+`scripts/finalize_sandbox_ref.py` is safe to re-run and refuses to
+write a non-SHA value.
+
+Acceptance:
+
+- Running the CLI against a record with no PENDING placeholders is a
+  no-op (the file is not rewritten).
+- A non-40-char SHA value passed via `--sha` exits 1 with a clear
+  message; the CLI also refuses the literal `PENDING`.
+- The CLI rewrites both `sandbox_image_ref` and every `inputs[].ref`
+  and `outputs[].artifact_id` URI carrying `@PENDING/` in one pass.
