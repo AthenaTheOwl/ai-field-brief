@@ -18,30 +18,30 @@
   "inputs": [
     {
       "kind": "playbook",
-      "ref": "repo://ai-field-brief@PENDING/playbook/run-weekly-brief.md"
+      "ref": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/playbook/run-weekly-brief.md"
     },
     {
       "kind": "source-registry",
-      "ref": "repo://ai-field-brief@PENDING/sources/registry.yaml"
+      "ref": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/sources/registry.yaml"
     },
     {
       "kind": "meta",
-      "ref": "repo://ai-field-brief@PENDING/briefs/2026-W22/meta.yaml"
+      "ref": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/briefs/2026-W22/meta.yaml"
     }
   ],
   "outputs": [
     {
-      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W22/brief.md",
+      "artifact_id": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/briefs/2026-W22/brief.md",
       "type": "brief"
     },
     {
-      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W22/meta.yaml",
+      "artifact_id": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/briefs/2026-W22/meta.yaml",
       "type": "meta"
     }
   ],
   "prompt_snapshot_hash": "c74880818cc8440b54dd92a0758706a1d7dcd3065b69cef1d5bc9bca6e7fe5d3",
   "runtime": "claude-code-cli",
-  "sandbox_image_ref": "repo://ai-field-brief@PENDING/",
+  "sandbox_image_ref": "repo://ai-field-brief@3ee81bf3d2b181a3a90f4977c9e0a7aa9a18c028/",
   "spec_id": "specs/0007-publishing/",
   "started_at": "2026-05-29T18:30:00Z",
   "status": "done",
