@@ -1,0 +1,105 @@
+# meta - 2026-W22 dream pass (Friday retrospective on the v2 engineering-grade rollout)
+# auto-written by the learning.dream-orchestrator role; edit in place when the dream gets revised.
+
+id: dream-2026-W22
+week: 2026-W22
+generated_at: 2026-05-29T18:45:00Z
+generated_by: learning.dream-orchestrator (claude-opus-4-7, hosted in Claude Code session)
+run_id: dream-w22-friday-engineering-grade-retrospective
+
+scope:
+  repos:
+    - ai-field-brief
+  lookback_days: 7
+  window_start: 2026-05-22
+  window_end: 2026-05-29
+  sources_scanned:
+    - kind: git_log
+      ref: "git log --since=2026-05-22 --until=2026-05-30 --oneline"
+      count: 20
+    - kind: decisions
+      ref: "decisions/DEC-PUB-005 through DEC-PUB-009 + DEC-SRC-017/018"
+      count: 7
+    - kind: spec_dir
+      ref: specs/0007-publishing/
+      count: 1
+    - kind: run_records
+      ref: "ops/run-records/run-36e307499472.json, run-d74d787e6756.json, run-1f1fc1f3d36d.json"
+      count: 3
+    - kind: event_ledger
+      ref: "ops/event-ledger/run-*.jsonl + ops/event-ledger/replay-run-*.jsonl"
+      count: 6
+    - kind: replay_records
+      ref: "ops/replay-records/run-*/verdict.json"
+      count: 3
+    - kind: ci_workflow
+      ref: .github/workflows/run-evidence-gates.yml
+      count: 1
+    - kind: ci_workflow
+      ref: .github/workflows/ci.yml
+      count: 1
+    - kind: prior_dream
+      ref: dreams/2026-W21/report.md
+      count: 1
+
+modes:
+  run:
+    - memory_consolidation
+    - architecture_drift_detection
+    - skill_extraction
+    - adversarial_simulation
+  skipped:
+    - id: failure_clustering
+      reason: zero CI failures in the v2 rollout window; the gates landed green on the first run after the regenerate pass
+    - id: counterfactual
+      reason: replay_run.py already supplies the equivalence counterfactual on every PR; a dream-level counterfactual would duplicate the gate
+    - id: prompt_patch_generation
+      reason: no versioned prompt files in the repo yet; the matrix-plane prompts under specs/0012 are still WIP and outside this dream's scope
+
+candidates_produced:
+  total: 5
+  by_kind:
+    backlog_item: 3
+    test_generation: 1
+    skill_patch: 1
+  files:
+    - candidates/audit-001-replay-chaos-adversarial-mutations.md
+    - candidates/reduce-001-content-addressable-sandbox-ref.md
+    - candidates/extend-001-replay-explain-flag-structured-diff.md
+    - candidates/crosslink-001-portfolio-replay-panel-in-athena-site.md
+    - candidates/extend-002-run-evidence-skill-for-matrix-plane.md
+
+report_path: dreams/2026-W22/report.md
+
+human_review_required: true
+
+cost:
+  model: claude-opus-4-7
+  tokens_input_estimated: 42000
+  tokens_output_estimated: 11000
+  cost_usd_estimated: 1.45
+  note: |
+    Single Claude Code session reading 20 commits, 7 DECs, the run-evidence
+    gate workflow, three canonical Run records + ledgers + replay verdicts,
+    and the prior W21 dream report. Exact billing lives in the upstream
+    Anthropic console.
+
+handoff:
+  next_role: control.coordinator
+  workflow: .agents/workflows/weekly-dream.yaml
+  step: human-review
+  gate: candidates_human_gated
+
+notes:
+  - "Second weekly dream pass; the prior W21 pass promoted all six candidates,
+    so this pass reads against a clean slate of prior open items."
+  - "The v2 engineering-grade rollout (Rounds 1-8 + Workflows A/B) shipped
+    typed event payloads, repo:// portable URIs, the replay equivalence CLI,
+    and the three-sample CI matrix gate. This dream retrospects on that
+    landing surface and projects forward."
+  - "Two of the five candidates cross-link to sibling repos (athena-site
+    and trace-to-eval-harness). Cross-repo work needs the portfolio
+    coordinator to route; the dream does not promote cross-repo changes."
+  - "Spec 0012 (prompt matrix plane) is WIP in the working tree; this dream
+    only references it where a forward bet is naturally adjacent
+    (extend-002 inherits the run-evidence shape into the matrix-runner)."
