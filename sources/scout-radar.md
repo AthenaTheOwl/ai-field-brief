@@ -64,3 +64,29 @@ The first active set is now in `sources/registry.yaml` under
 The expected hit rate is low. A good week may promote one scout item and
 archive twenty. That is acceptable if the promoted item leads to a real
 repo change, eval case, prompt, policy, or experiment.
+
+## 2026-05-30 — first scout run (run-scout-f23d443ff059)
+
+5 frontier-scout sources fetched + 3 lenses applied = 15 cells, 15 verified.
+
+Sources: e2b (sandboxes), pydantic-ai (typed agents), langfuse (LLM obs),
+smithery (MCP registry), dspy (prompt programming).
+
+Action packets:
+
+- `e2b.md` — SandboxHandle artifact with E2B as default backend (prototype).
+- `pydantic-ai.md` — port one lens to a Pydantic AI Agent with typed
+  output_type (prototype).
+- `langfuse.md` — wire Code Evaluators + Experiments CI into the
+  run-evidence loop (prototype).
+- `smithery.md` — CLI probe to test credential broker as a CDCP tool
+  registry (prototype).
+- `dspy.md` — GEPA-optimize one prompt-heavy chain (prototype).
+
+Killed experiments:
+
+- `dspy-framework-runtime.md` — adopting DSPy as a runtime framework is
+  killed; only the GEPA optimizer survives as a build-time tool.
+
+Artifacts live under `ops/scout-runs/run-scout-f23d443ff059/` (cells.yaml,
+action-packets/, killed/). Contracted by DEC-MTRX-008.
