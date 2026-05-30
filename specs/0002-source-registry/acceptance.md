@@ -72,6 +72,21 @@ Phase 2 is done when:
   payloads for any caller-supplied workspace id.
 - Every gate listed above exits 0.
 
+## Frontier scout acceptance
+
+The frontier-scout expansion is accepted when:
+
+- `sources/registry.yaml` validates with 173 active sources and a
+  declared `frontier-scout` lane.
+- `sources/scout-radar.md` documents promotion, demotion, and weekly
+  review rules.
+- `config/prompt_lenses.yaml` names the three scout lenses.
+- `config/scoring_model.yaml` names the scout-score overlay and
+  thresholds.
+- `templates/weekly-brief.md` contains Action packets and Scout radar
+  sections.
+- The source-registry DEC resolves R-SRC-020.
+
 ## Explicit non-acceptance
 
 - No HTTP fetch in the connector code path (runner owns that, spec 0003).

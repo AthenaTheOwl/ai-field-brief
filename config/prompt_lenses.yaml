@@ -95,6 +95,33 @@ lenses:
     output_schema: schemas/lens_output.schema.json
     purpose: Define what would make this item worth revisiting.
 
+  - id: source_arbitrage
+    name: Source Arbitrage
+    mode: critique
+    category: scout
+    required: false
+    prompt: prompts/lenses/source_arbitrage.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Decide whether an underfollowed source is early signal or noise.
+
+  - id: repo_project_scan
+    name: Repo and Project Scan
+    mode: extractive_interpretive
+    category: scout
+    required: false
+    prompt: prompts/lenses/repo_project_scan.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Extract operational signal from repos, projects, changelogs, demos, and releases.
+
+  - id: action_packet
+    name: Action Packet
+    mode: synthetic_grounded
+    category: action
+    required: false
+    prompt: prompts/lenses/action_packet.md
+    output_schema: schemas/lens_output.schema.json
+    purpose: Convert a source item into a bounded test with proof metric, rollback, and kill criterion.
+
   # Pass 4 (systems synthesis) lenses. Per DEC-MTRX-007 and DEC-CDCP-020,
   # these three lenses run on the TOP picks only, not on every source item
   # swept. The synthesis editor invokes them after Pass 3 ranking selects

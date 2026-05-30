@@ -65,6 +65,19 @@
 - [x] `packages/sources/test/ops.test.ts` covers current registry readiness
   plus review-due, stub connector, and missing mapping states.
 
+## Frontier scout lane
+
+- [x] Add `frontier-scout` as a declared registry lane.
+- [x] Add active scout sources for sandboxes, browser automation,
+  agent frameworks, approval loops, evals/tracing, MCP directories,
+  structured extraction, and model routing.
+- [x] Add `sources/scout-radar.md` as the review loop for early signal.
+- [x] Add `source_arbitrage`, `repo_project_scan`, and `action_packet`
+  prompt lenses.
+- [x] Add a `frontier_scout` profile and scout-score overlay.
+- [x] Extend the weekly brief template with Action packets and Scout
+  radar sections.
+
 ## Out of scope for Phase 2 (booked for later)
 
 - Inngest functions + per-workspace cron (spec 0003).

@@ -139,6 +139,29 @@ registered connector versions. It does not fetch source URLs, inspect
 provider dashboards, or compute reliability from ingested items. Those
 paths stay in the later runner and reliability specs.
 
+## Frontier scout lane
+
+`frontier-scout` is a separate registry lane for lesser-known repos,
+startups, projects, talks, podcasts, videos, and changelogs that may
+matter before mainstream AI coverage catches up. The lane is not a
+quality exception. It adds a stricter routing rule: each promoted item
+needs a verified source, a concrete mechanism, an action surface, a
+30-90 minute test, a proof metric, and a kill criterion.
+
+Three optional lenses support the lane:
+
+- `source_arbitrage` decides whether the source is early signal or
+  noise.
+- `repo_project_scan` extracts shipped behavior, proof surface,
+  integration target, and risk.
+- `action_packet` converts the item into a bounded change with rollback
+  and kill criterion.
+
+The weekly brief renders two new surfaces from this lane. Action packets
+are small tests ready to run before the next brief. Scout radar holds
+promising items that need one more proof point or clearer adoption path.
+Items with no concrete mechanism still go to Archive notes.
+
 ## Out of scope here
 
 - HTTP fetch + caching layer (spec 0003 runner).

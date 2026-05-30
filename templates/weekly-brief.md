@@ -105,6 +105,25 @@ longer comment.>
 | <action two> | <surface> | <S/M/L> | <low/med/high> | <one-line test plan> |
 | <action three> | <surface> | <S/M/L> | <low/med/high> | <one-line test plan> |
 
+## Action packets
+
+Small, testable moves promoted from Top signals or `frontier-scout`
+items. Each packet should be runnable before the next brief.
+
+| Source | Target | Surface | Try | Proof metric | Rollback | Kill criterion |
+|---|---|---|---|---|---|---|
+| <source id> | <repo or working surface> | <surface> | <30-90 minute action> | <observable proof> | <undo path> | <condition that stops it> |
+
+## Scout radar
+
+Underfollowed sources, repos, projects, videos, podcasts, or startups
+worth monitoring. These are not Top signals yet; they need one more
+proof point or a clearer adoption path.
+
+| Item | Why it might matter early | What to watch | Revisit trigger |
+|---|---|---|---|
+| <source or project> | <mechanism, not hype> | <release / demo / repo / adoption signal> | <specific trigger> |
+
 ## Watchlist
 
 - **<question one>.** Revisit trigger: <named event or date that
@@ -154,6 +173,9 @@ a primary source. Not a summary.>
     missing any of the four belongs in Archive notes, not Top signals
   - every watchlist item carries a Revisit trigger
   - every action queue row carries a Test column
+  - every Action packet carries Target, Proof metric, Rollback, and Kill criterion
+  - every Scout radar item names why it may matter early and what would
+    upgrade it
   - no forced action angle: if a source has nothing actionable, it
     belongs in Archive notes, not Top signals
 

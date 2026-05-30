@@ -136,6 +136,37 @@ thresholds:
     max: 8.999
     notes: Items below 9 are archived (kept searchable, not surfaced).
 
+scout_score:
+  description: |
+    Optional overlay for the `frontier-scout` lane. It does not replace
+    final_score; it decides whether a lesser-known repo, startup,
+    project, talk, or release deserves an Action packet or only a
+    Scout radar entry.
+  components:
+    - id: underfollowedness
+      scale: [1, 5]
+      notes: 5 = not yet common in mainstream AI feeds. 1 = already saturated.
+    - id: mechanism_clarity
+      scale: [1, 5]
+      notes: 5 = clear shipped behavior or reproducible mechanism. 1 = vague claim.
+    - id: adoption_window
+      scale: [1, 5]
+      notes: 5 = useful to test this week. 1 = no timely reason to act.
+    - id: proof_surface
+      scale: [1, 5]
+      notes: 5 = repo diff, release, demo, benchmark, or maintainer note. 1 = unsupported assertion.
+    - id: portfolio_fit
+      scale: [1, 5]
+      notes: 5 = lands on an active repo surface. 1 = no active target.
+  thresholds:
+    action_packet_min: 16
+    scout_radar_min: 12
+    archive_max: 11.999
+  notes: |
+    Action packets still need source support, a test plan, proof metric,
+    rollback, and kill criterion. Scout score is a routing overlay, not
+    a permission slip to publish weak claims.
+
 defaults:
   aggregation: mean
   profile_overrides_allowed: true

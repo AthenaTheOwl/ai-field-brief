@@ -12,16 +12,28 @@ import "./connectors/github-releases";
 import "./connectors/stubs";
 
 export const REGISTRY_TYPE_TO_SOURCE_TYPE: Record<string, SourceType> = {
+  "article-url": "article-url",
+  "arxiv-feed": "arxiv-feed",
   "vendor-news": "rss",
   "vendor-engineering": "rss",
   "vendor-research": "rss",
+  "research-lab-blog": "blog-rss",
   blog: "rss",
+  "blog-rss": "blog-rss",
   newsletter: "rss",
+  "newsletter-rss": "newsletter-rss",
   "blog+newsletter": "rss",
   "collection+book": "rss",
   podcast: "podcast-rss",
+  "podcast-rss": "podcast-rss",
   "podcast+newsletter": "podcast-rss",
+  "hf-papers": "hf-papers",
+  "hn-feed": "hn-feed",
+  "reddit-subreddit": "reddit-subreddit",
+  rss: "rss",
   "github-releases": "github-releases",
+  "youtube-channel": "youtube-channel",
+  "youtube-playlist": "youtube-playlist",
 };
 
 export interface SourceRegistryDocument {
@@ -44,9 +56,9 @@ export interface SourceRegistrySource {
   readonly lastReviewed: string | null;
   readonly notes: string | null;
   readonly quality?: {
-    readonly signal?: string;
-    readonly actionability?: string;
-    readonly credibility?: string;
+    readonly signal?: string | number;
+    readonly actionability?: string | number;
+    readonly credibility?: string | number;
   };
 }
 

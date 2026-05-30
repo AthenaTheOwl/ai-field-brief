@@ -33,6 +33,9 @@ Quality gates before publish:
 - source quality score present (per `config/scoring_model.yaml`)
 - profile relevance score present (per `config/profiles.yaml`)
 - every watchlist item has a revisit trigger
+- every Action packet has target surface, proof metric, rollback, and
+  kill criterion
+- every Scout radar item has an upgrade trigger and a demotion rule
 
 The rule is recorded under DEC-MTRX-001 and lives in
 `docs/MATRIX_PLANE_DESIGN.md`. Amending the rule requires a new DEC.
@@ -91,6 +94,27 @@ Final score gates promotion:
 Profile-level overrides land under `config/profiles.yaml` and are
 resolved at run time.
 
+## Frontier scout lane
+
+The `frontier-scout` lane is for underfollowed repos, startups,
+projects, changelogs, videos, podcasts, and talks that may become useful
+before mainstream coverage catches up.
+
+Do not reward obscurity by itself. A scout item needs:
+
+- verified source link
+- concrete shipped change, repo diff, working demo, talk, paper, or
+  reproducible example
+- named action surface
+- 30-90 minute test
+- proof metric
+- kill criterion
+
+Run `source_arbitrage`, `repo_project_scan`, and `action_packet` lenses
+before a scout item becomes an Action packet. Items with signal but no
+testable action go to Scout radar. Items with no mechanism go to Archive
+notes.
+
 ## Profiles
 
 Defined in `config/profiles.yaml`. The same corpus is scored under
@@ -98,6 +122,8 @@ multiple profiles to surface the difference. Seed profiles:
 
 - `personal` — the user's working profile
 - `broad_builder` — a generic builder profile used as a sanity check
+- `frontier_scout` — early-signal profile for lesser-known tools and
+  projects
 
 A MatrixRun pins to one `profile_id` and records it in the run
 record under `ops/run-records/`.
@@ -105,7 +131,7 @@ record under `ops/run-records/`.
 ## Repo discipline
 
 - Do not invent a source. Add a candidate to
-  `sources/candidates.yaml`; a human promotes the entry into
+  `sources/candidates.md`; a human promotes the entry into
   `sources/registry.yaml`.
 - Voice rules in `scripts/voice_lint.py` are not optional. Every
   markdown file under the documented globs runs the lint and exits

@@ -40,7 +40,7 @@ export function loadSeedSources(
       signal: qualityScore(source.quality?.signal),
       actionability: qualityScore(source.quality?.actionability),
       credibility: qualityScore(source.quality?.credibility),
-      priority: source.quality?.signal ?? null,
+      priority: qualityPriority(source.quality?.signal),
       lastReviewed: source.lastReviewed ?? null,
       reliabilityScore: null,
       customKeywords: [],
@@ -60,7 +60,10 @@ export function distinctRegistryTypes(registryPath = REGISTRY_PATH): string[] {
   ).sort();
 }
 
-function qualityScore(value: string | undefined): number | null {
+function qualityScore(value: string | number | undefined): number | null {
+  if (typeof value === "number") {
+    return value;
+  }
   if (value === "high") {
     return 5;
   }
@@ -71,4 +74,11 @@ function qualityScore(value: string | undefined): number | null {
     return 1;
   }
   return null;
+}
+
+function qualityPriority(value: string | number | undefined): string | null {
+  if (value === undefined) {
+    return null;
+  }
+  return String(value);
 }

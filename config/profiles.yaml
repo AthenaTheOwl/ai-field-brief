@@ -45,3 +45,24 @@ profiles:
     negative_preferences:
       - hype-only takes
       - non-actionable funding/exit news
+
+  frontier_scout:
+    description: Early-signal profile for underfollowed repos, startups, tools, videos, podcasts, and projects that may become useful before mainstream coverage catches up.
+    interests:
+      - agent sandboxes
+      - browser automation for agents
+      - MCP servers and registries
+      - tool authentication and least privilege
+      - evals and tracing
+      - replay and run-state capture
+      - structured extraction
+      - model routing and cost controls
+      - open-source agent frameworks
+      - applied talks and demos
+      - small startups with working technical artifacts
+    negative_preferences:
+      - funding-only stories
+      - launch copy without a working artifact
+      - repo stars without maintained examples
+      - benchmark claims without reproduction path
+      - integrations that expand permissions without audit controls

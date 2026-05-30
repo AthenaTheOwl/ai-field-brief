@@ -277,3 +277,30 @@ Acceptance:
 - `version` in `sources/registry.yaml` bumps to 4.
 - `scripts/validate_registry.py` exits 0 against the expanded file.
 - Total active sources sit at 159 after the sweep.
+
+### R-SRC-020: frontier-scout lane for early useful sources
+
+WHEN the brief needs to catch useful repos, projects, startups, talks,
+videos, podcasts, and changelogs before mainstream coverage catches up,
+THE SYSTEM SHALL maintain a separate `frontier-scout` lane with scoring
+and prompt lenses that route early signal into Action packets, Scout
+radar, or Archive notes.
+
+Owner role: `product.source-curator`.
+
+Acceptance:
+- `sources/registry.yaml` declares a `frontier-scout` lane and carries
+  at least 12 active sources in that lane.
+- The active frontier-scout sources cover agent sandboxes, browser
+  automation, agent frameworks, approval loops, evals/tracing, MCP
+  directories, structured extraction, and model routing.
+- `sources/scout-radar.md` documents the promotion rule, active scout
+  lanes, and weekly review loop.
+- `config/prompt_lenses.yaml` includes `source_arbitrage`,
+  `repo_project_scan`, and `action_packet` optional lenses.
+- `config/scoring_model.yaml` includes a scout-score overlay with
+  Action packet, Scout radar, and archive thresholds.
+- `templates/weekly-brief.md` includes Action packets and Scout radar
+  sections.
+- `scripts/validate_registry.py` exits 0 against the expanded file.
+- Total active sources sit at 173 after the sweep.

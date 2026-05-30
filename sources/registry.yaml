@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 4
-last_curated: 2026-05-29
+version: 5
+last_curated: 2026-05-30
 default_review_frequency: weekly
 
 lanes:
@@ -24,6 +24,8 @@ lanes:
     label: "Builder practice — how teams build with LLMs"
   - id: strategy
     label: "Strategy — what does it mean"
+  - id: frontier-scout
+    label: "Frontier scout - early repos, startups, protocols, and tools"
 
 sources:
   - id: anthropic-news
@@ -2731,3 +2733,241 @@ sources:
     last_reviewed: 2026-05-29
     notes: >-
       Enterprise-AI-adoption analysis with use-case taxonomies; complements the consumer-facing Rundown/TLDR feeds with B2B framing.
+
+  - id: e2b-github
+    name: E2B GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/e2b-dev/E2B
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Agent sandbox runtime. Watch workspace persistence, code execution boundaries, and artifact handoff patterns that could inform run-evidence emitters.
+
+  - id: browserbase-changelog
+    name: Browserbase Changelog
+    type: article-url
+    lane: frontier-scout
+    url: https://www.browserbase.com/changelog
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Browser automation infrastructure for agents. Watch session replay, browser state persistence, proxy controls, and audit hooks.
+
+  - id: pydantic-ai-github
+    name: Pydantic AI GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/pydantic/pydantic-ai
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Typed Python agent framework from the Pydantic team. Watch schema-first agent patterns, eval hooks, and structured-output ergonomics.
+
+  - id: mastra-github
+    name: Mastra GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/mastra-ai/mastra
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      TypeScript agent framework with workflows and memory. Watch durable workflow APIs and how JS stacks package agent state.
+
+  - id: humanlayer-github
+    name: HumanLayer GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/humanlayer/humanlayer
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Human-in-the-loop approvals for agents. Watch approval leases, interrupt boundaries, and audit trails that map to tool-policy action surfaces.
+
+  - id: braintrust-changelog
+    name: Braintrust Product Updates
+    type: article-url
+    lane: frontier-scout
+    url: https://www.braintrust.dev/docs/changelog
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Evals and tracing platform. Watch agent instrumentation, SDK integrations, and eval workflow changes that can tighten the brief's proof gates.
+
+  - id: langfuse-changelog
+    name: Langfuse Changelog
+    type: article-url
+    lane: frontier-scout
+    url: https://langfuse.com/changelog
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Open-source LLM observability. Watch trace schema, prompt/version control, and self-hosted eval features that could feed run-evidence review packets.
+
+  - id: smithery-mcp-registry
+    name: Smithery MCP Registry
+    type: article-url
+    lane: frontier-scout
+    url: https://smithery.ai/
+    cadence: daily
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      MCP server discovery surface. Watch new server categories, installation patterns, and tool-surface drift risks before they show up in mainstream posts.
+
+  - id: glama-mcp-servers
+    name: Glama MCP Server Directory
+    type: article-url
+    lane: frontier-scout
+    url: https://glama.ai/mcp/servers
+    cadence: daily
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      MCP directory with broad server coverage. Use as an early warning feed for protocol sprawl, duplicate servers, and security-review candidates.
+
+  - id: composio-github
+    name: Composio GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/ComposioHQ/composio
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Tool gateway and agent integration layer. Watch tool-auth, sandboxed workbench, and schema simplification changes for tool-policy and MCP-security implications.
+
+  - id: agentops-github
+    name: AgentOps GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/AgentOps-AI/agentops
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Agent observability and replay surface. Watch span models, session replay, and integrations that indicate where agent ops tooling is standardizing.
+
+  - id: dspy-github
+    name: DSPy GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/stanfordnlp/dspy
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 5
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Programmatic prompt and module optimization. Watch eval-driven prompt compilation patterns that could move brief scoring from manual rubric to executable tests.
+
+  - id: instructor-github
+    name: Instructor GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/instructor-ai/instructor
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Structured extraction library. Watch schema validation, retry, and provider-compatibility patterns that improve source-note extraction reliability.
+
+  - id: litellm-github
+    name: LiteLLM GitHub
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/BerriAI/litellm
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-05-30
+    notes: >-
+      Model gateway and routing layer. Watch routing, spend controls, logging, and provider-failover changes that map to config and eval action surfaces.

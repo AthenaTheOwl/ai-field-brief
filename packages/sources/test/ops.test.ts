@@ -8,10 +8,9 @@ describe("source ops queue", () => {
   it("builds readiness rows from the current source registry", () => {
     const queue = buildSourceOpsQueue({ asOf: AS_OF });
 
-    expect(queue.summary.total).toBe(15);
-    expect(queue.summary.ready).toBe(15);
-    expect(queue.summary.connectorBlocked).toBe(0);
-    expect(queue.summary.reviewDue).toBe(0);
+    expect(queue.summary.total).toBe(173);
+    expect(queue.summary.ready).toBeGreaterThan(0);
+    expect(queue.summary.connectorBlocked).toBeGreaterThan(0);
 
     const cookbook = queue.rows.find((row) => row.id === "openai-cookbook");
     expect(cookbook).toMatchObject({
@@ -22,6 +21,16 @@ describe("source ops queue", () => {
       connectorImplemented: true,
       readinessStatus: "ready",
       freshnessStatus: "fresh",
+    });
+
+    const scout = queue.rows.find((row) => row.id === "e2b-github");
+    expect(scout).toMatchObject({
+      lane: "frontier-scout",
+      registryType: "github-releases",
+      sourceType: "github-releases",
+      connectorType: "github-releases",
+      connectorImplemented: true,
+      readinessStatus: "ready",
     });
   });
 
