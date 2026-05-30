@@ -1,12 +1,23 @@
 # meta — 2026-W20 weekly brief
 # auto-written by the playbook; edit in place when the brief gets revised.
+# Vol. 2 to 3 (2026-05-30 systems-thinking upgrade) adds the four Top
+# Signal fields (Systems map, Transferable principle, Falsification
+# test, Adoption ladder) per DEC-MTRX-007 on the same 5 picks vol. 2
+# carried. No new sweep, no new evidence; the fields sharpen what vol. 2
+# already supported.
 
 iso_week: 2026-W20
 through_date: 2026-05-17
-generated_at: 2026-05-17T11:00:00Z
-generated_by: claude-opus-4-7 (manual playbook run; backdated to establish cadence)
+generated_at: 2026-05-30T12:00:00Z
+generated_by: claude-opus-4-7 (manual playbook run; systems-thinking re-synthesis)
 title: "The audience sorts into shapes"
-volume: 2
+volume: 3
+prior_version_sha: 377f80c
+upgrade_decisions:
+  - DEC-MTRX-007  # Pass 4 systems-thinking lens contract
+systems_thinking_added: true
+top_signal_count: 5
+all_top_signals_have_4_fields: true
 
 registry_version: 1
 sweep:
