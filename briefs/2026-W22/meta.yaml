@@ -1,22 +1,32 @@
 # meta — 2026-W22 weekly brief
-# Vol. 5 (2026-05-29 systems-thinking upgrade) re-synthesizes vol. 4's
-# same evidence base (144 sources, 1,994 verified cells) through Pass 4
-# of the Matrix Plane: three new lens cells per Top Signal
-# (systems_thinking, transferable_principle, falsification_test) plus
-# one synthesis-time adoption_ladder per pick. The vol. 4 brief
-# (operating-boundary thesis) at git SHA 21174d3 remains the canonical
-# vol. 4 reference; vol. 5 supersedes it as the published reading.
+# Vol. 6 (2026-05-30 scout-integration pass) extends vol. 5 by promoting
+# three Action packets from run-scout-f23d443ff059 (e2b SandboxHandle,
+# smithery credential-broker probe, langfuse code-evaluators + experiments
+# CI) to Worth-your-time entries with disposition `prototype`. Top Signals
+# and systems-thinking treatment unchanged from vol. 5. The vol. 5 brief
+# at git SHA 54034ed remains the canonical vol. 5 reference; vol. 6
+# supersedes it as the published reading.
 
 iso_week: 2026-W22
 through_date: 2026-05-29
-generated_at: 2026-05-29T23:30:00Z
-generated_by: claude-opus-4-7 (Matrix Plane Pass 4 systems-thinking re-synthesis)
+generated_at: 2026-05-30T12:00:00Z
+generated_by: claude-opus-4-7 (Matrix Plane scout-integration pass)
 title: "The week the operating boundary became the product (systems-thinking cut)"
-volume: 5
-prior_version_sha: 21174d3
+volume: 6
+prior_version_sha: 54034ed
 upgrade_decisions:
   - DEC-MTRX-007  # Pass 4 systems-thinking lens contract
   - DEC-CDCP-020  # four Top-Signal fields evidence-spine rule
+  - DEC-MTRX-008  # scout-run integration pass
+
+# Vol. 6 specific scout-integration outputs
+scout_integrations_count: 3
+scout_run_id: run-scout-f23d443ff059
+scout_action_packets_integrated:
+  - ops/scout-runs/run-scout-f23d443ff059/action-packets/e2b.md
+  - ops/scout-runs/run-scout-f23d443ff059/action-packets/smithery.md
+  - ops/scout-runs/run-scout-f23d443ff059/action-packets/langfuse.md
+systems_thinking_added: true  # carried from vol. 5
 
 # Vol. 5 specific Pass 4 outputs
 systems_thinking_cells_added: 21    # 3 lens cells x 7 Top Signals

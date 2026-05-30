@@ -6,14 +6,21 @@ meta:
   matrix_run_id: MTRX-W22-massive-rerun
   sources_swept_count: 144
   cells_verified_count: 1984
-  volume: 5
-  prior_version_sha: 21174d3
-  upgrade: systems-thinking (DEC-MTRX-007 + DEC-CDCP-020)
+  volume: 6
+  prior_version_sha: 54034ed
+  upgrade: scout-integration (DEC-MTRX-008) on top of systems-thinking (DEC-MTRX-007 + DEC-CDCP-020)
 -->
 
 # The week the operating boundary became the product (systems-thinking cut)
 
-**week of 2026-05-25 · audience: builder-tpms thinking about AI · vol. 005**
+**week of 2026-05-25 · audience: builder-tpms thinking about AI · vol. 006**
+
+<!-- Vol. 5 → 6 changelog: added scout-run integration per DEC-MTRX-008 — three
+Action packets from run-scout-f23d443ff059 (e2b SandboxHandle, smithery
+credential-broker probe, langfuse code-evaluators + experiments CI) promoted
+to Worth-your-time as builder-side prototypes worth one-week investment.
+Top Signals and systems-thinking treatment unchanged from vol. 5. -->
+
 
 ## Field thesis
 
@@ -1025,6 +1032,61 @@ warrants a policy file this week.
   — worth tracking for the preprint and a Lean-verified proof;
   archived because the vendor announcement has not been peer-verified.
 
+### Scout-run picks (run-scout-f23d443ff059, disposition: prototype)
+
+Three Action packets from the W22 scout sweep that earn a Worth-your-time
+slot because each is a one-week prototype with a kill criterion and each
+operationalizes a Top-signal pattern from this brief. The packets carry
+their own hypothesis / test / success-metric / risk / kill rubric;
+summaries follow.
+
+**e2b SandboxHandle (scout)** (2026-05-30). Wraps `e2b.Sandbox.create()`
+behind a typed `SandboxHandle` artifact (create / exec / upload /
+download / close) so a tool-using role can request code execution
+through the policy engine without coupling to any one runtime, with a
+one-line backend swap to local Docker for offline/CI. This is the
+runtime-adapter Pick 5 names in the abstract — the brief argues for
+model-agnostic orchestrator adapters across hosted-sandbox vendors, and
+the SandboxHandle is the smallest concrete instance of that pattern.
+Earns Worth-your-time because the test is one week, the kill
+criterion is precise (local-Docker stub fails feature parity, or e2b
+pivots to closed-hosted), and the abstraction survives even if the
+backend choice changes.
+[Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/e2b.md]
+
+**smithery credential broker probe (scout)** (2026-05-30). Spends
+2-4 hours running `npx smithery auth login` plus `tool list` and `tool
+call` against two verified MCP servers (one read-only, one OAuth-bound)
+to answer one question: can Smithery Connect substitute for a
+self-hosted tool registry in the CDCP policy-engine role contract? The
+deliverable is a 1-page Y/N + 3 risks note in `mcp-security-lab/decisions/`
+plus a repro script. This is the gateway-allowlist Pick 4 names in
+practice — Vercel pinned the provider list at the AI Gateway, and a
+credential broker is the same control surface for tool registries.
+Earns Worth-your-time because the timebox is small, the kill criterion
+catches the failure modes that would block production use (shell-history
+token leaks, MCP schema drift, non-opt-out publisher telemetry), and the
+output lives as a decision artifact rather than a code dep.
+[Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/smithery.md]
+
+**langfuse code evaluators + experiments CI (scout)** (2026-05-30).
+Replaces ad-hoc score-asserting scripts with Langfuse Code Evaluators
+(deterministic Python checks) plus the new GitHub Actions Experiments
+step on a 10-item dataset of past matrix cells, with two evaluators
+wired (`faithfulness_status == passed`, `len(source_ref_quote) >= 10`)
+and one MCP score-write path tested end-to-end. The success metric is
+that 100% of current invariant checks reproduce as code evaluators,
+the CI job fails on an injected regression, and the MCP server returns
+scores back to a Claude agent in under 2s. This is the system-eval
+side of Pick 6 (system eval, not model eval) and the monitor catch-rate
+side of Pick 3 (SLEIGHT-Bench-style probes) collapsed into one
+plumbing exercise. Earns Worth-your-time because it converts the
+brief's two abstract eval recommendations into a single 1-2 day plumbing
+prototype with a sharp kill rule (Code Evaluators stay GUI-only with no
+programmatic registration after 30 days, or MCP write surface cannot be
+project-scoped).
+[Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/langfuse.md]
+
 ## Watchlist
 
 - **When will the first vendor publish a SLEIGHT-Bench number in
@@ -1116,6 +1178,17 @@ Total matrix cells verified-passed: 1,984 (1,963 from vol. 4's
 consolidation + 21 added at Pass 4). The vol. 4 brief.md at git SHA
 21174d3 remains the canonical vol. 4 reference; vol. 5 supersedes it
 as the published reading.
+
+Vol. 6 adds the scout-integration pass per DEC-MTRX-008: three Action
+packets from run-scout-f23d443ff059 (e2b SandboxHandle, smithery
+credential-broker probe, langfuse code-evaluators + experiments CI)
+land as Worth-your-time entries with disposition `prototype`. Each
+packet carries its own hypothesis / test / success-metric / risk / kill
+rubric and a one-week effort budget. The Top Signals, the
+systems-thinking treatment, the action queue, and the watchlist are
+unchanged from vol. 5; the brief at git SHA 54034ed remains the
+canonical vol. 5 reference, and vol. 6 supersedes it as the published
+reading.
 
 ---
 
