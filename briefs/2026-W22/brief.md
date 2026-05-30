@@ -1066,7 +1066,7 @@ credential broker is the same control surface for tool registries.
 Earns Worth-your-time because the timebox is small, the kill criterion
 catches the failure modes that would block production use (shell-history
 token leaks, MCP schema drift, non-opt-out publisher telemetry), and the
-output lives as a decision artifact rather than a code dep.
+output lives as a decision artifact, not a code dep.
 [Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/smithery.md]
 
 **langfuse code evaluators + experiments CI (scout)** (2026-05-30).
