@@ -1,0 +1,27 @@
+{
+  "emitted_at": "2026-05-30T13:54:20.078662+00:00",
+  "env_refs": [],
+  "manifest_version": "1.0",
+  "model": null,
+  "mounts": [
+    {
+      "kind": "snapshot-dir",
+      "mode": "ro",
+      "ref": "E:/claude_code/random-apps/ai-field-brief/ops/scout-snapshots/run-scout-f23d443ff059"
+    }
+  ],
+  "run_id": "run-scout-f23d443ff059",
+  "runtime_provider": "ai-field-brief-scout-runner",
+  "source_ids": [
+    "e2b-github",
+    "pydantic-ai-github",
+    "langfuse-changelog",
+    "smithery-mcp-registry",
+    "dspy-github"
+  ],
+  "tool_surface": [
+    {
+      "tool_name": "webfetch"
+    }
+  ]
+}

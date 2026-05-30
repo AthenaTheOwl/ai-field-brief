@@ -1,0 +1,19 @@
+{
+  "checkpoint_path": "E:/claude_code/random-apps/ai-field-brief/ops/checkpoints/run-scout-f23d443ff059.runstate.json",
+  "event_ledger": "E:/claude_code/random-apps/ai-field-brief/ops/event-ledger/run-scout-f23d443ff059.jsonl",
+  "failed": [],
+  "fetched": [
+    "e2b-github",
+    "pydantic-ai-github",
+    "langfuse-changelog",
+    "smithery-mcp-registry",
+    "dspy-github"
+  ],
+  "finished_at": "2026-05-30T13:54:20.078442+00:00",
+  "lane": null,
+  "manifest_path": "E:/claude_code/random-apps/ai-field-brief/ops/sandbox-manifests/run-scout-f23d443ff059.json",
+  "run_id": "run-scout-f23d443ff059",
+  "run_record": "E:/claude_code/random-apps/ai-field-brief/ops/run-records/run-scout-f23d443ff059.json",
+  "snapshot_dir": "E:/claude_code/random-apps/ai-field-brief/ops/scout-snapshots/run-scout-f23d443ff059",
+  "started_at": "2026-05-30T13:54:17.742035+00:00"
+}

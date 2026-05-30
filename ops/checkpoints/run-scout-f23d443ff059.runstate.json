@@ -1,0 +1,18 @@
+{
+  "emitted_at": "2026-05-30T13:54:20.079196+00:00",
+  "failed_sources": [],
+  "fetched_sources": [
+    "e2b-github",
+    "pydantic-ai-github",
+    "langfuse-changelog",
+    "smithery-mcp-registry",
+    "dspy-github"
+  ],
+  "lens_ids": [
+    "source_arbitrage",
+    "repo_project_scan",
+    "action_packet"
+  ],
+  "run_id": "run-scout-f23d443ff059",
+  "status": "awaiting_lens_application"
+}
