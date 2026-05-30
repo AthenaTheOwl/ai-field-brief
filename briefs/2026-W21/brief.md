@@ -1,6 +1,11 @@
 # Contract speed, not model speed
 
-**week of 2026-05-18 · audience: builder-tpms thinking about AI · vol. 001**
+**week of 2026-05-18 · audience: builder-tpms thinking about AI · vol. 002**
+
+*Vol. 1 → 2 changelog: added the four systems-thinking fields (Systems
+map, Transferable principle, Falsification test, Adoption ladder) to
+each Top Signal per DEC-MTRX-007. Source picks and evidence cells are
+stable; the upgrade is in the explanatory altitude.*
 
 This week's quiet pattern is that AI is finishing its handshake with
 institutions that move slowly. KPMG signed a multi-year deployment. PwC
@@ -67,6 +72,39 @@ it("Messages.create returns a 400 with invalid_request_error on empty content", 
 The test costs you nothing — it never reaches the model — and it's the
 canary for an upstream contract change.
 
+**Systems map:** SDK vendor consolidation moves the dependency contract
+under one organization, so retry/error/timeout defaults start
+reflecting vendor preferences ahead of community conventions. The
+load-bearing surface for downstream code is the contract shape, not
+the model behavior.
+
+**Transferable principle:** When a vendor acquires the tooling that
+generates client SDKs against its own API, pin minor versions and add
+a contract test for the surfaces you depend on. Same shape applies to
+cloud-provider SDKs (AWS, GCP), payment-processor clients, and
+auth-provider SDKs whenever the upstream vendor brings generation
+in-house.
+
+**Falsification test:** This claim breaks if the next four Anthropic
+SDK minor releases ship without a single change to retry policy,
+default timeouts, or error-shape semantics. Two clean changelogs over
+60 days would falsify the consolidation-pressure read.
+
+**Adoption ladder:**
+
+  - Minimum viable: pin the Anthropic SDK minor version in
+    `package.json` or `pyproject.toml` this week; remove `@latest` or
+    unbounded ranges.
+  - Mid: add one SDK contract test in CI exercising your two or three
+    most-used call shapes plus one error path.
+  - Full: extend the contract-test pattern to every vendor SDK whose
+    generation tooling moved in-house (OpenAI, the cloud providers,
+    the auth provider); review the next two changelogs per vendor on
+    every release.
+  - Monitoring: changelog entries naming "improved error handling" or
+    "default timeout adjusted"; CI contract-test failures on SDK
+    bumps; vendor blog posts naming an SDK ownership change.
+
 ---
 
 ## KPMG, PwC, Gates in five days — build the AI incident playbook before someone asks for it
@@ -122,6 +160,41 @@ updated since the team rolled out Slack.
 
 The playbook is one page. It's worth writing this week, when no one is
 asking, because that's the only time you have to write it well.
+
+**Systems map:** AI tooling crossing the 100k-seat line inside a firm
+turns three institutional workflows into incident surfaces that were
+sized for SaaS-era loads: incident response, audit, and new-hire
+training. The deployment moves faster than the playbooks the
+organization writes to govern it, and customer-success teams at the
+vendor get pulled into roles the contract did not staff.
+
+**Transferable principle:** When a vendor tool crosses an
+organizational scale threshold, the runbook around it has to be
+rewritten before the first incident — not after. Same pattern held for
+Slack rollouts past 10k seats in 2015, for Workday rollouts at large
+firms in 2019, and for cloud-IAM rollouts at financial firms in 2020.
+
+**Falsification test:** The "runbook gap" claim breaks if KPMG, PwC,
+or a peer publishes a model-incident retrospective in the next 90
+days showing detect/contain/communicate steps already in place at
+rollout. Either an incident with a clean response, or the lack of any
+reported incident over a quarter at 276k seats, would weaken the
+claim.
+
+**Adoption ladder:**
+
+  - Minimum viable: draft a one-page AI-incident page in your runbook
+    naming the three incident classes (model-output, data-exposure,
+    vendor-outage) with detect / contain / communicate sub-steps.
+  - Mid: pre-write the dozen most-common security-questionnaire
+    answers for the AI vendor, link them from the runbook, and add a
+    1-minute kill switch to every AI-touching workflow.
+  - Full: tabletop the runbook quarterly with legal, comms, and
+    security; treat the kill switch as a tested control with an
+    expected-rotation cadence.
+  - Monitoring: time-to-revoke on a test API key; security
+    questionnaires returned per month; runbook last-updated date;
+    incidents detected by audit-log query vs reported by user.
 
 ---
 
@@ -179,6 +252,38 @@ audit_log:
 api_key_compromise_sla_seconds: <int>  # required: < 60
 ```
 
+**Systems map:** AI vendors now occupy the role cloud vendors filled
+around 2014 — the security and compliance posture becomes the product
+in the customer's eyes before any single feature does. The review
+question moves from "is the model good" to "can I audit and revoke."
+
+**Transferable principle:** When a vendor category matures from
+capability competition to compliance competition, procurement intake
+has to grow new contract fields ahead of the renewal cycle. Same
+transition ran through SaaS in 2014 (SOC2 became table stakes), through
+cloud in 2016 (data residency became table stakes), and through
+payments in 2018 (PCI scope became the procurement gate).
+
+**Falsification test:** This claim breaks if a major AI procurement
+in the next two quarters closes without the five items on the
+checklist surfacing as gating questions. A renewal that hinges
+entirely on model quality benchmarks would falsify the maturity
+read.
+
+**Adoption ladder:**
+
+  - Minimum viable: add the five items (SOC2 Type II report date +
+    audit firm, DPA terms, model-isolation, audit-log retention, API
+    key compromise SLA) to your next AI vendor review intake form.
+  - Mid: codify the five items into a YAML procurement template and
+    require completion before legal review.
+  - Full: extend the template across every AI-touching vendor in the
+    portfolio; run a quarterly audit on completed templates and
+    escalate any answer over the published thresholds.
+  - Monitoring: percent of completed templates with all five items
+    filled; vendors with SLA > 15 min on API-key compromise; vendors
+    with SOC2 reports more than 18 months old.
+
 ---
 
 ## Gemini 3.5 Flash GA across Workspace — rerun your unit economics this week
@@ -219,6 +324,40 @@ Three decisions fall out of this table:
    economics, the renewal conversation just got harder. Pre-write the
    talking points.
 
+**Systems map:** Default-model price moves reshape downstream unit
+economics even when no application code changes. The pricing of the
+cheap tier is the load-bearing input for any routing decision built on
+price alone, so a price increase at the default tier rewrites every
+spreadsheet built on the prior assumption.
+
+**Transferable principle:** When a vendor moves the default tier's
+price, every cost projection downstream of "we'll just use the
+default" silently breaks. Same shape applies to default-tier S3
+pricing changes, default-tier database storage rate changes, and
+default-tier CDN egress changes — anywhere a routing decision was made
+on the default tier and never revisited.
+
+**Falsification test:** The unit-economics claim breaks if a sample
+of teams currently routing primarily to Flash 2.5 do the new sheet and
+find Q2 cost growth under 10% under Flash 3.5 pricing at current
+volumes. A small enough delta would mean the routing decision did not
+in fact depend on the price line that moved.
+
+**Adoption ladder:**
+
+  - Minimum viable: pull last quarter's LLM cost line into a sheet and
+    rerun the column under Flash 3.5 pricing at current call volume.
+  - Mid: add two adjacent columns — Flash 3.5 at +30% volume and a
+    mixed OSS/managed scenario — so the next routing decision is
+    informed by three rows, not one.
+  - Full: rebuild model selection as a per-route choice priced
+    against each model's input + output rates, gross margin per route
+    becomes a tracked metric in finance review.
+  - Monitoring: monthly LLM spend per route; gross margin per route;
+    default-tier price-change announcements from Google, Anthropic,
+    OpenAI; enterprise renewal cycle dates against vendor pricing
+    moves.
+
 ---
 
 ## Simon Willison's *Last Six Months in LLMs* — forward to one specific person
@@ -245,6 +384,42 @@ prompt you want is:
 
 The second half does the heavy lifting. It surfaces the unstated
 priors that drive their decisions.
+
+**Systems map:** In a fast-moving capability landscape, the
+load-bearing risk on team decisions is a stale mental model held by a
+small number of teammates whose decisions cascade. Six months out of
+date in this space is closer to two years out of date in a more
+stable one, and the lag compounds through hiring, vendor selection,
+and tooling buys.
+
+**Transferable principle:** When a domain's underlying tech base
+churns faster than ordinary team-knowledge maintenance, deliberate
+priors-update rituals (a forwarded annotated talk, a 15-minute
+weekly read, a one-slide-per-week deck) outperform ad-hoc reading.
+Same pattern shows up in security teams tracking exploit-class
+shifts, finance teams tracking macro-regime shifts, and platform
+teams tracking cloud-feature deprecations.
+
+**Falsification test:** Non-falsifiable; this is a normative claim
+about how teams should maintain shared priors in a fast-moving
+domain. There is no clean observation that would prove "forwarding
+the talk is not useful" — only weak proxies like whether the
+recipient changes a decision after the discussion.
+
+**Adoption ladder:**
+
+  - Minimum viable: forward the link to the two teammates whose AI
+    assumptions you suspect are six months stale; schedule 15
+    minutes on Friday.
+  - Mid: hold the 15-minute discussion against the suggested prompt;
+    name one decision in flight that each teammate would revisit
+    after the talk.
+  - Full: standardize a quarterly "priors review" — one annotated
+    talk or post per quarter, 15 minutes per teammate, named
+    decisions revisited as the output.
+  - Monitoring: decisions explicitly revisited after the discussion;
+    self-reported confidence shift on a 1-5 scale before and after;
+    follow-on Slack threads referencing the talk.
 
 ---
 
@@ -322,6 +497,47 @@ years, and treat the upkeep as a non-negotiable monthly hour.
 [simonwillison.net/2026/May/21/datasette-agent](https://simonwillison.net/2026/May/21/datasette-agent/)
 
 **Action surface:** architecture, experiment
+
+**Systems map (for the three shorter picks):** Each of Eugene Yan,
+Hamel Husain, and Simon Willison points at the same upstream
+mechanism — durable AI work compounds when a small persistent
+artifact carries the context an agent or a team would otherwise have
+to relearn. Context-infrastructure files, LLM-as-judge eval prompts,
+and decade-spanning personal tooling are three instances of the same
+"persistent typed artifact" pattern.
+
+**Transferable principle:** When agent or team work is high-variance
+session to session, the lever is a small, versioned artifact that
+carries the decisions and priors across sessions. Examples beyond
+these three: a `style.md` for code review preferences, a saved
+search-query template for a recurring analytics question, or a
+templated agenda that anchors a recurring meeting.
+
+**Falsification test:** The pattern weakens if teams that adopt
+`AGENTS.md` files, LLM-as-judge prompts, and durable personal
+tooling do not report fewer re-explanation cycles or fewer rework
+PRs over a 60-90 day window. Absent any measurable reduction in
+context-relearning, the persistent-artifact claim is closer to a
+preference than a system.
+
+**Adoption ladder:**
+
+  - Minimum viable: pick one of the three artifacts (an `AGENTS.md`
+    or `CLAUDE.md`, an LLM-as-judge eval prompt for one failure
+    mode, or one personal tool's monthly upkeep slot) and ship it
+    before Friday.
+  - Mid: run all three in parallel — keep the `AGENTS.md` under 200
+    lines, run the judge prompt against 20 historical responses, and
+    book the monthly upkeep hour on the calendar as a recurring
+    event.
+  - Full: treat each artifact as a versioned control surface — the
+    `AGENTS.md` lives next to the code under PR review, the eval
+    prompt sits in CI on a sampled subset of PRs, and the personal
+    tool gets a quarterly retrospective on what the monthly hour
+    bought.
+  - Monitoring: PR-review iteration count on agent-authored work;
+    judge-vs-human disagreement rate trend; hours spent on each
+    personal tool's upkeep vs hours saved using it.
 
 ---
 

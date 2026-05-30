@@ -6,7 +6,10 @@ through_date: 2026-05-22
 generated_at: 2026-05-22T11:00:00Z
 generated_by: claude-opus-4-7 (manual playbook run)
 title: "Contract speed, not model speed"
-volume: 1
+volume: 2
+prior_version_sha: 377f80c2dea8c0ea668d469db78380b4237f3ede
+systems_thinking_added: true
+upgrade: "vol. 1 -> 2: added systems-thinking 4 fields per Top Signal (DEC-MTRX-007)"
 
 registry_version: 1
 sweep:
