@@ -1,0 +1,349 @@
+matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+cells:
+  - id: MTRX-scout-run-scout-f23d443ff059-e2b-source_arbitrage
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: source_arbitrage
+    mode: interpretive
+    source_id: e2b
+    source_item_id: e2b
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/e2b-github.html
+        quote_or_span: "Open-source, secure environment with real-world tools for enterprise-grade agents."
+        ref_type: chunk
+    source_ref_quote: "Open-source, secure environment with real-world tools for enterprise-grade agents."
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      early_signal: unclear (leaning no — already mainstream). E2B at 12.4k stars, Apache-2.0, mature JS+Python SDKs, and a separate Code Interpreter SDK is past the arbitrage window; it is the default answer when people ask 'where do I run agent-generated code safely?' Why others might miss it: not the *project* itself but the **boundary shape** it bakes in — `Sandbox.create()` as a first-class control-plane primitive, owned by the orchestrator, not the LLM provider. That maps cleanly onto Workflow M's Agents-SDK sandbox concept and the user's CDCP 'tool registry + policy engine' role contract. Mechanism to extract: copy the *interface*, not necessarily the runtime — a typed sandbox-handle artifact with create/exec/upload/download/close that any role can request through the policy engine. Adoption window: now for the **abstraction**, monitor for the **runtime** (self-host vs. e2b.dev cloud is a real trust-boundary decision). Mainstream lag indicator: when LangChain/LlamaIndex docs treat 'sandbox' as a required field rather than optional, the window is fully closed. False positive risk: low — shipped code, public SDK, paying customers. Demotion rule: demote if E2B pivots to a closed-source hosted-only model or if the OSS repo stops shipping for 90+ days.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-e2b-repo_project_scan
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: repo_project_scan
+    mode: synthetic
+    source_id: e2b
+    source_item_id: e2b
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/e2b-github.html
+        quote_or_span: "E2B is an open-source infrastructure that allows you to run AI-generated code in secure isolated sandboxes in the cloud."
+        ref_type: chunk
+    source_ref_quote: "E2B is an open-source infrastructure that allows you to run AI-generated code in secure isolated sandboxes in the cloud."
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      shipped_change: production OSS sandbox runtime with `e2b` (npm) and `e2b` (PyPI) SDKs, plus a dedicated `@e2b/code-interpreter` / `e2b-code-interpreter` package for REPL-style execution. proof_surface: code + docs + working README demo (`Sandbox.create()` then exec). integration_surface: a thin adapter behind a `SandboxHandle` interface used by tool-executing roles; cleanly fits a CDCP tool-registry entry of shape `{name: 'exec_code', backend: 'e2b', policy: ...}`. smallest_test_to_run: `pip install e2b` + API key, spin a sandbox, run `print('hi')`, capture stdout — under 15 minutes if account exists. dependency_or_security_risk: NEW TRUST BOUNDARY — code leaves the host into e2b.dev cloud Firecracker microVMs; data residency, secrets exfil, and API-key blast radius are real concerns; pin SDK version and treat sandbox stdout as untrusted. maintenance_signal: strong — 12.4k stars, Apache-2.0, multiple SDKs kept in lockstep, separate Code Interpreter repo actively maintained. adoption_candidate: yes, as the *default* exec backend behind a sandbox-handle artifact, with a stub local-Docker backend for offline/CI. watch_trigger: any breaking change to `Sandbox.create()` signature, pricing model shifts, or emergence of a credible OSS self-host story.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-e2b-action_packet
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: action_packet
+    mode: synthetic
+    source_id: e2b
+    source_item_id: e2b
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/e2b-github.html
+        quote_or_span: "To start and control sandboxes, use our JavaScript SDK or Python SDK."
+        ref_type: chunk
+    source_ref_quote: "To start and control sandboxes, use our JavaScript SDK or Python SDK."
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **Title:** SandboxHandle artifact with E2B as default backend
+      **Hypothesis:** Wrapping E2B behind a typed `SandboxHandle` artifact (create / exec / upload / download / close) lets CDCP tool-using roles request code execution through the policy engine without coupling role logic to any one runtime, and a one-line backend swap to local Docker keeps offline/CI viable.
+      **Test:** In one active repo, add a `sandbox_handle.py` adapter implementing the interface against `e2b.Sandbox.create()`; route one existing tool-call site (a code-eval or shell-exec step) through it; run the same task end-to-end against both `backend=e2b` and a `backend=local-docker` stub.
+      **Success metric:** Same task produces equivalent stdout/exit-code under both backends, and zero role code references `e2b` directly — only the handle. Achievable within one week.
+      **Effort:** small
+      **Risk:** New trust boundary (code + possibly secrets leave the host for e2b.dev cloud); API-key blast radius; per-sandbox cost if left to run.
+      **Disposition:** prototype
+
+  - id: MTRX-scout-run-scout-f23d443ff059-pydantic-ai-source_arbitrage
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: source_arbitrage
+    mode: interpretive
+    source_id: pydantic-ai
+    source_item_id: pydantic-ai
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/pydantic-ai-github.html
+        quote_or_span: "Pydantic AI is a Python agent framework designed to help you quickly, confidently, and painlessly build production grade applications and workflows with Generative AI."
+        ref_type: chunk
+    source_ref_quote: "Pydantic AI is a Python agent framework designed to help you quickly, confidently, and painlessly build production grade applications and workflows with Generative AI."
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **early_signal:** no — Pydantic AI is already mainstream-adjacent (PyPI release, CI badges, documented at ai.pydantic.dev, built by the Pydantic team that ships Pydantic Validation used inside the OpenAI SDK, Anthropic SDK, LangChain, LlamaIndex, CrewAI, Instructor). It is not an obscure find; it is a builder-default option.
+
+      **why_others_might_miss_it:** Few will miss the framework itself, but the *specific* under-cited primitives are (a) `agent-spec` YAML/JSON-only agent definitions, (b) the Pydantic AI Harness capability library, (c) the durable-execution module, and (d) human-in-the-loop tool approval gated on call arguments. These are the parts that align with our typed-artifact / tool-registry / policy-engine control plane.
+
+      **mechanism_to_extract:** Treat Pydantic AI as a *reference implementation* of typed-output agents — copy its capability bundling shape (tools+hooks+instructions+model settings as a reusable unit) and its tool-approval policy hook into our CDCP role contracts, without adopting the runtime.
+
+      **adoption_window:** monitor (framework itself); now (specific patterns).
+      **mainstream_lag_indicator:** when AGENTS.md-style typed contracts in non-Pydantic stacks start citing `agent-spec`.
+      **false_positive_risk:** medium — risk of framework lock-in; user has explicit "reject framework soup" preference.
+      **demotion_rule:** demote to archive if we end up importing pydantic_ai.Agent instead of using it as design inspiration.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-pydantic-ai-repo_project_scan
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: repo_project_scan
+    mode: synthetic
+    source_id: pydantic-ai
+    source_item_id: pydantic-ai
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/pydantic-ai-github.html
+        quote_or_span: "Build agents from composable capabilities that bundle tools, hooks, instructions, and model settings into reusable units."
+        ref_type: chunk
+    source_ref_quote: "Build agents from composable capabilities that bundle tools, hooks, instructions, and model settings into reusable units."
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **shipped_change:** Production-grade typed-output agent framework with model-agnostic provider support (OpenAI, Anthropic, Gemini, DeepSeek, Bedrock, Ollama, etc.), composable capabilities, durable execution, human-in-the-loop tool approval, streamed structured outputs, and YAML/JSON agent-spec definitions.
+
+      **proof_surface:** code + docs + working hello-world example (`from pydantic_ai import Agent; agent = Agent('anthropic:claude-sonnet-4-6', instructions=...)`); CI green; PyPI published; coverage badge.
+
+      **integration_surface:** Python import (`pydantic_ai.Agent`); MCP server interop; A2A; UI event-stream standards; OpenTelemetry via Logfire or any OTel backend.
+
+      **smallest_test_to_run:** `pip install pydantic-ai`, run the README hello-world against an existing Anthropic key, then port one ai-field-brief lens (e.g., source_arbitrage) into an Agent with a Pydantic output_type — measure whether typed validation reduces our handwritten JSON-shape patching. Doable in <60 min.
+
+      **dependency_or_security_risk:** Adds a heavyweight framework dep that wants to own the agent runtime; trust boundary widens to include pydantic_ai's tool-approval gate (must verify it actually blocks unapproved calls vs. only flagging them). Logfire is the implicit observability tie-in.
+
+      **maintenance_signal:** Active CI, PyPI releases, Pydantic-team owned; sustained backing through commercial Logfire product.
+
+      **adoption_candidate:** Pattern adoption (capability bundles, agent-spec YAML, HITL approval policy) — yes. Runtime adoption — monitor.
+
+      **watch_trigger:** when `agent-spec` stabilizes as a portable schema other runtimes can read.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-pydantic-ai-action_packet
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: action_packet
+    mode: synthetic
+    source_id: pydantic-ai
+    source_item_id: pydantic-ai
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/pydantic-ai-github.html
+        quote_or_span: "Provides the ability to stream structured output continuously, with immediate validation, ensuring real time access to generated data."
+        ref_type: chunk
+    source_ref_quote: "Provides the ability to stream structured output continuously, with immediate validation, ensuring real time access to generated data."
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **Title:** Port one ai-field-brief lens to a Pydantic AI Agent with typed output_type as a control-plane spike
+
+      **Hypothesis:** A typed Pydantic output_type on an Agent eliminates the JSON-shape repair code we currently rely on in lens cell generation, and the resulting Agent definition is small enough to live as a reusable capability bundle in CDCP — without forcing us to adopt the full pydantic_ai runtime across all roles.
+
+      **Test:** In a throwaway branch, install `pydantic-ai`, define one Agent whose `output_type` is a Pydantic model mirroring the current source_arbitrage cell schema (id, lens_id, mode, content, source_ref_quote, confidence, faithfulness_status). Run it against the same pydantic-ai-github.html snapshot via Anthropic provider; compare validation-error rate and lines-of-glue-code vs. our current StructuredOutput tool-call path.
+
+      **Success metric:** Zero schema-repair retries across 5 snapshots AND glue-code line count drops at least 30% vs. current path, observable within one week.
+
+      **Effort:** small (one snapshot, one Agent definition, one comparison run).
+
+      **Risk:** Adopts a framework the user has flagged as soup risk; even pattern-only adoption may leak through if we keep the runtime dep. Logfire tie-in could pull in unwanted observability surface.
+
+      **Disposition:** prototype — kill if validation-error rate is not strictly lower than current StructuredOutput path, or if removing the dep requires reimplementing more than one helper.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-langfuse-source_arbitrage
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: source_arbitrage
+    mode: interpretive
+    source_id: langfuse
+    source_item_id: langfuse
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/langfuse-changelog.html
+        quote_or_span: "Code evaluators Run deterministic Python or TypeScript checks on observations and experiments in Langfuse. 3 Days Ago"
+        ref_type: chunk
+    source_ref_quote: "Code evaluators Run deterministic Python or TypeScript checks on observations and experiments in Langfuse. 3 Days Ago"
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      early_signal: yes. Langfuse is mid-Launch Week 5 with a dense burst of shipped capabilities directly relevant to evals/run-evidence work: Code evaluators (deterministic Python/TS checks on observations), Experiments CI/CD in GitHub Actions, a Langfuse agent skill, Full-Text Search via ClickHouse, and an expanded hosted MCP server exposing observations, metrics, scores, comments, and annotation queues to agents. why_others_might_miss_it: most observers fixate on the headline MCP server, missing that the real arbitrage is the agent-facing read+write surface plus deterministic code evaluators replacing brittle LLM-as-judge for known invariants. mechanism_to_extract: pair Langfuse's hosted MCP with code evaluators so agents can query their own scores and trigger Python checks as part of a CI loop. adoption_window: now for the MCP+code-evaluator combo (2-4 days old, freshly shipped); monitor full-text-search rollout. mainstream_lag_indicator: 28.2k GitHub stars and the ClickHouse acquisition already make this mainstream — arbitrage is in the launch-week specifics, not the platform itself. false_positive_risk: Launch-Week posts compress features into hype rhythm; some items (e.g., agent skill) may be thin wrappers. demotion_rule: if Code Evaluators remain GUI-only with no programmatic registration API after 30 days, demote — it must be configurable from CI to be worth integrating.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-langfuse-repo_project_scan
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: repo_project_scan
+    mode: synthetic
+    source_id: langfuse
+    source_item_id: langfuse
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/langfuse-changelog.html
+        quote_or_span: "Experiments CI/CD integration Run langfuse experiments in GitHub Actions to catch quality regressions before releasing changes to production. 6 Days Ago"
+        ref_type: chunk
+    source_ref_quote: "Experiments CI/CD integration Run langfuse experiments in GitHub Actions to catch quality regressions before releasing changes to production. 6 Days Ago"
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      shipped_change: Langfuse Launch Week 5 delivered (a) hosted MCP server expanded with observations, metrics, scores, comments, annotation queues; (b) Code Evaluators running deterministic Python/TS over observations and experiments; (c) Experiments CI/CD integration with GitHub Actions for pre-release quality regression checks; (d) ClickHouse-backed full-text search with new `matches` operator on Observations API v2; (e) Langfuse agent skill — a playbook for production LLM apps. proof_surface: changelog entries with feature pages plus public OSS release 2 days ago; 300+ contributors, 28.2k stars. integration_surface: hosted MCP (agent-side tool), GitHub Actions step (CI), Observations API v2 with cursor pagination + selective fields, Python/TS code-evaluator scripts. smallest_test_to_run: wire a single repo's existing prompt experiments into a GitHub Actions job invoking `langfuse experiments` against a small dataset and assert score thresholds — under 90 minutes. dependency_or_security_risk: hosted MCP introduces a new trust boundary (agent writes to your eval scores/comments); GitHub Actions secret for Langfuse keys; ClickHouse backend dependency for full-text. maintenance_signal: rapid weekly cadence, OSS release 2 days ago, dedicated cloud regions (Japan), ClickHouse joining — actively maintained. adoption_candidate: yes for ai-field-brief's run-evidence loop — Code Evaluators map cleanly to typed-artifact checks. watch_trigger: if Code Evaluators expose a CLI/SDK registration path, pull into our evidence pipeline.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-langfuse-action_packet
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: action_packet
+    mode: synthetic
+    source_id: langfuse
+    source_item_id: langfuse
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/langfuse-changelog.html
+        quote_or_span: "Code evaluators Run deterministic Python or TypeScript checks on observations and experiments in Langfuse."
+        ref_type: chunk
+    source_ref_quote: "Code evaluators Run deterministic Python or TypeScript checks on observations and experiments in Langfuse."
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **Title:** Wire Langfuse Code Evaluators + Experiments CI into ai-field-brief run-evidence loop
+      **Hypothesis:** Replacing ad-hoc score-asserting scripts with Langfuse Code Evaluators (deterministic Python checks) plus the new GitHub Actions Experiments step gives ai-field-brief a typed, observable, version-controlled eval surface — without writing a new framework.
+      **Test:** On one scout-snapshot pipeline run, instrument trace ingestion to Langfuse, define 2 code evaluators (e.g., faithfulness_status==passed, source_ref_quote length>=10), and run `langfuse experiments` in a GitHub Actions job against a 10-item dataset of past matrix cells. Compare detected regressions vs current homegrown checks.
+      **Success metric:** Within 1 week: (a) 100% of current invariant checks reproducible as code evaluators; (b) CI job fails on an injected regression; (c) MCP server returns scores back to a Claude agent in under 2s.
+      **Effort:** small (1-2 days; SDK + one Actions workflow file + 2 evaluator scripts).
+      **Risk:** New trust boundary — hosted MCP writes scores/comments on behalf of agents; mitigated by scoping API key to one project and a read-only initial run.
+      **Disposition:** prototype
+
+  - id: MTRX-scout-run-scout-f23d443ff059-smithery-source_arbitrage
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: source_arbitrage
+    mode: interpretive
+    source_id: smithery
+    source_item_id: smithery
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/smithery-mcp-registry.html
+        quote_or_span: "Smithery Connect is powered by agent.pw, our open-source agent vault."
+        ref_type: chunk
+    source_ref_quote: "Smithery Connect is powered by agent.pw, our open-source agent vault."
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **early_signal:** unclear (leaning yes for tooling, no for novelty). Smithery is already a known MCP registry; what's fresh in this snapshot is the CLI-first surface (`npx smithery auth login`, `npx smithery mcp`, `npx smithery tool list/call`) and 'Smithery Connect' — a centralized OAuth + credential vault built on the open-source agent.pw, designed so the same connected accounts work across Claude, GPT, background agents, and CLIs.
+
+      **why_others_might_miss_it:** Most coverage treats Smithery as 'just a directory.' The actual leverage is the connect/credentials primitive and the publish-with-observability story (`your-slug.run.tools`, 'See how your tools are used').
+
+      **mechanism_to_extract:** Treat Smithery as a tool-registry + credential-broker pattern, not a destination. The pattern (publish manifest → OAuth/cred injection → cross-runtime reuse → usage telemetry) maps onto CDCP's tool registry + policy engine role contracts.
+
+      **adoption_window:** now for credential brokering pattern study; monitor for actually publishing onto Smithery.
+
+      **mainstream_lag_indicator:** when 'agent vault' / 'tool registry with OAuth broker' becomes a generic phrase in Anthropic + OpenAI docs (not yet — they still hand-wave auth).
+
+      **false_positive_risk:** medium — registry listings are mostly launch copy; verified badge inflation possible.
+
+      **demotion_rule:** demote if next snapshot shows no new verified servers, no new CLI verbs, and agent.pw repo activity stalls.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-smithery-repo_project_scan
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: repo_project_scan
+    mode: synthetic
+    source_id: smithery
+    source_item_id: smithery
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/smithery-mcp-registry.html
+        quote_or_span: "When a request needs auth, Smithery handles OAuth flows, credential injection, and retries automatically."
+        ref_type: chunk
+    source_ref_quote: "When a request needs auth, Smithery handles OAuth flows, credential injection, and retries automatically."
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **shipped_change:** Smithery has shipped a unified CLI (`npx smithery auth login | mcp | tool list | tool call`), a 'Connect' credential layer that handles OAuth flows + credential injection + retries automatically, and a publish path (`npx -y smithery setup`) that gives servers a `your-slug.run.tools` URL plus observability dashboards.
+
+      **proof_surface:** docs + CLI snippets + working registry pages (many third-party servers visible: Context7, Hugeicons, Stagehand/Browserbase, web search variants, KYC/AML 'company verifier', etc.).
+
+      **integration_surface:** (a) MCP client side — point Claude/GPT/CLI at Smithery-hosted servers via Connect; (b) publisher side — wrap an MCP server with the Smithery manifest + setup CLI; (c) credential side — agent.pw as the open-source vault primitive.
+
+      **smallest_test_to_run:** `npx smithery auth login` then `npx smithery tool list` against one verified server (e.g., Context7) from a throwaway profile; measure tool-discovery latency and whether the same auth survives across a Claude Code session and a separate node CLI.
+
+      **dependency_or_security_risk:** New trust boundary — Smithery becomes a credential broker. OAuth tokens for many SaaS apps land in their vault (or agent.pw self-hosted). Verified-badge governance is unclear; supply-chain risk on any installed server. Pairs naturally with mcp-security-lab as the policy/red-team layer.
+
+      **maintenance_signal:** Active — landing page + CLI + Connect surface all coherent; many recent third-party listings.
+
+      **adoption_candidate:** Yes for read-only/utility servers (web search, docs, icons); No for anything credential-sensitive until mcp-security-lab issues a policy.
+
+      **watch_trigger:** New CLI verbs, agent.pw release notes, or first incident report.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-smithery-action_packet
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: action_packet
+    mode: synthetic
+    source_id: smithery
+    source_item_id: smithery
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/smithery-mcp-registry.html
+        quote_or_span: "Publish to Smithery. Get in front of AI agents."
+        ref_type: chunk
+    source_ref_quote: "Publish to Smithery. Get in front of AI agents."
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **Title:** Smithery CLI probe — credential broker as 'tool registry' role in CDCP
+
+      **Hypothesis:** Smithery's CLI + Connect can serve as a drop-in reference implementation for the CDCP 'tool registry' role contract (publish manifest, broker credentials, emit usage events) — without us building a vault from scratch.
+
+      **Test:** From a throwaway profile, run `npx smithery auth login`, then `npx smithery tool list` and `npx smithery tool call` against two verified servers (one read-only like Context7, one OAuth-bound like a Drive-style integration). Capture: (a) latency, (b) credential-flow UX, (c) whether the JSON tool-call surface is stable enough to wrap behind our policy engine, (d) what telemetry Smithery surfaces to the publisher.
+
+      **Success metric:** Within one week, produce a 1-page note in `mcp-security-lab/decisions/` answering: 'Can Smithery Connect substitute for a self-hosted tool registry in CDCP? Y/N + 3 risks.' Plus a working repro script.
+
+      **Effort:** small (2-4h: CLI install, 2 servers, write-up).
+
+      **Risk:** Sending OAuth tokens through a third-party broker for any non-throwaway account; verified-badge does not equal audited. Mitigate by using burner accounts only.
+
+      **Disposition:** prototype.
+
+      **Kill criterion:** Kill if (a) CLI auth flow leaks tokens into shell history without warning, (b) tool-call schema differs materially from MCP spec, or (c) telemetry to publishers includes user-identifying data we cannot opt out of.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-dspy-source_arbitrage
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: source_arbitrage
+    mode: interpretive
+    source_id: dspy
+    source_item_id: dspy
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/dspy-github.html
+        quote_or_span: "DSPy is the framework for programming—rather than prompting—language models. It allows you to iterate fast on building modular AI systems and offers algorithms for optimizing their prompts and weights"
+        ref_type: chunk
+    source_ref_quote: "DSPy is the framework for programming—rather than prompting—language models. It allows you to iterate fast on building modular AI systems and offers algorithms for optimizing their prompts and weights"
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      early_signal: no (already mainstream — 34.7k stars, 109 releases, latest 3.2.1 on May 5 2026). DSPy crossed the arbitrage threshold ~12 months ago; it's now table stakes in the prompt-programming conversation. Why others might miss it: ironically, *because* it's mainstream, people skip past it without absorbing its *mechanism* — the Signature -> Module -> Optimizer compile loop. The actually-arbitrageable signal here is the GEPA paper (Jul'25, arxiv 2507.19457) — Reflective Prompt Evolution outperforming RL — which is now an in-tree optimizer most teams haven't tried. mechanism_to_extract: typed Signatures + bootstrap/MIPRO/GEPA optimizers as a substitute for hand-tuned prompt strings, with eval-as-compile-loop as the operating model. adoption_window: monitor for the framework as a whole; next_month for GEPA-as-optimizer experiments. mainstream_lag_indicator: DSPy is *cited* in agent posts but rarely *integrated* into production agent stacks — most teams still hand-write prompts. false_positive_risk: medium — DSPy adoption often stalls at toy examples; production wins are concentrated in retrieval/classifier pipelines, not open-ended agents. demotion_rule: if our own pipelines have <2 LM-call stages, DSPy is overkill — demote to reading list.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-dspy-repo_project_scan
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: repo_project_scan
+    mode: synthetic
+    source_id: dspy
+    source_item_id: dspy
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/dspy-github.html
+        quote_or_span: "DSPy stands for Declarative Self-improving Python. Instead of brittle prompts, you write compositional Python code and use DSPy to teach your LM to deliver high-quality outputs"
+        ref_type: chunk
+    source_ref_quote: "DSPy stands for Declarative Self-improving Python. Instead of brittle prompts, you write compositional Python code and use DSPy to teach your LM to deliver high-quality outputs"
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    content: |
+      shipped_change: DSPy 3.2.1 released May 5, 2026 — latest in a 109-release cadence; repo at 34.7k stars / 2.9k forks / 196 watchers, MIT license, Stanford NLP. proof_surface: code + docs (dspy.ai) + paper trail (GEPA Jul'25, MIPRO Jun'24, original DSPy ICLR'24). integration_surface: `pip install dspy`; Python-native; defines Signatures, Modules (Predict/ChainOfThought/ReAct), and Optimizers (BootstrapFewShot, MIPRO, GEPA) that *compile* against a metric + trainset. smallest_test_to_run: wrap one existing prompt as a dspy.Signature, run BootstrapFewShot on 20 labeled examples, compare to current hand-prompt on the same eval — under 90 minutes. dependency_or_security_risk: pulls a wide LM-provider matrix (LiteLLM under the hood historically); new trust boundary = whichever LM endpoint you compile against, plus optimizer telemetry. maintenance_signal: high — active release cadence (109 releases, latest 24 days ago as of 2026-05-29), named lead maintainer (Omar Khattab), Discord community. adoption_candidate: yes for the eval-loop pattern; partial for full framework adoption (lock-in risk). watch_trigger: GEPA optimizer maturity, or a DSPy-compiled pipeline beating hand-tuned prompts on one of our own evals.
+
+  - id: MTRX-scout-run-scout-f23d443ff059-dspy-action_packet
+    matrix_run_id: MTRX-scout-run-scout-f23d443ff059
+    lens_id: action_packet
+    mode: synthetic
+    source_id: dspy
+    source_item_id: dspy
+    source_refs:
+      - uri: ops/scout-snapshots/run-scout-f23d443ff059/dspy-github.html
+        quote_or_span: "[Jul'25] GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning"
+        ref_type: chunk
+    source_ref_quote: "[Jul'25] GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning"
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    content: |
+      **Title:** GEPA-optimize one existing prompt-heavy chain
+      **Hypothesis:** A DSPy Signature compiled with the GEPA optimizer (Jul'25, arxiv 2507.19457 — "Reflective Prompt Evolution Can Outperform Reinforcement Learning") will beat our current hand-tuned prompt on a measurable eval, without changing the underlying model.
+      **Test:** Pick the single highest-traffic prompt in an active repo (likely a brief-generation or extraction chain), express it as a dspy.Signature + ChainOfThought module, assemble a 30-example eval set with a deterministic metric (exact-match / rubric score), and run dspy.GEPA (or MIPRO if GEPA still rough) for one compile pass.
+      **Success metric:** >=10% relative lift on the eval metric vs. current hand-prompt baseline, on the same LM, observed within one week.
+      **Effort:** small (one focused afternoon for the eval set; one compile run overnight).
+      **Risk:** lock-in to DSPy abstractions if we don't extract the compiled prompt back out as a plain string artifact; mitigation = always export the optimized prompt as text and treat DSPy as a build-time tool, not a runtime dependency.
+      **Disposition:** prototype
