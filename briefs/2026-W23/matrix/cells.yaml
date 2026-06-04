@@ -1,0 +1,332 @@
+matrix_run_id: MTRX-W23-catchup-codex
+generated_at: '2026-06-03T20:30:00Z'
+generated_by: codex (manual catch-up playbook run)
+schema: schemas/matrix_cell.schema.json
+summary:
+  cells_produced: 24
+  cells_verified_passed: 24
+  cells_failed_or_patched: 0
+  unique_source_items: 8
+  note: Compact catch-up matrix for W23. Each Top Signal carries source, mechanism, adoption, and systems cells.
+cells:
+- id: MTRX-W23-openai-agents-sdk-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-agents-sdk-replay
+  lens_id: source_gist
+  mode: extractive
+  content: OpenAI's April 15 Agents SDK update adds a model-native agent loop plus sandbox execution for agents that inspect files, run commands, edit code, and work across long tasks inside controlled environments.
+  source_refs:
+  - uri: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    quote_or_span: lines 32-40, 223-248
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-openai-agents-sdk-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-agents-sdk-replay
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: The release separates agent-loop state from sandbox compute, so a failed or expired container can be replaced while the run state resumes from a checkpoint.
+  source_refs:
+  - uri: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    quote_or_span: lines 244-248
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-openai-agents-sdk-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-agents-sdk-replay
+  lens_id: adoption_action
+  mode: synthetic
+  content: Add a two-hour spike that serializes an Agents SDK RunState and compares its prompt, tool, checkpoint, and artifact fields to the CDCP Run record.
+  source_refs:
+  - uri: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    quote_or_span: sandbox, Manifest, snapshotting, and rehydration sections
+    ref_type: chunk
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-openai-agents-sdk-systems_thinking
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-agents-sdk-replay
+  lens_id: systems_thinking
+  mode: synthetic
+  content: The system boundary moves from a stateless prompt call to a replayable work envelope covering prompt, tools, files, state, sandbox, checkpoint, and artifact paths.
+  source_refs:
+  - uri: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    quote_or_span: lines 223-248
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-codex-role-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-codex-role-surface
+  lens_id: source_gist
+  mode: extractive
+  content: OpenAI reported more than five million weekly Codex users, with non-developer knowledge workers around one-fifth of the user base and growing faster than developers.
+  source_refs:
+  - uri: https://openai.com/index/codex-for-knowledge-work/
+    quote_or_span: lines 33-37
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-codex-role-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-codex-role-surface
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: Codex is moving from code diffs into reports, spreadsheets, contracts, dashboards, and light tools, which changes the review surface from pull-request review to artifact review.
+  source_refs:
+  - uri: https://openai.com/index/codex-for-knowledge-work/
+    quote_or_span: lines 33-37
+    ref_type: line
+  - uri: https://openai.com/index/codex-for-every-role-tool-workflow/
+    quote_or_span: June 2 product release on role-specific plugins, Sites, and annotations
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-codex-role-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-codex-role-surface
+  lens_id: adoption_action
+  mode: synthetic
+  content: 'Build a role-surface table for one non-engineering artifact class: report, brief, spreadsheet, contract, dashboard, or memo. Name reviewer, source corpus, allowed tools, gate, and rollback.'
+  source_refs:
+  - uri: https://openai.com/index/codex-for-every-role-tool-workflow/
+    quote_or_span: product release on role-specific plugins, annotations, and shareable Sites
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-codex-role-systems_thinking
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: openai-codex-role-surface
+  lens_id: systems_thinking
+  mode: synthetic
+  content: When agents create work products outside code, the control system must move from repository gates to artifact gates with source, reviewer, and rollback fields.
+  source_refs:
+  - uri: https://openai.com/index/codex-for-knowledge-work/
+    quote_or_span: lines 33-37
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-langfuse-code-eval-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: langfuse-code-evaluators
+  lens_id: source_gist
+  mode: extractive
+  content: Langfuse added code evaluators that run Python or TypeScript checks on observations and experiments, returning native scores for trace views and comparisons.
+  source_refs:
+  - uri: https://langfuse.com/changelog/2026-05-28-code-evaluators
+    quote_or_span: May 28 changelog and code evaluator overview
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-langfuse-code-eval-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: langfuse-code-evaluators
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: Objective checks such as JSON parseability, schema validation, exact match, and required tool arguments can run as code, leaving judge models for semantic scoring.
+  source_refs:
+  - uri: https://langfuse.com/changelog/2026-05-28-code-evaluators
+    quote_or_span: examples of exact checks and complement to judge models
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-langfuse-code-eval-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: langfuse-code-evaluators
+  lens_id: adoption_action
+  mode: synthetic
+  content: Convert one brief faithfulness rule into a deterministic evaluator. Every Top Signal must include a source link, action surface, confidence, and all four systems fields.
+  source_refs:
+  - uri: https://langfuse.com/docs/evaluation/evaluation-methods/code-evaluators
+    quote_or_span: docs on deterministic checks and production observations
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-langfuse-code-eval-systems_thinking
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: langfuse-code-evaluators
+  lens_id: systems_thinking
+  mode: synthetic
+  content: Evaluation splits into two rails, code for invariant checks and models for judgment. The handoff point becomes a config choice.
+  source_refs:
+  - uri: https://langfuse.com/changelog/2026-05-28-code-evaluators
+    quote_or_span: evaluator contract and judge-model complement
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-agenttrust-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: agenttrust
+  lens_id: source_gist
+  mode: extractive
+  content: AgentTrust proposes runtime evaluation and interception for agent tool use, including typed action records and verdicts before tool execution.
+  source_refs:
+  - uri: https://arxiv.org/abs/2605.04785
+    quote_or_span: abstract and framework summary
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-sleight-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: sleight-bench
+  lens_id: source_gist
+  mode: extractive
+  content: SLEIGHT-Bench collects synthetic harmful coding-agent transcripts across 40 attacks and 11 categories to find monitor blind spots.
+  source_refs:
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: SLEIGHT-Bench description and dataset scope
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-agenttrust-sleight-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: agenttrust-sleight
+  lens_id: mechanism_extraction
+  mode: synthetic
+  content: SLEIGHT-Bench tests monitor failure after a transcript exists. AgentTrust shifts the control point earlier by checking typed tool actions before execution.
+  source_refs:
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: monitor blind spots and defense-in-depth framing
+    ref_type: url
+  - uri: https://arxiv.org/abs/2605.04785
+    quote_or_span: runtime interception framing
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-agenttrust-sleight-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: agenttrust-sleight
+  lens_id: adoption_action
+  mode: synthetic
+  content: Add a typed Action record to one tool policy gate. Include actor, tool, target path or URL, data class, requested side effect, and verdict.
+  source_refs:
+  - uri: https://arxiv.org/abs/2605.04785
+    quote_or_span: typed Action and verdict discussion
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-itbench-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: itbench-aa
+  lens_id: source_gist
+  mode: extractive
+  content: IBM Research and Artificial Analysis published ITBench-AA, a benchmark for agentic enterprise IT tasks, and reported frontier models below 50 percent on the first release.
+  source_refs:
+  - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+    quote_or_span: title and benchmark summary
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-itbench-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: itbench-aa
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: Enterprise IT tasks force agents to handle state, symptoms, logs, remediation choices, and partial feedback, so chat-level reasoning scores are poor substitutes.
+  source_refs:
+  - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+    quote_or_span: SRE task and enterprise IT task framing
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-itbench-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: itbench-aa
+  lens_id: adoption_action
+  mode: synthetic
+  content: Add one messy-ops case to each agent eval with partial logs, stale context, one wrong remediation path, and a required rollback decision.
+  source_refs:
+  - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+    quote_or_span: enterprise IT benchmark task framing
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-itbench-systems_thinking
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: itbench-aa
+  lens_id: systems_thinking
+  mode: synthetic
+  content: A useful agent eval measures recovery across a changing system, not an answer to a frozen prompt.
+  source_refs:
+  - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+    quote_or_span: agentic enterprise IT tasks
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-rosalind-biodefense-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: rosalind-biodefense
+  lens_id: source_gist
+  mode: extractive
+  content: OpenAI launched Rosalind Biodefense on May 29 to give vetted defensive partners access to GPT-Rosalind for biological preparedness work.
+  source_refs:
+  - uri: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/
+    quote_or_span: May 29 announcement and defensive access framing
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-rosalind-plugin-source_gist
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: rosalind-plugin
+  lens_id: source_gist
+  mode: extractive
+  content: GPT-Rosalind ships with a life-sciences research plugin for Codex that connects to more than 50 scientific tools and data sources.
+  source_refs:
+  - uri: https://openai.com/index/introducing-gpt-rosalind/
+    quote_or_span: lines 80-86
+    ref_type: line
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-rosalind-mechanism_extraction
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: rosalind-domain-agent
+  lens_id: mechanism_extraction
+  mode: synthetic
+  content: High-risk domain agents are being packaged as model plus plugin plus trusted access review, with beneficial-use and governance checks tied to access.
+  source_refs:
+  - uri: https://openai.com/index/introducing-gpt-rosalind/
+    quote_or_span: lines 87-91
+    ref_type: line
+  - uri: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/
+    quote_or_span: trusted partner and defensive application framing
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W23-rosalind-adoption_action
+  matrix_run_id: MTRX-W23-catchup-codex
+  source_item_id: rosalind-domain-agent
+  lens_id: adoption_action
+  mode: synthetic
+  content: For any domain agent that touches regulated or dual-use data, write the access rubric before the demo with allowed users, allowed data, blocked outputs, audit log, and revocation trigger.
+  source_refs:
+  - uri: https://openai.com/index/introducing-gpt-rosalind/
+    quote_or_span: controlled access and governance sections
+    ref_type: line
+  confidence: medium
+  faithfulness_status: passed
+  status: verified

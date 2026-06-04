@@ -1,0 +1,122 @@
+# meta - 2026-W23 weekly brief
+#
+# Catch-up issue generated on 2026-06-03 after the W22 vol. 6 scout
+# integration pass. The source window starts after W22 through_date
+# (2026-05-29) and includes the June 2 Codex role-surface releases,
+# plus one older Agents SDK anchor that the user explicitly requested
+# be worked into the brief because it changes the engineering path.
+
+iso_week: 2026-W23
+through_date: 2026-06-03
+generated_at: 2026-06-03T20:30:00Z
+generated_by: codex (manual catch-up playbook run)
+title: "The week replay became the operating contract"
+volume: 1
+profile_id: broad_builder
+
+registry_version: 5
+sweep:
+  attempted: 24
+  succeeded: 20
+  failed: 0
+  skipped: 4
+matrix_run_id: MTRX-W23-catchup-codex
+
+matrix:
+  cells_produced: 24
+  cells_verified: 24
+  cells_rejected_or_patched: 0
+  source_items_captured: 20
+  source_items_promoted_to_matrix: 8
+  artifact_path: briefs/2026-W23/matrix/cells.yaml
+
+sources_reviewed_summary:
+  primary_source:
+    captured: 10
+    note: "OpenAI Agents SDK, Codex role/workflow releases, OpenAI Frontier Governance, Rosalind Biodefense, Anthropic SLEIGHT-Bench, Microsoft MagenticLite, Hugging Face / IBM ITBench-AA"
+  builder_practice:
+    captured: 4
+    note: "Langfuse code evaluators, Langfuse experiments CI, E2B docs, Vercel Sandbox vs E2B"
+  frontier_scout:
+    captured: 4
+    note: "AgentTrust, MCPWorks, Agentic Index, Smithery"
+  strategy:
+    captured: 2
+    note: "Codex knowledge-work report and OpenAI Frontier Governance Framework"
+
+picks_this_week:
+  - slug: agents-sdk-replay-contract
+    headline: "OpenAI Agents SDK sandbox + RunState - replay moves into the runtime"
+    primary_source: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    artifact_type: runstate-adapter-spike
+    confidence: high
+    cells:
+      - MTRX-W23-openai-agents-sdk-source_gist
+      - MTRX-W23-openai-agents-sdk-mechanism_extraction
+      - MTRX-W23-openai-agents-sdk-adoption_action
+      - MTRX-W23-openai-agents-sdk-systems_thinking
+
+  - slug: codex-knowledge-work-role-surface
+    headline: "Codex role plugins + knowledge-work report - artifact work moves outside engineering"
+    primary_source: https://openai.com/index/codex-for-every-role-tool-workflow/
+    artifact_type: role-surface-routing-table
+    confidence: high
+    cells:
+      - MTRX-W23-codex-role-source_gist
+      - MTRX-W23-codex-role-mechanism_extraction
+      - MTRX-W23-codex-role-adoption_action
+      - MTRX-W23-codex-role-systems_thinking
+
+  - slug: langfuse-code-evaluators-ci
+    headline: "Langfuse code evaluators - deterministic checks join trace review"
+    primary_source: https://langfuse.com/changelog/2026-05-28-code-evaluators
+    artifact_type: deterministic-evaluator-gate
+    confidence: high
+    cells:
+      - MTRX-W23-langfuse-code-eval-source_gist
+      - MTRX-W23-langfuse-code-eval-mechanism_extraction
+      - MTRX-W23-langfuse-code-eval-adoption_action
+      - MTRX-W23-langfuse-code-eval-systems_thinking
+
+  - slug: agenttrust-sleight-preexecute-policy
+    headline: "AgentTrust + SLEIGHT-Bench - monitors need a pre-execute policy layer"
+    primary_source: https://arxiv.org/abs/2605.04785
+    artifact_type: typed-action-record-policy
+    confidence: medium-high
+    cells:
+      - MTRX-W23-agenttrust-source_gist
+      - MTRX-W23-sleight-source_gist
+      - MTRX-W23-agenttrust-sleight-mechanism_extraction
+      - MTRX-W23-agenttrust-sleight-adoption_action
+
+  - slug: itbench-aa-enterprise-it
+    headline: "ITBench-AA - enterprise agent tasks need stateful ops evals"
+    primary_source: https://huggingface.co/blog/ibm-research/itbench-aa
+    artifact_type: ops-realism-eval-row
+    confidence: high
+    cells:
+      - MTRX-W23-itbench-source_gist
+      - MTRX-W23-itbench-mechanism_extraction
+      - MTRX-W23-itbench-adoption_action
+      - MTRX-W23-itbench-systems_thinking
+
+  - slug: rosalind-trusted-domain-agent
+    headline: "Rosalind Biodefense - domain agents ship with access review attached"
+    primary_source: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/
+    artifact_type: high-stakes-access-rubric
+    confidence: medium
+    cells:
+      - MTRX-W23-rosalind-biodefense-source_gist
+      - MTRX-W23-rosalind-plugin-source_gist
+      - MTRX-W23-rosalind-mechanism_extraction
+      - MTRX-W23-rosalind-adoption_action
+
+notes:
+  - "This is a catch-up issue, not a full Matrix Plane massive sweep. It keeps the evidence spine by writing a compact verified cell file for every Top Signal."
+  - "OpenAI Agents SDK is an older April 15 source, included because the user asked for the next Agents SDK evolution to be folded into the AI brief action path."
+  - "W22 vol. 6 remains the prior published issue; W23 starts the next week after W22 through_date 2026-05-29."
+
+next_run_actions:
+  - "Promote the Agents SDK replay adapter into a small procurement-lab or trace-to-eval spike if OpenAI RunState JSON is available through the local SDK."
+  - "Add Langfuse code-evaluator tracking to source-registry watchlist and test whether a deterministic cell-faithfulness evaluator is viable."
+  - "Add AgentTrust and MCPWorks to frontier-scout candidates for weekly monitoring."

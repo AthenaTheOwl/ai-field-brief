@@ -15,7 +15,7 @@ checklist, a unit-economics table, a judge prompt.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [The week the operating boundary became the product (2026-W22)](https://ai-field-brief.vercel.app/briefs/2026-W22)
+**Latest:** [The week replay became the operating contract (2026-W23)](https://ai-field-brief.vercel.app/briefs/2026-W23)
 
 ## Read it for
 
@@ -32,13 +32,13 @@ when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 
 ## For your role
 
-**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W22)
-in ten minutes. Seven Top signals, each with a concrete action,
+**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W23)
+in ten minutes. Six Top signals, each with a concrete action,
 confidence label, evidence cells, systems map, falsification test,
 and adoption ladder.
 
 **Builder-TPM.** The brief is written for you. `briefs/INDEX.md`
-tracks the rolling cadence; `briefs/2026-W22/brief.md` is the live
+tracks the rolling cadence; `briefs/2026-W23/brief.md` is the live
 issue. Every pick lands a move you can route to a teammate the same
 afternoon, and scout Action packets name proof metrics, rollback
 paths, and kill criteria for smaller experiments.

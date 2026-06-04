@@ -90,11 +90,17 @@ def test_backfill_all_briefs(tmp_path: pathlib.Path) -> None:
     assert result.returncode == 0, (
         f"backfill --all failed: stdout={result.stdout!r} stderr={result.stderr!r}"
     )
-    # The repo carries three published briefs (W20, W21, W22).
+    expected = len(
+        [
+            path
+            for path in (ROOT / "briefs").iterdir()
+            if path.is_dir() and path.name[:4].isdigit()
+        ]
+    )
     records = list(records_dir.glob("*.json"))
     ledgers = list(ledger_dir.glob("*.jsonl"))
-    assert len(records) == 3
-    assert len(ledgers) == 3
+    assert len(records) == expected
+    assert len(ledgers) == expected
 
 
 def test_finalize_run_emits_validated_records(tmp_path: pathlib.Path) -> None:
