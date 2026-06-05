@@ -16,21 +16,9 @@ meta:
 
 ## Field thesis
 
-The useful part of the agent stack is shifting from clever task output
-to the contract around the run. OpenAI's Agents SDK names the runtime
-shape: model-native loop, controlled sandbox, Manifest, snapshots, and
-state rehydration. OpenAI's June 2 Codex releases show the same shape
-moving out of software engineering into reports, spreadsheets,
-contracts, dashboards, and lightweight apps. Langfuse then closes the
-loop from the eval side: deterministic code checks can now sit beside
-trace review and experiment comparison. The lesson for builders is
-plain: if an agent creates a work artifact, the artifact needs a replay
-record, a deterministic gate where possible, a reviewer, and a rollback
-path. The output is no longer enough.
+Three releases this week describe the same thing from three angles. OpenAI's Agents SDK adds a model-native loop, a sandbox, a Manifest, snapshots, and state rehydration. OpenAI's June 2 Codex update extends agent work into reports, spreadsheets, contracts, dashboards, and small apps. Langfuse ships deterministic code evaluators that sit next to traces and experiments. Same shape every time: the artifact needs a replay record, a deterministic gate where one exists, a reviewer, and a rollback path. Shipping the output without those four is shipping a demo.
 
-This catch-up issue is smaller than W22's Matrix Plane run. It is still
-actionable: six Top signals, 24 verified cells, and three Action
-packets that can land before the next brief.
+Catch-up issue. Six Top signals, 24 verified cells, three Action packets.
 
 ## Top signals
 

@@ -179,6 +179,54 @@ STRUCTURAL = [
     ),
 ]
 
+# Brief-only rules. VOICE.md applies to public-facing brief copy, not to
+# DEC/dream prose where "load-bearing" is a legitimate engineering term and
+# "shape" is a legitimate noun. These rules fire only on files under
+# ``briefs/`` so the lint stays useful elsewhere.
+BRIEF_ONLY_STRUCTURAL = [
+    Rule(
+        "FAIL",
+        "voice-md-time-for-one-move",
+        re.compile(
+            r"\bif you (?:only )?have time for one move from this brief\b",
+            re.IGNORECASE,
+        ),
+    ),
+    Rule(
+        "FAIL",
+        "voice-md-load-bearing",
+        re.compile(r"\bload-bearing\b", re.IGNORECASE),
+    ),
+    Rule(
+        "FAIL",
+        "voice-md-sorts-into-shapes",
+        re.compile(r"\bsort(?:s|ing|ed)?\s+into\s+shapes?\b", re.IGNORECASE),
+    ),
+    Rule(
+        "FAIL",
+        "voice-md-binding-work-migrated",
+        re.compile(r"\bbinding work has migrated\b", re.IGNORECASE),
+    ),
+    Rule(
+        "FAIL",
+        "voice-md-the-most-useful-sentence",
+        re.compile(
+            r"\bthe\s+most\s+useful\s+sentence\s+to\s+write\s+(?:down\s+)?this\s+week\b",
+            re.IGNORECASE,
+        ),
+    ),
+    Rule(
+        "WARN",
+        "voice-md-quiet-pattern",
+        re.compile(r"\bthis\s+week['’]s\s+quiet\s+pattern\b", re.IGNORECASE),
+    ),
+    Rule(
+        "WARN",
+        "voice-md-whats-interesting-here",
+        re.compile(r"\bwhat['’]s\s+interesting\s+here\b", re.IGNORECASE),
+    ),
+]
+
 ALLOWLIST_RE = re.compile(r"voice_lint:allow\s+([A-Za-z0-9\-_ ]+)")
 
 # Target globs mirror the planned monorepo shape from specs/0000-bootstrap.
@@ -253,11 +301,21 @@ def line_allowlist(line: str) -> set[str]:
     return {label.strip() for label in match.group(1).split() if label.strip()}
 
 
-def rules() -> list[Rule]:
+def rules(*, include_brief_only: bool = False) -> list[Rule]:
     out = [phrase_rule("FAIL", f"banned-{phrase}", phrase) for phrase in BANNED_FAIL]
     out.extend(phrase_rule("WARN", f"weak-{phrase}", phrase) for phrase in BANNED_WARN)
     out.extend(STRUCTURAL)
+    if include_brief_only:
+        out.extend(BRIEF_ONLY_STRUCTURAL)
     return out
+
+
+def is_brief_path(path: Path, root: Path) -> bool:
+    try:
+        rel = path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return False
+    return rel.parts[:1] == ("briefs",)
 
 
 def scan(
@@ -305,8 +363,9 @@ def main(argv: list[str] | None = None) -> int:
     warn_total = 0
 
     for file_path in files:
+        active_rules = rules(include_brief_only=is_brief_path(file_path, root))
         for severity, line_no, label, line_text in scan(
-            file_path, rules(), filter_label=args.label
+            file_path, active_rules, filter_label=args.label
         ):
             rel = file_path.relative_to(root).as_posix()
             snippet = line_text if len(line_text) <= 200 else line_text[:200] + "..."

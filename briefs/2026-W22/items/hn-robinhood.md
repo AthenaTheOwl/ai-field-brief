@@ -17,7 +17,7 @@ Retail finance is the leading-edge test for agent identity,
 authorization, and accountability flows. SEC, FINRA, and state
 consumer-protection regimes all become relevant when an AI agent
 trades on a retail account; the T&C-level liability allocation is
-the load-bearing variable for users opting in.
+the variable that matters for users opting in.
 
 ## Action surface
 

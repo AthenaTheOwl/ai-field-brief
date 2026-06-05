@@ -7,18 +7,9 @@ map, Transferable principle, Falsification test, Adoption ladder) to
 each Top Signal per DEC-MTRX-007. Source picks and evidence cells are
 stable; the upgrade is in the explanatory altitude.*
 
-This week's quiet pattern is that AI is finishing its handshake with
-institutions that move slowly. KPMG signed a multi-year deployment. PwC
-deepened its partnership. The Gates Foundation committed $200M over
-several years. Anthropic acquired the company whose tooling powers its
-own SDKs. Google made the new Gemini Flash the default model people
-get for free. The model-of-the-week ritual rolled on, but the
-load-bearing news arrived in the unglamorous shape of contracts,
-procurement reviews, and embedded-in-Workspace defaults.
+Five things happened this week, and the institutional/contract moves matter more than the model releases. KPMG signed a multi-year deployment. PwC deepened its partnership. The Gates Foundation committed $200M over several years. Anthropic acquired the company whose tooling powers its own SDKs. Google made the new Gemini Flash the default free-tier model.
 
-If you only have time for one move from this brief: rerun your last
-quarter's LLM cost line under the new Flash pricing before someone
-else does it for you. Worked numbers below.
+Last quarter's LLM cost line: rerun it under the new Flash pricing now. Worked numbers below. Your CFO will get there on Monday.
 
 ---
 
@@ -31,12 +22,7 @@ OpenAI contract has not arrived; that confirmation, when it comes, is
 its own signal.
 [anthropic.com/news/anthropic-acquires-stainless](https://www.anthropic.com/news/anthropic-acquires-stainless)
 
-**Insight.** The contract surface you depend on — retry policy, error
-shape, type generation, timeout defaults — moves under one roof. When
-that happens, the SDK starts reflecting vendor preferences first and
-broad community conventions second. The first place you'll feel it is
-in error handling, because that's where the "improvements" tend to
-land.
+**Insight.** Stainless ships SDK defaults: retry policy, error shape, timeouts. Now Stainless reports to Anthropic. Error handling is where the drift lands first.
 
 **Action surface:** config, eval
 
@@ -72,11 +58,7 @@ it("Messages.create returns a 400 with invalid_request_error on empty content", 
 The test costs you nothing — it never reaches the model — and it's the
 canary for an upstream contract change.
 
-**Systems map:** SDK vendor consolidation moves the dependency contract
-under one organization, so retry/error/timeout defaults start
-reflecting vendor preferences ahead of community conventions. The
-load-bearing surface for downstream code is the contract shape, not
-the model behavior.
+**Systems map:** When the API vendor owns the SDK generator, retry/error/timeout defaults drift toward what the vendor wants.
 
 **Transferable principle:** When a vendor acquires the tooling that
 generates client SDKs against its own API, pin minor versions and add
@@ -115,11 +97,7 @@ calls its rollout a "core function" deployment. KPMG names 276,000
 seats.
 [anthropic-kpmg](https://www.anthropic.com/news/anthropic-kpmg) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership) · [pwc-expanded-partnership](https://www.anthropic.com/news/pwc-expanded-partnership)
 
-**Insight.** When AI tools cross the 100k-seat line inside a firm,
-three workflows tend to break first: incident response, audit, and
-new-hire training. Customer-success teams at vendors get pulled into
-roles they weren't staffed for. Most internal playbooks haven't been
-updated since the team rolled out Slack.
+**Insight.** At 100k+ seats, incident response and audit playbooks break first. Nobody has updated them since the Slack rollout.
 
 **Action surface:** workflow
 
@@ -158,8 +136,7 @@ updated since the team rolled out Slack.
 - Internal post-mortem: within 7 days, link in #incidents.
 ```
 
-The playbook is one page. It's worth writing this week, when no one is
-asking, because that's the only time you have to write it well.
+One page. Write the playbook now, before there's an incident.
 
 **Systems map:** AI tooling crossing the 100k-seat line inside a firm
 turns three institutional workflows into incident surfaces that were
@@ -324,11 +301,7 @@ Three decisions fall out of this table:
    economics, the renewal conversation just got harder. Pre-write the
    talking points.
 
-**Systems map:** Default-model price moves reshape downstream unit
-economics even when no application code changes. The pricing of the
-cheap tier is the load-bearing input for any routing decision built on
-price alone, so a price increase at the default tier rewrites every
-spreadsheet built on the prior assumption.
+**Systems map:** Flash 3.5's default-tier price doesn't show up in your code. It shows up in the spreadsheet that routed on Flash 2.5. If your routing is priced on the default tier, a default-tier price hike silently rewrites your cost model.
 
 **Transferable principle:** When a vendor moves the default tier's
 price, every cost projection downstream of "we'll just use the
@@ -366,11 +339,7 @@ in fact depend on the price line that moved.
 lightning talk covering November 2025 through May 2026.
 [5-minute-llms](https://simonwillison.net/2026/May/19/5-minute-llms/)
 
-**Insight.** Most teams have one or two members whose AI mental model
-is still operating on November 2025 assumptions. They're shaping
-decisions — vendor selection, hiring screens, tooling buys — that you
-inherit. Six months out of date in this space is closer to two years
-out of date in a normal one.
+**Insight.** Some teammate's AI assumptions froze in Nov 2025, and their decisions cascade onto yours. The vendor shortlist on your desk was built by that mental model.
 
 **Action surface:** workflow
 
@@ -385,12 +354,7 @@ prompt you want is:
 The second half does the heavy lifting. It surfaces the unstated
 priors that drive their decisions.
 
-**Systems map:** In a fast-moving capability landscape, the
-load-bearing risk on team decisions is a stale mental model held by a
-small number of teammates whose decisions cascade. Six months out of
-date in this space is closer to two years out of date in a more
-stable one, and the lag compounds through hiring, vendor selection,
-and tooling buys.
+**Systems map:** Stale priors in a few teammates cascade through hiring, vendor picks, and tooling.
 
 **Transferable principle:** When a domain's underlying tech base
 churns faster than ordinary team-knowledge maintenance, deliberate
@@ -427,7 +391,7 @@ recipient changes a decision after the discussion.
 
 **Eugene Yan, *How to Work and Compound with AI*** (May 3). Four
 frames — context infrastructure, taste configuration, verification,
-delegation. For most builders the load-bearing one is **context
+delegation. For most builders the one that does the work is **context
 infrastructure**: the persistent decisions, preferences, and
 constraints you re-feed the agent so it doesn't relearn your taste
 each session. Start with a short `AGENTS.md` or `CLAUDE.md` at the
@@ -560,9 +524,7 @@ preference than a system.
 
 ## Closing thought
 
-Write down one decision you're delaying because you're not sure
-whether AI changes it. Date the entry. Revisit in 30 days. The
-entry is the artifact — the decision is downstream.
+Pick a decision you've been sitting on because you don't know if AI changes the answer. Write it down, date it, and set a calendar reminder for 30 days from now. The reminder is the only honest part of this exercise.
 
 ---
 
