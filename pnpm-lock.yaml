@@ -45,8 +45,8 @@ importers:
         specifier: ~19.0.3
         version: 19.0.6(react@19.0.6)
       react-markdown:
-        specifier: ^9.0.1
-        version: 9.1.0(@types/react@19.0.2)(react@19.0.6)
+        specifier: ^10.1.0
+        version: 10.1.0(@types/react@19.0.2)(react@19.0.6)
       remark-gfm:
         specifier: ^4.0.0
         version: 4.0.1
@@ -1841,8 +1841,8 @@ packages:
     peerDependencies:
       react: ^19.0.6
 
-  react-markdown@9.1.0:
-    resolution: {integrity: sha512-xaijuJB0kzGiUdG7nc2MOMDUDBWPyGAjZtUrow9XxUeua8IqeP+VlIfAZ3bphpcLTnSZXz6z9jcVC/TCwbfgdw==}
+  react-markdown@10.1.0:
+    resolution: {integrity: sha512-qKxVopLT/TyA6BX3Ue5NwabOsAzm0Q7kAPwq6L+wWDwisYs7R8vZ0nRXqq6rkueboxpkjvLGU9fWifiX/ZZFxQ==}
     peerDependencies:
       '@types/react': '>=18'
       react: '>=18'
@@ -3703,7 +3703,7 @@ snapshots:
       react: 19.0.6
       scheduler: 0.25.0
 
-  react-markdown@9.1.0(@types/react@19.0.2)(react@19.0.6):
+  react-markdown@10.1.0(@types/react@19.0.2)(react@19.0.6):
     dependencies:
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
