@@ -1,4 +1,4 @@
-# The audience sorts into shapes
+# Anthropic shipped four products to four different buyers in five days
 
 **week of 2026-05-11 · audience: builder-tpms thinking about AI · vol. 003**
 
@@ -7,21 +7,9 @@ each Top Signal now carries Systems map, Transferable principle,
 Falsification test, and Adoption ladder. No new evidence; the four
 fields sharpen what vol. 2 already supported.*
 
-This week the AI customer base started sorting into shapes you can
-name. Anthropic shipped Claude for Small Business on Tuesday, signed
-PwC and the Gates Foundation on Thursday, and last week's SpaceX
-compute deal kept echoing through rate-limit conversations. The
-under-20-person shop, the global firm, the multilateral foundation,
-and the single developer with five-hour windows are now four
-products inside one company. That shape rarely holds for long. The
-load-bearing question for builders this week is which shape your
-own product is currently selling to.
+Tuesday: Claude for Small Business. Thursday: PwC and the Gates Foundation. Still echoing from last week: the SpaceX compute deal. Anthropic sold the same model to four different buyer types in five days. Pick which one your feature is for.
 
-If you only have time for one move from this brief: write down the
-single buyer persona your AI feature ships for today, and the
-specific behavior change that persona will make next quarter. The
-brittle products this year are the ones that try to span three
-shapes at once.
+Write down the buyer persona your AI feature ships for today. Write down the behavior change you expect from that persona next quarter.
 
 ---
 
@@ -36,15 +24,7 @@ payroll forecasting, monthly reconciliation, cash-flow analysis,
 campaign management, and contract review by name.
 [anthropic.com/news/claude-for-small-business](https://www.anthropic.com/news/claude-for-small-business)
 
-**Insight.** Two days later the company announced PwC and Gates.
-The same model now ships in three distinct buyer shapes — the
-ten-seat shop with QuickBooks, the 100k-seat firm with a CIO
-office, and the foundation underwriting global health work. Most
-B2B AI features try to span at least two of these shapes inside one
-product page. The page reads as muddled because the buyer behaviors
-underneath are different — the small-shop owner toggles a workflow,
-the CIO runs a procurement review, the foundation runs a grant
-process. One UI cannot land all three.
+**Insight.** PwC and Gates landed two days after the small-business launch. Same model, three buyers: a ten-seat QuickBooks shop, a 100k-seat CIO office, Gates. One product page cannot honestly sell to a ten-seat shop, a CIO, and a foundation at the same time.
 
 **Action surface:** prompt, architecture
 
@@ -136,15 +116,7 @@ and economic mobility, with the largest portion targeted at health
 work in low- and middle-income countries.
 [pwc-expanded-partnership](https://www.anthropic.com/news/anthropic-pwc-partnership) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership)
 
-**Insight.** Each headline pulls a different procurement
-conversation into your inbox. PwC pulls the supply-chain question
-("does our vendor stack include a sub-processor that PwC also
-uses?"). Gates pulls the data-residency question ("our partner ships
-to LMIC clinics — what data leaves the country?"). Both pull the
-same audit-log question ("can we pull every API call our workspace
-made last quarter?"). The questions land in three different
-inboxes inside your company and converge on one answer your
-security partner has to be ready to give.
+**Insight.** Three questions are about to land on your security partner. PwC: does our vendor stack include a sub-processor PwC also uses? Gates: our partner ships to LMIC clinics — what data leaves the country? Both: can we pull every API call our workspace made last quarter? Pre-write the answers before they ask.
 
 **Action surface:** tool-policy
 
@@ -349,11 +321,7 @@ escape hatch:      <model + circuit-breaker rule>
 re-rank cadence:   monthly  | <date>
 ```
 
-Two outputs from this exercise change your week. First, the
-routing decision your team has been carrying for six months may now
-be the wrong one. Second, the table itself becomes the artifact
-your finance partner asks for when the AWS or GCP bill spikes
-next month — which it will.
+The routing decision may now be wrong, and finance will want the table when the cloud bill spikes.
 
 **Systems map:** Vendor selection is a function of the capacity
 landscape at the time the decision was made. When upstream capacity
@@ -407,13 +375,7 @@ or recall reporting. The fix is to treat every LLM judge as a
 classifier that needs validation against human labels.
 [hamel.dev/blog/posts/revenge](https://hamel.dev/blog/posts/revenge/)
 
-**Insight.** The post predates this week, but the week's events
-make it newly load-bearing. Three new buyer shapes (small business,
-PwC-scale enterprise, foundation) means three new audit pressures
-on the eval pipeline. None of those buyers will accept "we use
-GPT-4 to judge helpfulness on a 1-5 scale" as an answer to "how do
-you know the model output is correct?" The judge has to be a
-classifier the buyer can interrogate.
+**Insight.** PwC and Gates won't accept "we use GPT-4 to judge helpfulness on a 1-5 scale" as an answer to "how do you know the model output is correct?" Three new buyer shapes (small business, PwC-scale enterprise, foundation), three new audit pressures on the eval pipeline. The new enterprise/foundation buyers will demand precision/recall numbers on your LLM judge.
 
 **Action surface:** eval
 
@@ -474,7 +436,7 @@ auditors who will ask for the documented number.
 **Transferable principle:** Any decision-maker priced in human
 authority that gets delegated to an automated component must be
 validated against ground truth on a labeled set, or its error rate
-becomes load-bearing-and-unknown. Example beyond LLM judges: rule
+becomes structurally important and unknown. Example beyond LLM judges: rule
 engines for fraud detection — a hand-coded rule that flags 2% of
 transactions still needs a labeled holdout to report precision and
 recall, or downstream chargeback rates surprise the team months
@@ -559,7 +521,4 @@ for two months, this is the week to ship the rough draft.
 
 ## Closing thought
 
-The most useful sentence to write down this week is the one that
-names the buyer your AI feature sells to. Most product pages
-flinch at writing it. The flinch is the work — the sentence is the
-artifact.
+Write the sentence that names your buyer; most product pages won't.

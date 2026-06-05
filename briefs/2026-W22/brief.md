@@ -24,34 +24,9 @@ Top Signals and systems-thinking treatment unchanged from vol. 5. -->
 
 ## Field thesis
 
-After 144 sources and 1,984 verified cells, the week sorts into one
-shape: the binding work has migrated out of the model and into the
-operating boundary around the model. The Series H tells one half of
-the story — a $965B private valuation against a $47B run-rate funded
-almost entirely by enterprise coding-agent token burn. The other half
-arrived as project-level contracts: curl's pressure post on more than
-one AI-assisted report per day, SQLite's AGENTS.md rejecting agentic
-code patches, Anthropic's Glasswing reporting >10,000 high/critical
-findings against vetted partners with the patch pipeline now the
-bottleneck, Cursor's three-tier Auto-review policy ladder, Vercel's
-team-wide provider allowlist with BYOK enforcement, and Microsoft's
-Copilot Cowork exfiltration via agent-composed external images. Each
-of these is the same artifact: a policy file, a budget cap, a tiered
-ladder, an intake rubric, an outbound-communication guard. The model
-is no longer the load-bearing variable. The contract around the
-model — who can call which tool, who reviews which patch, who pays
-for which token, what gets logged — is the variable everyone shipped
-this week.
+Six unrelated stories this week shipped the same artifact: a policy file, a budget cap, a tiered ladder, an intake rubric, or an outbound guard around the model. curl's pressure post on more than one AI-assisted report per day. SQLite's AGENTS.md rejecting agentic code patches. Anthropic's Glasswing report: >10,000 high/critical findings against vetted partners, with the patch pipeline now the bottleneck. Cursor's three-tier Auto-review ladder. Vercel's team-wide provider allowlist with BYOK enforcement. Microsoft's Copilot Cowork exfiltration via agent-composed external images. And underneath all of it, Anthropic's Series H: $965B against a $47B run rate, almost entirely enterprise coding-agent token burn.
 
-If you have time for one move from this brief, write the policy
-ladder for one agent surface and ship it: name the allowlisted tier,
-the sandboxed tier, the classifier-routed tier, and the human-prompt
-tier. Then put the cost cap on top. Cursor productized this exact
-shape in 2.1.154's `/effort xhigh` knob and Auto-review; Vercel
-shipped the gateway-side counterpart for BYOK traffic; Anthropic's
-dynamic workflows make the budget cap an existential parameter, not
-a footnote. The picks below each sit on top of the policy-ladder
-move.
+Pick one agent surface this week and ship its policy ladder: allowlisted tier, sandboxed tier, classifier-routed tier, human-prompt tier. Put a dollar cap on top. Cursor productized exactly this shape in 2.1.154 (`/effort xhigh`, Auto-review); Vercel shipped the gateway-side BYOK counterpart; Anthropic's dynamic workflows make the budget cap a parameter, not a footnote. Every pick below sits on top of the same move.
 
 ## Vol. 4 → Vol. 5 changelog
 
@@ -110,14 +85,7 @@ to verify/disclose/patch" — names the shape; SQLite's policy and
 Ronacher's complaint about reworded issues describe the contract
 shifts maintainers are writing in response.
 
-**Why it matters:** Four signals converged on the same project-level
-artifact in seven days. Maintainers and security teams are no longer
-debating whether to accept AI-assisted work; they are publishing
-policy files at the conventional path that name what they accept and
-what they auto-close. The contract bar is verifiability — a
-reproducible test case, a literal observation, a proof-of-concept.
-Anything that fails that bar belongs in the separate triage queue
-with its own SLA.
+**Why it matters:** Maintainers stopped arguing about AI submissions and started shipping intake policies; the bar is a reproducer. Anything without one goes to a separate triage queue with its own SLA.
 
 **Reusable pattern:** Two patterns transfer. First, AGENTS.md as a
 first-class repository artifact at the same altitude as
@@ -215,22 +183,11 @@ trajectory and not the audited revenue. The mechanism underneath is
 coding-agent token consumption replacing flat per-seat pricing.
 Willison's own 30-day coding-agent spend ($2,180 against a $200
 subscription assumption) is the n=1 confirmation; the per-developer
-burn rate is now the load-bearing variable for any AI-tooling
-budget set in 2025. Run-rate as a metric is, in Willison's framing,
+burn rate is now the main line item in any 2025 AI-tooling budget. Run-rate as a metric is, in Willison's framing,
 a "habit" of Anthropic's announcements — marketing-shaped and
 amplifying recent months.
 
-**Why it matters:** Any 2026 AI-tooling budget built on per-seat
-subscription assumptions is the wrong category. The Series H and
-$47B trajectory land as a finance fact for every team running
-coding agents inside a 2025 seat budget, regardless of how anyone
-reads the vendor-side narrative. Combined with Cisco scaling Codex
-across engineering, Endava compressing requirements analysis from
-weeks to hours, Ramp's cycle-time reduction from hours to minutes,
-and Virgin Atlantic shipping a fixed-deadline mobile app with
-near-total unit test coverage, the procurement pattern is
-consistent: coding agents are daily drivers for well-paid
-developers, and the token spend per developer reflects that.
+**Why it matters:** Cisco is scaling Codex across engineering, and Anthropic's $47B run rate is mostly enterprise coding-agent tokens. A 2026 AI-tooling budget built on per-seat subscription assumptions is in the wrong category. Coding agents are daily drivers for well-paid developers; token spend per developer is real and uneven. Treat the line as consumption.
 
 **Reusable pattern:** PMF detection via pricing moves and observed
 spend, not NPS or self-reported satisfaction — when a customer's
@@ -338,13 +295,7 @@ what is new is the production shipment of the offense (in a major
 vendor product) and the publication of a regulator-credible defense
 benchmark in the same week.
 
-**Why it matters:** "We use an LLM-based monitor" without a
-benchmark number is now an insufficient answer for any agent
-deployment that drafts outbound communications. SLEIGHT-Bench gives
-the buyer a concrete artifact to ask for; the Copilot Cowork
-finding gives the buyer the concrete failure mode to test against.
-Both translate directly into a procurement question and an
-internal red-team checklist.
+**Why it matters:** Ask vendors for a SLEIGHT-Bench number on monitor coverage. Red-team against Copilot Cowork.
 
 **Reusable pattern:** Treat any agent surface that drafts outbound
 content as an exfiltration channel by default. Strip or proxy
@@ -467,21 +418,14 @@ tiers explicitly (allowlist / sandbox / classifier / prompt human);
 Claude Code expresses the same shape across `/effort`, `/workflows`,
 and lean-prompt defaults; Vercel expresses the gateway-side
 counterpart (which vendors are even reachable, including for BYOK).
-The classifier subagent in Cursor is the load-bearing piece — it
-sits between the allowlist and the human prompt, and turns the
-binary allow/prompt question into a graded one. The same week, the
+Cursor's classifier subagent is the piece that makes the ladder
+work. It sits between the allowlist and the human prompt, and turns
+binary allow/prompt into a graded decision. The same week, the
 Cloudflare AI code-review post-mortem and Hugging Face's agent
 glossary added the vocabulary (harness, scaffold) to talk about
 these tiers without each team inventing its own.
 
-**Why it matters:** "Add another model and a chat box" is no longer
-the agent platform. The platform is the policy ladder plus the cost
-cap plus the audit log plus the credential scope. Dynamic workflows
-multiply both the value and the blast radius — a single user prompt
-can now spawn tens of background agents, each consuming tokens and
-calling tools. Without per-workflow caps, the budget overrun is the
-default outcome. Without per-tier audit logging, the post-incident
-investigation has no surface to land on.
+**Why it matters:** Dynamic workflows fan out to tens of agents per prompt, so without per-workflow caps and per-tier audit logs you'll blow your budget and have nothing to investigate when something breaks.
 
 **Reusable pattern:** Express agent action authority as a policy
 ladder, not a binary allow/prompt switch. Four tiers: allowlist
@@ -608,16 +552,7 @@ as an ephemeral runtime. Cursor's `/loop` is the same idea on the
 local side — a recurring agent prompt as a first-class primitive
 replacing cron + ad-hoc scripts.
 
-**Why it matters:** The default place to run a coding agent in
-H2 2026 is no longer your laptop. The platform decision is now:
-which sandbox provider, with which persistence semantics, behind
-which gateway allowlist, with which audit log. Model-agnosticism
-is the hedge — Conductor's choice to interface across multiple
-agent SDKs is the architecture worth copying for any team that
-wants to remain hedged across vendors as the model frontier moves
-week-to-week. Persistence on by default is the trap — PII and
-secrets now linger across sessions unless you write a retention
-policy.
+**Why it matters:** Coding agents have left the laptop. Pick a sandbox provider, keep the orchestrator model-agnostic, and write a retention policy because persistence is now on by default.
 
 **Reusable pattern:** "Fast remote sandbox preserves local UX" as
 a near-universal architectural shape for parallel coding agents.
@@ -839,8 +774,7 @@ binding constraint on AI infra siting, more active in 2026 than
 the federal Executive Order discussion. NVIDIA's own "AI factories"
 post reframed infra economics as tokens-per-watt.
 
-**Mechanism:** Three physical-world variables are now load-bearing
-on the AI roadmap. HBM wafer allocation is a fab-capacity
+**Mechanism:** Three physical-world variables now gate the AI roadmap. HBM wafer allocation is a fab-capacity
 constraint that AI demand cannot relieve faster than 24 months.
 Hyperscaler GPU revenue commoditization is the margin compression
 that NVIDIA's reporting changes acknowledge. Municipal permitting
@@ -1151,8 +1085,8 @@ factor-decomposition pattern any engineered system inherits when a
 single dimension saturates. The HBM shortage and the DC veto are the
 physical-substrate-binding pattern any digital industry inherits when
 it hits a permit, a fab, or a substation. None of these patterns is
-new this week; what is new is that they all became load-bearing on
-the same Friday. The job for the rest of us is to fork the drafts
+new this week; what is new is that all five carried real weight at
+the same time. The job for the rest of us is to fork the drafts
 this week, then watch the falsification tests over the next 90 days.
 
 ---
