@@ -1,0 +1,31 @@
+{
+  "adapter_version": "ai-field-brief manual playbook v1",
+  "artifacts": [
+    {
+      "hash": "d8838c865ef3bab3afe5b871964f459ad3d63f9898cdc3b9380872f09c7356e6",
+      "kind": "brief",
+      "ref": "briefs/2026-W24/brief.md"
+    },
+    {
+      "hash": "8c565b63f3719f0c603f087d67e895d2a9d0f4b178a14616a3e6ae1a01e80ba0",
+      "kind": "brief-meta",
+      "ref": "briefs/2026-W24/meta.yaml"
+    },
+    {
+      "hash": "6b15b1714458685e351cceb90c47ac97b5f6326c6c6075dcbf2a939b36f66faf",
+      "kind": "matrix-cells",
+      "ref": "briefs/2026-W24/matrix/cells.yaml"
+    }
+  ],
+  "bundle_id": "bundle-47bed16884168723",
+  "event_ledger_hash": "9d4dc89f6327bfbb147b0893c31b62a0abb94e827f6985daca5e9a2d0baf488c",
+  "event_ledger_ref": "ops/event-ledger/run-ffa248ce325b.jsonl",
+  "generated_at": "2026-06-17T18:00:00Z",
+  "model_tools_fingerprint": "24bbc1c0c89624715d7f0e7f5b26fc2bc5f3a8e6d894ebb05c4e24dd57444088",
+  "replay_status": "not_attempted",
+  "run_id": "run-ffa248ce325b",
+  "run_record_hash": "384e9ba397882401331ebc9d001fda942533f50fc789e4345bff2d5cdf9d0762",
+  "run_record_ref": "ops/run-records/run-ffa248ce325b.json",
+  "runtime_adapter": "local_baseline",
+  "schema_version": "1.0.0"
+}
