@@ -67,7 +67,7 @@ Seven Top signals, 28 verified cells, six watchlist items, 32 sources reviewed.
 
 **Why it matters:** Simon called this his top candidate for the next major security incident. Monday morning: audit which of your agent tools spawn subprocesses or bind ports, and move the harness onto something with kernel-level isolation (LangSmith Sandboxes, E2B, Vercel Sandbox, Modal).
 
-**Reusable pattern:** Restrict outbound network, contain subprocess spawning, and gate browser-automation tools by default; opt-in per capability rather than opt-out.
+**Reusable pattern:** Restrict outbound network, contain subprocess spawning, and gate browser-automation tools by default; grant each capability explicitly.
 
 **Action surface:** tool-policy
 
@@ -127,7 +127,7 @@ Seven Top signals, 28 verified cells, six watchlist items, 32 sources reviewed.
 
 ---
 
-### 4. Eval workbenches grew up — olmo-eval, OpenEnv, and an unlearning audit that actually fails
+### 4. Eval workbenches grew up — olmo-eval, OpenEnv, and an unlearning audit that catches failures
 
 **Source:** [AI2, "olmo-eval"](https://huggingface.co/blog/allenai/olmo-eval), [Hugging Face, "OpenEnv: a community standard for agentic RL"](https://huggingface.co/blog/openenv), and [Google Research, "Auditing unlearning with divergence kernels"](https://research.google/blog/auditing-unlearning-with-divergence-kernels/)
 
@@ -207,7 +207,7 @@ Seven Top signals, 28 verified cells, six watchlist items, 32 sources reviewed.
 
 **Why it matters:** If your agent touches user data without an approval step, copy datasette-agent's UX. If your PR pipeline doesn't run a bug-and-security pass before a human reviews, wire one in at ~90 seconds and $0.01 per check.
 
-**Reusable pattern:** Gate mutations with explicit approval and let tools pause for clarification with persistent state, rather than running everything to completion and apologizing after.
+**Reusable pattern:** Gate mutations with explicit approval and let tools pause for clarification with persistent state before they continue.
 
 **Action surface:** tool-policy
 
@@ -236,7 +236,7 @@ Seven Top signals, 28 verified cells, six watchlist items, 32 sources reviewed.
 
 **Source:** [Dwarkesh Patel, "The sample-efficiency black hole"](https://www.dwarkesh.com/p/the-sample-efficiency-black-hole) and [LangChain, "Headless tools and the client-side execution rail"](https://blog.langchain.dev/headless-tools-2026/)
 
-**Payload:** Patel puts the human-to-frontier sample-efficiency gap at roughly a million-fold. Chinchilla scaling buys ten. Robotics and AVs hit the wall; white-collar workflows escape it because RL plus SFT pulls narrow tasks into distribution and amortizes across billions of sessions. LangChain's headless-tools post argues the next architectural move is client-side typed tools that keep state and execution where the data already lives.
+**Payload:** Patel puts the human-to-frontier sample-efficiency gap at roughly a million-fold. Chinchilla scaling buys ten. Robotics and AVs hit the wall; white-collar workflows escape it because RL plus SFT pulls narrow tasks into distribution and amortizes across billions of sessions. LangChain's headless-tools post argues for client-side typed tools that keep state and execution where the data already lives.
 
 **Mechanism:** The roadmap stops being "wait for a smarter base model" and becomes "narrow the task, source expert data, run RL plus SFT, ship the specialist." Tool design follows: typed tools execute on the client where the state is, returning structured results to the agent.
 
