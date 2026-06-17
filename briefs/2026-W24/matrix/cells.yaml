@@ -1,0 +1,399 @@
+matrix_run_id: MTRX-W24-runtime-week
+generated_at: '2026-06-17T18:00:00Z'
+generated_by: claude-opus-4-7 (manual W24 playbook run; sweep workflow w37wgnv35)
+schema: schemas/matrix_cell.schema.json
+summary:
+  cells_produced: 28
+  cells_verified_passed: 28
+  cells_failed_or_patched: 0
+  unique_source_items: 7
+  note: W24 full-week brief; each Top Signal carries source_gist + mechanism_extraction + adoption_action + systems_thinking cells.
+cells:
+- id: MTRX-W24-fable5-shipped-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-fable5-shipped
+  lens_id: source_gist
+  mode: extractive
+  content: Anthropic launched Fable 5 and Mythos 5 on June 9 at $10/$50 per M tokens with 1M context and a refusal-fallback API parameter. On June 12 at 5:21 PM ET a US export-control directive disabled
+    both models for all users within hours.
+  source_refs:
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: Anthropic News + Simon Willison
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-fable5-shipped-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-fable5-shipped
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: A government order forced an in-production model off the shelf in three days. Other Claude models stayed available. The provider added a refusal-fallback API parameter at launch that auto-routes
+    to other models when one refuses, which is the same shape builders now need for availability, not just refusals.
+  source_refs:
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: Anthropic News + Simon Willison
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-fable5-shipped-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-fable5-shipped
+  lens_id: adoption_action
+  mode: critique
+  content: 'Add a capability-keyed router in front of your LLM client: name the capability (long-context-reasoning, code-edit, vision-OCR), bind it to a primary + two fallbacks, and run a chaos test that
+    kills the primary mid-request. Measure refusal-rate and latency-on-fallback.'
+  source_refs:
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: Anthropic News + Simon Willison
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-fable5-shipped-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-fable5-shipped
+  lens_id: systems_thinking
+  mode: critique
+  content: Treat model identity as runtime config with a hot fallback, not a constant baked into the prompt layer.
+  source_refs:
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: Anthropic News + Simon Willison
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-sandbox-fable5-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-sandbox-fable5
+  lens_id: source_gist
+  mode: extractive
+  content: Simon documented Fable 5 autonomously launching Firefox and Safari, spinning up a Python CORS server, using pyobjc to screenshot specific browser windows, and injecting JavaScript into templates
+    to debug a two-line CSS bug. LangChain's same-week post lists five sandbox criteria and flags bare Kubernetes as missing kernel-level isolation.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
+    quote_or_span: Simon Willison's Weblog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-sandbox-fable5-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-sandbox-fable5
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: Frontier coding agents now take initiative to spawn subprocesses, bind network ports, and drive UI automation without operator approval. The blast radius for a prompt injection is whatever the
+    host shell can reach.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
+    quote_or_span: Simon Willison's Weblog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-sandbox-fable5-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-sandbox-fable5
+  lens_id: adoption_action
+  mode: critique
+  content: Pick one coding-agent workflow you run weekly. Wrap it in a sandbox that blocks egress except an allowlist, denies subprocess spawning except a named binary list, and logs every tool call. Replay
+    last week's transcripts against the new policy and count the breakages.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
+    quote_or_span: Simon Willison's Weblog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-sandbox-fable5-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-sandbox-fable5
+  lens_id: systems_thinking
+  mode: critique
+  content: Restrict outbound network, contain subprocess spawning, and gate browser-automation tools by default; opt-in per capability rather than opt-out.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
+    quote_or_span: Simon Willison's Weblog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-codex-ona-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-codex-ona
+  lens_id: source_gist
+  mode: extractive
+  content: OpenAI agreed to acquire Ona (formerly Gitpod) to give Codex agents cloud execution and state that persists for hours or days across sessions. OpenAI cited Codex at over 5M weekly users with
+    roughly 400% growth and Ona's 2M-developer cloud environments.
+  source_refs:
+  - uri: https://openai.com/index/openai-to-acquire-ona/
+    quote_or_span: OpenAI Index
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-codex-ona-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-codex-ona
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: Codex shifts from model-plus-tools to a first-party long-running sandboxed execution environment with filesystem, repo, and tool state. The custom VM layer many teams glued together over E2B,
+    Daytona, or Gitpod gets absorbed upstream.
+  source_refs:
+  - uri: https://openai.com/index/openai-to-acquire-ona/
+    quote_or_span: OpenAI Index
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-codex-ona-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-codex-ona
+  lens_id: adoption_action
+  mode: critique
+  content: Inventory your current sandbox stack (provider, isolation level, max session length, state persistence model). Score it against LangChain's five sandbox criteria and against the rumored Codex
+    runtime shape. Identify the workload you would migrate first.
+  source_refs:
+  - uri: https://openai.com/index/openai-to-acquire-ona/
+    quote_or_span: OpenAI Index
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-codex-ona-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-codex-ona
+  lens_id: systems_thinking
+  mode: critique
+  content: Persistent agent state and execution sandbox are converging into the model provider; bespoke sandbox glue is depreciating.
+  source_refs:
+  - uri: https://openai.com/index/openai-to-acquire-ona/
+    quote_or_span: OpenAI Index
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-eval-workbenches-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-eval-workbenches
+  lens_id: source_gist
+  mode: extractive
+  content: AI2 released olmo-eval, separating task definitions from runtime harnesses with sandboxed execution, native multi-turn tool-use evals, and minimum detectable effect reporting. OpenEnv shipped
+    a standardized Gymnasium-style agentic RL protocol over HTTP and MCP, backed by Meta-PyTorch, Nvidia, Hugging Face, vLLM, and Microsoft. Google Research published a divergence-kernel test that audits
+    unlearning with thousands of samples; finetune-to-forget and pruning both failed the audit.
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/olmo-eval
+    quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-eval-workbenches-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-eval-workbenches
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: Evals stopped being headline-score scripts and started being workbenches with statistical significance, agentic tool-use coverage, and audit-grade tests for specific capabilities (unlearning,
+    identity disclosure). The protocols (OpenEnv, MCP-compatible) decouple environment from framework.
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/olmo-eval
+    quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-eval-workbenches-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-eval-workbenches
+  lens_id: adoption_action
+  mode: critique
+  content: Take one production agent. Wrap one of its tool-use workflows as an OpenEnv environment. Run olmo-eval against two model checkpoints, report per-question diffs plus minimum detectable effect.
+    Compare against your current eval output.
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/olmo-eval
+    quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-eval-workbenches-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-eval-workbenches
+  lens_id: systems_thinking
+  mode: critique
+  content: Eval infrastructure separates task definition from runtime harness and reports statistical significance instead of single-number leaderboard deltas.
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/olmo-eval
+    quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-disclosure-determinism-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-disclosure-determinism
+  lens_id: source_gist
+  mode: extractive
+  content: AISI's RealityTest ran 3,152 identity-probing queries across 17 text and 6 speech models in five languages. Text disclosure ranged 8 to 92 percent; speech 10 to 57 percent. A single 'never say
+    you are AI' instruction dropped disclosure to 3 to 27 percent. Anthropic's VirBench showed bare agents returning 106, 15, and 5 sequences for an identical query expecting 266; wrapping NCBI in a deterministic
+    'gget virus' adapter pushed all agents above 90 percent and GPT-5.5 to 99.7 percent.
+  source_refs:
+  - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
+    quote_or_span: UK AI Security Institute + Anthropic Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-disclosure-determinism-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-disclosure-determinism
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: Two failure modes with the same fix shape. Prompt-level promises (disclosure, retrieval correctness) collapse under variance; replace them with a deterministic layer between the model and the
+    surface (a disclosure check at the response boundary, a deterministic adapter between the model and the messy API).
+  source_refs:
+  - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
+    quote_or_span: UK AI Security Institute + Anthropic Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-disclosure-determinism-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-disclosure-determinism
+  lens_id: adoption_action
+  mode: critique
+  content: Pick your most safety-relevant prompt-level guarantee (disclosure, refusal, citation). Write 50 phrasing variants in at least two languages, run them daily, alert on regression. Separately, pick
+    one tool your agent calls with pagination or filters and wrap it in a deterministic adapter.
+  source_refs:
+  - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
+    quote_or_span: UK AI Security Institute + Anthropic Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-disclosure-determinism-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-disclosure-determinism
+  lens_id: systems_thinking
+  mode: critique
+  content: Move guarantees out of the prompt and into a deterministic wrapper at the boundary where the guarantee has to hold.
+  source_refs:
+  - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
+    quote_or_span: UK AI Security Institute + Anthropic Research
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-tool-gating-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-tool-gating
+  lens_id: source_gist
+  mode: extractive
+  content: datasette-agent 0.2a0 added user approval for database modifications and lets tools ask questions mid-execution with persistent conversation state. Cursor's Bugbot now runs in 90 seconds (down
+    from 5 minutes), finds 10 percent more bugs, costs 22 percent less per run, with a /review command that runs Bugbot and Security Review pre-push.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
+    quote_or_span: Simon Willison's Weblog + Cursor Changelog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-tool-gating-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-tool-gating
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: 'Two reference implementations of human-in-the-loop tool policy: approval-before-mutation with state persistence (datasette) and pre-push automated review as a tool-policy primitive (Cursor).
+    Both are concrete UX patterns builders can crib instead of reinventing.'
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
+    quote_or_span: Simon Willison's Weblog + Cursor Changelog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-tool-gating-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-tool-gating
+  lens_id: adoption_action
+  mode: critique
+  content: Add an approval-required flag to one mutation tool in your agent. Persist the conversation state across the approval roundtrip. Measure how often users approve, edit, or reject, and what the
+    rejected calls would have done.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
+    quote_or_span: Simon Willison's Weblog + Cursor Changelog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-tool-gating-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-tool-gating
+  lens_id: systems_thinking
+  mode: critique
+  content: Gate mutations with explicit approval and let tools pause for clarification with persistent state, rather than running everything to completion and apologizing after.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
+    quote_or_span: Simon Willison's Weblog + Cursor Changelog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-specialists-architecture-source_gist
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-specialists-architecture
+  lens_id: source_gist
+  mode: extractive
+  content: Patel puts the human-to-frontier sample-efficiency gap at roughly a million-fold. Chinchilla scaling buys ten. Robotics and AVs hit the wall; white-collar workflows escape it because RL plus
+    SFT pulls narrow tasks into distribution and amortizes across billions of sessions. LangChain's headless-tools post argues the next architectural move is client-side typed tools that keep state and
+    execution where the data already lives.
+  source_refs:
+  - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
+    quote_or_span: Dwarkesh Patel + LangChain Blog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-specialists-architecture-mechanism_extraction
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-specialists-architecture
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: 'The roadmap stops being ''wait for a smarter base model'' and becomes ''narrow the task, source expert data, run RL plus SFT, ship the specialist.'' Tool design follows: typed tools execute
+    on the client where the state is, returning structured results to the agent.'
+  source_refs:
+  - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
+    quote_or_span: Dwarkesh Patel + LangChain Blog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-specialists-architecture-adoption_action
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-specialists-architecture
+  lens_id: adoption_action
+  mode: critique
+  content: Pick one repetitive task your team handles. Log 200 expert traces over a week. Fine-tune a small open model on the traces, evaluate against the base model with olmo-eval. Decide if the specialist
+    gap is worth the pipeline.
+  source_refs:
+  - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
+    quote_or_span: Dwarkesh Patel + LangChain Blog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W24-specialists-architecture-systems_thinking
+  matrix_run_id: MTRX-W24-runtime-week
+  source_item_id: w24-specialists-architecture
+  lens_id: systems_thinking
+  mode: critique
+  content: Orchestrate narrow specialists with expert data and client-side typed tools instead of waiting for a generalist base model to close the gap.
+  source_refs:
+  - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
+    quote_or_span: Dwarkesh Patel + LangChain Blog
+    ref_type: link
+  confidence: high
+  faithfulness_status: passed
+  status: verified

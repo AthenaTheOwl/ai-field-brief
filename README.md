@@ -15,7 +15,7 @@ checklist, a unit-economics table, a judge prompt.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [The week replay became the operating contract (2026-W23)](https://ai-field-brief.vercel.app/briefs/2026-W23)
+**Latest:** [Fable 5 shipped Monday and got yanked Friday; the runtime layer is the product (2026-W24)](https://ai-field-brief.vercel.app/briefs/2026-W24)
 
 ## Read it for
 

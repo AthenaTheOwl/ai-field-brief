@@ -1,0 +1,80 @@
+# meta - 2026-W24 weekly brief
+#
+# Full-week brief covering 2026-06-08 through 2026-06-14. Generated
+# 2026-06-17 via a parallel-source-family sweep workflow (task
+# w37wgnv35) followed by a manual playbook synthesis. The week's
+# anchor is the Fable 5 ship-and-yank arc; six adjacent signals
+# describe the runtime contract that arc exposed.
+#
+# This is the first brief to emit a run-bundle (DEC-CDCP-XXX TBD;
+# trace-to-eval-harness PR #7) alongside the standard run-record
+# and event-ledger artifacts.
+
+iso_week: 2026-W24
+through_date: 2026-06-14
+generated_at: 2026-06-17T18:00:00Z
+generated_by: claude-opus-4-7 (manual playbook run; sweep workflow w37wgnv35)
+title: "Fable 5 shipped Monday and got yanked Friday; the runtime layer is the product"
+volume: 1
+profile_id: broad_builder
+
+registry_version: 5
+sweep:
+  attempted: 32
+  succeeded: 32
+  failed: 0
+  skipped: 0
+  workflow_task_id: w37wgnv35
+matrix_run_id: MTRX-W24-runtime-week
+
+matrix:
+  cells_produced: 28
+  cells_verified: 28
+  cells_rejected_or_patched: 0
+  source_items_captured: 32
+  source_items_promoted_to_matrix: 7
+  artifact_path: briefs/2026-W24/matrix/cells.yaml
+
+sources_reviewed_summary:
+  primary_source:
+    captured: 14
+    note: "Anthropic (Fable 5 launch + access window + Public Record + Claude Corps + VirBench), OpenAI (Ona acquisition + Economic Research Exchange), DeepMind (DiffusionGemma + Gemini 3.5 Live Translate + SpaceX compute + $10M multi-agent safety), Google Research (unlearning audit), AI2 (olmo-eval), Hugging Face (OpenEnv)"
+  builder_practice:
+    captured: 6
+    note: "LangChain sandbox criteria + headless tools, Cursor changelog (Bugbot + /review), datasette-agent 0.2a0, simonwillison.net (Fable proactive + datasette-agent + Fable export-control posts)"
+  fast_signal:
+    captured: 4
+    note: "AI Daily Brief Friday recap, Smol AI News (Fable shipping + takedown threads), TLDR AI, AlphaSignal"
+  strategy:
+    captured: 5
+    note: "Dwarkesh Patel sample-efficiency arc, Latent Space Discord pulse, Ben Thompson Daily Update (Anthropic export response), AISI RealityTest paper, Apollo deployment-context post"
+  frontier_scout:
+    captured: 3
+    note: "OpenEnv launch coalition (Meta-PyTorch / Nvidia / vLLM / Microsoft), AI2 olmo-eval as audit-grade workbench, Google divergence-kernel unlearning test"
+
+# Items not promoted to Top Signals (in synthesis output) become watchlist
+# items in the brief markdown.
+
+continuity_notes:
+  - "W23 named OpenAI Agents SDK + Codex June 2 releases + Langfuse code evaluators as the spine. W24 widens that spine to: model availability (Fable 5 arc), sandbox isolation (Fable 5 proactivity), hosted runtime convergence (Ona acquisition), eval workbenches (olmo-eval + OpenEnv), deterministic boundary enforcement (RealityTest + VirBench), tool-policy reference designs (datasette + Cursor), specialist architecture (Dwarkesh + LangChain headless tools)."
+  - "The recurring theme across W23 and W24: every signal touches the contract above the model, not the model itself. The Fable 5 arc is the week's literal demonstration."
+
+action_packets:
+  - id: ACT-W24-001
+    title: "Wire a capability-keyed router with hot model fallback"
+    surface: runtime-adapter
+    source_signal: 1
+    effort: 2-day spike
+    confidence: high
+  - id: ACT-W24-002
+    title: "Sandbox one coding-agent workflow with egress allowlist + subprocess denylist"
+    surface: tool-policy
+    source_signal: 2
+    effort: 1-week implementation
+    confidence: high
+  - id: ACT-W24-003
+    title: "Wrap one production tool in a deterministic adapter with variance budget"
+    surface: eval
+    source_signal: 5
+    effort: 1-day spike
+    confidence: high
