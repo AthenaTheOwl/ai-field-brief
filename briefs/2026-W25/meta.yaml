@@ -1,0 +1,26 @@
+iso_week: 2026-W25
+through_date: 2026-06-21
+profile_id: broad_builder
+volume: 2
+mode: workflow-driven
+sources_swept_count: 39
+sources_failed_count: 7
+items_collected: 48
+items_included: 7
+workflow_run_id: wn196fd1p
+workflow_trace: wf_77db0372-eea
+synthesis_actor: claude-opus-4-7 (via Workflow tool, ultracode parallel sweep)
+lanes_returned:
+  - primary-source
+  - fast-signal
+  - builder-practice
+  - strategy
+  - frontier-scout
+
+# lane sweep yield (items collected per lane)
+lane_yield:
+  builder-practice: 4
+  fast-signal: 13
+  frontier-scout: 12
+  primary-source: 12
+  strategy: 7
