@@ -44,21 +44,21 @@ interface JsonFeed {
 describe("public brief feeds", () => {
   const briefs = listBriefs();
 
-  it("renders RSS with both published brief weeks", () => {
+  it("renders RSS with recent published brief weeks", () => {
     const rss = buildRssFeed(briefs);
 
     expect(rss).toContain('<rss version="2.0"');
     expect(rss).toContain(`href="${SITE_URL}/feed.xml"`);
     expect(tagValues(rss, "title")).toEqual(
       expect.arrayContaining([
-        "Contract speed, not model speed",
-        "The audience sorts into shapes",
+        "Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work",
+        "Agent runtime hardened into infrastructure this week; the policy engine, the identity layer, and the eval gate all became first-class artifacts",
       ]),
     );
     expect(tagValues(rss, "link")).toEqual(
       expect.arrayContaining([
-        `${SITE_URL}/briefs/2026-W21`,
-        `${SITE_URL}/briefs/2026-W20`,
+        `${SITE_URL}/briefs/2026-W26`,
+        `${SITE_URL}/briefs/2026-W25`,
       ]),
     );
   });
@@ -70,22 +70,24 @@ describe("public brief feeds", () => {
     expect(attributeValues(atom, "link", "href")).toEqual(
       expect.arrayContaining([
         `${SITE_URL}/atom.xml`,
-        `${SITE_URL}/briefs/2026-W21`,
-        `${SITE_URL}/briefs/2026-W20`,
+        `${SITE_URL}/briefs/2026-W26`,
+        `${SITE_URL}/briefs/2026-W25`,
       ]),
     );
   });
 
   it("renders JSON Feed with metadata-backed dates and derived summaries", () => {
     const feed = JSON.parse(buildJsonFeed(briefs)) as JsonFeed;
-    const w21 = feed.items.find((item) => item.id.endsWith("/2026-W21"));
-    const w20 = feed.items.find((item) => item.id.endsWith("/2026-W20"));
+    const w26 = feed.items.find((item) => item.id.endsWith("/2026-W26"));
+    const w25 = feed.items.find((item) => item.id.endsWith("/2026-W25"));
 
     expect(feed.feed_url).toBe(`${SITE_URL}/feed.json`);
-    expect(w21?.url).toBe(`${SITE_URL}/briefs/2026-W21`);
-    expect(w21?.title).toBe("Contract speed, not model speed");
-    expect(w21?.date_published).toBe("2026-05-22T00:00:00.000Z");
-    expect(w21?.summary).toContain("AI is finishing its handshake");
-    expect(w20?.url).toBe(`${SITE_URL}/briefs/2026-W20`);
+    expect(w26?.url).toBe(`${SITE_URL}/briefs/2026-W26`);
+    expect(w26?.title).toBe(
+      "Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work",
+    );
+    expect(w26?.date_published).toBe("2026-06-22T00:00:00.000Z");
+    expect(w26?.summary).toContain("The center moved again");
+    expect(w25?.url).toBe(`${SITE_URL}/briefs/2026-W25`);
   });
 });

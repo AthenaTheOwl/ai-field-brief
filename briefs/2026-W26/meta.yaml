@@ -1,0 +1,86 @@
+iso_week: 2026-W26
+through_date: 2026-06-22
+generated_at: 2026-06-22T18:30:00Z
+generated_by: codex-full-research-loop
+title: "Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work"
+volume: 8
+profile_id: builder-tpm
+registry_version: 5
+matrix_run_id: MTRX-W26-loop-runtime
+sweep:
+  attempted: 29
+  succeeded: 27
+  failed: 2
+  skipped: 0
+source_mix:
+  primary_docs: 8
+  changelogs: 3
+  academic_preprints: 5
+  practitioner_posts: 4
+  secondary_reports: 7
+  community_sources: 2
+top_signal_count: 7
+action_packet_count: 5
+scout_count: 8
+notes:
+  - Monday-cut issue for the week of 2026-06-22.
+  - W24 and W25 already existed locally; this issue refreshes the site snapshot path as part of publish.
+  - The New Stack article blocked direct fetch; Addy Osmani and O'Reilly sources were used for loop-engineering framing.
+sources_reviewed:
+  - label: "OpenAI Cookbook: agent improvement loop"
+    url: "https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop"
+    disposition: top_signal
+  - label: "OpenAI Codex changelog"
+    url: "https://developers.openai.com/codex/changelog"
+    disposition: top_signal
+  - label: "OpenAI Codex GitHub releases"
+    url: "https://github.com/openai/codex/releases"
+    disposition: top_signal
+  - label: "Anthropic Claude Code changelog"
+    url: "https://code.claude.com/docs/en/changelog"
+    disposition: top_signal
+  - label: "Anthropic Claude Code GitHub releases"
+    url: "https://github.com/anthropics/claude-code/releases"
+    disposition: top_signal
+  - label: "Addy Osmani: Loop Engineering"
+    url: "https://addyosmani.com/blog/loop-engineering/"
+    disposition: top_signal
+  - label: "O'Reilly Radar: Loop Engineering"
+    url: "https://www.oreilly.com/radar/loop-engineering/"
+    disposition: context
+  - label: "Vercel: durable AI code agent"
+    url: "https://vercel.com/guides/how-to-build-a-durable-ai-code-agent"
+    disposition: top_signal
+  - label: "Vercel Workflows"
+    url: "https://vercel.com/docs/workflow"
+    disposition: top_signal
+  - label: "Vercel Sandbox"
+    url: "https://vercel.com/docs/vercel-sandbox"
+    disposition: context
+  - label: "Hugging Face: Agentic Resource Discovery"
+    url: "https://huggingface.co/blog/AgenticResourceDiscovery"
+    disposition: top_signal
+  - label: "IETF draft: MCP security considerations"
+    url: "https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/"
+    disposition: top_signal
+  - label: "Kong: MCP tool governance"
+    url: "https://konghq.com/blog/engineering/mcp-tool-governance"
+    disposition: action_packet
+  - label: "Automated Benchmark Auditing for AI Agents and LLMs"
+    url: "https://arxiv.org/abs/2605.26079"
+    disposition: top_signal
+  - label: "Efficient Benchmarking of AI Agents"
+    url: "https://arxiv.org/abs/2605.22453"
+    disposition: scout
+  - label: "Agent Skill Evaluation and Evolution"
+    url: "https://arxiv.org/abs/2605.25353"
+    disposition: scout
+  - label: "Formal Modeling and Verification for Agent Workflow and Trajectory"
+    url: "https://arxiv.org/abs/2605.25059"
+    disposition: scout
+  - label: "AgentDiet"
+    url: "https://arxiv.org/abs/2605.25457"
+    disposition: scout
+  - label: "LangChain: traces start the agent improvement loop"
+    url: "https://www.langchain.com/blog/traces-start-agent-improvement-loop"
+    disposition: context

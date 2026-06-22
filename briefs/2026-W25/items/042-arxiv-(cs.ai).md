@@ -8,9 +8,9 @@
 
 **Gist:** 300+ authors released ALE, a living benchmark of 1000+ verifiable, long-horizon professional tasks across 13 industry clusters aligned to US federal occupational taxonomy; hardest tier has avg full pass rate under 1%.
 
-**Mechanism:** Tasks sourced from 250+ domain experts, each scored by objective professional standards rather than synthetic rubrics; task pool grows continuously; explicit framing as GDP-relevant rather than capability-isolated.
+**Mechanism:** Tasks sourced from 250+ domain experts, each scored by objective professional standards instead of synthetic rubrics; task pool grows continuously; explicit framing as GDP-relevant instead of capability-isolated.
 
-**Why matters:** First eval at this scale tied to actual occupational categories rather than synthetic puzzles; useful counterweight to the swelling 'agent benchmark of the week' churn the eval lane keeps catching.
+**Why matters:** First eval at this scale tied to actual occupational categories instead of synthetic puzzles; useful counterweight to the swelling 'agent benchmark of the week' churn the eval lane keeps catching.
 
 **Try:** Pick one ALE sub-field that overlaps your domain, run your current agent on three tasks, and log where it fails at the workflow level vs the capability level.
 

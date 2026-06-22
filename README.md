@@ -15,7 +15,7 @@ checklist, a unit-economics table, a judge prompt.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Fable 5 shipped Monday and got yanked Friday; the runtime layer is the product (2026-W24)](https://ai-field-brief.vercel.app/briefs/2026-W24)
+**Latest:** [Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work (2026-W26)](https://ai-field-brief.vercel.app/briefs/2026-W26)
 
 ## Read it for
 
@@ -32,13 +32,13 @@ when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 
 ## For your role
 
-**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W24)
+**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W26)
 in ten minutes. Seven Top signals, each with a concrete action,
 confidence label, evidence cells, systems map, falsification test,
 and adoption ladder.
 
 **Builder-TPM.** The brief is written for you. `briefs/INDEX.md`
-tracks the rolling cadence; `briefs/2026-W24/brief.md` is the live
+tracks the rolling cadence; `briefs/2026-W26/brief.md` is the live
 issue. Every pick lands a move you can route to a teammate the same
 afternoon, and scout Action packets name proof metrics, rollback
 paths, and kill criteria for smaller experiments.

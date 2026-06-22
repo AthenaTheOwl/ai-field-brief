@@ -10,7 +10,7 @@
 
 **Mechanism:** Auto mode policy gate intercepts git reset --hard, force push, branch -D and similar before execution; user must explicitly authorize. 2.1.181 same week added /config key=value prompt-based settings and a sandbox.allowAppleEvents macOS setting; 2.1.185 (Jun 21) extended stream-stall hint window from 10s to 20s.
 
-**Why matters:** Confirms that auto mode is the default agent surface and that safety is now enforced at the tool-policy layer rather than via prompts. Worth mirroring in your own agent harnesses.
+**Why matters:** Confirms that auto mode is the default agent surface and that safety is now enforced at the tool-policy layer instead of via prompts. Worth mirroring in your own agent harnesses.
 
 **Try:** In your own agent harness, add a denylist of destructive git verbs that require explicit user confirm; copy the verb list from the 2.1.183 release.
 

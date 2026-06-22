@@ -10,7 +10,7 @@
 
 **Mechanism:** Water-coupled wave-propagation imaging (likely acoustic) replaces ionizing radiation and superconducting magnets; tradeoff is immersion requirement plus coarser resolution; in-person demo with physical prototype.
 
-**Why matters:** A generative-image company shipping diagnostic hardware is the most concrete sign yet of frontier-AI companies treating physical-world data acquisition as core infra rather than partnership work.
+**Why matters:** A generative-image company shipping diagnostic hardware is the most concrete sign yet of frontier-AI companies treating physical-world data acquisition as core infra instead of partnership work.
 
 **Try:** Add Midjourney Scanner to your watchlist; check whether the reconstruction model is being released or kept proprietary, since that signals their long-term moat strategy.
 

@@ -12,6 +12,6 @@
 
 **Why matters:** This is a counter-data point to the Manyika/Levie optimism Platformer covered earlier in June — it's a working founder, not an exec, stating org design has already changed. If you're a TPM staffing an AI-native team, the reference shape is shifting.
 
-**Try:** Map your current team to Kuyda's shape: how many of your roles would survive a 1,000x-engineer assumption, and which of them are actually 'route work to an agent and review'? Write a one-page memo on whether your next 3 hires should be senior + agent budget instead.
+**Try:** Map your current team to Kuyda's shape: how many of your roles would survive a 1,000x-engineer assumption, and which of them are 'route work to an agent and review'? Write a one-page memo on whether your next 3 hires should be senior + agent budget instead.
 
 **Related thread:** AI org-design shift

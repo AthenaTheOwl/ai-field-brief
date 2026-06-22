@@ -8,7 +8,7 @@
 
 **Gist:** A 30+ author group (Zou, Zitnik, Cohan, Ying, Ding, Jin, etc.) released SciAgentArena, ~200 real scientific tasks with stepwise verification and an agent-agnostic interactive environment.
 
-**Mechanism:** Stepwise verification per task rather than only final-answer grading; agent-agnostic env so any harness can plug in; results show agents do well on specified data-analysis flows but fail at open-ended research requiring novel insight.
+**Mechanism:** Stepwise verification per task instead of only final-answer grading; agent-agnostic env so any harness can plug in; results show agents do well on specified data-analysis flows but fail at open-ended research requiring novel insight.
 
 **Why matters:** Stepwise-verification + agent-agnostic env is the eval shape the rest of the field will copy. Worth using as a template if your control plane needs to compare role implementations head-to-head.
 

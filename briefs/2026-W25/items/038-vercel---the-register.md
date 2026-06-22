@@ -8,7 +8,7 @@
 
 **Gist:** Alongside Eve, Vercel launched Passport, an OIDC layer that routes both apps and agents through Okta/Entra/Auth0 and issues short-lived credentials for Slack/GitHub/Snowflake/Salesforce in place of static keys.
 
-**Mechanism:** Identity-provider gating at the deployment edge; agent connection layer mints short-lived per-task tokens rather than long-lived secrets; private-by-default with centralized audit.
+**Mechanism:** Identity-provider gating at the deployment edge; agent connection layer mints short-lived per-task tokens instead of long-lived secrets; private-by-default with centralized audit.
 
 **Why matters:** Concrete pattern for the agent-identity gap that comes up whenever roles in a control plane need to call out to real SaaS. Worth tracking as a reference for how the policy engine layer should issue tool credentials.
 

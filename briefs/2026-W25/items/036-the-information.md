@@ -6,7 +6,7 @@
 - confidence: medium
 - action_surface: architecture
 
-**Gist:** Leo Schwartz reports that, per sources, the Commerce Department is not currently planning to extend Fable-style export controls to OpenAI, Google, or other frontier labs, framing the Anthropic action as a one-off rather than a new regime.
+**Gist:** Leo Schwartz reports that, per sources, the Commerce Department is not currently planning to extend Fable-style export controls to OpenAI, Google, or other frontier labs, framing the Anthropic action as a one-off instead of a new regime.
 
 **Mechanism:** Establishes the policy boundary: the BIS action is being treated as Anthropic-specific (jailbreak + relationship-driven), not as the opening shot of model-wide export controls. Reduces near-term probability that GPT-5-class or Gemini-class models face the same kill switch this quarter.
 

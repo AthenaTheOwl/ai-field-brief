@@ -1,0 +1,68 @@
+matrix_run_id: MTRX-W26-loop-runtime
+generated_at: 2026-06-22T18:30:00Z
+source_items:
+  - src-w26-openai-agent-improvement-loop
+  - src-w26-loop-engineering-runtime
+  - src-w26-mcp-security-governance
+  - src-w26-benchmark-audit
+lenses:
+  - runtime
+  - eval
+  - governance
+  - product
+cells:
+  - id: MTRX-W26-001
+    matrix_run_id: MTRX-W26-loop-runtime
+    source_item_id: src-w26-openai-agent-improvement-loop
+    lens_id: eval
+    mode: insight
+    content: "Trace logs are becoming the intake artifact for product work. A failed run can now produce the next eval, the next label set, and the next implementation packet."
+    source_refs:
+      - uri: "https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop"
+        quote_or_span: "agent improvement loop sections on traces, feedback, evals, and Codex handoff"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: checked
+    status: candidate
+  - id: MTRX-W26-002
+    matrix_run_id: MTRX-W26-loop-runtime
+    source_item_id: src-w26-loop-engineering-runtime
+    lens_id: runtime
+    mode: pattern
+    content: "The loop contract is now a product artifact: trigger, context, worker, verifier, memory, escalation, budget, and stop rule."
+    source_refs:
+      - uri: "https://addyosmani.com/blog/loop-engineering/"
+        quote_or_span: "definition of loop engineering as a system that finds work, delegates, checks, records state, and decides next action"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: checked
+    status: candidate
+  - id: MTRX-W26-003
+    matrix_run_id: MTRX-W26-loop-runtime
+    source_item_id: src-w26-mcp-security-governance
+    lens_id: governance
+    mode: risk
+    content: "Tool protocols need a policy plane. The protocol boundary does not by itself prove actor fit, credential scope, or tool drift."
+    source_refs:
+      - uri: "https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/"
+        quote_or_span: "draft summary on security concerns and mitigations for MCP"
+        ref_type: paraphrase
+      - uri: "https://konghq.com/blog/engineering/mcp-tool-governance"
+        quote_or_span: "gateway filtering and actor-based tool access recommendations"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: checked
+    status: candidate
+  - id: MTRX-W26-004
+    matrix_run_id: MTRX-W26-loop-runtime
+    source_item_id: src-w26-benchmark-audit
+    lens_id: eval
+    mode: risk
+    content: "Benchmark curation is part of the eval system. Task defects can change measured rankings, so every eval suite needs an audit trail."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2605.26079"
+        quote_or_span: "reported benchmark audit findings and score shifts"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: checked
+    status: candidate

@@ -48,6 +48,8 @@ export function getBriefSummary(brief: BriefRecord): string {
   }
 
   const body = brief.markdown
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .trimStart()
     .replace(/^#\s+.+?\n+/, "")
     .replace(/^\*\*.+?\*\*\s*/s, "")
     .trim();

@@ -12,6 +12,6 @@
 
 **Why matters:** Cautionary tale for MCP integrators: tool servers can accept and ignore parameters silently. Trust verification on each parameter, not the schema, is the lesson.
 
-**Try:** For each MCP tool you depend on, write one eval that asserts a passed parameter actually changed the output; treat silent ignore as a bug.
+**Try:** For each MCP tool you depend on, write one eval that asserts a passed parameter changed the output; treat silent ignore as a bug.
 
 **Related thread:** MCP reliability; eval discipline shift

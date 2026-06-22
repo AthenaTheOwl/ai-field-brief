@@ -6,7 +6,7 @@
 - confidence: high
 - action_surface: eval
 
-**Gist:** HF post on building agentic benchmarks scoped to your own tools rather than relying on public agent leaderboards.
+**Gist:** HF post on building agentic benchmarks scoped to your own tools instead of relying on public agent leaderboards.
 
 **Mechanism:** Walkthrough for assembling per-org evals: instrument your toolset, sample real tasks, score with rubric or LLM-judge, run open models against the harness.
 

@@ -10,7 +10,7 @@
 
 **Mechanism:** AMP positions as neutral coordinator across multiple clouds and chip architectures; up to 20% of US data centers face community backlash, so model proposes sharing marginal economics with communities to unblock siting.
 
-**Why matters:** Names the specific number (sub-10% MFU at xAI, 60-70% best-in-class) that frames the next 12 months of compute-economics conversations; horizontal-pool framing is the alternative to vertical-integration narrative.
+**Why matters:** Names the specific number (sub-10% MFU at xAI, 60-70% top-tier) that frames the next 12 months of compute-economics conversations; horizontal-pool framing is the alternative to vertical-integration narrative.
 
 **Try:** Get your actual MFU number from your current training or large-batch inference workload; if it's under 40%, write down the top three bottlenecks before assuming you need more GPUs.
 

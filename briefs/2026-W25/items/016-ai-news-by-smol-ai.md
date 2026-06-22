@@ -8,7 +8,7 @@
 
 **Gist:** Documented 'agent fan-out' pattern (5-100 parallel child agents), Hermes Agent v0.17.0 with session compression, Cloudflare Workers temporary accounts removing OAuth deployment friction, Durable Objects fix for long-running agents with active WebSocket connections.
 
-**Mechanism:** Cloudflare Durable Objects now hold long-lived WebSocket sessions across worker restarts; Hermes adds session compression and agent distribution; fan-out becomes named pattern with reliability semantics rather than ad-hoc parallelism.
+**Mechanism:** Cloudflare Durable Objects now hold long-lived WebSocket sessions across worker restarts; Hermes adds session compression and agent distribution; fan-out becomes named pattern with reliability semantics instead of ad-hoc parallelism.
 
 **Why matters:** If you've been hand-rolling agent runtime plumbing, the components for fan-out + durable session + zero-touch deploy now exist as commodity infra.
 
