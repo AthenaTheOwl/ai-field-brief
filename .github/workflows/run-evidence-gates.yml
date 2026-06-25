@@ -34,7 +34,7 @@ jobs:
     name: chaos-validation (validate_run_evidence mutation coverage)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v6
         with:
@@ -68,7 +68,7 @@ jobs:
           - run-1f1fc1f3d36d
     steps:
       - name: checkout ai-field-brief
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # fetch-depth: 0 is load-bearing for the replay smoke: the
           # CLI checks out the recorded sandbox SHA, which is older
@@ -77,7 +77,7 @@ jobs:
           path: ai-field-brief
 
       - name: checkout trace-to-eval-harness (sibling)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: AthenaTheOwl/trace-to-eval-harness
           path: trace-to-eval-harness
