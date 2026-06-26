@@ -1,9 +1,10 @@
 # ai-field-brief
 
-Weekly AI digest with concrete moves. Less news, more insight. Every
-pick ships with a move you can run before next Friday and a worked
-example — a contract test, an incident playbook, a procurement
-checklist, a unit-economics table, a judge prompt.
+A weekly AI brief that runs a voice gate on itself before it ships. The banlist
+holds 90-plus phrases plus structural rules — empty adverbial openers, the
+antithetical reversal, the "not X but Y" cadence — and a single hit blocks the
+merge. The brief refuses to sound like a model wrote it, and it has to prove it
+every week.
 
 **Live:** [ai-field-brief.vercel.app](https://ai-field-brief.vercel.app/)
 
@@ -17,133 +18,74 @@ when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 
 **Latest:** [Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work (2026-W26)](https://ai-field-brief.vercel.app/briefs/2026-W26)
 
-## Read it for
+## What it does
 
-- A weekly sweep across 173 active sources: primary vendor and
-  research surfaces, practitioner blogs, podcasts, videos, papers,
-  GitHub releases, startup changelogs, HN/Reddit feeds, and the
-  `frontier-scout` lane for underfollowed tools and protocols.
-- Concrete moves, not summaries. Every pick names one thing to do
-  this week and shows the artifact: a contract test, a runbook page,
-  a procurement question, a judge prompt, a unit-economics table.
-- Voice that doesn't sound like AI wrote it. `scripts/voice_lint.py`
-  is a hard PR gate; the banlist covers the usual AI cadence and the
-  antithetical-reversal pattern.
+Most AI digests hand you a pile of links and call it a week. This one hands you
+a move. Every pick names one thing to do before next Friday and shows the
+artifact behind it — a contract test, an incident runbook, a procurement
+question, a judge prompt, a unit-economics table. A pick you can't act on isn't
+a pick.
 
-## For your role
+The reading underneath it is wide. A weekly sweep crosses 173 active sources
+(registry v5): primary vendor and research surfaces, practitioner blogs,
+podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
+feeds, and a `frontier-scout` lane that watches the tools and protocols nobody
+is following yet. The W26 issue reviewed 27 of 29 attempted and shipped seven
+Top signals, each with a concrete action, a confidence label, evidence cells, a
+systems map, a falsification test, and an adoption ladder.
 
-**Curious.** Read [the latest brief](https://ai-field-brief.vercel.app/briefs/2026-W26)
-in ten minutes. Seven Top signals, each with a concrete action,
-confidence label, evidence cells, systems map, falsification test,
-and adoption ladder.
+The brief is a markdown file per ISO week under `briefs/`. The site is a Next.js
+static prerender of those files; the RSS, Atom, JSON Feed, and weekly email
+routes are generated from the same snapshot. One source of truth, five surfaces.
 
-**Builder-TPM.** The brief is written for you. `briefs/INDEX.md`
-tracks the rolling cadence; `briefs/2026-W26/brief.md` is the live
-issue. Every pick lands a move you can route to a teammate the same
-afternoon, and scout Action packets name proof metrics, rollback
-paths, and kill criteria for smaller experiments.
+## Try it
 
-**Engineer who might fork the pattern.** The operating model is the
-[Cognitive Delivery Control Plane](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
-`.agents/AGENTS.md` is the coding-agent contract. `scripts/spec_check.py`
-plus seven sibling gate scripts enforce the spec / decision /
-traceability / role / tool / policy contracts on every PR. Fork
-`specs/`, `decisions/`, and `dreams/` directly; the schemas live
-under `ops/schemas-cache/` and point back to athena-site.
+The gate that keeps the prose honest is one command, no setup:
 
-**Science / eval-discipline reader.** Every brief and every public
-markdown file passes `scripts/voice_lint.py` before merge. The
-banlist holds 90+ phrases plus structural rules (the antithetical-
-reversal pattern, empty adverbial openers, the "not X but Y" cadence).
-The first weekly dream pass under `dreams/2026-W21/report.md` landed
-three memory edits, one graduated SKILL.md, and two pytest regression
-candidates — each carrying `human_review_required: true` per the
-cross-repo `dream-output.schema.json`.
+```sh
+python scripts/voice_lint.py
+```
 
-**Hiring manager.** Sixty seconds of evidence. The brief is deployed
-at [ai-field-brief.vercel.app](https://ai-field-brief.vercel.app/).
-The repo carries 28 DEC records under `decisions/`, nine worked-example
-role contracts under `.agents/roles/`, a release ledger at
-`ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md`.
-Three product repos run the same operating model; the throughline is
-documented in the
-[control-plane charter](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
+```
+voice-lint: clean. 261 file(s) scanned.
+```
+
+Every brief and every public markdown file passes this before merge. It runs in
+CI alongside seven sibling gates, and a failed gate blocks the PR. The banlist is
+the point — the cadence it catches is the cadence the briefs would otherwise
+drift into.
 
 ## How it works
 
-Spec-driven multi-tenant SaaS. Phase 1 ships the public archive plus
-the first weekly briefs. The roadmap covers automated source
-ingestion (R-SRC, spec 0002), transcription, retrieval-augmented
-generation, billing, integrations, and the publishing surface.
-
-The brief itself is a markdown file per ISO week under `briefs/`. The
-deployed site is a Next.js static prerender of those files; the
-public RSS, Atom, JSON Feed, and weekly email digest routes are
-generated from the same snapshot.
-
-See [Governance](#governance) below for the operating model.
-
-## Project structure
-
-- `apps/web` — Next.js public archive (currently the only shipped
-  surface; renders briefs from a build-time snapshot).
-- `apps/mobile`, `apps/extension`, `apps/mcp-server` — planned
-  reader surfaces; specs to land in later phases.
-- `packages/db` — Postgres schema and Drizzle client; multi-tenant
-  baseline.
-- `packages/sources` — source registry connectors (spec 0002 WIP).
-- `packages/pipeline`, `packages/retrieval`, `packages/evals`,
-  `packages/integrations`, `packages/observability` — planned;
-  scoped under later phases.
-- `inngest/` — workflow functions; lands with spec 0003.
-- `briefs/` — published digests, one folder per ISO week with
-  `brief.md` and `meta.yaml`. `briefs/INDEX.md` is the rolling table.
-- `sources/registry.yaml` — curated source list with lane,
-  cadence, and quality tags.
-- `specs/` — what we're building, one folder per phase.
-- `decisions/` — `DEC-*.md` files with alternatives, evidence,
-  and rollback per requirement.
-- `dreams/` — weekly offline-cognition output and human-gated
-  promotion candidates.
-- `playbook/` — runbooks the agent reads when running the weekly
-  sweep, the dream pass, and the release flow.
-- `scripts/` — eight executable gate scripts (see below).
-
-## Governance
-
-This repo runs on the
-[Cognitive Delivery Control Plane](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md)
-operating model.
-
-- `specs/` — what we're building (R-* requirements with traceability).
-- `decisions/` — why we chose what we chose (DEC-* with alternatives
-  and rollback).
-- `dreams/` — what each week's retrospective surfaced.
-- `promotions/` — the bridge from brief picks to portfolio changes;
-  PROM-* candidates name a target repo and artifact type for picks
-  mature enough to land elsewhere.
-- `.agents/AGENTS.md` — the single contract a coding agent reads
-  first.
-- `.agents/skills/<id>/SKILL.md` — graduated reuse packages.
-- `.agents/roles/<id>/` — nine worked-example role contracts.
-- `.agents/tools.yaml` — the tool registry every role calls against.
-- `.agents/policies/` — declarative permission rules with a
-  default-deny baseline.
-- `.agents/state-machines/` — artifact lifecycles for spec, run,
-  release.
-- `.agents/workflows/` — step graphs for single-change, weekly-dream,
-  incident-response.
-- `.agents/CATALOG.md` — the 44 deferred roles tracked by guild.
-- `ops/event-log/YYYY-MM-DD.jsonl` — append-only workflow events.
-- `ops/RELEASE_LEDGER.md` — every release with date, SHA, scope, proof.
-- `ops/RESET_LEDGER.md` — every force-push, history rewrite, rollback.
+Spec-driven, multi-tenant by design. Phase 1 ships the public archive and the
+weekly briefs. The roadmap covers automated source ingestion (R-SRC, spec 0002),
+transcription, retrieval, billing, integrations, and the publishing surface —
+each gated behind a fixture, an eval, a rollback path, and a traceable
+requirement before it ships.
 
 Eight Python gates run on every push: `spec_check`, `voice_lint`,
-`validate_schemas`, `validate_registry`, `validate_decisions`,
-`validate_roles`, `validate_tools`, `validate_policies`. A failed
-gate blocks the merge.
+`validate_schemas`, `validate_registry`, `validate_decisions`, `validate_roles`,
+`validate_tools`, `validate_policies`. The repo carries 67 DEC records under
+`decisions/` — each with alternatives, evidence, and a rollback — thirteen
+worked role contracts under `.agents/roles/`, a release ledger at
+`ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md` that logs
+every force-push and history rewrite. The discipline is the product as much as
+the brief is.
 
-## Develop locally
+## How it connects
+
+This repo runs on the
+[Cognitive Delivery Control Plane](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md),
+the operating model documented in
+[athena-site](https://github.com/AthenaTheOwl/athena-site). `specs/`,
+`decisions/`, and `dreams/` are first-class directories you can fork directly;
+the schemas live under `ops/schemas-cache/` and point back to athena-site.
+`promotions/` is the bridge out — PROM-* candidates name a target repo and an
+artifact type for picks mature enough to land elsewhere in the portfolio. Three
+product repos run the same control plane; the throughline is in the
+[control-plane charter](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
+
+## Run it locally
 
 ```sh
 pnpm install
@@ -153,18 +95,24 @@ pnpm turbo run test
 pnpm --filter @aifieldbrief/web build
 ```
 
-The `apps/web` predev and prebuild hooks run
-`scripts/snapshot-briefs.mjs`, which copies `briefs/` into a
-build-time snapshot the Next app reads from. Edit a brief, rerun the
-dev server, and the change shows up.
+The `apps/web` predev and prebuild hooks run `scripts/snapshot-briefs.mjs`,
+which copies `briefs/` into a build-time snapshot the Next app reads from. Edit a
+brief, rerun the dev server, the change shows up.
 
-## Phase 0 rule
+<!-- live-url: https://ai-field-brief.vercel.app/ -->
 
-Every feature from the v3 plan is either in a numbered phase,
-explicitly out of scope, or blocked on account/provider setup. No
-connector, prompt, model, workflow, or publish channel ships without
-a fixture, an eval, a retry/rollback path, and a traceable
-requirement.
+## Layout
+
+```
+apps/web/          Next.js public archive (the only shipped surface)
+apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
+packages/          db, sources, pipeline, retrieval, evals (most planned)
+briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
+sources/registry.yaml   the curated 173-source list, with lane and cadence tags
+specs/  decisions/  dreams/  promotions/   the control-plane artifacts
+.agents/           AGENTS.md, roles, tools.yaml, policies, state machines
+scripts/           the gate scripts that run on every push
+```
 
 ## License
 
