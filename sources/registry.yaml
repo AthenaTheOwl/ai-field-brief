@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 5
-last_curated: 2026-05-30
+version: 6
+last_curated: 2026-06-30
 default_review_frequency: weekly
 
 lanes:
@@ -894,6 +894,210 @@ sources:
     last_reviewed: 2026-05-29
     notes: >-
       Atom feed at https://github.com/langchain-ai/langgraph/releases.atom. Agent-graph framework release notes; useful as a watch on framework convergence.
+
+  - id: langchain-blog
+    name: LangChain Blog
+    type: vendor-engineering
+    lane: builder-practice
+    url: https://www.langchain.com/blog
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Official LangChain, LangGraph, and LangSmith engineering surface. Watch agent eval loops, trace-to-action workflows, memory, sandbox boundaries, subagents, and framework-comparison posts before they show up in summary newsletters.
+
+  - id: langgraph-docs
+    name: LangGraph documentation
+    type: framework-docs
+    lane: builder-practice
+    url: https://docs.langchain.com/oss/python/langgraph/overview
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Primary docs for durable graph agents, state, interrupts, persistence, and human-in-the-loop control. Use for implementation-level checks when the blog names a pattern.
+
+  - id: langsmith-docs
+    name: LangSmith documentation
+    type: framework-docs
+    lane: builder-practice
+    url: https://docs.smith.langchain.com/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Primary docs for tracing, evals, datasets, feedback, and observability. Pair with LangChain Blog when a trace loop needs a concrete artifact path.
+
+  - id: openai-agents-sdk-docs
+    name: OpenAI Agents SDK docs
+    type: framework-docs
+    lane: primary-source
+    url: https://openai.github.io/openai-agents-python/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Primary OpenAI Agents SDK documentation. Watch tracing, handoffs, sessions, guardrails, computer-use tools, and replay-oriented runtime shape.
+
+  - id: google-adk-docs
+    name: Google Agent Development Kit docs
+    type: framework-docs
+    lane: primary-source
+    url: https://google.github.io/adk-docs/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Official Google ADK docs for agents, tools, sessions, artifacts, evaluation, deployment, and multi-agent workflows. Use as the Google-side framework baseline.
+
+  - id: google-developers-ai-blog
+    name: Google Developers AI Blog
+    type: vendor-engineering
+    lane: builder-practice
+    url: https://developers.googleblog.com/en/search/?query=agents
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Official Google developer posts. Useful for coding-agent quality flywheels, ADK updates, Gemini CLI, and applied agent workflow guidance.
+
+  - id: aws-bedrock-agentcore-docs
+    name: Amazon Bedrock AgentCore docs
+    type: framework-docs
+    lane: primary-source
+    url: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Primary AWS docs for agent runtime, memory, identity, gateway, observability, code interpreter, and browser tool primitives. Use to track managed-runtime packaging.
+
+  - id: strands-agents-docs
+    name: Strands Agents docs
+    type: framework-docs
+    lane: builder-practice
+    url: https://strandsagents.com/latest/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      AWS-backed open-source agent framework docs. Watch model-driven tool loops, agent-to-agent patterns, MCP integration, deployment guidance, and AgentCore compatibility.
+
+  - id: llamaindex-blog
+    name: LlamaIndex Blog
+    type: vendor-engineering
+    lane: builder-practice
+    url: https://www.llamaindex.ai/blog
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Official LlamaIndex engineering surface for agent workflows, retrieval, memory, tool use, and eval patterns. Useful comparator to LangGraph and ADK.
+
+  - id: crewai-docs
+    name: CrewAI documentation
+    type: framework-docs
+    lane: builder-practice
+    url: https://docs.crewai.com/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: medium
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Agent workflow docs covering crews, flows, tools, knowledge, and deployment. Watch for operator-console and business-process patterns, but verify claims against runnable examples.
+
+  - id: mcp-official-spec
+    name: Model Context Protocol specification
+    type: standards-docs
+    lane: primary-source
+    url: https://modelcontextprotocol.io/specification/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Official MCP specification surface. Use for protocol drift, tool schema semantics, auth changes, and security implications before relying on third-party registries.
+
+  - id: cloudflare-agents-docs
+    name: Cloudflare Agents docs
+    type: framework-docs
+    lane: builder-practice
+    url: https://developers.cloudflare.com/agents/
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: medium
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Durable-agent runtime on Workers. Track state, scheduling, WebSocket, workflow, and tool-call patterns as a serverless counterpoint to Vercel and AgentCore.
 
   - id: gh-openai-cookbook-releases
     name: openai/openai-cookbook commits
@@ -2750,6 +2954,57 @@ sources:
     last_reviewed: 2026-05-30
     notes: >-
       Agent sandbox runtime. Watch workspace persistence, code execution boundaries, and artifact handoff patterns that could inform run-evidence emitters.
+
+  - id: e2b-blog
+    name: E2B Blog
+    type: vendor-engineering
+    lane: frontier-scout
+    url: https://e2b.dev/blog
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Sandbox-engineering posts from the E2B team. Watch interpreter isolation, file-system handoff, language support, and production failures that do not make it into release notes.
+
+  - id: mem0-blog
+    name: Mem0 Blog
+    type: vendor-engineering
+    lane: frontier-scout
+    url: https://mem0.ai/blog
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 5
+      credibility: 4
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Agent-memory product blog with frequent implementation notes. Watch memory extraction, consolidation, evaluation, and portability patterns; verify benchmark claims before promotion to Top signal.
+
+  - id: blaxel-blog
+    name: Blaxel Blog
+    type: vendor-engineering
+    lane: frontier-scout
+    url: https://blaxel.ai/blog
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 5
+      credibility: 3
+    status: active
+    last_reviewed: 2026-06-30
+    notes: >-
+      Runtime and sandbox startup blog. Watch deployment, fleet isolation, agent resource management, and pricing patterns; use as a scout source, not a claim anchor.
 
   - id: browserbase-changelog
     name: Browserbase Changelog

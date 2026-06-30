@@ -1,0 +1,115 @@
+iso_week: 2026-W27
+through_date: 2026-06-30
+generated_at: 2026-06-30T19:40:00Z
+generated_by: codex-framework-source-refresh
+title: "Frameworks are becoming the control plane for agent work"
+volume: 9
+profile_id: builder-tpm
+registry_version: 6
+matrix_run_id: MTRX-W27-framework-runtime
+sweep:
+  attempted: 32
+  succeeded: 28
+  failed: 4
+  skipped: 0
+source_mix:
+  primary_docs: 11
+  changelogs: 3
+  academic_preprints: 2
+  practitioner_posts: 5
+  secondary_reports: 2
+  community_sources: 0
+  frontier_scout: 5
+top_signal_count: 7
+action_packet_count: 5
+scout_count: 10
+notes:
+  - Two-day W27 issue for the week of 2026-06-29 through 2026-06-30.
+  - Source registry refreshed from v5 to v6; active source count is now 188.
+  - LangChain Blog was missing from the registry and is now promoted.
+  - Added framework/runtime sources for Google ADK, Google Developers AI Blog, AWS Bedrock AgentCore, Strands Agents, LlamaIndex, CrewAI, OpenAI Agents SDK docs, official MCP spec, Cloudflare Agents, E2B Blog, Mem0 Blog, and Blaxel Blog.
+sources_reviewed:
+  - label: "LangChain Blog"
+    url: "https://www.langchain.com/blog"
+    disposition: registry_addition
+  - label: "LangChain: Running untrusted agent code without a sandbox"
+    url: "https://www.langchain.com/blog/running-untrusted-agent-code-without-a-sandbox"
+    disposition: top_signal
+  - label: "LangChain: Introducing dynamic subagents in Deep Agents"
+    url: "https://www.langchain.com/blog/introducing-dynamic-subagents-in-deep-agents"
+    disposition: top_signal
+  - label: "LangChain: Wiki memory for agents"
+    url: "https://www.langchain.com/blog/wiki-memory-for-agents"
+    disposition: top_signal
+  - label: "LangChain: traces start the agent improvement loop"
+    url: "https://www.langchain.com/blog/traces-start-agent-improvement-loop"
+    disposition: context
+  - label: "LangGraph documentation"
+    url: "https://docs.langchain.com/oss/python/langgraph/overview"
+    disposition: registry_addition
+  - label: "LangSmith documentation"
+    url: "https://docs.smith.langchain.com/"
+    disposition: context
+  - label: "Google Developers AI Blog"
+    url: "https://developers.googleblog.com/en/search/?query=agents"
+    disposition: registry_addition
+  - label: "Google: Driving the Agent Quality Flywheel from your coding agent"
+    url: "https://developers.googleblog.com/en/driving-the-agent-quality-flywheel-from-your-coding-agent/"
+    disposition: top_signal
+  - label: "Google Agent Development Kit docs"
+    url: "https://google.github.io/adk-docs/"
+    disposition: top_signal
+  - label: "Google: Announcing ADK Go 2.0"
+    url: "https://developers.googleblog.com/en/announcing-adk-go-20/"
+    disposition: context
+  - label: "AWS Bedrock AgentCore docs"
+    url: "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"
+    disposition: top_signal
+  - label: "AWS: Web search on Amazon Bedrock AgentCore"
+    url: "https://aws.amazon.com/blogs/aws/announcing-web-search-on-amazon-bedrock-agentcore-ground-your-ai-agents-in-current-accurate-web-knowledge/"
+    disposition: context
+  - label: "Strands Agents docs"
+    url: "https://strandsagents.com/latest/"
+    disposition: top_signal
+  - label: "OpenAI Agents SDK docs"
+    url: "https://openai.github.io/openai-agents-python/"
+    disposition: context
+  - label: "OpenAI Cookbook: agent improvement loop"
+    url: "https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop"
+    disposition: context
+  - label: "Model Context Protocol specification"
+    url: "https://modelcontextprotocol.io/specification/"
+    disposition: top_signal
+  - label: "Cloudflare Agents docs"
+    url: "https://developers.cloudflare.com/agents/"
+    disposition: scout
+  - label: "LlamaIndex Blog"
+    url: "https://www.llamaindex.ai/blog"
+    disposition: scout
+  - label: "CrewAI docs"
+    url: "https://docs.crewai.com/"
+    disposition: scout
+  - label: "E2B Blog"
+    url: "https://e2b.dev/blog"
+    disposition: scout
+  - label: "Mem0 Blog"
+    url: "https://mem0.ai/blog"
+    disposition: scout
+  - label: "Blaxel Blog"
+    url: "https://blaxel.ai/blog"
+    disposition: scout
+  - label: "Braintrust Product Updates"
+    url: "https://www.braintrust.dev/docs/changelog"
+    disposition: context
+  - label: "Langfuse Changelog"
+    url: "https://langfuse.com/changelog"
+    disposition: context
+  - label: "AgentOps GitHub"
+    url: "https://github.com/AgentOps-AI/agentops"
+    disposition: scout
+  - label: "Vercel Workflows"
+    url: "https://vercel.com/docs/workflow"
+    disposition: context
+  - label: "Vercel Sandbox"
+    url: "https://vercel.com/docs/vercel-sandbox"
+    disposition: context

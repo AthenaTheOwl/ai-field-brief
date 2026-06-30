@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work (2026-W26)](https://ai-field-brief.vercel.app/briefs/2026-W26)
+**Latest:** [Frameworks are becoming the control plane for agent work (2026-W27)](https://ai-field-brief.vercel.app/briefs/2026-W27)
 
 ## What it does
 
@@ -26,13 +26,13 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 173 active sources
-(registry v5): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 188 active sources
+(registry v6): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
-feeds, and a `frontier-scout` lane that watches the tools and protocols nobody
-is following yet. The W26 issue reviewed 27 of 29 attempted and shipped seven
-Top signals, each with a concrete action, a confidence label, evidence cells, a
-systems map, a falsification test, and an adoption ladder.
+feeds, and a `frontier-scout` lane that watches the tools and protocols most
+people will notice late. The W27 issue reviewed 28 of 32 attempted and shipped
+seven Top signals, each with a concrete action, a confidence label, evidence
+cells, a systems map, a falsification test, and an adoption ladder.
 
 The brief is a markdown file per ISO week under `briefs/`. The site is a Next.js
 static prerender of those files; the RSS, Atom, JSON Feed, and weekly email
