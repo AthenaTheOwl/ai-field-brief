@@ -43,22 +43,25 @@ interface JsonFeed {
 
 describe("public brief feeds", () => {
   const briefs = listBriefs();
+  const latest = briefs[0];
+  const previous = briefs[1];
 
-  it("renders RSS with recent published brief weeks", () => {
+  if (!latest || !previous) {
+    throw new Error("feed tests require at least two published briefs");
+  }
+
+  it("renders RSS with discovered published brief weeks", () => {
     const rss = buildRssFeed(briefs);
 
     expect(rss).toContain('<rss version="2.0"');
     expect(rss).toContain(`href="${SITE_URL}/feed.xml"`);
     expect(tagValues(rss, "title")).toEqual(
-      expect.arrayContaining([
-        "Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work",
-        "Agent runtime hardened into infrastructure this week; the policy engine, the identity layer, and the eval gate all became first-class artifacts",
-      ]),
+      expect.arrayContaining([latest.title, previous.title]),
     );
     expect(tagValues(rss, "link")).toEqual(
       expect.arrayContaining([
-        `${SITE_URL}/briefs/2026-W26`,
-        `${SITE_URL}/briefs/2026-W25`,
+        `${SITE_URL}/briefs/${latest.week}`,
+        `${SITE_URL}/briefs/${previous.week}`,
       ]),
     );
   });
@@ -70,24 +73,28 @@ describe("public brief feeds", () => {
     expect(attributeValues(atom, "link", "href")).toEqual(
       expect.arrayContaining([
         `${SITE_URL}/atom.xml`,
-        `${SITE_URL}/briefs/2026-W26`,
-        `${SITE_URL}/briefs/2026-W25`,
+        `${SITE_URL}/briefs/${latest.week}`,
+        `${SITE_URL}/briefs/${previous.week}`,
       ]),
     );
   });
 
   it("renders JSON Feed with metadata-backed dates and derived summaries", () => {
     const feed = JSON.parse(buildJsonFeed(briefs)) as JsonFeed;
-    const w26 = feed.items.find((item) => item.id.endsWith("/2026-W26"));
-    const w25 = feed.items.find((item) => item.id.endsWith("/2026-W25"));
+    const latestItem = feed.items.find((item) =>
+      item.id.endsWith(`/${latest.week}`),
+    );
+    const previousItem = feed.items.find((item) =>
+      item.id.endsWith(`/${previous.week}`),
+    );
 
     expect(feed.feed_url).toBe(`${SITE_URL}/feed.json`);
-    expect(w26?.url).toBe(`${SITE_URL}/briefs/2026-W26`);
-    expect(w26?.title).toBe(
-      "Loop engineering reached the runtime layer: discovery, durability, and audit gates now carry the work",
+    expect(latestItem?.url).toBe(`${SITE_URL}/briefs/${latest.week}`);
+    expect(latestItem?.title).toBe(latest.title);
+    expect(latestItem?.date_published).toBe(
+      `${latest.date}T00:00:00.000Z`,
     );
-    expect(w26?.date_published).toBe("2026-06-22T00:00:00.000Z");
-    expect(w26?.summary).toContain("The center moved again");
-    expect(w25?.url).toBe(`${SITE_URL}/briefs/2026-W25`);
+    expect(latestItem?.summary.length).toBeGreaterThan(40);
+    expect(previousItem?.url).toBe(`${SITE_URL}/briefs/${previous.week}`);
   });
 });

@@ -4,9 +4,9 @@ import matter from "gray-matter";
 import yaml from "js-yaml";
 
 /**
- * Reads briefs from the build-time snapshot at apps/web/.briefs-snapshot/.
- * The snapshot is populated by scripts/snapshot-briefs.mjs as part of
- * predev / prebuild.
+ * Reads briefs from the build-time snapshot when present, with a repo-root
+ * fallback for deploy configurations that run `next build` directly. Brief
+ * weeks are discovered from folders; no week names are baked into the app.
  */
 
 const APP_ROOT = path.basename(process.cwd()) === "web"
