@@ -9,7 +9,11 @@ import yaml from "js-yaml";
  * predev / prebuild.
  */
 
-const SNAPSHOT_ROOT = path.resolve(process.cwd(), ".briefs-snapshot");
+const APP_ROOT = path.basename(process.cwd()) === "web"
+  ? process.cwd()
+  : path.resolve(process.cwd(), "apps", "web");
+const SNAPSHOT_ROOT = path.resolve(APP_ROOT, ".briefs-snapshot");
+const REPO_BRIEFS_ROOT = path.resolve(APP_ROOT, "..", "..", "briefs");
 
 export interface BriefMeta {
   iso_week: string;
@@ -41,20 +45,50 @@ export interface BriefRecord {
   meta: BriefMeta | null;
 }
 
-function ensureSnapshot(): void {
-  if (!fs.existsSync(SNAPSHOT_ROOT)) {
-    throw new Error(
-      `briefs snapshot missing at ${SNAPSHOT_ROOT}. Run \`node scripts/snapshot-briefs.mjs\` (this normally runs via predev/prebuild).`,
-    );
-  }
-}
-
 function isBriefWeekDir(name: string): boolean {
   return /^\d{4}-W\d{2}$/.test(name);
 }
 
-function readBriefDir(week: string): BriefRecord {
-  const dir = path.join(SNAPSHOT_ROOT, week);
+function briefRootStatus(root: string): {
+  exists: boolean;
+  weeks: string[];
+  missingBriefs: string[];
+} {
+  if (!fs.existsSync(root)) {
+    return { exists: false, weeks: [], missingBriefs: [] };
+  }
+
+  const weeks = fs.readdirSync(root).filter(isBriefWeekDir).sort();
+  const missingBriefs = weeks
+    .map((week) => path.join(root, week, "brief.md"))
+    .filter((briefPath) => !fs.existsSync(briefPath))
+    .map((briefPath) => path.relative(root, briefPath));
+
+  return { exists: true, weeks, missingBriefs };
+}
+
+export function resolveBriefsRoot(): string {
+  const snapshot = briefRootStatus(SNAPSHOT_ROOT);
+  if (snapshot.weeks.length > 0 && snapshot.missingBriefs.length === 0) {
+    return SNAPSHOT_ROOT;
+  }
+
+  const repoRoot = briefRootStatus(REPO_BRIEFS_ROOT);
+  if (repoRoot.weeks.length > 0 && repoRoot.missingBriefs.length === 0) {
+    return REPO_BRIEFS_ROOT;
+  }
+
+  const problems = [
+    `snapshot=${SNAPSHOT_ROOT} exists=${snapshot.exists} weeks=${snapshot.weeks.length} missing=${snapshot.missingBriefs.join(", ") || "none"}`,
+    `repo=${REPO_BRIEFS_ROOT} exists=${repoRoot.exists} weeks=${repoRoot.weeks.length} missing=${repoRoot.missingBriefs.join(", ") || "none"}`,
+  ];
+  throw new Error(
+    `briefs source unavailable or incomplete. Run \`node apps/web/scripts/snapshot-briefs.mjs\` from the repo root or \`node scripts/snapshot-briefs.mjs\` from apps/web. ${problems.join("; ")}`,
+  );
+}
+
+function readBriefDir(root: string, week: string): BriefRecord {
+  const dir = path.join(root, week);
   const mdPath = path.join(dir, "brief.md");
   if (!fs.existsSync(mdPath)) {
     throw new Error(`brief.md missing under ${dir}`);
@@ -82,28 +116,28 @@ function readBriefDir(week: string): BriefRecord {
 }
 
 export function listBriefs(): BriefRecord[] {
-  ensureSnapshot();
+  const root = resolveBriefsRoot();
   return fs
-    .readdirSync(SNAPSHOT_ROOT)
+    .readdirSync(root)
     .filter(isBriefWeekDir)
     .sort()
     .reverse()
-    .map(readBriefDir);
+    .map((week) => readBriefDir(root, week));
 }
 
 export function getBrief(week: string): BriefRecord | null {
-  ensureSnapshot();
+  const root = resolveBriefsRoot();
   if (!isBriefWeekDir(week)) {
     return null;
   }
-  const dir = path.join(SNAPSHOT_ROOT, week);
+  const dir = path.join(root, week);
   if (!fs.existsSync(dir)) {
     return null;
   }
-  return readBriefDir(week);
+  return readBriefDir(root, week);
 }
 
 export function listWeeks(): string[] {
-  ensureSnapshot();
-  return fs.readdirSync(SNAPSHOT_ROOT).filter(isBriefWeekDir).sort().reverse();
+  const root = resolveBriefsRoot();
+  return fs.readdirSync(root).filter(isBriefWeekDir).sort().reverse();
 }

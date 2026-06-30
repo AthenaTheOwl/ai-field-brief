@@ -11,7 +11,7 @@
  * Runs as `prebuild` and `predev`. Snapshot directory is gitignored.
  */
 
-import { cp, mkdir, rm, stat } from "node:fs/promises";
+import { cp, mkdir, readdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,19 +30,59 @@ async function exists(p) {
   }
 }
 
+async function completeBriefWeeks(root) {
+  const entries = await readdir(root, { withFileTypes: true });
+  const weeks = entries
+    .filter((entry) => entry.isDirectory() && /^\d{4}-W\d{2}$/.test(entry.name))
+    .map((entry) => entry.name)
+    .sort();
+
+  const missingBriefs = [];
+  for (const week of weeks) {
+    const briefPath = path.join(root, week, "brief.md");
+    if (!(await exists(briefPath))) {
+      missingBriefs.push(path.relative(root, briefPath));
+    }
+  }
+
+  return { weeks, missingBriefs };
+}
+
+async function assertCompleteBriefTree(root, label) {
+  const { weeks, missingBriefs } = await completeBriefWeeks(root);
+  if (weeks.length === 0) {
+    throw new Error(`${label} has no ISO-week brief folders at ${root}`);
+  }
+  if (missingBriefs.length > 0) {
+    throw new Error(
+      `${label} is incomplete at ${root}; missing ${missingBriefs.join(", ")}`,
+    );
+  }
+  return weeks;
+}
+
 async function main() {
   if (!(await exists(SRC))) {
     console.error(`snapshot-briefs: source not found at ${SRC}`);
     process.exit(1);
   }
+  const sourceWeeks = await assertCompleteBriefTree(SRC, "source briefs");
 
   if (await exists(DEST)) {
     await rm(DEST, { recursive: true, force: true });
   }
   await mkdir(DEST, { recursive: true });
   await cp(SRC, DEST, { recursive: true });
+  const snapshotWeeks = await assertCompleteBriefTree(DEST, "briefs snapshot");
 
-  console.log(`snapshot-briefs: copied ${SRC} -> ${DEST}`);
+  console.log(
+    `snapshot-briefs: copied ${snapshotWeeks.length} week(s) ${SRC} -> ${DEST}`,
+  );
+  if (snapshotWeeks.length !== sourceWeeks.length) {
+    throw new Error(
+      `snapshot-briefs: copied ${snapshotWeeks.length} week(s), expected ${sourceWeeks.length}`,
+    );
+  }
 }
 
 main().catch((err) => {
