@@ -26,8 +26,11 @@ export interface BriefMeta {
   registry_version?: number;
   sweep?: { attempted: number; succeeded: number; failed: number };
   sources_reviewed?: Array<{
-    id: string;
-    status: string;
+    id?: string;
+    label?: string;
+    url?: string;
+    status?: string;
+    disposition?: string;
     items_captured?: number;
     items_included?: number;
     last_item_date?: string;

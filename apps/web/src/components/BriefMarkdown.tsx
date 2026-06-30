@@ -6,11 +6,17 @@ interface BriefMarkdownProps {
 }
 
 /**
- * Renders the body of a brief into prose. Strips the leading H1 so the page
- * template owns the title rendering.
+ * Renders the body of a brief into prose. Strips publish metadata and the
+ * leading H1 so the page template owns the title rendering.
  */
+export function stripBriefChrome(source: string): string {
+  return source
+    .replace(/^\s*<!--[\s\S]*?-->\s*/, "")
+    .replace(/^#\s+.+?\n+/, "");
+}
+
 export function BriefMarkdown({ source }: BriefMarkdownProps) {
-  const body = source.replace(/^#\s+.+?\n+/, "");
+  const body = stripBriefChrome(source);
   return (
     <article className="prose prose-neutral prose-lg dark:prose-invert max-w-none">
       <ReactMarkdown
