@@ -87,6 +87,24 @@ The file is read by humans, not by the run workflow.
 - **Hugging Face Daily Papers** — https://huggingface.co/papers.
   Already planned as `hf-papers` source type.
 
+### Agent benchmark watch
+
+- **SWE-bench+** — extension of SWE-bench-style coding tasks with
+  broader verified repair surfaces. Candidate use: harden the factory's
+  brownfield gates and held-out-test policy.
+- **SpecBench** — benchmark focused on specification-following and
+  implementation against written contracts. Candidate use: calibrate
+  `expected_artifacts`, `module_map`, and first-action gates.
+- **ImpossibleBench** — adversarial task family for exposing shortcut
+  behavior and overfitting to visible tests. Candidate use: decide when
+  a task needs `held_out_tests` as a permission boundary.
+- **Vendor eval postmortems** — especially OpenAI's SWE-bench Verified
+  evaluation notes. Candidate use: prevent public portfolio claims from
+  overstating what a benchmark score means.
+
+Promotion rule: these enter `registry.yaml` only when the weekly issue
+needs an evaluation-method source, not as general news feeds.
+
 ### Vendor-watch breadth
 
 - **Google DeepMind blog** — https://deepmind.google/discover/blog.

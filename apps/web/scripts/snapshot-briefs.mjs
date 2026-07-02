@@ -20,6 +20,15 @@ const APP_ROOT = path.resolve(__dirname, "..");
 const REPO_ROOT = path.resolve(APP_ROOT, "..", "..");
 const SRC = path.join(REPO_ROOT, "briefs");
 const DEST = path.join(APP_ROOT, ".briefs-snapshot");
+const LOCK_DIR = path.join(APP_ROOT, ".briefs-snapshot.lock");
+const REMOVE_RETRIES = 6;
+const REMOVE_RETRY_DELAY_MS = 250;
+const LOCK_RETRIES = 80;
+const LOCK_RETRY_DELAY_MS = 100;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 async function exists(p) {
   try {
@@ -61,6 +70,44 @@ async function assertCompleteBriefTree(root, label) {
   return weeks;
 }
 
+async function removeWithRetry(target) {
+  for (let attempt = 0; attempt <= REMOVE_RETRIES; attempt += 1) {
+    try {
+      await rm(target, { recursive: true, force: true });
+      return;
+    } catch (err) {
+      const transient =
+        err &&
+        typeof err === "object" &&
+        ["EBUSY", "EPERM", "ENOTEMPTY"].includes(err.code);
+      if (!transient || attempt === REMOVE_RETRIES) {
+        throw err;
+      }
+      await sleep(REMOVE_RETRY_DELAY_MS * (attempt + 1));
+    }
+  }
+}
+
+async function withSnapshotLock(fn) {
+  for (let attempt = 0; attempt <= LOCK_RETRIES; attempt += 1) {
+    try {
+      await mkdir(LOCK_DIR);
+      break;
+    } catch (err) {
+      const locked = err && typeof err === "object" && err.code === "EEXIST";
+      if (!locked || attempt === LOCK_RETRIES) {
+        throw err;
+      }
+      await sleep(LOCK_RETRY_DELAY_MS);
+    }
+  }
+  try {
+    return await fn();
+  } finally {
+    await removeWithRetry(LOCK_DIR);
+  }
+}
+
 async function main() {
   if (!(await exists(SRC))) {
     console.error(`snapshot-briefs: source not found at ${SRC}`);
@@ -68,12 +115,14 @@ async function main() {
   }
   const sourceWeeks = await assertCompleteBriefTree(SRC, "source briefs");
 
-  if (await exists(DEST)) {
-    await rm(DEST, { recursive: true, force: true });
-  }
-  await mkdir(DEST, { recursive: true });
-  await cp(SRC, DEST, { recursive: true });
-  const snapshotWeeks = await assertCompleteBriefTree(DEST, "briefs snapshot");
+  const snapshotWeeks = await withSnapshotLock(async () => {
+    if (await exists(DEST)) {
+      await removeWithRetry(DEST);
+    }
+    await mkdir(DEST, { recursive: true });
+    await cp(SRC, DEST, { recursive: true });
+    return assertCompleteBriefTree(DEST, "briefs snapshot");
+  });
 
   console.log(
     `snapshot-briefs: copied ${snapshotWeeks.length} week(s) ${SRC} -> ${DEST}`,

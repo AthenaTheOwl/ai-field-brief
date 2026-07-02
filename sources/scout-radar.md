@@ -45,6 +45,36 @@ The first active set is now in `sources/registry.yaml` under
 - DSPy, Instructor, LiteLLM: structured extraction, optimization, and
   provider routing.
 
+The framework-runtime lane now has a second active set in the registry:
+
+- LangChain Blog, LangGraph, LangSmith: framework practice, state,
+  interrupts, tracing, eval loops, and generated orchestration.
+- OpenAI Agents SDK docs and Cookbook: sessions, handoffs, guardrails,
+  tracing, and agent-improvement fixtures.
+- Google ADK and Google Developers AI Blog: tools, sessions, artifacts,
+  evals, deployment, and the agent-quality flywheel.
+- AWS Bedrock AgentCore and Strands Agents: managed runtime primitives,
+  memory, identity, gateways, observability, code interpreter, browser
+  tools, and MCP-aware framework ergonomics.
+- MCP official spec and Cloudflare Agents: protocol and durable-state
+  comparators for small public demos.
+- LlamaIndex and CrewAI: retrieval/workflow-heavy alternatives that may
+  fit specific repo shapes better than a graph runtime.
+
+These sources do not become Top signals because a framework shipped a
+new noun. Promote only when the item changes one of the runtime
+primitives named in the playbook and yields a 30-90 minute portfolio
+test.
+
+Benchmark watch is separate from framework watch:
+
+- SWE-bench+, SpecBench, ImpossibleBench, and vendor eval-postmortems
+  are useful when they change how the factory grants visibility, hides
+  tests, or scores completion.
+- They are not product sources by themselves. A benchmark enters a
+  weekly brief only when it changes a factory gate, a held-out test
+  policy, or an eval fixture.
+
 ## weekly review loop
 
 1. Sweep the `frontier-scout` lane after the primary-source and

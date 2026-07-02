@@ -13,6 +13,8 @@ weekly pass. Read this top-to-bottom before starting.
 - `config/action_surface_taxonomy.yaml` — canonical action surfaces;
   every action candidate cites one.
 - `config/prompt_lenses.yaml` — Pass 1 / Pass 2 / Pass 3 lens map.
+- `sources/scout-radar.md` — frontier-scout promotion rules and
+  runtime/framework watch lanes.
 - `briefs/INDEX.md` — index of past briefs.
 - Last 2 brief markdown files under `briefs/YYYY-WNN/` for continuity.
 - `scripts/voice_lint.py` — voice rules the brief must pass.
@@ -30,6 +32,17 @@ weekly pass. Read this top-to-bottom before starting.
    `meta.yaml.through_date` (or the last 7 days if this is the first
    run). Some sources will 403 or rate-limit; record the failure in
    `meta.yaml` and continue — do not block on a single source.
+
+   Always run a framework-runtime scout pass. At minimum check the
+   active registry entries for LangChain Blog, LangGraph, LangSmith,
+   OpenAI Agents SDK, Google ADK, Google Developers AI Blog, AWS
+   Bedrock AgentCore, Strands Agents, the MCP spec, Cloudflare Agents,
+   LlamaIndex, CrewAI, E2B, Braintrust, Langfuse, and AgentOps. For each
+   candidate, record which runtime primitive changed: execution,
+   memory, identity, tool gateway, observability, artifact store, eval
+   gate, stop rule, human approval, or sandbox grant. If fewer than five
+   primary links survive this pass, say so in `meta.yaml`; do not pad
+   the issue with secondary summaries.
 
 3. **Triage.** For each captured item, decide:
    - Include in *This week* — material change, substantive piece,
@@ -100,6 +113,11 @@ weekly pass. Read this top-to-bottom before starting.
    `Confidence:` label. Each watchlist item carries a revisit
    trigger. The opening Field thesis names the pattern; the picks
    earn their place with comment, not link-dumps.
+
+   If the week's theme touches agent frameworks, include a
+   framework-runtime scout section. Keep it to a short table: source,
+   primitive changed, why it matters, and a 30-90 minute test the
+   portfolio can run. Scout items without a test stay in Archive notes.
 
 8. **Faithfulness audit (per cell).** Before voice-lint, re-read
    each pick with these questions:
