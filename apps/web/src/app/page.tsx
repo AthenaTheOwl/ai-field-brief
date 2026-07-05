@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { listBriefs } from "../lib/briefs";
+import { formatBriefActivity, listBriefs } from "../lib/briefs";
 import { SiteFooter, SiteNav } from "../components/SiteNav";
 
 export const dynamic = "force-static";
@@ -76,9 +76,7 @@ export default function HomePage() {
               </Link>
             </h2>
             <p className="text-sm text-neutral-600 dark:text-neutral-300">
-              {latest.meta?.sources_reviewed
-                ? `${latest.meta.sources_reviewed.filter((s) => s.status === "ok").length} sources swept, ${latest.meta.sources_reviewed.reduce((sum, s) => sum + (s.items_included ?? 0), 0)} items included.`
-                : "Read the latest brief."}
+              {formatBriefActivity(latest.meta)}
             </p>
             <p>
               <Link
