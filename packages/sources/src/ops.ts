@@ -34,6 +34,10 @@ export const REGISTRY_TYPE_TO_SOURCE_TYPE: Record<string, SourceType> = {
   "github-releases": "github-releases",
   "youtube-channel": "youtube-channel",
   "youtube-playlist": "youtube-playlist",
+  // Documentation/standards sites are plain URL fetches (no feed), so they
+  // ingest through the article-url connector like other one-URL sources.
+  "framework-docs": "article-url",
+  "standards-docs": "article-url",
 };
 
 export interface SourceRegistryDocument {

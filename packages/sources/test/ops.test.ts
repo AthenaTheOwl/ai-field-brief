@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { buildSourceOpsQueue, mapRegistryTypeToSourceType } from "../src/ops";
+import {
+  buildSourceOpsQueue,
+  loadSourceRegistry,
+  mapRegistryTypeToSourceType,
+} from "../src/ops";
 
 const AS_OF = new Date("2026-05-25T12:00:00Z");
 
@@ -8,7 +12,10 @@ describe("source ops queue", () => {
   it("builds readiness rows from the current source registry", () => {
     const queue = buildSourceOpsQueue({ asOf: AS_OF });
 
-    expect(queue.summary.total).toBe(173);
+    // Derived from the registry itself so the count never drifts out of sync
+    // (was a hardcoded literal that broke CI when the registry grew).
+    expect(queue.summary.total).toBe(loadSourceRegistry().sources.length);
+    expect(queue.summary.total).toBeGreaterThan(0);
     expect(queue.summary.ready).toBeGreaterThan(0);
     expect(queue.summary.connectorBlocked).toBeGreaterThan(0);
 

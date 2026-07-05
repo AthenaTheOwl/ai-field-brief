@@ -14,7 +14,7 @@ export type SourceSeedPayload = NewSource & {
   readonly type: SourceType;
 };
 
-const REGISTRY_PATH = fileURLToPath(
+export const REGISTRY_PATH = fileURLToPath(
   new URL("../../../../sources/registry.yaml", import.meta.url),
 );
 
