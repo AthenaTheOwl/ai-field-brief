@@ -108,7 +108,7 @@ apps/web/          Next.js public archive (the only shipped surface)
 apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
 packages/          db, sources, pipeline, retrieval, evals (most planned)
 briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
-sources/registry.yaml   the curated 173-source list, with lane and cadence tags
+sources/registry.yaml   the curated 188-source list, with lane and cadence tags
 specs/  decisions/  dreams/  promotions/   the control-plane artifacts
 .agents/           AGENTS.md, roles, tools.yaml, policies, state machines
 scripts/           the gate scripts that run on every push

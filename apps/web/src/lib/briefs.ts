@@ -25,6 +25,9 @@ export interface BriefMeta {
   volume: number;
   registry_version?: number;
   sweep?: { attempted: number; succeeded: number; failed: number };
+  top_signal_count?: number;
+  action_packet_count?: number;
+  scout_count?: number;
   sources_reviewed?: Array<{
     id?: string;
     label?: string;
@@ -47,6 +50,40 @@ export interface BriefRecord {
   markdown: string;
   meta: BriefMeta | null;
 }
+
+export function formatBriefActivity(meta: BriefMeta | null): string {
+  if (!meta) {
+    return "Read the latest brief.";
+  }
+
+  if (meta.sweep) {
+    const succeeded = meta.sweep.succeeded ?? 0;
+    const attempted = meta.sweep.attempted ?? 0;
+    const topSignals = typeof meta.top_signal_count === "number" ? meta.top_signal_count : null;
+    const actionPackets = typeof meta.action_packet_count === "number" ? meta.action_packet_count : null;
+
+    const parts = [`${succeeded} of ${attempted} sources swept`];
+    if (topSignals !== null) {
+      parts.push(`${topSignals} Top signals`);
+    }
+    if (actionPackets !== null) {
+      parts.push(`${actionPackets} action packets`);
+    }
+    return `${parts.join(", ")}.`;
+  }
+
+  if (meta.sources_reviewed?.length) {
+    const okCount = meta.sources_reviewed.filter((source) => source.status === "ok").length;
+    const includedCount = meta.sources_reviewed.reduce(
+      (sum, source) => sum + (source.items_included ?? 0),
+      0,
+    );
+    return `${okCount} sources swept, ${includedCount} items included.`;
+  }
+
+  return "Read the latest brief.";
+}
+
 
 function isBriefWeekDir(name: string): boolean {
   return /^\d{4}-W\d{2}$/.test(name);
