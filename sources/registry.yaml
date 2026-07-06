@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 6
-last_curated: 2026-06-30
+version: 7
+last_curated: 2026-07-06
 default_review_frequency: weekly
 
 lanes:
@@ -3226,3 +3226,71 @@ sources:
     last_reviewed: 2026-05-30
     notes: >-
       Model gateway and routing layer. Watch routing, spend controls, logging, and provider-failover changes that map to config and eval action surfaces.
+
+  - id: addy-osmani
+    name: Addy Osmani
+    type: blog
+    lane: builder-practice
+    url: https://addyosmani.com/blog/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-06
+    notes: >-
+      Practitioner source for loop engineering, harness engineering, agent skills, and agentic software-delivery practice. Promote only posts with concrete workflow mechanics, not tool enthusiasm.
+
+  - id: redis-ai-blog
+    name: Redis AI Blog
+    type: vendor-engineering
+    lane: builder-practice
+    url: https://redis.io/blog/
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: medium
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-07-06
+    notes: >-
+      Context-engineering and memory-system practitioner feed. Useful when it names concrete failure modes or data-contract patterns; treat product-specific storage conclusions as vendor claims.
+
+  - id: role-confusion-project
+    name: Prompt Injection as Role Confusion
+    type: academic-project
+    lane: primary-source
+    url: https://role-confusion.github.io/
+    cadence: irregular
+    review_frequency: monthly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-06
+    notes: >-
+      ICML 2026 project page and paper on prompt injection as role confusion. Watch for practical defenses around role destyling, tool-output handling, and prompt-injection eval fixtures.
+
+  - id: agentic-memory-arxiv
+    name: Agentic memory papers
+    type: academic-preprint
+    lane: builder-practice
+    url: https://arxiv.org/search/cs?query=agentic+memory&searchtype=all
+    cadence: weekly
+    review_frequency: monthly
+    intake: human-notes
+    quality:
+      signal: medium
+      actionability: medium
+      credibility: medium
+    status: active
+    last_reviewed: 2026-07-06
+    notes: >-
+      Research-watch lane for memory retrieval, evolving-memory governance, and flat-file memory baselines. Promote specific papers only when they include diagnostics, datasets, or runnable methods.

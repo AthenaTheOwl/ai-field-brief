@@ -47,10 +47,16 @@ describe("brief activity summary", () => {
     if (!latest) {
       throw new Error("expected at least one checked-in brief fixture");
     }
+    if (!latest.meta?.sweep) {
+      throw new Error("expected newest brief fixture to use aggregate sweep metadata");
+    }
 
-    expect(latest.week).toBe("2026-W27");
-    expect(formatBriefActivity(latest.meta)).toBe(
-      "28 of 32 sources swept, 7 Top signals, 5 action packets.",
+    const activity = formatBriefActivity(latest.meta);
+
+    expect(latest.week).toMatch(/^\d{4}-W\d{2}$/);
+    expect(activity).toContain(
+      `${latest.meta.sweep.succeeded} of ${latest.meta.sweep.attempted} sources swept`,
     );
+    expect(activity).not.toContain("0 sources");
   });
 });

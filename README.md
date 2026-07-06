@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Frameworks are becoming the control plane for agent work (2026-W27)](https://ai-field-brief.vercel.app/briefs/2026-W27)
+**Latest:** [The loop is the unit of work now (2026-W28)](https://ai-field-brief.vercel.app/briefs/2026-W28)
 
 ## What it does
 
@@ -26,11 +26,11 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 188 active sources
-(registry v6): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 192 active sources
+(registry v7): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W27 issue reviewed 28 of 32 attempted and shipped
+people will notice late. The W28 issue reviewed 21 of 22 attempted and shipped
 seven Top signals, each with a concrete action, a confidence label, evidence
 cells, a systems map, a falsification test, and an adoption ladder.
 
@@ -108,7 +108,7 @@ apps/web/          Next.js public archive (the only shipped surface)
 apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
 packages/          db, sources, pipeline, retrieval, evals (most planned)
 briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
-sources/registry.yaml   the curated 188-source list, with lane and cadence tags
+sources/registry.yaml   the curated 192-source list, with lane and cadence tags
 specs/  decisions/  dreams/  promotions/   the control-plane artifacts
 .agents/           AGENTS.md, roles, tools.yaml, policies, state machines
 scripts/           the gate scripts that run on every push

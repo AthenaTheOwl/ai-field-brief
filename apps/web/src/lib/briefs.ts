@@ -142,7 +142,7 @@ function readBriefDir(root: string, week: string): BriefRecord {
   const metaPath = path.join(dir, "meta.yaml");
   if (fs.existsSync(metaPath)) {
     const metaRaw = fs.readFileSync(metaPath, "utf8");
-    // JSON_SCHEMA keeps dates as strings — otherwise React refuses to
+    // JSON_SCHEMA keeps dates as strings; otherwise React refuses to
     // render the Date objects js-yaml deserializes by default.
     meta = yaml.load(metaRaw, { schema: yaml.JSON_SCHEMA }) as BriefMeta;
   }
