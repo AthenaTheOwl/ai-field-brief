@@ -29,30 +29,30 @@
   "inputs": [
     {
       "kind": "playbook",
-      "ref": "repo://ai-field-brief@PENDING/playbook/run-weekly-brief.md"
+      "ref": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/playbook/run-weekly-brief.md"
     },
     {
       "kind": "source-registry",
-      "ref": "repo://ai-field-brief@PENDING/sources/registry.yaml"
+      "ref": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/sources/registry.yaml"
     },
     {
       "kind": "meta",
-      "ref": "repo://ai-field-brief@PENDING/briefs/2026-W28/meta.yaml"
+      "ref": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/briefs/2026-W28/meta.yaml"
     }
   ],
   "outputs": [
     {
-      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W28/brief.md",
+      "artifact_id": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/briefs/2026-W28/brief.md",
       "type": "brief"
     },
     {
-      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W28/meta.yaml",
+      "artifact_id": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/briefs/2026-W28/meta.yaml",
       "type": "meta"
     }
   ],
   "prompt_snapshot_hash": "4442d2df746685fa9d1ece726b869305dd03d5c45a5157f740606090c302c0cd",
   "runtime": "claude-code-cli",
-  "sandbox_image_ref": "repo://ai-field-brief@PENDING/",
+  "sandbox_image_ref": "repo://ai-field-brief@49f27846df231fcf2aa34cce0205984a3eac34d0/",
   "spec_id": "specs/0007-publishing/",
   "started_at": "2026-07-06T13:40:00Z",
   "status": "done",
