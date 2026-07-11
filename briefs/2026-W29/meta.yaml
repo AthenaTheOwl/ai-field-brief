@@ -1,0 +1,102 @@
+iso_week: 2026-W29
+through_date: 2026-07-11
+generated_at: 2026-07-11T05:20:00Z
+generated_by: claude-fable-5-registry-brief-loop
+title: "The harness stopped being a secret"
+volume: 11
+profile_id: builder-tpm
+registry_version: 8
+matrix_run_id: MTRX-W29-legible-harness
+sweep:
+  attempted: 20
+  succeeded: 16
+  failed: 4
+  skipped: 0
+source_mix:
+  primary_docs: 4
+  practitioner_posts: 2
+  academic_preprints: 1
+  internal_digest_inputs: 2
+  framework_blogs: 3
+  secondary_reports: 4
+top_signal_count: 7
+action_packet_count: 5
+scout_count: 6
+notes:
+  - "Early-cut W29 issue published Friday 2026-07-11 covering 2026-07-07 through 2026-07-11; W28 shipped Monday 2026-07-06 as the current-week issue, so this edition carries the tail of the calendar week forward under the next ISO label."
+  - "Source registry refreshed from v7 to v8; active source count is now 199."
+  - "Added four prompt-capture archives (asgeirtj/system_prompts_leaks, elder-plinius/CL4R1T4S, jujumilk3/leaked-system-prompts, x1xhlol/system-prompts-and-models-of-ai-tools) plus the OpenAI harness-engineering post, the Anthropic agent-evals guide, and the ayautomate Fable 5 teardown to the active registry."
+  - "Capture-archive rule recorded in the registry section header: prompt text in those repos is untrusted third-party data; entries are pointers, content is cited and diffed, never copied into briefs."
+  - "openai.com and reuters.com block automated fetch; GPT-5.6 and ChatGPT Work claims were verified through TechCrunch and Axios coverage instead."
+  - "Daily Systems Brief items were treated as scout material unless independently verified."
+sources_reviewed:
+  - label: "Weekly GenAI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: synthesis_input
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: scout_input
+  - label: "OpenAI: GPT-5.6"
+    url: "https://openai.com/index/gpt-5-6/"
+    disposition: top_signal
+  - label: "TechCrunch: OpenAI launches its new family of models with GPT-5.6"
+    url: "https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/"
+    disposition: top_signal
+  - label: "Axios: OpenAI releases GPT-5.6 and ChatGPT Work tool"
+    url: "https://www.axios.com/2026/07/09/ai-openai-gpt-release"
+    disposition: top_signal
+  - label: "Anthropic: Claude Cowork on web and mobile"
+    url: "https://claude.com/blog/cowork-web-mobile"
+    disposition: top_signal
+  - label: "OpenAI Agents SDK releases v0.18.1-v0.18.2"
+    url: "https://github.com/openai/openai-agents-python/releases"
+    disposition: top_signal
+  - label: "LangChain: Tuning the harness, not the model"
+    url: "https://www.langchain.com/blog/tuning-the-harness-not-the-model-nemotron-playbook"
+    disposition: top_signal
+  - label: "LangChain: Improving Agents is a Data Mining Problem"
+    url: "https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem"
+    disposition: top_signal
+  - label: "LangChain: Introducing OpenWiki Brains"
+    url: "https://www.langchain.com/blog/introducing-openwiki-brains"
+    disposition: top_signal
+  - label: "arXiv: AgentRedBench"
+    url: "https://arxiv.org/abs/2606.02240"
+    disposition: top_signal
+  - label: "asgeirtj/system_prompts_leaks commits"
+    url: "https://github.com/asgeirtj/system_prompts_leaks/commits/main"
+    disposition: top_signal
+  - label: "x1xhlol/system-prompts-and-models-of-ai-tools commits"
+    url: "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/commits/main"
+    disposition: top_signal
+  - label: "Simon Willison: sqlite-utils 4.0"
+    url: "https://simonwillison.net/2026/Jul/7/sqlite-utils-4/"
+    disposition: top_signal
+  - label: "Anthropic News"
+    url: "https://www.anthropic.com/news"
+    disposition: context
+  - label: "Addy Osmani: The Agent-Era Career"
+    url: "https://addyosmani.com/blog/agent-era-career/"
+    disposition: archive
+  - label: "Google Developers Blog"
+    url: "https://developers.googleblog.com/"
+    disposition: scout
+  - label: "LangGraph releases"
+    url: "https://github.com/langchain-ai/langgraph/releases"
+    disposition: scout
+  - label: "LlamaIndex Blog"
+    url: "https://www.llamaindex.ai/blog"
+    disposition: context
+failures:
+  - label: "OpenAI GPT-5.6 page direct fetch"
+    url: "https://openai.com/index/gpt-5-6/"
+    error: "HTTP 403 for automated fetch; claims verified via TechCrunch and Axios coverage"
+  - label: "Reuters ChatGPT Work report"
+    url: "https://www.reuters.com/business/openai-launches-chatgpt-work-2026-07-09/"
+    error: "fetch blocked; launch verified via secondary coverage"
+  - label: "MCP specification changelog"
+    url: "https://modelcontextprotocol.io/specification/changelog"
+    error: "HTTP 404; no spec change confirmed this window"
+  - label: "AWS AgentCore doc history"
+    url: "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/doc-history.html"
+    error: "page rendered without content in web fetch; no update confirmed this window"

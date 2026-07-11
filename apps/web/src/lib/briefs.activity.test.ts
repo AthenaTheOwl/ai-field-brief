@@ -57,6 +57,9 @@ describe("brief activity summary", () => {
     expect(activity).toContain(
       `${latest.meta.sweep.succeeded} of ${latest.meta.sweep.attempted} sources swept`,
     );
-    expect(activity).not.toContain("0 sources");
+    // Word-boundary match: a literal `toContain("0 sources")` false-positives
+    // on legitimate counts like "16 of 20 sources swept" (W29). The guard is
+    // for a standalone zero, so anchor it against a preceding digit.
+    expect(activity).not.toMatch(/(?<!\d)0 sources/);
   });
 });
