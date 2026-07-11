@@ -2,6 +2,23 @@ import { describe, expect, it } from "vitest";
 
 import { listBriefs } from "./briefs";
 
+function isoWeekFor(dateText: string): string {
+  const parts = dateText.split("-").map(Number);
+  if (parts.length !== 3 || parts.some((part) => !Number.isInteger(part))) {
+    throw new Error(`invalid ISO date: ${dateText}`);
+  }
+  const [year, month, day] = parts as [number, number, number];
+  const date = new Date(Date.UTC(year, month - 1, day));
+  const weekday = (date.getUTCDay() + 6) % 7;
+  date.setUTCDate(date.getUTCDate() - weekday + 3);
+  const isoYear = date.getUTCFullYear();
+  const firstThursday = new Date(Date.UTC(isoYear, 0, 4));
+  const firstWeekday = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstWeekday + 3);
+  const week = 1 + Math.round((date.getTime() - firstThursday.getTime()) / 604_800_000);
+  return `${isoYear}-W${String(week).padStart(2, "0")}`;
+}
+
 /**
  * eval-001 (promoted from 2026-W21 dream).
  *
@@ -36,6 +53,14 @@ describe("briefs meta dates survive serialization", () => {
           typeof src.last_item_date === "string" || src.last_item_date == null,
         ).toBe(true);
       }
+    }
+  });
+
+  it("folder, metadata, and through date name the same ISO week", () => {
+    for (const brief of listBriefs()) {
+      expect(brief.meta).not.toBeNull();
+      expect(brief.week).toBe(brief.meta?.iso_week);
+      expect(brief.meta?.iso_week).toBe(isoWeekFor(brief.date));
     }
   });
 });

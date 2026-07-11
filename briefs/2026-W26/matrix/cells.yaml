@@ -22,7 +22,7 @@ cells:
         quote_or_span: "agent improvement loop sections on traces, feedback, evals, and Codex handoff"
         ref_type: paraphrase
     confidence: high
-    faithfulness_status: checked
+    faithfulness_status: passed
     status: candidate
   - id: MTRX-W26-002
     matrix_run_id: MTRX-W26-loop-runtime
@@ -35,7 +35,7 @@ cells:
         quote_or_span: "definition of loop engineering as a system that finds work, delegates, checks, records state, and decides next action"
         ref_type: paraphrase
     confidence: high
-    faithfulness_status: checked
+    faithfulness_status: passed
     status: candidate
   - id: MTRX-W26-003
     matrix_run_id: MTRX-W26-loop-runtime
@@ -51,7 +51,7 @@ cells:
         quote_or_span: "gateway filtering and actor-based tool access recommendations"
         ref_type: paraphrase
     confidence: high
-    faithfulness_status: checked
+    faithfulness_status: passed
     status: candidate
   - id: MTRX-W26-004
     matrix_run_id: MTRX-W26-loop-runtime
@@ -64,5 +64,5 @@ cells:
         quote_or_span: "reported benchmark audit findings and score shifts"
         ref_type: paraphrase
     confidence: medium
-    faithfulness_status: checked
+    faithfulness_status: passed
     status: candidate

@@ -1,6 +1,16 @@
 {
   "agent_id": "claude-fable-5-registry-brief-loop",
-  "events": [],
+  "events": [
+    {
+      "timestamp": "2026-07-11T13:53:57Z",
+      "kind": "publication_label_corrected",
+      "payload": {
+        "from": "2026-W29",
+        "to": "2026-W28",
+        "reason": "2026-07-11 is in ISO week 28"
+      }
+    }
+  ],
   "finished_at": "2026-07-11T05:27:38Z",
   "gate_results_summary": {
     "all_passed": true,
@@ -32,16 +42,16 @@
     },
     {
       "kind": "meta",
-      "ref": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W29/meta.yaml"
+      "ref": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W28/meta.yaml"
     }
   ],
   "outputs": [
     {
-      "artifact_id": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W29/brief.md",
+      "artifact_id": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W28/brief.md",
       "type": "brief"
     },
     {
-      "artifact_id": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W29/meta.yaml",
+      "artifact_id": "repo://ai-field-brief@5467ced65b77601cc17740e54e503507b5779486/briefs/2026-W28/meta.yaml",
       "type": "meta"
     }
   ],

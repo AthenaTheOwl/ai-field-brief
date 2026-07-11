@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cadence gate for ai-field-brief.
 
-Three checks:
+Four checks:
 
 1. **INDEX sync** — ``briefs/INDEX.md``'s top-of-table row references the
    newest ISO-week folder under ``briefs/``.
@@ -10,6 +10,8 @@ Three checks:
 3. **Cadence freshness** — the newest brief's ``meta.yaml`` ``through_date``
    is no older than ``--cadence-window`` days (default 8), allowing one
    slip-week before the gate trips.
+4. **ISO-week truth** — the folder, ``meta.yaml`` ``iso_week``, and the ISO
+   week containing ``through_date`` agree.
 
 An optional ``briefs/SKIPS.yaml`` file documents intentional misses; any
 ISO week listed there is treated as a "covered" week for the cadence
@@ -115,6 +117,20 @@ def parse_brief_through_date(brief_folder: Path) -> dt.date | None:
     return None
 
 
+def parse_brief_iso_week(brief_folder: Path) -> str | None:
+    """Read and validate the canonical ISO-week label from meta.yaml."""
+
+    meta = brief_folder / "meta.yaml"
+    if not meta.is_file():
+        return None
+    try:
+        data = yaml.safe_load(meta.read_text(encoding="utf-8"))
+    except yaml.YAMLError:
+        return None
+    raw = data.get("iso_week") if isinstance(data, dict) else None
+    return raw if isinstance(raw, str) and re.fullmatch(r"\d{4}-W\d{2}", raw) else None
+
+
 def load_skips(path: Path) -> set[str]:
     if not path.is_file():
         return set()
@@ -177,6 +193,17 @@ def check(
             )
         )
     else:
+        iso_year, iso_week, _ = through_date.isocalendar()
+        expected_iso_week = f"{iso_year}-W{iso_week:02d}"
+        meta_iso_week = parse_brief_iso_week(briefs_root / latest_folder)
+        if latest_folder != expected_iso_week or meta_iso_week != expected_iso_week:
+            failures.append(
+                CadenceFailure(
+                    "iso-week",
+                    f"folder={latest_folder!r}, meta.iso_week={meta_iso_week!r}, "
+                    f"through_date {through_date} belongs to {expected_iso_week}",
+                )
+            )
         skips = load_skips(skips_path)
         age_days = (today - through_date).days
         if latest_folder not in skips and age_days > cadence_window_days:

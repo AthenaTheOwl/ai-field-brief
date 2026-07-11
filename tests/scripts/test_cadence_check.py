@@ -18,6 +18,7 @@ from cadence_check import (  # noqa: E402  — sys.path injection above
     CadenceFailure,
     check,
     latest_week_folder,
+    parse_brief_iso_week,
     parse_brief_through_date,
     parse_index_top_row,
     parse_readme_latest_week,
@@ -164,6 +165,21 @@ def test_missing_meta_fails(tmp_path: Path) -> None:
         today=dt.date(2026, 6, 5),
     )
     assert any(f.kind == "missing-meta" for f in failures)
+
+
+def test_future_iso_week_label_fails(tmp_path: Path) -> None:
+    briefs, index, readme = _scaffold(tmp_path, "2026-W29", "2026-07-11")
+    failures = check(
+        briefs_root=briefs,
+        index_path=index,
+        readme_path=readme,
+        skips_path=briefs / "SKIPS.yaml",
+        cadence_window_days=8,
+        today=dt.date(2026, 7, 11),
+    )
+    assert parse_brief_iso_week(briefs / "2026-W29") == "2026-W29"
+    mismatch = next(f for f in failures if f.kind == "iso-week")
+    assert "belongs to 2026-W28" in mismatch.detail
 
 
 def test_latest_week_folder_skips_rerun_suffixes(tmp_path: Path) -> None:

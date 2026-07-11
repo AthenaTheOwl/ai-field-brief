@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [The harness stopped being a secret (2026-W29)](https://ai-field-brief.vercel.app/briefs/2026-W29)
+**Latest:** [The harness stopped being a secret (2026-W28)](https://ai-field-brief.vercel.app/briefs/2026-W28)
 
 ## What it does
 
@@ -30,7 +30,7 @@ The reading underneath it is wide. A weekly sweep crosses 199 active sources
 (registry v8): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W29 issue reviewed 16 of 20 attempted and shipped
+people will notice late. The W28 late-week update reviewed 16 of 20 attempted and shipped
 seven Top signals, each with a concrete action, a confidence label, evidence
 cells, a systems map, a falsification test, and an adoption ladder.
 
