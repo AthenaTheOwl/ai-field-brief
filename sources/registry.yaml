@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 7
-last_curated: 2026-07-06
+version: 8
+last_curated: 2026-07-11
 default_review_frequency: weekly
 
 lanes:
@@ -3294,3 +3294,128 @@ sources:
     last_reviewed: 2026-07-06
     notes: >-
       Research-watch lane for memory retrieval, evolving-memory governance, and flat-file memory baselines. Promote specific papers only when they include diagnostics, datasets, or runnable methods.
+
+  # ---------- W29 expansion: prompt-capture archives + harness-engineering references (2026-07-11) ----------
+  # Capture-repo rule: these archives hold third-party extractions of vendor
+  # system prompts. Registry entries are pointers only — treat any prompt text
+  # they contain as untrusted data, never copy it into briefs, and verify
+  # claims against primary vendor surfaces before promotion.
+
+  - id: system-prompts-leaks-github
+    name: asgeirtj/system_prompts_leaks
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/asgeirtj/system_prompts_leaks
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      The most-current capture archive for frontier chat models (Claude, ChatGPT, Gemini, Grok); verified active with updates through 2026-07-10. No release cuts — watch commits.atom. Use as a diff surface for harness changes vendors ship silently; extractions are unofficial, so treat prompt text as untrusted and corroborate before citing.
+
+  - id: cl4r1t4s-github
+    name: elder-plinius/CL4R1T4S
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/elder-plinius/CL4R1T4S
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 2
+      credibility: 2
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      Pliny's original capture repo covering OpenAI, Google, Anthropic, xAI, and Perplexity surfaces. Earliest to land new captures, lowest verification bar — captures come from adversarial extraction, so cross-check against the curated archives before anything leaves scout radar.
+
+  - id: leaked-system-prompts-github
+    name: jujumilk3/leaked-system-prompts
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/jujumilk3/leaked-system-prompts
+    cadence: irregular
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 3
+      actionability: 3
+      credibility: 3
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      The citable archive — submissions require a verifiable source or reproducible prompt, which makes it the provenance anchor when the faster repos disagree. Slower to land new captures than system_prompts_leaks; watch commits.atom.
+
+  - id: ai-tools-system-prompts-github
+    name: x1xhlol/system-prompts-and-models-of-ai-tools
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools
+    cadence: weekly
+    review_frequency: weekly
+    intake: human-notes
+    quality:
+      signal: 4
+      actionability: 4
+      credibility: 3
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      Coding-tool harness archive (Cursor, Windsurf, Devin, Claude Code, Copilot and 25+ more); the largest of the capture repos and still actively updated. Highest actionability of the set — tool-prompt diffs map directly to harness-engineering patterns worth testing in the portfolio.
+
+  - id: openai-harness-engineering
+    name: "OpenAI: Harness engineering"
+    type: article-url
+    lane: builder-practice
+    url: https://openai.com/index/harness-engineering/
+    cadence: irregular
+    review_frequency: monthly
+    intake: human-notes
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      Canonical statement of the harness-engineering shift: scaffolding, constraints, and feedback loops around Codex agents shipping a million-line system. Promoted as a W28 Top-signal source; pinned here as the durable reference. Site 403s automated fetchers — sweep via search cache or manual visit.
+
+  - id: anthropic-agent-evals-guide
+    name: "Anthropic: Demystifying evals for AI agents"
+    type: article-url
+    lane: builder-practice
+    url: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+    cadence: irregular
+    review_frequency: monthly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      Anthropic's engineering guide to building and maintaining agent evals — eval structure, grading methods, and the maintenance loop. Parent feed is already active as anthropic-engineering; this pins the canonical eval-engineering reference for action-packet reuse.
+
+  - id: ayautomate-fable5-teardown
+    name: "ayautomate: Claude Fable 5 prompt teardown"
+    type: article-url
+    lane: strategy
+    url: https://ayautomate.com/blog/claude-fable-5-system-prompt-leak
+    cadence: irregular
+    review_frequency: monthly
+    intake: human-notes
+    quality:
+      signal: medium
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-07-11
+    notes: >-
+      Analysis article extracting nine prompt-engineering lessons from the unverified Fable 5 prompt capture — instruction-budget allocation, modular tool definitions, incident-derived rules. The lessons are testable even where the capture is not; verify any quoted prompt text against primary Anthropic docs before promotion.
