@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [The harness stopped being a secret (2026-W28)](https://ai-field-brief.vercel.app/briefs/2026-W28)
+**Latest:** [Green dashboards stopped counting as proof (2026-W30)](https://ai-field-brief.vercel.app/briefs/2026-W30)
 
 ## What it does
 
@@ -26,12 +26,12 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 199 active sources
-(registry v8): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 202 active sources
+(registry v9): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W28 late-week update reviewed 16 of 20 attempted and shipped
-seven Top signals, each with a concrete action, a confidence label, evidence
+people will notice late. The W30 update reviewed 15 sources and shipped six Top
+signals, each with a concrete action, a confidence label, evidence
 cells, a systems map, a falsification test, and an adoption ladder.
 
 The brief is a markdown file per ISO week under `briefs/`. The site is a Next.js
@@ -47,7 +47,7 @@ python scripts/voice_lint.py
 ```
 
 ```
-voice-lint: clean. 261 file(s) scanned.
+voice-lint: clean. 269 file(s) scanned.
 ```
 
 Every brief and every public markdown file passes this before merge. It runs in
@@ -65,8 +65,8 @@ requirement before it ships.
 
 Eight Python gates run on every push: `spec_check`, `voice_lint`,
 `validate_schemas`, `validate_registry`, `validate_decisions`, `validate_roles`,
-`validate_tools`, `validate_policies`. The repo carries 67 DEC records under
-`decisions/` — each with alternatives, evidence, and a rollback — thirteen
+`validate_tools`, `validate_policies`. The repo carries 66 validated DEC records
+under `decisions/` — each with alternatives, evidence, and a rollback — thirteen
 worked role contracts under `.agents/roles/`, a release ledger at
 `ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md` that logs
 every force-push and history rewrite. The discipline is the product as much as
@@ -81,8 +81,9 @@ the operating model documented in
 `decisions/`, and `dreams/` are first-class directories you can fork directly;
 the schemas live under `ops/schemas-cache/` and point back to athena-site.
 `promotions/` is the bridge out — PROM-* candidates name a target repo and an
-artifact type for picks mature enough to land elsewhere in the portfolio. Three
-product repos run the same control plane; the throughline is in the
+artifact type for picks mature enough to land elsewhere in the portfolio. Eight
+sibling repositories now share the active control-plane scope; the throughline
+is in the
 [control-plane charter](https://github.com/AthenaTheOwl/athena-site/blob/main/ops/control-plane.md).
 
 ## Run it locally
@@ -108,7 +109,7 @@ apps/web/          Next.js public archive (the only shipped surface)
 apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
 packages/          db, sources, pipeline, retrieval, evals (most planned)
 briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
-sources/registry.yaml   the curated 199-source list, with lane and cadence tags
+sources/registry.yaml   the curated 202-source list, with lane and cadence tags
 specs/  decisions/  dreams/  promotions/   the control-plane artifacts
 .agents/           AGENTS.md, roles, tools.yaml, policies, state machines
 scripts/           the gate scripts that run on every push

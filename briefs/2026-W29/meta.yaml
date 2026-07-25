@@ -1,0 +1,70 @@
+iso_week: 2026-W29
+through_date: 2026-07-19
+generated_at: 2026-07-25T17:30:00Z
+generated_by: codex-source-research-loop
+title: "The control boundary moved outside the model"
+volume: 12
+profile_id: builder-tpm
+registry_version: 9
+matrix_run_id: MTRX-W29-external-control
+sweep:
+  attempted: 13
+  succeeded: 13
+  failed: 0
+  skipped: 0
+source_mix:
+  primary_docs: 5
+  practitioner_posts: 1
+  academic_preprints: 3
+  internal_digest_inputs: 2
+  framework_blogs: 1
+  protocol_releases: 1
+top_signal_count: 6
+action_packet_count: 5
+scout_count: 5
+notes:
+  - "Retrospective catch-up issue for 2026-07-13 through 2026-07-19, researched and published on 2026-07-25."
+  - "Weekly Gen AI Digest and Daily Systems Brief were used as discovery inputs; every public claim was checked against a linked primary source."
+  - "Source registry v9 adds Thinking Machines Lab News, the A2A Protocol release surface, and Google AI and Economy as durable weekly inputs."
+  - "Vendor-reported and preprint results are labeled as such; none are treated as independent replication."
+sources_reviewed:
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: synthesis_input
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: scout_input
+  - label: "Thinking Machines Lab: Inkling"
+    url: "https://thinkingmachines.ai/news/introducing-inkling/"
+    disposition: top_signal
+  - label: "Google Developers: Conductor Plugin"
+    url: "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/"
+    disposition: top_signal
+  - label: "arXiv: aiAuthZ"
+    url: "https://arxiv.org/abs/2607.05518"
+    disposition: top_signal
+  - label: "arXiv: Governance Gaps in Agent Interoperability Protocols"
+    url: "https://arxiv.org/abs/2606.31498"
+    disposition: top_signal
+  - label: "Hugging Face: July 2026 security incident"
+    url: "https://huggingface.co/blog/security-incident-july-2026"
+    disposition: top_signal
+  - label: "arXiv: Copy-on-Write Scoring"
+    url: "https://arxiv.org/abs/2607.14336"
+    disposition: top_signal
+  - label: "A2A Protocol v1.0"
+    url: "https://a2a-protocol.org/latest/announcing-1.0/"
+    disposition: scout
+  - label: "Anthropic: Evals for AI Agents"
+    url: "https://www.anthropic.com/webinars/evals-for-ai-agents-how-product-builders-get-the-most-out-of-every-new-model"
+    disposition: archive
+  - label: "TREC RAG 2026"
+    url: "https://trec-rag.github.io/"
+    disposition: scout
+  - label: "arXiv: AI Agents Do Not Fail Alone"
+    url: "https://arxiv.org/abs/2607.14275"
+    disposition: scout
+  - label: "OpenAI: state and federal AI safety"
+    url: "https://openai.com/index/advancing-ai-safety-through-state-and-federal-action/"
+    disposition: archive
+failures: []

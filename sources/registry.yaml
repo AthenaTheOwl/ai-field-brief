@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 8
-last_curated: 2026-07-11
+version: 9
+last_curated: 2026-07-25
 default_review_frequency: weekly
 
 lanes:
@@ -92,7 +92,7 @@ sources:
       actionability: medium
       credibility: high
     status: active
-    last_reviewed: 2026-05-22
+    last_reviewed: 2026-07-25
     notes: >-
       Official RSS at https://openai.com/news/rss.xml. Verify any OpenAI claim heard via podcasts/newsletters here first.
 
@@ -364,7 +364,7 @@ sources:
       actionability: high
       credibility: high
     status: active
-    last_reviewed: 2026-05-29
+    last_reviewed: 2026-07-25
     notes: >-
       Bedrock, SageMaker, Anthropic-on-AWS recipes. RSS at https://aws.amazon.com/blogs/machine-learning/feed/.
 
@@ -432,7 +432,7 @@ sources:
       actionability: high
       credibility: high
     status: active
-    last_reviewed: 2026-05-29
+    last_reviewed: 2026-07-25
     notes: >-
       Open-weight model launches, fine-tuning recipes, Transformers / Diffusers / TRL release posts. RSS at https://huggingface.co/blog/feed.xml.
 
@@ -908,7 +908,7 @@ sources:
       actionability: high
       credibility: high
     status: active
-    last_reviewed: 2026-06-30
+    last_reviewed: 2026-07-25
     notes: >-
       Official LangChain, LangGraph, and LangSmith engineering surface. Watch agent eval loops, trace-to-action workflows, memory, sandbox boundaries, subagents, and framework-comparison posts before they show up in summary newsletters.
 
@@ -993,7 +993,7 @@ sources:
       actionability: high
       credibility: high
     status: active
-    last_reviewed: 2026-06-30
+    last_reviewed: 2026-07-25
     notes: >-
       Official Google developer posts. Useful for coding-agent quality flywheels, ADK updates, Gemini CLI, and applied agent workflow guidance.
 
@@ -3419,3 +3419,55 @@ sources:
     last_reviewed: 2026-07-11
     notes: >-
       Analysis article extracting nine prompt-engineering lessons from the unverified Fable 5 prompt capture — instruction-budget allocation, modular tool definitions, incident-derived rules. The lessons are testable even where the capture is not; verify any quoted prompt text against primary Anthropic docs before promotion.
+
+  # ---------- W30 expansion: control, protocol, and task evidence (2026-07-25) ----------
+  - id: thinking-machines-news
+    name: Thinking Machines Lab News
+    type: vendor-news
+    lane: primary-source
+    url: https://thinkingmachines.ai/news/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-25
+    notes: >-
+      Primary release surface for Tinker, open-weight models, interaction systems, and model-customization research. Keep benchmark and self-training claims labeled as vendor-reported until reproduced.
+
+  - id: a2a-protocol
+    name: A2A Protocol releases and blog
+    type: protocol-release
+    lane: primary-source
+    url: https://a2a-protocol.org/latest/blog/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-25
+    notes: >-
+      Canonical release surface for the agent-to-agent protocol. Watch signed Agent Cards, identity and trust guidance, version negotiation, multi-tenancy, SDK interoperability, and the boundary with MCP.
+
+  - id: google-ai-economy
+    name: Google AI and Economy Research Program
+    type: research-program
+    lane: primary-source
+    url: https://ai.google/economy/
+    cadence: quarterly
+    review_frequency: monthly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-25
+    notes: >-
+      Primary home for ATLAS and related task-level adoption research. Treat findings as Google-product telemetry with a disclosed classification method, then compare against independent and cross-provider labor evidence.

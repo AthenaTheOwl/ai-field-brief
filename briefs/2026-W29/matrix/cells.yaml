@@ -1,0 +1,97 @@
+matrix_run_id: MTRX-W29-external-control
+generated_at: 2026-07-25T17:30:00Z
+source_items:
+  - src-w29-inkling
+  - src-w29-aiauthz
+  - src-w29-conductor
+  - src-w29-hf-incident
+  - src-w29-governance-gap
+  - src-w29-cow-scoring
+lenses:
+  - runtime
+  - security
+  - workflow
+  - governance
+  - eval
+cells:
+  - id: MTRX-W29-INKLING-RUNTIME
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-inkling
+    lens_id: runtime
+    mode: pattern
+    content: "Model customization can now sit inside the same gated agent loop as harness changes, with an eval and a checkpoint separating a proposed weight update from activation."
+    source_refs:
+      - uri: "https://thinkingmachines.ai/news/introducing-inkling/"
+        quote_or_span: "Inkling self-fine-tuning example: write objective, train through Tinker, evaluate, stage checkpoint, and relaunch"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W29-AIAUTHZ-SECURITY
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-aiauthz
+    lens_id: security
+    mode: insight
+    content: "A policy decision the agent cannot read or edit can contain a deceived model at the call boundary, provided every consequential action is forced through that boundary."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2607.05518"
+        quote_or_span: "abstract: off-host identity and argument policy, hash-chained audit log, 15-model evaluation, and bypass limitation"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W29-CONDUCTOR-WORKFLOW
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-conductor
+    lens_id: workflow
+    mode: pattern
+    content: "Versioned project contracts can travel between agent clients when the repository owns the state and the client owns only the interaction layer."
+    source_refs:
+      - uri: "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/"
+        quote_or_span: "persistent Markdown source of truth packaged with skills, rules, MCP servers, and hooks"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W29-HF-INCIDENT-SECURITY
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-hf-incident
+    lens_id: security
+    mode: risk
+    content: "Agent-scale incident response needs a pre-vetted local analysis path because attack telemetry can contain secrets and exploit text that hosted safety filters reject."
+    source_refs:
+      - uri: "https://huggingface.co/blog/security-incident-july-2026"
+        quote_or_span: "17,000-event forensic reconstruction and hosted-model guardrail lockout; local GLM 5.2 used instead"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W29-GOVERNANCE-ARCHITECTURE
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-governance-gap
+    lens_id: governance
+    mode: risk
+    content: "Interoperability protocols carry identity, discovery, messages, and tool calls, while collective decision rules, preserved dissent, and escalation still require a separate governance layer."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2606.31498"
+        quote_or_span: "five-protocol gap matrix across membership, deliberation, voting, dissent, escalation, and audit"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W29-COW-EVAL
+    matrix_run_id: MTRX-W29-external-control
+    source_item_id: src-w29-cow-scoring
+    lens_id: eval
+    mode: pattern
+    content: "Scoring final application state in an isolated copy catches unrelated writes and tool-vocabulary failures that task-completion and trajectory-only graders can miss."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2607.14336"
+        quote_or_span: "PostgreSQL copy-on-write evaluation on Plane; extra writes, vocabulary mismatch, and post-fix score deltas"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+summary:
+  cells_produced: 6
+  cells_verified_passed: 6

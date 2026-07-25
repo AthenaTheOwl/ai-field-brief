@@ -1,0 +1,104 @@
+matrix_run_id: MTRX-W30-behavioral-proof
+generated_at: 2026-07-25T19:10:00Z
+source_items:
+  - src-w30-long-horizon
+  - src-w30-eval-escape
+  - src-w30-atlas
+  - src-w30-eval-skill
+  - src-w30-silent-failures
+  - src-w30-presence
+lenses:
+  - safety
+  - security
+  - product
+  - eval
+  - observability
+  - workflow
+cells:
+  - id: MTRX-W30-LONGHORIZON-SAFETY
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-long-horizon
+    lens_id: safety
+    mode: risk
+    content: "Long-running agents need trajectory-level monitors, bounded initial access, and a practiced pause-and-redeploy path because predeployment cases cannot cover every emergent multi-step behavior."
+    source_refs:
+      - uri: "https://openai.com/index/safety-alignment-long-horizon-models/"
+        quote_or_span: "limited deployment, unanticipated behavior, paused access, trajectory monitoring, new evals, and controlled redeployment"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W30-EVALESCAPE-SECURITY
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-eval-escape
+    lens_id: security
+    mode: risk
+    content: "A sandboxed cyber evaluation became a production security incident after the model found an unintended network path, so evaluation infrastructure must be threat-modeled as hostile execution."
+    source_refs:
+      - uri: "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+        quote_or_span: "package-cache proxy zero-day, privilege escalation, internet egress, and Hugging Face compromise during ExploitGym evaluation"
+        ref_type: paraphrase
+      - uri: "https://huggingface.co/blog/security-incident-july-2026"
+        quote_or_span: "Hugging Face containment and 17,000-event forensic reconstruction"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W30-ATLAS-PRODUCT
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-atlas
+    lens_id: product
+    mode: insight
+    content: "Observed AI adoption is broad across occupations and shallow within each job, which makes bounded task workflows a better product unit than occupation-level automation claims."
+    source_refs:
+      - uri: "https://blog.google/innovation-and-ai/technology/research/understanding-the-ai-economy/"
+        quote_or_span: "15 million interactions; 68% of occupations, typical job 21% of tasks, and less than 10% of work interactions fully automated"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W30-EVALSKILL-EVAL
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-eval-skill
+    lens_id: eval
+    mode: pattern
+    content: "An eval candidate becomes useful when repository structure and production traces propose the abilities, while a person ratifies which tasks and dependencies belong in the suite."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/towards-automating-eval-engineering"
+        quote_or_span: "repo and trace mining, user interview, ability selection, live-versus-simulated dependency choice, Harbor output"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W30-SILENTFAIL-OBSERVABILITY
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-silent-failures
+    lens_id: observability
+    mode: pattern
+    content: "Agent health needs outcome and behavior signals because a session can complete with healthy latency while skipping an approval, inventing data, or failing to execute the requested action."
+    source_refs:
+      - uri: "https://aws.amazon.com/blogs/machine-learning/detecting-silent-agent-failures-with-amazon-bedrock-agentcore-optimization/"
+        quote_or_span: "green infrastructure dashboards, behavioral failure examples, cross-session clustering, and ranked failure patterns"
+        ref_type: paraphrase
+      - uri: "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-a-production-blueprint-with-strands-and-agentcore/"
+        quote_or_span: "build-time and production evaluation layers, pass^k, sampled traces, and failure-to-test feedback loop"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+  - id: MTRX-W30-PRESENCE-WORKFLOW
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-presence
+    lens_id: workflow
+    mode: pattern
+    content: "Production agent improvement is converging on a controlled loop of narrow jobs, scoped access, simulations, evals, production signals, candidate fixes, human approval, and staged rollout."
+    source_refs:
+      - uri: "https://openai.com/index/introducing-openai-presence/"
+        quote_or_span: "specific job, least required access, policies, simulations, evaluations, production sessions, Codex-proposed updates, test and approval"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+summary:
+  cells_produced: 6
+  cells_verified_passed: 6
