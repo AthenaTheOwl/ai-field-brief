@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 9
-last_curated: 2026-07-25
+version: 10
+last_curated: 2026-07-26
 default_review_frequency: weekly
 
 lanes:
@@ -61,6 +61,23 @@ sources:
     last_reviewed: 2026-05-22
     notes: >-
       Agent SDK design notes, prompt-caching, infra postmortems (recent example: the Claude Code quality-issue postmortem). Community RSS at https://raw.githubusercontent.com/conoro/anthropic-engineering-rss-feed/main/anthropic_engineering_rss.xml.
+
+  - id: claude-blog
+    name: Claude Blog
+    type: vendor-engineering
+    lane: primary-source
+    url: https://claude.com/blog
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-07-26
+    notes: >-
+      Official Claude product and builder guidance. This is a separate publishing surface from Anthropic News and Engineering; the July 24 context-engineering article appeared here.
 
   - id: anthropic-alignment
     name: Anthropic Alignment Science Blog

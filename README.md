@@ -26,11 +26,11 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 202 active sources
-(registry v9): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 203 active sources
+(registry v10): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W30 update reviewed 15 sources and shipped six Top
+people will notice late. The W30 update reviewed 16 sources and shipped seven Top
 signals, each with a concrete action, a confidence label, evidence
 cells, a systems map, a falsification test, and an adoption ladder.
 

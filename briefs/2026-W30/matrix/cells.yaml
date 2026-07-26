@@ -7,6 +7,7 @@ source_items:
   - src-w30-eval-skill
   - src-w30-silent-failures
   - src-w30-presence
+  - src-w30-context-engineering
 lenses:
   - safety
   - security
@@ -14,6 +15,7 @@ lenses:
   - eval
   - observability
   - workflow
+  - context
 cells:
   - id: MTRX-W30-LONGHORIZON-SAFETY
     matrix_run_id: MTRX-W30-behavioral-proof
@@ -99,6 +101,19 @@ cells:
     confidence: medium
     faithfulness_status: passed
     status: candidate
+  - id: MTRX-W30-CONTEXT-CONTEXT
+    matrix_run_id: MTRX-W30-behavioral-proof
+    source_item_id: src-w30-context-engineering
+    lens_id: context
+    mode: pattern
+    content: "Advanced coding models can carry less static instruction when interfaces remain typed, role-specific references load on demand, and behavioral gates decide whether a lean profile is safe to promote."
+    source_refs:
+      - uri: "https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models"
+        quote_or_span: "Anthropic reports removing over 80% of Claude Code's system prompt without measurable coding-eval loss and recommends judgment, interfaces, progressive disclosure, and lightweight repository guidance"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
 summary:
-  cells_produced: 6
-  cells_verified_passed: 6
+  cells_produced: 7
+  cells_verified_passed: 7

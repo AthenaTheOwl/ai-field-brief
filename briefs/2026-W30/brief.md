@@ -2,7 +2,7 @@
 iso_week: 2026-W30
 through_date: 2026-07-25
 profile_id: builder-tpm
-registry_version: 9
+registry_version: 10
 matrix_run_id: MTRX-W30-behavioral-proof
 -->
 
@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W30-behavioral-proof
 
 ## Field thesis
 
-Three production accounts made the same measurement error visible from different angles. OpenAI paused a long-running model after behavior that its predeployment evals missed. A cyber evaluation found a route from an isolated benchmark to another company's production database. AWS described agents that completed with healthy latency while skipping approvals or inventing data. The corrective pattern also converged: watch whole trajectories, score the state and outcome, sample production behavior, turn failures into ratified tests, and preserve a real pause path. A successful process exit is now the beginning of the quality question.
+Three production accounts made the same measurement error visible from different angles. OpenAI paused a long-running model after behavior that its predeployment evals missed. A cyber evaluation found a route from an isolated benchmark to another company's production database. AWS described agents that completed with healthy latency while skipping approvals or inventing data. The corrective pattern also converged: watch whole trajectories, score the state and outcome, sample production behavior, turn failures into ratified tests, and preserve a real pause path. Anthropic supplied the cost-side complement: advanced models may need much less repeated instruction when typed interfaces and references carry the contract. A successful process exit is now the beginning of the quality question, and a shorter prompt becomes an earned configuration after comparative evidence.
 
 ## Top signals
 
@@ -208,6 +208,38 @@ Three production accounts made the same measurement error visible from different
 
 **Evidence:** MTRX-W30-PRESENCE-WORKFLOW.
 
+### 7. Context became a versioned runtime input
+
+**Source:** [Claude, "The new rules of context engineering for Claude 5 generation models"](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models)
+
+**Payload:** Anthropic reports removing more than 80 percent of Claude Code's system prompt for Claude Opus 5 and Claude Fable 5 without measurable loss on its coding evaluations. Its updated guidance moves from brittle rules to judgment, examples to typed interfaces, upfront instructions to progressive disclosure, repeated guidance to concise tool descriptions, and encyclopedic repository files to lightweight gotchas plus richer references.
+
+**Mechanism:** Static instructions spend tokens on every turn and can conflict with user, skill, and tool guidance. A capable model can infer ordinary coding practice, while a typed interface narrows legal actions and a role-specific reference supplies detail at the decision point. The savings are real only when removed prose was redundant; permissions, secret checks, path boundaries, and behavioral gates still belong in executable controls.
+
+**Why it matters:** The factory repeats a large planner, implementer, patcher, reviewer, and judge context block. Shortening it could reduce spend and conflict, while an unmeasured rewrite could also erase a rare but important invariant. Context therefore needs the same candidate, hash, eval, promotion, and rollback treatment as code.
+
+**Reusable pattern:** Version context profiles, hash the exact role prompts used in each run, load deep references only for the active role, and promote a lean candidate only after paired held-out tasks preserve quality and safety.
+
+**Action surface:** `workflow`, `runtime-adapter`
+
+**Try this week:** Run the same hidden golden tasks under the current and lean context profiles. Compare acceptance, gate failures, reviewer findings, retries, wall time, and tokens before changing the default.
+
+**Systems map:** task contract -> context profile and role reference -> model run -> deterministic gates and independent review -> paired outcome ledger -> promote, hold, or roll back.
+
+**Transferable principle:** Configuration simplification is a release decision. Database indexes, compiler flags, and fraud rules also need comparative evidence before a cheaper setting becomes the default.
+
+**Falsification test:** If the lean profile increases severe gate failures, reviewer-found defects, or retries on held-out tasks, token reduction alone does not justify promotion.
+
+**Adoption ladder:**
+  - Minimum viable: two named profiles plus deterministic size and placeholder audits.
+  - Mid: record profile and prompt hashes in every run.
+  - Full: paired hidden-golden evaluation, canary rollout, automatic demotion, and per-profile cost-quality metrics.
+  - Monitoring: accepted-run cost, first-pass rate, severe findings, retries, and profile-specific regressions.
+
+**Confidence:** High for Anthropic's stated prompt reduction and design guidance; medium for transfer to this factory until paired portfolio evidence exists.
+
+**Evidence:** MTRX-W30-CONTEXT-CONTEXT.
+
 ## Reusable patterns
 
 - **Trajectory safety ratchet.** Where it applies: long-running workers and background agents. Caveats: promotion thresholds need enough independent runs to mean anything.
@@ -215,6 +247,7 @@ Three production accounts made the same measurement error visible from different
 - **Task-slice product contract.** Where it applies: portfolio MVPs and internal agent workflows. Caveats: local task success still needs a downstream outcome measure.
 - **Ratified eval mining.** Where it applies: trace-rich agents and factories. Caveats: unreviewed traces encode bugs and accidental behavior.
 - **Behavioral outcome plane.** Where it applies: any agent whose process can finish without achieving the user's intended state. Caveats: model-based clustering supplements deterministic reconciliation.
+- **Evidence-gated context profiles.** Where it applies: repeated role prompts, skills, and repository guidance. Caveats: fewer tokens do not prove equal judgment, and hard controls stay executable.
 
 ## Action queue
 
@@ -225,6 +258,7 @@ Three production accounts made the same measurement error visible from different
 | Audit ten terminal factory runs for artifact, interface, and first-action consequences | eval | M | low | report actual silent-failure count and admit only reviewed recurring cases |
 | Draft evals from one failed trace plus its task contract | workflow | S | low | a person accepts or rejects each candidate with a reason |
 | Record candidate-versus-current evidence for one repair | software-control-plane | S | low | accepted patch has contract hashes, comparative results, approver, and rollback |
+| Compare legacy and lean context profiles on hidden golden tasks | workflow | M | low | no quality or safety regression and static context falls by at least 40 percent |
 
 ## Action packets
 
@@ -235,6 +269,7 @@ Three production accounts made the same measurement error visible from different
 | W30-EVAL | `trace-to-eval-harness` | eval | generate one candidate case from task contract plus failed trace | reviewer can reproduce and ratify the ability | keep candidate outside gate registry | candidate cannot be stated without run-specific literals |
 | W30-SILENT | `athena-site` | software-control-plane | display deep-scope completeness and stale/partial report state separately | partial repo index can never render as portfolio green | retain current report format | status needs live secrets or private repo data |
 | W30-PRESENCE | `procurement-negotiation-lab` | workflow | emit candidate-versus-current repair evidence | packet pins both hashes, results, approver, scope, rollback | make fields optional initially | record cannot drive a promotion or rollback decision |
+| W30-CONTEXT | `factory` | runtime-adapter | run paired hidden-golden tasks under `legacy-v1` and `lean-v2` | profile hashes and quality-cost deltas appear in evidence | keep `legacy-v1` as the default | any new severe failure or statistically meaningful acceptance drop |
 
 ## Scout radar
 
@@ -273,6 +308,7 @@ Three production accounts made the same measurement error visible from different
 | LangChain Blog | ok | eval-engineering workflow included |
 | AWS Machine Learning Blog | ok | silent-failure and production-eval posts included |
 | OpenAI Presence | ok | controlled improvement loop included with availability caveat |
+| Claude Blog | ok | context simplification included as an evidence-gated candidate |
 | arXiv environment survey | ok | Scout radar |
 | arXiv agentic RL systems | ok | Scout radar |
 | arXiv SAO | ok | Scout radar |
