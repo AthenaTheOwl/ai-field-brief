@@ -6,6 +6,7 @@
 const CLERK_BUILD_PLACEHOLDER = "pk_test_Y2xlcmstcGxhY2Vob2xkZXItYWlmYi5jbGVyay5hY2NvdW50cy5kZXYk";
 if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
   process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = CLERK_BUILD_PLACEHOLDER;
+  process.env.AIFB_CLERK_BUILD_PLACEHOLDER = "1";
 }
 
 /** @type {import('next').NextConfig} */

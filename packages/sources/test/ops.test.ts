@@ -44,6 +44,7 @@ describe("source ops queue", () => {
   it("keeps registry type mapping deterministic", () => {
     expect(mapRegistryTypeToSourceType("vendor-news")).toBe("rss");
     expect(mapRegistryTypeToSourceType("protocol-release")).toBe("article-url");
+    expect(mapRegistryTypeToSourceType("standards-blog")).toBe("article-url");
     expect(mapRegistryTypeToSourceType("research-program")).toBe("article-url");
     expect(mapRegistryTypeToSourceType("podcast+newsletter")).toBe("podcast-rss");
     expect(mapRegistryTypeToSourceType("youtube-channel")).toBe("youtube-channel");

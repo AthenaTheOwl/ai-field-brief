@@ -38,6 +38,7 @@ export const REGISTRY_TYPE_TO_SOURCE_TYPE: Record<string, SourceType> = {
   // ingest through the article-url connector like other one-URL sources.
   "framework-docs": "article-url",
   "standards-docs": "article-url",
+  "standards-blog": "article-url",
   "protocol-release": "article-url",
   // Academic project pages and preprint search surfaces are also one-URL
   // fetches (a GitHub Pages site, an arXiv search listing) — same connector.

@@ -1,0 +1,101 @@
+iso_week: 2026-W31
+through_date: 2026-08-01
+generated_at: 2026-08-02T05:53:00Z
+generated_by: codex-enforced-reality-pass
+title: "The prompt said no internet. The wire disagreed."
+volume: 14
+profile_id: builder-tpm
+registry_version: 11
+matrix_run_id: MTRX-W31-enforced-reality
+sweep:
+  attempted: 23
+  succeeded: 19
+  failed: 4
+  skipped: 0
+source_mix:
+  primary_docs: 8
+  practitioner_posts: 0
+  academic_preprints: 5
+  internal_digest_inputs: 2
+  framework_blogs: 8
+top_signal_count: 7
+action_packet_count: 6
+scout_count: 5
+notes:
+  - "Current-week issue covering Sunday 2026-07-26 through Saturday 2026-08-01."
+  - "Weekly Gen AI Digest and Daily Systems Brief were private discovery inputs; every public claim was checked against a linked public source."
+  - "The Weekly Gen AI Digest folder has no issue after 2026-07-03. Daily Systems Brief issues through 2026-08-01 supplied the fresher private signal ledger."
+  - "Anthropic's three incidents are observations rather than a controlled model comparison; the brief preserves that limitation."
+  - "Kimi architecture and API details come from Moonshot. Benchmark and provider-fidelity numbers remain vendor-maintained until matched independent runs reproduce them."
+  - "RHB, SpecBench, GRACE, Beyond pass@1, and HORIZON are research preprints; promoted claims are scoped to their published methods and reported experiments."
+  - "Four framework surfaces did not expose current dated entries to the sweep; the failures are recorded rather than padded with older items."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: continuity_input
+  - label: "Anthropic cyber evaluation incidents"
+    url: "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+    disposition: top_signal
+  - label: "MCP 2026-07-28 release"
+    url: "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+    disposition: top_signal
+  - label: "MoonshotAI/Kimi-K3"
+    url: "https://github.com/MoonshotAI/Kimi-K3"
+    disposition: top_signal
+  - label: "MoonshotAI/Kimi-Vendor-Verifier"
+    url: "https://github.com/MoonshotAI/Kimi-Vendor-Verifier"
+    disposition: top_signal
+  - label: "Reward Hacking Benchmark"
+    url: "https://arxiv.org/abs/2605.02964"
+    disposition: top_signal
+  - label: "SpecBench"
+    url: "https://arxiv.org/abs/2605.21384"
+    disposition: top_signal
+  - label: "GRACE"
+    url: "https://arxiv.org/abs/2607.09175"
+    disposition: top_signal
+  - label: "Beyond pass@1"
+    url: "https://arxiv.org/abs/2603.29231"
+    disposition: scout
+  - label: "HORIZON"
+    url: "https://arxiv.org/abs/2604.11978"
+    disposition: scout
+  - label: "OpenAI Agents SDK releases"
+    url: "https://github.com/openai/openai-agents-python/releases"
+    disposition: reviewed_no_pick
+  - label: "LangChain Blog"
+    url: "https://www.langchain.com/blog"
+    disposition: reviewed_no_pick
+  - label: "LangGraph releases"
+    url: "https://github.com/langchain-ai/langgraph/releases"
+    disposition: reviewed_no_pick
+  - label: "Cloudflare Agents changelog"
+    url: "https://developers.cloudflare.com/changelog/product/agents/"
+    disposition: scout
+  - label: "AWS Machine Learning Blog"
+    url: "https://aws.amazon.com/blogs/machine-learning/"
+    disposition: reviewed_no_pick
+  - label: "E2B Blog"
+    url: "https://e2b.dev/blog"
+    disposition: reviewed_no_pick
+  - label: "Braintrust Blog"
+    url: "https://www.braintrust.dev/blog"
+    disposition: reviewed_no_pick
+  - label: "Langfuse changelog"
+    url: "https://langfuse.com/changelog"
+    disposition: reviewed_no_pick
+  - label: "Google ADK releases"
+    url: "https://github.com/google/adk-python/releases"
+    disposition: failed_current_index
+  - label: "Strands Agents releases"
+    url: "https://github.com/strands-agents/sdk-python/releases"
+    disposition: failed_current_index
+  - label: "LlamaIndex Blog"
+    url: "https://www.llamaindex.ai/blog"
+    disposition: failed_current_index
+  - label: "AgentOps Blog"
+    url: "https://www.agentops.ai/blog"
+    disposition: failed_current_index

@@ -65,6 +65,15 @@ def _agent_id_from_meta(meta: dict[str, Any]) -> str:
     return head or run_evidence.DEFAULT_LLM_IDENTIFIER
 
 
+def _runtime_from_agent_id(agent_id: str) -> str:
+    normalized = agent_id.strip().lower()
+    if "codex" in normalized:
+        return "codex-desktop"
+    if "claude" in normalized:
+        return "claude-code-cli"
+    return "manual-brief-playbook"
+
+
 def _started_at_from_meta(meta: dict[str, Any], brief_dir: Path) -> str:
     raw = meta.get("generated_at")
     if isinstance(raw, str) and raw.strip():
@@ -104,6 +113,14 @@ def main(argv: list[str] | None = None) -> int:
         "--llm",
         default=None,
         help="LLM identifier (default: parsed from meta.generated_by or claude-opus-4-7)",
+    )
+    parser.add_argument(
+        "--runtime",
+        default=None,
+        help=(
+            "runtime identifier recorded on the Run; defaults to an honest "
+            "value inferred from --llm or meta.generated_by"
+        ),
     )
     parser.add_argument(
         "--head-sha",
@@ -260,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
         run_id=run_id,
         spec_id=spec_id,
         agent_id=llm_identifier,
-        runtime="claude-code-cli",
+        runtime=args.runtime or _runtime_from_agent_id(llm_identifier),
         workspace_id=workspace_id,
         started_at=started_at,
         finished_at=finished_at,

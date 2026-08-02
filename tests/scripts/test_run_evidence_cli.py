@@ -117,6 +117,8 @@ def test_finalize_run_emits_validated_records(tmp_path: pathlib.Path) -> None:
             str(ROOT / "briefs" / "2026-W22"),
             "--gates",
             "voice_lint:passed,spec_check:passed,check_no_bom:passed",
+            "--llm",
+            "codex-smoke",
             "--event-ledger-dir",
             str(ledger_dir),
             "--run-records-dir",
@@ -132,6 +134,8 @@ def test_finalize_run_emits_validated_records(tmp_path: pathlib.Path) -> None:
     assert len(ledgers) == 1
     run = json.loads(records[0].read_text(encoding="utf-8"))
     assert run["status"] == "done"
+    assert run["agent_id"] == "codex-smoke"
+    assert run["runtime"] == "codex-desktop"
     assert run["gate_results_summary"]["gates_passed"] == [
         "voice_lint",
         "spec_check",

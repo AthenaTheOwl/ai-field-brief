@@ -1,0 +1,122 @@
+matrix_run_id: MTRX-W31-enforced-reality
+generated_at: 2026-08-02T05:53:00Z
+source_items:
+  - src-w31-anthropic-incidents
+  - src-w31-mcp-state
+  - src-w31-mcp-tasks
+  - src-w31-kimi-k3
+  - src-w31-kimi-verifier
+  - src-w31-hidden-consequences
+  - src-w31-grace
+lenses:
+  - security
+  - architecture
+  - workflow
+  - runtime
+  - eval
+  - integrity
+  - learning
+cells:
+  - id: MTRX-W31-ANTHROPIC-BOUNDARY
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-anthropic-incidents
+    lens_id: security
+    mode: risk
+    content: "Three cyber-evaluation incidents began with a false environmental premise: prompts said internet access was absent while the evaluation containers could reach real systems, so containment must be measured and enforced outside the model's instructions."
+    source_refs:
+      - uri: "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+        quote_or_span: "141,006 reviewed runs; three incidents; prompts described a simulation without internet access; containers had internet access; defense-in-depth response"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-MCP-STATE
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-mcp-state
+    lens_id: architecture
+    mode: pattern
+    content: "MCP 2026-07-28 removes protocol sessions and carries continuity through explicit application handles, making state ownership visible in typed tool arguments and allowing requests to reach any server instance."
+    source_refs:
+      - uri: "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+        quote_or_span: "initialize and Mcp-Session-Id removed; self-contained requests; explicit basket_id and browser_id handle pattern"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-MCP-TASKS
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-mcp-tasks
+    lens_id: workflow
+    mode: pattern
+    content: "The MCP Tasks extension gives long-running work an explicit handle and get, update, and cancel lifecycle while removing the globally scoped task listing that became unsafe without sessions."
+    source_refs:
+      - uri: "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension"
+        quote_or_span: "Tasks extension; task handle from tools/call; tasks/get, tasks/update, tasks/cancel; tasks/list removed"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-KIMI-EFFORT
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-kimi-k3
+    lens_id: runtime
+    mode: insight
+    content: "Kimi K3 exposes reasoning effort and publishes results under a named sampling and harness configuration, reinforcing that model, provider, effort, context policy, tools, and harness form one attributable execution profile."
+    source_refs:
+      - uri: "https://github.com/MoonshotAI/Kimi-K3"
+        quote_or_span: "2.8T total and 104B active parameters; 1M context; low, high, max reasoning effort; evaluation settings disclosed"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-PROVIDER-FIDELITY
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-kimi-verifier
+    lens_id: eval
+    mode: pattern
+    content: "Kimi Vendor Verifier treats API parameters, tool-call schemas, usage accounting, long-context behavior, and provider benchmark parity as executable preconditions to comparing model outcomes."
+    source_refs:
+      - uri: "https://github.com/MoonshotAI/Kimi-Vendor-Verifier"
+        quote_or_span: "parameter, tool-call schema, K3 feature, prompt-token, long-context, and cross-provider evaluation suites"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-HIDDEN-CONSEQUENCE
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-hidden-consequences
+    lens_id: integrity
+    mode: risk
+    content: "Reward-hacking evaluations show that visible checks can reward shortcuts, evaluator access, and isolated-feature compliance while hidden recomputation and composition reveal whether the intended system was built."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2605.02964"
+        quote_or_span: "metadata exploitation, sequence manipulation, hidden recomputation, and environmental-hardening results"
+        ref_type: paraphrase
+      - uri: "https://arxiv.org/abs/2605.21384"
+        quote_or_span: "visible feature tests versus held-out composition tests across 30 systems tasks"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W31-GRACE-LOCALITY
+    matrix_run_id: MTRX-W31-enforced-reality
+    source_item_id: src-w31-grace
+    lens_id: learning
+    mode: pattern
+    content: "GRACE represents mutable agent context as a typed semantic graph, verifies updates in affected neighborhoods, and compiles accepted deltas back into runtime text, offering a testable way to limit learning-induced context drift."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2607.09175"
+        quote_or_span: "typed semantic graph, local neighborhood validation, text reconstruction, five-replication telecom evaluation"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7

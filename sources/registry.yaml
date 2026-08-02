@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 10
-last_curated: 2026-07-26
+version: 11
+last_curated: 2026-08-02
 default_review_frequency: weekly
 
 lanes:
@@ -3488,3 +3488,55 @@ sources:
     last_reviewed: 2026-07-25
     notes: >-
       Primary home for ATLAS and related task-level adoption research. Treat findings as Google-product telemetry with a disclosed classification method, then compare against independent and cross-provider labor evidence.
+
+  # ---------- W31 expansion: protocol evolution and provider fidelity (2026-08-02) ----------
+  - id: mcp-official-blog
+    name: Model Context Protocol Blog
+    type: standards-blog
+    lane: primary-source
+    url: https://blog.modelcontextprotocol.io/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-02
+    notes: >-
+      Primary release commentary for MCP specification changes, migration guidance, extension lifecycles, authorization changes, and conformance timelines. Read alongside the normative specification and the linked SEPs.
+
+  - id: kimi-k3-github
+    name: MoonshotAI/Kimi-K3
+    type: github-releases
+    lane: primary-source
+    url: https://github.com/MoonshotAI/Kimi-K3
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-02
+    notes: >-
+      Official model card, technical report, weights, runtime parameters, and evaluation disclosure for Kimi K3. Treat benchmark tables as vendor-reported until a matched independent run reproduces them.
+
+  - id: kimi-vendor-verifier-github
+    name: MoonshotAI/Kimi-Vendor-Verifier
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/MoonshotAI/Kimi-Vendor-Verifier
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-08-02
+    notes: >-
+      Official cross-provider verification suite for Kimi API behavior, parameter constraints, tool-call schemas, token accounting, long-context behavior, and benchmark fidelity. Useful as a pattern; results remain vendor-maintained and need independent spot checks.

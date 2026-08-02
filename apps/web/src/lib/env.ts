@@ -27,6 +27,16 @@ export const webEnvSchema = z.object({
 
 export type WebEnv = z.infer<typeof webEnvSchema>;
 
+export function hasLiveClerkConfig(
+  input: Record<string, string | undefined>,
+): boolean {
+  return Boolean(
+    input.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+      input.CLERK_SECRET_KEY &&
+      input.AIFB_CLERK_BUILD_PLACEHOLDER !== "1",
+  );
+}
+
 export function parseWebEnv(input: Record<string, string | undefined>): WebEnv {
   const parsed = webEnvSchema.safeParse(input);
   if (!parsed.success) {

@@ -1,3 +1,4 @@
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -31,6 +32,13 @@ export function BriefMarkdown({ source }: BriefMarkdownProps) {
             >
               {children}
             </a>
+          ),
+          table: ({ children, ...rest }) => (
+            <div className="my-8 max-w-full overflow-x-auto">
+              <table className="min-w-[44rem]" {...rest}>
+                {children}
+              </table>
+            </div>
           ),
         }}
       >

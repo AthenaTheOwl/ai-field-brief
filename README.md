@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Green dashboards stopped counting as proof (2026-W30)](https://ai-field-brief.vercel.app/briefs/2026-W30)
+**Latest:** [The prompt said no internet. The wire disagreed. (2026-W31)](https://ai-field-brief.vercel.app/briefs/2026-W31)
 
 ## What it does
 
@@ -26,11 +26,11 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 203 active sources
-(registry v10): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 206 active sources
+(registry v11): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W30 update reviewed 16 sources and shipped seven Top
+people will notice late. The W31 update reviewed 19 of 23 attempted sources and shipped seven Top
 signals, each with a concrete action, a confidence label, evidence
 cells, a systems map, a falsification test, and an adoption ladder.
 
@@ -47,7 +47,7 @@ python scripts/voice_lint.py
 ```
 
 ```
-voice-lint: clean. 269 file(s) scanned.
+voice-lint: clean. 270 file(s) scanned.
 ```
 
 Every brief and every public markdown file passes this before merge. It runs in
@@ -109,7 +109,7 @@ apps/web/          Next.js public archive (the only shipped surface)
 apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
 packages/          db, sources, pipeline, retrieval, evals (most planned)
 briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
-sources/registry.yaml   the curated 202-source list, with lane and cadence tags
+sources/registry.yaml   the curated 206-source list, with lane and cadence tags
 specs/  decisions/  dreams/  promotions/   the control-plane artifacts
 .agents/           AGENTS.md, roles, tools.yaml, policies, state machines
 scripts/           the gate scripts that run on every push

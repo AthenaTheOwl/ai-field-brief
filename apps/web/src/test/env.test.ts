@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseWebEnv } from "@/lib/env";
+import { hasLiveClerkConfig, parseWebEnv } from "@/lib/env";
 
 /**
  * R-FND-007 smoke test for the web app.
@@ -36,5 +36,26 @@ describe("parseWebEnv", () => {
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_dummy",
       }),
     ).toThrow(/CLERK_SECRET_KEY/);
+  });
+
+  it("mounts Clerk only for a complete non-placeholder configuration", () => {
+    expect(
+      hasLiveClerkConfig({
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "configured-publishable-key",
+        CLERK_SECRET_KEY: "configured-secret",
+      }),
+    ).toBe(true);
+    expect(
+      hasLiveClerkConfig({
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "placeholder-publishable-key",
+        CLERK_SECRET_KEY: "placeholder-secret",
+        AIFB_CLERK_BUILD_PLACEHOLDER: "1",
+      }),
+    ).toBe(false);
+    expect(
+      hasLiveClerkConfig({
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "configured-publishable-key",
+      }),
+    ).toBe(false);
   });
 });

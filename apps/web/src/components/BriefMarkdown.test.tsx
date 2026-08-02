@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
-import { stripBriefChrome } from "./BriefMarkdown";
+import { BriefMarkdown, stripBriefChrome } from "./BriefMarkdown";
 
 describe("stripBriefChrome", () => {
   it("removes publish metadata comments before stripping the page-owned H1", () => {
@@ -31,5 +33,16 @@ The useful agent framework is no longer a prettier way to call a model.
 `);
 
     expect(body.trim()).toBe("## Top signals\n\n### 1. First signal");
+  });
+
+  it("contains wide tables in a horizontal scroll region", () => {
+    const html = renderToStaticMarkup(
+      createElement(BriefMarkdown, {
+        source: "| Signal | Action |\n|---|---|\n| One | Test it |",
+      }),
+    );
+
+    expect(html).toContain('class="my-8 max-w-full overflow-x-auto"');
+    expect(html).toContain('class="min-w-[44rem]"');
   });
 });
