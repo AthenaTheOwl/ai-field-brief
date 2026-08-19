@@ -1,0 +1,75 @@
+iso_week: 2026-W32
+through_date: 2026-08-09
+generated_at: 2026-08-19T18:30:00Z
+generated_by: codex-catchup-research-pass
+title: "The tests were green. They never touched the patch."
+volume: 15
+profile_id: builder-tpm
+registry_version: 12
+matrix_run_id: MTRX-W32-runtime-seams
+sweep:
+  attempted: 24
+  succeeded: 24
+  failed: 0
+  skipped: 0
+source_mix:
+  primary_docs: 12
+  practitioner_posts: 1
+  academic_preprints: 1
+  internal_digest_inputs: 2
+  framework_blogs: 8
+top_signal_count: 7
+action_packet_count: 6
+scout_count: 5
+notes:
+  - "Catch-up issue covering Sunday 2026-08-02 through Sunday 2026-08-09; the prior issue closed on Saturday 2026-08-01."
+  - "Daily Systems Brief issues dated August 2, 3, 4, 5, and 9 were private discovery inputs. Public claims were rechecked against linked release notes, official documentation, or the cited paper."
+  - "The Weekly Gen AI Digest folder still has no issue after 2026-07-03 and was used only for continuity."
+  - "The agent-pull-request coverage paper was published before this issue's window and entered as a late-discovered empirical result; the brief labels it accordingly."
+  - "Release-note clusters are treated as evidence of recurring seam failures, not as controlled comparisons between frameworks."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: continuity_input
+  - label: "Test Coverage Analysis of Agentic Pull Requests"
+    url: "https://arxiv.org/abs/2607.18057"
+    disposition: top_signal_late_discovery
+  - label: "Claude Code releases 2.1.221-2.1.226"
+    url: "https://github.com/anthropics/claude-code/releases"
+    disposition: top_signal
+  - label: "OpenAI Agents SDK releases 0.19.3-0.19.4"
+    url: "https://github.com/openai/openai-agents-python/releases"
+    disposition: top_signal
+  - label: "Cloudflare Agents changelog"
+    url: "https://developers.cloudflare.com/changelog/product/agents/"
+    disposition: top_signal
+  - label: "Amazon Bedrock AgentCore runtime instances"
+    url: "https://aws.amazon.com/blogs/aws/runtime-instances-persistent-compute-for-production-ai-agents-on-amazon-bedrock-agentcore/"
+    disposition: top_signal
+  - label: "Strands harness SDK 1.51"
+    url: "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.51.0"
+    disposition: top_signal
+  - label: "LangGraph checkpoint 4.2"
+    url: "https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.2.0"
+    disposition: top_signal
+  - label: "Managed Deep Agents public beta"
+    url: "https://www.langchain.com/blog/introducing-managed-deep-agents"
+    disposition: scout
+  - label: "Google ADK releases"
+    url: "https://github.com/google/adk-python/releases"
+    disposition: reviewed_no_pick
+  - label: "E2B releases"
+    url: "https://github.com/e2b-dev/E2B/releases"
+    disposition: reviewed_no_pick
+  - label: "Braintrust SDK 3.27"
+    url: "https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.27.0"
+    disposition: scout
+  - label: "Langfuse releases"
+    url: "https://github.com/langfuse/langfuse/releases"
+    disposition: reviewed_no_pick
+  - label: "CrewAI releases"
+    url: "https://github.com/crewAIInc/crewAI/releases"
+    disposition: reviewed_no_pick

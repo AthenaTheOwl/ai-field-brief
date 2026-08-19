@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 11
-last_curated: 2026-08-02
+version: 12
+last_curated: 2026-08-19
 default_review_frequency: weekly
 
 lanes:
@@ -997,6 +997,23 @@ sources:
     notes: >-
       Official Google ADK docs for agents, tools, sessions, artifacts, evaluation, deployment, and multi-agent workflows. Use as the Google-side framework baseline.
 
+  - id: gh-google-adk-python
+    name: google/adk-python releases
+    type: github-releases
+    lane: primary-source
+    url: https://github.com/google/adk-python/releases
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-19
+    notes: >-
+      Canonical release notes for ADK's capability negotiation, session fidelity, tool transport, evaluation, and CLI behavior. The release feed is more precise than the documentation index for weekly change detection.
+
   - id: google-developers-ai-blog
     name: Google Developers AI Blog
     type: vendor-engineering
@@ -1047,6 +1064,23 @@ sources:
     last_reviewed: 2026-06-30
     notes: >-
       AWS-backed open-source agent framework docs. Watch model-driven tool loops, agent-to-agent patterns, MCP integration, deployment guidance, and AgentCore compatibility.
+
+  - id: gh-strands-harness-sdk
+    name: strands-agents/harness-sdk releases
+    type: github-releases
+    lane: primary-source
+    url: https://github.com/strands-agents/harness-sdk/releases
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-19
+    notes: >-
+      Canonical Python, TypeScript, and MCP release stream for Strands. Watch routing, storage, interruption, context offload, tool hooks, and cross-provider transport fixes.
 
   - id: llamaindex-blog
     name: LlamaIndex Blog

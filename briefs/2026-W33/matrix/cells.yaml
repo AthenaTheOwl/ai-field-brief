@@ -1,0 +1,119 @@
+matrix_run_id: MTRX-W33-routing-contracts
+generated_at: 2026-08-19T18:55:00Z
+source_items:
+  - src-w33-routing-economics
+  - src-w33-providerless-tests
+  - src-w33-durable-input
+  - src-w33-capability-declaration
+  - src-w33-router-interrupt
+  - src-w33-egress-identity
+  - src-w33-runtime-contract
+lenses:
+  - economics
+  - eval
+  - state
+  - architecture
+  - workflow
+  - security
+  - governance
+cells:
+  - id: MTRX-W33-ROUTING-ECONOMICS
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-routing-economics
+    lens_id: economics
+    mode: insight
+    content: "In LangChain's 145-task experiment, frontier models handled 7 percent of calls but accounted for 68.4 percent of model spend; routing reduced cost by 74 percent while losing six accuracy points, and the authors caution that one saturated workload does not establish a universal policy."
+    source_refs:
+      - uri: "https://blog.langchain.com/how-many-of-your-agents-calls-actually-need-a-frontier-model/"
+        quote_or_span: "145 tasks; frontier calls 7 percent; 68.4 percent of spend; routed arm 74 percent cheaper with a six-point accuracy loss"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-PROVIDERLESS-TESTS
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-providerless-tests
+    lens_id: eval
+    mode: pattern
+    content: "OpenAI Agents SDK 0.21 added deterministic provider-free testing surfaces while hardening RunState snapshots, MCP lifecycle isolation, sandbox path grants, retry behavior, and sensitive error handling."
+    source_refs:
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.21.0"
+        quote_or_span: "agents.testing; realtime and voice tests; RunState snapshot hardening; MCP lifecycle isolation; sandbox grants; sensitive error redaction"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-DURABLE-PENDING-INPUT
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-durable-input
+    lens_id: state
+    mode: pattern
+    content: "OpenAI Agents SDK 0.20 made pending user input durable before a resumed model call and expanded the MCP and sandbox contracts, putting interruption state ahead of continuation rather than reconstructing it afterward."
+    source_refs:
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.20.0"
+        quote_or_span: "RunState.add_input; persist pending user input before resumed model call; MCP v1 and v2; sandbox credential-exposure acknowledgements"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-CAPABILITY-DECLARATION
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-capability-declaration
+    lens_id: architecture
+    mode: pattern
+    content: "Google ADK 2.7 moved model capability knowledge into provider declarations and preserved tool media, thought signatures, server-tool parts, and parallel results through history, reducing model-name heuristics in the framework core."
+    source_refs:
+      - uri: "https://github.com/google/adk-python/releases/tag/v2.7.0"
+        quote_or_span: "model capabilities declared by provider; tool media; thought signatures; server tool parts; parallel function results"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-ROUTER-INTERRUPT
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-router-interrupt
+    lens_id: workflow
+    mode: pattern
+    content: "Strands 1.52 added a first-class ModelRouter, top-level storage configuration, and middleware-initiated interrupts, joining model choice, durable state, and pause semantics at the runtime layer."
+    source_refs:
+      - uri: "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.52.0"
+        quote_or_span: "ModelRouter; top-level storage; middleware initiated interrupts"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-EGRESS-IDENTITY
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-egress-identity
+    lens_id: security
+    mode: pattern
+    content: "E2B 2.39 added workload identity tokens that an egress proxy can inject without exposing the value to sandbox code, separating possession of a credential from permission to use it on an approved path."
+    source_refs:
+      - uri: "https://github.com/e2b-dev/E2B/releases/tag/%40e2b%2Fsdk%402.39.0"
+        quote_or_span: "workload identity token registered by name and injected into egress by proxy callback without the SDK seeing the value"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W33-RUNTIME-CONTRACT
+    matrix_run_id: MTRX-W33-routing-contracts
+    source_item_id: src-w33-runtime-contract
+    lens_id: governance
+    mode: thesis
+    content: "A new position paper argues that agent safety should be expressed as an enforceable runtime contract and supports the claim with an incident synthesis, trajectory schemas, and a false-completion audit; its evidence is useful for design, not causal proof."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2608.11274"
+        quote_or_span: "52 incident synthesis; false-completion audit; 12 trajectory schemas; runtime-contract proposal"
+        ref_type: paraphrase
+    confidence: medium
+    faithfulness_status: passed
+    status: candidate
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7

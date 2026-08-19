@@ -1,0 +1,87 @@
+iso_week: 2026-W33
+through_date: 2026-08-16
+generated_at: 2026-08-19T18:55:00Z
+generated_by: codex-catchup-research-pass
+title: "Seven percent of the calls ate sixty-eight percent of the bill."
+volume: 16
+profile_id: builder-tpm
+registry_version: 12
+matrix_run_id: MTRX-W33-routing-contracts
+sweep:
+  attempted: 26
+  succeeded: 26
+  failed: 0
+  skipped: 0
+source_mix:
+  primary_docs: 14
+  practitioner_posts: 1
+  academic_preprints: 1
+  internal_digest_inputs: 2
+  framework_blogs: 8
+top_signal_count: 7
+action_packet_count: 6
+scout_count: 6
+notes:
+  - "Catch-up issue covering Monday 2026-08-10 through Sunday 2026-08-16."
+  - "Daily Systems Brief issues dated August 11 and August 14 were private discovery inputs. Public claims were rechecked against linked release notes, official documentation, or the cited paper."
+  - "The Weekly Gen AI Digest folder still has no issue after 2026-07-03 and was used only for continuity."
+  - "LangChain's routing figures come from one controlled but saturated internal workload. The brief preserves the authors' warning that the result does not establish a universal routing policy."
+  - "The runtime-contract paper is a position paper and incident synthesis, not a controlled intervention study."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: continuity_input
+  - label: "How many of your agent's calls actually need a frontier model?"
+    url: "https://blog.langchain.com/how-many-of-your-agents-calls-actually-need-a-frontier-model/"
+    disposition: top_signal
+  - label: "OpenAI Agents SDK 0.21"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.21.0"
+    disposition: top_signal
+  - label: "OpenAI Agents SDK 0.20"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.20.0"
+    disposition: top_signal
+  - label: "Google ADK 2.7"
+    url: "https://github.com/google/adk-python/releases/tag/v2.7.0"
+    disposition: top_signal
+  - label: "Strands harness SDK 1.52"
+    url: "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.52.0"
+    disposition: top_signal
+  - label: "E2B SDK 2.39"
+    url: "https://github.com/e2b-dev/E2B/releases/tag/%40e2b%2Fsdk%402.39.0"
+    disposition: top_signal
+  - label: "Agent Safety Should Be a Runtime Contract"
+    url: "https://arxiv.org/abs/2608.11274"
+    disposition: top_signal
+  - label: "Claude Code releases 2.1.227-2.1.233"
+    url: "https://github.com/anthropics/claude-code/releases"
+    disposition: scout
+  - label: "LangGraph 1.2.11"
+    url: "https://github.com/langchain-ai/langgraph/releases/tag/1.2.11"
+    disposition: reviewed_no_pick
+  - label: "Langfuse releases 4.7-4.11"
+    url: "https://github.com/langfuse/langfuse/releases"
+    disposition: scout
+  - label: "Google ADK releases"
+    url: "https://github.com/google/adk-python/releases"
+    disposition: top_signal
+  - label: "Strands releases"
+    url: "https://github.com/strands-agents/harness-sdk/releases"
+    disposition: top_signal
+  - label: "E2B releases"
+    url: "https://github.com/e2b-dev/E2B/releases"
+    disposition: top_signal
+  - label: "Cloudflare Agents changelog"
+    url: "https://developers.cloudflare.com/changelog/product/agents/"
+    disposition: reviewed_no_pick
+  - label: "AWS AgentCore"
+    url: "https://aws.amazon.com/bedrock/agentcore/"
+    disposition: reviewed_no_pick
+  - label: "Braintrust releases"
+    url: "https://github.com/braintrustdata/braintrust-sdk-javascript/releases"
+    disposition: reviewed_no_pick
+  - label: "CrewAI releases"
+    url: "https://github.com/crewAIInc/crewAI/releases"
+    disposition: reviewed_no_pick

@@ -1,0 +1,128 @@
+matrix_run_id: MTRX-W32-runtime-seams
+generated_at: 2026-08-19T18:30:00Z
+source_items:
+  - src-w32-agent-pr-coverage
+  - src-w32-claude-code-boundaries
+  - src-w32-openai-lifecycle
+  - src-w32-cloudflare-computer
+  - src-w32-agentcore-runtime
+  - src-w32-strands-state
+  - src-w32-langgraph-expiry
+lenses:
+  - eval
+  - security
+  - workflow
+  - architecture
+  - runtime
+  - state
+  - reliability
+cells:
+  - id: MTRX-W32-CHANGED-LINES
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-agent-pr-coverage
+    lens_id: eval
+    mode: risk
+    content: "A study of 4,882 agent-authored pull requests found that existing tests executed only 27 percent of changed Python lines and executed none of the changed lines in 64.8 percent of Python pull requests, so suite-level green status is weak evidence for an agent patch."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2607.18057"
+        quote_or_span: "4,882 pull requests; 27.0 percent Python changed-line coverage; 64.8 percent with zero existing-test coverage; error handling most frequently missed"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-BOUNDARY-REGRESSION
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-claude-code-boundaries
+    lens_id: security
+    mode: risk
+    content: "Claude Code patch releases closed paths where isolated worktree sessions could still run destructive Git commands against the main checkout and where background workflows or crafted shell text could escape intended permission checks."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.222"
+        quote_or_span: "worktree isolation applied to Bash and file edits; PreToolUse restrictions preserved in background tasks"
+        ref_type: paraphrase
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.223"
+        quote_or_span: "hidden command, invisible Unicode, workflow sandbox, and bypass-permission fixes"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-LIFECYCLE-ORDER
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-openai-lifecycle
+    lens_id: workflow
+    mode: pattern
+    content: "OpenAI Agents SDK 0.19.3 and 0.19.4 concentrated on ordering and terminal-state defects: guardrail results across streaming and aborts, resumed approvals, sibling cancellation, deferred session persistence, span failure status, and sandbox output budgets."
+    source_refs:
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.19.3"
+        quote_or_span: "guardrail reporting, resumed tool approval, cancellation synchronization, tool ordering, max-turn persistence"
+        ref_type: paraphrase
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.19.4"
+        quote_or_span: "deferred session saves, concurrent sibling cancellation, failed-span tracing, token output budgets"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-COMPUTE-LADDER
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-cloudflare-computer
+    lens_id: architecture
+    mode: pattern
+    content: "Cloudflare's computer preview gives each agent a SQLite-backed virtual filesystem and chooses between isolates and Linux containers, making compute selection and persisted files explicit runtime decisions."
+    source_refs:
+      - uri: "https://developers.cloudflare.com/changelog/product/agents/"
+        quote_or_span: "August 3 computer preview; SQLite-backed virtual filesystem; dynamic isolate and container orchestration; file, shell, and Git operations"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-PERSISTENT-RUNTIME
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-agentcore-runtime
+    lens_id: runtime
+    mode: insight
+    content: "AgentCore runtime instances extend managed agent sessions from the microVM path's eight-hour ceiling to shared, persistent EC2-backed sessions lasting up to fourteen days, with stop and restart semantics and optional durable storage."
+    source_refs:
+      - uri: "https://aws.amazon.com/blogs/aws/runtime-instances-persistent-compute-for-production-ai-agents-on-amazon-bedrock-agentcore/"
+        quote_or_span: "persistent EC2 runtime; shared sessions up to 14 days; GPU support; stop and restart; EBS and AgentCore Memory"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-INTERRUPTIBLE-STATE
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-strands-state
+    lens_id: state
+    mode: pattern
+    content: "Strands 1.51 added snapshot sessions, before-tools and after-tools batch hooks, risk-classified human intervention, selective context offload, and A2A interrupt round trips, placing policy and recovery at named lifecycle seams."
+    source_refs:
+      - uri: "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.51.0"
+        quote_or_span: "snapshot session manager; batch tool hooks; classifier-based intervention; selective context offload; A2A interrupt round trip"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+
+  - id: MTRX-W32-STATE-EXPIRY
+    matrix_run_id: MTRX-W32-runtime-seams
+    source_item_id: src-w32-langgraph-expiry
+    lens_id: reliability
+    mode: pattern
+    content: "LangGraph checkpoint 4.2 added opt-in expired-row omission, repaired delta-history traversal, and ran one conformance suite against SQLite and Postgres, treating state expiry and backend parity as one contract."
+    source_refs:
+      - uri: "https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.2.0"
+        quote_or_span: "omit_expired; collect writes at plain-value seed; shared checkpoint conformance work"
+        ref_type: paraphrase
+      - uri: "https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.2"
+        quote_or_span: "plain-value seed traversal and SQLite/Postgres conformance suite"
+        ref_type: paraphrase
+    confidence: high
+    faithfulness_status: passed
+    status: candidate
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
