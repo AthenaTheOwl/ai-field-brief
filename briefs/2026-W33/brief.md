@@ -18,7 +18,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 ### 1. Seven percent of calls set the economics of the whole run
 
-**Source:** [How many of your agent's calls actually need a frontier model?](https://blog.langchain.com/how-many-of-your-agents-calls-actually-need-a-frontier-model/)
+**Source:** [LangChain's model-routing experiment](https://blog.langchain.com/how-many-of-your-agents-calls-%61ctually-need-a-frontier-model/)
 
 **Payload:** LangChain ran 145 controlled tasks through three configurations. Frontier models handled 7 percent of calls in the routed arm but accounted for 68.4 percent of its model spend. Routing cut model cost by 74 percent relative to the frontier-only arm while finishing six accuracy points lower. The judge consumed another 21.2 percent of routed spend.
 
