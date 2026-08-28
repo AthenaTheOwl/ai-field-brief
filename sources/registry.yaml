@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 12
-last_curated: 2026-08-19
+version: 13
+last_curated: 2026-08-27
 default_review_frequency: weekly
 
 lanes:
@@ -3574,3 +3574,106 @@ sources:
     last_reviewed: 2026-08-02
     notes: >-
       Official cross-provider verification suite for Kimi API behavior, parameter constraints, tool-call schemas, token accounting, long-context behavior, and benchmark fidelity. Useful as a pattern; results remain vendor-maintained and need independent spot checks.
+
+  # ---------- W34 expansion: repeated-run reliability and sequence control (2026-08-27) ----------
+  - id: aws-open-source-blog
+    name: AWS Open Source Blog
+    type: vendor-engineering
+    lane: primary-source
+    url: https://aws.amazon.com/blogs/opensource/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      Primary engineering surface for open-source agent controls including Dogwood and Trusted Remote Execution. Treat AgentCore product claims separately from the open specifications and reference implementations.
+
+  - id: deepseek-harness-github
+    name: deepseek-ai/deepseek-harness
+    type: github-releases
+    lane: frontier-scout
+    url: https://github.com/deepseek-ai/deepseek-harness
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      Official developer-preview harness and architecture notes. Watch the typed event taxonomy, append-only session log, persistence seam, plugin boundaries, and whether the implementation matures beyond a fast-moving preview.
+
+  - id: microsoft-agent-lightning-github
+    name: microsoft/agent-lightning
+    type: github-releases
+    lane: primary-source
+    url: https://github.com/microsoft/agent-lightning
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      Official code and reproducibility surface for harnessed agentic reinforcement learning. The deploy-time harness becomes part of the training unit; keep reported benchmark gains labeled until independently reproduced.
+
+  - id: thinkingbox-paper
+    name: Thinkingbox and WorkflowArena
+    type: academic-paper
+    lane: primary-source
+    url: https://arxiv.org/abs/2608.19741
+    cadence: one-off
+    review_frequency: quarterly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      Stateful business-workflow benchmark with terminal-state and extra-effect grading across repeated executions. The pass-at-one versus pass-to-twenty gap is a useful reliability design; benchmark findings remain a preprint result.
+
+  - id: context-compression-reliability-papers
+    name: Context compression reliability papers
+    type: academic-paper-series
+    lane: frontier-scout
+    url: https://arxiv.org/abs/2608.06503
+    cadence: irregular
+    review_frequency: monthly
+    intake: human-notes
+    quality:
+      signal: high
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      TRACE is the anchor for paired continuation tests around compaction boundaries; read with Control Under Compression (arXiv:2608.01056). Both are early studies, so qualify each context profile independently instead of adopting a universal compression ratio.
+
+  - id: cloudflare-agents-changelog
+    name: Cloudflare Agents changelog
+    type: vendor-changelog
+    lane: primary-source
+    url: https://developers.cloudflare.com/changelog/product/agents/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-08-27
+    notes: >-
+      Official release surface for Cloudflare Agents runtime changes. Keep it separate from the broader Agents documentation so release yield and documentation yield can be measured independently.

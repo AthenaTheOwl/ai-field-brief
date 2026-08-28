@@ -17,6 +17,7 @@ export const REGISTRY_TYPE_TO_SOURCE_TYPE: Record<string, SourceType> = {
   "vendor-news": "rss",
   "vendor-engineering": "rss",
   "vendor-research": "rss",
+  "vendor-changelog": "rss",
   "research-lab-blog": "blog-rss",
   blog: "rss",
   "blog-rss": "blog-rss",
@@ -40,9 +41,11 @@ export const REGISTRY_TYPE_TO_SOURCE_TYPE: Record<string, SourceType> = {
   "standards-docs": "article-url",
   "standards-blog": "article-url",
   "protocol-release": "article-url",
-  // Academic project pages and preprint search surfaces are also one-URL
-  // fetches (a GitHub Pages site, an arXiv search listing) — same connector.
+  // Academic project pages, papers, and preprint search surfaces are also
+  // one-URL fetches (a project site, an arXiv abstract, or a search listing).
   "academic-project": "article-url",
+  "academic-paper": "article-url",
+  "academic-paper-series": "article-url",
   "academic-preprint": "article-url",
   "research-program": "article-url",
 };

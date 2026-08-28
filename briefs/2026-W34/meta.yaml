@@ -1,0 +1,84 @@
+iso_week: 2026-W34
+through_date: 2026-08-23
+generated_at: 2026-08-27T18:00:00Z
+generated_by: codex-w34-reliability-research-pass
+title: "Sixty-five percent became twenty-five when the workflow ran twenty times."
+volume: 17
+profile_id: builder-tpm
+registry_version: 13
+matrix_run_id: MTRX-W34-repeatability-control
+sweep:
+  attempted: 18
+  succeeded: 18
+  failed: 0
+  skipped: 0
+source_mix:
+  primary_docs: 6
+  practitioner_posts: 0
+  academic_preprints: 4
+  internal_digest_inputs: 2
+  framework_blogs: 6
+top_signal_count: 7
+action_packet_count: 6
+scout_count: 6
+notes:
+  - "Catch-up issue covering Monday 2026-08-17 through Sunday 2026-08-23."
+  - "Weekly Gen AI Digest issues dated August 19 and August 22 and Daily Systems Brief issues dated August 17, 19, 22, and 23 were private discovery inputs. Public claims were independently rechecked and the private prose was not copied."
+  - "TRACE, Control Under Compression, Dogwood, and DeepSeek Harness predate the issue window but were admitted as previously uncovered carryover because the current private digests connected them to the repeated-run reliability thesis."
+  - "Thinkingbox, Agent Lightning, TRACE, and Control Under Compression are preprints. Their measured results remain bound to the published benchmark and setup."
+  - "The OpenAI disclosures describe controlled cyber evaluation and frontier research environments, not ordinary public-model behavior."
+sources_reviewed:
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: synthesis_input
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "One Success Isn't Reliability: Thinkingbox"
+    url: "https://arxiv.org/abs/2608.19741"
+    disposition: top_signal
+  - label: "Agent Lightning v1.0"
+    url: "https://arxiv.org/abs/2608.17528"
+    disposition: top_signal
+  - label: "microsoft/agent-lightning"
+    url: "https://github.com/microsoft/agent-lightning"
+    disposition: scout
+  - label: "Introducing Dogwood"
+    url: "https://aws.amazon.com/blogs/opensource/introducing-dogwood-runtime-verification-for-ai-agents/"
+    disposition: top_signal
+  - label: "TRACE context compression"
+    url: "https://arxiv.org/abs/2608.06503"
+    disposition: top_signal
+  - label: "Control Under Compression"
+    url: "https://arxiv.org/abs/2608.01056"
+    disposition: top_signal
+  - label: "DeepSeek Harness architecture"
+    url: "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md"
+    disposition: top_signal
+  - label: "DeepSeek Harness persistence"
+    url: "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/persistence.md"
+    disposition: scout
+  - label: "The new MCP roadmap"
+    url: "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/"
+    disposition: top_signal
+  - label: "Pacing model development in an era of cyber-critical capabilities"
+    url: "https://openai.com/index/pacing-model-development-cyber-capabilities/"
+    disposition: top_signal
+  - label: "Third-party cyber evaluations involving OpenAI models"
+    url: "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/"
+    disposition: top_signal
+  - label: "Anthropic harness design for long-running apps"
+    url: "https://www.anthropic.com/engineering/harness-design-long-running-apps"
+    disposition: reviewed_no_pick
+  - label: "Anthropic managed agents"
+    url: "https://www.anthropic.com/engineering/managed-agents"
+    disposition: reviewed_no_pick
+  - label: "OpenAI Agents SDK releases"
+    url: "https://github.com/openai/openai-agents-python/releases"
+    disposition: reviewed_no_pick
+  - label: "Google ADK releases"
+    url: "https://github.com/google/adk-python/releases"
+    disposition: reviewed_no_pick
+  - label: "Strands harness SDK releases"
+    url: "https://github.com/strands-agents/harness-sdk/releases"
+    disposition: reviewed_no_pick

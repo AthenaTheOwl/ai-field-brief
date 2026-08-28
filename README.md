@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Seven percent of the calls ate sixty-eight percent of the bill. (2026-W33)](https://ai-field-brief.vercel.app/briefs/2026-W33)
+**Latest:** [Sixty-five percent became twenty-five when the workflow ran twenty times. (2026-W34)](https://ai-field-brief.vercel.app/briefs/2026-W34)
 
 ## What it does
 
