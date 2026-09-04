@@ -96,3 +96,46 @@ Each entry has the shape:
   - pnpm --filter @aifieldbrief/web build — passes
   - vercel deploy — succeeds against https://ai-field-brief.vercel.app/
   - manual smoke — landing page renders, brief reader renders
+
+## 2026-05-23 to 2026-09-04 — gap in this ledger
+
+- scope: this ledger stopped being written after the 2026-05-22 deploy
+  entries, while briefs 2026-W22 through 2026-W34 and their supporting
+  control-plane changes shipped to main. Those commits are recoverable
+  from `git log` and from `ops/run-records/`, which stayed current
+  throughout, but they were never summarized here.
+- proof:
+  - `git log --oneline bf33821` — the unrecorded range
+  - `ops/run-records/` — 22 run records covering the same period
+- note: recorded as a gap instead of backfilled. Backfilling 13 issues
+  from memory would produce a ledger that reads complete and is not.
+  Entries resume below.
+
+## 2026-09-04 — 0a2a80a chore: normalize matrix cell vocabulary to the cell schema
+
+- scope: 172 enum substitutions across the eight cell files that had
+  drifted from `schemas/matrix_cell.schema.json` since 2026-W24, plus
+  `scripts/validate_matrix_cells.py` to hold the vocabulary. Cell
+  content, source refs, confidence, and faithfulness status untouched.
+- proof:
+  - `python scripts/validate_matrix_cells.py` — OK over 6,184 cells in
+    17 files
+  - negative control — reintroducing one drifted enum value reproduces a
+    single named violation
+  - `python -m pytest tests/` — 186 passed, 10 skipped
+  - DEC-MTRX-009, R-MTRX-019
+
+## 2026-09-04 — b6cd864 brief: publish W35 and W36 field briefs
+
+- scope: the two missing weekly issues (vol. 18 and vol. 19), source
+  registry to v14 at 222 active, action-surface taxonomy to v2, and
+  `scripts/validate_brief_fields.py` enforcing the Top-signal field
+  contract that W32 through W34 had silently dropped.
+- proof:
+  - fifteen repository gates — all green, including the two added here
+  - `python -m pytest tests/` — 186 passed, 10 skipped
+  - `ops/run-records/run-4483229ed9b8.json` (W35) and
+    `ops/run-records/run-69b6fe82a9cf.json` (W36) — run evidence with
+    eleven gate results each
+  - DEC-SRC-022, DEC-PUB-012, DEC-PUB-013
+
