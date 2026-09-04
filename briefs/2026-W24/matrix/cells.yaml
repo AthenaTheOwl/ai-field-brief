@@ -19,7 +19,7 @@ cells:
   source_refs:
   - uri: https://www.anthropic.com/news/fable-mythos-access
     quote_or_span: Anthropic News + Simon Willison
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -33,7 +33,7 @@ cells:
   source_refs:
   - uri: https://www.anthropic.com/news/fable-mythos-access
     quote_or_span: Anthropic News + Simon Willison
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -47,7 +47,7 @@ cells:
   source_refs:
   - uri: https://www.anthropic.com/news/fable-mythos-access
     quote_or_span: Anthropic News + Simon Willison
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -60,7 +60,7 @@ cells:
   source_refs:
   - uri: https://www.anthropic.com/news/fable-mythos-access
     quote_or_span: Anthropic News + Simon Willison
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -74,7 +74,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
     quote_or_span: Simon Willison's Weblog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -88,7 +88,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
     quote_or_span: Simon Willison's Weblog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -102,7 +102,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
     quote_or_span: Simon Willison's Weblog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -115,7 +115,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
     quote_or_span: Simon Willison's Weblog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -129,7 +129,7 @@ cells:
   source_refs:
   - uri: https://openai.com/index/openai-to-acquire-ona/
     quote_or_span: OpenAI Index
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -143,7 +143,7 @@ cells:
   source_refs:
   - uri: https://openai.com/index/openai-to-acquire-ona/
     quote_or_span: OpenAI Index
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -157,7 +157,7 @@ cells:
   source_refs:
   - uri: https://openai.com/index/openai-to-acquire-ona/
     quote_or_span: OpenAI Index
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -170,7 +170,7 @@ cells:
   source_refs:
   - uri: https://openai.com/index/openai-to-acquire-ona/
     quote_or_span: OpenAI Index
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -185,7 +185,7 @@ cells:
   source_refs:
   - uri: https://huggingface.co/blog/allenai/olmo-eval
     quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -199,7 +199,7 @@ cells:
   source_refs:
   - uri: https://huggingface.co/blog/allenai/olmo-eval
     quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -213,7 +213,7 @@ cells:
   source_refs:
   - uri: https://huggingface.co/blog/allenai/olmo-eval
     quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -226,7 +226,7 @@ cells:
   source_refs:
   - uri: https://huggingface.co/blog/allenai/olmo-eval
     quote_or_span: Hugging Face Blog (AI2) + Hugging Face Blog (OpenEnv) + Google Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -241,7 +241,7 @@ cells:
   source_refs:
   - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
     quote_or_span: UK AI Security Institute + Anthropic Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -255,7 +255,7 @@ cells:
   source_refs:
   - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
     quote_or_span: UK AI Security Institute + Anthropic Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -269,7 +269,7 @@ cells:
   source_refs:
   - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
     quote_or_span: UK AI Security Institute + Anthropic Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -282,7 +282,7 @@ cells:
   source_refs:
   - uri: https://www.aisi.gov.uk/work/realitytest-do-ai-systems-disclose-their-identity-when-asked
     quote_or_span: UK AI Security Institute + Anthropic Research
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -296,7 +296,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
     quote_or_span: Simon Willison's Weblog + Cursor Changelog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -310,7 +310,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
     quote_or_span: Simon Willison's Weblog + Cursor Changelog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -324,7 +324,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
     quote_or_span: Simon Willison's Weblog + Cursor Changelog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -337,7 +337,7 @@ cells:
   source_refs:
   - uri: https://simonwillison.net/2026/Jun/10/datasette-agent/
     quote_or_span: Simon Willison's Weblog + Cursor Changelog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -352,7 +352,7 @@ cells:
   source_refs:
   - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
     quote_or_span: Dwarkesh Patel + LangChain Blog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -366,7 +366,7 @@ cells:
   source_refs:
   - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
     quote_or_span: Dwarkesh Patel + LangChain Blog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -380,7 +380,7 @@ cells:
   source_refs:
   - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
     quote_or_span: Dwarkesh Patel + LangChain Blog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified
@@ -393,7 +393,7 @@ cells:
   source_refs:
   - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
     quote_or_span: Dwarkesh Patel + LangChain Blog
-    ref_type: link
+    ref_type: url
   confidence: high
   faithfulness_status: passed
   status: verified

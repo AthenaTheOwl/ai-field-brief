@@ -21,105 +21,105 @@ cells:
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-thinkingbox
     lens_id: eval
-    mode: insight
+    mode: interpretive
     content: "Thinkingbox grades 507 stateful workflows using terminal backend state and extra effects; its strongest evaluated agent reaches 65.36 percent pass@1 and 25.25 percent pass^20, exposing instability that a single successful trajectory hides."
     source_refs:
       - uri: "https://arxiv.org/abs/2608.19741"
         quote_or_span: "507 workflows; 65.36 percent pass@1; 25.25 percent pass^20; terminal state and side-effect grading"
-        ref_type: paraphrase
+        ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-HARNESSED-AGENTIC-RL
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-agent-lightning
     lens_id: architecture
-    mode: pattern
+    mode: interpretive
     content: "Agent Lightning v1.0 treats the deploy-time harness as the owner of environment interaction and exposes model calls to training through an endpoint proxy, making harness version and trajectory attribution part of the learning contract."
     source_refs:
       - uri: "https://arxiv.org/abs/2608.17528"
         quote_or_span: "approximately 3,500 lines; 6,000 examples; Qwen3.5-9B SWE-bench Verified 41.8 to 56.4"
-        ref_type: paraphrase
+        ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-SEQUENCE-POLICY
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-dogwood
     lens_id: security
-    mode: pattern
+    mode: interpretive
     content: "Dogwood extends point-in-time authorization with deterministic temporal predicates over prior tool requests and responses, supporting prerequisites, counts, distinct counts, and running sums while retaining deny-by-default Cedar semantics."
     source_refs:
       - uri: "https://aws.amazon.com/blogs/opensource/introducing-dogwood-runtime-verification-for-ai-agents/"
         quote_or_span: "temporal conditions over recent events; formerly; count_within; count_distinct_within; sum_within"
-        ref_type: paraphrase
+        ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-CONTEXT-RELIABILITY
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-context-compression
     lens_id: context
-    mode: insight
+    mode: interpretive
     content: "Two context-compression studies find that summaries can preserve apparent content while changing tool behavior, repeated exploration, blocked actions, parse failures, and cross-run stability; both support per-context executable qualification."
     source_refs:
       - uri: "https://arxiv.org/abs/2608.06503"
         quote_or_span: "paired closed-loop continuations from the same environment state; blocked actions; repeated exploration"
-        ref_type: paraphrase
+        ref_type: url
       - uri: "https://arxiv.org/abs/2608.01056"
         quote_or_span: "15,525 runs; nonlinear reliability frontier; tool execution and action parsing failures"
-        ref_type: paraphrase
+        ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-EVENT-SOURCED-HARNESS
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-deepseek-harness
     lens_id: state
-    mode: pattern
+    mode: interpretive
     content: "DeepSeek Harness uses an append-only typed session-event log as the source for model-history projection and persistence, while in-flight interception and capability seams remain separate from durable facts."
     source_refs:
       - uri: "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md"
         quote_or_span: "append-only SessionEvent log; model history derived from the log; events and capability seams"
-        ref_type: paraphrase
+        ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-MCP-AGENT-IDENTITY
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-mcp-roadmap
     lens_id: protocol
-    mode: horizon_scan
+    mode: synthetic
     content: "The August MCP roadmap prioritizes agentic messaging, HTTP hardening, workload identity, delegated authority, improved protocol primitives, and SDK ergonomics as agent callers move beyond browser-approved interactive sessions."
     source_refs:
       - uri: "https://blog.modelcontextprotocol.io/posts/mcp-roadmap/"
         quote_or_span: "agentic messaging; HTTP transport; agent identity; DPoP; workload identity federation; token exchange"
-        ref_type: paraphrase
+        ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: candidate
+    status: created
 
   - id: MTRX-W34-EVALUATOR-CONTAINMENT
     matrix_run_id: MTRX-W34-repeatability-control
     source_item_id: src-w34-eval-containment
     lens_id: containment
-    mode: thesis
+    mode: synthetic
     content: "OpenAI's August disclosures treat the evaluation environment, network boundary, full activity sequence, monitoring coverage, and incident response as part of the safety case for tool-using frontier-model workloads."
     source_refs:
       - uri: "https://openai.com/index/pacing-model-development-cyber-capabilities/"
         quote_or_span: "training pause; isolation and monitoring hardening; full sequence review; monitoring overhead near 20 percent"
-        ref_type: paraphrase
+        ref_type: url
       - uri: "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/"
         quote_or_span: "out-of-scope activity in controlled cyber evaluations; two events involved GPT-5.6 Sol"
-        ref_type: paraphrase
+        ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: candidate
+    status: created
 summary:
   cells_produced: 7
   cells_verified_passed: 7

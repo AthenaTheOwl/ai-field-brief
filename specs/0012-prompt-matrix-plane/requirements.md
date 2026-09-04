@@ -318,3 +318,25 @@ Acceptance:
 - The three-pass note section carries a fourth bullet for Pass 4
   with the three lens ids and the owning role.
 - The DEC reference (DEC-MTRX-007 + DEC-CDCP-020) appears inline.
+
+### R-MTRX-019: matrix cell files conform to the cell schema
+
+WHEN a matrix cell file is committed, THE SYSTEM SHALL validate every
+cell in it against `schemas/matrix_cell.schema.json`, so the schema
+constrains the documents it describes and not only itself.
+
+Owner role: `science.cell-verifier`.
+
+Acceptance:
+- `scripts/validate_matrix_cells.py` walks `briefs/*/matrix/*.yaml`,
+  validates each cell against the schema, and exits non-zero on any
+  violation.
+- The gate additionally checks cell-id uniqueness within a file and
+  that each cell's `matrix_run_id` matches the file's declared run id.
+- The gate degrades to a direct enum and required-key check when
+  `jsonschema` is not installed, so it runs on a bare Python install.
+- Every cell file in the archive passes, with the vocabulary
+  normalization recorded under DEC-MTRX-009.
+- The gate runs in `.github/workflows/ci.yml` and appears in the
+  AGENTS.md pre-commit list.
+
