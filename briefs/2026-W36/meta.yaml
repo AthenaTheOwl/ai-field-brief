@@ -1,0 +1,131 @@
+iso_week: 2026-W36
+through_date: 2026-09-04
+generated_at: 2026-09-04T19:00:00Z
+generated_by: claude-w36-controls-outside-the-model
+title: "Seventy-five percent off a rate you were not paying."
+volume: 19
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W36-controls-outside-the-model
+sweep:
+  attempted: 13
+  succeeded: 12
+  failed: 0
+  skipped: 1
+source_mix:
+  primary_docs: 4
+  vendor_changelogs: 3
+  academic_preprints: 7
+  framework_blogs: 1
+  conference_talks: 15
+  internal_digest_inputs: 1
+top_signal_count: 8
+action_packet_count: 7
+scout_count: 6
+notes:
+  - "Current-week issue covering Monday 2026-08-31 through Friday 2026-09-04. Published the same day as 2026-W35, which closed a two-week gap."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-MTRX-007 and DEC-CDCP-020."
+  - "The week runs Monday to Friday, so anything published on 2026-09-05 or 2026-09-06 belongs to the next sweep. Record it as carryover rather than backdating this issue."
+  - "Daily Systems Brief issues dated August 31 and September 1 through 4 were private discovery inputs. Every public claim was independently rechecked against its primary source and the private prose was not copied."
+  - "Correction made against the private inputs during recheck: Enterprise Frontier Safeguards was described there as shipping with Claude Fable 5.1. Secondary reporting places it on a phased rollout later in autumn 2026, so it moved to Archive notes with the correction stated in the brief."
+  - "The four cache-miss fixes are drawn from the Claude Code CHANGELOG for 2.1.259 and 2.1.260. Version-to-date mapping came from the commit history for that path: 2.1.257 on 2026-09-01, 2.1.258 on 2026-09-01, 2.1.259 on 2026-09-02, 2.1.260 on 2026-09-03. Treating them as one class is this brief's grouping, not the vendor's."
+  - "The GPT-6 Astra safety overview at openai.com returned 403 to this agent. The capability classification, the monitoring architecture, the chain-of-thought findings, and the access defaults were taken from reporting that quotes the overview directly, and cross-checked against the OpenAI API changelog entry for the same date, which independently records misalignment monitoring on supported requests. Cells carrying only the reporting path are labelled accordingly."
+  - "Benchmark figures from E-Commerce Bench, Harness-of-Harness, and the production-traffic post-training paper are bound to the authors' own benchmark suites and, for the third, to one company's internal arena and traffic."
+  - "Correction applied after the first draft: the ai-engineer-youtube sweep was recorded as failed because the registry carried a wrong channel_id. The id was resolved from the @aiDotEngineer handle (UCLKPca3kwwd-B59HNr-_lvA) and the feed returned 15 in-window talks, nine released 2026-09-01 and six on 2026-09-03. That is why this issue carries eight Top signals instead of seven; the agent-spending pick would have been missed entirely."
+  - "Talk claims are cited from the conference feed's published media:description text, not from transcripts of the recordings. The PayPal approval token was described as days from shipping at recording time and is treated as announced, not available."
+  - "Nine of the fifteen talks were released 2026-09-01 and form a single agent-payments track. The six released 2026-09-03 were listed but not read for this issue; they are carried to the W37 sweep."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "anthropics/claude-code CHANGELOG 2.1.257 to 2.1.260"
+    url: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+    disposition: top_signal
+  - label: "Anthropic news index (Claude Fable 5.1 and Mythos 5.1)"
+    url: "https://www.anthropic.com/news"
+    disposition: top_signal
+  - label: "OpenAI GPT-6 Astra safety overview"
+    url: "https://openai.com/index/safety-overview-gpt-6-astra/"
+    disposition: top_signal
+  - label: "OpenAI API changelog"
+    url: "https://developers.openai.com/api/docs/changelog"
+    disposition: top_signal
+  - label: "MCP in LangChain: Stateless Protocol, Elicitation, and More"
+    url: "https://www.langchain.com/blog/mcp-in-langchain-stateless-protocol-elicitation-and-more"
+    disposition: top_signal
+  - label: "E-Commerce Bench"
+    url: "https://arxiv.org/abs/2608.30730"
+    disposition: top_signal
+  - label: "Harness-of-Harness"
+    url: "https://arxiv.org/abs/2609.01481"
+    disposition: top_signal
+  - label: "From Production Traffic to Post-Training"
+    url: "https://arxiv.org/abs/2609.01572"
+    disposition: top_signal
+  - label: "SMELT"
+    url: "https://arxiv.org/abs/2609.01343"
+    disposition: scout
+  - label: "H3-World"
+    url: "https://arxiv.org/abs/2609.01560"
+    disposition: scout
+  - label: "World Labs Atlas"
+    url: "https://www.worldlabs.ai/blog/atlas"
+    disposition: scout
+  - label: "India Unified Agent Protocol for UPI"
+    url: "https://www.reuters.com/world/india/india-preparing-rollout-agentic-payments-upi-sources-say-2026-09-01/"
+    disposition: scout
+  - label: "Meta abandons Project OT"
+    url: "https://the-decoder.com/employee-revolt-and-failing-agents-forced-meta-to-scrap-its-ai-layoff-plan/"
+    disposition: scout
+  - label: "Enterprise Frontier Safeguards reporting"
+    url: "https://venturebeat.com/technology/anthropics-claude-fable-5-1-and-mythos-5-1-arrive-with-a-75-cost-reduction-for-fable-cache-reads"
+    disposition: archive
+  - label: "Salesforce Headless 360"
+    url: "https://www.salesforce.com/ap/news/press-releases/2026/08/25/salesforce-turns-enterprise-applications-into-enterprise-capabilities/"
+    disposition: archive
+  - label: "Texas ghost-demand reporting"
+    url: "https://www.reuters.com/business/texas-halt-powering-data-centers-reflects-us-reckoning-over-ghost-demand-2026-09-01/"
+    disposition: archive
+  - label: "Beyond pass@1"
+    url: "https://arxiv.org/html/2603.29231v1"
+    disposition: archive
+  - label: "The Horizon Gap"
+    url: "https://arxiv.org/html/2608.06663"
+    disposition: archive
+  - label: "Claude Platform API release notes"
+    url: "https://platform.claude.com/docs/en/release-notes/api"
+    disposition: reviewed_no_pick
+  - label: "Agentic Resource Discovery specification"
+    url: "https://agenticresourcediscovery.org/"
+    disposition: reviewed_no_pick
+  - label: "Your Agent Just Authorized What? (PayPal)"
+    url: "https://www.youtube.com/watch?v=vGn6N4-bxBY"
+    disposition: top_signal
+  - label: "x402 isn't good (yet) (Apify)"
+    url: "https://www.youtube.com/watch?v=h6mi88VrPtQ"
+    disposition: top_signal
+  - label: "Agent Spending Without Controls (Edge & Node)"
+    url: "https://www.youtube.com/watch?v=ZyGMqdIpPoE"
+    disposition: reviewed_no_pick
+  - label: "Teaching agents to pay (Stripe)"
+    url: "https://www.youtube.com/watch?v=A-zeQiYkmXk"
+    disposition: reviewed_no_pick
+  - label: "Why Your AI Agent Needs a Wallet (Circle)"
+    url: "https://www.youtube.com/watch?v=xKzU_3riL6s"
+    disposition: reviewed_no_pick
+  - label: "When AI Agents Pay and Sellers Monetize (AWS)"
+    url: "https://www.youtube.com/watch?v=qTZirYu9pr0"
+    disposition: reviewed_no_pick
+  - label: "Beyond the Lethal Trifecta: Agentic Commerce (Kiduna Club)"
+    url: "https://www.youtube.com/watch?v=tE2z8-hqoLY"
+    disposition: scout
+  - label: "AI Engineer talks archive"
+    url: "https://ai.engineer/talks"
+    disposition: reviewed_no_pick
+failures: []
+next_run:
+  - "Sweep 2026-09-05 and 2026-09-06 into the W37 window; this issue closed on Friday."
+  - "Report the prompt-cache hit ratio from the W36 Action packet in the W37 issue. A measured number replaces the assumption this issue flagged."
+  - "Watch for a second lab publishing a cyber-capability classification, which is the W36 watchlist item most likely to fire first."
+  - "Backfill or formally accept the Confidence, Evidence, and systems-thinking field debt in 2026-W32 through 2026-W34, per DEC-PUB-013."
+  - "The ai-engineer-youtube feed publishes long media:description summaries. Sweep them directly; they carry enough mechanism to score without transcription, and the six talks released 2026-09-03 were not read for this issue."

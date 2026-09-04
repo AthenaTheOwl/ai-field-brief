@@ -151,14 +151,21 @@ weekly pass. Read this top-to-bottom before starting.
 11. **Update the index.** Add the new row to `briefs/INDEX.md`. Newest
     first.
 
-12. **Verify.** Run all four gates:
+12. **Verify.** Run the gates:
     ```
     python scripts/spec_check.py
     python scripts/voice_lint.py
     python scripts/validate_schemas.py
     python scripts/validate_registry.py
+    python scripts/validate_brief_fields.py
+    python scripts/validate_matrix_cells.py
     ```
-    All must be green.
+    All must be green. `validate_brief_fields` is the one that reads the
+    brief you just wrote: it checks every Top signal for a Source line, a
+    taxonomy-valid action surface, the four systems-thinking fields, an
+    adoption ladder naming all four rungs, a Confidence label, and an
+    Evidence line whose cell ids resolve against `matrix/cells.yaml`.
+    Fix the brief; do not add the week to `LEGACY_BRIEFS`.
 
 13. **Pause for human review.** Output a short summary: sources swept,
     items included, surprises, any sources to add. The human reads

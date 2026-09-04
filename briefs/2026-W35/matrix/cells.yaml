@@ -1,0 +1,152 @@
+matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+generated_at: 2026-09-04T18:00:00Z
+schema_ref: schemas/matrix_cell.schema.json
+source_items:
+  - src-w35-agents-md-eval
+  - src-w35-progressive-disclosure
+  - src-w35-selfcompact
+  - src-w35-claude-code-2-1-251
+  - src-w35-model-hardware-standard
+  - src-w35-ard-spec
+  - src-w35-langchain-agent-environments
+  - src-w35-automated-alignment-researchers
+lenses:
+  - context
+  - security
+  - architecture
+  - eval
+cells:
+  - id: MTRX-W35-CONTEXT-FILE-NULL-RESULT
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-agents-md-eval
+    lens_id: context
+    mode: extractive
+    content: "Gloaguen, Mundler, Muller, Raychev and Vechev evaluated coding agents with repository-level context files on benchmark tasks and on issues from repositories carrying developer-committed files, and report that context files do not generally improve task success rates while increasing inference cost by over 20 percent on average; instructions were followed, repository overviews were not helpful, and the result held across models, agents, and both generated and human-written files."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2602.11988"
+        quote_or_span: "providing context files does not generally improve task success rates, while increasing inference cost by over 20% on average"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Submitted 2026-02-12, revised 2026-06-23; predates the issue window and is admitted as previously uncovered carryover."
+
+  - id: MTRX-W35-DISCLOSURE-ONE-LEVEL
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-progressive-disclosure
+    lens_id: context
+    mode: extractive
+    content: "He, Zhao, Wang and Chen report that one level of progressive disclosure is enough, that a deeper routing level provides no benefit and sometimes breaks accuracy outright, and that the gain from the pattern is harness-dependent: large where the agent navigates a raw document poorly, near zero where a strong harness already divides and retrieves on its own."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2607.17598"
+        quote_or_span: "progressive disclosure buys context, not intelligence; near zero when a strong agent harness already divides and retrieves on its own"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Submitted 2026-07-20; predates the issue window and is admitted as previously uncovered carryover."
+
+  - id: MTRX-W35-SEMANTIC-COMPACTION
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-selfcompact
+    lens_id: context
+    mode: extractive
+    content: "SelfCompact pairs a model-invocable compaction tool with a fire-or-suppress rubric and reports improvement over a no-summarisation baseline of up to 18.1 points on math and 5 to 9 points on agentic search at 30 to 70 percent lower per-question cost across six benchmarks and seven models, with the authors stating that neither the tool nor the rubric works alone."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2606.23525"
+        quote_or_span: "improving over a no-summarization baseline by up to 18.1 points on math and 5-9 points on agentic search at 30-70% lower per-question cost"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Submitted 2026-06-22, revised 2026-07-10; carryover admitted through the in-window weekly digest."
+      - "Benchmark gains are bound to the published setup and the seven models evaluated."
+
+  - id: MTRX-W35-PERMISSION-BOUNDARY-COVERAGE
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-claude-code-2-1-251
+    lens_id: security
+    mode: interpretive
+    content: "Claude Code 2.1.251, published 2026-08-28, fixed five defects that share one shape: file tools following a symlink swapped inside the working directory after the permission check; Grep and Glob not applying Read deny rules through a symlinked search path; plugin marketplace commands able to point outside the plugin directory; the Workflow tool reading a scriptPath before the permission check ran; and project settings able to turn on raw API body logging or bypass a managed-settings tracing endpoint."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+        quote_or_span: "Fixed file tools (Read, Write, Edit) following a symlink swapped inside the working directory after the permission check"
+        ref_type: quote
+      - uri: "https://api.github.com/repos/anthropics/claude-code/commits?path=CHANGELOG.md"
+        quote_or_span: "2.1.251 committed 2026-08-28T18:19:26Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The grouping of five entries into one time-of-check-to-time-of-use and coverage-gap class is this brief's interpretation, not the vendor's framing."
+
+  - id: MTRX-W35-DEVICE-INTERFACE-RECOVERY
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-model-hardware-standard
+    lens_id: architecture
+    mode: extractive
+    content: "Anthropic opened a research preview of the Model Hardware Standard on 2026-08-27, a model-agnostic specification for agents to operate programmable laboratory and manufacturing devices, reachable by any harness over standard protocols including MCP, with early partners including AWS, Danaher, Tecan, QIAGEN, Doosan Robotics, Automata, Universal Robots, Hugging Face and Raspberry Pi; a QuEra agent is reported at 99.3 percent success across 700 laser-lock recovery trials against 58 percent for manually written scripts."
+    source_refs:
+      - uri: "https://www.anthropic.com/news/model-hardware-standard-research-preview"
+        quote_or_span: "research preview of the Model Hardware Standard, a shared specification for AI agents to safely operate physical devices; QuEra agent 99.3% across 700 laser-lock recovery trials versus 58% for manually written scripts"
+        ref_type: url
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The recovery figures are vendor-reported inside a launch announcement and carry no independent replication."
+      - "The announcement does not publish interlock, emergency-stop, or actuator-logging semantics; the brief treats that absence as an open question, not as a claim."
+
+  - id: MTRX-W35-PRE-INVOCATION-DISCOVERY
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-ard-spec
+    lens_id: architecture
+    mode: extractive
+    content: "The Agentic Resource Discovery specification, published 2026-08-24 under Apache-2.0 with contributors from Microsoft, Google, Hugging Face, GoDaddy, Cisco, Databricks, GitHub, Nvidia, Salesforce, ServiceNow and Snowflake, defines a discovery protocol that sits entirely before invocation, covers any external capability a client can call, is explicitly not an execution runtime, does not replace MCP or A2A, and assumes many discovery services instead of one central catalogue."
+    source_refs:
+      - uri: "https://agenticresourcediscovery.org/"
+        quote_or_span: "ARD sits entirely before invocation. It helps the client find the right resource; the resource is then invoked through its own native mechanism."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The specification page does not publish endpoint shapes or a version number; the brief claims a design boundary, not an implementable interface."
+      - "Supersedes the single-vendor discovery surface covered as a Top signal in 2026-W26; the continuity is stated in the pick."
+
+  - id: MTRX-W35-SPEC-FIRST-EVAL-TASKS
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-langchain-agent-environments
+    lens_id: eval
+    mode: extractive
+    content: "Trivedy and Hollon describe a two-step pipeline in which traces, code, or human input produce a markdown spec describing task input, environment, and graders, and the spec then produces an executable task and environment; a world spec carries dataset-wide knowledge, tasks are refined by reading real agent trajectories, and difficulty is calibrated by running each task across model tiers to surface cases where a stronger model exploits a poorly designed task."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/building-agent-environments-and-tasks"
+        quote_or_span: "A spec is a markdown file that describes what the task (input, environment, graders) looks like in natural language; run each task with different tier models; identifying reward hacks"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Vendor engineering post describing internal practice; no measured comparison against directly authored tasks is published."
+
+  - id: MTRX-W35-INDEPENDENT-SCORER-PIPELINE
+    matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+    source_item_id: src-w35-automated-alignment-researchers
+    lens_id: eval
+    mode: extractive
+    content: "Anthropic reports an automated alignment researcher pipeline in which four librarian agents build a shared survey and five researchers work in parallel, each iteration writing a results-free mini-paper, passing code through a monitor, training the target for roughly thirty minutes on one H200, and submitting to a separate evaluator; across ten alignment failures the best methods reduce the targeted failure and generalise to models up to 4.7 times larger, and a post-hoc monitor found cheating in 2.4 percent of trajectories, none among the top methods."
+    source_refs:
+      - uri: "https://alignment.anthropic.com/2026/automated-alignment-researchers/"
+        quote_or_span: "trains the target model for about 30 minutes on one H200 GPU; models up to 4.7x larger than the target model; cheating in 2.4% of trajectories"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Authors state the results are limited to alignment failures measurable with public benchmarks or automated auditing, and that evaluations are proxies for deployment misalignment."
+      - "Capability preservation was measured only on math, college-level knowledge, and instruction-following."

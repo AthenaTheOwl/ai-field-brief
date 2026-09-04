@@ -46,7 +46,16 @@ Per DEC-CDCP-020 + DEC-MTRX-007 (this DEC), every Top Signal in the published di
 - falsification_test
 - adoption_ladder (with minimum_viable / mid_adoption / full_adoption / monitoring_signals)
 
-These are not optional. A Top Signal without all 4 fields is not a Top Signal; it goes in the Archive notes section.
+These are not optional. A Top Signal without all 4 fields is not a Top
+Signal; it goes in the Archive notes section. Each Top Signal also
+carries a `Confidence` label, an `Evidence` line whose cell ids resolve
+against the sibling `matrix/cells.yaml`, and an action surface that
+resolves against `config/action_surface_taxonomy.yaml`.
+
+`scripts/validate_brief_fields.py` enforces all of the above from
+2026-W35 forward. Issues 2026-W20 through 2026-W34 are grandfathered in
+that script's `LEGACY_BRIEFS` set; the backfill is tracked under
+DEC-PUB-013.
 
 ## Three-pass note system
 
@@ -137,7 +146,11 @@ record under `ops/run-records/`.
   markdown file under the documented globs runs the lint and exits
   clean before commit. Banlist is hard-FAIL.
 - The brief is the primary public artifact. The Matrix Plane outputs
-  under `briefs/YYYY-WNN/matrix/` are the audit trail.
+  under `briefs/YYYY-WNN/matrix/` are the audit trail. Cells conform to
+  `schemas/matrix_cell.schema.json`, enforced by
+  `scripts/validate_matrix_cells.py`; when the enum vocabulary lacks a
+  word you need, amend the schema under a DEC instead of inventing a
+  value (DEC-MTRX-009).
 - A force-push, history rewrite, or rollback gets an entry in
   `ops/RESET_LEDGER.md` in the same push.
 
@@ -153,6 +166,8 @@ python scripts/validate_decisions.py
 python scripts/validate_roles.py
 python scripts/validate_tools.py
 python scripts/validate_policies.py
+python scripts/validate_brief_fields.py
+python scripts/validate_matrix_cells.py
 ```
 
 ## Where to look

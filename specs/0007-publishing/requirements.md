@@ -505,3 +505,49 @@ Acceptance:
   disk-resident sample and asserts the load-bearing fields
   (`id`, `status`, `prompt_snapshot_hash`, `sandbox_image_ref`) are
   still present and non-empty.
+
+### R-PUB-030: action-surface taxonomy covers the published corpus
+
+WHEN a Top signal names an action surface, THE SYSTEM SHALL resolve
+that surface against `config/action_surface_taxonomy.yaml`, and the
+taxonomy SHALL carry a surface for every class of pick the archive has
+produced.
+
+Owner role: `product.spec-writer`.
+
+Acceptance:
+- `config/action_surface_taxonomy.yaml` declares `version: 2` and
+  includes `security`, `cost`, `context`, `observability`, and
+  `governance` alongside the fourteen v1 surfaces.
+- The file declares an `aliases` mapping for `state`, `protocol`, and
+  `containment`, the three off-taxonomy labels used in briefs 2026-W32
+  through 2026-W34, each pointing at its canonical replacement.
+- Every Top signal in briefs from 2026-W35 forward names only surfaces
+  declared under `surfaces`.
+- A surface named under `aliases` is reported as retired, with its
+  replacement, and does not pass the gate.
+
+### R-PUB-031: a gate enforces Top-signal field conformance
+
+WHEN a brief is committed, THE SYSTEM SHALL check every Top signal for
+the four systems-thinking fields required by DEC-MTRX-007 and
+DEC-CDCP-020, a Confidence label, an Evidence line whose cell ids
+resolve, a Source line, and a taxonomy-valid action surface, and SHALL
+fail the build when any is missing.
+
+Owner role: `science.proof-gate-runner`.
+
+Acceptance:
+- `scripts/validate_brief_fields.py` exits 0 against briefs from
+  2026-W35 forward and non-zero when a required field is absent.
+- The script names `Systems map`, `Transferable principle`,
+  `Falsification test`, and `Adoption ladder` as required, and checks
+  the ladder for a minimum-viable, mid, full, and monitoring rung.
+- Evidence cell ids are checked against the sibling
+  `matrix/cells.yaml` when that file exists.
+- `LEGACY_BRIEFS` names the grandfathered weeks explicitly, so the
+  outstanding backfill is readable in the source.
+- The gate runs in `.github/workflows/ci.yml` with no
+  `continue-on-error: true` and no `if: ${{ failure() }}`
+  short-circuit, and appears in the AGENTS.md pre-commit list.
+

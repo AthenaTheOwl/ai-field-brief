@@ -7,7 +7,7 @@
 # Extensions land via a DEC and a bump to this file. Do not invent a
 # new surface in a brief without first amending this taxonomy.
 
-version: 1
+version: 2
 
 description: |
   Canonical action-surface taxonomy for AI Brief digest claims and
@@ -43,3 +43,34 @@ surfaces:
     notes: change to CDCP control-plane primitives
   - id: personal-knowledge-base
     notes: change to retrieval / index / corpus
+  - id: security
+    notes: >-
+      authorization boundary, permission rule, credential scope, sandbox
+      isolation, or blast-radius limit. Added in v2 (DEC-PUB-012).
+  - id: cost
+    notes: >-
+      token, cache, or routing economics — the unit price of a run rather
+      than its behavior. Added in v2 (DEC-PUB-012).
+  - id: context
+    notes: >-
+      what the model carries rather than what it is told: assembly,
+      compaction, disclosure depth, retrieval budget. Distinct from
+      `prompt`, which is the instruction artifact. Added in v2
+      (DEC-PUB-012).
+  - id: observability
+    notes: >-
+      traces, run evidence, counters, and the accounting a team reads to
+      tell whether a change worked. Added in v2 (DEC-PUB-012).
+  - id: governance
+    notes: >-
+      approval path, disclosure obligation, supplier or procurement
+      posture, and policy that binds humans rather than code. Added in
+      v2 (DEC-PUB-012).
+
+# Retired labels used in briefs 2026-W32 through 2026-W34 before the v2
+# amendment, with their canonical replacement. Kept so cross-week pattern
+# detection can normalize the older issues.
+aliases:
+  state: runtime-adapter
+  protocol: architecture
+  containment: security

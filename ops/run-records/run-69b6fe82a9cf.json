@@ -1,0 +1,55 @@
+{
+  "agent_id": "claude-w36-controls-outside-the-model",
+  "events": [],
+  "finished_at": "2026-09-04T15:55:32Z",
+  "gate_results_summary": {
+    "all_passed": true,
+    "gates_failed": [],
+    "gates_passed": [
+      "voice_lint",
+      "spec_check",
+      "check_no_bom",
+      "validate_schemas",
+      "validate_registry",
+      "validate_decisions",
+      "validate_roles",
+      "validate_tools",
+      "validate_policies",
+      "validate_brief_fields",
+      "validate_matrix_cells"
+    ]
+  },
+  "id": "run-69b6fe82a9cf",
+  "inputs": [
+    {
+      "kind": "playbook",
+      "ref": "repo://ai-field-brief@PENDING/playbook/run-weekly-brief.md"
+    },
+    {
+      "kind": "source-registry",
+      "ref": "repo://ai-field-brief@PENDING/sources/registry.yaml"
+    },
+    {
+      "kind": "meta",
+      "ref": "repo://ai-field-brief@PENDING/briefs/2026-W36/meta.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W36/brief.md",
+      "type": "brief"
+    },
+    {
+      "artifact_id": "repo://ai-field-brief@PENDING/briefs/2026-W36/meta.yaml",
+      "type": "meta"
+    }
+  ],
+  "prompt_snapshot_hash": "c1f9b3ec6d536b41c4dd0e2bfa91a0349a42d8c47cc2cda060a1b0c734232a8c",
+  "runtime": "claude-code-cli",
+  "sandbox_image_ref": "repo://ai-field-brief@PENDING/",
+  "spec_id": "specs/0007-publishing/",
+  "started_at": "2026-09-04T19:00:00Z",
+  "status": "done",
+  "tool_schemas_snapshot_hash": "8e97ec4ca6099740409a9e69d0238c9c221609cb6fcd2ee626d6ed058224d537",
+  "workspace_id": "ai-field-brief"
+}

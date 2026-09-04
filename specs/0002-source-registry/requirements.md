@@ -304,3 +304,30 @@ Acceptance:
   sections.
 - `scripts/validate_registry.py` exits 0 against the expanded file.
 - Total active sources sit at 173 after the sweep.
+
+### R-SRC-021: dated changelog and practitioner surfaces in the registry
+
+WHEN a vendor publishes both an announcement surface and a dated
+changelog, THE SYSTEM SHALL index the changelog as its own registry
+entry, so the weekly sweep reads per-line mechanisms and not only
+version numbers, and SHALL carry practitioner talk archives and
+long-form vendor whitepapers as separate entries from their podcast
+siblings.
+
+Owner role: `product.source-curator`.
+
+Acceptance:
+- `sources/registry.yaml` carries `openai-api-changelog`,
+  `claude-platform-release-notes`, and `claude-code-changelog` as
+  `type: vendor-changelog` entries in the `primary-source` lane.
+- `sources/registry.yaml` carries `ai-engineer-talks`,
+  `ai-engineer-youtube`, `kaggle-whitepapers`, and
+  `kaggle-learn-intensives` as distinct entries with their own
+  `intake` values.
+- `sources/registry.yaml` carries `agentic-resource-discovery` as a
+  `standards-docs` entry, superseding the single-vendor discovery
+  surface covered in 2026-W26.
+- `version` is 14 or higher and `scripts/validate_registry.py` exits 0.
+- Each new entry's `notes` records the retrieval detail the sweep needs
+  (raw file URL, feed resolution, or known failure).
+

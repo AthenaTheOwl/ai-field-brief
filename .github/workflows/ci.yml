@@ -49,6 +49,10 @@ jobs:
         run: python scripts/validate_tools.py
       - name: validate_policies
         run: python scripts/validate_policies.py
+      - name: validate_brief_fields
+        run: python scripts/validate_brief_fields.py
+      - name: validate_matrix_cells
+        run: python scripts/validate_matrix_cells.py
       - name: validate_skills
         run: python scripts/validate_skills.py
       - name: validate_dreams

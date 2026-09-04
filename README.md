@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Sixty-five percent became twenty-five when the workflow ran twenty times. (2026-W34)](https://ai-field-brief.vercel.app/briefs/2026-W34)
+**Latest:** [Seventy-five percent off a rate you were not paying. (2026-W36)](https://ai-field-brief.vercel.app/briefs/2026-W36)
 
 ## What it does
 
@@ -26,13 +26,15 @@ artifact behind it — a contract test, an incident runbook, a procurement
 question, a judge prompt, a unit-economics table. A pick you can't act on isn't
 a pick.
 
-The reading underneath it is wide. A weekly sweep crosses 206 active sources
-(registry v11): primary vendor and research surfaces, practitioner blogs,
+The reading underneath it is wide. A weekly sweep crosses 222 active sources
+(registry v14): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W31 update reviewed 19 of 23 attempted sources and shipped seven Top
+people will notice late. The W36 update reviewed 12 of 13 attempted sources and shipped eight Top
 signals, each with a concrete action, a confidence label, evidence
-cells, a systems map, a falsification test, and an adoption ladder.
+cells, a systems map, a transferable principle, a falsification test, and
+an adoption ladder — the last four now enforced by a gate instead of by
+the author's memory.
 
 The brief is a markdown file per ISO week under `briefs/`. The site is a Next.js
 static prerender of those files; the RSS, Atom, JSON Feed, and weekly email
@@ -47,11 +49,11 @@ python scripts/voice_lint.py
 ```
 
 ```
-voice-lint: clean. 270 file(s) scanned.
+voice-lint: clean. 278 file(s) scanned.
 ```
 
 Every brief and every public markdown file passes this before merge. It runs in
-CI alongside seven sibling gates, and a failed gate blocks the PR. The banlist is
+CI alongside eight sibling gates, and a failed gate blocks the PR. The banlist is
 the point — the cadence it catches is the cadence the briefs would otherwise
 drift into.
 
@@ -63,9 +65,13 @@ transcription, retrieval, billing, integrations, and the publishing surface —
 each gated behind a fixture, an eval, a rollback path, and a traceable
 requirement before it ships.
 
-Eight Python gates run on every push: `spec_check`, `voice_lint`,
+Nine Python gates run on every push: `spec_check`, `voice_lint`,
 `validate_schemas`, `validate_registry`, `validate_decisions`, `validate_roles`,
-`validate_tools`, `validate_policies`. The repo carries 66 validated DEC records
+`validate_tools`, `validate_policies`, `validate_brief_fields`. The last of
+those reads the brief itself and fails the build when a Top signal is missing
+its systems map, transferable principle, falsification test, adoption ladder,
+confidence label, or resolvable evidence cells. The repo carries 69 validated
+DEC records
 under `decisions/` — each with alternatives, evidence, and a rollback — thirteen
 worked role contracts under `.agents/roles/`, a release ledger at
 `ops/RELEASE_LEDGER.md`, and a reset ledger at `ops/RESET_LEDGER.md` that logs
@@ -109,7 +115,7 @@ apps/web/          Next.js public archive (the only shipped surface)
 apps/mobile/, apps/extension/, apps/mcp-server/   planned reader surfaces
 packages/          db, sources, pipeline, retrieval, evals (most planned)
 briefs/            one folder per ISO week: brief.md + meta.yaml; INDEX.md is the table
-sources/registry.yaml   the curated 206-source list, with lane and cadence tags
+sources/registry.yaml   the curated 222-source list, with lane and cadence tags
 specs/  decisions/  dreams/  promotions/   the control-plane artifacts
 .agents/           AGENTS.md, roles, tools.yaml, policies, state machines
 scripts/           the gate scripts that run on every push

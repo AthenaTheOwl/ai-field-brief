@@ -11,8 +11,8 @@
 # file after a manual review pass. Anything in this file is consumed by
 # the run workflow once that lands.
 
-version: 13
-last_curated: 2026-08-27
+version: 14
+last_curated: 2026-09-04
 default_review_frequency: weekly
 
 lanes:
@@ -723,7 +723,7 @@ sources:
     status: active
     last_reviewed: 2026-05-29
     notes: >-
-      Show-notes only intake. YouTube channel feed at https://www.youtube.com/feeds/videos.xml?channel_id=UCB1aw7M8jLnGzqWGoYpV5SQ. AIE conference + recordings.
+      Show-notes only intake. Substack-style show notes; for the video surface use the ai-engineer-youtube entry. The channel_id recorded here before 2026-09-04 (UCB1aw...) was wrong and returned 404 on two sweeps; the resolved id is UCLKPca3kwwd-B59HNr-_lvA.
 
   - id: arxiv-cs-ai
     name: arXiv cs.AI
@@ -3677,3 +3677,139 @@ sources:
     last_reviewed: 2026-08-27
     notes: >-
       Official release surface for Cloudflare Agents runtime changes. Keep it separate from the broader Agents documentation so release yield and documentation yield can be measured independently.
+
+  - id: kaggle-whitepapers
+    name: Kaggle whitepapers (Google)
+    type: academic-paper-series
+    lane: builder-practice
+    url: https://www.kaggle.com/whitepapers
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Google publishes long-form practitioner whitepapers through Kaggle. "The New SDLC With Vibe Coding" (Osmani, Saboo, Kartakis, May 2026, 51 pages) is the anchor entry — verification-rigor spectrum, agent anatomy, and SDLC phase economics. Treat headline adoption percentages as vendor-cited aggregates and verify each against its own primary source before quoting.
+
+  - id: kaggle-learn-intensives
+    name: Kaggle x Google intensives and competitions
+    type: academic-project
+    lane: frontier-scout
+    url: https://www.kaggle.com/competitions
+    cadence: irregular
+    review_frequency: monthly
+    intake: show-notes-only
+    quality:
+      signal: medium
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Cohort intensives publish the assignment set, capstone rubric, and codelabs, which read as a curriculum-shaped view of what a vendor thinks production agent practice is. The 5-Day AI Agents Intensive (vibe coding, June 15-19 2026) is the sibling artifact to the whitepaper entry. Capture the rubric, not the marketing.
+
+  - id: ai-engineer-talks
+    name: AI Engineer talks and transcripts
+    type: blog
+    lane: builder-practice
+    url: https://ai.engineer/talks
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: medium
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Searchable talk archive with transcripts, filterable by topic, event, and speaker. Conference recordings publish on a rolling basis after each event, so the release date and the talk date differ — record both. Sibling of ai-engineer-podcast and ai-engineer-youtube.
+
+  - id: ai-engineer-youtube
+    name: AI Engineer YouTube channel
+    type: youtube-channel
+    lane: builder-practice
+    url: https://www.youtube.com/@aiDotEngineer
+    cadence: weekly
+    review_frequency: weekly
+    intake: show-notes-only
+    quality:
+      signal: medium
+      actionability: medium
+      credibility: medium
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Atom feed at https://www.youtube.com/feeds/videos.xml?channel_id=UCLKPca3kwwd-B59HNr-_lvA (id resolved from the @aiDotEngineer handle on 2026-09-04; the id previously recorded on ai-engineer-podcast was wrong). Talks release on a rolling delay after each event, so the publish date and the talk date differ - record both. Feed entries carry long media:description summaries that are usable without transcription. Also carries the periodic themes report (AIE_2026_Q1_report.pdf, June 24 2026).
+
+  - id: openai-api-changelog
+    name: OpenAI API changelog
+    type: vendor-changelog
+    lane: primary-source
+    url: https://developers.openai.com/api/docs/changelog
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Dated, per-endpoint record of what changed on the developer surface — model availability, parameter support, error taxonomy, and tool-calling constraints. Higher yield per token than the news index, and it dates changes the announcement posts leave undated.
+
+  - id: claude-platform-release-notes
+    name: Claude Platform API release notes
+    type: vendor-changelog
+    lane: primary-source
+    url: https://platform.claude.com/docs/en/release-notes/api
+    cadence: weekly
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Beta-to-GA transitions, toolset versions, SDK breaking changes, and managed-agent primitives, each with a date. The counterpart to openai-api-changelog; sweep the pair together so vendor convergence shows up as two dated entries rather than one narrative.
+
+  - id: claude-code-changelog
+    name: anthropics/claude-code CHANGELOG
+    type: vendor-changelog
+    lane: primary-source
+    url: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+    cadence: daily
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: high
+      credibility: high
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Raw file at https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md; version-to-date mapping via the commit history for that path. Ships several times a week and carries harness-level detail the release feed omits — permission-boundary fixes, cache accounting, hook events, sandbox semantics. Separate entry from gh-anthropic-claude-code because the CHANGELOG yields per-line mechanisms and the release feed yields versions.
+
+  - id: agentic-resource-discovery
+    name: Agentic Resource Discovery specification
+    type: standards-docs
+    lane: primary-source
+    url: https://agenticresourcediscovery.org/
+    cadence: irregular
+    review_frequency: weekly
+    intake: full
+    quality:
+      signal: high
+      actionability: medium
+      credibility: high
+    status: active
+    last_reviewed: 2026-09-04
+    notes: >-
+      Cross-vendor discovery protocol published August 24 2026 under Apache-2.0, with contributors across Microsoft, Google, Hugging Face, Cisco, Databricks, GitHub, Nvidia, Salesforce, ServiceNow, and Snowflake. Repos at https://github.com/ards-project. Supersedes the single-vendor discovery surface covered in 2026-W26; watch for whether the launch coalition ships interoperating discovery services or only the document.

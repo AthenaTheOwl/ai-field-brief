@@ -1,0 +1,114 @@
+iso_week: 2026-W35
+through_date: 2026-08-30
+generated_at: 2026-09-04T18:00:00Z
+generated_by: claude-w35-contracts-outside-the-prompt
+title: "The repository overview cost twenty percent and bought nothing."
+volume: 18
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W35-contracts-outside-the-prompt
+sweep:
+  attempted: 15
+  succeeded: 12
+  failed: 2
+  skipped: 1
+source_mix:
+  primary_docs: 5
+  vendor_changelogs: 3
+  academic_preprints: 6
+  framework_blogs: 2
+  internal_digest_inputs: 2
+top_signal_count: 7
+action_packet_count: 6
+scout_count: 6
+notes:
+  - "Catch-up issue covering Monday 2026-08-24 through Sunday 2026-08-30. Published together with 2026-W36 after a two-week gap."
+  - "First issue authored against action-surface taxonomy v2 (DEC-PUB-012). The four systems-thinking fields required by DEC-MTRX-007 and DEC-CDCP-020 are present on every Top signal; issues W32 through W34 shipped without transferable_principle, falsification_test, adoption_ladder, Confidence, or Evidence, and that gap is recorded in DEC-PUB-013."
+  - "The Weekly Gen AI Digest issue dated August 28 and Daily Systems Brief issues dated August 24, 27, 28, 29, and 30 were private discovery inputs. Every public claim carried into this issue was independently rechecked against its primary source and the private prose was not copied."
+  - "Corrections made against the private inputs during recheck: the ETH Zurich AGENTS.md finding is cited from the paper abstract, not from a secondary write-up that reported a more favourable split for human-written files."
+  - "AGENTS.md (arXiv:2602.11988, February 2026 with a June revision), progressive disclosure (arXiv:2607.17598, July 2026), SelfCompact (arXiv:2606.23525, June 2026), Cloudflare Code Mode, and the Kaggle SDLC whitepaper all predate the issue window. They were admitted as previously uncovered carryover because the in-window weekly digest connected them to the contracts-outside-the-prompt thesis, following the same rule applied in 2026-W34."
+  - "The Anthropic platform release notes dated August 19 and 20 fall inside the 2026-W34 window and were not picked there. They are recorded in Archive notes as carryover, not restated as a Top signal."
+  - "The QuEra laser-lock recovery figure (99.3 percent across 700 trials against 58 percent for hand-written scripts) is vendor-reported inside a research preview announcement and has no independent replication. Confidence on that pick is medium for this reason."
+  - "Registry v14 adds eight sources: kaggle-whitepapers, kaggle-learn-intensives, ai-engineer-talks, ai-engineer-youtube, openai-api-changelog, claude-platform-release-notes, claude-code-changelog, and agentic-resource-discovery. 214 active to 222 active. Recorded under DEC-SRC-022."
+sources_reviewed:
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: synthesis_input
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Evaluating AGENTS.md"
+    url: "https://arxiv.org/abs/2602.11988"
+    disposition: top_signal
+  - label: "Is Progressive Disclosure All You Need for Long-Context Agents?"
+    url: "https://arxiv.org/abs/2607.17598"
+    disposition: top_signal
+  - label: "Self-Compacting Language Model Agents"
+    url: "https://arxiv.org/abs/2606.23525"
+    disposition: top_signal
+  - label: "anthropics/claude-code CHANGELOG 2.1.251"
+    url: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+    disposition: top_signal
+  - label: "Previewing the Model Hardware Standard"
+    url: "https://www.anthropic.com/news/model-hardware-standard-research-preview"
+    disposition: top_signal
+  - label: "Agentic Resource Discovery specification"
+    url: "https://agenticresourcediscovery.org/"
+    disposition: top_signal
+  - label: "How We Build Agent Environments & Tasks"
+    url: "https://www.langchain.com/blog/building-agent-environments-and-tasks"
+    disposition: top_signal
+  - label: "Automated Researchers Can Reliably Mitigate Alignment Failures"
+    url: "https://alignment.anthropic.com/2026/automated-alignment-researchers/"
+    disposition: top_signal
+  - label: "Prime Agent: A Self-Improving RLM Harness"
+    url: "https://arxiv.org/abs/2608.23552"
+    disposition: scout
+  - label: "Apodex 1.1"
+    url: "https://arxiv.org/abs/2608.23283"
+    disposition: scout
+  - label: "PI-SERINI"
+    url: "https://arxiv.org/abs/2605.10848"
+    disposition: scout
+  - label: "Cloudflare Code Mode"
+    url: "https://blog.cloudflare.com/code-mode-mcp/"
+    disposition: scout
+  - label: "Salesforce Headless 360"
+    url: "https://www.salesforce.com/ap/news/press-releases/2026/08/25/salesforce-turns-enterprise-applications-into-enterprise-capabilities/"
+    disposition: scout
+  - label: "AI Engineer talks archive"
+    url: "https://ai.engineer/talks"
+    disposition: scout
+  - label: "Our decision on Cursor following its acquisition by SpaceX"
+    url: "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+    disposition: archive
+  - label: "The New SDLC With Vibe Coding"
+    url: "https://www.kaggle.com/whitepaper-the-new-SDLC-with-vibe-coding"
+    disposition: archive
+  - label: "The Code Agent Orchestra"
+    url: "https://addyosmani.com/blog/code-agent-orchestra/"
+    disposition: archive
+  - label: "EnvACE"
+    url: "https://arxiv.org/abs/2608.06197"
+    disposition: archive
+  - label: "Claude Platform API release notes"
+    url: "https://platform.claude.com/docs/en/release-notes/api"
+    disposition: archive
+  - label: "OpenAI API changelog"
+    url: "https://developers.openai.com/api/docs/changelog"
+    disposition: reviewed_no_pick
+  - label: "LangChain blog"
+    url: "https://www.langchain.com/blog"
+    disposition: reviewed_no_pick
+failures:
+  - label: "AI Engineer YouTube channel feed"
+    url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCB1aw7M8jLnGzqWGoYpV5SQ"
+    error: "HTTP 404 — the channel_id recorded on the ai-engineer-podcast entry no longer resolves; resolve the feed from the @aiDotEngineer handle on the next sweep"
+  - label: "OpenAI news index"
+    url: "https://openai.com/news/"
+    error: "HTTP 403 to this agent; individual permalinks and the developer changelog were reachable and used instead"
+next_run:
+  - "Resolve and record a working feed URL for the AI Engineer YouTube channel, then retire the stale channel_id from the ai-engineer-podcast notes."
+  - "Sweep ai.engineer/talks for Code Summit releases once the November event lands; the archive publishes on a rolling delay, so record talk date and release date separately."
+  - "Backfill Confidence, Evidence, and the three missing systems-thinking fields into briefs 2026-W32 through 2026-W34, or record the debt explicitly in the run ledger."
+  - "The five-test permission-boundary suite is the highest-value Action packet from this issue; run it before the W37 sweep so the result can be reported."
