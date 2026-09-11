@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Seventy-five percent off a rate you were not paying. (2026-W36)](https://ai-field-brief.vercel.app/briefs/2026-W36)
+**Latest:** [It agreed ninety-four percent of the time and was right four percent of the time. (2026-W37)](https://ai-field-brief.vercel.app/briefs/2026-W37)
 
 ## What it does
 
@@ -30,11 +30,11 @@ The reading underneath it is wide. A weekly sweep crosses 222 active sources
 (registry v14): primary vendor and research surfaces, practitioner blogs,
 podcasts, videos, papers, GitHub releases, startup changelogs, HN and Reddit
 feeds, and a `frontier-scout` lane that watches the tools and protocols most
-people will notice late. The W36 update reviewed 12 of 13 attempted sources and shipped eight Top
-signals, each with a concrete action, a confidence label, evidence
-cells, a systems map, a transferable principle, a falsification test, and
-an adoption ladder — the last four now enforced by a gate instead of by
-the author's memory.
+people will notice late. The W37 update swept 24 source lanes, re-verified every finding with an adversarial
+refutation pass, and shipped nine Top signals from the 116 that survived — each with
+a concrete action, a confidence label, evidence cells, a systems map, a transferable
+principle, a falsification test, and an adoption ladder, the last four enforced by a
+gate instead of by the author's memory.
 
 The brief is a markdown file per ISO week under `briefs/`. The site is a Next.js
 static prerender of those files; the RSS, Atom, JSON Feed, and weekly email

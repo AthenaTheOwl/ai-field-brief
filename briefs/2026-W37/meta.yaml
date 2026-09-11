@@ -1,0 +1,199 @@
+iso_week: 2026-W37
+through_date: 2026-09-11
+generated_at: 2026-09-11T20:00:00Z
+generated_by: claude-w37-the-harness-is-the-artifact
+title: "It agreed ninety-four percent of the time and was right four percent of the time."
+volume: 20
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W37-the-harness-is-the-artifact
+sweep:
+  attempted: 24
+  succeeded: 24
+  failed: 0
+  skipped: 2
+source_mix:
+  primary_docs: 5
+  vendor_changelogs: 7
+  academic_preprints: 9
+  framework_blogs: 4
+  conference_talks: 3
+  internal_digest_inputs: 4
+top_signal_count: 9
+action_packet_count: 9
+scout_count: 6
+notes:
+  - "Current-week issue covering Saturday 2026-09-05 through Friday 2026-09-11, closing the window 2026-W36 left open when it ended on a Friday."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-MTRX-007 and DEC-CDCP-020."
+  - "Nine Top signals instead of the usual seven or eight. The sweep returned 116 adversarially verified in-window findings across 24 lanes against W36's much smaller pool, and the nine picks resolve to nine distinct action surfaces with no duplication: cost, security, eval, observability, workflow, context, config, runtime-adapter, governance."
+  - "Sweep method: 24 parallel source lanes, each finding independently re-verified by an adversarial refutation pass. 325 raw findings deduped to 246; 116 survived verification in-window and 51 were refuted. Refuted findings were dropped entirely rather than downgraded."
+  - "Every load-bearing caveat surfaced by the verification pass is recorded on the corresponding matrix cell, and the ones that change how a number reads are carried in the brief prose. The most consequential: the 4.1-to-45.2 percent result in Top signal 3 is a conditional quantity measured in one stratum, it reverses where the producer's conclusion was right, and the unconditional movement is small. The brief states all three."
+  - "Top signal 2's 16.0 percent is a lower bound from a non-census corpus that over-represents repositories advertising their agent tooling, and no credential-exfiltration instance was confirmed. It is not evidence of exploitation."
+  - "Top signal 4's 85.9-point swing is a measured maximum on one model-benchmark pair driven by two combined settings, and the authors scope their findings to cybersecurity benchmarks. The brief does not extend it to benchmarks generally."
+  - "MCPSEC's 98.9 percent recall travels with its precision cost (65.7 percent against the ablation's 82.5 percent, flagging 143 of 177 tools). Quoting recall alone would imply a clean win the paper's own table does not show."
+  - "The LinkedIn talk's primary source could not be read — the YouTube page yields only title and speaker, with no transcript or description retrievable. Figures trace to two secondary reports plus LinkedIn's own engineering blog, and the brief attributes each number to its surface. No timestamps are cited because none could be confirmed. The same limitation applies to the Hancock and Kelley talks, whose verification rests on publisher descriptions and chapter markers."
+  - "The CrewAI truncation-budget consequence (170,000 to 108,800 effective tokens) is this brief's reading from llm.py at that tag, not CrewAI's stated claim. The vendor documents only the value correction."
+  - "Claude Code 2.1.267 carries no date in CHANGELOG.md; 2026-09-09 is the changelog commit timestamp. The word 'silently' does not appear in the source and is not used in the brief."
+  - "Daily Systems Brief issues dated September 8 through 11 were private discovery inputs. Every public claim was independently rechecked against its primary source and the private prose was not copied."
+  - "One verify agent's output was flagged by the workflow harness as matching an instruction-shaped pattern and was neutralized before it reached synthesis. The text came from fetched web content, not from the agent's own reasoning. It is recorded here as a sweep-integrity event; no finding derived from that agent was carried into this issue without independent re-verification."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "anthropics/claude-code CHANGELOG 2.1.267"
+    url: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+    disposition: top_signal
+  - label: "Scanning the Harness"
+    url: "https://arxiv.org/abs/2609.07360"
+    disposition: top_signal
+  - label: "MCPSEC: description-only detection of indirect prompt injection in MCP servers"
+    url: "https://arxiv.org/abs/2609.10854"
+    disposition: top_signal
+  - label: "Audit Without Verification"
+    url: "https://arxiv.org/abs/2609.07680"
+    disposition: top_signal
+  - label: "VP-CONTROL: cost-aware verification portfolios"
+    url: "https://arxiv.org/abs/2609.10969"
+    disposition: top_signal
+  - label: "Benchmark Scores Are Pipeline-Dependent"
+    url: "https://arxiv.org/abs/2609.08765"
+    disposition: top_signal
+  - label: "Shortcutting the Fix"
+    url: "https://arxiv.org/abs/2609.06780"
+    disposition: top_signal
+  - label: "BenchShield"
+    url: "https://arxiv.org/abs/2609.11028"
+    disposition: top_signal
+  - label: "The anatomy of harness engineering"
+    url: "https://developers.googleblog.com/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/"
+    disposition: top_signal
+  - label: "Automated agent evaluation with AgentCore and GitHub Actions"
+    url: "https://aws.amazon.com/blogs/machine-learning/automated-agent-evaluation-with-amazon-bedrock-agentcore-and-github-actions/"
+    disposition: top_signal
+  - label: "500 Skills, Zero Fine-Tuning (LinkedIn)"
+    url: "https://www.youtube.com/watch?v=9wZpvF3QleU"
+    disposition: top_signal
+  - label: "Subagents vs Agent Skills"
+    url: "https://arxiv.org/abs/2609.09233"
+    disposition: top_signal
+  - label: "MCP ext-skills PR #139"
+    url: "https://github.com/modelcontextprotocol/ext-skills/pull/139"
+    disposition: top_signal
+  - label: "Strands harness-sdk typescript/v1.17.0"
+    url: "https://github.com/strands-agents/harness-sdk/releases/tag/typescript/v1.17.0"
+    disposition: top_signal
+  - label: "CrewAI 1.15.21"
+    url: "https://github.com/crewAIInc/crewAI/releases/tag/1.15.21"
+    disposition: top_signal
+  - label: "ant beta:sessions connect"
+    url: "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/sessions-connect"
+    disposition: top_signal
+  - label: "Vercel AI SDK harness adapter for GitHub Copilot"
+    url: "https://vercel.com/changelog/github-copilot-ai-sdk-harness-adapter"
+    disposition: top_signal
+  - label: "Alex Hancock on ACP (Block)"
+    url: "https://www.youtube.com/watch?v=YkNulwcc5jk"
+    disposition: top_signal
+  - label: "Shopify: back to native"
+    url: "https://shopify.engineering/back-to-native"
+    disposition: top_signal
+  - label: "Boris Cherny on the bar for Claude-written code"
+    url: "https://simonwillison.net/2026/Sep/11/boris-cherny/"
+    disposition: top_signal
+  - label: "Building ambitious software (Dioxus Labs)"
+    url: "https://www.youtube.com/watch?v=H7vFrcNWXzs"
+    disposition: top_signal
+  - label: "ADK Go v2.4.0"
+    url: "https://github.com/google/adk-go/releases/tag/v2.4.0"
+    disposition: scout
+  - label: "DeepSeek-V4.1-Flash"
+    url: "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash"
+    disposition: scout
+  - label: "T1: terminal agent post-trained in a cloud sandbox"
+    url: "https://arxiv.org/abs/2609.11042"
+    disposition: scout
+  - label: "Miles v0.1 asynchronous agentic RL stack"
+    url: "https://huggingface.co/papers/2609.08368"
+    disposition: scout
+  - label: "MCP Triggers and Events design sketch"
+    url: "https://github.com/modelcontextprotocol/experimental-ext-triggers-events/pull/1"
+    disposition: scout
+  - label: "Grounding Agent Memory"
+    url: "https://arxiv.org/abs/2609.11060"
+    disposition: scout
+  - label: "Cloudflare Workflows retention default change"
+    url: "https://developers.cloudflare.com/changelog/?product=workflows"
+    disposition: scout
+  - label: "OpenAI GPT-6 Astra broad availability"
+    url: "https://openai.com/index/gpt-6-astra-next-generation-work"
+    disposition: archive
+  - label: "OpenAI GPT-Live 1 in the API"
+    url: "https://openai.com/index/introducing-gpt-live-1-in-the-api"
+    disposition: archive
+  - label: "Anthropic Frontier Red Team capability evaluations"
+    url: "https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities"
+    disposition: archive
+  - label: "NSA/CISA/FBI advisory AA26-251A reporting"
+    url: "https://cyberscoop.com/us-accuses-chinese-ai-companies-distillation/"
+    disposition: archive
+  - label: "OpenAI research acceleration telemetry"
+    url: "https://openai.com/index/research-acceleration-view-inside-openai"
+    disposition: archive
+  - label: "OpenAI Habitat storage platform"
+    url: "https://openai.com/index/scaling-storage-one-billion-users-part-one"
+    disposition: archive
+  - label: "LangChain: organizing context in a multi-agent harness"
+    url: "https://www.langchain.com/blog/organizing-context-in-a-multi-agent-harness"
+    disposition: reviewed_no_pick
+  - label: "LangChain Connections for Managed Deep Agents"
+    url: "https://www.langchain.com/blog/connections-managed-credentials-and-per-caller-identity-for-managed-deep-agents"
+    disposition: reviewed_no_pick
+  - label: "OpenAI Agents SDK for Python v0.22.1"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.22.1"
+    disposition: reviewed_no_pick
+  - label: "OpenAI Agents SDK for JavaScript v0.18.0"
+    url: "https://github.com/openai/openai-agents-js/releases/tag/v0.18.0"
+    disposition: reviewed_no_pick
+  - label: "E2B 2.48.0 through 2.49.1"
+    url: "https://github.com/e2b-dev/E2B/releases/tag/e2b%402.49.1"
+    disposition: reviewed_no_pick
+  - label: "Cloudflare Voice Agents turn diagnostics"
+    url: "https://developers.cloudflare.com/changelog/post/2026-09-11-voice-diagnostics-turn-metrics/"
+    disposition: reviewed_no_pick
+  - label: "Langfuse v4.33.0 and v4.34.0"
+    url: "https://github.com/langfuse/langfuse/releases/tag/v4.34.0"
+    disposition: reviewed_no_pick
+  - label: "ADK Python v2.9.0"
+    url: "https://github.com/google/adk-python/releases/tag/v2.9.0"
+    disposition: reviewed_no_pick
+  - label: "ADK for Kotlin 1.0.0"
+    url: "https://github.com/google/adk-kotlin/releases/tag/v1.0.0"
+    disposition: reviewed_no_pick
+  - label: "Strands harness-sdk python/v1.55.0 and v1.55.1"
+    url: "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.55.1"
+    disposition: reviewed_no_pick
+  - label: "Build interactive MCP Apps on Bedrock AgentCore"
+    url: "https://aws.amazon.com/blogs/machine-learning/build-interactive-mcp-apps-using-amazon-bedrock-agentcore/"
+    disposition: reviewed_no_pick
+  - label: "MCP Filesystems Working Group charter"
+    url: "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3282"
+    disposition: reviewed_no_pick
+  - label: "MCP conformance: RFC 8707 resource parameter check"
+    url: "https://github.com/modelcontextprotocol/conformance/pull/488"
+    disposition: reviewed_no_pick
+  - label: "MCP spec self-contradiction on subscriptions/listen cancellation"
+    url: "https://github.com/modelcontextprotocol/modelcontextprotocol/issues/3348"
+    disposition: reviewed_no_pick
+  - label: "Weekly Gen AI Digest folder"
+    url: "google-drive://Weekly Gen AI Digest"
+    disposition: skipped
+  - label: "Kaggle whitepapers"
+    url: "https://www.kaggle.com/whitepapers"
+    disposition: skipped
+failures: []
+next_run:
+  - "Report the tool-list mutation count and the post-2.1.267 cache hit ratio. W36 queued the measurement and W37 named eleven client-side causes that would have depressed any pre-upgrade number; the comparison is only meaningful across the upgrade boundary."
+  - "Re-score ten portfolio run records with the producer's verdict field stripped, reporting the two strata separately. The published effect reverses between them, so a single pooled number would repeat the error the paper warns about."
+  - "Sweep the five lanes that returned no in-window survivors this week to confirm the silence is real and not a feed defect. The W36 issue lost a Top signal for a whole quarter to a wrong channel_id, and a quiet lane is the same symptom."
+  - "Watch whether the MCP Triggers and Events design sketch opens a SEP against the base specification, and whether the poll-as-mandatory-baseline decision survives it."
+  - "Backfill or formally accept the Confidence, Evidence, and systems-thinking field debt in 2026-W32 through 2026-W34, per DEC-PUB-013. Carried from W36 and still open."
