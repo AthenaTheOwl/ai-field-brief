@@ -111,6 +111,29 @@ Each entry has the shape:
   from memory would produce a ledger that reads complete and is not.
   Entries resume below.
 
+## 2026-09-11 — d72056c brief: publish the 2026-W37 field brief
+
+- scope: vol. 20 covering 2026-09-05 to 2026-09-11, closing the window
+  W36 left open when it ended on a Friday. Nine Top signals across nine
+  distinct action surfaces, 20 matrix cells, 9 action packets, 6 scout
+  radar items. Sourced from a 24-lane sweep with an adversarial
+  refutation pass on every finding: 325 raw, 246 deduped, 116 verified
+  in-window, 51 refuted and dropped. Index and README cadence updated.
+- proof:
+  - `python scripts/validate_brief_fields.py` — OK, 3 briefs checked
+  - `python scripts/validate_matrix_cells.py` — OK over 6,204 cells in
+    18 files
+  - `python scripts/voice_lint.py` — clean over 280 files
+  - `python scripts/cadence_check.py` — OK after index and README update
+  - `python scripts/spec_check.py` — OK, 7 active specs
+  - `python -m pytest tests/ --basetemp=<scratch>` — 193 passed, 12
+    skipped. A bare run reports 49 setup errors from a Windows
+    PermissionError on the shared pytest temp root; supplying a basetemp
+    clears them, so they are a workstation sandbox artifact and not a
+    repo defect.
+  - run evidence — `ops/run-records/run-6eaf944f0dbe.json`, replay
+    equivalent
+
 ## 2026-09-04 — 0a2a80a chore: normalize matrix cell vocabulary to the cell schema
 
 - scope: 172 enum substitutions across the eight cell files that had

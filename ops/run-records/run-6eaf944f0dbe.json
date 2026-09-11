@@ -1,0 +1,51 @@
+{
+  "agent_id": "claude-w37-the-harness-is-the-artifact",
+  "events": [],
+  "finished_at": "2026-09-11T20:27:04Z",
+  "gate_results_summary": {
+    "all_passed": true,
+    "gates_failed": [],
+    "gates_passed": [
+      "voice_lint",
+      "spec_check",
+      "check_no_bom",
+      "validate_brief_fields",
+      "validate_matrix_cells",
+      "validate_schemas",
+      "cadence_check"
+    ]
+  },
+  "id": "run-6eaf944f0dbe",
+  "inputs": [
+    {
+      "kind": "playbook",
+      "ref": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/playbook/run-weekly-brief.md"
+    },
+    {
+      "kind": "source-registry",
+      "ref": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/sources/registry.yaml"
+    },
+    {
+      "kind": "meta",
+      "ref": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/briefs/2026-W37/meta.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "artifact_id": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/briefs/2026-W37/brief.md",
+      "type": "brief"
+    },
+    {
+      "artifact_id": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/briefs/2026-W37/meta.yaml",
+      "type": "meta"
+    }
+  ],
+  "prompt_snapshot_hash": "c1f9b3ec6d536b41c4dd0e2bfa91a0349a42d8c47cc2cda060a1b0c734232a8c",
+  "runtime": "claude-code-cli",
+  "sandbox_image_ref": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/",
+  "spec_id": "specs/0007-publishing/",
+  "started_at": "2026-09-11T20:00:00Z",
+  "status": "done",
+  "tool_schemas_snapshot_hash": "bb11b9882f897f9e0895310e36da29fd9a926b7b4b62f7fe6187470ba6747ce7",
+  "workspace_id": "ai-field-brief"
+}

@@ -1,0 +1,40 @@
+{
+  "divergences": [],
+  "head_check": {
+    "current_head": "3124d6586c272d0ed48ae621a0968e1c3a92ce75",
+    "match": true,
+    "recorded_sha": "3124d6586c272d0ed48ae621a0968e1c3a92ce75"
+  },
+  "outputs_check": {
+    "all_ok": true,
+    "details": [
+      {
+        "artifact_id": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/briefs/2026-W37/brief.md",
+        "exists": true,
+        "hash_recorded": false
+      },
+      {
+        "artifact_id": "repo://ai-field-brief@3124d6586c272d0ed48ae621a0968e1c3a92ce75/briefs/2026-W37/meta.yaml",
+        "exists": true,
+        "hash_recorded": false
+      }
+    ]
+  },
+  "packet_ref": "ops/replay-records/run-6eaf944f0dbe/cce2d399-6a65-4faa-be13-917ad6ee3ca0.json",
+  "prompt_snapshot_hash_check": {
+    "current": "c1f9b3ec6d536b41c4dd0e2bfa91a0349a42d8c47cc2cda060a1b0c734232a8c",
+    "match": true,
+    "recorded": "c1f9b3ec6d536b41c4dd0e2bfa91a0349a42d8c47cc2cda060a1b0c734232a8c"
+  },
+  "replay_equivalent": true,
+  "replay_event_id": "cce2d399-6a65-4faa-be13-917ad6ee3ca0",
+  "replay_method": "equivalence",
+  "replay_timestamp": "2026-09-11T20:27:07Z",
+  "run_id": "run-6eaf944f0dbe",
+  "spec_id": "specs/0007-publishing/",
+  "tool_schemas_snapshot_hash_check": {
+    "current": "bb11b9882f897f9e0895310e36da29fd9a926b7b4b62f7fe6187470ba6747ce7",
+    "match": true,
+    "recorded": "bb11b9882f897f9e0895310e36da29fd9a926b7b4b62f7fe6187470ba6747ce7"
+  }
+}
