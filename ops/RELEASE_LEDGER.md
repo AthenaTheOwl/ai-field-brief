@@ -111,6 +111,35 @@ Each entry has the shape:
   from memory would produce a ledger that reads complete and is not.
   Entries resume below.
 
+## 2026-09-21 — ead3ac4 brief: publish the 2026-W38 field brief
+
+- scope: vol. 21 covering 2026-09-12 to 2026-09-18, published three days
+  late after the 2026-09-20 attempt was rejected (four of ten cited URLs
+  404, one arXiv id cited for a paper it does not name) and parked on
+  `rejected/w38-gemini-2026-09-20`. Eight Top signals across eight
+  distinct action surfaces, 14 matrix cells, 8 action packets, 4 scout
+  radar items. Single-author method, no lane agents: the seven in-window
+  daily briefs and the 2026-09-18 weekly digest mined for 105 candidate
+  primaries (`ops/w38/candidates.tsv`), each shortlisted primary fetched
+  and dated; framework releases dated through the GitHub API
+  (`ops/w38/scout.tsv`). Eleven discovery items found out of window on
+  recheck and listed in Archive notes only. Index and README cadence
+  updated.
+- proof:
+  - `python ops/w38/verify_quotes.py` — 26 of 26 quote-typed source_refs
+    matched verbatim against live sources after whitespace normalization
+  - `python scripts/validate_brief_fields.py` — OK, 4 briefs checked
+  - `python scripts/validate_matrix_cells.py` — OK over 6,218 cells in
+    19 files
+  - `python scripts/voice_lint.py` — clean over 281 files
+  - `python scripts/cadence_check.py` — OK after index and README update
+  - `python scripts/spec_check.py` — OK, 7 active specs
+  - `python -m pytest tests/ --basetemp=<scratch>` — 200 passed, 14
+    skipped
+  - run evidence — `ops/run-records/run-4f18599a1eda.json`, replay
+    equivalent (`ops/replay-records/run-4f18599a1eda/`)
+  - DEC-PUB-012, DEC-MTRX-009
+
 ## 2026-09-11 — d72056c brief: publish the 2026-W37 field brief
 
 - scope: vol. 20 covering 2026-09-05 to 2026-09-11, closing the window
