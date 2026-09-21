@@ -1,0 +1,173 @@
+iso_week: 2026-W38
+through_date: 2026-09-18
+generated_at: 2026-09-21T18:00:00Z
+generated_by: claude-w38-the-ruler-outside-the-loop
+title: "Thirteen workers spent twelve days closing sixty-two percent of the gap to a model that already existed."
+volume: 21
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+sweep:
+  attempted: 13
+  succeeded: 10
+  failed: 1
+  skipped: 2
+source_mix:
+  primary_docs: 0
+  vendor_changelogs: 14
+  academic_preprints: 7
+  framework_blogs: 0
+  conference_talks: 0
+  internal_digest_inputs: 8
+top_signal_count: 8
+action_packet_count: 8
+scout_count: 4
+notes:
+  - "Current-week issue covering Saturday 2026-09-12 through Friday 2026-09-18, published 2026-09-21 after the 2026-09-20 attempt was rejected and parked on branch rejected/w38-gemini-2026-09-20 (four of ten cited URLs returned 404; one arXiv id cited for a paper it does not name)."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-MTRX-009."
+  - "Eight Top signals. The window's vendor and framework activity was dated by GitHub release timestamps and the preprints by arXiv submission dates; nothing is cited on the strength of a secondary mention."
+  - "Sweep method for this issue: the seven in-window Daily Systems Brief issues and the 2026-09-18 weekly digest were mined for 105 candidate primary URLs; each shortlisted primary was fetched and dated; GitHub releases and changelog commits for 24 framework repositories were listed through the API with an in-window filter. No parallel lane agents were used this week."
+  - "Every quote-typed source_ref on the matrix was matched verbatim against its live source by ops/w38/verify_quotes.py after whitespace normalization: 26 of 26 pass. Two Dream-RSI spans were re-cut after the first pass because the arXiv abstract carries the model name inside a LaTeX macro."
+  - "Eleven items the daily briefs presented this week were rechecked and found dated outside the window (July 20 to September 10, and one from November 2025); they appear in Archive notes as discovery inputs found out of window and nowhere else."
+  - "Top signal 8's three framework notes are one-line pull-request titles; the mechanisms are this brief's reading of the titles and the matrix cells say so."
+  - "Top signal 7 carries RSIAgent's comparison against closed-source models as the authors' claim with no scores at abstract level."
+  - "Top signal 5's 8.7-point figure is the maximum reported across the agent tasks, not a typical gain."
+  - "openai-news returned HTTP 403 to the fetcher; the vendor RSS feed dated both candidate posts (August 18 and August 26) outside the window, so the lane counts as failed for fetch and resolved for dating."
+  - "The ai-engineer-youtube feed endpoint returned 404 for a known-good control channel as well as the registered one on 2026-09-21; the registered channel id was verified against the channel's handle page and left unchanged. The 2026-09-04 registry note that 'resolved' the id was chasing the same endpoint behaviour."
+  - "The AGENTS.md fallback in Claude Code 2.1.277 applies only where CLAUDE.md is absent; the portfolio-level consequence for repos carrying both files is this brief's inference and is stated as such."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Weekly Gen AI Digest 2026-09-18"
+    url: "google-drive://GenAI & Agentic Patterns Weekly Digest"
+    disposition: synthesis_input
+  - label: "anthropics/claude-code release 2.1.277"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.277"
+    disposition: top_signal
+  - label: "anthropics/claude-code release 2.1.273"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.273"
+    disposition: top_signal
+  - label: "pydantic-ai v2.44.0"
+    url: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.44.0"
+    disposition: top_signal
+  - label: "Gemini CLI v0.60.0"
+    url: "https://github.com/google-gemini/gemini-cli/releases/tag/v0.60.0"
+    disposition: top_signal
+  - label: "AgentGuard: Learning Execution Guardrails from Anomalous Coding-Agent Trajectories"
+    url: "https://arxiv.org/abs/2609.16287"
+    disposition: top_signal
+  - label: "Confidence Comes from Experience: Experiential Confidence Estimation from Reasoning to Agents"
+    url: "https://arxiv.org/abs/2609.17708"
+    disposition: top_signal
+  - label: "Agora: Git as Shared Memory for Collective AutoResearch"
+    url: "https://arxiv.org/abs/2609.18094"
+    disposition: top_signal
+  - label: "Dream-RSI: Recursive Self-Improvement through Evolving Worlds"
+    url: "https://arxiv.org/abs/2609.14858"
+    disposition: top_signal
+  - label: "RSIAgent: Autonomous Exploration for Recursive Self-improvement in New Environments"
+    url: "https://arxiv.org/abs/2609.15364"
+    disposition: top_signal
+  - label: "openai-agents-python v0.22.3"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.22.3"
+    disposition: top_signal
+  - label: "langchain 1.4.2"
+    url: "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.2"
+    disposition: top_signal
+  - label: "deepagents 0.7.15"
+    url: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.7.15"
+    disposition: top_signal
+  - label: "ScienceIDE: Turning World's Scientific Codebase into Agent Learnable Environments"
+    url: "https://arxiv.org/abs/2609.19134"
+    disposition: scout
+  - label: "Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation"
+    url: "https://arxiv.org/abs/2609.11115"
+    disposition: scout
+  - label: "openai/codex rust-v0.155.0"
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.155.0"
+    disposition: scout
+  - label: "pydantic-ai v1.107.6"
+    url: "https://github.com/pydantic/pydantic-ai/releases/tag/v1.107.6"
+    disposition: scout
+  - label: "deepagents-code 0.1.71"
+    url: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code%3D%3D0.1.71"
+    disposition: scout
+  - label: "langchain 1.4.1"
+    url: "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.1"
+    disposition: scout
+  - label: "Strands python/v1.56.0"
+    url: "https://github.com/strands-agents/sdk-python/releases/tag/python%2Fv1.56.0"
+    disposition: scout
+  - label: "openai/codex rust-v0.155.1"
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.155.1"
+    disposition: archive
+  - label: "anthropic-sdk-python v1.7.0"
+    url: "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.7.0"
+    disposition: archive
+  - label: "microsoft/agent-framework python-1.19.0"
+    url: "https://github.com/microsoft/agent-framework/releases/tag/python-1.19.0"
+    disposition: archive
+  - label: "CrewAI 1.15.22"
+    url: "https://github.com/crewAIInc/crewAI/releases/tag/1.15.22"
+    disposition: archive
+  - label: "google/adk-python v2.9.1 and v2.9.2"
+    url: "https://github.com/google/adk-python/releases/tag/v2.9.2"
+    disposition: reviewed_no_pick
+  - label: "BerriAI/litellm v1.101.0"
+    url: "https://github.com/BerriAI/litellm/releases/tag/v1.101.0"
+    disposition: reviewed_no_pick
+  - label: "vercel/ai 5.0, 6.0 and 7.0 patch releases"
+    url: "https://github.com/vercel/ai/releases"
+    disposition: reviewed_no_pick
+  - label: "aws/bedrock-agentcore-sdk-python"
+    url: "https://github.com/aws/bedrock-agentcore-sdk-python/releases"
+    disposition: reviewed_no_pick
+  - label: "Hugging Face, Anatomy of a Frontier Lab Agent Intrusion (2026-07-27)"
+    url: "https://huggingface.co/blog/agent-intrusion-technical-timeline"
+    disposition: reviewed_no_pick
+  - label: "BleepingComputer, coding-agent sandbox escapes (2026-07-20)"
+    url: "https://www.bleepingcomputer.com/news/security/cursor-codex-gemini-cli-antigravity-hit-by-sandbox-escapes/"
+    disposition: reviewed_no_pick
+  - label: "OpenAI, pacing model development on cyber capabilities (2026-08-18)"
+    url: "https://openai.com/index/pacing-model-development-cyber-capabilities/"
+    disposition: reviewed_no_pick
+  - label: "OpenAI, the Hugging Face incident and the road ahead (2026-08-26)"
+    url: "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+    disposition: reviewed_no_pick
+  - label: "OpenAI, GPT-6 Astra system card (2026-09-03)"
+    url: "https://deploymentsafety.openai.com/gpt-6-astra"
+    disposition: reviewed_no_pick
+  - label: "NVIDIA to acquire Hugging Face (2026-09-03)"
+    url: "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/"
+    disposition: reviewed_no_pick
+  - label: "Google, Gemini 3.8 Flash and 3.8 Flash Cyber (2026-09-02)"
+    url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/"
+    disposition: reviewed_no_pick
+  - label: "Anthropic, advanced tool use (2025-11-24)"
+    url: "https://www.anthropic.com/engineering/advanced-tool-use"
+    disposition: reviewed_no_pick
+  - label: "Amazon Science, why don't machine learning research agents overfit (2026-09-10)"
+    url: "https://www.amazon.science/blog/why-dont-machine-learning-research-agents-overfit"
+    disposition: reviewed_no_pick
+  - label: "philschmid, Recursive Self-Improvement (2026-08-21)"
+    url: "https://www.philschmid.de/recursive-self-improvement"
+    disposition: reviewed_no_pick
+  - label: "philschmid, Evaluating Agents Beyond the First Prompt (2026-07-27)"
+    url: "https://www.philschmid.de/evocode-bench"
+    disposition: reviewed_no_pick
+  - label: "Anthropic, Detecting and countering misuse of AI: September 2026"
+    url: "https://www.anthropic.com/threat-intelligence-report-september-2026"
+    disposition: skipped
+  - label: "ai-engineer-youtube feed"
+    url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCLKPca3kwwd-B59HNr-_lvA"
+    disposition: skipped
+failures:
+  - "openai-news: HTTP 403 from the fetcher on both candidate posts; dated by RSS instead"
+next_run:
+  - "Inventory repos carrying both AGENTS.md and CLAUDE.md and diff each pair before the factory hosts upgrade past 2.1.277; where both exist the shim is now the file read."
+  - "Run the three-input probe against the portfolio's fetch wrapper and record the parse time of a ten-megabyte page; the superlinear-parse advisory is the one that turns a hostile page into a stall for every agent in the process."
+  - "Enable CLAUDE_CODE_GATEWAY_HINT_HEADERS on one gateway session and re-run the cache-hit measurement with post-compaction requests excluded. Open since W36; W37 named eleven client causes; this week supplies the header that isolates compaction."
+  - "Backfill or formally accept the Confidence, Evidence, and systems-thinking field debt in 2026-W32 through 2026-W34, per DEC-PUB-013. Carried from W36 and W37 and still open."
+  - "Restore the ai-engineer-youtube lane through a fetcher that YouTube's feed endpoint answers, or move the lane to the talk-archive source; two issues have now shipped without it."
+  - "W39 sweep should run the 24-lane method again; this issue's single-author method covered releases and preprints well and conference talks and practitioner blogs poorly."

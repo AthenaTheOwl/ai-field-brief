@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [It agreed ninety-four percent of the time and was right four percent of the time. (2026-W37)](https://ai-field-brief.vercel.app/briefs/2026-W37)
+**Latest:** [Thirteen workers spent twelve days closing sixty-two percent of the gap to a model that already existed. (2026-W38)](https://ai-field-brief.vercel.app/briefs/2026-W38)
 
 ## What it does
 

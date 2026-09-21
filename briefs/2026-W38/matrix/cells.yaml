@@ -1,0 +1,287 @@
+matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+generated_at: 2026-09-21T18:00:00Z
+schema_ref: schemas/matrix_cell.schema.json
+source_items:
+  - src-w38-claude-code-2-1-277
+  - src-w38-claude-code-2-1-273
+  - src-w38-pydantic-ai-2-44-0
+  - src-w38-gemini-cli-0-60-0
+  - src-w38-agentguard
+  - src-w38-xconf
+  - src-w38-agora
+  - src-w38-dream-rsi
+  - src-w38-rsiagent
+  - src-w38-openai-agents-0-22-3
+  - src-w38-langchain-1-4-2
+  - src-w38-deepagents-0-7-15
+lenses:
+  - cost
+  - security
+  - eval
+  - observability
+  - workflow
+  - context
+  - config
+  - runtime-adapter
+  - governance
+cells:
+  - id: MTRX-W38-AGENTS-MD-DEFAULT
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-claude-code-2-1-277
+    lens_id: config
+    mode: extractive
+    content: "Claude Code 2.1.277, published 2026-09-18, reads AGENTS.md as the project instruction file when a project has no CLAUDE.md. The behaviour is switchable under Project instructions in /config and is not yet available on Bedrock, Vertex or Foundry."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.277"
+        quote_or_span: "Added AGENTS.md support: in a project with no CLAUDE.md, Claude Code reads AGENTS.md instead; change it under \"Project instructions\" in `/config` (not yet on Bedrock, Vertex or Foundry)"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.277"
+        quote_or_span: "release published_at 2026-09-18T18:06:32Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The release note says AGENTS.md is read only when CLAUDE.md is absent; a repo carrying both keeps CLAUDE.md as the instruction file."
+      - "No statement in the source about precedence between a root AGENTS.md and nested instruction files, or about how AGENTS.md content is truncated or scoped."
+  - id: MTRX-W38-EGRESS-BOUNDARY-FLAG
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-claude-code-2-1-277
+    lens_id: security
+    mode: extractive
+    content: "The same release adds CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY=1 for Claude apps gateways whose only egress is a forward proxy; with it set, every outbound request hands the proxy the hostname instead of resolving it locally, so name resolution and destination policy move to the proxy."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.277"
+        quote_or_span: "Added `CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY=1` for Claude apps gateways whose only egress is a forward proxy: every outbound request hands the proxy the hostname instead of resolving it locally"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The flag applies to Claude apps gateway deployments; the source does not say it changes behaviour for a default local install without a gateway."
+      - "The source describes what the client does (hands the proxy the hostname); whether the proxy enforces anything is the operator's configuration, not a client guarantee."
+  - id: MTRX-W38-FETCH-TOOL-ADVISORIES
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-pydantic-ai-2-44-0
+    lens_id: security
+    mode: extractive
+    content: "pydantic-ai 2.44.0, published 2026-09-17, fixes four security issues, all reached through web_fetch_tool or OpenTelemetry instrumentation: an IPv6 zone-identifier bypass of the cloud-metadata and private-IP blocklists on URLs opted into local access; superlinear response processing on the event loop that let one attacker-chosen page stall every agent in the process; domain lists compared as written rather than in resolver form; and spans that carried exceptions, instructions and the output template despite include_content=False. Backported to 1.107.6."
+    source_refs:
+      - uri: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.44.0"
+        quote_or_span: "This release fixes four security issues, all of them reached through `web_fetch_tool` or OpenTelemetry instrumentation."
+        ref_type: quote
+      - uri: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.44.0"
+        quote_or_span: "`web_fetch` processed responses in superlinear time on the event loop, in both the HTML conversion and the charset decode, so a single attacker-chosen page could stall every agent in the process."
+        ref_type: quote
+      - uri: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.44.0"
+        quote_or_span: "`web_fetch_tool`'s domain lists were compared as written rather than in the form the resolver uses, so a blocked domain could be reached under another spelling."
+        ref_type: quote
+      - uri: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.44.0"
+        quote_or_span: "with `InstrumentationSettings(include_content=False)`, spans still carried exceptions, error statuses, instructions and the output template."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Two advisories are rated moderate and two low by the maintainers; the blocklist bypass requires a URL opted into local network access, which the release says is off by default."
+      - "Severity labels are the project's own; no CVSS scores or CVE identifiers appear in the release note."
+  - id: MTRX-W38-FETCH-DESTINATION-VALIDATION
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-gemini-cli-0-60-0
+    lens_id: security
+    mode: extractive
+    content: "Gemini CLI v0.60.0, published 2026-09-15, carries a core fix titled improve destination validation and connection routing in web fetch utilities."
+    source_refs:
+      - uri: "https://github.com/google-gemini/gemini-cli/releases/tag/v0.60.0"
+        quote_or_span: "fix(core): improve destination validation and connection routing in web fetch utilities"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The release note gives only the pull-request title; no advisory, severity or mechanism is stated, so this cell supports 'a second vendor changed fetch destination handling in the same week' and nothing stronger."
+  - id: MTRX-W38-GATEWAY-HINT-HEADERS
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-claude-code-2-1-273
+    lens_id: observability
+    mode: extractive
+    content: "Claude Code 2.1.273, published 2026-09-15, adds five opt-in request headers for LLM gateways — request class, agent type, previous tool durations, compaction, and context-compacted — enabled with CLAUDE_CODE_GATEWAY_HINT_HEADERS=1, so a gateway can attribute each request to the kind of turn that produced it."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.273"
+        quote_or_span: "Added `x-claude-code-request-class`, `x-claude-code-agent-type`, `x-claude-code-prev-tool-durations`, `x-claude-code-compaction` and `x-claude-code-context-compacted` request headers for LLM gateways; opt in with `CLAUDE_CODE_GATEWAY_HINT_HEADERS=1`"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.273"
+        quote_or_span: "release published_at 2026-09-15T20:23:03Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The source lists the header names only; the value vocabularies for request class and agent type are not documented in the release note."
+      - "Headers reach a gateway you operate; a direct connection to the API gains nothing from the flag."
+  - id: MTRX-W38-PERMISSION-CHECKER-SUBSHELL
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-claude-code-2-1-273
+    lens_id: security
+    mode: extractive
+    content: "The same release fixes Bash commands the permission checker cannot fully analyze skipping the prompt under permissions.blockReadsOutsideWorkingDirectories, and a subshell hiding a dangerous rm in bypass mode, and adds a notification when an MCP server disconnects mid-session and automatic reconnection gives up."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.273"
+        quote_or_span: "Fixed Bash commands the permission checker cannot fully analyze skipping the prompt under `permissions.blockReadsOutsideWorkingDirectories`, and a subshell hiding a dangerous `rm` in bypass mode"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.273"
+        quote_or_span: "Added a notification when an MCP server disconnects mid-session and automatic reconnection gives up, pointing at `/mcp`"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The note does not say how long the two permission-checker gaps existed or which versions were affected."
+  - id: MTRX-W38-AGENTGUARD-TRACES
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-agentguard
+    lens_id: eval
+    mode: extractive
+    content: "AgentGuard (arXiv 2609.16287, submitted 2026-09-14) mines recurring execution failure patterns from 642 documented failure traces across 382 repository tasks, generalizes them into instruction-level behavioural constraints, and packages them as a guardrail skill that activates only the rules relevant to the current instruction. Reported effect: Abnormal Execution Rate from 69.0% to 26.7%, Successful Task Completion Rate from 21.7% to 35.0%."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.16287"
+        quote_or_span: "AgentGuard automatically extracts recurring execution failure patterns, generalizes them into instruction-level behavioral constraints, and organizes them as a lightweight guardrail skill that dynamically activates only the rules relevant to the current instruction."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.16287"
+        quote_or_span: "We evaluate AgentGuard using 642 documented failure traces collected from real coding-agent executions across 382 repository tasks."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.16287"
+        quote_or_span: "AgentGuard reduces the Abnormal Execution Rate from 69.0% to 26.7% and increases the Successful Task Completion Rate from 21.7% to 35.0%."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Abstract-level figures only; the split between the traces used to mine rules and the tasks used to evaluate them is stated as 461 traces over 282 tasks for mining and 100 tasks held out, and the two rates are defined by the authors."
+      - "Two authors, affiliations not shown on the abstract page; no independent replication in the window."
+  - id: MTRX-W38-XCONF-ABSTENTION
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-xconf
+    lens_id: workflow
+    mode: extractive
+    content: "XConf (arXiv 2609.17708, submitted 2026-09-15) estimates confidence from a record of the model's own graded past episodes. It beats or matches ten-sample self-consistency on discrimination in 23 of 24 comparisons with lower calibration error at a tenth of the generation cost, and abstaining on the 10% least-confident episodes raises delivered success by up to 8.7 points on agent tasks."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.17708"
+        quote_or_span: "XConf beats or matches ten-sample self-consistency in discrimination (AUROC) on 23 of 24 comparisons, with much lower calibration error (ECE), at a tenth of the generation cost"
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.17708"
+        quote_or_span: "abstaining on the 10% least-confident episodes raises the delivered success rate by up to 8.7 points on agent tasks"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "'Up to 8.7 points' is a maximum across the agent tasks reported, not a typical gain; the abstract reports nine benchmarks and four models from three families without naming which pair produced the maximum."
+      - "The record of graded past episodes is a store the operator must build and maintain; the abstract does not say how much history is needed before the estimate is useful."
+  - id: MTRX-W38-AGORA-GIT-MEMORY
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-agora
+    lens_id: workflow
+    mode: extractive
+    content: "Agora (arXiv 2609.18094, submitted 2026-09-16) records collective research as an append-only DAG stored in Git. In a run of nearly 12 days, 13 language-model workers published 1,703 contributions on a weight-transfer problem and drove the evaluator from 3.39 to 1.899 bits per byte, closing 62% of the gap to a trained GPT-2 124M; the abstract also reports a 145-commit ancestry, 15 accounts and 165 independent reproductions."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.18094"
+        quote_or_span: "research is recorded as an append-only directed acyclic graph (DAG) stored in Git"
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.18094"
+        quote_or_span: "They published 1,703 contributions and drove the evaluator from 3.39 to 1.899 bits per byte, closing 62% of the gap to a trained GPT-2 124M"
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.18094"
+        quote_or_span: "a run of nearly 12 days in which 13 language-model workers"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The evaluator is a fixed bits-per-byte metric on a fixed target; the 62% figure is progress toward a model that already exists, which is the design, not a discovery claim."
+      - "Contribution and reproduction counts are the authors' own logs; the abstract does not report compute or dollar cost for the 12-day run."
+  - id: MTRX-W38-DREAM-RSI-REPLAY
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-dream-rsi
+    lens_id: eval
+    mode: extractive
+    content: "Dream-RSI (arXiv 2609.14858, submitted 2026-09-14) builds a replay simulator from historical discovery trees and refines exploration policies against it, getting off-policy feedback without repeating expensive online evaluations; the authors report competitive or improved discovery quality with substantially reduced discovery cost in several settings across algorithm engineering, mathematical optimization and GPU kernel engineering."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.14858"
+        quote_or_span: "Our key insight is that accumulated discovery history can serve as a replay simulator over the realized search space."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.14858"
+        quote_or_span: "secures immediate, low-cost off-policy feedback to evaluate and refine exploration policies without invoking repetitive, expensive online evaluations."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.14858"
+        quote_or_span: "achieves competitive or improved discovery quality while substantially reducing discovery cost in several settings."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "'Competitive or improved' and 'in several settings' are the abstract's own hedges; no single headline number is stated at abstract level."
+      - "A replay simulator built from past discovery trees can only score policies within the region those trees covered."
+  - id: MTRX-W38-RSIAGENT-VERIFIER
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-rsiagent
+    lens_id: eval
+    mode: extractive
+    content: "RSIAgent (arXiv 2609.15364, submitted 2026-09-14) coordinates curriculum, actor and verifier agents to explore a new environment, validate outcomes and retain environment-specific knowledge, with a broad-then-deep exploration strategy; the authors report that it lifts Kimi-K3 and GLM-5.3 past frontier closed-source models including GPT-6 on OSWorld-v2 and Agent's Last Exam."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.15364"
+        quote_or_span: "RSIAgent coordinates curriculum, actor, and verifier agents to continually explore the environment, validate outcomes, and retain environment-specific knowledge"
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.15364"
+        quote_or_span: "Experiments on OSWorld-v2 and Agent's Last Exam show that RSIAgent substantially improves strong open-source models, enabling Kimi-K3 and GLM-5.3 to outperform frontier closed-source models including GPT-6"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The comparison against closed-source models is the authors' claim on two benchmarks; the abstract gives no scores, and the verifier agent is itself a model, so the separation from the actor is architectural, not independent."
+  - id: MTRX-W38-APPROVALS-VALIDATED-ARGS
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-openai-agents-0-22-3
+    lens_id: governance
+    mode: extractive
+    content: "openai-agents-python v0.22.3, published 2026-09-17, aligns conditional tool approvals with the validated tool arguments rather than the raw call."
+    source_refs:
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.22.3"
+        quote_or_span: "fix(core): align conditional approvals with validated tool arguments"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The release note is a one-line pull-request title; the failure it fixes (an approval decision computed on unvalidated arguments) is this brief's reading of the title, not the maintainers' description."
+  - id: MTRX-W38-HITL-EDIT-PRESERVE
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-langchain-1-4-2
+    lens_id: governance
+    mode: extractive
+    content: "langchain 1.4.2, published 2026-09-18, preserves the model-generated tool calls when a human edits a tool call in the loop and adds a notice to the ToolMessage, so the record shows both what the model asked for and what the human changed."
+    source_refs:
+      - uri: "https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.2"
+        quote_or_span: "fix(langchain): preserve model-generated tool calls in HITL tool call edits and add notice to ToolMessage"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "One-line release note; what the notice contains and where the original call is stored is not described in the note."
+  - id: MTRX-W38-OFFLOAD-ID-COLLISION
+    matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
+    source_item_id: src-w38-deepagents-0-7-15
+    lens_id: context
+    mode: extractive
+    content: "deepagents 0.7.15, published 2026-09-16, gives tool result offloads that carry no ID unique paths, after collisions between offloaded results."
+    source_refs:
+      - uri: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.7.15"
+        quote_or_span: "Gave tool result offloads without IDs unique paths to avoid collisions."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The note does not say what a collision did to the agent (a stale result read back, or an overwrite); either is consistent with the fix."
