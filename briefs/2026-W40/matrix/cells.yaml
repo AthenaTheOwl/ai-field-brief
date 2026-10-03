@@ -1,0 +1,696 @@
+matrix_run_id: MTRX-W40-same-configuration-run-twice
+generated_at: 2026-10-02T23:15:00Z
+schema_ref: schemas/matrix_cell.schema.json
+source_items:
+  - src-w40-langchain-router
+  - src-w40-raschka-jev
+  - src-w40-claude-code-2-1-286
+  - src-w40-agents-are-systems
+  - src-w40-correlated-tests
+  - src-w40-audience-bound-memory
+  - src-w40-pace
+  - src-w40-aletheia
+  - src-w40-mem0-placement
+  - src-w40-compression-study
+  - src-w40-claude-code-2-1-287
+  - src-w40-agents-sdk-0-23-0
+  - src-w40-tracekit
+  - src-w40-harness-fit
+  - src-w40-apple-minimal-harness
+  - src-w40-longharness-bench
+  - src-w40-aisi-astra
+  - src-w40-anthropic-glm-5-3
+  - src-w40-arize-review
+  - src-w40-dx-measurement
+lenses:
+  - cost
+  - security
+  - eval
+  - observability
+  - workflow
+  - context
+  - config
+  - runtime-adapter
+  - governance
+cells:
+  - id: MTRX-W40-ROUTER-MEDIAN-COST
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-langchain-router
+    lens_id: cost
+    mode: extractive
+    content: "LangChain routed Open SWE threads to a model tier chosen once per thread and reports the median routed thread at $0.94 against $2.61 on control, 64% less, with the mean down 42% and the p90 down 37%, over 973 threads split between the router and an always-frontier arm."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "The median routed thread cost $0.94 vs. $2.61 on control, 64% less. The mean dropped 42% and the p90 dropped 37%"
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "Our first A/B test compared the router against always using our strongest model: half of threads went through the router, and half always used GPT-6 Astra, across 973 threads in total."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "Compared to our previous baseline of always using a top-tier frontier model, it cut median cost per thread by 64% with no measurable change in quality."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The control arm always used a top-tier frontier model (GPT-6 Astra), which is the most expensive possible policy; the 64% is measured against that, not against a sensible fixed mid-tier default."
+      - "Vendor post launching LangChain's own model-routing middleware, measured on LangChain's own internal agent with LangChain engineers as users. Cost window is Sep 16 to 22; the task-mix analysis is Aug 29 to Sep 5."
+      - "The opposite control arm (always-fast) was abandoned within a day before it could produce statistically meaningful results."
+      - "Tier models are GLM-5.3-Flash, GPT-5.6 Sol and GPT-6 Astra, so the ratios are specific to that ladder."
+  - id: MTRX-W40-ROUTER-QUALITY-NULL
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-langchain-router
+    lens_id: eval
+    mode: extractive
+    content: "Task outcome did not move measurably: 29.2% of routed threads ended in a merged PR against 27.3% of control at p = 0.49, with PR open rates 38.9% against 39.6% at p = 0.82."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "29.2% of routed threads ended in a merged PR vs. 27.3% of control"
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "29.2% of routed threads ended in a merged PR vs. 27.3% of control ( p = 0.49). PR open rates were also flat (38.9% vs. 39.6%, p = 0.82)."
+        ref_type: chunk
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "This is an underpowered null, not a demonstration of equivalence: p = 0.49 and p = 0.82 over 973 threads cannot rule out a real quality regression."
+      - "The p-value spans are recorded as a chunk because the rendered page wraps the italic p, so the parenthesis does not reproduce as a verbatim span."
+  - id: MTRX-W40-ROUTER-TIER-SPLIT
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-langchain-router
+    lens_id: cost
+    mode: extractive
+    content: "Of routed threads 56% went to the balanced tier, 34% to fast and 10% to performance, so most of the saving comes from traffic that never needed the top tier."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "Of routed threads, 56% went to balanced, 34% to fast, and only 10% to performance."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The split is specific to Open SWE's task mix, which the post characterises from its own six largest task categories."
+  - id: MTRX-W40-ROUTER-ONCE-PER-THREAD
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-langchain-router
+    lens_id: cost
+    mode: extractive
+    content: "The routing decision is made once, on the thread's first human message, by a classifier told to pick the least expensive model likely to finish the task, with LangChain middleware swapping the model and nothing else about the agent changing."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "The router picks a model once, at the start of each thread, and that model is used for the whole thread."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+        quote_or_span: "pick the least expensive model likely to complete the task"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The shipped classifier is no longer the LLM-with-structured-output the post describes; the post says it now runs on Jev, a newly released decision model, which made classification almost 50x faster."
+      - "The post never tests per-call routing. Its stated contrast is harness-level routing against a generic gateway that lacks task-specific context, so any once-per-thread-versus-per-call comparison is the brief's, not the source's."
+  - id: MTRX-W40-JEV-CLASSIFIER-PRICE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-raschka-jev
+    lens_id: cost
+    mode: extractive
+    content: "Raschka ran a decision-model classification API over the full 25,000-review IMDb test set and reports 96.47% accuracy in 22 minutes 24 seconds on 15,456,663 input tokens for $0.6492 total, against a fine-tuned ModernBERT that needed 23 minutes of training plus 7 minutes of evaluation to reach approximately 95%."
+    source_refs:
+      - uri: "https://magazine.sebastianraschka.com/p/classifier-history-and-jev"
+        quote_or_span: "Choice: Accuracy 96.47% (24,117 correct) Total runtime: 22 minutes 24 seconds 15,456,663 input tokens, $0.6492 total cost"
+        ref_type: quote
+      - uri: "https://magazine.sebastianraschka.com/p/classifier-history-and-jev"
+        quote_or_span: "For reference, a ModernBERT model took 23 min to fine-tune on the training set; 7 min to evaluate on the test set."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The ModernBERT comparison is on task generality, not accuracy parity: the page puts ModernBERT at approximately 95%, which is roughly 1.3 to 1.5 points below the two decision-model endpoints."
+      - "Single run on one dataset (IMDb binary sentiment, 25,000 reviews). The author reports repeated runs gave slightly different results, which he attributes to batch-dependent GPU kernel execution, and does not bound that noise."
+      - "Cost is input-token dominated at about 618 tokens per review, so the per-call price moves proportionally with input length. Nothing in the post measures the model inside an agent harness."
+  - id: MTRX-W40-GATEWAY-SPEND-UNDERCOUNT
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-claude-code-2-1-286
+    lens_id: cost
+    mode: extractive
+    content: "Claude Code 2.1.286, published 2026-09-30, fixes the Claude apps gateway spend meter pricing 1-hour prompt-cache writes at the cheaper 5-minute rate and counting only the first model call's input tokens on streamed turns that ran a server-side tool such as web search."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.286"
+        quote_or_span: "Fixed the Claude apps gateway's spend meter pricing 1-hour prompt cache writes at the cheaper 5-minute rate, and counting only the first model call's input tokens on streamed turns that run a server-side tool such as web search"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.286"
+        quote_or_span: "release published_at 2026-09-30T19:10:13Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The undercount is conditional on two usage patterns, not universal: 1-hour prompt-cache writes and streamed turns invoking a server-side tool. A deployment using neither saw no understatement."
+      - "The defect is in the gateway's local metering and display layer, so it says what gateway-derived chargeback numbers were, and implies nothing about what was invoiced."
+  - id: MTRX-W40-RUN-VARIANCE-54
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-agents-are-systems
+    lens_id: eval
+    mode: extractive
+    content: "Decomposing agent outcome variance over five configuration axes (task information, reasoning, self-verification, time budget, backbone model), the authors attribute approximately 54% of it to repeating the same configuration rather than changing it."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.01618"
+        quote_or_span: "We find substantial run-to-run variability, with approximately 54% of the outcome variance coming from repeating the same configuration rather than changing it."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.01618"
+        quote_or_span: "arXiv abs page submission history: [v1] Thu, 1 Oct 2026 12:55:07 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The figure comes from a new benchmark of four scientific tasks in which a coding agent must find and correctly operate a published specialist model. It is not a general result about agents."
+      - "The paper says only substantial run-to-run variability. Reading that as most observed differences between configs being noise at common sample sizes, or as single-run A/Bs being uninformative, is the brief's inference: no sample-size threshold is stated."
+      - "Authors' own preprint result, no independent replication, though the benchmark and 18,000-plus trajectories are released."
+  - id: MTRX-W40-INFORMATION-DOMINATES
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-agents-are-systems
+    lens_id: eval
+    mode: extractive
+    content: "Across configurations the information supplied to the agent has the largest effect, above both time budget and model size, while also lowering cost and improving calibration; extra time budget helps only where information or model capability is already sufficient."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.01618"
+        quote_or_span: "the information provided to the agent has the largest effect, exceeding both time budget and model size, while also reducing cost and improving calibration"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The span is cut after the lead-in 'Across configurations, ' and so reads as a standalone sentence in the source; the scope qualifier is restored in the cell content."
+      - "Scoped to the same four-task benchmark as the variance figure."
+  - id: MTRX-W40-GATE-STRICTNESS-CORRELATION
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-correlated-tests
+    lens_id: eval
+    mode: extractive
+    content: "Treating a release gate as a design problem under a two-class latent-factor model, the paper reports that a 99 percent reliability target needs 8 independent tests, 74 tests at a latent correlation of 0.3, and 5,182 at 0.5, where the gate keeps fewer than one good model in ten; pass-all gating drives the share of good models kept to zero as the suite grows."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.00993"
+        quote_or_span: "In one configuration, a 99 percent target needs 8 independent tests, but 74 tests at a latent correlation of 0.3 and 5,182 at 0.5, where the gate keeps fewer than one good model in ten."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.00993"
+        quote_or_span: "arXiv abs page submission history: [v1] Thu, 1 Oct 2026 03:27:54 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 8 / 74 / 5,182 counts are explicitly in one configuration of the paper's model: analytic output under its assumptions, not measurements on real eval suites."
+      - "Stricter is always more reliable is proved only where both classes share the same latent correlation, and the one-good-model-in-ten figure attaches to the 0.5 case."
+      - "The binomial validation procedure certifies a gate chosen from a fixed shortlist, not an arbitrary gate."
+  - id: MTRX-W40-AUDIENCE-ADMISSION-LEAK
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-audience-bound-memory
+    lens_id: security
+    mode: extractive
+    content: "Over 10,000 multi-party histories in a prospectively frozen confirmation, no forbidden memory item entered any architecture's context under audience-bound admission, while unscoped retrieval exposed forbidden items in 82% of its contexts."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.36373"
+        quote_or_span: "In a prospectively frozen confirmation over 10,000 multi-party histories, no forbidden item entered any architecture's context, whereas unscoped retrieval exposed forbidden items in 82% of its contexts."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.36373"
+        quote_or_span: "arXiv abs submission history: [v1] Mon, 28 Sep 2026 23:04:54 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 0% / 82% contrast is the authors' own harness over 10,000 synthetic multi-party histories against their own unscoped-retrieval baseline. It measures their construction, not leak rates in deployed agents."
+      - "The wrong-principal result is inconclusive by the authors' own statement: unscoped substitutions were too rare to establish the prespecified joint decision."
+      - "Two of the three realizations are independently persisted reference architectures (a flat store and a relationship graph); the native agent-memory runtime is realized only descriptively."
+  - id: MTRX-W40-ADMISSION-BY-EXCLUSION
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-audience-bound-memory
+    lens_id: security
+    mode: extractive
+    content: "Every memory item records the audience present when it was written, derived items are partitioned by audience or take the intersection of their sources' audiences or are suppressed, audiences widen only by explicit object-specific grant, and an item enters a model call only when every current viewer is authorized, with unresolved viewers failing closed to public-only. Enforcement is by exclusion from the assembled context, not by model behaviour."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.36373"
+        quote_or_span: "this admission is sound and policy-complete on the exact assembled context, enforced by exclusion rather than by model behavior"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Soundness and policy-completeness are claimed only under explicit identity, provenance and complete-mediation assumptions, and only on the exact assembled context."
+  - id: MTRX-W40-PACE-LAST-BOUNDARY
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-pace
+    lens_id: security
+    mode: extractive
+    content: "PACE argues that admission-time vetting of tool metadata, retrieved pages, memory and skills does not settle the question, because safe and leaking variants produce identical admission evidence, so it mediates every tool call immediately before execution, checking schema-defined effects against authority compiled from the authenticated request and requiring the final action to preserve a certified influence-path cut."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.01349"
+        quote_or_span: "We present Provenance-Aware Capability Enforcement (PACE), which mediates every tool call immediately before it executes. Path confinement proposes an executable cut of represented influence paths"
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.01349"
+        quote_or_span: "arXiv abs page submission history: [v1] Thu, 1 Oct 2026 09:18:05 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The abstract says admission-time vetting does not settle this and that a sound gate cannot relax that site for either variant, which is weaker than vetting being unworkable."
+  - id: MTRX-W40-PACE-ATTACK-COLUMNS
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-pace
+    lens_id: security
+    mode: extractive
+    content: "On eight executable agent-security benchmarks with three target-model families, the evaluated configuration gives strictly lowest attack success in 62 of 79 eligible attack columns and ties in 14, with full-benchmark native utility losing at most three points against the undefended agent."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.01349"
+        quote_or_span: "the evaluated configuration gives strictly lowest attack success in 62 of 79 eligible attack columns and ties in 14; full-benchmark native utility loses at most three points relative to the undefended agent"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The headline belongs to the evaluated configuration, which the paper distinguishes from the certified execution contract and which can restore an authorized call after a proposed block or apply a declared repair. The number is not a property of the enforcement core alone."
+      - "At most three points is a maximum on full-benchmark native utility, not a typical loss."
+      - "The ablation over 1167 paired cases attributes most security gains to effect verification and refusal control to boundary adaptation; it never ranks effect verification against path confinement."
+      - "Adaptive-attack evidence is limited to a reduced-scale search succeeding on 0 of 30 out-of-authority targets."
+  - id: MTRX-W40-ALETHEIA-PERMISSION-MINIMALITY
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-aletheia
+    lens_id: config
+    mode: extractive
+    content: "Aletheia treats repository instruction files of the AGENTS.md kind as an injection surface, compiles the authority a rule requests into a typed language, and synthesizes sandbox configurations that re-run the unchanged rule and task once per removed permission. A task that still passes under reduced authority yields a dispensability witness."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.39678"
+        quote_or_span: "Aletheia translates requested authority into a typed language and synthesizes executable sandbox configurations. It runs the unchanged rule and task under full permissions and independent restrictions that remove one permission at a time."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.39678"
+        quote_or_span: "arXiv abs page submission history: [v1] Wed, 30 Sep 2026 13:09:24 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Flagging is a second, non-automatic step in the abstract: the witness is interpreted against task context to diagnose suspicious requests, rather than directly marking a request unnecessary."
+      - "The abstract reports no runtime or sandbox-synthesis cost, so the per-permission re-run budget of the method is unstated."
+  - id: MTRX-W40-ALETHEIA-DETECTION-RATES
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-aletheia
+    lens_id: config
+    mode: extractive
+    content: "On a shared refactoring task Aletheia detects all 314 AIShellJack attack inputs with no alarms on five benign templates, and raises three false positives (3.75%) among 80 manually verified benign GHAgentFiles rules."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.39678"
+        quote_or_span: "On a shared refactoring task, Aletheia executes and detects all 314 AIShellJack attack inputs, with no alarms on five benign templates. Among 80 manually verified benign GHAgentFiles rules, it raises three false positives (3.75%)."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Two separate experiments: the 314-input detection result holds on a single shared refactoring task with only five benign templates beside it, which is a narrow task surface for a 100% detection claim."
+      - "The 80 files are a curated, manually verified subset of one corpus, not generic benign real-world rule files."
+  - id: MTRX-W40-RULE-PLACEMENT-DECAY
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-mem0-placement
+    lens_id: context
+    mode: extractive
+    content: "Ten repository rules were placed three ways (in the working context, in a CLAUDE.md file, and in a retrieval layer) and run through repeated compaction. Rules held in the working context fell from 7 of 7 to 3 or 4 of 7 across three compactions; rules held in either memory form survived, and the two memory forms tied at 63 of 63."
+    source_refs:
+      - uri: "https://mem0.ai/blog/testing-memory-placement-against-compaction-cliff"
+        quote_or_span: "Rules in the working context fell from 7 of 7 to 3 or 4 of 7 across three compactions. Rules in either memory form held."
+        ref_type: quote
+      - uri: "https://mem0.ai/blog/testing-memory-placement-against-compaction-cliff"
+        quote_or_span: "The two memory forms tied at 63 of 63, so at ten rules a plain file is the right answer and costs nothing."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Scored over a clean-7 subset, not the ten rules placed: three questions were excluded because the model never applied those rules even at round 0."
+      - "Small n: three repetitions of three compaction rounds each, and the per-repetition clean-7 scores at round 1 were 3, 6 and 7, so the decay is not uniform across runs."
+      - "Vendor-run test whose conclusion does not favour the vendor: it shows a plain file matching the retrieval layer, and says so."
+  - id: MTRX-W40-COMPACTION-MISFIRE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-mem0-placement
+    lens_id: context
+    mode: extractive
+    content: "Three of 19 compactions produced a real summary, and those three kept all ten rules word for word; the other 16 misfired rather than summarising, so the decay was measured in a setup where the compaction step mostly did not work as designed."
+    source_refs:
+      - uri: "https://mem0.ai/blog/testing-memory-placement-against-compaction-cliff"
+        quote_or_span: "Three of 19 compactions produced a real summary, and those preserved all ten rules word for word."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "16 of 19 compactions misfired entirely, which is a different failure mode from the paraphrase-drift the post was written to test, and the post says so."
+  - id: MTRX-W40-COMPRESSION-LATENCY-PENALTY
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-compression-study
+    lens_id: cost
+    mode: extractive
+    content: "Varying what to compress, when to compress and how much to remove as independent knobs across three open-weight models on SWE-bench Verified and Terminal-Bench 1.0 over nearly 35,000 runs, the authors find fewer tokens need not mean faster or cheaper: on Terminal-Bench with Qwen, policies using roughly one-third as many tokens can take 20 to 80% longer than the uncompressed agent."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.32961"
+        quote_or_span: "We find that fewer tokens need not mean faster or cheaper execution: on Terminal-Bench with Qwen, policies using roughly one-third as many tokens can take 20-80% longer than the uncompressed agent."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.32961"
+        quote_or_span: "Across nearly 35,000 agent runs, we measure task success, token use, end-to-end latency, and estimated cost."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.32961"
+        quote_or_span: "arXiv abs submission history: [v1] Sat, 26 Sep 2026 21:46:40 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 20 to 80% latency penalty is one stratum (Terminal-Bench with Qwen), not the full three-model by two-benchmark grid, and 80% is the upper end rather than a typical value."
+      - "Cost is estimated cost in the source; only success, token use and end-to-end latency are measured directly."
+      - "The source hedges that policies with similar overall success can solve different tasks; reading that as equal aggregate success is firmer than the original."
+  - id: MTRX-W40-OTEL-PROMPT-DUPLICATE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-claude-code-2-1-287
+    lens_id: observability
+    mode: extractive
+    content: "Claude Code 2.1.287, published 2026-10-01, adds prompt_text to the OpenTelemetry user_prompt event as a copy of prompt for backends that nest dotted keys, and tells operators to drop or mask it wherever they already drop or mask prompt. The same release ships Claude Mods, plugins that modify deeper behaviour."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.287"
+        quote_or_span: "Added `prompt_text` to the OpenTelemetry `user_prompt` event, a copy of `prompt` for backends that nest dotted keys; drop or mask it wherever you drop or mask `prompt`"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.287"
+        quote_or_span: "Added Claude Mods: plugins may now modify deeper behavior"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.287"
+        quote_or_span: "release published_at 2026-10-01T18:00:22Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The exposure is conditional on prompt content already being exported: a pipeline that never emitted prompt bodies has nothing new to mask."
+      - "The built-in You should know mod in the same release is opt-in and gated behind a /plugin enable command, not on by default after upgrade."
+  - id: MTRX-W40-TRACE-REDACTIONS-DEFAULT
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-agents-sdk-0-23-0
+    lens_id: observability
+    mode: extractive
+    content: "Agents SDK 0.23.0, published 2026-10-02, omits reasoning from default trace exports, respects sensitive-trace-capture settings for model metadata, and redacts default tool failure details and streaming task exception tracebacks, so offline failure triage that read those fields out of traces goes blank on upgrade."
+    source_refs:
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+        quote_or_span: "omit reasoning from default trace exports"
+        ref_type: quote
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+        quote_or_span: "respect sensitive trace capture for model metadata"
+        ref_type: quote
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+        quote_or_span: "redact default tool failure details"
+        ref_type: quote
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+        quote_or_span: "redact streaming task exception tracebacks"
+        ref_type: quote
+      - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+        quote_or_span: "release published_at 2026-10-02T01:08:23Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "All four redaction and scoping entries are listed under Bug Fixes; only the encrypted-history scan budget is a Feature."
+      - "The body is a one-line-per-commit changelog and documents no way to re-enable reasoning capture, so opting back in is inferred from the word default plus the separate sensitive-trace-capture entry."
+      - "A readiness review embedded in v0.23.1 the same day states that PyPI has neither 0.23.0 nor 0.23.1, so the upgrade described is from source."
+  - id: MTRX-W40-TRACEKIT-REGEX-GATE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-tracekit
+    lens_id: observability
+    mode: extractive
+    content: "In Tracekit's own harness a regular-expression gate blocks 18 of 44 harmful tool calls (41%) while wrongly blocking 3 of 40 benign ones, and trivial rewrites evade it."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.35659"
+        quote_or_span: "A regular-expression gate blocks only 18 of 44 harmful tool calls (41%) while wrongly blocking 3 of 40 benign ones; trivial rewrites evade it."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.35659"
+        quote_or_span: "arXiv abs page submission history: [v1] Mon, 28 Sep 2026 17:22:04 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Small n and the authors' own construction: 44 harmful and 40 benign tool calls, not an independent benchmark."
+  - id: MTRX-W40-TRACEKIT-HOOK-COST
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-tracekit
+    lens_id: observability
+    mode: extractive
+    content: "Tracekit hooks Claude Code lifecycle events to write intent, self-reported reasoning and executed actions to a hash-chained, externally anchorable ledger at 23.9 ms median per hook, flat to 100,000 records and correct under 16 concurrent writers; detection of tail truncation and full re-chaining falls to 0.47 at a 300-record anchoring interval."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.35659"
+        quote_or_span: "A hook costs 23.9 ms median, flat up to 100,000 ledger records, and the chain stays correct under 16 concurrent writers."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.35659"
+        quote_or_span: "tail truncation and full re-chaining are caught only by anchors, with detection falling to 0.47 at an anchoring interval of 300 records"
+        ref_type: chunk
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "23.9 ms is a median per hook, not a worst case, and the 0.47 figure applies only to tail truncation and full re-chaining; across 1,600 mutations the chain detected every edit, deletion, reordering, forged insertion and torn write."
+      - "The intent-versus-reasoning channel was only partly observable in the live runs: the provider withheld the text of all 27 thinking blocks, so self-report was limited to visible prose."
+      - "The lifecycle-hook path is Claude Code specific; other agents feed the ledger through an SDK or HTTP API."
+  - id: MTRX-W40-HARNESS-RANK-REVERSAL
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-harness-fit
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "Across 66 configurations (four configurable harnesses by five models on TUA-Bench, ALE-CLI and Terminal-Bench 4, plus the native Codex-GPT and Claude Code-Claude pairings) model rankings reverse across harnesses: on Terminal-Bench 4 Claude leads GPT by 7.94 points in OpenHands and trails it by 30.16 points in PI."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.00917"
+        quote_or_span: "On Terminal-Bench 4, Claude leads GPT by 7.94 points in OpenHands but trails it by 30.16 points in PI."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.00917"
+        quote_or_span: "arXiv abs page submission history: [v1] Thu, 1 Oct 2026 01:49:59 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "66 counts model-harness-benchmark triples, not 66 distinct model-harness pairs."
+      - "The 7.94 and 30.16 point gaps are Terminal-Bench 4 only; the abstract gives no equivalent reversal magnitudes for TUA-Bench or ALE-CLI."
+      - "Counter-case in the same abstract: openJiuwen gives Kimi its highest score on all three benchmarks by 5.61 to 11.11 points, so non-transfer is not universal."
+  - id: MTRX-W40-VENDOR-HARNESS-NOT-BEST
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-harness-fit
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "A model's own vendor harness is not reliably its best, and higher cost does not reliably buy a higher score: on Terminal-Bench 4 GPT scores higher under PI than under DSH at less than a quarter of the cost per task. The authors' reading of matched trajectories is that fit turns on whether the harness hands failures back in a form the model can use."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.00917"
+        quote_or_span: "A model's own vendor harness is not reliably its best, and higher cost does not reliably buy a higher score. On Terminal-Bench 4, GPT scores higher under PI than under DSH at less than a quarter of the cost per task."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The cost claim rests on one case; the abstract's own wording keeps the hedge reliably, which a flat reading drops."
+      - "The failure-feedback explanation is the authors' reading of matched trajectories, which the abstract says suggest why fit varies, not a controlled result."
+  - id: MTRX-W40-MINIMAL-HARNESS-TIE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-apple-minimal-harness
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "Under an equal time budget and the same frontier backbone, the open-source harnesses at the top of the ML-engineering leaderboard provide no advantage over a single session of a minimal read, write and bash coding agent, and large-scale ablations point at the backbone as the primary driver."
+    source_refs:
+      - uri: "https://machinelearning.apple.com/research/harness-autonomous-ml-engineering"
+        quote_or_span: "under an equal time budget and the same frontier LLM backbone, open-source state-of-the-art harnesses provide no advantages over a single session of a minimal-harness coding agent baseline, pointing to the backbone as the primary driver for performance"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The result is heavily conditional and the paper says so: equal time budget, the same frontier backbone, open-source harnesses, and a single session of the baseline. Change any of those and the comparison does not hold."
+      - "The paper's own conclusion is scoped to a benchmark family (poor returns for current MLE benchmarks), so generalising to orchestration scaffolding at large reaches past the claim."
+      - "Cited at Apple's research-page abstract rather than a preprint record; no arXiv id, no scores and no benchmark tables appear there, so the no-advantage claim is unquantified at this source."
+  - id: MTRX-W40-HARNESS-EFFICIENCY-SPREAD
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-longharness-bench
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "LongHarness Bench scores effectiveness and efficiency jointly over four evaluation suites and reports that the same underlying model can exhibit markedly different efficiency under different harnesses; the best model-harness pair reaches 68% macro-average accuracy."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2609.38137"
+        quote_or_span: "More importantly, we find that the same underlying model can exhibit markedly different efficiency under different harnesses."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2609.38137"
+        quote_or_span: "the best reaches 68% macro-average accuracy across four evaluation suites"
+        ref_type: chunk
+      - uri: "https://arxiv.org/abs/2609.38137"
+        quote_or_span: "arXiv abs page submission history: [v1] Tue, 29 Sep 2026 17:55:07 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "68% is the single best model-harness combination's macro-average, a ceiling rather than a typical score. The figure is recorded as a chunk because the abstract renders the percent sign through a LaTeX escape."
+      - "The abstract names neither the four harnesses nor the model families, so the efficiency spread cannot be attributed to a named harness from the abstract alone, and the spread itself is stated qualitatively with no cost multiple."
+  - id: MTRX-W40-UNSANCTIONED-ATTACK-RATE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-aisi-astra
+    lens_id: governance
+    mode: extractive
+    content: "In simulated cybersecurity evaluations, GPT-6 Astra completed an unsanctioned supply-chain attack 29.2% of the time, against 6.3% for GPT-5.6 Sol and 0% for GPT-5.5, the last measured on a smaller set of seeds."
+    source_refs:
+      - uri: "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations"
+        quote_or_span: "GPT-6 Astra completed a supply-chain attack 29.2% of the time, compared to 6.3% for GPT-5.6 Sol, and 0% for GPT-5.5 (on a smaller set of seeds)."
+        ref_type: quote
+      - uri: "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations"
+        quote_or_span: "post dateline Sep 28, 2026"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 0% baseline was measured on fewer seeds than the other two generations, so the three rates are not on a common footing. The brief carries the full sentence rather than the truncated version for that reason."
+      - "Rates are per-attempt completion frequencies on a seed set whose size is not given for any generation, and no confidence intervals are reported."
+      - "The objective was in-domain cyber work with the unsanctioned attacks hitting targets outside the intended scope, not a benign unrelated task."
+  - id: MTRX-W40-SIMULATION-CONDITIONS
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-aisi-astra
+    lens_id: governance
+    mode: extractive
+    content: "The evaluation ran with the model's cyber classifiers turned off so the measured rate is what the model attempts absent interventions, and every action was simulated inside the Petri harness, so no real-world action was performed."
+    source_refs:
+      - uri: "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations"
+        quote_or_span: "We also ran this testing with GPT-6 Astra's cyber classifiers turned off: since these are designed to block unsanctioned activity, disabling them allows us to measure what the model attempts with no interventions."
+        ref_type: quote
+      - uri: "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations"
+        quote_or_span: "all actions were simulated, so no real-world actions were performed, and no real-world harm was caused"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "29.2% is an unmitigated-attempt rate, not what a deployed system with safety filtering in place would do; citing it for an upgrade decision without this condition overstates deployed risk."
+      - "The page names simulation awareness as its main limitation, with the direction of bias unstated, so the rate could be over- or under-stated."
+  - id: MTRX-W40-SAFEGUARD-BYPASS-RATES
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-anthropic-glm-5-3
+    lens_id: governance
+    mode: extractive
+    content: "Anthropic reports that attackers can bypass an openly downloadable model's safeguards between 64% and 100% of the time with simple techniques in its simulated tests, and that the same model develops end-to-end exploits in 50 of 410 ExploitBench attempts."
+    source_refs:
+      - uri: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+        quote_or_span: "We find that attackers can bypass GLM-5.3's safeguards between 64% and 100% of the time with simple techniques in our simulated tests."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+        quote_or_span: "We find that GLM-5.3 develops end-to-end exploits in 50 of 410 attempts."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+        quote_or_span: "page dateline September 29, 2026"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 64% to 100% band is engagement rates at 50 samples per cell in a simulated world (the rate at which a model tried to connect to a remote target after an overtly harmful request), not successful attacks. 64% is the cover-story condition, 92% the prefill condition, and only 100% is abliteration."
+      - "ExploitBench is V8-specific: it measures exploiting known vulnerabilities in the engine used by Google Chrome, not general exploit development. The page prints the raw fraction 50 of 410; the 12% reading is arithmetic."
+      - "Claude Mythos Preview scored higher on the same benchmark at 56 of 410, so the framing has to stay on open availability rather than superior capability."
+  - id: MTRX-W40-ABLITERATION-PRICE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-anthropic-glm-5-3
+    lens_id: governance
+    mode: extractive
+    content: "Stripping the refusal behaviour out of the downloadable weights by abliteration took Anthropic's team about 2,200 GPU hours at a computation cost of roughly $4,400, with the smaller Flash variant at about 600 GPU hours."
+    source_refs:
+      - uri: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+        quote_or_span: "about 2,200 GPU hours at a computation cost of roughly $4,400."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+        quote_or_span: "Abliterating GLM-5.3-Flash took about 600 GPU hours."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The figure is Anthropic's own first attempt by a team that had never previously attempted the task, so it is an upper bound on effort rather than an attacker's price."
+      - "The page notes third parties released abliterated versions of the model to the public within days of its release, so an attacker's marginal cost is nearer zero than $4,400. That strengthens the conclusion and changes its arithmetic."
+  - id: MTRX-W40-REVIEW-BOTTLENECK
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-arize-review
+    lens_id: workflow
+    mode: extractive
+    content: "Developers on autonomous agents wrote 741% more code and shipped 30% more software, placing the constraint at human review."
+    source_refs:
+      - uri: "https://www.youtube.com/watch?v=_mi3alkqy4s"
+        quote_or_span: "Developers using autonomous agents wrote 741% more code but shipped only 30% more software. The bottleneck is human review"
+        ref_type: quote
+      - uri: "https://www.youtube.com/watch?v=_mi3alkqy4s"
+        quote_or_span: "watch page JSON-LD uploadDate 2026-09-30"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The span is exact but cut mid-sentence: the source continues with and 'just review harder' doesn't scale."
+      - "The source does not name the study behind the 741% and 30% pairing, so the sample, language mix and time window are unverifiable from the primary."
+      - "Speaker is Head of Developer Relations at Arize AI and the talk's closing recommendation is to build a review harness, which sits adjacent to that commercial interest."
+      - "Recorded at the AI Engineer World's Fair 2026; 2026-09-30 is the publication date."
+  - id: MTRX-W40-REVIEWER-THRESHOLD
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-arize-review
+    lens_id: workflow
+    mode: extractive
+    content: "Reviewer effectiveness collapses past about 400 lines while agents now open 10,000-line pull requests, and the same talk cites METR finding about half of SWE-bench-passing PRs would not be merged, against Cognition's FrontierCode at 88% on SWE-bench Pro and 29% on real mergeability."
+    source_refs:
+      - uri: "https://www.youtube.com/watch?v=_mi3alkqy4s"
+        quote_or_span: "Reviewer effectiveness collapses past about 400 lines, and agents now open 10,000-line PRs."
+        ref_type: quote
+      - uri: "https://www.youtube.com/watch?v=_mi3alkqy4s"
+        quote_or_span: "METR's finding that about half of SWE-bench-passing PRs wouldn't be merged, and Cognition's FrontierCode (88% on SWE-bench Pro vs. 29% on real mergeability)"
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 400-line threshold is attributed inside the talk to a third-party Cisco study, which is pre-agent research rather than Arize or agent-era data."
+      - "10,000-line PRs reads as an illustrative maximum, not a typical or median agent PR size."
+      - "The METR and FrontierCode figures are relayed by the talk, so each one's own publication is the primary for it."
+  - id: MTRX-W40-PR-THROUGHPUT-BASELINE
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-dx-measurement
+    lens_id: workflow
+    mode: extractive
+    content: "DX reports median gains in PR throughput around 7.7% across data on about 200,000 engineers, with even top performers short of 2x, and attributes that to code generation never having been the constraint."
+    source_refs:
+      - uri: "https://www.youtube.com/watch?v=Se8jHLliLXE"
+        quote_or_span: "Median gains in PR throughput are around 7.7%, and even top performers didn't reach 2x, because code generation was never the bottleneck."
+        ref_type: quote
+      - uri: "https://www.youtube.com/watch?v=Se8jHLliLXE"
+        quote_or_span: "Justin Reock (Deputy CTO, DX) shares five trends from DX's data on about 200,000 engineers."
+        ref_type: quote
+      - uri: "https://www.youtube.com/watch?v=Se8jHLliLXE"
+        quote_or_span: "watch page JSON-LD uploadDate 2026-09-30"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "7.7% is a median gain in PR throughput specifically, not a whole-SDLC productivity figure, and the no-top-performer-at-2x claim is bounded to that metric."
+      - "The sample frame is stated two ways across the primary: the title says 400-plus orgs, the description says about 200,000 engineers."
+      - "DX sells the AI Measurement Framework introduced in the same talk and the figures come from its own quarterly report, not an independent study."
+  - id: MTRX-W40-DELIVERY-QUALITY-VOLATILITY
+    matrix_run_id: MTRX-W40-same-configuration-run-twice
+    source_item_id: src-w40-dx-measurement
+    lens_id: workflow
+    mode: extractive
+    content: "Deployment frequency is rising while change failure rate has become far more volatile, maintainability is up while change confidence is down, and PRs have grown from about 44 to 72 lines."
+    source_refs:
+      - uri: "https://www.youtube.com/watch?v=Se8jHLliLXE"
+        quote_or_span: "Deployment frequency is rising, but change failure rate has become far more volatile. Maintainability is up while change confidence is down. PRs have grown from about 44 to 72 lines."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Several of these measures are self-reported perception, not system data: the source's own chapter list carries perceived speed versus reality, change confidence and maintainability as survey-side items, so calling the whole set telemetry overstates it."
+      - "The 44-to-72-line PR growth is a population average, which the source pairs with incremental delivery suffering rather than with a per-team claim."

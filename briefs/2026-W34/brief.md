@@ -34,6 +34,20 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Systems map:** held-out case -> repeated attempts -> terminal state -> extra effects -> per-case reliability -> promotion decision.
 
+**Transferable principle:** A single success is one sample, and a score built from one sample per case cannot distinguish a system that succeeds habitually from one that succeeded once. Flaky-test triage, canaries judged on a single rollout, and hiring loops scored by one panel carry the same error.
+
+**Falsification test:** If three repetitions of the factory's held-out set return the same outcome on every case, first-pass acceptance already describes the run class and the repeated-run spend buys no information.
+
+**Adoption ladder:**
+  - Minimum viable: run three repetitions per held-out case and list the case IDs whose outcome changed between them.
+  - Mid: add pass@3, pass^3, and incomplete-attempt rate to the golden admission report, with every attempt in the denominator.
+  - Full: gate promotion on per-case pass^k, so one critical case failing once blocks the candidate regardless of the average.
+  - Monitoring: cases whose outcome changes between repetitions; the gap between pass@1 and pass^3 per task class; incomplete attempts counted as failures.
+
+**Confidence:** medium
+
+**Evidence:** MTRX-W34-REPEATED-RUN-RELIABILITY
+
 ### 2. The deploy-time harness became part of the training unit
 
 **Source:** [Agent Lightning v1.0](https://arxiv.org/abs/2608.17528)
@@ -51,6 +65,20 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 **Try this week:** Finish the factory's per-harness reliability rollup. Compare two harness hashes only on identical task cases and scorer versions. Defer training until the held-out evaluator can distinguish behavioral improvement from visible-case fitting.
 
 **Systems map:** harness contract -> model calls -> tool trajectory -> scorer -> attributed outcome -> optional learning dataset.
+
+**Transferable principle:** A result is attributable only when every input that shapes behavior is versioned, so a harness that ships unversioned turns each comparison into a confound. Benchmark scores, A/B readouts, and cost-per-run figures all need the same pinning.
+
+**Falsification test:** If two harness hashes produce identical per-case outcomes on the same cases under the same scorer version, the harness carries no behavioral weight here and hashing it only adds bookkeeping.
+
+**Adoption ladder:**
+  - Minimum viable: bind every factory run to its compiled prompt hash, tool-surface hash, context profile, model policy, and source commit.
+  - Mid: finish the per-harness reliability rollup and compare two hashes only on identical cases and scorer versions.
+  - Full: preserve raw trajectories in a form a later trainer could read without rewriting production code.
+  - Monitoring: runs missing a harness hash; comparisons that span more than one harness version; trajectories retained per week.
+
+**Confidence:** medium
+
+**Evidence:** MTRX-W34-HARNESSED-AGENTIC-RL
 
 ### 3. Authorization learned to remember what happened before the current call
 
@@ -70,6 +98,20 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Systems map:** event ledger -> current tool request -> temporal predicate -> allow or deny -> policy-decision event.
 
+**Transferable principle:** A rule about order or budget cannot be checked from the current request alone, so the decision point needs a trusted history or the rule stays advice. Rate limits, segregation of duties, and idempotency keys all read the same stored past.
+
+**Falsification test:** If the factory's existing per-action leases already reject a missing review, a stale review, a mismatched digest, and a duplicate commit while admitting the valid sequence, the invariant holds without a temporal evaluator and the new runtime earns nothing.
+
+**Adoption ladder:**
+  - Minimum viable: write one deterministic rule over factory events: a commit for patch digest D requires a passed review event for D.
+  - Mid: run the rule against missing review, stale review, mismatched digest, duplicate commit, and the valid sequence, and emit a typed allow or deny record naming the events used.
+  - Full: move approval, budget, and irreversible-action rules onto the same evaluator, denying by default when the required history is missing or untrusted.
+  - Monitoring: denials per week by rule; verdicts issued on incomplete history; policy version recorded on every decision event.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W34-SEQUENCE-POLICY
+
 ### 4. Context compression failed as behavior before it failed as prose
 
 **Sources:** [TRACE](https://arxiv.org/abs/2608.06503) and [Control Under Compression](https://arxiv.org/abs/2608.01056)
@@ -88,6 +130,20 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Systems map:** checkpoint -> context profile -> paired continuation -> trajectory failures -> reliability frontier -> profile qualification.
 
+**Transferable principle:** A compression scored on preserved content can still drop the control signals the system acts on, so the test has to be behavioral and start from the same state. Log sampling, cache eviction, and schema trimming fail the same way.
+
+**Falsification test:** If `legacy-v1` and `lean-v2` run from identical checkpoints show no change in repeated actions, blocked actions, or tool-parse failures across three repetitions, this profile sits inside its reliability frontier on those cases and the paired campaign has no behavioral finding to produce.
+
+**Adoption ladder:**
+  - Minimum viable: run one paired continuation on one held-out case from the same checkpoint under both profiles.
+  - Mid: extend to the full held-out set with three repetitions and pinned harness hashes, recording completion, repeated actions, blocked actions, parse failures, cost, and pass^3.
+  - Full: qualify each context profile against its own task distribution before promotion, with no profile inheriting another's result.
+  - Monitoring: repeated actions, blocked actions, and tool-parse failures per run by profile; pass^3 on critical cases at each retained-context setting.
+
+**Confidence:** medium
+
+**Evidence:** MTRX-W34-CONTEXT-RELIABILITY
+
 ### 5. An append-only log became the harness's source of truth
 
 **Source:** [DeepSeek Harness architecture](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)
@@ -100,11 +156,25 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Reusable pattern:** Declare which events are durable facts, which are transient control signals, and which projection builds model history. Give events monotonic sequence numbers. Test crash recovery by rebuilding state solely from the log.
 
-**Action surface:** state
+**Action surface:** runtime-adapter
 
 **Try this week:** Audit one factory run from checkpoint to terminal record. List every field that cannot be reconstructed from the event ledger, then either emit the missing fact or label the field as an external snapshot with a pinned hash.
 
 **Systems map:** durable event -> append-only log -> history projection -> policy projection -> evidence projection -> replay.
+
+**Transferable principle:** A fact with two writable homes will eventually hold two values, so one durable origin with the rest derived costs less than reconciling them. Reporting tables, caches, and denormalized counters all drift on this.
+
+**Falsification test:** If one completed factory run rebuilds terminal status, worker choices, gate outcomes, artifact refs, and stop reason from events alone, the ledger is already the origin and the remaining work is a regression test instead of a redesign.
+
+**Adoption ladder:**
+  - Minimum viable: audit one completed run and list every field that cannot be rebuilt from the event ledger.
+  - Mid: emit a durable fact for each missing field or label it an external snapshot with a pinned hash, and give events monotonic sequence numbers.
+  - Full: every consumer reads a projection of the log, with derived summaries regenerated from events and never edited in place.
+  - Monitoring: fields per audited run that cannot be reconstructed; consumers still reading summaries; byte-for-byte regeneration failures.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W34-EVENT-SOURCED-HARNESS
 
 ### 6. MCP's next roadmap assumes the caller is another agent
 
@@ -118,11 +188,25 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Reusable pattern:** Treat identity, authority, and transport state as separate contracts. Bind a delegated token to agent identity, audience, operation, expiry, and parent authorization. Preserve human approval as evidence without assuming a person is present on the transport.
 
-**Action surface:** protocol
+**Action surface:** architecture
 
 **Try this week:** Add a design-only identity fixture to the MCP security lab: parent agent, delegated subagent, audience-bound read grant, expired grant, and replayed proof. Do not add remote writes until the verifier can reject the last two cases.
 
 **Systems map:** human authority -> agent identity -> delegated grant -> MCP request -> server policy -> evidence receipt.
+
+**Transferable principle:** An authorization model built around a person at a browser breaks when the caller is a process acting later with narrower authority, so identity, authority, and transport state need separate contracts. Service accounts, CI tokens, and webhook callbacks all cross that line.
+
+**Falsification test:** If the identity fixture shows the current approval path already separating a parent agent from a delegated subagent and rejecting both an expired grant and a replayed proof, the gap the roadmap names does not reach this server.
+
+**Adoption ladder:**
+  - Minimum viable: add the design-only identity fixture to the MCP security lab, with a parent agent, a delegated subagent, an audience-bound read grant, an expired grant, and a replayed proof.
+  - Mid: build a verifier that rejects the expired grant and the replayed proof, with each verdict written as an evidence receipt.
+  - Full: every write-capable or cross-agent tool binds its grant to agent identity, audience, operation, expiry, and parent authorization before it ships.
+  - Monitoring: requests arriving without a delegated principal; grants accepted past expiry; replayed proofs caught per week.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W34-MCP-AGENT-IDENTITY
 
 ### 7. The evaluation environment became part of the safety case
 
@@ -136,11 +220,25 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Reusable pattern:** Make evaluation isolation independently attestable. Separate the worker, scorer, controller key, private cases, and network boundary. Count monitor cost as part of the test budget and stop when evidence coverage is incomplete.
 
-**Action surface:** containment
+**Action surface:** security
 
 **Try this week:** Finish review of the golden-set substrate, run its complete offline suite, and merge only that substrate. Keep the autonomous loop and compressed context profile on separate branches until an external holdout bundle produces a signed paired campaign.
 
 **Systems map:** private case issuer -> isolated worker -> external scorer -> signed receipt -> admission decision -> human promotion.
+
+**Transferable principle:** A test is hidden from its subject only when the boundary is attestable by something the subject cannot reach, and the cost of watching that boundary belongs in the test budget. Blind code review, red-team exercises, and audit sampling all pay it.
+
+**Falsification test:** If canaries planted in the private case bundle, the controller environment, and the scorer root appear in none of a run's output, diff, stdout, event ledger, run record, handoff, or error paths, and the canary ran under an external sandbox issuer, the boundary already holds and the hardening work has no finding to produce.
+
+**Adoption ladder:**
+  - Minimum viable: plant one canary in the private case bundle and check the run's output, diff, stdout, event ledger, run record, handoff, and error paths for it.
+  - Mid: run the canary under an external sandbox issuer instead of an in-process mock, and keep the holdout bundle and scorer outside worker roots.
+  - Full: merge the golden-set substrate with signed execution receipts, network policy, and process-tree termination, and stop admission when evidence coverage is incomplete.
+  - Monitoring: canary appearances per campaign, which should stay at zero; runs admitted without a signed receipt; monitor cost as a share of the test budget.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W34-EVALUATOR-CONTAINMENT
 
 ## Reusable patterns
 

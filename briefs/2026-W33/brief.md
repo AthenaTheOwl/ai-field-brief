@@ -34,6 +34,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Systems map:** task class -> role -> initial tier -> confidence or failure signal -> escalation -> verdict -> accepted cost per task.
 
+**Transferable principle:** Spend concentrates in a small share of calls, so an average price per call hides the decisions that set the bill. Any metered system with uneven request cost carries the same skew: cloud query spend, support escalations, CI minutes.
+
+**Falsification test:** If attributing a month of factory spend by role and task class shows frontier spend spread evenly across them instead of concentrated in planning, recovery, judging and hard tool selection, the concentration this result depends on is absent here and a routing policy has little to move.
+
+**Adoption ladder:**
+  - Minimum viable: attribute one week of factory spend by role, task class, and model tier.
+  - Mid: run the paired all-A against role-based S/A/B cohort on the same ratified tasks and report accepted cost beside first-pass acceptance.
+  - Full: a routing policy change ships only with a predeclared acceptance margin and a cohort that stayed inside it.
+  - Monitoring: frontier-call share; frontier-spend share; judge-spend share; first-pass acceptance and rework per task class.
+
+**Confidence:** medium
+
+**Evidence:** MTRX-W33-ROUTING-ECONOMICS
+
 ### 2. The test suite learned to run without a provider
 
 **Source:** [OpenAI Agents SDK 0.21](https://github.com/openai/openai-agents-python/releases/tag/v0.21.0)
@@ -52,6 +66,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Systems map:** typed task -> deterministic runner fixture -> state and event assertions -> provider-backed golden set -> promotion verdict.
 
+**Transferable principle:** A test that calls a nondeterministic dependency to check deterministic code buys variance and pays tokens for it. Clock-dependent logic, payment flows run against a live sandbox API, and retry code tested over a real network all carry the same mismatch.
+
+**Falsification test:** If an audit of the factory tests that start a provider process finds every one of them asserting on model output instead of on tool order, state transitions or terminal status, there is no deterministic half to extract and the split buys fixture work and nothing else.
+
+**Adoption ladder:**
+  - Minimum viable: list the factory tests that start a Claude or Codex process and mark which ones assert only on state, order, or terminal status.
+  - Mid: replace three of those with captured protocol fixtures or fakes and record the token and wall-clock change.
+  - Full: the deterministic suite runs with no provider process, and one live smoke per CLI family stays to catch production flag drift.
+  - Monitoring: provider processes started per test run; tokens spent in CI; deterministic-suite runtime; flag drift caught by the live smoke.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W33-PROVIDERLESS-TESTS
+
 ### 3. Pending user input became durable before continuation
 
 **Source:** [OpenAI Agents SDK 0.20](https://github.com/openai/openai-agents-python/releases/tag/v0.20.0)
@@ -64,11 +92,25 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Reusable pattern:** Use persist-before-act for every external decision. Give the input an id, write it to the checkpoint, bind the continuation to that id, and reject duplicate consumption.
 
-**Action surface:** state
+**Action surface:** runtime-adapter
 
 **Try this week:** Add a crash-at-boundary test to one factory approval flow: before input persistence, after persistence, and after worker dispatch. Replaying each checkpoint should produce one accepted input and at most one worker invocation.
 
 **Systems map:** interrupt -> human input id -> durable write -> continuation lease -> worker call -> consumed marker -> replay check.
+
+**Transferable principle:** Write the decision down before acting on it, or the crash window decides whether the decision happened. Outbox publishing, webhook handling, and any job that charges a card before recording the charge sit on the same ordering requirement.
+
+**Falsification test:** If killing the factory's approval worker at each of the three boundaries already replays to exactly one accepted input and at most one worker invocation, the ordering holds here and adopting the primitive is a rename.
+
+**Adoption ladder:**
+  - Minimum viable: give each approval an immutable input id and write it to the checkpoint before the continuation runs.
+  - Mid: add crash-at-boundary tests at three points, before input persistence, after persistence, and after worker dispatch, then replay each checkpoint.
+  - Full: the store refuses duplicate consumption of an input id, so the invariant holds without the test watching it.
+  - Monitoring: duplicate accepted inputs per month, which should stay at zero; worker invocations per approval; replays that produce a second continuation.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W33-DURABLE-PENDING-INPUT
 
 ### 4. Model capabilities moved out of the framework's guesswork
 
@@ -88,6 +130,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Systems map:** task requirements -> provider capability declaration -> eligible models -> tier policy -> selected model -> evidence snapshot.
 
+**Transferable principle:** An identifier parsed for its meaning is a guess that goes stale on the vendor's schedule. Version-string sniffing, user-agent parsing, and filename-extension type detection all break when the thing behind the name changes without telling the parser.
+
+**Falsification test:** If every model the factory can route to satisfies every task contract it serves, the capability predicate rejects nothing and the manifest is bookkeeping.
+
+**Adoption ladder:**
+  - Minimum viable: write a capability manifest for the models already in the factory's model registry, covering tool calling, image input, structured output, reasoning controls, context limit, and resumable history.
+  - Mid: the router computes an eligible set from the task contract before tier policy runs, and refuses a route that cannot satisfy it.
+  - Full: the requirement snapshot, eligible set, selection, and reason land in run evidence, so a replay can audit the route.
+  - Monitoring: routes refused for capability mismatch; history parts dropped between turns; task contracts with no eligible model.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W33-CAPABILITY-DECLARATION
+
 ### 5. Routing, storage, and interrupts met in one runtime release
 
 **Source:** [Strands harness SDK 1.52](https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.52.0)
@@ -105,6 +161,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 **Try this week:** Extend one factory task fixture with an uncertainty-triggered escalation. Assert that the B-tier worker stops, the checkpoint persists, the A-tier continuation receives the same task state, and the ledger contains one route transition.
 
 **Systems map:** worker event -> middleware policy -> interrupt -> checkpoint -> route decision -> resumed worker -> terminal evidence.
+
+**Transferable principle:** Three concerns that fail at the same point need one state contract, or each will keep a private and partial copy of it. Authentication, rate limiting, and request tracing collide the same way at an edge proxy.
+
+**Falsification test:** If replaying a factory run that escalated reproduces the route decision from the ledger alone, using only the trigger, prior tier, next tier, checkpoint reference, and policy version, the shared contract is already in place and the release adds vocabulary.
+
+**Adoption ladder:**
+  - Minimum viable: record every route transition in the event ledger with its trigger, prior tier, next tier, checkpoint reference, and policy version.
+  - Mid: extend one factory task fixture with an uncertainty-triggered escalation and assert one checkpoint, one route transition, and the same task state on continuation.
+  - Full: a replay reconstructs every route decision from the ledger, or names the input it lacks.
+  - Monitoring: route transitions missing a checkpoint reference; escalations that lost task state across the boundary; replays that cannot reproduce a decision.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W33-ROUTER-INTERRUPT
 
 ### 6. The sandbox used a credential it never possessed
 
@@ -124,6 +194,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Systems map:** workload identity -> egress request -> destination policy -> proxy injection -> upstream service -> redacted audit event.
 
+**Transferable principle:** Separate the permission to use a credential from possession of its value, and a compromised process keeps only the approved call instead of a secret it can carry anywhere. Database proxies that hold the password, signing services that never export the key, and destination-bound short-lived tokens all draw that line.
+
+**Falsification test:** If an inventory of the factory's sandbox fixtures finds no secret readable from worker memory, there is nothing left to broker and the proxy adds a hop.
+
+**Adoption ladder:**
+  - Minimum viable: list every secret readable from a sandbox worker process and name the destination each one is for.
+  - Mid: replace one low-risk test credential with a fake egress broker, and prove the worker cannot read the value while an approved host receives it and an unapproved host does not.
+  - Full: worker processes hold capability names only, and the proxy binds each name to a destination and method.
+  - Monitoring: secrets readable from worker memory, which should stay at zero; egress denials by destination policy; credential values found in any log or output sink.
+
+**Confidence:** high
+
+**Evidence:** MTRX-W33-EGRESS-IDENTITY
+
 ### 7. A runtime contract turned safety claims into inspectable events
 
 **Source:** [Agent Safety Should Be a Runtime Contract](https://arxiv.org/abs/2608.11274)
@@ -141,6 +225,20 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 **Try this week:** Choose one factory rule currently expressed only in a prompt. Implement the invariant at the capability layer, add a denied-action event, and write a fixture that fails before the enforcement change and passes after it.
 
 **Systems map:** safety claim -> typed invariant -> capability check -> allow or deny -> evidence event -> held-out regression fixture.
+
+**Transferable principle:** A rule that travels as prose can be dropped at any delegation boundary, and nothing records that it was dropped. Moving it to a typed invariant with an enforcement point gives the drop somewhere to fail loudly. API contracts documented but unvalidated, lint rules never wired into CI, and on-call steps that live only in a wiki carry the same exposure.
+
+**Falsification test:** If converting one prompt-only factory rule into a typed invariant yields a fixture that passes before the enforcement change as well as after it, the rule was already being followed and the conversion bought an event and nothing else.
+
+**Adoption ladder:**
+  - Minimum viable: take one factory rule that exists only in a prompt and write down its invariant, enforcement point, and denial event.
+  - Mid: implement the invariant at the capability layer and add a fixture that fails before the enforcement change and passes after it.
+  - Full: recurring defect classes from the factory ledger enter the same pipeline, and a prompt warning is removed only after its executable contract has passed a cohort.
+  - Monitoring: prompt-only rules remaining; denied-action events per week; defect classes carrying a held-out fixture; fixtures that pass before enforcement, which means the rule already held.
+
+**Confidence:** medium
+
+**Evidence:** MTRX-W33-RUNTIME-CONTRACT
 
 ## Reusable patterns
 

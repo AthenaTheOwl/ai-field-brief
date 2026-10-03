@@ -1,0 +1,222 @@
+iso_week: 2026-W40
+through_date: 2026-10-02
+generated_at: 2026-10-02T23:15:00Z
+generated_by: claude-w40-same-configuration-run-twice
+title: "Fifty-four percent of the difference between two agent configurations was the same configuration run twice."
+volume: 23
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W40-same-configuration-run-twice
+sweep:
+  attempted: 60
+  succeeded: 58
+  failed: 2
+  skipped: 0
+source_mix:
+  primary_docs: 3
+  vendor_changelogs: 20
+  academic_preprints: 13
+  framework_blogs: 1
+  vendor_news: 5
+  practitioner_blogs: 4
+  podcasts: 0
+  conference_talks: 3
+  other: 0
+  internal_digest_inputs: 7
+top_signal_count: 9
+action_packet_count: 9
+scout_count: 7
+cell_count: 34
+notes:
+  - "Current-week issue covering Saturday 2026-09-26 through Friday 2026-10-02, published 2026-10-02."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-PUB-013 and DEC-MTRX-009."
+  - "Nine Top signals on nine distinct action surfaces: eval, runtime-adapter, cost, workflow, security, config, context, observability, governance. No surface is used twice."
+  - "Sweep method for this issue: parallel lane agents over sources/registry.yaml (primary-source, fast-signal, builder-practice and frontier-scout lanes), candidate dating from the seven in-window Daily Systems Brief issues, and a GitHub release scout over the framework repositories. 154 findings survived an adversarial refute pass, each carrying a verbatim quote and a primary date. Nothing is cited on the strength of a secondary mention."
+  - "The sweep counts are distinct registry source ids represented in the verified material, not lane agents: 60 source ids yielded the 154 findings, and the two failures are the two Reddit source ids whose comment pages return HTTP 403 to the repo's quote fetcher."
+  - "source_mix counts the sources cited in the issue (49 external plus 7 internal digest issues), which is the same convention 2026-W38 used; the full verified corpus is 154 findings over 60 source ids."
+  - "Vendor and framework activity was dated by GitHub release published_at timestamps, preprints by arXiv submission history, vendor posts by the rendered dateline with page metadata cross-checked, and the six conference talks by watch-page JSON-LD uploadDate after the channel Atom feed endpoints returned 404."
+  - "Every quote-typed source_ref on the matrix was matched verbatim against its live source by ops/w40/verify_quotes.py after whitespace normalization and HTML unescaping: 49 of 49 pass."
+  - "Three spans were re-cut from the live page rather than taken as the finding printed them. The AISI supply-chain figure now carries its own trailing qualifier '(on a smaller set of seeds)', which the finding's version dropped and which is the condition that makes the 0 percent baseline non-comparable. The Apple harness quote is kept in the matrix and paraphrased in the brief, because its verbatim wording carries a voice_lint banned term. The LangChain p-values and the LongHarness 68 percent are recorded as chunk refs, not quotes, because the rendered page wraps an italic p and a LaTeX percent escape that no verbatim span survives."
+  - "Two Reddit source ids produced in-window findings that could not become quote cells: r/AI_Agents and r/PromptEngineering both return HTTP 403 to the fetcher. The parallel budget-cap race is carried in Scout radar with no matrix cell; the other six Reddit findings are not cited. This is the same gap 2026-W39 raised as an open pipeline question."
+  - "The podcast lane produced 12 verified in-window findings and none reached a pick, a scout row or an archive note. Every one of them is show-notes-level with no measurement in the primary, which the findings' own caveats state."
+  - "Top signal 1's 54 percent figure comes from a new benchmark of four scientific tasks; the paper states no sample-size threshold, so the reading that single-run A/B comparisons are uninformative is the brief's inference and the cell says so."
+  - "Top signal 3's 64 percent is measured against an always-frontier control, its quality null is underpowered at p = 0.49, and the shipped classifier is no longer the one the post describes. All three caveats ride on the cells and in the prose."
+  - "Top signal 9's 29.2 percent was measured with the model's cyber classifiers disabled and every action simulated, and the 64-to-100 percent band is engagement rates at 50 samples per cell, not successful attacks. Both conditions are in the prose, not only in the warnings."
+  - "The issue runs long at roughly 10,100 words against 8,700 for 2026-W37's nine-pick issue. Two trim passes cut the archive, scout and mechanism prose; what remains is nine mechanisms, 34 cells and five tables, and no pick was dropped to hit a number."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Agents Are Systems, Not Models: Rethinking Agentic Evaluation"
+    url: "https://arxiv.org/abs/2610.01618"
+    disposition: top_signal
+  - label: "The Price of Correlated Tests: How Strict Should a Model Release Gate Be?"
+    url: "https://arxiv.org/abs/2610.00993"
+    disposition: top_signal
+  - label: "Finding the Right Fit: Model-Harness Interactions across Agent Tasks"
+    url: "https://arxiv.org/abs/2610.00917"
+    disposition: top_signal
+  - label: "How Much of a Harness Does a Strong Agent Need for Autonomous ML Engineering?"
+    url: "https://machinelearning.apple.com/research/harness-autonomous-ml-engineering"
+    disposition: top_signal
+  - label: "LongHarness Bench: Stress-Testing Language Model Harnesses for Long-Context Reasoning"
+    url: "https://arxiv.org/abs/2609.38137"
+    disposition: top_signal
+  - label: "How to Build a Model Router in the Harness"
+    url: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+    disposition: top_signal
+  - label: "Language Models for Text Classification: From Bag-of-Words to Jev"
+    url: "https://magazine.sebastianraschka.com/p/classifier-history-and-jev"
+    disposition: top_signal
+  - label: "Claude Code v2.1.286"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.286"
+    disposition: top_signal
+  - label: "The Death of the Code Review: What the Data Actually Says"
+    url: "https://www.youtube.com/watch?v=_mi3alkqy4s"
+    disposition: top_signal
+  - label: "The State of AI in Software Development: Data from 400+ Orgs"
+    url: "https://www.youtube.com/watch?v=Se8jHLliLXE"
+    disposition: top_signal
+  - label: "Audience-Bound Persistent Memory: Authorization Across the Memory Lifecycle"
+    url: "https://arxiv.org/abs/2609.36373"
+    disposition: top_signal
+  - label: "PACE: Provenance-Aware Capability Enforcement for Tool-Using LLM Agents"
+    url: "https://arxiv.org/abs/2610.01349"
+    disposition: top_signal
+  - label: "Aletheia: Permission-Minimality Testing for Coding-Agent Rules"
+    url: "https://arxiv.org/abs/2609.39678"
+    disposition: top_signal
+  - label: "Testing memory placement against compaction cliff"
+    url: "https://mem0.ai/blog/testing-memory-placement-against-compaction-cliff"
+    disposition: top_signal
+  - label: "Beyond Token Savings: A Systematic Study of Context Compression in LLM Agents"
+    url: "https://arxiv.org/abs/2609.32961"
+    disposition: top_signal
+  - label: "Claude Code v2.1.287"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.287"
+    disposition: top_signal
+  - label: "Agents SDK 0.23.0"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.0"
+    disposition: top_signal
+  - label: "Tracekit: Tamper-Evident Intent-Reasoning-Action Auditing for Autonomous Coding Agents"
+    url: "https://arxiv.org/abs/2609.35659"
+    disposition: top_signal
+  - label: "GPT-6 Astra performs unsanctioned supply-chain attacks in simulations"
+    url: "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations"
+    disposition: top_signal
+  - label: "GLM-5.3 and the spread of advanced cyber capabilities"
+    url: "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+    disposition: top_signal
+  - label: "Claude Code v2.1.284 to v2.1.288"
+    url: "https://github.com/anthropics/claude-code/releases"
+    disposition: scout
+  - label: "MCP TypeScript SDK v2.3.0"
+    url: "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/v2.3.0"
+    disposition: scout
+  - label: "MCP TypeScript SDK v2.2.0"
+    url: "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/v2.2.0"
+    disposition: scout
+  - label: "MCP Python SDK v2.3.0"
+    url: "https://github.com/modelcontextprotocol/python-sdk/releases/tag/v2.3.0"
+    disposition: scout
+  - label: "pydantic-ai v2.53.0"
+    url: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.53.0"
+    disposition: scout
+  - label: "kubernetes-sigs/agent-sandbox v1.0.5"
+    url: "https://github.com/kubernetes-sigs/agent-sandbox/releases/tag/v1.0.5"
+    disposition: scout
+  - label: "openai/codex rust-v0.159.1"
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.159.1"
+    disposition: scout
+  - label: "Mid-Harness: verify sampled actions between model and harness"
+    url: "https://arxiv.org/abs/2609.39982"
+    disposition: scout
+  - label: "Introducing Clef: open-source decision models"
+    url: "https://blog.cloudflare.com/clef-decision-models/"
+    disposition: scout
+  - label: "Cloudflare/clef model card"
+    url: "https://huggingface.co/Cloudflare/clef"
+    disposition: scout
+  - label: "Why a simple budget check lets parallel agent calls blow past the cap"
+    url: "https://www.reddit.com/r/AI_Agents/comments/1ws9f81/why_a_simple_budget_check_lets_parallel_agent/"
+    disposition: scout
+  - label: "Continuous Process-Level Evaluation for Evolving Enterprise AI Agent Skills"
+    url: "https://arxiv.org/abs/2610.01833"
+    disposition: scout
+  - label: "Cohere RCP-nDCG@10"
+    url: "https://cohere.com/blog/rcp-ndcg"
+    disposition: scout
+  - label: "Sharpening Tax in Post-Training"
+    url: "https://arxiv.org/abs/2610.01509"
+    disposition: scout
+  - label: "Claude Sonnet 5.5"
+    url: "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/"
+    disposition: scout
+  - label: "Stop Rationing Tokens: Let the Harness Pick the Model"
+    url: "https://www.youtube.com/watch?v=48YUYDjwfYY"
+    disposition: archive
+  - label: "Add Runtime Controls to AI Agents with NVIDIA OpenShell"
+    url: "https://developer.nvidia.com/blog/add-runtime-controls-to-ai-agents-with-nvidia-openshell/"
+    disposition: archive
+  - label: "NVIDIA Open Agent Safety Platform reference design"
+    url: "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/"
+    disposition: archive
+  - label: "NVIDIA Launches Open Agent Safety Platform"
+    url: "https://nvidianews.nvidia.com/news/open-agent-safety-platform"
+    disposition: archive
+  - label: "Securing the open frontier with NVIDIA OpenShell and Blaxel sandboxes"
+    url: "https://blaxel.ai/blog/agent-safety-platform"
+    disposition: archive
+  - label: "Claude Managed Agents with NVIDIA"
+    url: "https://claude.com/blog/giving-companies-more-control-over-their-ai-agents-with-nvidia"
+    disposition: archive
+  - label: "Vercel changelog, five in-window entries"
+    url: "https://vercel.com/changelog"
+    disposition: archive
+  - label: "Agents SDK 0.23.1"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.1"
+    disposition: archive
+  - label: "Cloud Security Alliance agent-permission survey (2026-04-16)"
+    url: "https://emerj.com/what-mature-security-programs-need-before-deploying-ai/"
+    disposition: reviewed_no_pick
+  - label: "ProvenanceGuard paper behind the Hugging Face writeup (2026-08-27)"
+    url: "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source"
+    disposition: reviewed_no_pick
+  - label: "Agent-collusion wiki incident, relayed from 2026-09-04 reporting"
+    url: "https://www.cognitiverevolution.ai/ai-am-what-if-it-works-too-well-colluding-agents-200m-safety-orgs-virtual-cells-saturate-at-2/"
+    disposition: reviewed_no_pick
+  - label: "Jev decision-model launch (2026-09-15), relayed"
+    url: "https://www.the-ai-corner.com/p/jev-decision-layer-ai-agents-kit-2026"
+    disposition: reviewed_no_pick
+  - label: "HAI Seminar: Industry Conversation with Instacart (recorded 2026-09-23)"
+    url: "https://www.youtube.com/watch?v=ZByKqo03krQ"
+    disposition: reviewed_no_pick
+  - label: "Merging LLMs and economics research (paper figures relayed)"
+    url: "https://marginalrevolution.com/marginalrevolution/2026/10/merging-llms-and-economics-research.html"
+    disposition: reviewed_no_pick
+  - label: "ThursdAI Oct 1 (GPT-6.1 Sol pricing relayed from OpenAI)"
+    url: "https://sub.thursdai.news/p/thursdai-oct-1-openai-joins-the-assistant"
+    disposition: reviewed_no_pick
+  - label: "r/AI_Agents in-window posts"
+    url: "https://www.reddit.com/r/AI_Agents/new/"
+    disposition: skipped
+  - label: "r/PromptEngineering in-window posts"
+    url: "https://www.reddit.com/r/PromptEngineering/new/"
+    disposition: skipped
+failures:
+  - "builder-practice/feeds:reddit-ai-agents: HTTP 403 from the repo's quote fetcher on every comment page; seven in-window findings, one carried in Scout radar without a cell"
+  - "builder-practice/feeds:reddit-prompt-engineering: HTTP 403 from the same fetcher; one in-window finding, not cited"
+next_run:
+  - "Measure the within-configuration spread before the next model comparison. Repeat one fixed configuration five times on one factory task and publish the spread beside the comparison gap; at 54 percent within-configuration variance a one-run-per-config table is a coin flip."
+  - "Add a harness column to the factory comparison table and re-check the model decision when the harness changes. One task, two models, two harnesses, four runs."
+  - "Mark every gateway-derived cost figure taken before 2026-09-30 as a floor and re-price one week of factory threads against a fixed mid-tier default. The 2.1.286 meter fix touched 1-hour cache writes and streamed server-side-tool turns, which is the portfolio's normal traffic."
+  - "Run the permission-minimality test on the three AGENTS.md files that grant the most authority: one representative task per removed permission, dispensable grants recorded. Extends W38's and W39's AGENTS.md items, which are about which file is read; this one is about what the file asks for."
+  - "Inventory write-capable tools and mark which verify the originating request instead of only the caller's permission. The exposed set is the deliverable."
+  - "Audit the telemetry pipeline for redaction rules keyed on a field name, starting with `prompt` against `prompt_text`, and add an alert for an expected trace field that stops arriving."
+  - "List tool scopes and sandbox grants beside the model generation each was set against, and make a scope review a step in the next model upgrade."
+  - "Finish the cache-hit measurement. Open since 2026-W36, with eleven client causes named in W37, a compaction header in W38, a per-prompt grouping header in W39, and now a gateway meter that was undercounting cache writes until 2026-09-30. Ten sessions on a post-2.1.286 gateway, both numbers logged."
+  - "Run the three-input probe against the portfolio's fetch wrapper. Carried unchanged from W38 and still open."
+  - "Backfill or formally accept the Confidence, Evidence, and systems-thinking field debt in 2026-W32 through 2026-W34, per DEC-PUB-013. Carried from W36, W37, W38 and W39, and apparently in flight already: all three of briefs/2026-W32, W33 and W34 brief.md carried uncommitted local edits while this issue was being written, and 2026-W39 landed untracked in the same window. Reconcile before starting, and drop the weeks from LEGACY_BRIEFS in validate_brief_fields.py as each one lands."
+  - "Decide how the pipeline cites a host that refuses the quote fetcher. W39 raised this for Reddit, Cisco Talos and blogs.microsoft.com; W40 hit the same wall on two Reddit source ids and used a Scout radar row with no cell. A per-host fetch profile, or a ref_type that records a read-but-unverifiable span, would stop the gate from deciding editorial scope."
+  - "Update the ai-engineer-youtube registry note. The channel Atom feed endpoints still 404, but the watch pages serve JSON-LD uploadDate and carried six in-window talks this week, so the lane works through a different route than the registry documents."
+  - "Review whether the podcast lanes earn their sweep cost. Twelve verified in-window findings produced no pick, no scout row and no archive note, because every primary is show-notes-level with no measurement."

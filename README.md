@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Thirteen workers spent twelve days closing sixty-two percent of the gap to a model that already existed. (2026-W38)](https://ai-field-brief.vercel.app/briefs/2026-W38)
+**Latest:** [Fifty-four percent of the difference between two agent configurations was the same configuration run twice. (2026-W40)](https://ai-field-brief.vercel.app/briefs/2026-W40)
 
 ## What it does
 

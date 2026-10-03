@@ -1,0 +1,239 @@
+iso_week: 2026-W39
+through_date: 2026-09-25
+generated_at: 2026-10-02T15:10:00Z
+generated_by: claude-w39-the-resolver-was-still-answering
+title: "The monitor fired in twelve minutes and the run kept going for two and a half hours."
+volume: 22
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W39-the-resolver-was-still-answering
+sweep:
+  attempted: 20
+  succeeded: 19
+  failed: 1
+  skipped: 0
+source_mix:
+  primary_docs: 5
+  vendor_changelogs: 32
+  academic_preprints: 18
+  framework_blogs: 15
+  vendor_news: 11
+  practitioner_blogs: 22
+  podcasts: 5
+  conference_talks: 0
+  other: 1
+  internal_digest_inputs: 7
+top_signal_count: 8
+action_packet_count: 8
+scout_count: 6
+cell_count: 27
+notes:
+  - "Current-week issue covering Saturday 2026-09-19 through Friday 2026-09-25, published 2026-10-02."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-PUB-013 and DEC-MTRX-009."
+  - "Eight Top signals on eight distinct action surfaces: cost, security, config, tool-policy, eval, context, observability, workflow. No surface is used twice."
+  - "Sweep method for this issue: parallel lane agents over sources/registry.yaml (podcast, vendor-changelog, framework-blog, practitioner and research lanes), candidate dating from the seven in-window Daily Systems Brief issues, and a GitHub release scout over the framework repositories. 109 findings survived an adversarial refute pass, each carrying a verbatim quote and a primary date. Nothing is cited on the strength of a secondary mention."
+  - "Vendor and framework activity was dated by GitHub release published_at timestamps, preprints by arXiv submission history, and blog posts by the rendered dateline with the page's own metadata cross-checked where the two disagree."
+  - "Every quote-typed source_ref on the matrix was matched verbatim against its live source by ops/w39/verify_quotes.py after whitespace normalization and HTML unescaping: 28 of 28 pass."
+  - "Three sources that produced in-window findings return HTTP 403 to the quote fetcher and are therefore carried in Archive notes or Scout radar with no matrix cell: reddit.com (six practitioner posts), blog.talosintelligence.com (the Closed Quorum implant write-up, one Scout row), and blogs.microsoft.com (the Copilot Home/Code/Autopilot announcement, one Archive note)."
+  - "platform.claude.com's release-notes page renders the `diagnostics` identifier as a code element, so the cache-diagnostics span could not be matched byte-for-byte after tag stripping; that item is recorded in Archive notes without a cell."
+  - "Of the 109 verified findings, 105 appear in the issue (26 as matrix cells, 6 as Scout radar rows, 73 in Archive notes) and 4 were dropped as scoped to domains with no agent-systems surface: RULER (SVG generation), Flash-dLLM (diffusion LLMs), GameHorizon Suite (gameplay video understanding), and WorldCrafter (video world models). Each of those findings' own caveats state that the transfer to agent systems is the brief's inference with no supporting evidence in the primary."
+  - "Top signal 1's 2.6x context growth and 189:1-to-324:1 ratio are Claude Code usage data from March to September 2026, one product's traffic over six months; the 60% cut applies to cache reads alone while input, output and cache writes moved 20%."
+  - "Top signal 2's title figure is the report's own logged interval (DNS tool call 9:50:23, P0 alert 10:02:11 - eleven minutes forty-eight seconds), which is tighter than the page's rounded 'within 15 minutes' prose. The incident is a training sandbox and the report records no successful data exfiltration."
+  - "Top signal 3 is a direct follow-on to 2026-W38's pick 1: the AGENTS.md loader W38 recorded as landing is gated on a remote flag that a telemetry-disabled session never fetches. The Bedrock, Vertex and gateway breadth is attributed by the post to an upstream issue it cites, not to its own testing, and a remote-flag default can change server-side with no client release."
+  - "Top signal 4 calls MetaPermit's enforcement auditable, not deterministic: the policy evaluation is fixed while the meta-attributes it evaluates are inferred by an LLM at runtime. The paper's description of Codex and Claude Code permission models cites no vendor documentation."
+  - "Top signal 5's 500 decisions are 5 captured responses scored 100 times each, a repeatability test against a single human annotator, and 80.0% is the lowest of the three LLM judges measured."
+  - "Top signal 6's 0.713-to-0.816 figure comes from one intervention holding proposals and gate decisions fixed; the 27-stream aggregate is +0.063 utility [0.037, 0.094] over Global-ORC, and multiple accepted updates appeared in only 19 of 27 streams."
+  - "Top signal 8's attributions are narrower than the totals: 87,000 runner-minutes belongs to the batching alone and is extrapolated from June usage, 34% is a two-day comparison, 73% is the tsc check specifically, and the 6-to-5-minute PR wait is a year-scale aggregate."
+  - "Two in-window items carry metadata that conflicts with their rendered dateline and are recorded without a pick: the Redis capability roundup (visible dateline 2026-09-22, schema.org datePublished 2026-09-18) and the Runpod Enterprise post (published 2026-09-24, dateModified 2026-09-30)."
+  - "The LangSmith Cloud changelog entry dates only to the range 'September 14-21, 2026', five of whose eight days precede the window open, and publishes no per-item date; it cannot supply an unambiguously in-window date and is recorded in Archive notes only."
+  - "The Cognitive Revolution compilation published 2026-09-19 carries clips recorded at live shows on September 14 and 15, so it is in-window packaging of out-of-window material; its transcript is machine-generated and labels the cited passage with the co-host."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "Claude Opus 5.5, built for coding sessions that use more context"
+    url: "https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context"
+    disposition: top_signal
+  - label: "Introducing Claude Opus 5.5"
+    url: "https://www.anthropic.com/claude-opus-5-5"
+    disposition: top_signal
+  - label: "anthropics/claude-code release v2.1.280"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.280"
+    disposition: top_signal
+  - label: "OpenAI API changelog, GPT-6 Sol and GPT-6 Luna"
+    url: "https://developers.openai.com/api/docs/changelog"
+    disposition: top_signal
+  - label: "ThursdAI, 2026-09-25 issue"
+    url: "https://sub.thursdai.news/p/thursdai-sep-24-opus-55-beats-fable"
+    disposition: top_signal
+  - label: "An agent used DNS to reach an external chatbot"
+    url: "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/"
+    disposition: top_signal
+  - label: "Early rogue AI agent activity found on urlquery.net"
+    url: "https://transluce.org/agent-activity"
+    disposition: top_signal
+  - label: "Claude Code reads AGENTS.md only when telemetry is on"
+    url: "https://blog.szypowi.cz/p/claude-code-reads-agents.md-only-when-telemetry-is-on/"
+    disposition: top_signal
+  - label: "anthropics/claude-code release v2.1.278"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.278"
+    disposition: top_signal
+  - label: "MCP TypeScript SDK @modelcontextprotocol/hono@2.0.1"
+    url: "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/hono%402.0.1"
+    disposition: top_signal
+  - label: "Introducing TOLAP: object-level access control for AI agent tools"
+    url: "https://aws.amazon.com/blogs/opensource/introducing-tolap-object-level-access-control-for-ai-agent-tools/"
+    disposition: top_signal
+  - label: "MCP TypeScript SDK @modelcontextprotocol/server@2.1.0"
+    url: "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.1.0"
+    disposition: top_signal
+  - label: "MetaPermit: Scalable and Auditable Access Control for AI Agents via LLM-Inferred Meta-Attributes"
+    url: "https://arxiv.org/abs/2609.31039"
+    disposition: top_signal
+  - label: "AkasicMEM: Governed Enterprise Memory for Agents"
+    url: "https://arxiv.org/abs/2609.25563"
+    disposition: top_signal
+  - label: "Jev-as-a-Judge for Agent Evals"
+    url: "https://www.langchain.com/blog/jev-agent-evals-langsmith"
+    disposition: top_signal
+  - label: "Langfuse changelog, Jev as a judge"
+    url: "https://langfuse.com/changelog/2026-09-22-jev-as-a-judge"
+    disposition: top_signal
+  - label: "The Tests That Grade AI May Be Getting It Wrong"
+    url: "https://hai.stanford.edu/news/the-tests-that-grade-ai-may-be-getting-it-wrong"
+    disposition: top_signal
+  - label: "Is your eval lying to you?"
+    url: "https://blog.mastykarz.nl/eval-lying"
+    disposition: top_signal
+  - label: "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer"
+    url: "https://arxiv.org/abs/2609.31587"
+    disposition: top_signal
+  - label: "Scope Before You Persist: Preventing Cross-Family Interference in Agent Memory"
+    url: "https://arxiv.org/abs/2609.29144"
+    disposition: top_signal
+  - label: "langchain-openai 1.6.6"
+    url: "https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.6"
+    disposition: top_signal
+  - label: "deepagents 0.7.18"
+    url: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.7.18"
+    disposition: top_signal
+  - label: "anthropics/claude-code release v2.1.283"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.283"
+    disposition: top_signal
+  - label: "AI coding has made CI a bottleneck, so we reworked ours"
+    url: "https://linear.app/now/ci-bottleneck-reworked"
+    disposition: top_signal
+  - label: "obra/superpowers v6.4.2"
+    url: "https://github.com/obra/superpowers/releases/tag/v6.4.2"
+    disposition: top_signal
+  - label: "RRSI: Regularized Recursive Self-Improvement of Agent Harnesses"
+    url: "https://arxiv.org/abs/2609.24972"
+    disposition: top_signal
+  - label: "Cursor changelog, Rollouts and Security Review"
+    url: "https://cursor.com/changelog/rollouts-and-security-reviewer"
+    disposition: scout
+  - label: "Environment Steering: Using Data Flow Control to Improve Agent Utility and Safety"
+    url: "https://arxiv.org/abs/2609.35807"
+    disposition: scout
+  - label: "Emergent Collusion in Long-Horizon LLM Agent Interaction"
+    url: "https://arxiv.org/abs/2609.24967"
+    disposition: scout
+  - label: "Continual learning might make your blocking monitors nearly useless"
+    url: "https://www.alignmentforum.org/posts/QnDqGbKehEB3DxJAp/continual-learning-might-make-your-blocking-monitors-nearly"
+    disposition: scout
+  - label: "Swarm Scaling"
+    url: "https://www.lesswrong.com/posts/6cb7qd3RSkgnviCpf/swarm-scaling"
+    disposition: scout
+  - label: "The Closed Quorum: Inside the first reported autonomous AI C2 implant"
+    url: "https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/"
+    disposition: scout
+  - label: "Introducing the new Copilot with Home, Code and Autopilot"
+    url: "https://blogs.microsoft.com/blog/2026/09/25/introducing-the-new-copilot-with-home-code-and-autopilot/"
+    disposition: archive
+  - label: "LangSmith Engine v2: Red teaming and automated testing"
+    url: "https://www.langchain.com/blog/langsmith-engine-v2-redteam"
+    disposition: archive
+  - label: "Trajectories now in LangSmith"
+    url: "https://www.langchain.com/blog/langsmith-trajectories-tracing"
+    disposition: archive
+  - label: "Introducing LangSmith Fine-Tuning"
+    url: "https://www.langchain.com/blog/langsmith-fine-tuning"
+    disposition: archive
+  - label: "Managed Deep Agents v0.8: new auth, memory, and channels"
+    url: "https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new"
+    disposition: archive
+  - label: "LangSmith Cloud changelog, September 14-21 2026"
+    url: "https://docs.langchain.com/langsmith/changelog"
+    disposition: archive
+  - label: "r/AI_Agents and r/PromptEngineering, six in-window posts"
+    url: "https://www.reddit.com/r/AI_Agents/"
+    disposition: archive
+  - label: "Simon Willison, five in-window posts"
+    url: "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/"
+    disposition: archive
+  - label: "Claude API release notes, cache diagnostics out of beta"
+    url: "https://platform.claude.com/docs/en/release-notes/api"
+    disposition: archive
+  - label: "Build plugins for Claude with the directory submission portal"
+    url: "https://claude.com/blog/build-plugins-for-claude"
+    disposition: archive
+  - label: "anthropics/claude-code releases v2.1.281 and v2.1.282"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.281"
+    disposition: archive
+  - label: "Claude Opus 5.5: The System Card"
+    url: "https://thezvi.substack.com/p/claude-opus-55-the-system-card"
+    disposition: archive
+  - label: "Redis introduces new capabilities"
+    url: "https://redis.io/blog/redis-introduces-new-capabilities-0926/"
+    disposition: archive
+  - label: "Runpod Enterprise simplifies governance and billing"
+    url: "https://www.runpod.io/blog/runpod-enterprise"
+    disposition: archive
+  - label: "AI:AM Highlights (Cognitive Revolution)"
+    url: "https://www.cognitiverevolution.ai/ai-am-highlights-zvi-on-pacing-trump-xi-astra-better-behaved-than-fable-a-new-llm-pain-axis/"
+    disposition: archive
+  - label: "Meta Engineering, Rebalancer and Private Processing on glasses"
+    url: "https://engineering.fb.com/2026/09/21/open-source/rebalancer-generic-high-performance-library-assignment-problems/"
+    disposition: archive
+  - label: "Runtime adapters: Antigravity local models, API Gateway to MCP, llama.cpp quants, Strands"
+    url: "https://developers.googleblog.com/en/turn-your-rest-apis-into-mcp-tools-with-google-cloud-api-gateway/"
+    disposition: archive
+  - label: "Benchmarks: DolphinBench, Taste-Bench, WorkspaceBench, EvalEval/AISI, Synthetic Hospital"
+    url: "https://huggingface.co/blog/evaleval-aisi"
+    disposition: archive
+  - label: "Cost and infrastructure: tokenizers v1, Quail, vLLM, LiteParse, Vercel, Blaxel, Agent Sandbox, OpenShell"
+    url: "https://huggingface.co/blog/tokenizers-v1"
+    disposition: archive
+  - label: "Governance: EU AI Act enforcement, Gemini 3.8 TTS, Private AI Compute, Stanford HAI panel"
+    url: "https://blog.volkovlaw.com/2026/09/the-eu-ai-act-enforcement-is-no-longer-theoretical-part-i-of-ii/"
+    disposition: archive
+  - label: "Framework and security changes: Computerphile, Gemini CLI, MCP DPoP, Braintrust, LiteLLM, LlamaIndex, pydantic-ai, Browserbase"
+    url: "https://github.com/google-gemini/gemini-cli/releases/tag/v0.61.0"
+    disposition: archive
+  - label: "RULER: Instance-aware Rubric Rewards for SVG Generation"
+    url: "https://arxiv.org/abs/2609.25270"
+    disposition: reviewed_no_pick
+  - label: "Flash-dLLM: IO-Aware KV Caching and Parallel Decoding for Diffusion LLMs"
+    url: "https://arxiv.org/abs/2609.26796"
+    disposition: reviewed_no_pick
+  - label: "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay"
+    url: "https://arxiv.org/abs/2609.25001"
+    disposition: reviewed_no_pick
+  - label: "WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory"
+    url: "https://arxiv.org/abs/2609.24984"
+    disposition: reviewed_no_pick
+failures:
+  - "builder-practice/feeds:reddit-ai-agents and reddit-prompt-engineering: reddit.com returns HTTP 403 to the quote fetcher, so six in-window posts dated from the Atom feeds are carried in Archive notes with no matrix cell"
+  - "blog.talosintelligence.com: HTTP 403 to the quote fetcher; the Closed Quorum write-up is carried as a Scout row with no cell"
+  - "blogs.microsoft.com: HTTP 403 to the quote fetcher; the Copilot announcement is carried as an Archive note with no cell"
+next_run:
+  - "Run the DNS reachability probe from inside one factory sandbox and time one existing alert from fire to termination with nobody on the keyboard. The eleven-minute catch and the two-and-a-half-hour stop are the two numbers this packet is about."
+  - "Add @AGENTS.md to CLAUDE.md in every active repo and list the factory hosts that set DISABLE_TELEMETRY or CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC. 2026-W38 recorded the loader landing; the loader is gated on a remote flag those hosts never fetch."
+  - "Finish the cache-hit measurement. Open since 2026-W36, with eleven client-side causes named in W37, a compaction header in W38, and now a $0.20-against-$4 price gap plus x-claude-code-prompt-id for per-prompt grouping. Ten sessions, both numbers logged."
+  - "Score ten recorded factory trajectories five times with the existing LLM judge at fixed settings and publish the disagreement rate beside every judge-derived gate threshold."
+  - "Run the ten-task context A/B: curated instruction and skill context against task text alone with the source tree readable, acceptance and tokens recorded both ways."
+  - "Count stop-reason-less streamed turns and byte-cap-length tool results in the trace store, then upgrade the adapters past the langchain-openai and deepagents fixes."
+  - "Backfill or formally accept the Confidence, Evidence, and systems-thinking field debt in 2026-W32 through 2026-W34, per DEC-PUB-013. Carried from W36, W37 and W38 and still open."
+  - "Restore the ai-engineer-youtube lane through a fetcher that YouTube's feed endpoint answers, or move the lane to the talk-archive source. Three issues have now shipped without it, and W39's two video items came from channel Atom feeds instead."
+  - "Decide how the pipeline cites a source whose pages refuse the quote fetcher. Reddit, Cisco Talos and blogs.microsoft.com all produced in-window findings this week that could not become cells; a fetch profile per host, or a ref_type that records a read-but-unverifiable span, would stop the gate from deciding editorial scope."
+  - "W40 sweep should keep the lane-agent method; it covered vendor changelogs, preprints, practitioner blogs and podcasts in one pass, which the single-author W38 method did not."

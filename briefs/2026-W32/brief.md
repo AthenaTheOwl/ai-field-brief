@@ -44,9 +44,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Add mutation or break-then-fix evidence to promotion cohorts.
   - Monitoring: Track changed-line coverage, hidden failures, exception age, and test additions by task class.
 
-**Confidence:** High for the reported dataset; medium for transfer to this portfolio until the report-only cohort runs.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-CHANGED-LINES.
+High for the reported dataset; medium for transfer to this portfolio until the report-only cohort runs.
+
+**Evidence:** MTRX-W32-CHANGED-LINES
 
 ### 2. The worktree boundary stopped at the shell
 
@@ -76,9 +78,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Enforce the lease in the host controller and sandbox independently.
   - Monitoring: Count denied paths, unexpected roots, inherited credentials, and missing stop events.
 
-**Confidence:** High. The release notes name the affected paths and fixes; the local fixture still needs to prove coverage on Windows.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-BOUNDARY-REGRESSION.
+The release notes name the affected paths and fixes; the local fixture still needs to prove coverage on Windows.
+
+**Evidence:** MTRX-W32-BOUNDARY-REGRESSION
 
 ### 3. Patch releases repaired the order of truth
 
@@ -108,9 +112,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Gate releases on lifecycle conformance across worker families.
   - Monitoring: Track orphan processes, duplicate terminal events, late writes, and missing guardrail results.
 
-**Confidence:** High for the defects; medium for the local analogy until the event-order fixture runs.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-LIFECYCLE-ORDER.
+High for the defects; medium for the local analogy until the event-order fixture runs.
+
+**Evidence:** MTRX-W32-LIFECYCLE-ORDER
 
 ### 4. Cloudflare gave the agent a filesystem before giving it a container
 
@@ -140,9 +146,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Route operations while preserving one content-addressed artifact ledger.
   - Monitoring: Track handoff failures, sync bytes, cold starts, permission drift, and replay mismatch.
 
-**Confidence:** High for the preview's documented shape; low for production reliability until public evidence accumulates.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-COMPUTE-LADDER.
+High for the preview's documented shape; low for production reliability until public evidence accumulates.
+
+**Evidence:** MTRX-W32-COMPUTE-LADDER
 
 ### 5. Fourteen-day sessions moved uptime into the agent contract
 
@@ -172,9 +180,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Admit multi-day tasks only after replay-equivalence cohorts pass.
   - Monitoring: Track checkpoint age, restore success, orphan sessions, resource drift, and final hash mismatch.
 
-**Confidence:** High for the service limits; medium for the pattern until a local failure-injection run completes.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-PERSISTENT-RUNTIME.
+High for the service limits; medium for the pattern until a local failure-injection run completes.
+
+**Evidence:** MTRX-W32-PERSISTENT-RUNTIME
 
 ### 6. Strands put policy around the tool batch
 
@@ -204,9 +214,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Evaluate batch policies against hidden attack sequences.
   - Monitoring: Track holds, overridden recommendations, cumulative violations, and resume duplication.
 
-**Confidence:** High for the release surface; medium for the model-risk classifier until independent calibration exists.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-INTERRUPTIBLE-STATE.
+High for the release surface; medium for the model-risk classifier until independent calibration exists.
+
+**Evidence:** MTRX-W32-INTERRUPTIBLE-STATE
 
 ### 7. Expired state became a backend conformance problem
 
@@ -236,9 +248,11 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
   - Full: Gate every state backend on the shared suite.
   - Monitoring: Track stale reads, restore mismatches, adapter-specific exceptions, and expired-state resumes.
 
-**Confidence:** High. The release notes tie the feature, defect, and cross-backend conformance work together.
+**Confidence:** high
 
-**Evidence:** MTRX-W32-STATE-EXPIRY.
+The release notes tie the feature, defect, and cross-backend conformance work together.
+
+**Evidence:** MTRX-W32-STATE-EXPIRY
 
 ## Reusable patterns
 
