@@ -191,3 +191,32 @@ Each entry has the shape:
     eleven gate results each
   - DEC-SRC-022, DEC-PUB-012, DEC-PUB-013
 
+## 2026-10-03 — 98d603d brief: publish the 2026-W39 and 2026-W40 field briefs, and bind W32-W34
+
+- scope: the two owed weekly issues (vol. 22 and vol. 23), closing a
+  cadence gap that had reached 14 days against an 8-day window, plus the
+  DEC-PUB-013 field backfill for 2026-W32 through 2026-W34 and the removal
+  of those three weeks from `LEGACY_BRIEFS`.
+- method: lane sweep over 195 active registry sources, 168 candidate
+  primary URLs mined from the seven in-window daily digests and the weekly
+  digest, and 216 framework releases dated through the GitHub API. Every
+  item dated by its own primary, never by the day a digest named it — 187
+  items the digests presented as current were dated outside both windows
+  and appear only as discovery inputs. Every finding was then put to a
+  skeptic instructed to refute it, with refutation the default where a
+  claim could not be re-verified; refuted findings were dropped, never
+  downgraded. W39 carried 109 verified against 15 refuted, W40 154 against
+  13.
+- proof:
+  - seven repository gates — all green, `cadence_check` included
+  - `ops/w39/verify_quotes.py` — 28 of 28 quote-typed spans verbatim
+  - `ops/w40/verify_quotes.py` — 49 of 49 quote-typed spans verbatim
+  - `ops/run-records/run-96dc70585181.json` (W39) and
+    `ops/run-records/run-d0adad00d35c.json` (W40) — run evidence pinned at
+    98d603df126a5cbba88c612ee48f63fe236b94f4
+  - `python scripts/replay_run.py` — equivalent for both runs
+  - `python scripts/validate_run_evidence.py` — OK over 377 events and 28
+    run records
+  - `python scripts/validate_brief_fields.py` — OK over 9 briefs, 12 legacy
+    skipped, up from 6 and 15
+  - DEC-PUB-012, DEC-PUB-013, DEC-MTRX-009
