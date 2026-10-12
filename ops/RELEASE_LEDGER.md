@@ -220,3 +220,19 @@ Each entry has the shape:
   - `python scripts/validate_brief_fields.py` — OK over 9 briefs, 12 legacy
     skipped, up from 6 and 15
   - DEC-PUB-012, DEC-PUB-013, DEC-MTRX-009
+
+## 2026-10-12 — dd6c7bd brief: publish the 2026-W41 field brief
+
+- scope: the owed issue for the week ending Friday 2026-10-09 (vol. 24).
+- method: candidate dating over 85 URLs from the in-window digests, a GitHub
+  release scout over 98 releases, and a sweep of 42 vendor and practitioner
+  feeds; no lane agents. 78 of 85 digest candidates were dated outside the
+  window by their own primaries. A skeptic re-opened every primary behind the
+  published signals and corrected eight claims before release, including an
+  out-of-window title figure.
+- proof:
+  - seven repository gates — all green, `cadence_check` included
+  - `ops/w41/verify_quotes.py` — 81 of 81 quote-typed spans verbatim
+  - `ops/run-records/run-5796c008c3e0.json` — run evidence pinned at dd6c7bd
+  - `python scripts/replay_run.py` — equivalent
+  - DEC-PUB-012, DEC-PUB-013, DEC-MTRX-009
