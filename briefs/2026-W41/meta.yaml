@@ -1,0 +1,212 @@
+iso_week: 2026-W41
+through_date: 2026-10-09
+generated_at: 2026-10-12T23:05:00Z
+generated_by: claude-w41-clean-exit-failures
+title: "Agents flagged a plausible wrong value from a tool in fifty-nine percent of trials, and a problem that was not there in twenty-seven."
+volume: 24
+profile_id: builder-tpm
+registry_version: 14
+matrix_run_id: MTRX-W41-clean-exit-failures
+sweep:
+  attempted: 225
+  succeeded: 220
+  failed: 5
+  skipped: 0
+source_mix:
+  primary_docs: 0
+  vendor_changelogs: 21
+  academic_preprints: 5
+  framework_blogs: 2
+  vendor_news: 10
+  practitioner_blogs: 4
+  podcasts: 0
+  conference_talks: 0
+  other: 0
+  internal_digest_inputs: 7
+top_signal_count: 6
+action_packet_count: 6
+scout_count: 7
+cell_count: 23
+notes:
+  - "Current-week issue covering Saturday 2026-10-03 through Friday 2026-10-09, published 2026-10-12."
+  - "Authored against action-surface taxonomy v2 (DEC-PUB-012) with all four systems-thinking fields, Confidence, and Evidence on every Top signal per DEC-PUB-013 and DEC-MTRX-009."
+  - "Six Top signals on six distinct action surfaces: eval, runtime-adapter, security, governance, context, cost. The material supported six, not nine. Spend gates on money-moving tools, Strands Box and AQuA carry no measurement and went to Scout radar; the observability candidates (pydantic-ai fallback accounting, AgentMonBench) had no number-bearing primary and sit in the scout table and Scout radar."
+  - "Sweep method for this issue: no lane sweep over sources/registry.yaml ran this cycle. Material came from three agents dating 85 candidate URLs from the seven in-window Daily Systems Brief issues against their primaries, a GitHub release scout over 98 framework releases, and a primary-source sweep of 42 vendor and practitioner blogs and changelogs. No separate refutation pass ran over the findings; instead every primary cited here was re-opened while drafting, its date re-read from the primary itself (GitHub published_at, arXiv v1 submission line, page datePublished or dateline), and each quoted span matched verbatim."
+  - "Sweep counts are summed from the five findings files: attempted 225 (29, 28 and 28 candidate URLs, 98 releases, 42 primary sources); failed 5, the primary sweep's fetch failures; succeeded is attempted minus failed. 37 of the attempted sources yielded the 44 in-window findings, across nine lenses (governance 9, cost 8, security 8, context 5, eval 4, observability 3, config 3, workflow 2, runtime-adapter 2)."
+  - "findings-primary.json was not on disk when the required reading finished. It was polled every 60 seconds and appeared on the second poll, so all five findings files were read before Top signals were chosen; none was missing."
+  - "source_mix counts the 42 external sources cited anywhere in the issue plus the 7 internal digest issues, the same convention 2026-W40 used. Seven Claude Code releases count as seven vendor changelogs."
+  - "Every quote-typed source_ref on the matrix was matched verbatim against its live source by ops/w41/verify_quotes.py after whitespace normalization and HTML unescaping: 81 of 81 pass. GitHub release spans were cut programmatically from release bodies fetched through the GitHub API, so they match the gate's own fetch path."
+  - "Two spans were re-cut from the full text instead of taken as the finding printed them. The intent-execution paper's abstract says 'production sessions'; the HTML full text says the 47,828 calls are a Windows corpus from one company's six developers over eleven weeks, and gives the 7,491 exposed-call denominator. Both now ride on MTRX-W41-HOP-CHANGE-RATE and in the prose. The BASH_ENV witness span is cut after the variable name because the rendered HTML wraps the name in code markup. The Haiku 5.5 pricing table is recorded as a chunk, not a quote, because the table flattens into a run of cells."
+  - "Top signals 3 and 4 rest on counts the brief made, not counts the vendor published: ten Bash permission fixes and eleven guard fixes across Claude Code 2.1.289 to 2.1.296. Each count's criterion, and the borderline lines excluded from it, are written into the cell warnings, and every counted line is a verbatim quote ref on the cell."
+  - "Top signal 2's 12.0 percent is a replay over one company's Windows corpus on a client version the passages read do not state, and the 95.1 percent is one LLM judge (Who&When all-at-once) on 102 human-labelled failures sampled within the protocol's verdicts, 97 of them blamed on the model where the labels put 56 on the path; the other two transcript judges agreed with the labels no better than chance. Top signal 4's reading that hooks still fail open by default is an inference from the 2.1.295 wording, flagged in the cell and the prose."
+  - "Two hosts refuse the quote fetcher's user agent: openai.com and the Microsoft Research blog. The OpenAI customer stories were dated through the OpenAI news RSS feed and Agent Lightning's figures were read through a browser-agent fetch; all three sit in Archive notes with no cell."
+  - "Skeptic pass, 2026-10-12: the original title and Top signal 1's lead, 67.24 percent of failed ThinkingBox attempts exiting cleanly, come from v1 of the ThinkingBox paper (arXiv 2608.19741, 2026-08-20), which 2026-W34 picked; the 2026-10-03 Hugging Face post restates it. The title and pick 1 now lead with the in-window fault-injection study and keep the ablation as dated context. Pick 2's 95.1 percent was re-read in the full text as one of three transcript judges on a 102-failure sample, and its 79.2 percent as an IEC-Bench figure, not a deployment figure."
+  - "The issue runs about 7,700 words against roughly 10,100 for 2026-W40's nine picks. Six picks, 23 cells, five tables."
+sources_reviewed:
+  - label: "Daily Systems Brief folder"
+    url: "google-drive://Daily Systems Brief"
+    disposition: synthesis_input
+  - label: "ThinkingBox: grading agents on the records they leave behind"
+    url: "https://huggingface.co/blog/microsoft/thinkingbox"
+    disposition: top_signal
+  - label: "One Success Isn't Reliability: Thinkingbox (arXiv 2608.19741, v1 2026-08-20; dates the clean-exit ablation, a 2026-W34 pick)"
+    url: "https://arxiv.org/abs/2608.19741"
+    disposition: top_signal
+  - label: "Loud Failures, Quiet Failures: Fault Detection and Recovery in Tool-Using Language Model Agents"
+    url: "https://arxiv.org/abs/2610.10062"
+    disposition: top_signal
+  - label: "Do Tool Calls Execute as Intended? Measuring and Repairing Intent-Execution Correspondence in LLM Agents"
+    url: "https://arxiv.org/abs/2610.04375"
+    disposition: top_signal
+  - label: "Claude Code v2.1.289"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.289"
+    disposition: top_signal
+  - label: "Claude Code v2.1.290"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+    disposition: top_signal
+  - label: "Claude Code v2.1.292"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+    disposition: top_signal
+  - label: "Claude Code v2.1.293"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.293"
+    disposition: top_signal
+  - label: "Claude Code v2.1.294"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.294"
+    disposition: top_signal
+  - label: "Claude Code v2.1.295"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+    disposition: top_signal
+  - label: "Claude Code v2.1.296"
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+    disposition: top_signal
+  - label: "openai/codex rust-v0.162.0"
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.162.0"
+    disposition: top_signal
+  - label: "openai/codex rust-v0.161.0"
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.161.0"
+    disposition: top_signal
+  - label: "langchain-core 1.6.8"
+    url: "https://github.com/langchain-ai/langchain/releases/tag/langchain-core==1.6.8"
+    disposition: top_signal
+  - label: "deepagents-code 0.1.81"
+    url: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code==0.1.81"
+    disposition: top_signal
+  - label: "LiteLLM v1.106.0-dev.1"
+    url: "https://github.com/BerriAI/litellm/releases/tag/v1.106.0-dev.1"
+    disposition: top_signal
+  - label: "Revamping Skills in Deep Agents"
+    url: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+    disposition: top_signal
+  - label: "Introducing Claude Haiku 5.5"
+    url: "https://www.anthropic.com/claude-haiku-5-5"
+    disposition: top_signal
+  - label: "Claude Haiku 5.5 (Simon Willison)"
+    url: "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/"
+    disposition: top_signal
+  - label: "MCP TypeScript SDK v2.3.1"
+    url: "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/v2.3.1"
+    disposition: scout
+  - label: "pydantic-ai v2.55.0"
+    url: "https://github.com/pydantic/pydantic-ai/releases/tag/v2.55.0"
+    disposition: scout
+  - label: "browser-use 0.13.11"
+    url: "https://github.com/browser-use/browser-use/releases/tag/0.13.11"
+    disposition: scout
+  - label: "CrewAI 1.15.27 changelog"
+    url: "https://docs.crewai.com/en/changelog"
+    disposition: scout
+  - label: "Vercel Sandbox.create() waits until ready"
+    url: "https://vercel.com/changelog/sandbox-create-waits-until-ready"
+    disposition: scout
+  - label: "OpenAI API changelog (Ultrafast mode, Decisions API beta)"
+    url: "https://developers.openai.com/api/docs/changelog"
+    disposition: scout
+  - label: "Introducing Strands Box: AI agent sandboxes powered by Dogwood"
+    url: "https://aws.amazon.com/blogs/opensource/introducing-strands-box-ai-agent-sandboxes-powered-by-dogwood"
+    disposition: scout
+  - label: "Agents that can pay: building Restock with Stripe's Link and Managed Deep Agents"
+    url: "https://www.langchain.com/blog/agents-that-can-pay-with-stripe-link"
+    disposition: scout
+  - label: "Agents can now buy domains with the Vercel CLI"
+    url: "https://vercel.com/changelog/agents-can-now-buy-domains-with-the-vercel-cli"
+    disposition: scout
+  - label: "We're going to need default hard budget caps on pretty much everything"
+    url: "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/"
+    disposition: scout
+  - label: "AQuA: an ambient quality agent that diagnoses your production agent"
+    url: "https://developers.googleblog.com/the-outer-loop-insights-first-an-ambient-quality-agent-that-diagnoses-your-production-agent/"
+    disposition: scout
+  - label: "ASCENT: Online Test-Time Training of Long-Horizon Agents via Self-Distillation of Verified Experience"
+    url: "https://arxiv.org/abs/2610.05303"
+    disposition: scout
+  - label: "What Did the Agent Actually Do? Evidence-Grounded Oversight for Long-Horizon Agents"
+    url: "https://arxiv.org/abs/2610.06406"
+    disposition: scout
+  - label: "AI Gateway adds confidence-based decision fallbacks"
+    url: "https://vercel.com/changelog/confidence-based-decision-fallbacks"
+    disposition: scout
+  - label: "Rethinking access control for RAG with Amazon Quick and Amazon Bedrock"
+    url: "https://aws.amazon.com/blogs/machine-learning/rethinking-access-control-for-rag-with-amazon-quick-and-amazon-bedrock/"
+    disposition: scout
+  - label: "Anthropic 2026 Usage Policy update"
+    url: "https://www.anthropic.com/news/2026-usage-policy-update"
+    disposition: watchlist
+  - label: "Anthropic Cyber Verification Program tiers"
+    url: "https://www.anthropic.com/news/cyber-verification-program"
+    disposition: watchlist
+  - label: "Mistral Large 4"
+    url: "https://mistral.ai/news/mistral-large-4/"
+    disposition: watchlist
+  - label: "Asana cuts model costs 76x in browser tests"
+    url: "https://openai.com/index/asana-browser-agent"
+    disposition: archive
+  - label: "LegalOn halves Codex costs"
+    url: "https://openai.com/index/legalon-halves-codex-costs"
+    disposition: archive
+  - label: "Agent Lightning v1.0"
+    url: "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses/"
+    disposition: archive
+  - label: "Building reliable data analytics agents: lessons from the KDD Cup"
+    url: "https://developer.nvidia.com/blog/building-reliable-data-analytics-agents-lessons-from-the-kdd-cup/"
+    disposition: archive
+  - label: "Cursor Remote Control for local agents"
+    url: "https://cursor.com/changelog/remote-control-local-agents"
+    disposition: archive
+  - label: "Strands Agents Python 1.58.0 (aux_model)"
+    url: "https://github.com/strands-agents/sdk-python/releases/tag/python/v1.58.0"
+    disposition: reviewed_no_pick
+  - label: "langchain 1.4.4 (SummarizationMiddleware retry on overflow)"
+    url: "https://github.com/langchain-ai/langchain/releases/tag/langchain==1.4.4"
+    disposition: reviewed_no_pick
+  - label: "PACE preprint, recycled by the daily digests (2026-10-01, a W40 pick)"
+    url: "https://arxiv.org/abs/2610.01349"
+    disposition: reviewed_no_pick
+  - label: "How to Build a Model Router in the Harness, recycled (2026-10-01, a W40 pick)"
+    url: "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness"
+    disposition: reviewed_no_pick
+  - label: "Clef decision models, recycled (2026-10-01, a W40 scout row)"
+    url: "https://blog.cloudflare.com/clef-decision-models"
+    disposition: reviewed_no_pick
+  - label: "Agents SDK 0.23.1, latest release still 2026-10-02"
+    url: "https://github.com/openai/openai-agents-python/releases/tag/v0.23.1"
+    disposition: reviewed_no_pick
+failures:
+  - "primary-source/openai-research: HTTP 403 from the quote fetcher"
+  - "primary-source/openai-news: individual openai.com posts return HTTP 403; dated through the news RSS feed, quotes taken from RSS descriptions, no cells"
+  - "primary-source/openai-harness-engineering: HTTP 403, and an evergreen article in any case"
+  - "primary-source/hugging-face-youtube: channel feed endpoint HTTP 404"
+  - "primary-source/aws-bedrock-agentcore-docs: static documentation page with no dated entries"
+next_run:
+  - "Inject a well-formed wrong value into five runs of one factory task and grade the runs on end state. ThinkingBox puts clean-exit failures at 67.24 percent of failed attempts; the factory has no number of its own."
+  - "Replay twenty exposed Claude Code Bash calls through a BASH_ENV witness on a Windows host and count changed calls. The 12.0 percent comes from one company's corpus on an unstated client version."
+  - "Inventory Bash deny and ask rules with a backed or unbacked mark, upgrade every host to Claude Code 2.1.296, and keep the ten spellings as a regression test."
+  - "Force one gating hook to fail with and without onFailure: block, then set it on every hook that gates a write, a spend or an outbound send."
+  - "Record MCP description tokens at session start on 2.1.295 and 2.1.296 and list servers whose descriptions exceed 2,048 characters."
+  - "Split one week of Haiku calls at 100,000 prompt tokens, re-count one prompt on both tokenizers, pin model aliases to explicit ids, and re-price the routing ledger's Sonnet rows on cache-read share."
+  - "Restore a registry lane sweep next cycle. This issue ran without one, so registry sources outside the 42 primary blogs, the release scout and the daily digests were not read."
+  - "Carried from W40, status not re-checked this cycle: measure within-configuration spread before the next model comparison; add a harness column to the factory comparison table; mark pre-2026-09-30 gateway cost figures as floors; run the permission-minimality test on the three AGENTS.md files granting the most authority; inventory write-capable tools for origin verification; audit telemetry redaction for name-keyed rules such as prompt against prompt_text; list tool scopes beside the model generation each was set against."
+  - "Finish the cache-hit measurement. Open since 2026-W36, and this week added two more moving inputs: the up-front MCP description limit doubled in 2.1.296 and Sonnet 5.5 cache reads halved on 2026-10-07. Ten sessions on 2.1.296 or later, prefix tokens and cache reads both logged."
+  - "Run the three-input probe against the portfolio's fetch wrapper. Carried unchanged from W38 and still open."
+  - "Decide how the pipeline cites a host that refuses the quote fetcher. W39 raised it for Reddit, Cisco Talos and blogs.microsoft.com, W40 for Reddit, and this week openai.com and the Microsoft Research blog refused the fetcher's user agent while a browser user agent read the Microsoft page. A per-host fetch profile in ops/w41/verify_quotes.py would let those sources carry cells."
+  - "Carried from W40: update the ai-engineer-youtube registry note (Atom feeds 404, watch-page JSON-LD works) and review whether the podcast lanes earn their sweep cost. Neither lane ran this cycle."
+  - "Closed since W40: 2026-W32 through 2026-W34 are no longer in LEGACY_BRIEFS in scripts/validate_brief_fields.py, so the DEC-PUB-013 backfill item carried since W36 has landed."

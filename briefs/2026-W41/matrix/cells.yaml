@@ -1,0 +1,625 @@
+matrix_run_id: MTRX-W41-clean-exit-failures
+generated_at: 2026-10-12T23:05:00Z
+schema_ref: schemas/matrix_cell.schema.json
+source_items:
+  - src-w41-thinkingbox
+  - src-w41-loud-quiet-failures
+  - src-w41-claude-code-2-1-292
+  - src-w41-intent-execution
+  - src-w41-claude-code-2-1-289-to-296
+  - src-w41-codex-0-162-0
+  - src-w41-langchain-core-1-6-8
+  - src-w41-claude-code-2-1-295
+  - src-w41-deepagents-code-0-1-81
+  - src-w41-claude-code-2-1-296
+  - src-w41-deep-agents-skills
+  - src-w41-anthropic-haiku-5-5
+  - src-w41-willison-haiku-5-5
+  - src-w41-claude-code-2-1-293
+lenses:
+  - eval
+  - runtime-adapter
+  - security
+  - governance
+  - context
+  - cost
+cells:
+  - id: MTRX-W41-CLEAN-EXIT-FAILURES
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-thinkingbox
+    lens_id: eval
+    mode: extractive
+    content: "In ThinkingBox's common-set ablation of 121,680 valid trials across 12 models, first reported in the authors' paper of 2026-08-20 and restated in the 2026-10-03 Hugging Face post, 79,853 attempts failed the executable state checks, and 67.24% of those failures still terminated cleanly, invoked a state-changing tool and reported no final tool error; the checks found wrong field values in 77.61% of all the failed attempts, unintended extra effects in 43.30% and missing required effects in 25.36%."
+    source_refs:
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "In a common-set ablation covering 121,680 valid trials across 12 LLM models, 79,853 attempts failed the executable checks. Of those failures, 67.24% still terminated cleanly, invoked a state-changing tool, and reported no final tool error."
+        ref_type: quote
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "Executable checks nevertheless found wrong field values in 77.61% of them, unintended extra effects in 43.30%, and missing required effects in 25.36%."
+        ref_type: quote
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "page datePublished 2026-10-03T22:56:48Z; dateline Published October 3, 2026"
+        ref_type: timestamp
+      - uri: "https://arxiv.org/html/2608.19741v1"
+        quote_or_span: "analyzes 79,853 failed trials among 121,680 valid recorded trials over the common task set and 12 models."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2608.19741v1"
+        quote_or_span: "and 67.24% additionally end without an explicit terminal tool error."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2608.19741"
+        quote_or_span: "arXiv [v1] Thu, 20 Aug 2026 07:37:57 UTC; [v4] Thu, 1 Oct 2026 16:14:54 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Out-of-window figure: the ablation is in v1 of the authors' paper, arXiv 2608.19741, submitted 2026-08-20, which 2026-W34 picked; the 2026-10-03 post restates it. It is cited as dated context for the in-window fault-injection result, not as this week's finding."
+      - "The 67.24% is a share of failed attempts, not of all attempts, and the three state-check categories overlap, as the page says. The 77.61%, 43.30% and 25.36% are shares of all 79,853 failed attempts, not of the clean-exit subset (61,973 wrong-field-value trials exceed the 53,697 clean exits)."
+      - "'No final tool error' means the last tool response carried no explicit error; the paper's failure signatures put most failures under tool usage, which includes explicit tool errors earlier in the trace."
+      - "ThinkingBox is the authors' own benchmark of synthetic stateful business workflows in five domains, published jointly by Microsoft and Hugging Face; the model scores were not re-run for this issue."
+  - id: MTRX-W41-REPEAT-DEPENDABILITY
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-thinkingbox
+    lens_id: eval
+    mode: extractive
+    content: "Every one of 507 stateful workflows runs 20 times from an identical clean backend. Claude Opus 5.5 beats Claude Opus 5 on the every-attempt average, 67.16% against 66.50%, and passes exactly the same number of tasks on all 20 attempts, 241; GPT-6 Astra keeps 78% of its single-attempt rate across 20 repeats, while GLM-5.1, Kimi-K2.6 and DeepSeek-V4-Pro keep about 8%."
+    source_refs:
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "Across 507 stateful business workflows, each run 20 times against various LLM models, it grades agents on terminal backend state and side effects."
+        ref_type: quote
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "Claude Opus 5.5 scores higher than Claude Opus 5 on every-attempt average, 67.16% against 66.50%, and solves more tasks at least once. It passes exactly the same number of tasks on all 20 attempts: 241."
+        ref_type: quote
+      - uri: "https://huggingface.co/blog/microsoft/thinkingbox"
+        quote_or_span: "Only three hold on to most of their pass@1 scores: GPT-6 Astra retains 78% of its single-attempt rate, and Claude Opus 5.5 and Claude Opus 5 each retain 71%."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Observed 20/20 is a literal count on one benchmark run per model, with no estimator, as the page states; the retention figures come from a chart summarised in the text."
+      - "The page says the two Opus versions pass the same number of tasks on all 20 attempts, not the same tasks. The Opus 5.5 comparison is new in the 2026-10-03 post; the paper's latest version (v4, 2026-10-01) does not include Opus 5.5."
+      - "Costs on the same page are priced at undiscounted OpenRouter list rates and described by the authors as a comparative index, not an invoice; they are not used in this issue."
+  - id: MTRX-W41-QUIET-FAULT-DETECTION
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-loud-quiet-failures
+    lens_id: eval
+    mode: extractive
+    content: "Across 1,920 fault-injected trials (six models from three families, 24 multi-step tasks on one function-calling benchmark), agents treated a failure as a problem in 91.3% of trials when the tool returned an explicit error and in 58.8% when it returned a plausible wrong value, against a 26.8% rate of reporting problems when nothing was wrong. A prompt line asking the agent to check each result, tried on one matched model pair in a 480-trial arm, did not move detection."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.10062"
+        quote_or_span: "Agents treat a failure as a problem in 91.3% of trials when the tool returns an explicit error, but in 58.8% of trials when it returns a plausible wrong value, against a 26.8% rate of reporting problems when nothing was wrong."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.10062"
+        quote_or_span: "Six models from three families, half of them reasoning variants, ran 1,920 trials over 24 multi-step tasks."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.10062"
+        quote_or_span: "A prompt line asking the agent to check each result did not move detection."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.10062"
+        quote_or_span: "One line was added to the system prompt for a matched pair of models, in a second arm of 480 trials"
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.10062"
+        quote_or_span: "This arm ran on one family, so it does not license a general claim about metacognitive prompting."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.10062"
+        quote_or_span: "arXiv [v1] Wed, 7 Oct 2026 13:29:59 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "One benchmark: the authors wrap the executable environments of one established function-calling benchmark in a fault-injection layer, so the rates are bounded to its 24 tasks."
+      - "The 26.8% false-report rate is the baseline the 58.8% has to be read against; the gap between noticing a plausible wrong value and noticing nothing is about 32 points, not 58.8."
+      - "Reasoning variants noticed less than their instruct siblings (-9.3 points pooled, p < .001), and the authors say Claude's own difference is not robust to model specification."
+      - "The prompt-line result is one model family: the authors say the arm 'does not license a general claim about metacognitive prompting'."
+  - id: MTRX-W41-RUN-TO-RUN-BASELINE
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-loud-quiet-failures
+    lens_id: eval
+    mode: extractive
+    content: "Two fault-free runs of the same task ended in the same state only 63.3% of the time, and against that baseline only a missing tool clearly lowered recovery (39.9%); timeouts, schema drift and corruption stayed inside run-to-run variation."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.10062"
+        quote_or_span: "Because agents are stochastic, two fault-free runs of the same task end in the same state only 63.3% of the time; against that baseline, only a missing tool clearly lowers recovery (39.9%), while timeouts, schema drift, and corruption stay within run-to-run variation."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 63.3% same-state rate is measured on this benchmark's tasks and models, and the abstract does not give it per model."
+  - id: MTRX-W41-SILENT-TOOL-LOSSES
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-292
+    lens_id: eval
+    mode: extractive
+    content: "In the same week Claude Code converted four quiet tool losses into loud ones: WebFetch dropped page text past 100,000 characters without saying so (fixed in 2.1.290, 2026-10-05), Grep and Glob reported no matches when the path could not be read, @-mentioned text files over 256KB were left out silently, and a PDF read with a list of pages returned only the first entry with no error (all fixed in 2.1.292, 2026-10-06)."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed WebFetch silently dropping page text past 100,000 characters; it now says how much was unread and takes an `offset` to read on"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed Grep and Glob reporting no matches when the file or folder they were given could not be read; Claude now retries once or tells you"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed @-mentioned text files over 256KB being left out silently: Claude is now told the file's size and to read it in portions"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed the Read tool returning only the first entry, with no error, when a PDF's `pages` was a list such as \"6,9,15\"; it now returns an error saying to read each page or range separately"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "release published_at 2026-10-06T18:59:30Z; v2.1.290 published_at 2026-10-05T23:33:17Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Fix notes only: the releases do not say how often each loss occurred or for how long, so the frequency of quiet tool failures in real sessions is not measured here."
+      - "Pairing these fixes with the fault-injection paper is the brief's reading; neither source cites the other."
+  - id: MTRX-W41-HOP-CHANGE-RATE
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-intent-execution
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "On a Windows corpus of 47,828 shell calls that Claude Code and Codex ran through Git Bash and Windows PowerShell 5.1 in 261 sessions, Claude Code's Bash launch changed 12.0% of the 7,491 exposed Bash calls (a heredoc, a backslash pair, or at least 1,000 characters), 67.0% of calls carrying a backslash pair and 100% of calls of at least 8,000 characters; for 80.7% of calls whose backslashes were changed, the wrong action ran with no reported error."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "In 47,828 shell calls within production sessions, Claude Code's Bash tool changes 12.0% of the calls that carry code, escape sequences, or long text."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "For 80.7% of the calls whose backslashes are changed, the wrong action runs without any reported error."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "The Windows corpus contains 47,828 shell calls that Claude Code and Codex ran through Git Bash and Windows PowerShell 5.1 in 261 sessions by 6 developers from a company over 11 weeks."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "12.0% of the 7,491 exposed Bash calls change. The rate is 67.0% for a call with a backslash pair and 100% for a call of at least 8,000 characters"
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "A Bash call is exposed when it carries a heredoc, a backslash pair, or at least 1,000 characters."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "arXiv [v1] Sat, 3 Oct 2026 08:38:35 UTC"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 12.0% is a replay over one company's Windows corpus (six developers, eleven weeks, Git for Windows and PowerShell 5.1), restricted to exposed calls. The abstract's phrasing does not say Windows; the full text does."
+      - "A separate Linux corpus (nine developers, 71 sessions) exists in the paper and is not the source of the 12.0%."
+      - "The client version the corpus ran on is not stated in the passages read, so whether current Claude Code releases still change these calls is open."
+  - id: MTRX-W41-MODEL-BLAMED
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-intent-execution
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "All 10 measured harnesses changed a call. On 102 production failures labelled by two annotators, sampled within each verdict of the authors' protocol, the labels put 56 on the execution path; Who&When's all-at-once LLM judge, reading each whole trajectory, attributed 97 of the 102 (95.1%) to the LLM, and its step-by-step and binary-search judges flagged the path in 49 and 45 but agreed with the labels at kappa 0.04 and 0.01, against 0.77 for the authors' protocol."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "All 10 measured harnesses change a call. Trajectory-based judgment attributes 95.1% of the production failures to the LLM, although the path caused more than half of them."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "We score the judges and the ablations against a human reference from 2 samples of the production sessions, drawn at random within each verdict of the IEC protocol."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "whereas the all-at-once judge attributes 97 of the 102 failures to the LLM."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "Table 5: Attribution of 102 failures. Attributed to the path, correctly (of 56) / incorrectly (of 46): Who&When all-at-once 0 / 0, kappa 0.00; Who&When step-by-step 29 / 20, kappa 0.04; Who&When binary search 25 / 20, kappa 0.01; IEC protocol (ours) 54 / 1, kappa 0.77"
+        ref_type: chunk
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The abstract's 95.1% is the most model-blaming of three trajectory judges, not trajectory reading in general: the other two attributed about half the failures to the path but picked the wrong ones about as often as the right ones."
+      - "'More than half' is 56 of 102 failures in a sample drawn within each of the protocol's verdicts, so it is a share of that sample, not a measured prevalence across the corpus."
+      - "Trajectory-based judgment is the attribution method the authors argue against; their own hop-level protocol is the one validated against human labels, so the 95.1% is a measure of what one transcript judge concludes, not of model quality."
+  - id: MTRX-W41-PATH-COST
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-intent-execution
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "On the authors' IEC-Bench the changing path raised token cost per passed task 2.4 times (up to 12.3 times); a hop that changes a call hides the changes after it, so 55.1% of the failures on one path appear only after its first hop is repaired; and on the same benchmark IntAct recovers 79.2% of the failures with a changed call (137 of 173 lost pairs), which the authors also deploy in a commercial product."
+    source_refs:
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "On IEC-Bench, the path raises the token cost per passed task 2.4 times (up to 12.3 times)."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "A hop that changes a call also hides the changes after it, so 55.1% of the failures on one path appear only after its first hop is repaired."
+        ref_type: quote
+      - uri: "https://arxiv.org/abs/2610.04375"
+        quote_or_span: "IntAct, deployed in a commercial product, recovers 79.2% of the failures with a changed call."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "It recovers 79.2% of the IEC-Bench failures with a changed call and lowers the token cost per passed task 2.4 times."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "With the recorded actions held fixed, 137 of the 173 lost pairs with a changed call pass once IntAct repairs the named hop, so the repair recovers 79.2% of them."
+        ref_type: quote
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "IEC-Bench is built by the authors from the changes they observed, so the 2.4x cost multiplier is on calls selected to be the kind that change."
+      - "The 79.2% is measured on IEC-Bench with the recorded actions held fixed, per the full text; the abstract sets it beside the commercial deployment, but the paper's figure for that deployment is different: 197 of 9,032 replayed native invocations changed before IntAct and none after."
+  - id: MTRX-W41-WITNESS-METHOD
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-intent-execution
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "The measurement needs no model call: a witness keeps the harness launch and swaps only the program that would execute the command for one that reports the text it received, and for Bash the witness is the file Bash sources before it executes the command string, so the reported string has already passed through the wrapper."
+    source_refs:
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "replaces only the program that would execute the command with one that reports the received text."
+        ref_type: quote
+      - uri: "https://arxiv.org/html/2610.04375"
+        quote_or_span: "which Bash sources before it executes the command string, so the reported string has passed through the wrapper as in the harness."
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The file is named by the BASH_ENV environment variable in the paper; the span is cut after the variable name because the HTML rendering wraps it in code markup that does not survive as text."
+  - id: MTRX-W41-HOOK-REWRITE-FIXES
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-292
+    lens_id: runtime-adapter
+    mode: extractive
+    content: "Claude Code fixed the same class from its own side twice in the window: permission rules and safety checks were not applied to a tool call after a PreToolUse hook rewrote its input (2.1.290), and plugin tool.call hooks saw some calls before misnamed parameters were repaired, so a hook now sees the arguments the tool will run with (2.1.292)."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed some permission rules and safety checks not being applied to a tool call after a PreToolUse hook rewrote its input"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed plugin `tool.call` hooks seeing some tool calls before misnamed parameters were repaired; a hook now sees the arguments the tool will run with"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Fix notes only, with no count of affected calls; that the harness rewrites calls at all is shown by the 2.1.292 line itself, which repairs misnamed parameters before execution."
+  - id: MTRX-W41-BASH-RULE-SPELLINGS
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-289-to-296
+    lens_id: security
+    mode: abstractive
+    content: "Between 2.1.289 (2026-10-03) and 2.1.296 (2026-10-09), ten Claude Code release-note lines fix a Bash deny or ask rule, a Bash permission check or a sandbox exemption pattern that missed a command, approved it unasked or let it out of the sandbox because the checker read it differently from the shell, git or the filesystem: an environment-variable prefix with an expanded value, a bare variable assignment, a declare, typeset, export or readonly prefix, wildcards the shell expands in rg and git grep arguments, variable names zsh reads differently from bash, a short git clone option, a wildcard inside an option value, an 8.3 or alternate Windows spelling of a home folder, an assignment to BASH_ARGV0, and a Git Bash spelling of a Windows user folder."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.289"
+        quote_or_span: "Fixed Bash deny and ask rules missing a command behind an environment variable prefix with an expanded value (e.g. `TZ=\"$HOME\" rm -rf build`) when the sandbox auto-allows commands"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.289"
+        quote_or_span: "Fixed a Bash deny or ask rule being skipped under sandbox auto-allow when a bare variable assignment came before the command"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed a deny or ask rule missing a command or path whose name came from a variable set as a prefix on `declare`, `typeset`, `export` or `readonly`"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed Bash permission checks auto-approving some read-only commands (such as `rg` or `git grep`) whose arguments the shell would still expand as wildcards; these now prompt for approval"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed Bash permission checks auto-approving certain commands whose variable names zsh reads differently from bash; these now prompt for approval"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed a short form of a `git clone` option keeping the sandbox exemption from a git pattern such as `git *` in `sandbox.excludedCommands`; it is now treated like the long form"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed Bash permission checks not applying Read deny rules or the outside-directory read block to a wildcard in some option values of read-only commands"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed `rm -rf` on the 8.3 short name or another alternate Windows spelling of the home folder or a drive not being treated as removing it"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Fixed Bash permission checks auto-approving some commands that assign the `BASH_ARGV0` shell variable and then use it; these now prompt for approval"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Windows: Fixed `rm -rf /c/Users/<name>` in Git Bash not asking in bypass permissions mode"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.289"
+        quote_or_span: "release published_at 2026-10-03T23:07:17Z; v2.1.296 published_at 2026-10-09T19:28:59Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Ten is the brief's count under a stated criterion: a Bash rule, Bash permission check or sandbox exemption pattern that missed, auto-approved or unsandboxed a command because of how the shell, git or filesystem would read it. A 2.1.295 line fixing permission checks for for-loops over glob patterns is excluded because it does not say which direction the check erred."
+      - "The git clone line is not a deny or ask rule: the short option form kept an exemption from the sandbox under a sandbox.excludedCommands pattern, so it is a text pattern widening the OS boundary rather than a rule missing a command."
+      - "The release notes carry no severity or advisory, and two of the ten applied only under sandbox auto-allow, where the sandbox still bounded what the command could reach."
+  - id: MTRX-W41-LINK-SWAP-READS
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-289-to-296
+    lens_id: security
+    mode: extractive
+    content: "Three further fixes close reads that returned a file outside what was approved through a link swapped or changed mid-read: image reads on macOS and Windows and @-mentions under the read block or --restricted (2.1.290), and notebook or PDF reads (2.1.292)."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed an image read on macOS and Windows being able to return a file outside what was approved, through a link swapped in mid-read"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed an `@`-mention under the read block or `--restricted` being able to read a file outside the working directories through a link changed mid-read"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed a notebook or PDF read on macOS and Windows being able to return a file outside what was approved, through a link swapped in mid-read"
+        ref_type: quote
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Fix notes only. The check-then-use reading of a link swapped mid-read is the release notes' own description; exploitability is not stated."
+  - id: MTRX-W41-CODEX-DENY-GLOB
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-codex-0-162-0
+    lens_id: security
+    mode: extractive
+    content: "Codex rust-v0.162.0 (2026-10-08) keeps ripgrep configuration from weakening deny-glob masks and rejects writable sandbox-construction executables; rust-v0.161.0 (2026-10-07) lets an approved filesystem escalation widen write access while preserving denied reads and network restrictions."
+    source_refs:
+      - uri: "https://github.com/openai/codex/releases/tag/rust-v0.162.0"
+        quote_or_span: "Fix Linux sandbox startup with multiple denied files, reject writable sandbox-construction executables, and keep ripgrep configuration from weakening deny-glob masks. (#50059, #51211, #51407, #51527)"
+        ref_type: quote
+      - uri: "https://github.com/openai/codex/releases/tag/rust-v0.161.0"
+        quote_or_span: "Approved filesystem escalation can now grant broader write access while preserving denied reads and network restrictions. Background tasks retain their originating turn’s permissions. (#49353, #49880)"
+        ref_type: quote
+      - uri: "https://github.com/openai/codex/releases/tag/rust-v0.162.0"
+        quote_or_span: "release published_at 2026-10-08T18:55:59Z; rust-v0.161.0 published_at 2026-10-07T15:58:45Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Fix notes only, with no advisory text; how a ripgrep configuration weakened a deny-glob mask is not described in the release body."
+  - id: MTRX-W41-IPV6-SPELLING
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-langchain-core-1-6-8
+    lens_id: security
+    mode: extractive
+    content: "langchain-core 1.6.8, published 2026-10-08, hardens its SSRF checks for scoped and compatible IPv6 addresses."
+    source_refs:
+      - uri: "https://github.com/langchain-ai/langchain/releases/tag/langchain-core==1.6.8"
+        quote_or_span: "fix(core): harden scoped and compatible IPv6 SSRF checks (#41151)"
+        ref_type: quote
+      - uri: "https://github.com/langchain-ai/langchain/releases/tag/langchain-core==1.6.8"
+        quote_or_span: "release published_at 2026-10-08T15:41:22Z"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "A one-line commit note with no advisory or exploitability detail; that earlier versions could be reached through these address forms is inferred from the fix, not stated."
+  - id: MTRX-W41-HOOK-ONFAILURE-BLOCK
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-295
+    lens_id: governance
+    mode: extractive
+    content: "Claude Code 2.1.295, published 2026-10-08, adds onFailure: \"block\" for command and HTTP hooks, so a hook that cannot start, times out or exits with an unexpected code blocks the action instead of letting it through."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "release published_at 2026-10-08T19:48:38Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The setting is added, not defaulted: the note says nothing about changing the default, so a hook without it still lets the action through on failure. That reading is the brief's inference from the wording."
+  - id: MTRX-W41-GUARD-GAPS
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-289-to-296
+    lens_id: governance
+    mode: abstractive
+    content: "Between 2.1.290 and 2.1.296, eleven Claude Code release-note lines fix a guard or hook that let a call or prompt through when it was absent, restarting, interrupted, overridden, given an over-long reason, handed truncated input, or written as an instruction: tool calls answered without permission hooks during a hooks-worker restart, a hook that failed after an interrupt letting the call through, a guard skipped for nested calls, an allow answer skipping a required question, a deny ignored when its reason ran past 4,096 characters, prompt and agent hooks written as instructions allowing what they should block, a guard passing content it never saw, calls made during a reload getting past a guard, an interrupt letting an unchecked prompt through, a user mod making an organization's guard skip its check, and a busy hook's .catch skipped."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed a case where a user-installed mod could make an organization's guard skip its check; such a mod is now unloaded"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+        quote_or_span: "Fixed a plugin hook with a `.catch` being unloaded, and its `.catch` skipped, when the hook kept the hooks worker busy on a prompt or tool call"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed tool calls made while the plugin hooks worker restarts being answered without the plugins' permission hooks"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed a mod's hook that called `next(e)` and then failed while the turn was interrupted letting the call through; the call is now rejected"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed a mod's guard hook with a `.catch` being skipped silently for calls another mod's hook makes beneath the guard's own `$` call; its `.catch` is now asked"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed a plugin's `tool.check` hook answering allow running a tool that requires your answer (a question, a plan approval) without showing its dialog"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+        quote_or_span: "Fixed a plugin's prompt drop or setting deny being ignored when its reason was longer than 4,096 characters"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.294"
+        quote_or_span: "Fixed `prompt` and `agent` hooks written as instructions (such as \"Block commands that...\") allowing what they should block"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "Fixed a mod's hook being handed a deeply nested tool input cut short with no error, so a guard could pass content it never saw"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "Fixed calls a mod makes while it reloads during a plugin hooks worker restart getting past another mod's guard hook that has a `.catch`; such calls are now refused"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Fixed Esc or an interrupt during a `UserPromptSubmit` hook or a mod's `prompt.submit` hook ending headless sessions, clearing the typed prompt, or letting the unchecked prompt through"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "release published_at 2026-10-09T19:28:59Z; v2.1.290 published_at 2026-10-05T23:33:17Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Eleven is the brief's count under a stated criterion: a guard, hook or permission hook that let a call or prompt through because it was absent, failed, restarting, interrupted, overridden, truncated or misread. A 2.1.296 fix where a managed deny refused the call but did not end the turn is excluded because the call itself was refused."
+      - "At least nine of the eleven involve Claude Code's plugin and mod hook layer, which shipped recently and is changing release to release, so the count reflects a young surface as much as a design choice."
+  - id: MTRX-W41-FAIL-CLOSED-ELSEWHERE
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-deepagents-code-0-1-81
+    lens_id: governance
+    mode: extractive
+    content: "Two other frameworks moved guards to fail closed in the window: deepagents-code 0.1.81 (2026-10-06) makes hook execution fail closed if its context changes when a run resumes, and LiteLLM 1.106.0-dev.1 (2026-10-07) makes its Straiker v3 guardrail fail closed on a missing verdict."
+    source_refs:
+      - uri: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code==0.1.81"
+        quote_or_span: "Hook execution now fails closed if its context changes when a run resumes ([#6712](https://github.com/langchain-ai/deepagents/pull/6712))."
+        ref_type: quote
+      - uri: "https://github.com/BerriAI/litellm/releases/tag/v1.106.0-dev.1"
+        quote_or_span: "fails closed on a missing verdict"
+        ref_type: quote
+      - uri: "https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code==0.1.81"
+        quote_or_span: "release published_at 2026-10-06T14:55:50Z; LiteLLM v1.106.0-dev.1 published_at 2026-10-07T08:15:09Z"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The LiteLLM change is in a dev pre-release, not a stable tag, and applies to one third-party guardrail integration."
+      - "Both are one-line notes; neither says what the previous behaviour let through."
+  - id: MTRX-W41-MCP-DESCRIPTION-BUDGET
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-296
+    lens_id: context
+    mode: extractive
+    content: "Claude Code 2.1.296 (2026-10-09) doubles the default limit on MCP tool descriptions sent up front and on MCP server instructions from 2,048 to 4,096 characters and adds a per-subagent autoCompactWindow; 2.1.295 (2026-10-08) raises the cut for descriptions the model loads through tool search from 2,048 to 16,384 characters and caps subagent skill preloading at 32."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Changed the default limit on MCP tool descriptions sent up front and on MCP server instructions from 2,048 to 4,096 characters"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "Changed MCP tool descriptions the model loads through tool search to be cut at 16,384 characters instead of 2,048"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+        quote_or_span: "Changed subagents to preload at most 32 skills from the `skills` field, each once; a subagent with the Skill tool can still invoke the rest"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "release published_at 2026-10-09T19:28:59Z; v2.1.295 published_at 2026-10-08T19:48:38Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The limit is a per-description ceiling. A server whose descriptions were already under 2,048 characters sends the same text as before, so the per-request cost of the change depends on the servers connected and is not stated anywhere."
+  - id: MTRX-W41-SKILL-BOUND-TOOLS
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-deep-agents-skills
+    lens_id: context
+    mode: extractive
+    content: "Deep Agents binds tools to skills: tool schemas stay out of context until the agent reads the skill they belong to, adding them mid-conversation keeps the prompt cache intact on models that accept new tools mid-conversation, a call to a bound tool before its skill is read fails as an unknown tool, and a reload that finds new skills changes the system prompt and invalidates the cache."
+    source_refs:
+      - uri: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+        quote_or_span: "Tool schemas stay out of context until the agent reads the skill they're bound to, and on models that accept new tools mid-conversation, adding them keeps the prompt cache intact."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+        quote_or_span: "A bound tool isn't added to context until the agent reads its skill, and a call to it before then fails as an unknown tool."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+        quote_or_span: "A reload that finds new skills changes the system prompt, which invalidates the prompt cache."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+        quote_or_span: "We're seeing enterprise skill registries grow to thousands of skills, shared across teams and agents."
+        ref_type: quote
+      - uri: "https://www.langchain.com/blog/revamping-skills-in-deep-agents"
+        quote_or_span: "page datePublished 2026-10-07T19:00:00Z; dateline October 7, 2026"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "Vendor framework post with no measured token or cost savings."
+      - "Cache preservation holds only on models that accept tools added mid-conversation, which the post does not enumerate."
+  - id: MTRX-W41-HAIKU-PRICE-CLIFF
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-anthropic-haiku-5-5
+    lens_id: cost
+    mode: extractive
+    content: "Haiku 5.5 is priced 90% below Haiku 4.5 for requests up to 100,000 tokens and 50% below it for requests over 100,000 ($0.10/$0.50 against $0.50/$2.50 per million input and output tokens). Anthropic's around-75% average saving is weighted by Haiku 4.5's traffic, 90% of which fell under 100,000 tokens, and accounts for an updated tokenizer that uses slightly more tokens per task."
+    source_refs:
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "Claude Haiku 5.5 is priced 90% lower than Claude Haiku 4.5 for requests up to 100,000 tokens, and 50% lower for requests over 100,000 tokens. On Haiku 4.5, 90% of requests fell into the former category."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "On average, it now costs around 75% less to run."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "Haiku 5.5 has an updated tokenizer (similar to Sonnet 5.5's and Opus 5.5's), which means it uses slightly more tokens per task."
+        ref_type: quote
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "Price per 1 million tokens Haiku 5.5 prompts up to / over 100k Haiku 4.5 Sonnet 5.5 Cache reads $0.01 / $0.05 $0.10 $0.10 Cache writes $0.125 / $0.625 $1.25 $2.50 Input tokens $0.10 / $0.50 $1.00 $2.00 Output tokens $0.50 / $2.50 $5.00 $10.00"
+        ref_type: chunk
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "page dateline October 7, 2026"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 75% is Anthropic's average under its own footnoted assumptions, weighted by the old model's request mix; a workload with a larger share of long prompts sees a smaller saving."
+      - "The pricing table is recorded as a chunk because the rendered table flattens into a run of cells, not a sentence."
+      - "The page does not say whether the over-100k price applies to the whole request or only to tokens past the threshold; the table labels it by prompt size."
+  - id: MTRX-W41-TOKENIZER-1-25X
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-willison-haiku-5-5
+    lens_id: cost
+    mode: extractive
+    content: "Simon Willison's token counter puts the same long prompt at around 1.25x as many tokens on Haiku 5.5 as on Haiku 4.5, the model does not let you disable reasoning, and above 100,000 tokens he rates GPT-6 Luna the better deal."
+    source_refs:
+      - uri: "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/"
+        quote_or_span: "My Claude Token Counter tool shows that the same long prompt uses around 1.25x as many tokens with Haiku 5.5 compared to Haiku 4.5, so there's a hidden price increase there."
+        ref_type: quote
+      - uri: "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/"
+        quote_or_span: "The new Haiku doesn't let you disable reasoning"
+        ref_type: quote
+      - uri: "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/"
+        quote_or_span: "If your workloads fit in 100,000 tokens, Haiku is the same price as Luna and reports higher benchmark scores. Above 100,000 tokens, Luna looks like a much better deal."
+        ref_type: quote
+      - uri: "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/"
+        quote_or_span: "post dateline 7th October 2026"
+        ref_type: timestamp
+    confidence: medium
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 1.25x is one long prompt through the author's own counter tool, not a measured average."
+      - "The Luna comparison is the author's judgment from list prices and the vendor's benchmark claims."
+  - id: MTRX-W41-HAIKU-DEFAULT-ALIAS
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-claude-code-2-1-293
+    lens_id: cost
+    mode: extractive
+    content: "Claude Code 2.1.293, published 2026-10-07, makes claude-haiku-5-5 the default Haiku model on the Anthropic API at 1M context, $0.10/$0.50 per Mtok and $0.50/$2.50 for prompts over 100K."
+    source_refs:
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.293"
+        quote_or_span: "Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.293"
+        quote_or_span: "release published_at 2026-10-07T18:10:20Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The default applies on the Anthropic API; Bedrock, Vertex and gateway deployments are not named in the line, and 2.1.295 separately routes some background requests behind a Claude apps gateway to Haiku 4.5."
+  - id: MTRX-W41-SONNET-CACHE-READ-CUT
+    matrix_run_id: MTRX-W41-clean-exit-failures
+    source_item_id: src-w41-anthropic-haiku-5-5
+    lens_id: cost
+    mode: extractive
+    content: "Sonnet 5.5 cache reads fall 50%, from $0.20 to $0.10 per million tokens, which Anthropic says cuts Sonnet 5.5's cost on most agentic tasks by around 20% because cache reads make up a large share of token consumption; Claude Code's /cost, status line, --max-budget-usd and SDK cost figures moved to the new rate in 2.1.296 on 2026-10-09."
+    source_refs:
+      - uri: "https://www.anthropic.com/claude-haiku-5-5"
+        quote_or_span: "Cache reads now cost 50% less: $0.10 per million tokens rather than $0.20. Because cache reads make up a large share of models' token consumption, this reduces the cost of Sonnet 5.5 on most agentic tasks by around 20%."
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "Updated `/cost`, the status line, `--max-budget-usd` and the SDK's cost figures to price Sonnet 5.5 cache reads at $0.10 per million tokens (was $0.20)"
+        ref_type: quote
+      - uri: "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+        quote_or_span: "release published_at 2026-10-09T19:28:59Z"
+        ref_type: timestamp
+    confidence: high
+    faithfulness_status: passed
+    status: verified
+    warnings:
+      - "The 20% is Anthropic's figure for most agentic tasks and depends on cache-read share, which varies by workload."
+      - "Between the price cut on 2026-10-07 and 2.1.296 on 2026-10-09, Claude Code's local cost figures and --max-budget-usd priced Sonnet 5.5 cache reads at the old rate, so local spend readings in those two days run high, not low."

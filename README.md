@@ -16,7 +16,7 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Fifty-four percent of the difference between two agent configurations was the same configuration run twice. (2026-W40)](https://ai-field-brief.vercel.app/briefs/2026-W40)
+**Latest:** [Agents flagged a plausible wrong value from a tool in fifty-nine percent of trials, and a problem that was not there in twenty-seven. (2026-W41)](https://ai-field-brief.vercel.app/briefs/2026-W41)
 
 ## What it does
 
