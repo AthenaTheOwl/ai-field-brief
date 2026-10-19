@@ -236,3 +236,23 @@ Each entry has the shape:
   - `ops/run-records/run-5796c008c3e0.json` — run evidence pinned at dd6c7bd
   - `python scripts/replay_run.py` — equivalent
   - DEC-PUB-012, DEC-PUB-013, DEC-MTRX-009
+
+## 2026-10-18 — fdd6b36 brief: prepare the 2026-W42 publication candidate
+
+- scope: four selected Top signals, 36 matrix cells and a cadence gate that
+  detects historical missing weeks. Source checks covered twenty public
+  surfaces, nineteen returned; the full source registry was not swept.
+- acceptance: an independent coordinating agent reread all four factual
+  payloads against live primaries and returned PASS. Runtime and paid-model
+  experiments remain proposals.
+- proof:
+  - sixteen repository gates passed on the actual fdd6b36 content commit
+  - 84 Python tests and 23 web tests passed; typecheck and production build passed
+  - `ops/run-records/run-w42-20261018-refresh.json` binds six pending URIs to
+    fdd6b36d01036242d1656a13e4b86f552b566808
+  - `ops/replay-records/run-w42-20261018-refresh/cbfdde84-35a8-4930-bf4f-7ff8aef2bfff.json`
+    records equivalent replay at that exact HEAD after restoring the bound
+    record, following DEC-PUB-008; no live LLM re-execution is claimed
+  - `ops/w42/independent-review.json` records the factual review scope
+- publication: release candidate for branch CI and coordinated publication;
+  this record does not claim a deployment or email delivery.

@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-19T03:12:22.750136+00:00",
+  "checked_at": "2026-10-19T03:16:57.919064+00:00",
   "results": [
     {
       "gate": "voice_lint",
@@ -88,7 +88,7 @@
     {
       "gate": "validate_run_evidence",
       "exit_code": 0,
-      "stdout": "validate_run_evidence OK (414 event(s), 30 run record(s), 30 run_id(s) referenced)\n",
+      "stdout": "validate_run_evidence OK (415 event(s), 30 run record(s), 30 run_id(s) referenced)\n",
       "stderr": ""
     },
     {
