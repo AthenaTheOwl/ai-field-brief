@@ -12,7 +12,7 @@ GATES = [
     "validate_registry", "validate_decisions", "validate_roles", "validate_tools",
     "validate_policies", "validate_brief_fields", "validate_matrix_cells",
     "validate_skills", "validate_dreams", "check_schema_cache_freshness",
-    "validate_run_evidence", "validate_sensitive_disclosures",
+    "validate_run_evidence", "validate_sensitive_disclosures", "cadence_check",
 ]
 
 
