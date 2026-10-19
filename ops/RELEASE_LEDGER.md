@@ -256,3 +256,22 @@ Each entry has the shape:
   - `ops/w42/independent-review.json` records the factual review scope
 - publication: release candidate for branch CI and coordinated publication;
   this record does not claim a deployment or email delivery.
+
+## 2026-10-19 — fdd6b36 correction: W42 proof lines
+
+- scope: corrects two proof lines in the 2026-10-18 fdd6b36 entry above,
+  which stays as written. No brief content changes.
+- proof:
+  - "sixteen repository gates passed on the actual fdd6b36 content commit":
+    the retained `ops/w42/validation-results.json` (checked_at
+    2026-10-19T03:16:57Z, committed in 39e423d) was captured on a later
+    tree that already held the W42 replay ledger, and reports 415
+    run-evidence events. fdd6b36 holds 414, as the copy committed with it
+    (checked_at 03:12:22Z) shows. Re-run on 2026-10-19 against an export
+    of fdd6b36, all sixteen gates exit 0 with 414 events. `cadence_check`,
+    which fdd6b36 changed, was not among the sixteen; it also passes there.
+  - "84 Python tests": that count is `tests/scripts/` plus
+    `tests/test_source_audit.py`. The full `python -m pytest tests/` at
+    fdd6b36 collects 257: 235 passed, 22 skipped.
+  - the web line holds: `@aifieldbrief/web` runs 23 tests, and they,
+    `pnpm typecheck` and `pnpm build` pass at fdd6b36 (re-run 2026-10-19).
