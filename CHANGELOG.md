@@ -14,6 +14,9 @@ go at the top.
 - Detect older missing weeks even when the newest issue is fresh, reject
   future through-dates, and emit JSON coverage against the Friday deadline.
   DEC-PUB-014 records the change; CI runs the cadence regression cases.
+- Coverage keeps the cadence window's slip-week: a week due Friday is
+  pending through Monday and fails the gate from Tuesday at the default
+  eight days, as the freshness check did before coverage landed.
 
 ### Phase 2 - source registry + ingestion (spec 0002)
 

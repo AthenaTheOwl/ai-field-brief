@@ -14,7 +14,9 @@ Five checks:
    week containing ``through_date`` agree.
 5. **Coverage** — every week from the first issue through the most recent
    Friday has a brief and metadata, or an explicit entry in SKIPS.yaml.
-   A fresh latest issue cannot hide an older missing week.
+   A fresh latest issue cannot hide an older missing week. A due week
+   stays pending, not missing, until the cadence window has run out on
+   it, so coverage allows the same slip-week as check 3.
 
 An optional ``briefs/SKIPS.yaml`` file documents intentional misses; any
 ISO week listed there is treated as a "covered" week for the cadence
@@ -149,8 +151,19 @@ def load_skips(path: Path) -> set[str]:
     return {str(w) for w in skips if isinstance(w, (str, int))}
 
 
-def coverage_report(briefs_root: Path, today: dt.date, skips_path: Path) -> dict:
-    """Report weekly gaps against the Friday deadline without inventing issues."""
+def coverage_report(
+    briefs_root: Path,
+    today: dt.date,
+    skips_path: Path,
+    cadence_window_days: int = 8,
+) -> dict:
+    """Report weekly gaps against the Friday deadline without inventing issues.
+
+    A week is due once its Friday has passed. It counts as missing only
+    when more than ``cadence_window_days`` days have passed since the
+    Sunday that closes the week before it: the allowance check 3 gives an
+    issue that covers through that Sunday. Until then it is pending.
+    """
     folders: dict[dt.date, Path] = {}
     if briefs_root.is_dir():
         for entry in briefs_root.iterdir():
@@ -164,8 +177,10 @@ def coverage_report(briefs_root: Path, today: dt.date, skips_path: Path) -> dict
             folders[monday] = entry
     due_friday = today - dt.timedelta(days=(today.weekday() - 4) % 7)
     due_monday = due_friday - dt.timedelta(days=4)
+    overdue_monday = today - dt.timedelta(days=cadence_window_days)
     skipped = load_skips(skips_path)
     missing = []
+    pending = []
     if folders:
         cursor = min(folders)
         while cursor <= due_monday:
@@ -173,14 +188,16 @@ def coverage_report(briefs_root: Path, today: dt.date, skips_path: Path) -> dict
             folder = folders.get(cursor)
             complete = folder and all((folder / name).is_file() for name in ("brief.md", "meta.yaml"))
             if not complete and week not in skipped:
-                missing.append(week)
+                (missing if cursor <= overdue_monday else pending).append(week)
             cursor += dt.timedelta(days=7)
     return {
         "as_of": today.isoformat(),
         "deadline": "Friday",
+        "cadence_window_days": cadence_window_days,
         "due_through_week": f"{due_monday.isocalendar().year}-W{due_monday.isocalendar().week:02d}",
         "canonical_issue_count": len(folders),
         "missing_weeks": missing,
+        "pending_weeks": pending,
         "skipped_weeks": sorted(skipped),
     }
 
@@ -207,7 +224,7 @@ def check(
         failures.append(CadenceFailure("no-briefs", "no ISO-week brief folders found"))
         return failures
 
-    coverage = coverage_report(briefs_root, today, skips_path)
+    coverage = coverage_report(briefs_root, today, skips_path, cadence_window_days)
     for week in coverage["missing_weeks"]:
         failures.append(CadenceFailure("missing-week", f"{week} has no complete issue or explicit skip"))
 
@@ -302,7 +319,7 @@ def main() -> int:
     )
 
     if args.json:
-        report = coverage_report(BRIEFS, today, SKIPS)
+        report = coverage_report(BRIEFS, today, SKIPS, args.cadence_window)
         report["failures"] = [{"kind": f.kind, "detail": f.detail} for f in failures]
         print(json.dumps(report, indent=2))
         return int(bool(failures))

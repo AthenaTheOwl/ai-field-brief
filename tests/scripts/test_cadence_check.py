@@ -174,23 +174,52 @@ def test_fresh_issue_does_not_hide_historical_gap(tmp_path: Path) -> None:
     ]
 
 
-def test_current_week_due_on_friday(tmp_path: Path) -> None:
+def test_current_week_due_on_friday_missing_after_slip_week(tmp_path: Path) -> None:
     briefs, _, _ = _scaffold(tmp_path, "2026-W41", "2026-10-09")
     skips = briefs / "SKIPS.yaml"
-    assert coverage_report(briefs, dt.date(2026, 10, 15), skips)["missing_weeks"] == []
-    assert coverage_report(briefs, dt.date(2026, 10, 16), skips)["missing_weeks"] == ["2026-W42"]
+    thursday = coverage_report(briefs, dt.date(2026, 10, 15), skips)
+    assert (thursday["missing_weeks"], thursday["pending_weeks"]) == ([], [])
+    friday = coverage_report(briefs, dt.date(2026, 10, 16), skips)
+    assert (friday["missing_weeks"], friday["pending_weeks"]) == ([], ["2026-W42"])
+    tuesday = coverage_report(briefs, dt.date(2026, 10, 20), skips)
+    assert (tuesday["missing_weeks"], tuesday["pending_weeks"]) == (["2026-W42"], [])
+
+
+@pytest.mark.parametrize("day", [23, 24, 25, 26])
+def test_slip_week_passes_friday_through_monday(tmp_path: Path, day: int) -> None:
+    """W43 is due Fri 2026-10-23; the one slip-week keeps the gate green to Monday."""
+    briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
+    failures = check(briefs, index, readme, briefs / "SKIPS.yaml", today=dt.date(2026, 10, day))
+    assert failures == []
+
+
+def test_slip_week_fails_on_tuesday(tmp_path: Path) -> None:
+    briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
+    failures = check(briefs, index, readme, briefs / "SKIPS.yaml", today=dt.date(2026, 10, 27))
+    assert ("missing-week", "2026-W43 has no complete issue or explicit skip") in [
+        (f.kind, f.detail) for f in failures
+    ]
+    assert {f.kind for f in failures} == {"missing-week", "stale"}
+
+
+def test_coverage_follows_cadence_window(tmp_path: Path) -> None:
+    briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
+    skips = briefs / "SKIPS.yaml"
+    assert check(briefs, index, readme, skips, cadence_window_days=10, today=dt.date(2026, 10, 28)) == []
+    failures = check(briefs, index, readme, skips, cadence_window_days=10, today=dt.date(2026, 10, 29))
+    assert {f.kind for f in failures} == {"missing-week", "stale"}
 
 
 def test_coverage_crosses_iso_year_boundary(tmp_path: Path) -> None:
     briefs, _, _ = _scaffold(tmp_path, "2026-W53", "2026-12-31")
-    report = coverage_report(briefs, dt.date(2027, 1, 8), briefs / "SKIPS.yaml")
+    report = coverage_report(briefs, dt.date(2027, 1, 12), briefs / "SKIPS.yaml")
     assert report["missing_weeks"] == ["2027-W01"]
 
 
 def test_empty_folder_is_not_coverage(tmp_path: Path) -> None:
     briefs, _, _ = _scaffold(tmp_path, "2026-W41", "2026-10-09")
     (briefs / "2026-W42").mkdir()
-    report = coverage_report(briefs, dt.date(2026, 10, 18), briefs / "SKIPS.yaml")
+    report = coverage_report(briefs, dt.date(2026, 10, 20), briefs / "SKIPS.yaml")
     assert report["missing_weeks"] == ["2026-W42"]
 
 
@@ -199,7 +228,7 @@ def test_rerun_and_invalid_week_do_not_count(tmp_path: Path) -> None:
     (briefs / "2026-W42-early-cut").mkdir()
     (briefs / "2026-W99").mkdir()
     assert latest_week_folder(briefs) == "2026-W41"
-    assert coverage_report(briefs, dt.date(2026, 10, 18), briefs / "SKIPS.yaml")["missing_weeks"] == ["2026-W42"]
+    assert coverage_report(briefs, dt.date(2026, 10, 20), briefs / "SKIPS.yaml")["missing_weeks"] == ["2026-W42"]
 
 
 def test_future_through_date_fails(tmp_path: Path) -> None:

@@ -28,8 +28,10 @@ weekly pass. Read this top-to-bottom before starting.
 
    Start with `python scripts/cadence_check.py --today YYYY-MM-DD --json`.
    It reports missing canonical issues from the first issue through the
-   most recent Friday, so a fresh issue cannot hide an older gap. A folder
-   needs both `brief.md` and `meta.yaml` to count. Record deliberate misses
+   most recent Friday, so a fresh issue cannot hide an older gap. A week
+   inside the cadence window's slip-week is listed as pending and fails
+   the gate only once the window runs out. A folder needs both `brief.md`
+   and `meta.yaml` to count. Record deliberate misses
    in `briefs/SKIPS.yaml`; naming an old published week does not waive
    future freshness. A catch-up keeps its actual generation date and
    describes its real sweep scope.
