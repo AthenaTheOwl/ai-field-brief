@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cadence gate for ai-field-brief.
 
-Four checks:
+Five checks:
 
 1. **INDEX sync** — ``briefs/INDEX.md``'s top-of-table row references the
    newest ISO-week folder under ``briefs/``.
@@ -12,6 +12,9 @@ Four checks:
    slip-week before the gate trips.
 4. **ISO-week truth** — the folder, ``meta.yaml`` ``iso_week``, and the ISO
    week containing ``through_date`` agree.
+5. **Coverage** — every week from the first issue through the most recent
+   Friday has a brief and metadata, or an explicit entry in SKIPS.yaml.
+   A fresh latest issue cannot hide an older missing week.
 
 An optional ``briefs/SKIPS.yaml`` file documents intentional misses; any
 ISO week listed there is treated as a "covered" week for the cadence
@@ -27,11 +30,11 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
 import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 import yaml
 
@@ -42,7 +45,7 @@ INDEX = BRIEFS / "INDEX.md"
 README = ROOT / "README.md"
 SKIPS = BRIEFS / "SKIPS.yaml"
 
-WEEK_RE = re.compile(r"^(\d{4})-W(\d{2})(?:-[\w-]+)?$")
+WEEK_RE = re.compile(r"^(\d{4})-W(\d{2})$")
 INDEX_ROW_RE = re.compile(r"\|\s*\[(\d{4}-W\d{2})\]\(\./(\d{4}-W\d{2})/brief\.md\)")
 README_LATEST_RE = re.compile(r"\*\*Latest:\*\*\s*\[(?P<title>[^\]]+)\]")
 LATEST_WEEK_IN_TITLE_RE = re.compile(r"(\d{4}-W\d{2})")
@@ -50,12 +53,12 @@ LATEST_WEEK_IN_TITLE_RE = re.compile(r"(\d{4}-W\d{2})")
 
 @dataclass(frozen=True)
 class CadenceFailure:
-    kind: str  # "index", "readme", "stale", "missing-meta", "no-briefs"
+    kind: str  # categorized sync, metadata, date or coverage failure
     detail: str
 
 
 def latest_week_folder(briefs: Path) -> str | None:
-    """Return the newest ISO-week folder name (excluding -rerun siblings)."""
+    """Return the newest canonical ISO-week folder (excluding all suffixes)."""
     weeks: list[tuple[int, int, str]] = []
     if not briefs.is_dir():
         return None
@@ -65,7 +68,9 @@ def latest_week_folder(briefs: Path) -> str | None:
         match = WEEK_RE.match(entry.name)
         if not match:
             continue
-        if entry.name.endswith("-rerun"):
+        try:
+            dt.date.fromisocalendar(int(match.group(1)), int(match.group(2)), 1)
+        except ValueError:
             continue
         weeks.append((int(match.group(1)), int(match.group(2)), entry.name))
     if not weeks:
@@ -144,6 +149,42 @@ def load_skips(path: Path) -> set[str]:
     return {str(w) for w in skips if isinstance(w, (str, int))}
 
 
+def coverage_report(briefs_root: Path, today: dt.date, skips_path: Path) -> dict:
+    """Report weekly gaps against the Friday deadline without inventing issues."""
+    folders: dict[dt.date, Path] = {}
+    if briefs_root.is_dir():
+        for entry in briefs_root.iterdir():
+            match = WEEK_RE.fullmatch(entry.name)
+            if not entry.is_dir() or not match:
+                continue
+            try:
+                monday = dt.date.fromisocalendar(int(match[1]), int(match[2]), 1)
+            except ValueError:
+                continue
+            folders[monday] = entry
+    due_friday = today - dt.timedelta(days=(today.weekday() - 4) % 7)
+    due_monday = due_friday - dt.timedelta(days=4)
+    skipped = load_skips(skips_path)
+    missing = []
+    if folders:
+        cursor = min(folders)
+        while cursor <= due_monday:
+            week = f"{cursor.isocalendar().year}-W{cursor.isocalendar().week:02d}"
+            folder = folders.get(cursor)
+            complete = folder and all((folder / name).is_file() for name in ("brief.md", "meta.yaml"))
+            if not complete and week not in skipped:
+                missing.append(week)
+            cursor += dt.timedelta(days=7)
+    return {
+        "as_of": today.isoformat(),
+        "deadline": "Friday",
+        "due_through_week": f"{due_monday.isocalendar().year}-W{due_monday.isocalendar().week:02d}",
+        "canonical_issue_count": len(folders),
+        "missing_weeks": missing,
+        "skipped_weeks": sorted(skipped),
+    }
+
+
 def check(
     briefs_root: Path = BRIEFS,
     index_path: Path = INDEX,
@@ -152,7 +193,7 @@ def check(
     cadence_window_days: int = 8,
     today: dt.date | None = None,
 ) -> list[CadenceFailure]:
-    """Run all three checks; return a list of failure records (empty = pass)."""
+    """Run the checks; return a list of failure records (empty = pass)."""
     if today is None:
         raise ValueError(
             "today must be provided — cadence_check does not consult the system "
@@ -165,6 +206,10 @@ def check(
     if latest_folder is None:
         failures.append(CadenceFailure("no-briefs", "no ISO-week brief folders found"))
         return failures
+
+    coverage = coverage_report(briefs_root, today, skips_path)
+    for week in coverage["missing_weeks"]:
+        failures.append(CadenceFailure("missing-week", f"{week} has no complete issue or explicit skip"))
 
     index_week = parse_index_top_row(index_path)
     if index_week != latest_folder:
@@ -204,9 +249,13 @@ def check(
                     f"through_date {through_date} belongs to {expected_iso_week}",
                 )
             )
-        skips = load_skips(skips_path)
         age_days = (today - through_date).days
-        if latest_folder not in skips and age_days > cadence_window_days:
+        if age_days < 0:
+            failures.append(CadenceFailure("future-date", f"newest brief through_date {through_date} is after {today}"))
+        # A skip belongs to the missing week. Listing an old published week
+        # cannot waive freshness indefinitely.
+        due_week = coverage["due_through_week"]
+        if due_week not in load_skips(skips_path) and age_days > cadence_window_days:
             failures.append(
                 CadenceFailure(
                     "stale",
@@ -220,6 +269,11 @@ def check(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="emit coverage and categorized failures as JSON",
+    )
     parser.add_argument(
         "--cadence-window",
         type=int,
@@ -246,6 +300,12 @@ def main() -> int:
         cadence_window_days=args.cadence_window,
         today=today,
     )
+
+    if args.json:
+        report = coverage_report(BRIEFS, today, SKIPS)
+        report["failures"] = [{"kind": f.kind, "detail": f.detail} for f in failures]
+        print(json.dumps(report, indent=2))
+        return int(bool(failures))
 
     if failures:
         print(

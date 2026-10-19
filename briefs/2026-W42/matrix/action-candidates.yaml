@@ -1,0 +1,95 @@
+matrix_run_id: MTRX-W42-execution-order
+profile_id: personal
+candidates:
+- cell_id: MTRX-W42-GOOGLE-adoption_action
+  source_published_at: '2026-10-16'
+  interpretation: true
+  source_support:
+  - MTRX-W42-GOOGLE-source_gist
+  - MTRX-W42-GOOGLE-mechanism_extraction
+  surface: eval
+  test_plan: Audit five saved traces and compare summary-only verdicts with trajectory-based verdicts
+    on one sandboxed task.
+  expected_benefit: Separate premature dispatch from model instruction-following failures.
+  risk: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+  disposition: prototype
+  success_metric: Premature dependent-call count and summary/trajectory verdict disagreements.
+  rollback: Keep original traces; remove only the derived audit.
+  kill_criterion: Stop if instruction availability cannot be established.
+  scoring:
+    source_quality: 4.5
+    profile_relevance: 5.0
+    actionability: 4.5
+    penalties_total: 0
+    final_score: 18.7
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W42-RUNTIME-adoption_action
+  source_published_at: 2026-10-15/2026-10-16
+  interpretation: true
+  source_support:
+  - MTRX-W42-RUNTIME-source_gist
+  - MTRX-W42-RUNTIME-mechanism_extraction
+  surface: runtime-adapter
+  test_plan: Use a mocked write counter to interrupt before approval, compact and resume twice; separately
+    block a child and inspect the parent result.
+  expected_benefit: Catch duplicate effects and misleading parent outcomes before a runtime change.
+  risk: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+  disposition: prototype
+  success_metric: Exactly one effect plus intact pending approval and child stop.
+  rollback: Remove the isolated mocked fixture.
+  kill_criterion: Stop before any real outbound effect or credential use.
+  scoring:
+    source_quality: 4.5
+    profile_relevance: 5.0
+    actionability: 5.0
+    penalties_total: 0
+    final_score: 19.2
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W42-SCION-adoption_action
+  source_published_at: 2026-10-13; updated 2026-10-15
+  interpretation: true
+  source_support:
+  - MTRX-W42-SCION-source_gist
+  - MTRX-W42-SCION-mechanism_extraction
+  surface: workflow
+  test_plan: Give one small review a boundary map; disposition each finding as fix, decline with evidence
+    or escalate, and record time.
+  expected_benefit: Reduce unneeded work while retaining evidence-backed review findings.
+  risk: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+  disposition: prototype
+  success_metric: Accepted findings per review minute; declined speculative findings; later defects.
+  rollback: Remove optional review fields.
+  kill_criterion: Stop if review time increases without useful findings.
+  scoring:
+    source_quality: 4.0
+    profile_relevance: 5.0
+    actionability: 4.5
+    penalties_total: 0.5
+    final_score: 17.4
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W42-DEEPSEEK-adoption_action
+  source_published_at: '2026-10-17'
+  interpretation: true
+  source_support:
+  - MTRX-W42-DEEPSEEK-source_gist
+  - MTRX-W42-DEEPSEEK-mechanism_extraction
+  surface: cost
+  test_plan: Prepare ten fixed-acceptance repository tasks and cost rows for both promotional and post-promotion
+    tool tariffs. Run paid comparisons only after credential and budget authorization.
+  expected_benefit: Make model comparisons reproducible across harness and tariff changes.
+  risk: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+  disposition: prototype
+  success_metric: Cost per accepted patch, reviewer corrections and elapsed time.
+  rollback: Revert the comparison fixture addition.
+  kill_criterion: Stop before paid evaluation without an approved spending ceiling.
+  scoring:
+    source_quality: 4.0
+    profile_relevance: 4.5
+    actionability: 4.5
+    penalties_total: 0.5
+    final_score: 16.7
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total

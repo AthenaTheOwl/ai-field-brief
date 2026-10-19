@@ -1,0 +1,14 @@
+{
+  "issue": "2026-W42",
+  "reviewer": "independent coordinating agent, distinct from the authoring agent",
+  "as_of_local": "2026-10-18",
+  "method": "Reread all four selected Top-signal payloads against live public primary sources. Private research briefs supplied leads and were not treated as evidence.",
+  "picks": [
+    {"id": "GOOGLE", "verdict": "PASS", "sources": ["https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons"], "scope": "Summary grading false failures, concurrent skill loading and later instruction availability, live versus plan-only differences.", "limits": "One team account and a small initial suite; no general error-rate claim."},
+    {"id": "RUNTIME", "verdict": "PASS", "sources": ["https://github.com/langchain-ai/langgraph/releases/tag/1.2.16", "https://github.com/openai/openai-agents-python/releases/tag/v0.24.0", "https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1"], "scope": "Resume fixes, deferring compaction for pending approvals, preserving child stop reasons.", "limits": "Release notes establish fixes, not prevalence or a local reproduction."},
+    {"id": "SCION", "verdict": "PASS", "sources": ["https://www.anthropic.com/engineering/redesigning-source-control"], "scope": "Internal-service review example, narrow repository queries and limits on Scion adoption.", "limits": "Company account; no measured defect-reduction result."},
+    {"id": "DEEPSEEK", "verdict": "PASS", "sources": ["https://api-docs.deepseek.com/news/news261017/", "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"], "scope": "Benchmark table and harness footnote, MIT licensing, endpoint tariff and qualified promotion expiry.", "limits": "Vendor-selected comparisons; proposed local evaluation remains unexecuted."}
+  ],
+  "result": "PASS for factual faithfulness of all four selected Top signals.",
+  "not_certified": ["The full source registry", "Every matrix cell by an independent reviewer", "Live model or runtime experiments", "Publication, CI or deployment success"]
+}

@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-10-19T03:16:57.919064+00:00",
+  "results": [
+    {
+      "gate": "voice_lint",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "voice-lint: clean. 286 file(s) scanned.\n"
+    },
+    {
+      "gate": "check_no_bom",
+      "exit_code": 0,
+      "stdout": "check_no_bom OK (0 files affected)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "spec_check",
+      "exit_code": 0,
+      "stdout": "spec_check OK (7 active specs)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_schemas",
+      "exit_code": 0,
+      "stdout": "validate_schemas OK (10 schema(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_registry",
+      "exit_code": 0,
+      "stdout": "validate_registry OK (222 source(s) in sources/registry.yaml)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_decisions",
+      "exit_code": 0,
+      "stdout": "validate_decisions OK (71 decision(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_roles",
+      "exit_code": 0,
+      "stdout": "validate_roles OK (13 role(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_tools",
+      "exit_code": 0,
+      "stdout": "validate_tools OK (16 tool(s) in .agents/tools.yaml)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_policies",
+      "exit_code": 0,
+      "stdout": "validate_policies OK (5 policy(ies))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_brief_fields",
+      "exit_code": 0,
+      "stdout": "validate_brief_fields OK (11 brief(s) checked, 12 legacy brief(s) skipped)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_matrix_cells",
+      "exit_code": 0,
+      "stdout": "validate_matrix_cells OK (6338 cell(s) in 23 file(s), via jsonschema)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_skills",
+      "exit_code": 0,
+      "stdout": "validate_skills OK (2 skill(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_dreams",
+      "exit_code": 0,
+      "stdout": "validate_dreams OK (2 dream(s), 11 candidate(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "check_schema_cache_freshness",
+      "exit_code": 0,
+      "stdout": "check_schema_cache_freshness OK (10 schema(s))\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_run_evidence",
+      "exit_code": 0,
+      "stdout": "validate_run_evidence OK (415 event(s), 30 run record(s), 30 run_id(s) referenced)\n",
+      "stderr": ""
+    },
+    {
+      "gate": "validate_sensitive_disclosures",
+      "exit_code": 0,
+      "stdout": "validate_sensitive_disclosures OK\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -16,7 +16,14 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [Agents flagged a plausible wrong value from a tool in fifty-nine percent of trials, and a problem that was not there in twenty-seven. (2026-W41)](https://ai-field-brief.vercel.app/briefs/2026-W41)
+**Latest:** [The instructions arrived after the tools had already run. (2026-W42)](https://ai-field-brief.vercel.app/briefs/2026-W42)
+
+The W42 catch-up checks twenty public primary surfaces and records four picks
+with 36 evidence cells. It keeps the scope of that check separate from the full
+source registry. Run `python scripts/cadence_check.py --today 2026-10-18 --json`
+to inspect gaps against the Friday deadline, including older weeks a fresh
+latest issue could otherwise hide. The check also rejects future through-dates
+and excludes rerun folders from canonical coverage.
 
 ## What it does
 
@@ -70,7 +77,7 @@ Nine Python gates run on every push: `spec_check`, `voice_lint`,
 `validate_tools`, `validate_policies`, `validate_brief_fields`. The last of
 those reads the brief itself and fails the build when a Top signal is missing
 its systems map, transferable principle, falsification test, adoption ladder,
-confidence label, or resolvable evidence cells. The repo carries 69 validated
+confidence label, or resolvable evidence cells. The repo carries 71 validated
 DEC records
 under `decisions/` — each with alternatives, evidence, and a rollback — thirteen
 worked role contracts under `.agents/roles/`, a release ledger at
