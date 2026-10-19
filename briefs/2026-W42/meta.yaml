@@ -1,0 +1,118 @@
+iso_week: 2026-W42
+through_date: 2026-10-18
+generated_at: '2026-10-19T02:44:10Z'
+generated_by: codex-desktop (manual scoped catch-up; same-author source reread)
+title: The instructions arrived after the tools had already run.
+volume: 25
+profile_id: personal
+registry_version: 14
+matrix_run_id: MTRX-W42-execution-order
+publication_status: ready_for_publication
+sweep:
+  attempted: 20
+  succeeded: 19
+  failed: 1
+  skipped: 0
+source_mix:
+  primary_docs: 4
+  framework_release_indexes: 13
+  framework_blog_indexes: 2
+  failed_blog_indexes: 1
+  internal_digest_inputs: 3
+top_signal_count: 4
+action_packet_count: 4
+scout_count: 2
+cell_count: 36
+notes:
+- 'Coverage: October 10–18, following W41''s October 9 through-date. W20–W41 were contiguous; W42 was the only due
+  missing canonical week on October 18. This is a catch-up review copy, with actual generation recorded in UTC on
+  October 19 (October 18 in New York).'
+- 'Scoped source check: four selected public primary pages, thirteen release indexes (five latest releases each),
+  and three blog/index surfaces. This was not a 222-source registry sweep. AgentCore tag page returned HTTP 404.'
+- 'Three private research briefs supplied discovery leads: weekly AI October 16 and two distinct October 18 systems
+  editions. Native and Markdown copies of a document were not counted as independent evidence. Private text, document
+  ids and links are not reproduced.'
+- The weekly AI digest recycled August and September material. Older items were not promoted as October findings.
+  The two systems editions emphasized different AI stories; selected claims were checked against public primaries.
+- 'Primary page dates: Google October 16, Anthropic October 13 updated October 15, DeepSeek October 17. Runtime
+  fix dates come from GitHub release published_at, not discovery dates.'
+- 'Four source-item groups each received the six Pass 1/3 lenses and three systems-synthesis lenses: 36 cells total.
+  All cells received the seven-question same-author faithfulness reread. An independent coordinating agent subsequently
+  reread all four selected Top signals against live public primaries and returned PASS; see ops/w42/independent-review.json.
+  Chunk refs identify sections and paraphrase them, so no verbatim-quote verification count is claimed.'
+- Action scores use config/scoring_model.yaml and the personal profile; quality, relevance, actionability, penalty
+  and final score are stored on each adoption_action cell and in matrix/action-candidates.yaml. Proposed tests have
+  not been executed. No paid model calls, registration, email, push or deployment occurred.
+- Every required runtime scout family was checked via its release or blog surface. Six in-window release links carry
+  bounded tests. For MCP, LlamaIndex, Braintrust and AgentOps, no in-window release appeared among the five entries
+  fetched; this does not establish inactivity outside that surface.
+sources_reviewed:
+- label: Google Cloud eval engineering
+  url: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+  disposition: top_signal
+- label: Anthropic source control
+  url: https://www.anthropic.com/engineering/redesigning-source-control
+  disposition: top_signal
+- label: DeepSeek October 17 release
+  url: https://api-docs.deepseek.com/news/news261017/
+  disposition: top_signal
+- label: DeepSeek model card
+  url: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+  disposition: top_signal
+- label: LangGraph releases
+  url: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+  disposition: top_signal
+- label: OpenAI Agents SDK releases
+  url: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+  disposition: top_signal
+- label: Strands releases
+  url: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+  disposition: top_signal
+- label: Google ADK releases
+  url: https://github.com/google/adk-python/releases/tag/v2.12.0
+  disposition: scout
+- label: LangSmith releases
+  url: https://github.com/langchain-ai/langsmith-sdk/releases/tag/v0.14.9
+  disposition: scout
+- label: E2B releases
+  url: https://github.com/e2b-dev/E2B/releases/tag/e2b%402.56.0
+  disposition: scout
+- label: Cloudflare Agents releases
+  url: https://github.com/cloudflare/agents/releases/tag/agents%400.28.1
+  disposition: scout
+- label: Langfuse releases
+  url: https://github.com/langfuse/langfuse/releases/tag/v4.63.0
+  disposition: scout
+- label: CrewAI releases
+  url: https://github.com/crewAIInc/crewAI/releases
+  disposition: reviewed_no_pick
+- label: MCP TypeScript SDK releases
+  url: https://github.com/modelcontextprotocol/typescript-sdk/releases
+  disposition: reviewed_no_pick
+- label: LlamaIndex releases
+  url: https://github.com/run-llama/llama_index/releases
+  disposition: reviewed_no_pick
+- label: Braintrust SDK releases
+  url: https://github.com/braintrustdata/braintrust-sdk/releases
+  disposition: reviewed_no_pick
+- label: AgentOps releases
+  url: https://github.com/AgentOps-AI/agentops/releases
+  disposition: reviewed_no_pick
+- label: LangChain Blog
+  url: https://www.langchain.com/blog
+  disposition: reviewed_no_pick
+- label: Google Developers AI Blog
+  url: https://developers.googleblog.com/en/search/?technology=AI
+  disposition: reviewed_no_pick
+- label: AWS AgentCore blog tag
+  url: https://aws.amazon.com/blogs/machine-learning/tag/amazon-bedrock-agentcore/
+  disposition: failed_current_index
+failures:
+- 'AWS AgentCore tag page: HTTP 404. Other AWS surfaces were not substituted, and no AgentCore claim was promoted.'
+next_run:
+- Run a full registry lane sweep; this issue deliberately used a narrower source set.
+- Run the proposed turn-order, approval/resume and child-stop fixtures before claiming local validation.
+- Compare review-role benefit against a single-agent baseline with the same budget; the current examples establish
+  no portfolio benefit yet.
+- Reprice DeepSeek tool experiments at the October 31 16:00 UTC tariff transition.
+- Publish only after branch CI and release coordination; independent factual review of the four signals has passed.

@@ -1,0 +1,162 @@
+matrix_run_id: MTRX-W42-execution-order
+reviewer: codex-desktop; same-author source reread, no independent reviewer
+method: Read each cell against live fetched primary bodies and release publication timestamps; distinguish
+  source claims from proposed experiments. Chunk refs identify sections and paraphrase their contents;
+  no verbatim-quote gate is claimed.
+checks_applied:
+- unsupported_claim
+- overstated_certainty
+- missing_caveat
+- invented_consensus
+- wrong_source_span
+- too_generic
+- unsupported_action
+results:
+- cell_id: MTRX-W42-GOOGLE-source_gist
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-claims_and_bets
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-mechanism_extraction
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-reusable_pattern
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-adoption_action
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-risk_and_caveats
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-systems_thinking
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-transferable_principle
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-GOOGLE-falsification_test
+  verdict: PASS
+  caveat: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+- cell_id: MTRX-W42-RUNTIME-source_gist
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-claims_and_bets
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-mechanism_extraction
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-reusable_pattern
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-adoption_action
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-risk_and_caveats
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-systems_thinking
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-transferable_principle
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-RUNTIME-falsification_test
+  verdict: PASS
+  caveat: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+    grouped sources implement different runtimes.
+- cell_id: MTRX-W42-SCION-source_gist
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-claims_and_bets
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-mechanism_extraction
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-reusable_pattern
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-adoption_action
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-risk_and_caveats
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-systems_thinking
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-transferable_principle
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-SCION-falsification_test
+  verdict: PASS
+  caveat: A company-authored case study and one qualitative review example. The process proposal has not
+    been compared locally. Disabling legitimate validation would create risk.
+- cell_id: MTRX-W42-DEEPSEEK-source_gist
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-claims_and_bets
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-mechanism_extraction
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-reusable_pattern
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-adoption_action
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-risk_and_caveats
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-systems_thinking
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-transferable_principle
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- cell_id: MTRX-W42-DEEPSEEK-falsification_test
+  verdict: PASS
+  caveat: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+independent_top_signal_review:
+  result: PASS
+  scope: four Top-signal factual payloads, not every matrix cell or live experiment
+  record: ops/w42/independent-review.json

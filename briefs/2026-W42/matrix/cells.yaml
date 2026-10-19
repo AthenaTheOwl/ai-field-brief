@@ -1,0 +1,959 @@
+matrix_run_id: MTRX-W42-execution-order
+generated_at: '2026-10-19T02:43:47.039923+00:00'
+schema_ref: schemas/matrix_cell.schema.json
+source_items:
+- src-w42-google-eval
+- src-w42-runtime-release-cluster
+- src-w42-anthropic-scion
+- src-w42-deepseek-release-and-card
+lenses:
+- source_gist
+- claims_and_bets
+- mechanism_extraction
+- reusable_pattern
+- adoption_action
+- risk_and_caveats
+- systems_thinking
+- transferable_principle
+- falsification_test
+cells:
+- id: MTRX-W42-GOOGLE-source_gist
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: source_gist
+  mode: abstractive
+  content: Google reports summary-only grading errors and a skill whose body arrived after dependent searches.
+    It recommends retaining turn groups, paired live/plan-only evaluations and expert-curated baselines.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: false
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-claims_and_bets
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: claims_and_bets
+  mode: extractive
+  content: The initial eleven-prompt suite marked three successful cases failed; the account gives a concrete
+    concurrent skill-loading failure. These are first-party examples, not general error rates.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: false
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-mechanism_extraction
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: Dependent tools dispatched in one turn cannot consume guidance inserted on a subsequent turn.
+    A flattened event list hides that ordering. This causal reading follows Google’s example.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-reusable_pattern
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: reusable_pattern
+  mode: synthetic
+  content: Record instruction availability and turn groups, then grade the execution evidence against
+    each rubric item.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-adoption_action
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: adoption_action
+  mode: synthetic
+  content: Audit five saved traces and compare summary-only verdicts with trajectory-based verdicts on
+    one sandboxed task.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+    source_support:
+    - MTRX-W42-GOOGLE-source_gist
+    - MTRX-W42-GOOGLE-mechanism_extraction
+    surface: eval
+    test_plan: Audit five saved traces and compare summary-only verdicts with trajectory-based verdicts
+      on one sandboxed task.
+    expected_benefit: Separate premature dispatch from model instruction-following failures.
+    risk: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+      safety. No local reproduction was run.
+    disposition: prototype
+    success_metric: Premature dependent-call count and summary/trajectory verdict disagreements.
+    rollback: Keep original traces; remove only the derived audit.
+    kill_criterion: Stop if instruction availability cannot be established.
+    scoring:
+      source_quality: 4.5
+      profile_relevance: 5.0
+      actionability: 4.5
+      penalties_total: 0
+      final_score: 18.7
+      formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-risk_and_caveats
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: risk_and_caveats
+  mode: critique
+  content: One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution
+    safety. No local reproduction was run.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-systems_thinking
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: systems_thinking
+  mode: interpretive
+  content: Concurrent dispatch precedes full skill availability; dependent searches run without its guidance;
+    flattened telemetry makes the omission look like instruction disobedience.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-transferable_principle
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: transferable_principle
+  mode: synthetic
+  content: A prerequisite must become available before its consumer starts, including configuration loading
+    before serving requests.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-GOOGLE-falsification_test
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-google-eval
+  lens_id: falsification_test
+  mode: critique
+  content: If full skill instructions precede every dependent dispatch, this ordering mechanism does not
+    explain the failure.
+  structured:
+    source_published_at: '2026-10-16'
+    interpretation: true
+  source_refs:
+  - uri: https://cloud.google.com/blog/topics/developers-practitioners/four-eval-engineering-lessons
+    quote_or_span: 'Sections 1–4: eleven-prompt suite and three false failures; skill-load/search concurrency;
+      live versus plan-only cases; golden baselines.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - One vendor team and a small initial suite; plan-only reasoning cannot establish actual execution safety.
+    No local reproduction was run.
+- id: MTRX-W42-RUNTIME-source_gist
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: source_gist
+  mode: abstractive
+  content: Three release streams fix state transformations around resume, compaction and child outcomes.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: false
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-claims_and_bets
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: claims_and_bets
+  mode: extractive
+  content: LangGraph fixes duplicate resumed effects; Agents SDK defers compaction while approval is pending;
+    Strands surfaces a child stop reason. Release notes do not report incidence.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: false
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-mechanism_extraction
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: Resume, compaction and delegation transform state. Preserving pending permission, effect status
+    and stop reason is an inferred shared invariant across the distinct fixes.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-reusable_pattern
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: reusable_pattern
+  mode: synthetic
+  content: Carry unresolved permissions and effect status across every transformation of run state.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-adoption_action
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: adoption_action
+  mode: synthetic
+  content: Use a mocked write counter to interrupt before approval, compact and resume twice; separately
+    block a child and inspect the parent result.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+    source_support:
+    - MTRX-W42-RUNTIME-source_gist
+    - MTRX-W42-RUNTIME-mechanism_extraction
+    surface: runtime-adapter
+    test_plan: Use a mocked write counter to interrupt before approval, compact and resume twice; separately
+      block a child and inspect the parent result.
+    expected_benefit: Catch duplicate effects and misleading parent outcomes before a runtime change.
+    risk: Release notes establish described fixes, not their frequency or a reproduced local defect. The
+      grouped sources implement different runtimes.
+    disposition: prototype
+    success_metric: Exactly one effect plus intact pending approval and child stop.
+    rollback: Remove the isolated mocked fixture.
+    kill_criterion: Stop before any real outbound effect or credential use.
+    scoring:
+      source_quality: 4.5
+      profile_relevance: 5.0
+      actionability: 5.0
+      penalties_total: 0
+      final_score: 19.2
+      formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-risk_and_caveats
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: risk_and_caveats
+  mode: critique
+  content: Release notes establish described fixes, not their frequency or a reproduced local defect.
+    The grouped sources implement different runtimes.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-systems_thinking
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: systems_thinking
+  mode: interpretive
+  content: Incomplete checkpoint or context rewrite can lose a pending approval, repeat an effect or hide
+    a child stop behind a parent success.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-transferable_principle
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: transferable_principle
+  mode: synthetic
+  content: Recovery preserves progress and permission, as with authorized, attempted and settled payment
+    states.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-RUNTIME-falsification_test
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-runtime-release-cluster
+  lens_id: falsification_test
+  mode: critique
+  content: Exactly one resumed effect with the pending approval and child stop preserved shows these failures
+    are covered in the tested fixture.
+  structured:
+    source_published_at: 2026-10-15/2026-10-16
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/langgraph/releases/tag/1.2.16
+    quote_or_span: Fix entries for resumed Command updates, completed subgraph tasks, and resumed pending
+      writes.
+    ref_type: chunk
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.24.0
+    quote_or_span: Bug-fix entry for deferring automatic compaction when approvals are pending.
+    ref_type: chunk
+  - uri: https://github.com/strands-agents/sdk-python/releases/tag/python/v1.61.1
+    quote_or_span: Fix entry for surfacing a child stop reason instead of reporting a blocked child as
+      successful.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes establish described fixes, not their frequency or a reproduced local defect. The grouped
+    sources implement different runtimes.
+- id: MTRX-W42-SCION-source_gist
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: source_gist
+  mode: abstractive
+  content: Anthropic describes a source-control redesign with narrow server queries and a reviewer-driven
+    over-engineering example. Scion is explicitly unsuitable as a general Git replacement.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: false
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-claims_and_bets
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: claims_and_bets
+  mode: extractive
+  content: The company account describes one adversarial review prompting unnecessary internal-service
+    validation and explains why its repository scale and token budget limit generalization.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: false
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-mechanism_extraction
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: A reviewer that invents a trust boundary can generate costly checks for an unreachable threat.
+    A boundary map and finding dispositions are proposed safeguards, not a measured result.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-reusable_pattern
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: reusable_pattern
+  mode: synthetic
+  content: Require a reachable failure and evidence before accepting a review finding.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-adoption_action
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: adoption_action
+  mode: synthetic
+  content: Give one small review a boundary map; disposition each finding as fix, decline with evidence
+    or escalate, and record time.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+    source_support:
+    - MTRX-W42-SCION-source_gist
+    - MTRX-W42-SCION-mechanism_extraction
+    surface: workflow
+    test_plan: Give one small review a boundary map; disposition each finding as fix, decline with evidence
+      or escalate, and record time.
+    expected_benefit: Reduce unneeded work while retaining evidence-backed review findings.
+    risk: A company-authored case study and one qualitative review example. The process proposal has not
+      been compared locally. Disabling legitimate validation would create risk.
+    disposition: prototype
+    success_metric: Accepted findings per review minute; declined speculative findings; later defects.
+    rollback: Remove optional review fields.
+    kill_criterion: Stop if review time increases without useful findings.
+    scoring:
+      source_quality: 4.0
+      profile_relevance: 5.0
+      actionability: 4.5
+      penalties_total: 0.5
+      final_score: 17.4
+      formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-risk_and_caveats
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: risk_and_caveats
+  mode: critique
+  content: A company-authored case study and one qualitative review example. The process proposal has
+    not been compared locally. Disabling legitimate validation would create risk.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-systems_thinking
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: systems_thinking
+  mode: interpretive
+  content: Unstated boundaries invite hypothetical threats, added validation and maintenance work; explicit
+    finding dispositions can interrupt that loop.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-transferable_principle
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: transferable_principle
+  mode: synthetic
+  content: A control earns its maintenance cost by addressing a reachable failure, including supplier
+    checks versus authenticated internal transfers.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-SCION-falsification_test
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-anthropic-scion
+  lens_id: falsification_test
+  mode: critique
+  content: If every added check covers a reachable failure and findings invent no boundaries, review-driven
+    over-engineering has not been shown.
+  structured:
+    source_published_at: 2026-10-13; updated 2026-10-15
+    interpretation: true
+  source_refs:
+  - uri: https://www.anthropic.com/engineering/redesigning-source-control
+    quote_or_span: 'What we learned building Scion: adversarial review assumed excessive distrust of an
+      internal service; engineers limited added validation. Principles and ecosystem sections describe
+      narrow server queries and warn against general adoption.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - A company-authored case study and one qualitative review example. The process proposal has not been
+    compared locally. Disabling legitimate validation would create risk.
+- id: MTRX-W42-DEEPSEEK-source_gist
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: source_gist
+  mode: abstractive
+  content: The vendor releases a model update and tool APIs, publishes benchmark scores with harness conditions,
+    and dates the end of a tool-price promotion.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: false
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-claims_and_bets
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: claims_and_bets
+  mode: extractive
+  content: 'Vendor table: Terminal-Bench 4.0 42.3 versus 31.2; DeepSWE v1.1 77.0 versus 74.2. Different
+    benchmark rows use different harnesses. Tool billing starts October 31 at 16:00 UTC.'
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: false
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-mechanism_extraction
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: mechanism_extraction
+  mode: interpretive
+  content: A model result is conditional on its harness; observed spend is conditional on the effective
+    tariff. Omitting either condition can distort an adoption comparison.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-reusable_pattern
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: reusable_pattern
+  mode: synthetic
+  content: Pin model, harness, tool tariff and effective date in every comparison row.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-adoption_action
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: adoption_action
+  mode: synthetic
+  content: Prepare ten fixed-acceptance repository tasks and cost rows for both promotional and post-promotion
+    tool tariffs. Run paid comparisons only after credential and budget authorization.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+    source_support:
+    - MTRX-W42-DEEPSEEK-source_gist
+    - MTRX-W42-DEEPSEEK-mechanism_extraction
+    surface: cost
+    test_plan: Prepare ten fixed-acceptance repository tasks and cost rows for both promotional and post-promotion
+      tool tariffs. Run paid comparisons only after credential and budget authorization.
+    expected_benefit: Make model comparisons reproducible across harness and tariff changes.
+    risk: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+      affordable local serving. Tool promotion eligibility is limited.
+    disposition: prototype
+    success_metric: Cost per accepted patch, reviewer corrections and elapsed time.
+    rollback: Revert the comparison fixture addition.
+    kill_criterion: Stop before paid evaluation without an approved spending ceiling.
+    scoring:
+      source_quality: 4.0
+      profile_relevance: 4.5
+      actionability: 4.5
+      penalties_total: 0.5
+      final_score: 16.7
+      formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-risk_and_caveats
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: risk_and_caveats
+  mode: critique
+  content: Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-systems_thinking
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: systems_thinking
+  mode: interpretive
+  content: Benchmark improvement plus differing harnesses and a temporary free-tool period can overstate
+    general transfer and understate later cost.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-transferable_principle
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: transferable_principle
+  mode: synthetic
+  content: Compare prices under their effective conditions, as with cloud credits or introductory freight
+    rates.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.
+- id: MTRX-W42-DEEPSEEK-falsification_test
+  matrix_run_id: MTRX-W42-execution-order
+  source_item_id: src-w42-deepseek-release-and-card
+  lens_id: falsification_test
+  mode: critique
+  content: A gain that survives paired acceptance checks and budgets, and remains useful after repricing
+    the tools, supports adoption for those tasks.
+  structured:
+    source_published_at: '2026-10-17'
+    interpretation: true
+  source_refs:
+  - uri: https://api-docs.deepseek.com/news/news261017/
+    quote_or_span: 'Search & Fetch section: each endpoint costs $0.75 per thousand calls, with qualifying
+      server-side calls free until billing starts 2026-10-31 16:00 UTC.'
+    ref_type: chunk
+  - uri: https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+    quote_or_span: 'Introduction benchmark table and its harness footnote: Terminal-Bench 4.0 at 42.3/31.2
+      with Claude Code; DeepSWE v1.1 at 77.0/74.2 with Mini-SWE-V2. License section: MIT weights.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Vendor-selected benchmarks were not independently reproduced. Weights licensing does not establish
+    affordable local serving. Tool promotion eligibility is limited.

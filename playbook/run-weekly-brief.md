@@ -26,6 +26,14 @@ weekly pass. Read this top-to-bottom before starting.
    `briefs/YYYY-WNN/`. If the folder exists, halt and ask the human
    whether to overwrite or append.
 
+   Start with `python scripts/cadence_check.py --today YYYY-MM-DD --json`.
+   It reports missing canonical issues from the first issue through the
+   most recent Friday, so a fresh issue cannot hide an older gap. A folder
+   needs both `brief.md` and `meta.yaml` to count. Record deliberate misses
+   in `briefs/SKIPS.yaml`; naming an old published week does not waive
+   future freshness. A catch-up keeps its actual generation date and
+   describes its real sweep scope.
+
 2. **Sweep sources.** For each `status: active` source in
    `sources/registry.yaml`, fetch the homepage / archive / RSS surface
    and capture posts published since the previous brief's
