@@ -202,6 +202,21 @@ def test_slip_week_fails_on_tuesday(tmp_path: Path) -> None:
     assert {f.kind for f in failures} == {"missing-week", "stale"}
 
 
+def test_newer_issue_does_not_hide_slip_week_gap(tmp_path: Path) -> None:
+    """W44 published Mon 2026-10-26 with W43 absent: W43 is missing, not pending."""
+    briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
+    newer = briefs / "2026-W44"
+    newer.mkdir()
+    (newer / "brief.md").write_text("# newer\n", encoding="utf-8")
+    (newer / "meta.yaml").write_text("iso_week: 2026-W44\nthrough_date: 2026-10-26\n", encoding="utf-8")
+    index.write_text(index.read_text(encoding="utf-8").replace("2026-W42", "2026-W44"), encoding="utf-8")
+    readme.write_text(readme.read_text(encoding="utf-8").replace("2026-W42", "2026-W44"), encoding="utf-8")
+    failures = check(briefs, index, readme, briefs / "SKIPS.yaml", today=dt.date(2026, 10, 26))
+    assert [(f.kind, f.detail) for f in failures] == [
+        ("missing-week", "2026-W43 has no complete issue or explicit skip")
+    ]
+
+
 def test_coverage_follows_cadence_window(tmp_path: Path) -> None:
     briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
     skips = briefs / "SKIPS.yaml"

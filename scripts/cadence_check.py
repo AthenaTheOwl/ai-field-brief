@@ -162,7 +162,9 @@ def coverage_report(
     A week is due once its Friday has passed. It counts as missing only
     when more than ``cadence_window_days`` days have passed since the
     Sunday that closes the week before it: the allowance check 3 gives an
-    issue that covers through that Sunday. Until then it is pending.
+    issue that covers through that Sunday. Until then it is pending,
+    unless a later canonical issue already exists: then the gap is
+    missing at once, so a fresh newer issue cannot hide it.
     """
     folders: dict[dt.date, Path] = {}
     if briefs_root.is_dir():
@@ -179,6 +181,12 @@ def coverage_report(
     due_monday = due_friday - dt.timedelta(days=4)
     overdue_monday = today - dt.timedelta(days=cadence_window_days)
     skipped = load_skips(skips_path)
+    complete_mondays = [
+        monday
+        for monday, folder in folders.items()
+        if all((folder / name).is_file() for name in ("brief.md", "meta.yaml"))
+    ]
+    newest_issue = max(complete_mondays) if complete_mondays else None
     missing = []
     pending = []
     if folders:
@@ -188,7 +196,8 @@ def coverage_report(
             folder = folders.get(cursor)
             complete = folder and all((folder / name).is_file() for name in ("brief.md", "meta.yaml"))
             if not complete and week not in skipped:
-                (missing if cursor <= overdue_monday else pending).append(week)
+                overdue = cursor <= overdue_monday or (newest_issue is not None and cursor < newest_issue)
+                (missing if overdue else pending).append(week)
             cursor += dt.timedelta(days=7)
     return {
         "as_of": today.isoformat(),
