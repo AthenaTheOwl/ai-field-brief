@@ -260,7 +260,10 @@ Each entry has the shape:
 ## 2026-10-19 — fdd6b36 correction: W42 proof lines
 
 - scope: corrects two proof lines in the 2026-10-18 fdd6b36 entry above,
-  which stays as written. No brief content changes.
+  which stays as written. This entry changes no brief content. On the
+  same branch, c2f29ef separately repoints two W42 record links to
+  GitHub, and 7b2c634 rewrites Signal 3's "Why it matters" line and three
+  related lines so they stay within the Scion evidence cells.
 - proof:
   - "sixteen repository gates passed on the actual fdd6b36 content commit":
     the retained `ops/w42/validation-results.json` (checked_at
