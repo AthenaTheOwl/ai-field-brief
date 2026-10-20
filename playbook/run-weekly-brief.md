@@ -28,8 +28,14 @@ weekly pass. Read this top-to-bottom before starting.
 
    Start with `python scripts/cadence_check.py --today YYYY-MM-DD --json`.
    It reports missing canonical issues from the first issue through the
-   most recent Friday, so a fresh issue cannot hide an older gap. A folder
-   needs both `brief.md` and `meta.yaml` to count. Record deliberate misses
+   most recent Friday, so a fresh issue cannot hide an older gap. A due
+   week is listed as pending until more than the cadence window (default
+   8 days) has passed since the Sunday before it, then as missing; a week
+   before a later issue is missing at once. Pending does not keep the
+   gate green: the freshness check still fails once the newest
+   `through_date` is more than the window old, which for a Friday-through
+   issue is the Sunday nine days later. A folder needs both `brief.md`
+   and `meta.yaml` to count. Record deliberate misses
    in `briefs/SKIPS.yaml`; naming an old published week does not waive
    future freshness. A catch-up keeps its actual generation date and
    describes its real sweep scope.

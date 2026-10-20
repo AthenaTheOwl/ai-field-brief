@@ -256,3 +256,41 @@ Each entry has the shape:
   - `ops/w42/independent-review.json` records the factual review scope
 - publication: release candidate for branch CI and coordinated publication;
   this record does not claim a deployment or email delivery.
+
+## 2026-10-19 — fdd6b36 correction: W42 proof lines
+
+- scope: corrects two proof lines in the 2026-10-18 fdd6b36 entry above,
+  which stays as written. This entry changes no brief content. On the
+  same branch, c2f29ef separately repoints two W42 record links to
+  GitHub, and 7b2c634 rewrites Signal 3's "Why it matters" line and three
+  related lines so they stay within the Scion evidence cells.
+- proof:
+  - "sixteen repository gates passed on the actual fdd6b36 content commit":
+    the retained `ops/w42/validation-results.json` (checked_at
+    2026-10-19T03:16:57Z, committed in 39e423d) was captured on a later
+    tree that already held the W42 replay ledger, and reports 415
+    run-evidence events. fdd6b36 holds 414, as the copy committed with it
+    (checked_at 03:12:22Z) shows. Re-run on 2026-10-19 against an export
+    of fdd6b36, all sixteen gates exit 0 with 414 events. `cadence_check`,
+    which fdd6b36 changed, was not among the sixteen; it also passes there.
+  - "84 Python tests": that count is `tests/scripts/` plus
+    `tests/test_source_audit.py`. The full `python -m pytest tests/` at
+    fdd6b36 collects 257: 235 passed, 22 skipped.
+  - the web line holds: `@aifieldbrief/web` runs 23 tests, and they,
+    `pnpm typecheck` and `pnpm build` pass at fdd6b36 (re-run 2026-10-19).
+
+## 2026-10-20 — dd6c7bd correction: W41 out-of-window count
+
+- scope: corrects the method line of the 2026-10-12 dd6c7bd entry above,
+  which stays as written. "78 of 85 digest candidates were dated outside
+  the window by their own primaries" counted two groups as one. Of the 85
+  candidates, 54 were dated before 2026-10-03 by their primaries and 24
+  more were undated or off-topic; seven survived. The W41 row in
+  `briefs/INDEX.md` said the same 78 and is corrected to these counts in
+  the same commit. This entry changes no brief content.
+- proof:
+  - `briefs/2026-W41/brief.md`, Archive notes, "Discovery inputs found out
+    of window": 85 candidate URLs, 54 dated before 2026-10-03, 24 undated or
+    off-topic, seven survived
+  - the same brief's Sources reviewed row for the daily-candidate route: 85
+    candidate URLs, 7 in-window findings

@@ -7,7 +7,6 @@ volume: 25
 profile_id: personal
 registry_version: 14
 matrix_run_id: MTRX-W42-execution-order
-publication_status: ready_for_publication
 sweep:
   attempted: 20
   succeeded: 19
@@ -112,7 +111,6 @@ failures:
 next_run:
 - Run a full registry lane sweep; this issue deliberately used a narrower source set.
 - Run the proposed turn-order, approval/resume and child-stop fixtures before claiming local validation.
-- Compare review-role benefit against a single-agent baseline with the same budget; the current examples establish
-  no portfolio benefit yet.
+- Compare a boundary-mapped review against the existing review process on the same change; the Scion account
+  establishes no measured benefit yet.
 - Reprice DeepSeek tool experiments at the October 31 16:00 UTC tariff transition.
-- Publish only after branch CI and release coordination; independent factual review of the four signals has passed.

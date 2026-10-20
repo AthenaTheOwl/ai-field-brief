@@ -34,7 +34,7 @@ jobs:
       - name: cadence_check
         run: python scripts/cadence_check.py
       - name: source_audit_tests
-        run: python -m pytest tests/test_source_audit.py tests/scripts/test_cadence_check.py
+        run: python -m pytest tests/test_source_audit.py tests/scripts/test_cadence_check.py tests/scripts/test_w42_verify.py
       - name: check_no_bom
         run: python scripts/check_no_bom.py
       - name: validate_schemas

@@ -57,8 +57,7 @@ private/
 # blob/temp
 tmp/
 .cache/
-.tmp/w42-primary/
-.tmp/w42-author-matrix.py
+.tmp/
 
 # build-time snapshots (briefs/ copied into apps/web for static rendering)
 apps/web/.briefs-snapshot/

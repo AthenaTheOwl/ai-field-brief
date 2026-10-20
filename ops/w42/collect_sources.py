@@ -3,6 +3,7 @@
 The private Drive leads are deliberately absent. Cache lives in ignored .tmp.
 This collects sources; it does not verify claims or run a registry-wide sweep.
 """
+import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import html
@@ -58,12 +59,18 @@ def fetch(item):
 
 
 if __name__ == "__main__":
+    # The committed ops/w42/source-sweep.json is the dated sweep record the
+    # brief cites; a rerun writes beside the cache unless --out says otherwise.
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", type=Path, default=ROOT / ".tmp" / "w42" / "source-sweep.json", help="sweep report file (default: .tmp/w42/source-sweep.json)")
+    out = parser.parse_args().out
     CACHE.mkdir(parents=True, exist_ok=True)
     surfaces = {**PAGES, **{key: f"https://api.github.com/repos/{repo}/releases?per_page=5" for key, repo in REPOS.items()}}
     with ThreadPoolExecutor(max_workers=8) as pool:
         records = list(pool.map(fetch, surfaces.items()))
     report = {"checked_at": datetime.now(timezone.utc).isoformat(), "method": "20 public primary surfaces; not a full registry sweep", "surfaces": records}
-    (Path(__file__).parent / "source-sweep.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     for record in records:
         dates = ", ".join(f"{r['tag']} ({r['published_at'][:10]})" for r in record.get("releases", [])[:2])
         print(record["id"], record["status"], record.get("error", dates))

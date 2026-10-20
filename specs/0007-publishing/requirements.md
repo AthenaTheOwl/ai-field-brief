@@ -551,3 +551,28 @@ Acceptance:
   `continue-on-error: true` and no `if: ${{ failure() }}`
   short-circuit, and appears in the AGENTS.md pre-commit list.
 
+### R-PUB-032: cadence coverage allows one slip-week
+
+WHEN the cadence gate runs, THE SYSTEM SHALL report every canonical
+weekly issue owed from the first issue through the most recent Friday,
+and SHALL fail the build for a week with neither a complete issue nor an
+explicit skip once the cadence window has run out on that week.
+
+Owner role: `science.proof-gate-runner`.
+
+Acceptance:
+- `scripts/cadence_check.py` counts a week as covered only when its
+  canonical `YYYY-WNN` folder holds both `brief.md` and `meta.yaml`, or
+  `briefs/SKIPS.yaml` lists the week. Suffixed reruns and invalid ISO
+  weeks do not count.
+- A fresh newest issue does not hide an older missing week.
+- A week due on Friday is pending until more than `--cadence-window`
+  days (default 8) have passed since the Sunday that closes the week
+  before it, and missing after that. At the default window, a week due
+  Friday 2026-10-23 passes the gate through Monday 2026-10-26 and fails
+  it on Tuesday 2026-10-27.
+- `--json` reports the due week, the cadence window, and the missing,
+  pending, and skipped weeks.
+- The gate and `tests/scripts/test_cadence_check.py` run in
+  `.github/workflows/ci.yml` with no `continue-on-error: true`.
+
