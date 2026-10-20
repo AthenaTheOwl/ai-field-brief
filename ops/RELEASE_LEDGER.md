@@ -278,3 +278,19 @@ Each entry has the shape:
     fdd6b36 collects 257: 235 passed, 22 skipped.
   - the web line holds: `@aifieldbrief/web` runs 23 tests, and they,
     `pnpm typecheck` and `pnpm build` pass at fdd6b36 (re-run 2026-10-19).
+
+## 2026-10-20 — dd6c7bd correction: W41 out-of-window count
+
+- scope: corrects the method line of the 2026-10-12 dd6c7bd entry above,
+  which stays as written. "78 of 85 digest candidates were dated outside
+  the window by their own primaries" counted two groups as one. Of the 85
+  candidates, 54 were dated before 2026-10-03 by their primaries and 24
+  more were undated or off-topic; seven survived. The W41 row in
+  `briefs/INDEX.md` said the same 78 and is corrected to these counts in
+  the same commit. This entry changes no brief content.
+- proof:
+  - `briefs/2026-W41/brief.md`, Archive notes, "Discovery inputs found out
+    of window": 85 candidate URLs, 54 dated before 2026-10-03, 24 undated or
+    off-topic, seven survived
+  - the same brief's Sources reviewed row for the daily-candidate route: 85
+    candidate URLs, 7 in-window findings
