@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W42-execution-order
 
 ## Field thesis
 
-Google loaded a skill and searched the docs in the same turn. The skill's instructions reached the agent on the next turn. The searches were already done. That small ordering bug earns this week's lead: a flattened trace makes it look like the agent ignored instructions it had never received. LangGraph's resume fixes and the Agents SDK's pending-approval fix give the same audit a second address. Anthropic supplies a limit on the cure: adversarial reviewers can add complexity for imaginary threats. DeepSeek closes the issue with a model comparison whose two benchmark rows use different harnesses. Keep the turn, the approval and the harness in the record. They explain more than another job title for the agent.
+Google loaded a skill and searched the docs in the same turn. The skill's instructions reached the agent on the next turn. The searches were already done. That small ordering bug earns this week's lead: a flattened trace makes it look like the agent ignored instructions it had never received. LangGraph's resume fixes and the Agents SDK's pending-approval fix give the same audit a second address. Anthropic supplies a limit on the cure: adversarial reviewers can add complexity for imaginary threats. DeepSeek closes the issue with a model comparison whose two benchmark rows use different harnesses. Keep the turn, the approval and the harness in the record. They explain more than another review pass.
 
 This is a scoped catch-up from October 10 through October 18. Twenty public primary surfaces were checked, nineteen returned, and three private research briefs supplied leads. The 222-source registry was not swept. Older material in those leads stays dated in Archive notes.
 
@@ -90,7 +90,7 @@ This is a scoped catch-up from October 10 through October 18. Twenty public prim
 
 **Mechanism:** Review without a stated trust boundary can manufacture a threat model. The author then pays to satisfy it. Narrow queries offer the opposite economy: retrieve only what the decision needs.
 
-**Why it matters:** Adding product, design, engineering and critic roles to every small change can multiply findings before anyone establishes whether the underlying risk exists. A reviewer should name the violated contract, reachable path and evidence. This is a design lesson from a company account, not a measured defect-reduction result.
+**Why it matters:** An adversarial reviewer without a stated trust boundary can multiply findings before anyone establishes whether the underlying risk exists. A reviewer should name the violated contract, reachable path and evidence. This is a design lesson from a company account, not a measured defect-reduction result.
 
 **Reusable pattern:** Give reviewers the actual trust boundaries, and disposition each finding before implementing it.
 
@@ -194,7 +194,7 @@ Release notes establish shipped changes. The tests below are proposals; none was
 
 - **Approval across context rewrite.** Revisit trigger: a local fixture loses an approval or repeats an effect; then promote the runtime test into a required gate.
 - **Paid comparisons after a free-tool period.** Revisit trigger: October 31 at 16:00 UTC, when DeepSeek says billing starts; reprice before interpreting a later cost comparison.
-- **Review-role overhead.** Revisit trigger: five comparable changes with review time and accepted findings recorded; retain only roles that improve the measured outcome.
+- **Review-finding overhead.** Revisit trigger: five comparable changes with review time and accepted findings recorded; keep the boundary map only if it improves the measured outcome.
 
 ## Archive notes
 
