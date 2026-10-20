@@ -187,10 +187,22 @@ def test_current_week_due_on_friday_missing_after_slip_week(tmp_path: Path) -> N
 
 @pytest.mark.parametrize("day", [23, 24, 25, 26])
 def test_slip_week_passes_friday_through_monday(tmp_path: Path, day: int) -> None:
-    """W43 is due Fri 2026-10-23; the one slip-week keeps the gate green to Monday."""
+    """W43 is due Fri 2026-10-23; with W42 through Sun 2026-10-18 the gate stays green to Monday."""
     briefs, index, readme = _scaffold(tmp_path, "2026-W42", "2026-10-18")
     failures = check(briefs, index, readme, briefs / "SKIPS.yaml", today=dt.date(2026, 10, day))
     assert failures == []
+
+
+def test_friday_through_issue_goes_stale_while_next_week_is_pending(tmp_path: Path) -> None:
+    """W41 through Fri 2026-10-09: freshness fails Sunday, coverage still lists W42 as pending."""
+    briefs, index, readme = _scaffold(tmp_path, "2026-W41", "2026-10-09")
+    skips = briefs / "SKIPS.yaml"
+    expected = {16: set(), 17: set(), 18: {"stale"}, 19: {"stale"}, 20: {"missing-week", "stale"}}
+    for day, kinds in expected.items():
+        today = dt.date(2026, 10, day)
+        assert {f.kind for f in check(briefs, index, readme, skips, today=today)} == kinds
+        pending = coverage_report(briefs, today, skips)["pending_weeks"]
+        assert pending == ([] if day == 20 else ["2026-W42"])
 
 
 def test_slip_week_fails_on_tuesday(tmp_path: Path) -> None:
