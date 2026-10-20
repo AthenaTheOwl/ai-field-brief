@@ -6,8 +6,10 @@ date: 2026-10-18
 status: approved
 reversible: true
 decision: |
-  Extend cadence_check to report missing canonical weekly issues through
-  the most recent Friday, reject future through-dates, ignore all suffixed
+  Extend cadence_check to report canonical weekly issues owed through the
+  most recent Friday, listing a due week as pending until the cadence
+  window's slip-week runs out and as missing after that, or at once when
+  a later issue exists. Reject future through-dates, ignore all suffixed
   reruns, and emit a JSON coverage report. Run its regression tests in CI.
 alternatives:
   - label: check only the newest issue's age
@@ -39,4 +41,6 @@ records a miss; it does not fabricate a historical issue.
 R-PUB-032 holds the requirement. A due week stays pending through the
 slip-week the cadence window allows and counts as missing once the
 window runs out on it, so coverage trips no earlier than the freshness
-check does for an issue covering through the previous Sunday.
+check does for an issue covering through the previous Sunday. A week
+before a later complete issue is missing at once, so a fresh newer
+issue cannot hide it.
