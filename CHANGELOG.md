@@ -9,8 +9,8 @@ go at the top.
 
 - Add the October 18 W42 catch-up with four signals, 36 evidence cells,
   action scores and a same-author faithfulness report. The source check
-  covers twenty public surfaces. Independent factual review passed;
-  publication remains gated on CI.
+  covers twenty public surfaces. Independent factual review passed; the
+  issue was published from ee1c813 on 2026-10-19 UTC after CI passed.
 - Detect older missing weeks even when the newest issue is fresh, reject
   future through-dates, and emit JSON coverage against the Friday deadline.
   DEC-PUB-014 records the change; CI runs the cadence regression cases.
