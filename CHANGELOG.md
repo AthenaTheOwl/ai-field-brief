@@ -5,6 +5,18 @@ go at the top.
 
 ## [Unreleased]
 
+### Archive evidence and voice review (spec 0007)
+
+- Review all 23 canonical issues, W20–W42, against their source support
+  and keep the brief's dry builder voice. Correct attribution, units,
+  denominators, proposed tests and claims that outran their evidence.
+- Add the writing forms' reasoning checks to the voice notes, eighteen
+  existing prompts, template and weekly playbook. The brief keeps its
+  own cadence and format.
+- Backfill missing evidence with dated current reviews and keep the old
+  run records. DEC-PUB-015 adds a reference-integrity gate for the whole
+  canonical archive, with negative regression tests in CI.
+
 ### Weekly coverage and W42 review copy (spec 0007)
 
 - Add the October 18 W42 catch-up with four signals, 36 evidence cells,

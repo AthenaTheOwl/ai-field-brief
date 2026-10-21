@@ -164,8 +164,11 @@ cells:
     source_item_id: src-w38-xconf
     lens_id: workflow
     mode: extractive
-    content: "XConf (arXiv 2609.17708, submitted 2026-09-15) estimates confidence from a record of the model's own graded past episodes. It beats or matches ten-sample self-consistency on discrimination in 23 of 24 comparisons with lower calibration error at a tenth of the generation cost, and abstaining on the 10% least-confident episodes raises delivered success by up to 8.7 points on agent tasks."
+    content: "XConf (arXiv 2609.17708, submitted 2026-09-15) retrieves the model's graded past episodes with similar tasks and stated confidence, then asks the model to reflect on that history and restate its confidence. It beats or matches ten-sample self-consistency on discrimination in 23 of 24 comparisons with lower calibration error at a tenth of the generation cost, and abstaining on the 10% least-confident episodes raises delivered success by up to 8.7 points on agent tasks."
     source_refs:
+      - uri: "https://arxiv.org/abs/2609.17708"
+        quote_or_span: "Recall retrieves similar tasks and stated confidence; Reflect shows the model this record and has it restate confidence informed by its track record"
+        ref_type: chunk
       - uri: "https://arxiv.org/abs/2609.17708"
         quote_or_span: "XConf beats or matches ten-sample self-consistency in discrimination (AUROC) on 23 of 24 comparisons, with much lower calibration error (ECE), at a tenth of the generation cost"
         ref_type: quote
@@ -185,13 +188,13 @@ cells:
     mode: extractive
     content: "Agora (arXiv 2609.18094, submitted 2026-09-16) records collective research as an append-only DAG stored in Git. In a run of nearly 12 days, 13 language-model workers published 1,703 contributions on a weight-transfer problem and drove the evaluator from 3.39 to 1.899 bits per byte, closing 62% of the gap to a trained GPT-2 124M; the abstract also reports a 145-commit ancestry, 15 accounts and 165 independent reproductions."
     source_refs:
-      - uri: "https://arxiv.org/abs/2609.18094"
+      - uri: "https://arxiv.org/abs/2609.18094v2"
         quote_or_span: "research is recorded as an append-only directed acyclic graph (DAG) stored in Git"
         ref_type: quote
-      - uri: "https://arxiv.org/abs/2609.18094"
+      - uri: "https://arxiv.org/abs/2609.18094v2"
         quote_or_span: "They published 1,703 contributions and drove the evaluator from 3.39 to 1.899 bits per byte, closing 62% of the gap to a trained GPT-2 124M"
         ref_type: quote
-      - uri: "https://arxiv.org/abs/2609.18094"
+      - uri: "https://arxiv.org/abs/2609.18094v2"
         quote_or_span: "a run of nearly 12 days in which 13 language-model workers"
         ref_type: quote
     confidence: medium

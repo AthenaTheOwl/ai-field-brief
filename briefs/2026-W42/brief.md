@@ -64,13 +64,13 @@ This is a scoped catch-up from October 10 through October 18. Twenty public prim
 
 **Action surface:** runtime-adapter
 
-**Try:** In a disposable fixture, interrupt a write task before approval, compact its context, resume it twice, and count applied effects. Separately make a child stop on a blocked tool and check that the parent reports the stop.
+**Try:** In a disposable fixture, interrupt a write task before approval and request compaction. Confirm the pending approval survives and no effect occurs. Approve the mocked action, resume twice, and count applied effects. Separately make a child stop on a blocked tool and check that the parent reports the stop.
 
 **Systems map:** unfinished action -> interrupt or compaction -> incomplete checkpoint -> replay repeats the effect or loses the approval -> parent summarizes a misleading success.
 
 **Transferable principle:** Recovery must preserve both progress and permission. A payment worker needs the same distinction between authorized, attempted and settled.
 
-**Falsification test:** If repeated resume applies exactly one effect, preserves the pending approval and reports the child stop, these failure modes are already covered in that fixture.
+**Falsification test:** If there are zero effects before approval, exactly one after approval and repeated resume, and the parent reports the child stop, these failure modes are already covered in that fixture.
 
 **Adoption ladder:**
   - Minimum viable: one interrupted write with an effect counter and a pending approval.
@@ -157,7 +157,7 @@ This is a scoped catch-up from October 10 through October 18. Twenty public prim
 | Candidate | Surface | Effort | Risk | Test |
 |---|---|---|---|---|
 | Retain turn groups | eval | S | low | Audit five traces for premature dependent dispatch |
-| Preserve pending effects | runtime-adapter | S | medium | Resume one mocked write twice; effect count remains one |
+| Preserve pending effects | runtime-adapter | S | medium | Zero effects before approval; one after approval and two resumes |
 | Bound critic scope | workflow | S | low | Five reviews with finding dispositions and time recorded |
 | Pin comparison conditions | cost | S | low | Reprice a fixture at the post-promotion tariff |
 
@@ -166,7 +166,7 @@ This is a scoped catch-up from October 10 through October 18. Twenty public prim
 | Source | Target | Surface | Try | Proof metric | Rollback | Kill criterion |
 |---|---|---|---|---|---|---|
 | Google eval lessons | trace-to-eval-harness | eval | Audit five saved traces in 60 minutes | Count premature dependent calls and verdict disagreements | Keep the original trace files | Stop if the trace cannot establish instruction availability |
-| Runtime release cluster | agent-notary-layer | runtime-adapter | Exercise a mocked approval/resume fixture in 60 minutes | Exactly one effect; approval and child stop survive | Remove the isolated fixture | Stop before any real outbound write or credential use |
+| Runtime release cluster | agent-notary-layer | runtime-adapter | Exercise a mocked approval/resume fixture in 60 minutes | Zero effects before approval; one after approval and two resumes; child stop survives | Remove the isolated fixture | Stop before any real outbound write or credential use |
 | Scion review account | review-queue | workflow | Add a boundary map to one review in 45 minutes | Findings with evidence and explicit dispositions | Remove optional review fields | Stop if review time rises without a useful finding |
 | DeepSeek release/card | modelswap-replay | cost | Add tariff expiry and harness columns in 30 minutes | Fixture reprices reproducibly after expiry | Revert the fixture addition | Stop before paid evaluation without an approved ceiling |
 

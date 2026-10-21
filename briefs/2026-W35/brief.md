@@ -6,7 +6,7 @@ registry_version: 14
 matrix_run_id: MTRX-W35-contracts-outside-the-prompt
 -->
 
-# The repository overview cost twenty percent and bought nothing.
+# The context file cost twenty percent. The overview did not help.
 
 **Week 35 through 2026-08-30 - Vol. 18**
 
@@ -18,9 +18,9 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 ### 1. The context file everyone commits was measured, and the overview section failed
 
-**Sources:** [Evaluating AGENTS.md](https://arxiv.org/abs/2602.11988) and [Is Progressive Disclosure All You Need for Long-Context Agents?](https://arxiv.org/abs/2607.17598)
+**Sources:** [Evaluating AGENTS.md](https://arxiv.org/abs/2602.11988v2) and [Is Progressive Disclosure All You Need for Long-Context Agents?](https://arxiv.org/abs/2607.17598)
 
-**Payload:** Gloaguen, Mündler, Müller, Raychev and Vechev (ETH Zurich SRI Lab and LogicStar.ai) evaluated coding agents on benchmark tasks and on issues drawn from repositories carrying developer-committed context files. Providing context files "does not generally improve task success rates, while increasing inference cost by over 20% on average," across different models, different agents, and both generated and human-written files. Instructions inside those files were followed; repository overviews, the most recommended content, were not helpful. He, Zhao, Wang and Chen reach an adjacent result for the tiered variant: one level of progressive disclosure is enough, a second routing level never helps and sometimes breaks accuracy, and the gain from the pattern at all depends on the harness more than on the pattern itself.
+**Payload:** Gloaguen, Mündler, Müller, Raychev and Vechev (ETH Zurich SRI Lab and LogicStar.ai) evaluated coding agents on benchmark tasks and on issues drawn from repositories carrying developer-committed context files. Providing context files "does not generally improve task success rates, while increasing inference cost by over 20% on average," across different models, different agents, and both generated and human-written files. Instructions inside those files were followed; repository overviews, the most recommended content, were not helpful. He, Zhao, Wang and Chen reach an adjacent result for the tiered variant: one level of progressive disclosure was enough in their tests, a second routing level never helped and sometimes broke accuracy, and the gain depended on both the harness and the size of the corpus.
 
 **Mechanism:** A context file pays its token cost on every turn and returns value only where it carries something the agent could not obtain by looking. Conventions, prohibitions, and non-obvious build steps qualify. A description of the directory tree does not, because a competent file-navigation harness recovers it on demand at lower cost. The progressive-disclosure result explains why the benefit is harness-dependent: where the agent already greps and reads well, the disclosure layer duplicates work the harness does; where it navigates poorly, the layer substitutes for the missing capability.
 
@@ -30,7 +30,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Action surface:** context
 
-**Try this week:** Run the factory's held-out cases twice, once with `AGENTS.md` mounted and once with only its imperative sections, and record pass rate, tokens, and cost per accepted outcome for each. Delete whatever section cannot show a difference.
+**Try this week:** Run the factory's held-out cases twice, once with `AGENTS.md` mounted and once with only its imperative sections, and record pass rate, tokens, and cost per accepted outcome for each. Repeat borderline results before deleting a section.
 
 **Systems map:** repository contract file -> per-turn token cost -> instruction compliance and navigation savings -> measured task success -> keep or delete the section.
 
@@ -54,7 +54,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Payload:** Li, Zhang, Jurayj, Wang, Jin, Farajtabar, Nalisnick and Khashabi pair two inference-time elements: a compaction tool the model invokes, and a short rubric saying when to fire (a sub-task resolved, the trajectory converging) and when to suppress (mid-derivation, or stuck). Across six benchmarks and seven models, the pairing improves over a no-summarisation baseline by up to 18.1 points on math and 5 to 9 points on agentic search at 30 to 70 percent lower cost per question, with no fine-tuning. The paper is explicit that neither half works alone: the tool without the rubric is invoked at unhelpful moments or skipped, and the rubric without the tool cannot act.
 
-**Mechanism:** A token counter knows the size of the context and nothing about the shape of the work. Firing on a threshold discards partial results mid-derivation as readily as it discards a closed sub-task, and the observable cost is re-derivation — the agent returns from compaction and redoes work it had already paid for. Moving the trigger to a semantic boundary the model can recognise removes the mistimed compactions, which is why the method beats fixed-interval summarisation on cost as well as quality.
+**Mechanism:** A token counter knows the size of the context and nothing about the shape of the work. Firing on a threshold discards partial results mid-derivation as readily as it discards a closed sub-task, and the observable cost is re-derivation — the agent returns from compaction and redoes work it had already paid for. Moving the trigger to a semantic boundary the model can recognise reduces that risk; the published comparison matches or exceeds fixed-interval summarisation at lower token cost.
 
 **Why it matters:** 2026-W34 held the `lean-v2` context profile opt-in pending a paired continuation campaign at the compaction boundary. This gives that campaign a second arm worth running: beyond tuning how much context survives, test whether the trigger itself should move. The factory's runs already emit checkpoints, so the boundary is available.
 
@@ -68,7 +68,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Transferable principle:** A trigger tuned to a resource is a proxy for a trigger tuned to work state, and proxies fail where the two diverge. Cache eviction, autoscaler cooldowns, and batch-job checkpointing carry the same mismatch.
 
-**Falsification test:** If instrumented runs show near-zero repeated tool calls after threshold compaction, this harness is already compacting at safe moments and the rubric buys only its own token cost.
+**Falsification test:** If paired runs with the rubric improve neither acceptance nor cost, there is no measured reason to add it here. Repeated calls are a clue; lost reasoning can leave no repeated tool call.
 
 **Adoption ladder:**
   - Minimum viable: count repeated tool calls after each compaction event.
@@ -100,7 +100,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Transferable principle:** A check on a name is not a check on a thing. The gap appears anywhere identity is resolved twice — signed URLs, container image tags, package versions pinned at audit time and resolved again at install.
 
-**Falsification test:** If all five tests pass unchanged against the portfolio's current agent surfaces, this class of defect does not apply here and the effort belongs elsewhere.
+**Falsification test:** If all five tests pass unchanged, these five routes are covered. Expand the suite when a new tool or settings scope adds a route.
 
 **Adoption ladder:**
   - Minimum viable: the five-test deny-rule suite, run once, with results recorded.
@@ -116,11 +116,11 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Source:** [Previewing the Model Hardware Standard](https://www.anthropic.com/news/model-hardware-standard-research-preview)
 
-**Payload:** Anthropic opened a research preview on August 27 of a shared specification for agents to operate physical devices — microscopes, liquid handlers, robotic arms — with early partners including AWS, Danaher, Tecan, QIAGEN, Doosan Robotics, Automata, Universal Robots, Hugging Face and Raspberry Pi. The specification is model-agnostic and reachable by any harness over standard protocols including MCP. The reported result worth carrying is from QuEra: an agent reached 99.3 percent success across 700 laser-lock recovery trials, against 58 percent for hand-written scripts.
+**Payload:** Anthropic opened a research preview on August 27 of a shared specification for agents to operate physical devices — microscopes, liquid handlers, robotic arms — with early partners including AWS, Danaher, Tecan, QIAGEN, Doosan Robotics, Automata, Universal Robots, Hugging Face and Raspberry Pi. The specification is model-agnostic and reachable by any harness over standard protocols including MCP. The reported result worth carrying is from QuEra: an agent-developed controller reached 99.3 percent success across 700 laser-lock recovery trials, against 58 percent for hand-written scripts.
 
-**Mechanism:** The comparison is the useful part, and it is not a claim about intelligence. A hand-written recovery script encodes the failure modes its author anticipated and fails on the rest. An agent with a device interface and a stated goal can observe the actual state and try a path the script never contained. The specification matters because it removes the integration work that made this uneconomic — bespoke drivers per instrument, weeks of setup — and turns device capability into something declarable.
+**Mechanism:** The comparison is the useful part, and it is not a claim about intelligence. A hand-written recovery script encodes the failure modes its author anticipated and fails on the rest. An agent with a device interface can explore the observed state and build a different controller; the QuEra result came from that controller. The specification matters because it removes the integration work that made this uneconomic — bespoke drivers per instrument, weeks of setup — and turns device capability into something declarable.
 
-**Why it matters:** The transferable half lands well short of the laboratory. The portfolio has scripted recovery paths in its own runs: retry ladders, cleanup handlers, rollback steps. Each encodes an anticipated failure list, and 58 percent is a plausible number for how many real failures such a list covers. Physical actuation also raises the cost of a wrong action past anything a software rollback covers, which is why the interlock and approval design deserves attention before the capability does.
+**Why it matters:** The transferable half lands well short of the laboratory. The portfolio has scripted recovery paths in its own runs: retry ladders, cleanup handlers, rollback steps. Each encodes an anticipated failure list. The laboratory's 58 percent says nothing about our coverage; the run records can. Physical actuation also raises the cost of a wrong action past anything a software rollback covers, which is why the interlock and approval design deserves attention before the capability does.
 
 **Reusable pattern:** Where a recovery path is a fixed script, measure its success rate against the failures that occur in production, not the failures it was written for. Declare device or resource capability as data the caller can read, not as knowledge embedded in the caller.
 
@@ -132,7 +132,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Transferable principle:** A fixed recovery script is a snapshot of one engineer's failure model, and its success rate is bounded by that model's coverage. The same measurement applies to incident runbooks, retry policies, and data-quality repair rules.
 
-**Falsification test:** If the last fifty entries into the recovery path were all covered by the scripted failure list, the script is adequate for this workload and an agent adds cost without headroom.
+**Falsification test:** If the last fifty entries were all covered and recovered successfully, this sample offers no headroom for a different recovery policy.
 
 **Adoption ladder:**
   - Minimum viable: coverage percentage for one recovery path, measured against real failures.
@@ -222,7 +222,7 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 **Action surface:** eval
 
-**Try this week:** Run a misconduct pass over the last thirty factory runs that scored as accepted. Classify each as clean, ambiguous, or gamed, and publish the rate. A rate of zero on thirty runs is itself a finding about the monitor's sensitivity.
+**Try this week:** Run a misconduct pass over the last thirty factory runs that scored as accepted. Classify each as clean, ambiguous, or gamed, and publish the rate. Zero flags on thirty runs could mean clean runs or a weak monitor; include a seeded positive.
 
 **Systems map:** proposed method -> committed before results -> bounded training or run -> independent evaluator -> shared leaderboard -> post-hoc misconduct monitor -> measured cheating rate.
 
@@ -330,4 +330,4 @@ Four things that used to live inside a prompt got moved out of it this week and 
 
 ## Closing thought
 
-The AGENTS.md result is uncomfortable in the right way for a repository that publishes two of them and treats both as settled. It does not tell anyone to stop writing the file. It says the half most authors are proudest of — the tour of the repository, the architecture summary, the orientation for a newcomer who has never opened the tree — has never been shown to pay for the tokens it costs on every turn. That is a testable claim about this repository, and the test takes an afternoon.
+The AGENTS.md result is uncomfortable in the right way for a repository that publishes two of them and treats both as settled. It does not tell anyone to stop writing the file. It says the half most authors are proudest of — the tour of the repository, the architecture summary, the orientation for a newcomer who has never opened the tree — did not pay for itself in the study's coding-agent tests. That is a testable claim about this repository, and the test takes an afternoon.

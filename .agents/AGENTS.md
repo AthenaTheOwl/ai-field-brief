@@ -70,10 +70,10 @@ amendment relaxing the rule requires a new DEC.
 
 - Push to main directly. The repo's branch protection runs the CI
   gates on push; a failed gate blocks the merge.
-- Eight gates run on every push: `spec_check`, `voice_lint`,
-  `validate_schemas`, `validate_registry`, `validate_decisions`,
-  `validate_roles`, `validate_tools`, `validate_policies`.
-  Plus turbo's `lint`, `typecheck`, `test`, `build`.
+- The Python contract gates listed in `.github/workflows/ci.yml` run
+  on every push, including per-signal evidence-reference validation for
+  all canonical issues. Turbo also runs `lint`, `typecheck`, `test`,
+  and `build`.
 - Every shipped R-* requirement gets at least one DEC-* file before
   the commit reaches main. `spec_check` flags an orphan R-* and
   refuses the commit unless the requirement is listed in

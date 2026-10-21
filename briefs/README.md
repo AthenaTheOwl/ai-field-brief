@@ -41,6 +41,12 @@ discipline is not.
 - Every claim in a brief should be backed by a link to a primary
   source. The verifier (citation-faithfulness, R-EXT-004) lands with
   spec 0005; until then, the discipline is manual.
+- `scripts/validate_editorial_evidence.py` checks explicit Evidence
+  bindings in every canonical issue, including the older layouts. A
+  resolved reference is a pointer to inspect, not a factual verdict.
+- A dated editorial backfill can add evidence to an old issue. Its
+  original window and run records stay intact. Read `VOICE.md` and
+  `prompts/editorial_contract.md` before revising the prose.
 - The brief is published; the per-item structured notes that produced
   it are an audit trail. Both end up under `briefs/YYYY-WNN/` once the
   full playbook lands.

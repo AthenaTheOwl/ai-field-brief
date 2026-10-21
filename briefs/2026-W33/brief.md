@@ -18,25 +18,25 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 ### 1. Seven percent of calls set the economics of the whole run
 
-**Source:** [LangChain's model-routing experiment](https://blog.langchain.com/how-many-of-your-agents-calls-%61ctually-need-a-frontier-model/)
+**Source:** [LangChain's model-routing experiment](https://www.langchain.com/blog/switchyard-agent-routing-benchmark)
 
-**Payload:** LangChain ran 145 controlled tasks through three configurations. Frontier models handled 7 percent of calls in the routed arm but accounted for 68.4 percent of its model spend. Routing cut model cost by 74 percent relative to the frontier-only arm while finishing six accuracy points lower. The judge consumed another 21.2 percent of routed spend.
+**Payload:** LangChain ran 145 controlled tasks through three configurations. Excluding judge calls, the frontier model handled about 7 percent of agent calls in the routed arm. It accounted for 68.4 percent of total routed model spend, whose denominator includes the judge. Routing cut model cost by 74 percent relative to the frontier-only arm while finishing six accuracy points lower. The judge consumed another 21.2 percent of routed spend.
 
-**Mechanism:** Agent cost is concentrated in a few decisions: planning, recovery, judging, and hard tool selection. A router can move routine calls down the model ladder, yet the judge and escalation policy remain part of the bill. The same policy can look efficient or wasteful depending on task mix and failure cost.
+**Mechanism:** In this setup, a judge escalated the rest of a session after two consecutive negative verdicts. The bill followed which sessions escalated. The study does not establish a ranking of planning, recovery, or tool selection by cost. A router can move routine calls down the model ladder, yet the judge and escalation policy remain part of the bill. The same policy can look efficient or wasteful depending on task mix and failure cost.
 
-**Why it matters:** The factory already assigns S, A, and B model tiers by role. This result supplies a measurement design for the next step: attribute cost and acceptance by role, task class, tier, and escalation reason. The authors also warn that their workload was saturated and the routed arm did not decisively beat a cheap model on value. One workload cannot ratify a portfolio policy.
+**Why it matters:** The factory already assigns S, A, and B model tiers by role. This result supplies a measurement design for the next step: attribute cost and acceptance by role, task class, tier, and escalation reason. The cheapest-model-only arm scored 77.7 percent against the routed arm's 80.0 percent, at $0.72 versus $3.00 per run. That 2.3-point gain was smaller than the reported 2.7-point run variation; the authors could not claim a reliable win over the cheap model. One workload cannot ratify a portfolio policy.
 
 **Reusable pattern:** Treat routing as a controlled policy with a baseline, an escalation rule, and a quality budget. Report frontier-call share, frontier-spend share, judge-spend share, task acceptance, and rework together.
 
 **Action surface:** cost
 
-**Try this week:** Run a paired factory cohort on the same ratified tasks. Compare all-A against role-based S/A/B routing. Hold prompts, tool leases, gates, and task fixtures constant. Promote only when the routed arm stays inside a predeclared acceptance margin.
+**Try this week:** Run a paired factory cohort on the same ratified tasks. Compare all-A, cheapest-eligible-model, and role-based S/A/B routing. Hold prompts, tool leases, gates, and task fixtures constant. Promote only when the routed arm stays inside a predeclared acceptance margin.
 
 **Systems map:** task class -> role -> initial tier -> confidence or failure signal -> escalation -> verdict -> accepted cost per task.
 
 **Transferable principle:** Spend concentrates in a small share of calls, so an average price per call hides the decisions that set the bill. Any metered system with uneven request cost carries the same skew: cloud query spend, support escalations, CI minutes.
 
-**Falsification test:** If attributing a month of factory spend by role and task class shows frontier spend spread evenly across them instead of concentrated in planning, recovery, judging and hard tool selection, the concentration this result depends on is absent here and a routing policy has little to move.
+**Falsification test:** Compare routed, all-A, and cheapest-eligible-model policies on the same cases and retry budget. If routing costs more per accepted task than the cheap baseline without clearing the declared quality margin, or regresses a critical class against all-A, hold it. Evenly spread role spend alone cannot decide this.
 
 **Adoption ladder:**
   - Minimum viable: attribute one week of factory spend by role, task class, and model tier.
@@ -86,7 +86,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Payload:** Version 0.20 added `RunState.add_input()` and persisted pending user input before the resumed model call. The same release expanded MCP protocol support and added explicit acknowledgement around sandbox credential exposure.
 
-**Mechanism:** A pause produces state that must survive process death, retry, and operator delay. Persisting the new input before continuation establishes an ordered write boundary. A crash after persistence can be retried; a crash after the model call but before persistence can otherwise duplicate or lose the human decision.
+**Mechanism:** A pause produces state that must survive process death, retry, and operator delay. Persisting the new input before continuation establishes an ordered write boundary. Durable input makes a retry reconstructible. It does not make worker dispatch exactly once: a crash after dispatch still needs a durable dispatch record and idempotent side-effect handling.
 
 **Why it matters:** Human approval is often treated as a chat event. In a durable workflow it is a state transition with idempotency requirements. The queue executor, checkpoint store, and approval UI must agree on which input was accepted and which continuation consumed it.
 
@@ -94,19 +94,19 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Action surface:** runtime-adapter
 
-**Try this week:** Add a crash-at-boundary test to one factory approval flow: before input persistence, after persistence, and after worker dispatch. Replaying each checkpoint should produce one accepted input and at most one worker invocation.
+**Try this week:** Add a crash-at-boundary test to one factory approval flow: before input persistence, after persistence, and after worker dispatch. Replaying each checkpoint should preserve one accepted input id and one committed effect per id, with every retried dispatch recorded.
 
 **Systems map:** interrupt -> human input id -> durable write -> continuation lease -> worker call -> consumed marker -> replay check.
 
 **Transferable principle:** Write the decision down before acting on it, or the crash window decides whether the decision happened. Outbox publishing, webhook handling, and any job that charges a card before recording the charge sit on the same ordering requirement.
 
-**Falsification test:** If killing the factory's approval worker at each of the three boundaries already replays to exactly one accepted input and at most one worker invocation, the ordering holds here and adopting the primitive is a rename.
+**Falsification test:** If any crash point loses the accepted input, consumes it twice, or commits the same side effect twice, the approval contract fails. A durable input field alone is insufficient; test dispatch and effect deduplication too.
 
 **Adoption ladder:**
   - Minimum viable: give each approval an immutable input id and write it to the checkpoint before the continuation runs.
   - Mid: add crash-at-boundary tests at three points, before input persistence, after persistence, and after worker dispatch, then replay each checkpoint.
-  - Full: the store refuses duplicate consumption of an input id, so the invariant holds without the test watching it.
-  - Monitoring: duplicate accepted inputs per month, which should stay at zero; worker invocations per approval; replays that produce a second continuation.
+  - Full: the store atomically claims each input id, and the effect sink deduplicates that id across retried dispatches.
+  - Monitoring: duplicate accepted inputs per month, which should stay at zero; dispatch retries per approval; replays that produce duplicate committed effects.
 
 **Confidence:** high
 
@@ -132,7 +132,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Transferable principle:** An identifier parsed for its meaning is a guess that goes stale on the vendor's schedule. Version-string sniffing, user-agent parsing, and filename-extension type detection all break when the thing behind the name changes without telling the parser.
 
-**Falsification test:** If every model the factory can route to satisfies every task contract it serves, the capability predicate rejects nothing and the manifest is bookkeeping.
+**Falsification test:** If the predicate admits a model that drops required history or rejects a declared tool schema, the capability record fails. Test an intentionally incompatible provider too; an eligible fleet today does not make capability drift impossible.
 
 **Adoption ladder:**
   - Minimum viable: write a capability manifest for the models already in the factory's model registry, covering tool calling, image input, structured output, reasoning controls, context limit, and resumable history.
@@ -164,7 +164,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Transferable principle:** Three concerns that fail at the same point need one state contract, or each will keep a private and partial copy of it. Authentication, rate limiting, and request tracing collide the same way at an edge proxy.
 
-**Falsification test:** If replaying a factory run that escalated reproduces the route decision from the ledger alone, using only the trigger, prior tier, next tier, checkpoint reference, and policy version, the shared contract is already in place and the release adds vocabulary.
+**Falsification test:** If replay cannot reconstruct the route decision from the pinned trigger, policy, and checkpoint, or continuation loses state, the shared contract fails. A complete existing ledger may justify keeping the current implementation.
 
 **Adoption ladder:**
   - Minimum viable: record every route transition in the event ledger with its trigger, prior tier, next tier, checkpoint reference, and policy version.
@@ -196,7 +196,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Transferable principle:** Separate the permission to use a credential from possession of its value, and a compromised process keeps only the approved call instead of a secret it can carry anywhere. Database proxies that hold the password, signing services that never export the key, and destination-bound short-lived tokens all draw that line.
 
-**Falsification test:** If an inventory of the factory's sandbox fixtures finds no secret readable from worker memory, there is nothing left to broker and the proxy adds a hop.
+**Falsification test:** If worker output or logs expose the fake credential, an unapproved destination receives it, or a permitted request can smuggle a different target, the broker boundary fails. An already isolated fixture may need no migration; test the same attack paths before deciding.
 
 **Adoption ladder:**
   - Minimum viable: list every secret readable from a sandbox worker process and name the destination each one is for.
@@ -228,13 +228,13 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 **Transferable principle:** A rule that travels as prose can be dropped at any delegation boundary, and nothing records that it was dropped. Moving it to a typed invariant with an enforcement point gives the drop somewhere to fail loudly. API contracts documented but unvalidated, lint rules never wired into CI, and on-call steps that live only in a wiki carry the same exposure.
 
-**Falsification test:** If converting one prompt-only factory rule into a typed invariant yields a fixture that passes before the enforcement change as well as after it, the rule was already being followed and the conversion bought an event and nothing else.
+**Falsification test:** If the adversarial fixture passes before enforcement, it has failed to exercise the gap. If the forbidden action still succeeds after enforcement, the boundary failed. Compare legitimate work too, so a deny-everything policy cannot earn the win.
 
 **Adoption ladder:**
   - Minimum viable: take one factory rule that exists only in a prompt and write down its invariant, enforcement point, and denial event.
   - Mid: implement the invariant at the capability layer and add a fixture that fails before the enforcement change and passes after it.
   - Full: recurring defect classes from the factory ledger enter the same pipeline, and a prompt warning is removed only after its executable contract has passed a cohort.
-  - Monitoring: prompt-only rules remaining; denied-action events per week; defect classes carrying a held-out fixture; fixtures that pass before enforcement, which means the rule already held.
+  - Monitoring: prompt-only rules remaining; denied-action events per week; defect classes carrying a held-out fixture; adversarial fixtures that fail to distinguish pre-enforcement and enforced behavior.
 
 **Confidence:** medium
 
@@ -255,7 +255,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 |---|---|---|---|
 | P0 | Run a paired all-A versus S/A/B factory cohort | factory routing | accepted cost, quality delta, escalation rate |
 | P0 | Add provider-free lifecycle fixtures for pause, resume, and terminal state | factory tests | deterministic suite with no CLI process |
-| P0 | Add persist-before-act crash tests to one approval flow | state/checkpoints | one input, one continuation across three crash points |
+| P0 | Add persist-before-act crash tests to one approval flow | state/checkpoints | one accepted input and one committed effect across three crash points |
 | P1 | Add capability declarations to the model registry | model routing | ineligible route rejected before dispatch |
 | P1 | Prototype proxy-side credential injection with fake tokens | sandbox security | approved destination succeeds; secret remains unreadable |
 | P1 | Convert one prompt-only safety rule into a typed runtime contract | policy/gates | break-then-fix fixture and denial event |
@@ -264,7 +264,7 @@ Model routing acquired a price tag this week. In one 145-task experiment, fronti
 
 ### Packet A - routing economics cohort
 
-Run the same 20 ratified tasks under all-A and role-based S/A/B policies. Freeze task text, context profile, tools, gates, and retry budget. Report accepted cost, first-pass acceptance, rework, judge spend, and frontier-call share. Hold promotion if any critical task class regresses or the confidence interval crosses the declared quality margin.
+Run the same 20 ratified tasks under all-A, cheapest-eligible-model, and role-based S/A/B policies. Freeze task text, context profile, tools, gates, and retry budget. Report accepted cost, first-pass acceptance, rework, judge spend, and frontier-call share. Hold promotion if any critical task class regresses or the confidence interval crosses the declared quality margin.
 
 ### Packet B - providerless lifecycle suite
 
@@ -272,7 +272,7 @@ Create deterministic fixtures for tool ordering, handoff, guardrail failure, int
 
 ### Packet C - durable human input
 
-Give each approval an immutable input id. Persist it before continuation, bind the next worker lease to it, and mark it consumed atomically. Test process death before persistence, after persistence, and after dispatch.
+Give each approval an immutable input id. Persist it before continuation, bind the next worker lease to it, and atomically claim consumption. Carry the same id to an idempotent effect sink so a dispatch retry cannot commit the effect twice. Test process death before persistence, after persistence, and after dispatch.
 
 ### Packet D - capability-first router
 

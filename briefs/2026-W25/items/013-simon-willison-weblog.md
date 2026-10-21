@@ -6,7 +6,7 @@
 - confidence: high
 - action_surface: tool-policy
 
-**Gist:** Z.ai released GLM-5.2, a 753B-parameter MIT-licensed text-only model with 1M context that tops Artificial Analysis's Intelligence Index v4.1 for open weights at 51.
+**Gist:** Z.ai released GLM-5.2, a MIT-licensed text-only model with 1M context that tops Artificial Analysis's Intelligence Index v4.1 for open weights at 51.
 
 **Mechanism:** Open-weights model with 1M-token context ranks #1 on the open-weight intelligence index and #2 on Code Arena WebDev frontend leaderboard; tradeoff is significantly higher output token consumption than competitors.
 

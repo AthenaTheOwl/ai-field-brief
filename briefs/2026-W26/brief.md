@@ -14,7 +14,7 @@ matrix_run_id: MTRX-W26-loop-runtime
 
 The center moved again. Agent teams now need to know whether the surrounding loop can find work, pick tools, run in a bounded workspace, preserve state, turn failures into evals, and expose enough evidence for another system to audit the run.
 
-This week the public signals lined up around that layer. Claude Code made MCP tool search context-aware by default. OpenAI's agent-improvement recipe ties traces, feedback, evals, labels, and Codex handoff into one repeatable flywheel. Vercel is packaging sandbox execution and durable workflow state for code agents. Hugging Face is turning resource discovery into a searchable agent layer. MCP security work is converging on default-deny tool policy. Agent benchmark researchers are auditing the tasks behind the scores.
+This catch-up lines up several runtime surfaces. Claude Code already made MCP tool search context-aware by default in January; June releases added operating controls. OpenAI's agent-improvement recipe ties traces, feedback, evals, labels, and Codex handoff into one repeatable flywheel. Vercel is packaging sandbox execution and durable workflow state for code agents. Hugging Face is turning resource discovery into a searchable agent layer. MCP security work is converging on default-deny tool policy. Agent benchmark researchers are auditing the tasks behind the scores.
 
 The practical read: the next useful agent product is a loop with a contract, not a chat surface with a longer prompt.
 
@@ -24,7 +24,7 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Source:** [Claude Code changelog](https://code.claude.com/docs/en/changelog), [Claude Code releases](https://github.com/anthropics/claude-code/releases)
 
-**Payload:** Claude Code enabled MCP tool search in auto mode when tool descriptions take more than 10% of the context budget. Nearby changes harden the local operating surface: closest `.claude/` settings win, subagent spawns are classifier-reviewed, and destructive git actions are blocked under improved auto-mode safety.
+**Payload:** Claude Code enabled MCP tool search in auto mode when tool descriptions take more than 10% of the context budget. The January v2.1.7 change deferred those descriptions. June v2.1.178 makes the nearest agent/workflow/output-style definition win on name collisions and reviews subagent spawns; v2.1.183 blocks specified destructive actions unless requested.
 
 **Mechanism:** The tool surface is becoming lazy-loaded and policy-checked. A runtime can no longer assume every tool description belongs in the prompt.
 
@@ -40,11 +40,14 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Transferable principle:** A large tool list is a data set. Treat it like one.
 
-**Falsification test:** If the selected tools are identical before and after search-first routing, the registry was already small enough or too weakly typed.
+**Falsification test:** On the same tasks and allowed tools, compare loaded tokens, completion rate, cost, and latency. Identical tool choices can still save context. Reject search-first if its lookup cost outweighs that saving or it loses needed tools.
 
 **Adoption ladder:** inventory tools -> add budget report -> enable search-first route -> add per-role allowlist -> record tool choice in run evidence.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W26-EARLY-01
+
 
 ### 2. OpenAI's improvement loop turns traces into the next work packet
 
@@ -56,7 +59,7 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Why this matters:** Agent teams often split the loop across logs, tickets, prompt files, and test suites. The recipe collapses those into a flywheel.
 
-**Reusable pattern:** Every failed agent run should have one of three exits: new eval, prompt patch, or product bug.
+**Reusable pattern:** Every reviewed failure should leave an eval, a patch, a bug, or an explicit hold with a reason.
 
 **Action surface:** `eval`, `workflow`, `run-evidence`
 
@@ -66,17 +69,20 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Transferable principle:** A trace without an action mapping is observability theater.
 
-**Falsification test:** If a trace cannot name the next artifact, the loop is recording symptoms with no learning path.
+**Falsification test:** Try the same repair with and without the trace-to-change record. If diagnosis and held-out regression coverage do not improve, simplify the paperwork. A reasoned hold is a valid exit.
 
 **Adoption ladder:** store traces -> classify failures -> convert two failures to evals -> wire eval into CI -> require a run id in follow-up tickets.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W26-EARLY-02
+
 
 ### 3. Loop engineering is the product spec for long-running agents
 
 **Source:** [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/), [O'Reilly Radar](https://www.oreilly.com/radar/loop-engineering/)
 
-**Payload:** The framing names the shift from prompt craft to loop design: trigger, context, worker, verifier, memory, escalation, budget, and stop rule.
+**Payload:** Osmani describes five loop pieces plus persistent memory. This brief proposes a contract around them: trigger, context, worker, verifier, memory, escalation, budget, and stop rule.
 
 **Mechanism:** The human moves up one layer. Instead of nudging the agent turn by turn, the product defines the loop that finds work and decides when to stop.
 
@@ -96,11 +102,14 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Adoption ladder:** name one loop -> add state file -> add verifier -> add budget -> add run record.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W26-EARLY-03
+
 
 ### 4. Durable code-agent infrastructure is getting packaged
 
-**Source:** [Vercel durable AI code agent guide](https://vercel.com/guides/how-to-build-a-durable-ai-code-agent), [Vercel Workflows](https://vercel.com/docs/workflow), [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox)
+**Source:** [Vercel durable AI code agent guide](https://vercel.com/kb/guide/how-to-build-a-durable-ai-code-agent-on-vercel), [Vercel Workflows](https://vercel.com/docs/workflow), [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox)
 
 **Payload:** Vercel's public guidance now treats code agents as long-running workflow systems: isolated microVM execution, retries, workflow state, and artifact handling.
 
@@ -118,15 +127,18 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Transferable principle:** The workspace is part of the model input. Pin it.
 
-**Falsification test:** If a run cannot be recreated from the task, tool surface, workspace ref, and artifact refs, the system is missing replay evidence.
+**Falsification test:** Recreate the environment and inject a retry. Check that artifacts survive and external effects are not duplicated. Matching refs alone cannot promise identical model outputs.
 
 **Adoption ladder:** isolate execution -> record workspace ref -> add retry metadata -> store artifacts -> add replay check.
 
-**Confidence:** Medium-high.
+**Confidence:** medium
+
+**Evidence:** MTRX-W26-EARLY-04
+
 
 ### 5. Agentic resource discovery is becoming its own layer
 
-**Source:** [Hugging Face: Agentic Resource Discovery](https://huggingface.co/blog/AgenticResourceDiscovery)
+**Source:** [Hugging Face: Agentic Resource Discovery](https://huggingface.co/blog/agentic-resource-discovery-launch)
 
 **Payload:** Hugging Face launched resource discovery around Skills, ML apps, and MCP servers, with a Discover Tool that lets agents search external capabilities.
 
@@ -138,17 +150,20 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Action surface:** `source-registry`, `tool-policy`, `scout`
 
-**Try this week:** Add a scout lane that reviews five external Skills or MCP servers and promotes only one into the allowed registry.
+**Try this week:** Add a scout lane that reviews five external Skills or MCP servers and recommends at most one for human registry approval. Zero is a valid result.
 
 **Systems map:** discovery query -> candidate resource -> trust check -> registry entry -> run evidence
 
 **Transferable principle:** Discovery without curation is dependency sprawl.
 
-**Falsification test:** If the same result wins under every task, the query is too generic or the ranking criteria are missing.
+**Falsification test:** Compare discovery with the current pinned tool on distinct tasks at fixed budget. Keep the pinned tool if discovery adds cost without coverage or quality. One resource may legitimately win several tasks.
 
 **Adoption ladder:** scout list -> trust rubric -> allowed registry -> pin versions -> record selected resource in each run.
 
-**Confidence:** Medium.
+**Confidence:** medium
+
+**Evidence:** MTRX-W26-EARLY-05
+
 
 ### 6. Benchmark audits are becoming part of eval engineering
 
@@ -170,15 +185,18 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Transferable principle:** The eval suite is a product dependency.
 
-**Falsification test:** If removing bad tasks does not move any conclusion, the suite may be stable; if it does, the gate needs audit status.
+**Falsification test:** Set defect and exclusion rules before scoring; report both the full and filtered suite. An unchanged ranking does not clear a broken task. Check whether the audit finds independently reproducible defects.
 
 **Adoption ladder:** inventory tasks -> audit sample -> tag defects -> quarantine failures -> require audit status in score reports.
 
-**Confidence:** Medium.
+**Confidence:** medium
+
+**Evidence:** MTRX-W26-EARLY-06
+
 
 ### 7. MCP security is moving toward default-deny tool governance
 
-**Source:** [IETF draft: MCP security considerations](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/), [Kong: MCP tool governance](https://konghq.com/blog/engineering/mcp-tool-governance)
+**Source:** [IETF draft: MCP security considerations](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/), [Kong: MCP tool governance](https://konghq.com/blog/engineering/mcp-tool-governance-security-meets-context-efficiency)
 
 **Payload:** The IETF draft catalogs MCP security concerns and mitigations. Kong's guidance pushes gateway-level filtering by actor, credential isolation, and default-deny access to tools.
 
@@ -196,11 +214,14 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Transferable principle:** Tool access is authorization, not convenience.
 
-**Falsification test:** If a low-trust role can still see high-impact tools after policy routing, discovery and access control are coupled incorrectly.
+**Falsification test:** Attempt a denied high-impact call directly with the low-trust role. It must fail even if the caller knows the tool name. Hiding a tool in discovery is a separate control.
 
 **Adoption ladder:** snapshot surface -> default deny -> role allowlist -> credential isolation -> drift gate.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W26-EARLY-07
+
 
 ## Reusable patterns
 
@@ -208,7 +229,7 @@ The practical read: the next useful agent product is a loop with a contract, not
 |---|---|---|
 | Loop contract | Addy Osmani, OpenAI, Vercel | Require trigger, state, worker, verifier, budget, and stop rule before expanding agent scope. |
 | Search-first tool surface | Claude Code, Hugging Face ARD | Defer tool descriptions until task context selects a shortlist. |
-| Trace-to-action mapping | OpenAI, LangChain | Every failed trace exits as eval, prompt patch, or product bug. |
+| Trace-to-action mapping | OpenAI, LangChain | Reviewed failures exit as eval, patch, bug, or reasoned hold. |
 | Benchmark audit | ABA, AgentProcessBench | Eval tasks get their own audit status before their scores gate product work. |
 | Default-deny MCP | IETF, Kong, Claude Code safety changes | Treat tool exposure as a role-scoped policy surface. |
 
@@ -225,9 +246,13 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 ## Action packets
 
+Proposed prototypes; the brief has not run these repo tests.
+
 ### Packet A: loop contract gate
 
 **Target:** procurement-negotiation-lab factory templates
+
+**Disposition:** prototype
 
 **Change:** Add required fields to task YAML: `trigger`, `state_artifact`, `worker_scope`, `verifier_scope`, `stop_rule`, `human_escalation`.
 
@@ -235,9 +260,15 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Why now:** The factory is creating many repos. The loop contract keeps each repo from becoming a pile of scripts.
 
+**Surface:** workflow, spec. **Expected benefit:** fewer tasks with an unstated stop condition.
+
+**Risk:** template churn on a small task. **Rollback:** restore the prior template. **Kill:** drop the required gate if it adds no missed-stop coverage.
+
 ### Packet B: eval audit sidecar
 
 **Target:** trace-to-eval-harness
+
+**Disposition:** prototype
 
 **Change:** Add `benchmark_audit.schema.json` and a sample audit for one existing packet fixture. Fields: task_id, source, defect_status, exclusion_reason, reviewer, last_checked.
 
@@ -245,9 +276,15 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Why now:** Recent benchmark-audit work says score movement can come from task defects. The portfolio already gates decisions on evals.
 
+**Surface:** eval, qa. **Expected benefit:** a gated score cannot silently include a known defective task.
+
+**Risk:** excluding hard tasks to improve a score. **Rollback:** restore the full report; keep exclusions visible. **Kill:** stop if independent review cannot reproduce the tagged defects.
+
 ### Packet C: MCP tool budget gate
 
 **Target:** mcp-security-lab and athena-site MCP server
+
+**Disposition:** prototype
 
 **Change:** Extend the tool-surface snapshot with estimated description tokens and allowed roles.
 
@@ -255,25 +292,41 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 **Why now:** Claude Code's default tells us context budget is now part of tool governance.
 
+**Surface:** tool-policy, runtime-adapter. **Expected benefit:** less loaded context at the same task completion rate.
+
+**Risk:** search hides a needed tool. **Rollback:** restore eager loading for that task. **Kill:** stop if lookup cost or failures exceed the saved context.
+
 ### Packet D: external resource scout lane
 
 **Target:** ai-field-brief
 
+**Disposition:** prototype
+
 **Change:** Add `ops/scout-resources/` entries for Skills, MCP servers, and agent resource catalogs. Include trust tier, owner, install path, last_checked, and promotion target.
 
-**Acceptance:** At least one promoted resource becomes a real action packet each brief.
+**Acceptance:** Each reviewed candidate has an evidence-backed disposition. Promote only when a testable action survives review; an empty promotion queue passes.
 
 **Why now:** Hugging Face ARD makes discovery a live surface. The brief should separate candidate discovery from adopted dependencies.
+
+**Surface:** source-registry, scout. **Expected benefit:** reviewed candidates have support before approval.
+
+**Risk:** pressure to promote weak dependencies. **Rollback:** leave candidates uninstalled. **Kill:** archive when no candidate changes a named task.
 
 ### Packet E: run-failure conversion drill
 
 **Target:** any active agent repo
 
-**Change:** Pick one failed run, then create one eval, one fix ticket, and one run-evidence note from the same trace.
+**Disposition:** prototype
 
-**Acceptance:** The three artifacts all cite the same run id.
+**Change:** Pick one failed run, then create an eval, a fix ticket, or a reasoned hold; link the choice from its run-evidence note.
+
+**Acceptance:** The chosen artifact cites the run id and a close condition; no duplicate ticket is required for an already tracked fault.
 
 **Why now:** OpenAI's loop recipe is only useful if failed traces create product work.
+
+**Surface:** eval, run-evidence. **Expected benefit:** one trace yields a reproducible close condition.
+
+**Risk:** busywork and duplicated tickets. **Rollback:** keep the run note and remove redundant artifacts. **Kill:** stop if the failure cannot be reproduced or linked to a decision.
 
 ## Scout radar
 
@@ -290,11 +343,11 @@ The practical read: the next useful agent product is a loop with a contract, not
 
 ## Watchlist
 
-1. Tool discovery may hide policy errors. Deferred loading should not bypass allowlists.
-2. Agent benchmark scores may get less comparable as scaffolds and harnesses vary.
-3. Sandboxes reduce blast radius, but workspace identity still has to be pinned in run evidence.
-4. Resource discovery creates supply-chain pressure: every external skill becomes dependency metadata.
-5. Loop automation can bury human review under a green status if stop rules are vague.
+1. Tool discovery may hide policy errors. Revisit when a direct denied-tool call succeeds or an allowlist changes.
+2. Agent benchmark scores may get less comparable as scaffolds vary. Revisit when a claimed gain lacks a matched harness and budget.
+3. Sandbox refs need a recovery test. Revisit when a retry loses artifacts or repeats an external effect.
+4. Resource discovery creates supply-chain pressure. Revisit before any discovered skill gains credentials or write access.
+5. Loop automation can bury human review under a green status. Revisit when a run crosses its budget or escalation limit without stopping.
 
 ## Sources reviewed
 

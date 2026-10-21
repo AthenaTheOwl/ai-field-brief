@@ -2,6 +2,11 @@
 
 Synthesize only from verified matrix cells.
 
+Read `VOICE.md` and `prompts/editorial_contract.md` first. Lead the field
+thesis with a concrete event the selected cells support. The connection
+between picks can remain a hypothesis. Give it no wider scope than the
+evidence earns, and keep the brief's dry builder voice.
+
 Produce:
 - strongest weekly thesis
 - top items
@@ -33,8 +38,9 @@ For each Top Signal, include all four fields:
   cell. Names the principle that generalizes beyond the source, with at
   least one concrete example of where else it applies.
 - **falsification_test** — from the `falsification_test` lens cell.
-  Names the specific observation or experiment that would prove the
-  pick's main claim wrong. If the claim is non-falsifiable, the field
+  Names an observation that distinguishes the pick's main claim from a
+  serious competing account. State the comparison and what each outcome
+  would support. If the claim is non-falsifiable, the field
   records the prose `non-falsifiable; this is a definitional or
   normative claim`.
 - **adoption_ladder** — constructed by the synthesis editor at Pass 4.

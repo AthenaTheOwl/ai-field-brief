@@ -44,7 +44,7 @@ sources_reviewed:
     url: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
     disposition: top_signal
   - label: "Scanning the Harness"
-    url: "https://arxiv.org/abs/2609.07360"
+    url: "https://arxiv.org/abs/2609.07360v1"
     disposition: top_signal
   - label: "MCPSEC: description-only detection of indirect prompt injection in MCP servers"
     url: "https://arxiv.org/abs/2609.10854"

@@ -49,7 +49,7 @@ Per DEC-CDCP-020 + DEC-MTRX-007 (this DEC), every Top Signal in the published di
 These are not optional. A Top Signal without all 4 fields is not a Top
 Signal; it goes in the Archive notes section. Each Top Signal also
 carries a `Confidence` label, an `Evidence` line whose cell ids resolve
-against the sibling `matrix/cells.yaml`, and an action surface that
+against sibling cell-bearing `matrix/*.yaml` files, and an action surface that
 resolves against `config/action_surface_taxonomy.yaml`.
 
 `scripts/validate_brief_fields.py` enforces all of the above from
@@ -167,6 +167,7 @@ python scripts/validate_roles.py
 python scripts/validate_tools.py
 python scripts/validate_policies.py
 python scripts/validate_brief_fields.py
+python scripts/validate_editorial_evidence.py
 python scripts/validate_matrix_cells.py
 ```
 

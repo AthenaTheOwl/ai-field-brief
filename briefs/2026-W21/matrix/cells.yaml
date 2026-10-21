@@ -1,0 +1,176 @@
+matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 5
+  cells_verified_passed: 5
+cells:
+- id: MTRX-W21-EARLY-01
+  matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+  source_item_id: editorial-w21-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Stainless makes the OpenAPI-to-SDK generation tooling
+
+    behind the Anthropic Python and TypeScript clients. OpenAI is also a
+
+    Stainless customer. Public confirmation either way on the continuing
+
+    OpenAI contract has not arrived; that confirmation, when it comes, is
+
+    its own signal.
+
+    [anthropic.com/news/anthropic-acquires-stainless](https://www.anthropic.com/news/anthropic-acquires-stainless)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/anthropic-acquires-stainless
+    quote_or_span: 'May 18 acquisition announcement: Stainless generates official Anthropic SDKs. It does
+      not document a change in retry/error defaults.'
+    ref_type: chunk
+  - uri: https://github.com/anthropics/anthropic-sdk-typescript/blob/main/src/core/error.ts
+    quote_or_span: APIError.error stores the errorResponse body; APIError.generate selects status-specific
+      subclasses. Current source inspected at blob fd78c0d5ffe31fd86974d71493b4ea0cd0810e0d; local fetch
+      fixture is a proposed SDK regression test, not a live API test.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Anthropic acquires Stainless — pin your SDK versions this week'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W21-EARLY-02
+  matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+  source_item_id: editorial-w21-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Three deployment headlines between May 14 and May 19.
+
+    The Gates partnership combines $200M in grants, usage credits, and
+
+    technical support over four years. PwC announced a rollout across
+
+    core functions. KPMG says its 276,000+ employees will gain access;
+
+    that is an access commitment, not a count of active users.
+
+    [anthropic-kpmg](https://www.anthropic.com/news/anthropic-kpmg) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership)
+    · [pwc-expanded-partnership](https://www.anthropic.com/news/pwc-expanded-partnership)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/anthropic-kpmg
+    quote_or_span: 'May 19 opening: all 276,000+ employees will gain access; this is announced access,
+      not active use.'
+    ref_type: chunk
+  - uri: https://www.anthropic.com/news/gates-foundation-partnership
+    quote_or_span: 'May 14 opening: joint support includes grants, Claude credits, and technical support
+      over four years.'
+    ref_type: chunk
+  - uri: https://www.anthropic.com/news/pwc-expanded-partnership
+    quote_or_span: May 14 rollout announcement. No incident-playbook deficiency, legal notification deadline
+      or questionnaire percentage is measured.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## KPMG, PwC, Gates in five days — build the AI incident playbook before someone asks
+      for it'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W21-EARLY-03
+  matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+  source_item_id: editorial-w21-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Anthropic published an update on a collaborative
+
+    effort to secure critical software infrastructure across major
+
+    technology and financial firms.
+
+    [research/glasswing-initial-update](https://www.anthropic.com/research/glasswing-initial-update)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/glasswing-initial-update
+    quote_or_span: 'May 22, 2026 opening and Adapting to a new phase of cybersecurity: discovery/disclosure/patch
+      gap, shorter patch cycles, hardened configurations and comprehensive logs. The procurement checklist
+      and response-time targets are editorial proposals, not reported Glasswing results.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Project Glasswing — add five items to your AI vendor review'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W21-EARLY-04
+  matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+  source_item_id: editorial-w21-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Google launched Gemini 3.5 Flash to general availability
+
+    and made it the default in the Gemini app and AI Mode in Search.
+
+    That app default does not migrate a pinned API route or its contract.
+
+    [simonwillison.net coverage](https://simonwillison.net/2026/May/19/gemini-35-flash/)'
+  source_refs:
+  - uri: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/
+    quote_or_span: 'May 19 launch; Personal AI agents and Available today: Flash 3.5 default in Gemini
+      app and AI Mode, API generally available. App default is distinct from a pinned API route. Worksheet
+      rates are deliberately fields to fill from dated contract/API prices.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Gemini 3.5 Flash GA — rerun your unit economics this week'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W21-EARLY-05
+  matrix_run_id: MTRX-W21-EDITORIAL-2026-10-21
+  source_item_id: editorial-w21-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Simon published annotated slides from a PyCon US
+
+    lightning talk covering November 2025 through May 2026.
+
+    [5-minute-llms](https://simonwillison.net/2026/May/19/5-minute-llms/)'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/19/5-minute-llms/
+    quote_or_span: May 19 author introduction and annotated PyCon lightning-talk slides, covering the
+      November 2025 coding-agent inflection and subsequent models. No team decision-quality experiment
+      reported.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Simon Willison''s *Last Six Months in LLMs* — forward to one specific person'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

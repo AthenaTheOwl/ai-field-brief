@@ -22,14 +22,16 @@ cells:
     source_item_id: src-w32-agent-pr-coverage
     lens_id: eval
     mode: critique
-    content: "A study of 4,882 agent-authored pull requests found that existing tests executed only 27 percent of changed Python lines and executed none of the changed lines in 64.8 percent of Python pull requests, so suite-level green status is weak evidence for an agent patch."
+    content: "The study classifies 4,882 agent-authored pull requests; executable coverage comes from 213 Java and 1,664 Python PRs that built and instrumented successfully. Existing tests execute 27 percent of changed Python lines and none in 64.8 percent of those Python PRs. Coverage gain from agent tests uses the 605 Python Code + Tests subset. Coverage shows execution, not assertion quality."
     source_refs:
       - uri: "https://arxiv.org/abs/2607.18057"
         quote_or_span: "4,882 pull requests; 27.0 percent Python changed-line coverage; 64.8 percent with zero existing-test coverage; error handling most frequently missed"
         ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: July 20 late-discovered preprint; 4,882 is the test-change dataset, 1,664 the runnable Python coverage subset, and 605 the paired Python Code + Tests subset. Buildability limits selection."
 
   - id: MTRX-W32-BOUNDARY-REGRESSION
     matrix_run_id: MTRX-W32-runtime-seams

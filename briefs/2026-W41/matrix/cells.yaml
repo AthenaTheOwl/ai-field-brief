@@ -402,7 +402,7 @@ cells:
     faithfulness_status: passed
     status: verified
     warnings:
-      - "The setting is added, not defaulted: the note says nothing about changing the default, so a hook without it still lets the action through on failure. That reading is the brief's inference from the wording."
+      - "The note adds an explicit fail-closed setting but does not state the unset default. A forced-failure test is needed before claiming how an unconfigured hook behaves."
   - id: MTRX-W41-GUARD-GAPS
     matrix_run_id: MTRX-W41-clean-exit-failures
     source_item_id: src-w41-claude-code-2-1-289-to-296

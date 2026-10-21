@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W32-runtime-seams
 
 ## Field thesis
 
-In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored changes, the existing suite never executed a changed line. The week's patch notes supply the operational version of the same warning. A worktree could edit safely while its shell reached the main checkout. A guardrail could fire while its result vanished from the trace. A checkpoint could expire while a backend still returned it. The hosted runtimes arrived with longer sessions, persistent files, and more places for those seams to hide. Green status is useful only when the check crosses the boundary where the failure can occur.
+In 64.8 percent of the 1,664 Python pull requests with executable coverage results, the existing suite never executed a changed line. The broader study classified test changes in 4,882 agent-authored pull requests. The week's patch notes supply the operational version of the same warning. A worktree could edit safely while its shell reached the main checkout. A guardrail could fire while its result vanished from the trace. A checkpoint could expire while a backend still returned it. The hosted runtimes arrived with longer sessions, persistent files, and more places for those seams to hide. Green status is useful only when the check crosses the boundary where the failure can occur.
 
 ## Top signals
 
@@ -20,9 +20,9 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
 
 **Source:** [Test Coverage Analysis of Agentic Pull Requests](https://arxiv.org/abs/2607.18057)
 
-**Payload:** The authors reconstructed 4,882 agent-generated pull requests across Java and Python. Existing tests executed 61.5 percent of changed executable Java lines and 27.0 percent of changed Python lines. In 64.8 percent of Python pull requests, existing tests executed none of the changed lines. Agent-written tests improved coverage in 22.5 percent of Python code-plus-test pull requests, and error handling had the highest miss rates.
+**Payload:** The July 20 preprint, admitted here as a late-discovered study, reconstructed 4,882 agent-generated pull requests across Java and Python. Coverage ran on the subset the authors could build and instrument: 213 Java and 1,664 Python pull requests. Existing tests executed 61.5 percent of changed executable Java lines and 27.0 percent of changed Python lines. In 64.8 percent of those Python pull requests, existing tests executed none of the changed lines. Agent-written tests improved coverage in 22.5 percent of the 605 Python code-plus-test pull requests; error handling had the highest miss rates. Buildability limits which repositories these coverage figures describe.
 
-**Mechanism:** A suite can stay green because its test graph never reaches the new branch. Counting test files or successful cases measures activity around the patch; differential coverage measures contact with it.
+**Mechanism:** A suite can stay green because its test graph never reaches the new branch. Coverage shows execution; a test that reaches the line without a useful assertion can still miss the defect. Counting test files or successful cases measures activity around the patch; differential coverage measures contact with it.
 
 **Why it matters:** The factory's gates currently answer whether a command passed. For higher autonomy, they also need to answer whether the command exercised the changed behavior, especially error paths and terminal states.
 
@@ -36,7 +36,7 @@ In 64.8 percent of the Python pull requests in a study of 4,882 agent-authored c
 
 **Transferable principle:** Verification must touch the object under review. Data-pipeline reconciliation and financial control sampling use the same rule.
 
-**Falsification test:** If suite pass/fail predicts hidden acceptance as well as changed-line coverage across the same cohort, the extra metric adds little.
+**Falsification test:** If changed-line coverage adds no predictive value over suite status and targeted behavior probes on a held-out cohort, keep it diagnostic. A high coverage score beside missed mutants would challenge its use as an acceptance gate.
 
 **Adoption ladder:**
   - Minimum viable: Report changed-line coverage for one Python task class.
@@ -104,7 +104,7 @@ The release notes name the affected paths and fixes; the local fixture still nee
 
 **Transferable principle:** Correct components can form an incorrect transaction. Payment workflows and distributed jobs use the same ordering tests.
 
-**Falsification test:** Property tests over reordered events cannot produce duplicate completion, lost guardrail evidence, or post-failure work.
+**Falsification test:** Any generated event order that produces duplicate completion, lost guardrail evidence, or post-failure work breaks the lifecycle contract. Retain that sequence as a regression case.
 
 **Adoption ladder:**
   - Minimum viable: One deterministic failure-and-resume fixture.
@@ -138,7 +138,7 @@ High for the defects; medium for the local analogy until the event-order fixture
 
 **Transferable principle:** State placement and compute placement are separate choices. Build systems and notebook platforms gain efficiency from the same split.
 
-**Falsification test:** If moving between compute classes loses provenance, permissions, or deterministic file state, the portability claim fails.
+**Falsification test:** If moving between compute classes loses provenance, widens permissions, or changes pinned file bytes, the portability contract fails. Compare handoff cost with keeping the whole task in one sandbox before adding a router.
 
 **Adoption ladder:**
   - Minimum viable: Produce the operation and artifact contract for one task.
@@ -172,7 +172,7 @@ High for the preview's documented shape; low for production reliability until pu
 
 **Transferable principle:** Long duration turns recovery into normal operation. Data migrations and supply-chain simulations need the same restart contract.
 
-**Falsification test:** A resumed run differs from the uninterrupted baseline without an attributed external input change.
+**Falsification test:** For the deterministic fixture, a resumed run produces different final bytes or broader authority than the uninterrupted baseline. For live-model runs, declare semantic tolerances; identical output is a separate requirement.
 
 **Adoption ladder:**
   - Minimum viable: Synthetic stop and resume over one checkpoint.
@@ -206,7 +206,7 @@ High for the service limits; medium for the pattern until a local failure-inject
 
 **Transferable principle:** Sequence risk differs from action risk. Procurement approvals and privileged-access systems inspect cumulative authority for the same reason.
 
-**Falsification test:** The batch hook cannot catch a cumulative violation that per-call checks miss.
+**Falsification test:** The declared policy sees the full proposed set but admits the seeded cumulative violation. A hold caused only by a per-call violation would not show that batch inspection added value.
 
 **Adoption ladder:**
   - Minimum viable: One cumulative-write fixture with deterministic verdicts.
@@ -240,7 +240,7 @@ High for the release surface; medium for the model-risk classifier until indepen
 
 **Transferable principle:** Storage adapters implement behavior, not plumbing. Cache, queue, and artifact-store swaps need semantic parity tests.
 
-**Falsification test:** Both adapters return the same visible rows while reconstructing different resumed state.
+**Falsification test:** Either adapter returns expired state or reconstructs a different checkpoint under the same seeded clock and history. Matching visible rows alone cannot establish resumed-state parity.
 
 **Adoption ladder:**
   - Minimum viable: Put, read, expire, and reconstruct one chain.

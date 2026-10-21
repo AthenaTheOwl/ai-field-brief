@@ -64,6 +64,7 @@ verdict.
 ## How a run looks
 
 1. The verifier reads the matrix-run record and the cell set.
+   It reads `prompts/editorial_contract.md` before checking claim scope.
 2. For each cell, the verifier reads the lens prompt, the source
    body span the cell cites, and the cell answer. The verifier asks
    the seven faithfulness questions from

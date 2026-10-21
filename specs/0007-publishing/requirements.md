@@ -576,3 +576,24 @@ Acceptance:
 - The gate and `tests/scripts/test_cadence_check.py` run in
   `.github/workflows/ci.yml` with no `continue-on-error: true`.
 
+### R-PUB-033: canonical issues retain checkable evidence bindings
+
+WHEN a canonical brief is published or revised, THE SYSTEM SHALL check
+its explicit Evidence references against faithfulness-passed cells with
+nonempty content and public source locators, including older layouts.
+
+Owner role: `science.proof-gate-runner`.
+
+Acceptance:
+- `scripts/validate_editorial_evidence.py` checks every `YYYY-WNN` issue
+  and fails for a Top signal missing its Evidence line, missing matrices, dangling ids,
+  failed or rejected cells, empty content and missing source references.
+- Legacy section layouts are checked without imposing modern headings;
+  fenced code examples cannot stand in for publication evidence.
+- Cited references carry a public HTTP URI and a nonempty source span or
+  locator; placeholder spans fail. The gate does not assert entailment.
+- Rerun evidence and superseded cuts retain their historical status.
+- A current evidence backfill records its new review basis without
+  changing original issue windows or original run and event records.
+- CI runs the gate and its positive and negative regression tests.
+

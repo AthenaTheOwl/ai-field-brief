@@ -9,6 +9,10 @@ Output a 2-3 sentence answer naming:
 
 Mode: interpretive
 
+Read `prompts/editorial_contract.md`. Keep the observed local change
+distinct from the proposed wider loop. Name the link that has evidence
+and the link that still needs a test.
+
 Refuse:
 - Naming a system without evidence in the source
 - Generalizing past what the source supports

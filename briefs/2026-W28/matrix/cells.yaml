@@ -1,0 +1,253 @@
+matrix_run_id: MTRX-W28-late-legible-harness
+generated_at: 2026-10-21T20:07:02+00:00
+source_items:
+- W28-LATE-OPENAI-001
+- W28-LATE-SDK-001
+- W28-LATE-COWORK-001
+- W28-LATE-WORK-001
+- W28-LATE-LC-001
+- W28-LATE-LC-002
+- W28-LATE-SEC-001
+- W28-LATE-CAPTURE-001
+- W28-LATE-CAPTURE-002
+- W28-LATE-SQLITE-001
+- W28-LATE-MEM-001
+lenses:
+- economics
+- eval
+- memory
+- product
+- runtime
+- security
+- source-arbitrage
+- watchlist
+- workflow
+cells:
+- id: W28-LATE-OPENAI-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-OPENAI-001
+  lens_id: economics
+  mode: interpretive
+  content: OpenAI introduced GPT-5.6 Sol, Terra, and Luna on July 9 with launch input/output prices per million
+    tokens of $5/$30, $2.50/$15, and $1/$6. The fivefold per-token price ratio motivates a paired accepted-task
+    cost test; it does not establish a fivefold task-cost saving.
+  source_refs:
+  - uri: https://openai.com/index/gpt-5-6/
+    quote_or_span: 'Availability and pricing: generation and tier distinction; Sol $5 input/$30 output, Terra $2.50/$15,
+      Luna $1/$6 per 1M tokens. The page separately records later July 30 and August 21 price changes.'
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-SDK-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-SDK-001
+  lens_id: runtime
+  mode: extractive
+  content: OpenAI Agents SDK v0.18.1, published July 9, 2026, added GPT-5.6 model defaults and migrated examples.
+  source_refs:
+  - uri: https://github.com/openai/openai-agents-python/releases/tag/v0.18.1
+    quote_or_span: 'Release published 2026-07-09T23:38:36Z; feat: add GPT-5.6 model defaults and migrate examples,
+      PR 3774.'
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-COWORK-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-COWORK-001
+  lens_id: workflow
+  mode: interpretive
+  content: Anthropic announced a phased web/mobile Cowork beta starting with Max users, with persistent background
+    and scheduled work. Its separate study classified 1.2 million capped-rate sampled sessions from May 11-31; business
+    operations represented 33.4 percent and content creation 16.4 percent of sampled sessions.
+  source_refs:
+  - uri: https://claude.com/resources/articles/cowork-web-mobile
+    quote_or_span: 'July 7 announcement: beta rollout over the next several weeks, starting with Max; scheduled
+      tasks and work while devices are offline.'
+    ref_type: url
+  - uri: https://claude.com/resources/articles/how-people-are-using-claude-cowork
+    quote_or_span: 'What the data shows and methodology: 1.2 million sampled sessions, May 11-31; capped sessions
+      per hour, not fixed traffic percentage; 33.4% business operations and 16.4% content creation.'
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-WORK-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-WORK-001
+  lens_id: product
+  mode: extractive
+  content: OpenAI's July 9 GPT-5.6 announcement places the family in ChatGPT Work and describes presentations, documents,
+    spreadsheets, and interactive artifacts as supported work surfaces.
+  source_refs:
+  - uri: https://openai.com/index/gpt-5-6/
+    quote_or_span: 'End-to-end knowledge work and Availability and pricing: editable presentations, documents, spreadsheets,
+      interactive visualizations, and GPT-5.6 in ChatGPT Work.'
+    ref_type: url
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-LC-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-LC-001
+  lens_id: eval
+  mode: interpretive
+  content: LangChain's July 8 Nemotron 3 Ultra playbook holds the model and vendor-recommended generation settings
+    fixed while changing prompts, tool descriptions, and middleware. Its cited 52.8-to-66.5 GPT-5.2-Codex Terminal-Bench
+    result belongs to an earlier February experiment, not the new Nemotron run.
+  source_refs:
+  - uri: https://www.langchain.com/blog/tuning-the-harness-not-the-model-a-nemotron-3-ultra-playbook
+    quote_or_span: 'The harness is the part you control: earlier GPT-5.2-Codex 52.8 to 66.5; Nemotron model fixed
+      and generation settings held at vendor-recommended defaults.'
+    ref_type: url
+  - uri: https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering
+    quote_or_span: 'February 17, 2026; Experiment Setup: changed harness only, kept GPT-5.2-Codex fixed; 52.8 to
+      66.5 on Terminal-Bench 2.0.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-LC-002
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-LC-002
+  lens_id: workflow
+  mode: interpretive
+  content: LangChain describes mining traces, curating evals, and running improvement experiments that can update
+    the harness, weights, or memory. A local comparison still needs held-out cases and an equal-budget baseline.
+  source_refs:
+  - uri: https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem
+    quote_or_span: 'July 7: practical recipe mines data, curates evals, and runs experiments; traces feed harness
+      engineering, fine-tuning, and contextual memory.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-SEC-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-SEC-001
+  lens_id: security
+  mode: critique
+  content: AgentRedBench reports 215 scenarios over 24 integrations and eight models, with no-guard attack success
+    from 32 to 81 percent. Its learned AgentRedGuard reduces panel ASR from 69.9 to 2.4 percent at 0.37 percent
+    false positives. These are benchmark estimates, not a deterministic authorization guarantee.
+  source_refs:
+  - uri: https://arxiv.org/html/2606.02240v1
+    quote_or_span: 'Abstract; sections 4-5: 215 underspecified-authorization scenarios, 24 integrations, eight models;
+      32%-81% no-guard ASR; learned integration-diverse guard; panel ASR 69.9% to 2.4%, 0.37% false positives.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-CAPTURE-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-CAPTURE-001
+  lens_id: source-arbitrage
+  mode: critique
+  content: The asgeirtj archive published July 10 commits adding files labeled GPT-5.6 ChatGPT and Codex instructions,
+    and July 9-10 commits tracked the Claude Code doctor skill by version. These commit records establish archive
+    publication, not vendor authenticity.
+  source_refs:
+  - uri: https://github.com/asgeirtj/system_prompts_leaks/commit/693b5e102df3b1e1a25808a2b6add9cba15bcba7
+    quote_or_span: 'Commit dated 2026-07-10: Add ChatGPT GPT-5.6 system prompt (Sol, extra high); feature GPT-5.6
+      ChatGPT + Codex in README.'
+    ref_type: url
+  - uri: https://github.com/asgeirtj/system_prompts_leaks/commit/684f4c0e18403cb6505887d65f9c94e8a86d8121
+    quote_or_span: 'Commit dated 2026-07-10: Add GPT-5.6 Codex system prompt (shared by Sol, Terra, and Luna variants).'
+    ref_type: url
+  - uri: https://github.com/asgeirtj/system_prompts_leaks/commit/693410a2a1a157f59c2a281768c1a21b7e0ae12f
+    quote_or_span: 'Commit dated 2026-07-10: Update Claude Code doctor skill (2.1.206).'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-CAPTURE-002
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-CAPTURE-002
+  lens_id: watchlist
+  mode: critique
+  content: A contributor branch of the x1xhlol archive updated files labeled Claude Sonnet 5 instructions/tools
+    on July 6. Main merged that contribution July 8. The metadata establishes file history, not authenticated vendor
+    instructions.
+  source_refs:
+  - uri: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/commit/4cd8fa172c372e5b0538c47eef411dba1ae148f7
+    quote_or_span: 'Commit dated 2026-07-06: Update Claude Sonnet 5.txt.'
+    ref_type: url
+  - uri: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/commit/32f76a70c396009482c8b482fb5cb916d7919c03
+    quote_or_span: 'Commit dated 2026-07-06: Rename tool_descriptions_raw.txt to Claude Sonnet 5 Tools.txt.'
+    ref_type: url
+  - uri: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/commit/570364ce8146b24061a7e9ac43d3dc30c7e0f6a4
+    quote_or_span: 'Merge commit dated 2026-07-08: Add Claude Sonnet 5 system prompt along with Tools instructions,
+      PR 476.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-SQLITE-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-SQLITE-001
+  lens_id: workflow
+  mode: interpretive
+  content: Simon Willison released sqlite-utils 4.0 July 7 with migrations, nested transactions, and compound foreign
+    keys. He dates the library design to 2018 and describes executable repro scripts and fixes from model-assisted
+    review before release. The account is maintainer evidence, not a controlled workflow comparison.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jul/7/sqlite-utils-4/
+    quote_or_span: 'Opening feature list; transaction discussion dates design to 2018; Claude Fable 5 helped a lot:
+      review scratch scripts, release blockers, and linked fix PR worked through before stable release.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+- id: W28-LATE-MEM-001
+  matrix_run_id: MTRX-W28-late-legible-harness
+  source_item_id: W28-LATE-MEM-001
+  lens_id: memory
+  mode: interpretive
+  content: OpenWiki Brains, announced July 10, expands the local wiki to proactive personal memory from configured
+    connectors. Its documented substrate is plain Markdown; version control, provenance, expiry, and accountable
+    review are proposed adoption controls rather than established product guarantees.
+  source_refs:
+  - uri: https://www.langchain.com/blog/introducing-openwiki-brains-general-purpose-wiki-memory-for-agents-general-purpose-wiki-memory-for-agents
+    quote_or_span: 'July 10, 2026; Personal Brain, connectors, scheduled local refresh, and Markdown first: plain
+      Markdown files visible on the filesystem.'
+    ref_type: url
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Current editorial backfill reviewed 2026-10-21 against linked original sources; this does not assert historical
+    verification on the 2026-07-11 issue date.
+summary:
+  cells_produced: 11
+  cells_verified_passed: 11

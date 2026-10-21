@@ -45,12 +45,21 @@ top-to-bottom before starting. Key rules:
 
 - One brief per ISO week. If the folder exists, halt and ask the
   human whether to overwrite or append.
+- An explicit request to revise existing issues authorises the named
+  editorial pass. Keep the original issue window and original run logs;
+  record current evidence backfills as current reviews.
+- Read `VOICE.md` and `prompts/editorial_contract.md` before drafting.
+  Reasoning forms help inspect a claim; they do not replace the brief's
+  dry builder voice or require another writer's headings and anecdotes.
 - Source 403s and rate-limits land in `meta.yaml` as recorded
   failures; one bad source does not block the pass.
 - The opening reflection names a pattern; the picks earn their
   place with comment, not link-dumps.
 - Voice lint runs against the final brief and exits clean before
   publish.
+- `scripts/validate_editorial_evidence.py` checks evidence references
+  across all canonical issues. Source faithfulness still requires reading
+  the claim against the source.
 
 ## Scripts
 

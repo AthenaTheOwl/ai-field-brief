@@ -61,7 +61,7 @@ sources_reviewed:
     url: "https://arxiv.org/abs/2609.17708"
     disposition: top_signal
   - label: "Agora: Git as Shared Memory for Collective AutoResearch"
-    url: "https://arxiv.org/abs/2609.18094"
+    url: "https://arxiv.org/abs/2609.18094v2"
     disposition: top_signal
   - label: "Dream-RSI: Recursive Self-Improvement through Evolving Worlds"
     url: "https://arxiv.org/abs/2609.14858"

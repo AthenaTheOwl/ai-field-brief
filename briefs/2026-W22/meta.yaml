@@ -41,6 +41,8 @@ sweep:
   failed: 36
 matrix_run_id: MTRX-W22-massive-rerun
 
+# Historical run declarations, preserved as reported. For the retained
+# artifact inventory, use editorial_review below.
 matrix:
   cells_produced: 2133              # 2112 vol. 4 + 21 vol. 5 Pass 4
   cells_verified: 2015              # 1994 vol. 4 + 21 vol. 5 Pass 4
@@ -56,6 +58,14 @@ matrix:
     - transferable_principle
     - falsification_test
   artifact_path: briefs/2026-W22/matrix/cells.yaml
+
+editorial_review:
+  reviewed_at: 2026-10-21
+  retained_original_cells: 1984
+  retained_original_passed_labels: 1984
+  current_review_cells: 7
+  current_review_artifact: briefs/2026-W22/matrix/editorial-review-2026-10-21.yaml
+  scope: Retained-count reconciliation and seven current signal reviews; original cell stream and historical run declarations preserved, without rechecking all 1984 labels.
 
 # Per-lane sweep counts. The full source-by-source table for the rerun
 # lives next to the batch artifacts under briefs/2026-W22-rerun/matrix/.

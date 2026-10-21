@@ -24,9 +24,9 @@ Top Signals and systems-thinking treatment unchanged from vol. 5. -->
 
 ## Field thesis
 
-Six unrelated stories this week shipped the same artifact: a policy file, a budget cap, a tiered ladder, an intake rubric, or an outbound guard around the model. curl's pressure post on more than one AI-assisted report per day. SQLite's AGENTS.md rejecting agentic code patches. Anthropic's Glasswing report: >10,000 high/critical findings against vetted partners, with the patch pipeline now the bottleneck. Cursor's three-tier Auto-review ladder. Vercel's team-wide provider allowlist with BYOK enforcement. Microsoft's Copilot Cowork exfiltration via agent-composed external images. And underneath all of it, Anthropic's Series H: $965B against a $47B run rate, almost entirely enterprise coding-agent token burn.
+Several stories in this catch-up describe the same artifact: a policy file, a budget cap, a tiered ladder, an intake rubric, or an outbound guard around the model. curl's pressure post on more than one AI-assisted report per day. SQLite's AGENTS.md rejecting agentic code patches. Anthropic's Glasswing report: >10,000 high/critical findings against vetted partners, with the patch pipeline now the bottleneck. Cursor's three-tier Auto-review ladder. Vercel's team-wide provider allowlist with BYOK enforcement. Microsoft's Copilot Cowork exfiltration via agent-composed external images. And underneath all of it, Anthropic's Series H: $965B against a $47B run rate, with no revenue mix disclosed in that headline.
 
-Pick one agent surface this week and ship its policy ladder: allowlisted tier, sandboxed tier, classifier-routed tier, human-prompt tier. Put a dollar cap on top. Cursor productized exactly this shape in 2.1.154 (`/effort xhigh`, Auto-review); Vercel shipped the gateway-side BYOK counterpart; Anthropic's dynamic workflows make the budget cap a parameter, not a footnote. Every pick below sits on top of the same move.
+Pick one agent surface this week and ship its policy ladder: allowlisted tier, sandboxed tier, classifier-routed tier, human-prompt tier. Put a dollar cap on top. Cursor shipped Auto-review; Claude Code v2.1.154 added effort and workflow controls; Vercel shipped the gateway-side BYOK counterpart; Anthropic's dynamic workflows make the budget cap a parameter, not a footnote. Every pick below sits on top of the same move.
 
 ## Vol. 4 → Vol. 5 changelog
 
@@ -62,10 +62,10 @@ bar.
 
 **Source:** [Anthropic Glasswing initial update](https://www.anthropic.com/research/glasswing-initial-update) · [Simon Willison on curl pressure](https://simonwillison.net/2026/May/26/the-pressure/) · [SQLite AGENTS.md](https://simonwillison.net/2026/May/27/sqlite-agents/) · [Simon Willison on Armin Ronacher](https://simonwillison.net/2026/May/24/armin-ronacher/)
 
-**Payload:** Anthropic's Project Glasswing report disclosed >10,000
+**Payload:** Anthropic reports >10,000
 high/critical vulnerabilities across ~50 partners running Claude
 Mythos Preview against critical infrastructure — including 2,000
-bugs at Cloudflare and 271 Firefox vulnerabilities at Mozilla
+bugs at Cloudflare (400 high/critical) and 271 Firefox vulnerabilities at Mozilla
 (roughly 10x prior testing). In the same week Daniel Stenberg
 reported curl is now receiving more than one AI-assisted security
 report per day on average (4-5x the 2024 rate, 2x 2025). SQLite
@@ -75,15 +75,7 @@ Ronacher, quoted by Willison, named the failure mode at the input
 side: AI-reworded GitHub issues lose the reporter's own observational
 detail and become "inaccurate but full of confidence."
 
-**Mechanism:** Agent-assisted vulnerability discovery and report
-drafting have lowered the unit cost of producing a security report
-by roughly an order of magnitude on each axis (Glasswing on the
-finding side, the curl deluge on the submission side). Patch
-pipelines, CVE coordination, and maintainer attention have not
-scaled. Glasswing's own language — that the bottleneck "has moved
-to verify/disclose/patch" — names the shape; SQLite's policy and
-Ronacher's complaint about reworded issues describe the contract
-shifts maintainers are writing in response.
+**Mechanism:** Anthropic reports faster discovery; curl reports more submissions. Neither supplies a comparable cost-per-report series. More findings can still overload verify/disclose/patch capacity. SQLite's intake policy asks for the reproducible artifact at that boundary.
 
 **Why it matters:** Maintainers stopped arguing about AI submissions and started shipping intake policies; the bar is a reproducer. Anything without one goes to a separate triage queue with its own SLA.
 
@@ -107,14 +99,7 @@ and (c) which queue agent-submitted work lands in with which SLA.
 Two weeks: write it, link it from the contributor docs, point new
 agent-authored submissions at it.
 
-**Systems map:** The four signals expose a queue-imbalance: agent
-generation has compressed the cost of producing a security report
-by an order of magnitude on each axis, while patch, triage, and CVE
-coordination scale linearly in maintainer-hours. The pattern recurs
-wherever a generative process feeds a verification process priced in
-human attention; SQLite and Armin Ronacher name the dual control
-surface (intake contracts that demand verifiable artifacts) once the
-upstream pipe goes generative.
+**Systems map:** Finding volume -> reproduced issue -> disclosure -> patch -> deployed fix. Count each queue separately. The reported tenfold finding gains do not establish a tenfold cost reduction in report writing.
 
 **Transferable principle:** When a generative process feeds a
 verification process, the binding constraint moves to the verifier
@@ -163,6 +148,8 @@ contract.
 
 <!-- Evidence: MTRX-W22-anthropic-glasswing-source_gist, MTRX-W22-anthropic-glasswing-mechanism_extraction, MTRX-W22-anthropic-glasswing-adoption_action, MTRX-W22-anthropic-glasswing-governance_surface, MTRX-W22-curl-pressure-source_gist, MTRX-W22-curl-pressure-mechanism_extraction, MTRX-W22-curl-pressure-reusable_pattern, MTRX-W22-curl-pressure-adoption_action, MTRX-W22-sqlite-agents-md-source_gist, MTRX-W22-sqlite-agents-md-reusable_pattern, MTRX-W22-sqlite-agents-md-governance_surface, MTRX-W22-armin-ai-issues-source_gist, MTRX-W22-armin-ai-issues-adoption_action, MTRX-W22-armin-ai-issues-governance_surface, MTRX-W22-glasswing-curl-sqlite-armin-systems_thinking, MTRX-W22-glasswing-curl-sqlite-armin-transferable_principle, MTRX-W22-glasswing-curl-sqlite-armin-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-01
+
 ---
 
 ### 2. Anthropic Series H + $47B run-rate + the PMF post — the AI-tooling line item is a consumption line
@@ -178,14 +165,7 @@ found product-market fit through enterprise coding agents that
 well-compensated professionals," with the pricing moves and observed
 spend patterns as the evidence.
 
-**Mechanism:** Run-rate annualizes a single month, so the 5x is the
-trajectory and not the audited revenue. The mechanism underneath is
-coding-agent token consumption replacing flat per-seat pricing.
-Willison's own 30-day coding-agent spend ($2,180 against a $200
-subscription assumption) is the n=1 confirmation; the per-developer
-burn rate is now the main line item in any 2025 AI-tooling budget. Run-rate as a metric is, in Willison's framing,
-a "habit" of Anthropic's announcements — marketing-shaped and
-amplifying recent months.
+**Mechanism:** Run-rate annualizes a recent revenue level; it is not audited trailing revenue. Willison estimates $2,180.16 in API-equivalent usage on two $100 subscriptions over 30 days. That is an estimate of avoided API charges, not his paid bill or a typical enterprise invoice.
 
 **Why it matters:** Cisco is scaling Codex across engineering, and Anthropic's $47B run rate is mostly enterprise coding-agent tokens. A 2026 AI-tooling budget built on per-seat subscription assumptions is in the wrong category. Coding agents are daily drivers for well-paid developers; token spend per developer is real and uneven. Treat the line as consumption.
 
@@ -214,15 +194,7 @@ The cap is the contract. The 70% alert catches the surprise the
 month a coding agent acquires a new sub-agent dispatch flag (see
 pick 4 on dynamic workflows).
 
-**Systems map:** Unit-economics drift: when usage scales with
-intelligence-per-task and not with seats, any pricing model anchored
-to seats decouples from cost-of-goods and from value-delivered in
-opposite directions. The $47B run-rate, the n=1 $2,180 vs $200 gap,
-and the enterprise Codex roster are three measurements of the same
-drift — a power-law distribution of token spend per user that flat
-per-seat pricing cannot represent. The pattern recurs in every
-consumption-priced infrastructure category (cloud compute, CDN, API
-calls) once a high-end power-user segment emerges.
+**Systems map:** Subscriptions, metered API charges, and vendor run-rate are different denominators. The anecdote motivates a usage cap; it cannot identify a power-law spending distribution or the coding share of company revenue.
 
 **Transferable principle:** When a substitute good moves from
 flat-rate to metered along a power-law distribution of demand, the
@@ -234,16 +206,7 @@ query-cost cap with a 70%-of-cap alert, not a quarterly true-up. The
 same shape applies to egress bandwidth, to per-request API quotas at
 any vendor, and to per-pipeline CI spend on hosted runners.
 
-**Falsification test:** The consumption-line thesis breaks if
-Anthropic or OpenAI publishes an audited TTM revenue alongside a
-run-rate and the TTM figure lands more than 35% below the
-annualized run-rate (i.e., the trajectory is a one-month marketing
-artifact, not a durable level). The per-developer-burn
-thesis breaks if a procurement survey of 100+ engineering
-organizations using coding agents shows median monthly spend
-remains below the seat price for a sustained quarter; that would
-mean the n=1 Willison number generalized poorly. Either observation
-would warrant returning the budget line to per-seat.
+**Falsification test:** For your own matched workload, compare paid subscription cost, metered charges, accepted tasks, and cap hits. If spend stays predictable within the seat allowance, keep the seat budget. A fast-growing company can have trailing revenue well below its run-rate without disproving durable demand.
 
 **Adoption ladder:**
 
@@ -268,6 +231,8 @@ would warrant returning the budget line to per-seat.
 
 <!-- Evidence: MTRX-W22-anthropic-series-h-source_gist, MTRX-W22-anthropic-series-h-mechanism_extraction, MTRX-W22-anthropic-series-h-risk_and_caveats, MTRX-W22-anthropic-47b-runrate-source_gist, MTRX-W22-anthropic-47b-runrate-mechanism_extraction, MTRX-W22-anthropic-47b-runrate-reusable_pattern, MTRX-W22-anthropic-openai-pmf-source_gist, MTRX-W22-anthropic-openai-pmf-claims_and_bets, MTRX-W22-anthropic-openai-pmf-reusable_pattern, MTRX-W22-anthropic-openai-pmf-adoption_action, MTRX-W22-openai-cisco-source_gist, MTRX-W22-openai-endava-source_gist, MTRX-W22-openai-ramp-source_gist, MTRX-W22-openai-virgin-atlantic-source_gist, MTRX-W22-anthropic-series-h-pmf-consumption-budget-systems_thinking, MTRX-W22-anthropic-series-h-pmf-consumption-budget-transferable_principle, MTRX-W22-anthropic-series-h-pmf-consumption-budget-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-02
+
 ---
 
 ### 3. Microsoft Copilot Cowork exfiltration + SLEIGHT-Bench — outbound-policy + monitor catch-rate as a paired procurement question
@@ -284,16 +249,7 @@ same page because they are the offense and defense of the same chain:
 agent composes outbound content → outbound content carries
 attacker-influenced payload → no monitor catches the chain.
 
-**Mechanism:** Image-load exfiltration is a textbook side channel:
-external content reaches the agent; agent drafts outbound
-communication; communication carries an attacker-controlled URL;
-recipient client renders the URL on open; the request leaks the
-payload. SLEIGHT-Bench is the dual — an adversarial dataset that
-scores whether monitor systems detect the evasive transcripts that
-exploit this kind of chain. Neither artifact is novel as a class;
-what is new is the production shipment of the offense (in a major
-vendor product) and the publication of a regulator-credible defense
-benchmark in the same week.
+**Mechanism:** PromptArmor reports a rendered-image exfiltration path in Copilot Cowork. SLEIGHT-Bench tests constructed evasive transcripts against monitors. They motivate separate outbound and detection tests; a benchmark score is not a deployed exfiltration control.
 
 **Why it matters:** Ask vendors for a SLEIGHT-Bench number on monitor coverage. Red-team against Copilot Cowork.
 
@@ -359,16 +315,7 @@ payloads. The same shape applies to email auto-responders, ticket
 reply rendering, LLM-powered SOC alert summaries, and any browser
 extension that summarizes page content into a chat surface.
 
-**Falsification test:** The outbound-policy thesis breaks if a year
-of red-team data shows that strip-or-proxy controls and
-human-approval gates fail to reduce successful exfiltration
-attempts versus a control group with only post-hoc monitoring —
-i.e., the policy ladder is theatre and not control. The
-monitor-benchmark thesis breaks if vendors begin citing
-SLEIGHT-Bench numbers without those numbers correlating with
-real-world incident rates inside customer deployments (Goodhart on
-the benchmark). Either observation would mean the procurement
-question needs a different instrument.
+**Falsification test:** On permitted test data, try the known outbound-image path with and without strip/proxy controls, then test held-out harmful and benign transcripts against the monitor. Report leak prevention and false blocks separately. Passing one does not establish the other.
 
 **Adoption ladder:**
 
@@ -394,6 +341,8 @@ question needs a different instrument.
 
 <!-- Evidence: MTRX-W22-copilot-cowork-exfil-source_gist, MTRX-W22-copilot-cowork-exfil-mechanism_extraction, MTRX-W22-copilot-cowork-exfil-reusable_pattern, MTRX-W22-copilot-cowork-exfil-adoption_action, MTRX-W22-copilot-cowork-exfil-governance_surface, MTRX-W22-anthropic-sleight-bench-source_gist, MTRX-W22-anthropic-sleight-bench-reusable_pattern, MTRX-W22-anthropic-sleight-bench-adoption_action, MTRX-W22-anthropic-sleight-bench-governance_surface, MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-systems_thinking, MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-transferable_principle, MTRX-W22-copilot-cowork-sleight-bench-outbound-policy-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-03
+
 ---
 
 ### 4. Claude Code v2.1.154 dynamic workflows + Cursor Auto-review + Vercel provider allowlist — the policy-ladder is the new agent platform
@@ -413,17 +362,7 @@ alternative / human prompt). Vercel added a team-wide AI Gateway
 provider allowlist enforced on BYOK traffic with owner-only
 mutation.
 
-**Mechanism:** All three are policy ladders. Cursor names the
-tiers explicitly (allowlist / sandbox / classifier / prompt human);
-Claude Code expresses the same shape across `/effort`, `/workflows`,
-and lean-prompt defaults; Vercel expresses the gateway-side
-counterpart (which vendors are even reachable, including for BYOK).
-Cursor's classifier subagent is the piece that makes the ladder
-work. It sits between the allowlist and the human prompt, and turns
-binary allow/prompt into a graded decision. The same week, the
-Cloudflare AI code-review post-mortem and Hugging Face's agent
-glossary added the vocabulary (harness, scaffold) to talk about
-these tiers without each team inventing its own.
+**Mechanism:** These are different controls. Cursor routes actions through allowlist, sandbox, classifier, or human approval. Claude Code's effort and workflow knobs govern reasoning and fan-out; Vercel's allowlist governs provider reachability. Neither an effort level nor a smaller prompt is an authorization tier.
 
 **Why it matters:** Dynamic workflows fan out to tens of agents per prompt, so without per-workflow caps and per-tier audit logs you'll blow your budget and have nothing to investigate when something breaks.
 
@@ -524,6 +463,8 @@ long-run shape.
 
 <!-- Evidence: MTRX-W22-claude-code-2-1-154-source_gist, MTRX-W22-claude-code-2-1-154-mechanism_extraction, MTRX-W22-claude-code-2-1-154-adoption_action, MTRX-W22-claude-code-2-1-154-risk_and_caveats, MTRX-W22-claude-code-2-1-154-governance_surface, MTRX-W22-claude-code-2-1-156-source_gist, MTRX-W22-claude-code-2-1-156-adoption_action, MTRX-W22-cursor-auto-review-source_gist, MTRX-W22-cursor-auto-review-mechanism_extraction, MTRX-W22-cursor-auto-review-reusable_pattern, MTRX-W22-cursor-auto-review-governance_surface, MTRX-W22-vercel-provider-allowlist-source_gist, MTRX-W22-vercel-provider-allowlist-mechanism_extraction, MTRX-W22-vercel-provider-allowlist-adoption_action, MTRX-W22-vercel-provider-allowlist-governance_surface, MTRX-W22-claude-code-cursor-vercel-policy-ladder-systems_thinking, MTRX-W22-claude-code-cursor-vercel-policy-ladder-transferable_principle, MTRX-W22-claude-code-cursor-vercel-policy-ladder-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-04
+
 ---
 
 ### 5. Conductor on Vercel Sandbox + Mistral Vibe remote agents + Cursor shared canvases — coding agents moved off the laptop this month
@@ -541,16 +482,7 @@ on-by-default. Cursor added shared canvases and a `/loop` skill
 that runs prompts on a local schedule until an outcome or user
 stop.
 
-**Mechanism:** The cold-start latency on hosted execution
-environments has dropped enough to make remote parallel agents feel
-local, which removes the laptop as the bottleneck for fan-out
-work. Conductor is model-agnostic across multiple agent SDKs;
-Mistral's pairing of Medium 3.5 with cloud-side agents is the
-EU-domiciled counterpart; Vercel's persistence flip turns the
-sandbox into a long-lived data store by default and ends its life
-as an ephemeral runtime. Cursor's `/loop` is the same idea on the
-local side — a recurring agent prompt as a first-class primitive
-replacing cron + ad-hoc scripts.
+**Mechanism:** Conductor reports that its hosted UX feels local. Vercel's persistence saves the filesystem and resumes a stopped sandbox into a new session; it does not keep every process alive indefinitely. Include snapshot storage, cold starts, and recovery in a local comparison.
 
 **Why it matters:** Coding agents have left the laptop. Pick a sandbox provider, keep the orchestrator model-agnostic, and write a retention policy because persistence is now on by default.
 
@@ -598,17 +530,7 @@ to hosted services, to CI runners moving from self-hosted to
 managed, and to LLM eval datasets moving from local files to
 managed object stores.
 
-**Falsification test:** The migration thesis breaks if
-hosted-sandbox cold-start latency widens versus laptop-execution
-latency through 2026 — for example, a regression to 3+ seconds on
-Vercel Sandbox or peers under load — or if a sustained PII-leak
-incident at one of the hosted-sandbox vendors moves enterprise
-procurement back to local execution by default. The
-model-agnostic-orchestrator claim breaks if Conductor or a peer
-collapses its multi-SDK adapter into a single-vendor SDK before
-2027-Q1, signaling that vendor-lock economics outweigh hedging
-value. Either observation would warrant pausing a hosted-sandbox
-migration.
+**Falsification test:** Run the same parallel workload locally and hosted at matched quality and budget. Include cold-start tail latency, snapshot storage, data policy, and recovery. Keep local execution if hosted fan-out does not earn its added cost; a vendor incident alone does not measure that tradeoff.
 
 **Adoption ladder:**
 
@@ -630,13 +552,15 @@ migration.
     primitive, model-SDK swap drills run quarterly to keep the
     adapter honest.
 
-**Confidence:** medium-high
+**Confidence:** medium
 
 <!-- Evidence: MTRX-W22-vercel-conductor-source_gist, MTRX-W22-vercel-conductor-mechanism_extraction, MTRX-W22-vercel-conductor-reusable_pattern, MTRX-W22-vercel-conductor-governance_surface, MTRX-W22-conductor-cloud-agents-source_gist, MTRX-W22-conductor-cloud-agents-reusable_pattern, MTRX-W22-mistral-medium-3-5-source_gist, MTRX-W22-mistral-medium-3-5-mechanism_extraction, MTRX-W22-mistral-vibe-source_gist, MTRX-W22-cursor-shared-canvas-source_gist, MTRX-W22-cursor-shared-canvas-mechanism_extraction, MTRX-W22-cursor-shared-canvas-governance_surface, MTRX-W22-vercel-sandbox-persistence-source_gist, MTRX-W22-vercel-sandbox-persistence-adoption_action, MTRX-W22-vercel-sandbox-persistence-governance_surface, MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-systems_thinking, MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-transferable_principle, MTRX-W22-conductor-vercel-mistral-coding-agents-off-laptop-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-05
+
 ---
 
-### 6. MagenticLite + Fara1.5 + "The model isn't the agent anymore" — orchestration beats model scale past the reasoning threshold
+### 6. MagenticLite + Fara1.5 — test orchestration before buying more model
 
 **Source:** [Microsoft Research, MagenticLite + Fara1.5](https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/) · [AlphaSignal, "The model isn't the agent anymore"](https://alphasignalai.substack.com/p/the-model-isnt-the-agent-anymore) · [Hugging Face agent glossary](https://huggingface.co/blog/agent-glossary) · [DeepMind Co-Scientist](https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/)
 
@@ -654,17 +578,7 @@ launched as a role-specialized multi-agent system with a human
 strategy lead. Hugging Face published an agent glossary
 disambiguating "harness," "scaffold," and adjacent terms.
 
-**Mechanism:** Agent performance over a horizon H decomposes into
-the model and five surrounding system factors. Past a reasoning
-threshold, model scaling alone delivers diminishing returns;
-system-scaling — better harness, memory architecture, retrieval,
-planner, tool-policy, feedback loop — delivers the marginal lift.
-MagenticLite is the product expression of the same thesis: split
-the agent into MagenticLite (interface) + MagenticBrain (14B
-planner / coder) + Fara1.5 (browser executor), each tuned for the
-factor it owns. Co-Scientist is a research-domain expression: role-
-specialized agents with a shared context store and a human
-strategy lead.
+**Mechanism:** Microsoft codesigns small models, tools, and a harness for browser and file work. That shows a system worth testing, not an experiment isolating orchestration from model size. The six-factor framing is a diagnostic checklist; its factors can interact.
 
 **Why it matters:** This reframes the "which model" question into
 "which six factors are bottlenecking your horizon-H workflow." For
@@ -719,17 +633,7 @@ code-search where chunking strategy matters more than embedding
 dimensionality, and to recommendation systems where feature
 engineering dominates model architecture past a baseline.
 
-**Falsification test:** The orchestration-beats-scale thesis
-breaks if a public benchmark on long-horizon agent tasks shows
-that the next frontier model (5-10x prior compute) opens a
-sustained gap of 10+ percentage points over the best
-system-composition stack at smaller-model layers, with horizon H
-held constant. The factor-decomposition thesis breaks if
-independent measurement on a six-factor diagnostic shows that the
-same factor (e.g., retrieval) dominates marginal gain across every
-workload — i.e., the factorization is not orthogonal. Either
-observation would mean reaching for a bigger model is the right
-default move.
+**Falsification test:** On the same held-out tasks and total budget, compare a stronger model in the existing harness, a smaller model in the improved harness, and the combined change. If only the model change clears the quality floor, buy the model. Do not infer orthogonal causes from a checklist.
 
 **Adoption ladder:**
 
@@ -755,33 +659,17 @@ default move.
 
 <!-- Evidence: MTRX-W22-magenticlite-fara-source_gist, MTRX-W22-magenticlite-fara-mechanism_extraction, MTRX-W22-magenticlite-fara-adoption_action, MTRX-W22-msr-magentic-fara-source_gist, MTRX-W22-msr-magentic-fara-mechanism_extraction, MTRX-W22-model-not-agent-source_gist, MTRX-W22-model-not-agent-claims_and_bets, MTRX-W22-model-not-agent-reusable_pattern, MTRX-W22-model-not-agent-governance_surface, MTRX-W22-co-scientist-source_gist, MTRX-W22-co-scientist-reusable_pattern, MTRX-W22-co-scientist-adoption_action, MTRX-W22-hf-agent-glossary-source_gist, MTRX-W22-hf-agent-glossary-adoption_action, MTRX-W22-magenticlite-fara-model-not-agent-systems_thinking, MTRX-W22-magenticlite-fara-model-not-agent-transferable_principle, MTRX-W22-magenticlite-fara-model-not-agent-falsification_test -->
 
+**Evidence:** MTRX-W22-EARLY-06
+
 ---
 
 ### 7. HBM memory shortage + Stratechery NVIDIA reporting + DC veto — the physical world is the binding constraint
 
-**Source:** [Simon Willison on the memory shortage](https://simonwillison.net/2026/May/22/memory-shortage/) · [Stratechery on NVIDIA reporting](https://stratechery.com/2026/nvidia-earnings-the-ai-stack-nvidias-new-reporting/) · [Stratechery on the data-center veto](https://stratechery.com/2026/the-data-center-veto/) · [NVIDIA on AI factories](https://blogs.nvidia.com/blog/ai-factories-the-new-infrastructure-of-intelligence/)
+**Source:** [Simon Willison on the memory shortage](https://simonwillison.net/2026/May/22/memory-shortage/) · [Micron Tongluo capacity schedule](https://investors.micron.com/news/press-release/2026/Micron-Completes-Acquisition-of-PSMCs-Tongluo-P5-Site-in-Taiwan-03-15-2026/default.aspx) · [Stratechery on NVIDIA reporting](https://stratechery.com/2026/nvidia-earnings-the-ai-stack-nvidias-new-reporting/) · [Stratechery on the data-center veto](https://stratechery.com/2026/the-data-center-veto/) · [NVIDIA on AI factories](https://blogs.nvidia.com/blog/ai-factories-the-new-infrastructure-of-intelligence/)
 
-**Payload:** HBM allocation is moving from roughly 2% of wafer
-capacity at the start of 2026 to an expected 20% by year-end, with
-each gigabyte of HBM consuming roughly 3x the wafer area of standard
-DRAM. Consumer DRAM prices are rising as a downstream effect.
-Stratechery covered NVIDIA's revised earnings reporting separating
-hyperscaler GPU sales (under commoditization pressure) from
-enterprise / other (where NVIDIA controls the stack). The week's
-data-center-veto roundup landed the political-economy point:
-municipal zoning, water, and power-permit processes are now a
-binding constraint on AI infra siting, more active in 2026 than
-the federal Executive Order discussion. NVIDIA's own "AI factories"
-post reframed infra economics as tokens-per-watt.
+**Payload:** The memory-shortage coverage describes HBM competing with conventional DRAM for manufacturing capacity. Micron's March Tongluo announcement pairs a cleanroom retrofit with expected shipments in fiscal 2028. That is one capacity schedule, not a global shortage clock. The data-center coverage raises a second constraint: local power, water, and permitting.
 
-**Mechanism:** Three physical-world variables now gate the AI roadmap. HBM wafer allocation is a fab-capacity
-constraint that AI demand cannot relieve faster than 24 months.
-Hyperscaler GPU revenue commoditization is the margin compression
-that NVIDIA's reporting changes acknowledge. Municipal permitting
-is the binding gate on data-center siting, and the federal AI
-Executive Order's indefinite postponement (per Zvi's W22 read)
-means state and local regimes are the dominant US AI-policy
-surface for the foreseeable horizon.
+**Mechanism:** Memory allocation and site approvals can constrain different projects on different schedules. These sources do not establish a universal 24-month shortage, NVIDIA margin compression, or an indefinite federal-policy regime.
 
 **Why it matters:** Capex planning that assumes federal preemption
 of state AI rules, or assumes HBM availability scales to demand,
@@ -811,15 +699,7 @@ deployment tier. If your buildout schedule has a 2026-H2 site
 selection, run the local-permitting risk as a top-3 schedule risk
 and consider pre-permitted brownfield sites as a fallback.
 
-**Systems map:** Physical-substrate binding: digital scaling hits a
-constraint that demand-side response cannot relieve within the
-capex cycle of the constrained resource. HBM allocation moving from
-~2% to ~20% of wafer capacity is a fab-side bound; municipal water
-and power permits are a community-governance bound; the EO
-postponement plus state-level audit bills shift the active US
-AI-policy regime down a federal layer. The pattern recurs at every
-digital-to-physical transition: the institution that owns the
-binding physical resource becomes the binding decision-maker.
+**Systems map:** Memory production -> accelerator delivery -> power and site approval -> usable capacity. Name the resource delaying your deployment before choosing the dashboard row.
 
 **Transferable principle:** When an industry hits a physical
 constraint, the relevant governance surface moves to whoever issues
@@ -834,16 +714,7 @@ commercial real-estate post-2020 where the binding constraint
 became municipal zoning and not capital, and to undersea-cable
 buildouts.
 
-**Falsification test:** The HBM-bottleneck thesis breaks if
-Samsung, SK Hynix, or Micron announces a wafer-share expansion that
-crosses 25% by end-2026 with no consumer-DRAM price relief —
-meaning the elasticity assumption fails and price stays elevated
-regardless of share. The data-center-veto thesis breaks if 2026-H2
-brings a sequence of successful brownfield approvals at the rate
-needed to absorb hyperscaler capex plans — i.e., municipalities
-clear the queue and the federal layer re-asserts. Either
-observation would mean the physical-constraint frame is shifting
-and the dashboard rows need a different anchor.
+**Falsification test:** Compare the delivery and permit milestones on the project you depend on with actual commissioning. If usable capacity arrives inside the plan, narrow the bottleneck claim. A wafer-share forecast alone neither proves shortage nor predicts consumer-price relief.
 
 **Adoption ladder:**
 
@@ -864,6 +735,8 @@ and the dashboard rows need a different anchor.
 **Confidence:** medium
 
 <!-- Evidence: MTRX-W22-memory-shortage-source_gist, MTRX-W22-memory-shortage-mechanism_extraction, MTRX-W22-memory-shortage-adoption_action, MTRX-W22-memory-shortage-governance_surface, MTRX-W22-stratechery-nvidia-source_gist, MTRX-W22-stratechery-nvidia-claims_and_bets, MTRX-W22-stratechery-nvidia-mechanism_extraction, MTRX-W22-stratechery-dc-veto-source_gist, MTRX-W22-stratechery-dc-veto-mechanism_extraction, MTRX-W22-stratechery-dc-veto-adoption_action, MTRX-W22-stratechery-dc-veto-governance_surface, MTRX-W22-ai-factories-source_gist, MTRX-W22-ai-factories-adoption_action, MTRX-W22-zvi-ai-170-source_gist, MTRX-W22-zvi-ai-170-mechanism_extraction, MTRX-W22-zvi-ai-170-governance_surface, MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-systems_thinking, MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-transferable_principle, MTRX-W22-hbm-shortage-nvidia-dc-veto-physical-constraint-falsification_test -->
+
+**Evidence:** MTRX-W22-EARLY-07
 
 ---
 
@@ -968,13 +841,13 @@ warrants a policy file this week.
 
 ### Scout-run picks (run-scout-f23d443ff059, disposition: prototype)
 
-Three Action packets from the W22 scout sweep that earn a Worth-your-time
+Three proposed Action packets from the May 30 scout sweep, after this issue's May 29 cutoff, that earn a Worth-your-time
 slot because each is a one-week prototype with a kill criterion and each
 operationalizes a Top-signal pattern from this brief. The packets carry
 their own hypothesis / test / success-metric / risk / kill rubric;
 summaries follow.
 
-**e2b SandboxHandle (scout)** (2026-05-30). Wraps `e2b.Sandbox.create()`
+**e2b SandboxHandle (scout)** (2026-05-30). Proposes wrapping `e2b.Sandbox.create()`
 behind a typed `SandboxHandle` artifact (create / exec / upload /
 download / close) so a tool-using role can request code execution
 through the policy engine without coupling to any one runtime, with a
@@ -988,7 +861,7 @@ pivots to closed-hosted), and the abstraction survives even if the
 backend choice changes.
 [Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/e2b.md]
 
-**smithery credential broker probe (scout)** (2026-05-30). Spends
+**smithery credential broker probe (scout)** (2026-05-30). Proposes spending
 2-4 hours running `npx smithery auth login` plus `tool list` and `tool
 call` against two verified MCP servers (one read-only, one OAuth-bound)
 to answer one question: can Smithery Connect substitute for a
@@ -1004,7 +877,7 @@ output lives as a decision artifact, not a code dep.
 [Action packet: ops/scout-runs/run-scout-f23d443ff059/action-packets/smithery.md]
 
 **langfuse code evaluators + experiments CI (scout)** (2026-05-30).
-Replaces ad-hoc score-asserting scripts with Langfuse Code Evaluators
+Proposes replacing ad-hoc score-asserting scripts with Langfuse Code Evaluators
 (deterministic Python checks) plus the new GitHub Actions Experiments
 step on a 10-item dataset of past matrix cells, with two evaluators
 wired (`faithfulness_status == passed`, `len(source_ref_quote) >= 10`)

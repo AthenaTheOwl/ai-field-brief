@@ -19,12 +19,19 @@ weekly pass. Read this top-to-bottom before starting.
 - Last 2 brief markdown files under `briefs/YYYY-WNN/` for continuity.
 - `scripts/voice_lint.py` — voice rules the brief must pass.
 - `AGENTS.md` — evidence-spine rules and quality gates.
+- `VOICE.md` and `prompts/editorial_contract.md` — the author's voice
+  and the evidence/reasoning checks shared by the lenses.
 
 ## Steps
 
 1. **Determine ISO week.** Today's date, ISO 8601 calendar. Folder is
    `briefs/YYYY-WNN/`. If the folder exists, halt and ask the human
    whether to overwrite or append.
+
+   An explicit request to revise existing issues authorises that revision.
+   Treat it as an editorial pass: preserve the issue's date and scope,
+   compare against the original, and record corrections in a new review
+   note. Keep original run and event records intact.
 
    Start with `python scripts/cadence_check.py --today YYYY-MM-DD --json`.
    It reports missing canonical issues from the first issue through the
@@ -158,6 +165,11 @@ weekly pass. Read this top-to-bottom before starting.
    Re-read the draft top-to-bottom — does the rhythm sound like a
    considered weekly letter, or like an aggregator?
 
+   Apply `prompts/editorial_contract.md` before the final voice read.
+   Keep real dry asides and deliberate cadence. Put a necessary evidence
+   limit into the existing sentence when possible. Do not import another
+   writer's headings, stories or mannerisms to satisfy a form checker.
+
 10. **Meta log.** Write `briefs/YYYY-WNN/meta.yaml`: sources reviewed,
     items captured per source, items included, failures during sweep,
     notes for next run.
@@ -172,6 +184,7 @@ weekly pass. Read this top-to-bottom before starting.
     python scripts/validate_schemas.py
     python scripts/validate_registry.py
     python scripts/validate_brief_fields.py
+    python scripts/validate_editorial_evidence.py
     python scripts/validate_matrix_cells.py
     ```
     All must be green. `validate_brief_fields` is the one that reads the

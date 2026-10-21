@@ -22,14 +22,16 @@ cells:
     source_item_id: src-w33-routing-economics
     lens_id: economics
     mode: interpretive
-    content: "In LangChain's 145-task experiment, frontier models handled 7 percent of calls but accounted for 68.4 percent of model spend; routing reduced cost by 74 percent while losing six accuracy points, and the authors caution that one saturated workload does not establish a universal policy."
+    content: "In LangChain's 145-task experiment, the frontier model handled about 7 percent of agent calls, excluding judge calls, but 68.4 percent of total routed model spend, including the judge. Routing was 74 percent cheaper than frontier-only with six accuracy points lost. Its 80.0 versus 77.7 percent cheap-only gain was smaller than run variation."
     source_refs:
-      - uri: "https://blog.langchain.com/how-many-of-your-agents-calls-actually-need-a-frontier-model/"
+      - uri: "https://www.langchain.com/blog/switchyard-agent-routing-benchmark"
         quote_or_span: "145 tasks; frontier calls 7 percent; 68.4 percent of spend; routed arm 74 percent cheaper with a six-point accuracy loss"
         ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: call-share and spend-share denominators differ. Cheapest-model-only is an essential rival, not an omitted baseline."
 
   - id: MTRX-W33-PROVIDERLESS-TESTS
     matrix_run_id: MTRX-W33-routing-contracts
@@ -50,14 +52,16 @@ cells:
     source_item_id: src-w33-durable-input
     lens_id: state
     mode: interpretive
-    content: "OpenAI Agents SDK 0.20 made pending user input durable before a resumed model call and expanded the MCP and sandbox contracts, putting interruption state ahead of continuation rather than reconstructing it afterward."
+    content: "OpenAI Agents SDK 0.20 stages durable pending input before continuation. This supports recovery but does not guarantee exactly-once worker dispatch; the proposed local contract also requires durable input identity and idempotent committed effects."
     source_refs:
       - uri: "https://github.com/openai/openai-agents-python/releases/tag/v0.20.0"
         quote_or_span: "RunState.add_input; persist pending user input before resumed model call; MCP v1 and v2; sandbox credential-exposure acknowledgements"
         ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: dispatch may retry after a crash; test one committed effect per input id instead of assuming one process invocation."
 
   - id: MTRX-W33-CAPABILITY-DECLARATION
     matrix_run_id: MTRX-W33-routing-contracts

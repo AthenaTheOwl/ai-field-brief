@@ -85,10 +85,10 @@ cells:
     mode: extractive
     content: "A study of 3,171 public GitHub repositories advertising or distributing AI coding-agent tooling decomposed them into 2,660 assembled setups and 511 skill collections and found 16.0% of setups carrying a confirmed security defect in harness configuration (95% CI 14.6-17.4): 9.8% declare at least one MCP server with no version pinned, 3.8% carry a skill whose allowed-tools pre-approves an unrestricted shell or shell-escape command, and 3.1% pre-approve arbitrary execution behind a scoped-looking grant such as Bash(python:*), Bash(awk:*), Bash(find:*) or Bash(sed:*)."
     source_refs:
-      - uri: "https://arxiv.org/abs/2609.07360"
+      - uri: "https://arxiv.org/abs/2609.07360v1"
         quote_or_span: "Scanning the Harness: An Empirical Study of Supply-Chain Defects in AI Coding-Agent Configurations, submitted 7 Sep 2026, cs.SE (cross-list cs.CR)"
         ref_type: quote
-      - uri: "https://arxiv.org/abs/2609.07360"
+      - uri: "https://arxiv.org/abs/2609.07360v1"
         quote_or_span: "16.0% of setups carry a confirmed security defect (95% CI 14.6-17.4); denominator is 2,660 setups, not 3,171 repositories"
         ref_type: chunk
     confidence: medium

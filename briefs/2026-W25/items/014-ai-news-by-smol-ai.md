@@ -8,7 +8,7 @@
 
 **Gist:** Day-of writeup of GLM-5.2 release with ecosystem deployment map and benchmark detail.
 
-**Mechanism:** 744B MoE / 40B active per token with IndexShare sparse-attention (reuses top-k indices across layer groups) cuts long-context inference cost ~2.9x at 1M tokens; day-zero support in vLLM, SGLang, Ollama, OpenRouter, Cloudflare Workers AI, Baseten; Terminal-Bench 2.1 score 81.0 first open model over 80.
+**Mechanism:** 744B MoE / 40B active per token with IndexShare sparse-attention (reuses top-k indices across layer groups) is reported by Z.ai to reduce per-token FLOPs 2.9x at 1M context, not measured hosted cost; day-zero support in vLLM, SGLang, Ollama, OpenRouter, Cloudflare Workers AI, Baseten; Terminal-Bench 2.1 score 81.0 first open model over 80.
 
 **Why matters:** IndexShare is the specific architectural lever making 1M-context inference economical on open weights; ecosystem day-zero coverage means deployment without waiting for adapter PRs.
 

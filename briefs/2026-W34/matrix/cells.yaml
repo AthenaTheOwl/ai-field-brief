@@ -22,14 +22,16 @@ cells:
     source_item_id: src-w34-thinkingbox
     lens_id: eval
     mode: interpretive
-    content: "Thinkingbox grades 507 stateful workflows using terminal backend state and extra effects; its strongest evaluated agent reaches 65.36 percent pass@1 and 25.25 percent pass^20, exposing instability that a single successful trajectory hides."
+    content: "Thinkingbox grades 507 stateful workflows against terminal state and extra effects. GPT-5.4 reports 65.36 percent estimated single-attempt success; 128 of 507 tasks passed all twenty attempts, giving 25.25 percent pass^20."
     source_refs:
       - uri: "https://arxiv.org/abs/2608.19741"
         quote_or_span: "507 workflows; 65.36 percent pass@1; 25.25 percent pass^20; terminal state and side-effect grading"
         ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: Table 11 estimates pass@1 from the repeated-trial sample; pass^20 is the fraction of tasks passing all twenty attempts. These are different summaries of the same task sample."
 
   - id: MTRX-W34-HARNESSED-AGENTIC-RL
     matrix_run_id: MTRX-W34-repeatability-control

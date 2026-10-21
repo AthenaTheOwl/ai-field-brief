@@ -1,0 +1,334 @@
+matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
+cells:
+- id: MTRX-W22-EARLY-01
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Anthropic reports >10,000
+
+    high/critical vulnerabilities across ~50 partners running Claude
+
+    Mythos Preview against critical infrastructure — including 2,000
+
+    bugs at Cloudflare (400 high/critical) and 271 Firefox vulnerabilities at Mozilla
+
+    (roughly 10x prior testing). In the same week Daniel Stenberg
+
+    reported curl is now receiving more than one AI-assisted security
+
+    report per day on average (4-5x the 2024 rate, 2x 2025). SQLite
+
+    published an AGENTS.md that rejects agentic code patches and accepts
+
+    agentic bug reports only with reproducible test cases. Armin
+
+    Ronacher, quoted by Willison, named the failure mode at the input
+
+    side: AI-reworded GitHub issues lose the reporter''s own observational
+
+    detail and become "inaccurate but full of confidence."'
+  source_refs:
+  - uri: https://www.anthropic.com/news/glasswing-initial-update
+    quote_or_span: 'May 22; Evidence from partners and Open-source software: partner >10,000 high/critical
+      report; Cloudflare 2,000 bugs of which 400 high/critical; OSS model estimates separated from assessed
+      true positives.'
+    ref_type: chunk
+  - uri: https://daniel.haxx.se/blog/2026/05/26/the-pressure/
+    quote_or_span: May 26 maintainer account of increased credible AI-assisted reports and curl capacity
+      pressure.
+    ref_type: chunk
+  - uri: https://github.com/sqlite/sqlite/blob/master/AGENTS.md
+    quote_or_span: 'AI-generated bug reports and code contributions: reproducible test case required for
+      bug reports; generated patches not accepted.'
+    ref_type: chunk
+  - uri: https://lucumr.pocoo.org/2026/5/24/pi-oss/
+    quote_or_span: 'May 24 author account, Building Pi With Pi: complaint about AI-reworded issue reports
+      losing original observation and adding confident inaccuracies.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. Glasswing + curl + SQLite + Armin Ronacher — the disclosure pipeline is the
+      new bottleneck'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-02
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Anthropic announced a $65B Series H at a $965B
+
+    post-money valuation on May 28, and run-rate revenue grew from ~$9B
+
+    at end of 2025 to ~$47B by May 2026 — roughly 5x in five months.
+
+    Simon Willison''s PMF post argues both Anthropic and OpenAI have
+
+    found product-market fit through enterprise coding agents that
+
+    "burn vastly more tokens but are becoming daily drivers for
+
+    well-compensated professionals," with the pricing moves and observed
+
+    spend patterns as the evidence.'
+  source_refs:
+  - uri: https://www.anthropic.com/news/series-h
+    quote_or_span: 'May 28 opening: $65B raised, $965B post-money valuation, run-rate crossed $47B. This
+      is company-reported run-rate, not audited trailing revenue or a coding revenue share.'
+    ref_type: chunk
+  - uri: https://simonwillison.net/2026/May/27/product-market-fit/
+    quote_or_span: 'Enterprise customers are now paying API prices: two $100 subscriptions; ccusage estimated
+      $1,199.79 Claude plus $980.37 Codex at API rates in 30 days. Those are API-equivalent estimates,
+      not his paid bills or a spending distribution.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. Anthropic Series H + $47B run-rate + the PMF post — the AI-tooling line item
+      is a consumption line'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-03
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Microsoft Copilot Cowork agents could send messages
+
+    containing attacker-supplied external images; opening the message
+
+    triggered a network request whose URL carried exfiltrated data.
+
+    Anthropic''s Alignment Science team published SLEIGHT-Bench, a
+
+    benchmark of evasive transcripts designed to surface blind spots
+
+    in frontier monitor systems before deployment. The two land on the
+
+    same page because they are the offense and defense of the same chain:
+
+    agent composes outbound content → outbound content carries
+
+    attacker-influenced payload → no monitor catches the chain.'
+  source_refs:
+  - uri: https://www.promptarmor.com/resources/microsoft-copilot-cowork-exfiltrates-files
+    quote_or_span: 'Attack walkthrough steps 3–6: self-addressed Teams message embeds attacker image URL
+      containing pre-authenticated file download links; rendering triggers exfiltration.'
+    ref_type: chunk
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: 'May 19; approach and harms: constructed, internally checked evasive transcripts test
+      monitor blind spots. This is not a deployed exfiltration-control evaluation.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. Microsoft Copilot Cowork exfiltration + SLEIGHT-Bench — outbound-policy + monitor
+      catch-rate as a paired procurement question'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-04
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Three platforms shipped the same shape in the same
+
+    week. Claude Code v2.1.154 set Opus 4.8 as default, exposed an
+
+    `/effort xhigh` knob for the hardest tasks, made the lean system
+
+    prompt default for new models, and introduced "dynamic workflows"
+
+    that orchestrate tens to hundreds of background agents via
+
+    `/workflows`. Two days later v2.1.156 hotfixed an Opus 4.8
+
+    thinking-block regression. Cursor''s Auto-review introduced a
+
+    three-tier action policy: allowlist immediate, sandboxable
+
+    isolated, classifier-routed for the ambiguous middle (permit /
+
+    alternative / human prompt). Vercel added a team-wide AI Gateway
+
+    provider allowlist enforced on BYOK traffic with owner-only
+
+    mutation.'
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+    quote_or_span: 'May 28 release: dynamic workflows, Opus 4.8 and effort settings are workflow/model
+      controls.'
+    ref_type: chunk
+  - uri: https://cursor.com/changelog/auto-review
+    quote_or_span: 'May 29: allowlisted calls, sandboxed calls, then classifier subagent choosing permit/alternative/human
+      approval.'
+    ref_type: chunk
+  - uri: https://vercel.com/changelog/team-wide-provider-allowlist-on-ai-gateway
+    quote_or_span: 'May 28 opening: team-wide provider allowlist applies to every Gateway request including
+      BYOK; provider eligibility is distinct from tool authorization.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. Claude Code v2.1.154 dynamic workflows + Cursor Auto-review + Vercel provider
+      allowlist — the policy-ladder is the new agent platform'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-05
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Conductor described moving its parallel-coding-agent
+
+    execution layer off developer laptops onto Vercel Sandboxes,
+
+    model-agnostic across Claude Code, Codex, and others, with a UX
+
+    the operator says "feels just like the local version." Mistral
+
+    shipped Medium 3.5 paired with cloud-side coding agents in Vibe and
+
+    a new Work mode in Le Chat — the same architectural shape from a
+
+    different vendor. Vercel made Sandbox filesystem persistence GA and
+
+    on-by-default. Cursor added shared canvases and a `/loop` skill
+
+    that runs prompts on a local schedule until an outcome or user
+
+    stop.'
+  source_refs:
+  - uri: https://vercel.com/changelog/sandbox-persistence-is-now-ga
+    quote_or_span: 'Create/resume persistent sandbox: filesystem snapshot on stop, automatic new session
+      from latest snapshot on use; snapshot storage billed separately. Filesystem persistence is not permanent
+      live processes.'
+    ref_type: chunk
+  - uri: https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/
+    quote_or_span: 'May 22 opening: remote parallel coding agents in Vibe and Le Chat, Medium 3.5 public
+      preview and Work mode.'
+    ref_type: chunk
+  - uri: https://cursor.com/changelog/shared-canvases
+    quote_or_span: 'May 20: shared live canvas snapshots; /loop runs prompts on a local schedule until
+      an outcome or user stop.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. Conductor on Vercel Sandbox + Mistral Vibe remote agents + Cursor shared canvases
+      — coding agents moved off the laptop this month'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-06
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Microsoft Research shipped MagenticLite — a stack
+
+    pairing a 14B-param MagenticBrain (planner / coder / delegator)
+
+    with Fara1.5 (web/browser SOTA among small computer-use models,
+
+    nearly doubling its predecessor on web-navigation tasks) — and
+
+    framed the release as evidence that agentic capability comes from
+
+    orchestration and not from scale. UC Berkeley''s Shangding Gu, via
+
+    AlphaSignal, published a six-factor decomposition of long-horizon
+
+    agent performance arguing that once reasoning capability clears a
+
+    threshold, marginal gains shift to the other five factors (memory,
+
+    retrieval, planning, tooling, feedback). DeepMind''s Co-Scientist
+
+    launched as a role-specialized multi-agent system with a human
+
+    strategy lead. Hugging Face published an agent glossary
+
+    disambiguating "harness," "scaffold," and adjacent terms.'
+  source_refs:
+  - uri: https://www.microsoft.com/en-us/research/blog/magenticlite-magenticbrain-fara1-5-an-agentic-experience-optimized-for-small-models/
+    quote_or_span: 'May 21; At a glance and codesigned system discussion: small orchestration/computer-use
+      models paired with optimized harness. No controlled causal comparison isolating model scale from
+      orchestration.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. MagenticLite + Fara1.5 — test orchestration before buying more model'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W22-EARLY-07
+  matrix_run_id: MTRX-W22-EDITORIAL-2026-10-21
+  source_item_id: editorial-w22-signal-07
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'The memory-shortage coverage describes HBM competing with conventional DRAM for manufacturing
+    capacity. Micron''s March Tongluo announcement pairs a cleanroom retrofit with expected shipments
+    in fiscal 2028. That is one capacity schedule, not a global shortage clock. The data-center coverage
+    raises a second constraint: local power, water, and permitting.'
+  source_refs:
+  - uri: https://investors.micron.com/news/press-release/2026/Micron-Completes-Acquisition-of-PSMCs-Tongluo-P5-Site-in-Taiwan-03-15-2026/default.aspx
+    quote_or_span: 'March 15, 2026 primary announcement: Tongluo cleanroom retrofit and DRAM/HBM expansion;
+      meaningful shipments expected in fiscal 2028. This is one announced project schedule, not a global
+      fixed shortage duration.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 7. HBM memory shortage + Stratechery NVIDIA reporting + DC veto — the physical
+      world is the binding constraint'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

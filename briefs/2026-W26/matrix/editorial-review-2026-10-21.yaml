@@ -1,0 +1,193 @@
+matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
+cells:
+- id: MTRX-W26-EARLY-01
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: Claude Code enabled MCP tool search in auto mode when tool descriptions take more than 10%
+    of the context budget. The January v2.1.7 change deferred those descriptions. June v2.1.178 makes
+    the nearest agent/workflow/output-style definition win on name collisions and reviews subagent spawns;
+    v2.1.183 blocks specified destructive actions unless requested.
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.7
+    quote_or_span: 'January 14, 2026 release: automatic search/defer when MCP descriptions exceed 10%
+      of context; this was not new in June.'
+    ref_type: chunk
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.178
+    quote_or_span: 'June 15: nearest agent/workflow/output-style definitions on name collision; classifier
+      review of subagent launches.'
+    ref_type: chunk
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.183
+    quote_or_span: 'June 19: specific destructive commands blocked absent requested discard; no universal
+      proof of safe command classification.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. Claude Code moved MCP discovery into the runtime budget'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-02
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: The recipe ties together run traces, user feedback, evals, labeling, prompt changes, and Codex
+    handoff. The harness defines instructions, tools, routing, output requirements, and validation checks
+    as a single improvable surface.
+  source_refs:
+  - uri: https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop
+    quote_or_span: Build an Agent Improvement Loop with Traces, Evals, and Codex; feedback, generated
+      evals and Codex handoff. Final insights explicitly note artifact-level issues can survive passing
+      validators and recommend durable regressions.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. OpenAI''s improvement loop turns traces into the next work packet'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-03
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Osmani describes five loop pieces plus persistent memory. This brief proposes a contract around
+    them: trigger, context, worker, verifier, memory, escalation, budget, and stop rule.'
+  source_refs:
+  - uri: https://addyosmani.com/blog/loop-engineering/
+    quote_or_span: June 7; five loop pieces plus persistent memory, cost caveat, and a system that finds
+      work, delegates, checks and records next state. Brief stop/escalation contract is an editorial proposal.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. Loop engineering is the product spec for long-running agents'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-04
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Vercel''s public guidance now treats code agents as long-running workflow systems: isolated
+    microVM execution, retries, workflow state, and artifact handling.'
+  source_refs:
+  - uri: https://vercel.com/kb/guide/how-to-build-a-durable-ai-code-agent-on-vercel
+    quote_or_span: 'How it works: durable workflow state, generated tests in ephemeral Firecracker microVM,
+      up to three attempts; replay from completed steps is not identical model output or exactly-once
+      external side effects.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. Durable code-agent infrastructure is getting packaged'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-05
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: Hugging Face launched resource discovery around Skills, ML apps, and MCP servers, with a Discover
+    Tool that lets agents search external capabilities.
+  source_refs:
+  - uri: https://huggingface.co/blog/agentic-resource-discovery-launch
+    quote_or_span: June 17; draft ARD specification and Hugging Face Discover reference implementation
+      search Skills, ML apps and MCP servers. Discovery is distinct from trust/permission to install.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. Agentic resource discovery is becoming its own layer'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-06
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: Recent papers are moving attention from aggregate scores to task quality, process quality,
+    and cost-aware benchmark subsets. One audit reports critical issues across a large benchmark set and
+    score movement after filtering.
+  source_refs:
+  - uri: https://arxiv.org/abs/2605.26079v2
+    quote_or_span: 'May 26 abstract: ABA audits 168 benchmarks, flags task/spec/environment/grading defects;
+      filtering affects rankings. A local audit must predeclare rules and retain full/filtered reports.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. Benchmark audits are becoming part of eval engineering'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W26-EARLY-07
+  matrix_run_id: MTRX-W26-EDITORIAL-2026-10-21
+  source_item_id: editorial-w26-signal-07
+  lens_id: editorial_source_review
+  mode: critique
+  content: The IETF draft catalogs MCP security concerns and mitigations. Kong's guidance pushes gateway-level
+    filtering by actor, credential isolation, and default-deny access to tools.
+  source_refs:
+  - uri: https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/
+    quote_or_span: 'June 2026 individual Internet-Draft section 8: egress controls, least privilege, monitored
+      calls, externally controlled content exposed to prompt injection. Not an adopted IETF standard.'
+    ref_type: chunk
+  - uri: https://konghq.com/blog/engineering/mcp-tool-governance-security-meets-context-efficiency
+    quote_or_span: Default deny, actor-role filtering, isolated credentials. Direct invocation authorization
+      must be checked independently of filtered discovery.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 7. MCP security is moving toward default-deny tool governance'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

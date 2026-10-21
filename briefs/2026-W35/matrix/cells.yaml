@@ -23,7 +23,7 @@ cells:
     mode: extractive
     content: "Gloaguen, Mundler, Muller, Raychev and Vechev evaluated coding agents with repository-level context files on benchmark tasks and on issues from repositories carrying developer-committed files, and report that context files do not generally improve task success rates while increasing inference cost by over 20 percent on average; instructions were followed, repository overviews were not helpful, and the result held across models, agents, and both generated and human-written files."
     source_refs:
-      - uri: "https://arxiv.org/abs/2602.11988"
+      - uri: "https://arxiv.org/abs/2602.11988v2"
         quote_or_span: "providing context files does not generally improve task success rates, while increasing inference cost by over 20% on average"
         ref_type: quote
     confidence: high
@@ -37,11 +37,11 @@ cells:
     source_item_id: src-w35-progressive-disclosure
     lens_id: context
     mode: extractive
-    content: "He, Zhao, Wang and Chen report that one level of progressive disclosure is enough, that a deeper routing level provides no benefit and sometimes breaks accuracy outright, and that the gain from the pattern is harness-dependent: large where the agent navigates a raw document poorly, near zero where a strong harness already divides and retrieves on its own."
+    content: "He, Zhao, Wang and Chen report that one level of progressive disclosure is enough, that a deeper routing level provides no benefit in their tests and sometimes breaks accuracy outright, and that the gain depends on harness and corpus scale: small on a single book where a strong harness already retrieves well, but larger as raw-document navigation degrades across many books."
     source_refs:
       - uri: "https://arxiv.org/abs/2607.17598"
-        quote_or_span: "progressive disclosure buys context, not intelligence; near zero when a strong agent harness already divides and retrieves on its own"
-        ref_type: quote
+        quote_or_span: "Abstract: single-book gains depend on harness navigation; raw-document navigation degrades across books while one-level disclosure degrades more slowly. A second routing level never helped in the tests."
+        ref_type: chunk
     confidence: high
     faithfulness_status: passed
     status: verified
@@ -89,7 +89,7 @@ cells:
     source_item_id: src-w35-model-hardware-standard
     lens_id: architecture
     mode: extractive
-    content: "Anthropic opened a research preview of the Model Hardware Standard on 2026-08-27, a model-agnostic specification for agents to operate programmable laboratory and manufacturing devices, reachable by any harness over standard protocols including MCP, with early partners including AWS, Danaher, Tecan, QIAGEN, Doosan Robotics, Automata, Universal Robots, Hugging Face and Raspberry Pi; a QuEra agent is reported at 99.3 percent success across 700 laser-lock recovery trials against 58 percent for manually written scripts."
+    content: "Anthropic opened a research preview of the Model Hardware Standard on 2026-08-27, a model-agnostic specification for agents to operate programmable laboratory and manufacturing devices, reachable by any harness over standard protocols including MCP, with early partners including AWS, Danaher, Tecan, QIAGEN, Doosan Robotics, Automata, Universal Robots, Hugging Face and Raspberry Pi; a controller developed by a QuEra agent is reported at 99.3 percent success across 700 laser-lock recovery trials against 58 percent for manually written scripts."
     source_refs:
       - uri: "https://www.anthropic.com/news/model-hardware-standard-research-preview"
         quote_or_span: "research preview of the Model Hardware Standard, a shared specification for AI agents to safely operate physical devices; QuEra agent 99.3% across 700 laser-lock recovery trials versus 58% for manually written scripts"
