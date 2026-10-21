@@ -52,13 +52,13 @@ sources_reviewed:
     url: "https://github.com/openai/openai-agents-python/releases"
     disposition: top_signal
   - label: "LangChain: Tuning the harness, not the model"
-    url: "https://www.langchain.com/blog/tuning-the-harness-not-the-model-nemotron-playbook"
+    url: "https://www.langchain.com/blog/tuning-the-harness-not-the-model-a-nemotron-3-ultra-playbook"
     disposition: top_signal
   - label: "LangChain: Improving Agents is a Data Mining Problem"
     url: "https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem"
     disposition: top_signal
   - label: "LangChain: Introducing OpenWiki Brains"
-    url: "https://www.langchain.com/blog/introducing-openwiki-brains"
+    url: "https://www.langchain.com/blog/introducing-openwiki-brains-general-purpose-wiki-memory-for-agents"
     disposition: top_signal
   - label: "arXiv: AgentRedBench"
     url: "https://arxiv.org/abs/2606.02240"

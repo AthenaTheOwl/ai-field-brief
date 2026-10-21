@@ -283,10 +283,10 @@ cells:
     mode: extractive
     content: "Aletheia treats repository instruction files of the AGENTS.md kind as an injection surface, compiles the authority a rule requests into a typed language, and synthesizes sandbox configurations that re-run the unchanged rule and task once per removed permission. A task that still passes under reduced authority yields a dispensability witness."
     source_refs:
-      - uri: "https://arxiv.org/abs/2609.39678"
+      - uri: "https://arxiv.org/abs/2609.39678v1"
         quote_or_span: "Aletheia translates requested authority into a typed language and synthesizes executable sandbox configurations. It runs the unchanged rule and task under full permissions and independent restrictions that remove one permission at a time."
         ref_type: quote
-      - uri: "https://arxiv.org/abs/2609.39678"
+      - uri: "https://arxiv.org/abs/2609.39678v1"
         quote_or_span: "arXiv abs page submission history: [v1] Wed, 30 Sep 2026 13:09:24 UTC"
         ref_type: timestamp
     confidence: medium
@@ -302,7 +302,7 @@ cells:
     mode: extractive
     content: "On a shared refactoring task Aletheia detects all 314 AIShellJack attack inputs with no alarms on five benign templates, and raises three false positives (3.75%) among 80 manually verified benign GHAgentFiles rules."
     source_refs:
-      - uri: "https://arxiv.org/abs/2609.39678"
+      - uri: "https://arxiv.org/abs/2609.39678v1"
         quote_or_span: "On a shared refactoring task, Aletheia executes and detects all 314 AIShellJack attack inputs, with no alarms on five benign templates. Among 80 manually verified benign GHAgentFiles rules, it raises three false positives (3.75%)."
         ref_type: quote
     confidence: medium
@@ -570,7 +570,7 @@ cells:
     faithfulness_status: passed
     status: verified
     warnings:
-      - "29.2% is an unmitigated-attempt rate, not what a deployed system with safety filtering in place would do; citing it for an upgrade decision without this condition overstates deployed risk."
+      - "29.2% is an unmitigated simulated-completion rate, not what a deployed system with safety filtering in place would do; citing it for an upgrade decision without this condition overstates deployed risk."
       - "The page names simulation awareness as its main limitation, with the direction of bias unstated, so the rate could be over- or under-stated."
   - id: MTRX-W40-SAFEGUARD-BYPASS-RATES
     matrix_run_id: MTRX-W40-same-configuration-run-twice

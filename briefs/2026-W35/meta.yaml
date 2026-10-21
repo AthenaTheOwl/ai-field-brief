@@ -2,7 +2,7 @@ iso_week: 2026-W35
 through_date: 2026-08-30
 generated_at: 2026-09-04T18:00:00Z
 generated_by: claude-w35-contracts-outside-the-prompt
-title: "The repository overview cost twenty percent and bought nothing."
+title: "The context file cost twenty percent. The overview did not help."
 volume: 18
 profile_id: builder-tpm
 registry_version: 14
@@ -38,7 +38,7 @@ sources_reviewed:
     url: "google-drive://Daily Systems Brief"
     disposition: synthesis_input
   - label: "Evaluating AGENTS.md"
-    url: "https://arxiv.org/abs/2602.11988"
+    url: "https://arxiv.org/abs/2602.11988v2"
     disposition: top_signal
   - label: "Is Progressive Disclosure All You Need for Long-Context Agents?"
     url: "https://arxiv.org/abs/2607.17598"

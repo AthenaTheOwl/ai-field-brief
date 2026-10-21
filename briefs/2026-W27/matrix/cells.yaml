@@ -1,0 +1,186 @@
+matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
+cells:
+- id: MTRX-W27-EARLY-01
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Google''s developer post frames agent improvement as a repeatable loop: capture traces, turn
+    behavior into evals, review failures, and feed corrections back into the coding agent. ADK gives that
+    loop concrete primitives: agents, tools, sessions, artifacts, evals, deployment, and multi-agent coordination.'
+  source_refs:
+  - uri: https://developers.googleblog.com/en/driving-the-agent-quality-flywheel-from-your-coding-agent/
+    quote_or_span: June 30; prepare data, run inference, grade, analyze failures, optimize; model-based
+      graders and independent optimizer/grader roles, changes proposed for user approval. Independent
+      heldout test remains editorial recommendation.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. Google named the agent-quality flywheel'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-02
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: Dynamic subagents let an agent split work by writing a small orchestration program that creates
+    subagents at run time. The pattern pairs naturally with LangGraph's stateful execution and human-in-the-loop
+    controls.
+  source_refs:
+  - uri: https://www.langchain.com/blog/introducing-dynamic-subagents-in-deep-agents
+    quote_or_span: June 29; short orchestration scripts drive subagent execution in a lightweight interpreter;
+      loops/branches/concurrency. Source describes mechanism, not this brief's local throughput experiment.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. LangChain is moving orchestration into generated code'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-03
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'LangChain''s memory post argues for an agent-readable wiki layer: a maintained summary of
+    durable domain facts, decisions, and context. The post places Mem0 among adjacent memory approaches;
+    it does not benchmark them against a wiki.'
+  source_refs:
+  - uri: https://www.langchain.com/blog/wiki-memory
+    quote_or_span: June 30; agent-maintained persistent/structured/inspectable files; final paragraph
+      limits fit to durable domain knowledge, not all short-term state/preferences/event logs. No comparative
+      wiki-versus-retrieval benchmark.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. Wiki memory gives long-lived agents a reviewable context file'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-04
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'AgentCore names the managed building blocks: runtime, memory, identity, gateway, observability,
+    browser tool, and code interpreter. Strands gives builders a model-driven agent framework that can
+    use those primitives and expose tools through MCP-style paths.'
+  source_refs:
+  - uri: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
+    quote_or_span: 'Core services: modular runtime, memory, identity, gateway, observability, browser
+      and code interpreter. Current documentation reviewed for these already named primitives; no claim
+      current later additions shipped in W27.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. AgentCore and Strands package the runtime layer AWS wants builders to standardize
+      on'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-05
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: LangChain is writing about untrusted code execution and interpreter boundaries. OpenAI's Agents
+    SDK docs keep the runtime concepts close to tools, guardrails, sessions, and traceability. E2B is
+    the scout feed for what breaks in real sandbox practice.
+  source_refs:
+  - uri: https://www.langchain.com/blog/running-untrusted-agent-code-without-a-sandbox
+    quote_or_span: June 30; execution isolation via WASM/QuickJS, capability isolation starts with no
+      file/network/dependency access until bridged by harness, and durable pauses. A temp directory is
+      not enforcement.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. Sandbox access is becoming a grant, not a convenience'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-06
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: The old registry watched MCP through directories and security commentary, but not the official
+    spec. That is now fixed.
+  source_refs:
+  - uri: https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices
+    quote_or_span: Versioned 2025-11-25 security guidance; confused deputy, token passthrough, SSRF and
+      session risks. Pin relevant protocol-dependent fields; unrelated changes need not alter local hashes.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. MCP needs to be tracked as a protocol source, not only as a tool directory'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W27-EARLY-07
+  matrix_run_id: MTRX-W27-EDITORIAL-2026-10-21
+  source_item_id: editorial-w27-signal-07
+  lens_id: editorial_source_review
+  mode: critique
+  content: The framework field is too crowded for prose-only comparison. LlamaIndex, CrewAI, Cloudflare,
+    Braintrust, Langfuse, AgentOps, and the vendor SDKs all claim parts of the same lifecycle.
+  source_refs:
+  - uri: https://developers.cloudflare.com/agents/
+    quote_or_span: Agents documentation; durable agent state and runtime APIs provide one implementation
+      to compare. Common-task fixture, fixed budget and tie handling are editorial proposals, not a reported
+      head-to-head framework result.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 7. The framework comparison should become a repo test, not a paragraph'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

@@ -6,6 +6,10 @@ Output a 1-2 sentence principle statement + 1-2 concrete examples of where else 
 
 Mode: synthetic
 
+Read `prompts/editorial_contract.md`. A cross-domain example illustrates
+the proposed transfer. It is not another observed case unless a source
+records it. State where the analogy stops.
+
 Refuse:
 - Generalizing past what the source supports
 - Repeating the source's specific claim as if it were a principle

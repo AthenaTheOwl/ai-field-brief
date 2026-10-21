@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W38-the-ruler-outside-the-loop
 
 ## Field thesis
 
-Last week the thing outside the model got measured and did poorly. This week the thing outside the model is the only part that held. Every self-improvement result in the window put the ruler somewhere the agent could not reach it: a fixed bits-per-byte evaluator on a Git DAG that thirteen workers appended to for twelve days, a verifier agent kept separate from the actor, a replay simulator built from the search history instead of the live environment, a guardrail distilled from six hundred and forty-two recorded failures, a confidence score computed from graded past episodes, not from the model's own sampling. And every runtime change in the window moved a control out of the model and into the harness: a client that hands hostname resolution to the egress proxy, a fetch tool patched four ways in one release and a second vendor patching the same surface the same week, approvals keyed to validated arguments, a human's edit to a tool call recorded beside the model's original. The week's quietest item is the one this portfolio has waited for: the client now reads AGENTS.md when there is no CLAUDE.md, which turns a contract the portfolio wrote for itself into the default the tool reads.
+Last week the thing outside the model got measured and did poorly. This week the thing outside the model is the only part that held. Every self-improvement result in the window put the ruler somewhere the agent could not reach it: a fixed bits-per-byte evaluator on a Git DAG that thirteen workers appended to for twelve days, a verifier agent kept separate from the actor, a replay simulator built from the search history instead of the live environment, a guardrail distilled from six hundred and forty-two recorded failures, a confidence estimate informed by graded past episodes before the model restates it. And every runtime change in the window moved a control out of the model and into the harness: a client that hands hostname resolution to the egress proxy, a fetch tool patched four ways in one release and a second vendor patching the same surface the same week, approvals keyed to validated arguments, a human's edit to a tool call recorded beside the model's original. The week's quietest item is the one this portfolio has waited for: the client now reads AGENTS.md when there is no CLAUDE.md, which turns a contract the portfolio wrote for itself into the default the tool reads.
 
 ## Top signals
 
@@ -120,19 +120,19 @@ Last week the thing outside the model got measured and did poorly. This week the
 
 **Mechanism:** The failure traces are the specification. A rule mined from what went wrong last time is more specific than any rule a person writes in advance, and activating only the rules that match the current instruction keeps the guardrail from becoming a second system prompt. The design is the trace-to-check loop the portfolio already runs, taken one step further: instead of freezing one failure into one eval case, the failures are clustered and turned into constraints that apply before the next run instead of after it.
 
-**Why it matters:** The portfolio's harness freezes a failed run into a checked-in eval case so the same failure cannot ship twice. AgentGuard's numbers say the same traces can also feed forward. The gap between the two rates matters as much as either: abnormal executions fell by forty-two points while completion rose by thirteen, so most of what the guardrail stops was not going to succeed anyway, and the completion gain is the number to hold it to.
+**Why it matters:** The portfolio's harness freezes a failed run into a checked-in eval case so the same failure cannot ship twice. AgentGuard's numbers say the same traces can also feed forward. The gap between the two rates matters as much as either: abnormal executions fell by forty-two points while completion rose by thirteen, and the two aggregate rates do not tell us which runs changed category. Completion is the number to hold it to.
 
 **Reusable pattern:** Cluster the failure traces, write the constraint per cluster, and scope each constraint to the instructions it matches.
 
 **Action surface:** eval
 
-**Try this week:** Take the portfolio's last fifty frozen failure cases, cluster them by hand into no more than eight patterns, and write one instruction-level constraint per pattern. Run the next ten factory tasks with the constraints injected only when the task matches.
+**Try this week:** Take the portfolio's last fifty frozen failure cases, cluster them by hand into no more than eight patterns, and write one instruction-level constraint per pattern. Run ten held-out matching tasks with and without the constraints, keeping the model and harness fixed.
 
 **Systems map:** failure traces recorded -> patterns clustered -> constraints written per pattern -> constraint activated on matching instruction -> abnormal execution rate falls -> completion rate rises less than abnormal rate falls.
 
 **Transferable principle:** A rule derived from recorded failures is a compressed test suite; the compression is only as good as the clustering, and a rule that fires on every instruction is a prompt, not a guardrail.
 
-**Falsification test:** If the constraints written from the portfolio's own traces do not move completion on the next ten tasks, the traces were too few or too specific to generalize, and the frozen cases should stay as after-the-fact checks.
+**Falsification test:** If repeated paired runs show no completion gain or introduce new failures, keep the frozen checks and hold the constraints out of the default. Ten tasks start the comparison; they do not explain a null result.
 
 **Adoption ladder:**
   - Minimum viable: fifty frozen failure cases clustered into named patterns.
@@ -150,9 +150,9 @@ Last week the thing outside the model got measured and did poorly. This week the
 
 **Payload:** Submitted 2026-09-15. XConf estimates confidence from a record of the model's own graded past episodes. It beats or matches ten-sample self-consistency in discrimination (AUROC) on 23 of 24 comparisons, with much lower calibration error (ECE), at a tenth of the generation cost, and abstaining on the 10% least-confident episodes raises the delivered success rate by up to 8.7 points on agent tasks.
 
-**Mechanism:** Self-consistency buys a confidence estimate by sampling the same problem ten times and measuring agreement, which costs ten generations and measures the model's agreement with itself. XConf replaces the ten samples with a lookup against graded history: episodes like this one went this way. The record is external to the model and grows with every graded run, so the estimate is a property of the operator's ledger, not of the model's mood on the day. Abstention then converts the estimate into a delivered number: refuse the tenth of episodes the record says are most likely to fail, and the success rate on what ships goes up.
+**Mechanism:** Self-consistency buys a confidence estimate by sampling the same problem ten times and measuring agreement, which costs ten generations and measures the model's agreement with itself. XConf retrieves episodes with similar tasks and stated confidence, reads their historical success rate, then asks the model to reflect on that record and restate its confidence. The grades are external; the final confidence is still the model's estimate. Abstention then converts the estimate into a delivered number: refuse the tenth of episodes the record says are most likely to fail, and the success rate on what ships goes up.
 
-**Why it matters:** The portfolio grades every factory run and keeps the grades in a ledger, which is the record XConf needs and most teams do not have. The 8.7-point figure is a maximum across the agent tasks reported, so the portfolio's own number will be lower, but the cost side is the point: a confidence estimate at a tenth of the cost of self-consistency changes whether it is worth computing at all.
+**Why it matters:** The portfolio grades every factory run and keeps the grades in a ledger, which is the record XConf needs and most teams do not have. The 8.7-point figure is a maximum across the agent tasks reported, which gives no forecast for the portfolio's own gain, but the cost side is the point: a confidence estimate at a tenth of the cost of self-consistency changes whether it is worth computing at all.
 
 **Reusable pattern:** Estimate confidence from graded history instead of resampling, and spend the estimate on abstention where a refused task costs less than a failed one.
 
@@ -164,7 +164,7 @@ Last week the thing outside the model got measured and did poorly. This week the
 
 **Transferable principle:** A record of graded outcomes is a calibration set; any system that grades its own work can price its confidence from history instead of from repetition. Credit scoring and clinical triage do this already.
 
-**Falsification test:** If the ledger-derived confidence has no discrimination on the portfolio's own runs, the tasks are too heterogeneous for nearest-episode matching and self-consistency remains the only estimate.
+**Falsification test:** If the ledger-derived confidence has no discrimination on the portfolio's own runs, this nearest-episode estimator has not earned adoption. Compare it with self-consistency before choosing either.
 
 **Adoption ladder:**
   - Minimum viable: retrospective confidence computed for one hundred graded runs from the fifty before each.
@@ -178,19 +178,19 @@ Last week the thing outside the model got measured and did poorly. This week the
 
 ### 6. Git was the shared memory of thirteen workers for twelve days
 
-**Source:** [Agora: Git as Shared Memory for Collective AutoResearch](https://arxiv.org/abs/2609.18094)
+**Source:** [Agora: Git as Shared Memory for Collective AutoResearch](https://arxiv.org/abs/2609.18094v2)
 
 **Payload:** Submitted 2026-09-16. Agora records research as an append-only directed acyclic graph stored in Git. In a run of nearly 12 days, 13 language-model workers on a weight-transfer problem published 1,703 contributions and drove the evaluator from 3.39 to 1.899 bits per byte, closing 62% of the gap to a trained GPT-2 124M. The abstract also reports a 145-commit ancestry, 15 accounts and 165 independent reproductions.
 
-**Mechanism:** Every worker's contribution is a commit with parents, so the record of who tried what, on top of what, is the version history itself, and any worker can start from any node. The evaluator is a fixed bits-per-byte number on a fixed target, which is why the workers can search: the ruler is a file none of them can edit. The 62% figure is progress toward a model that already exists, which is the design, since the point was to test the coordination substrate and not to discover anything.
+**Mechanism:** Every worker's contribution is a commit with parents, so the record of who tried what, on top of what, is the version history itself, and any worker can start from any node. The evaluator is a fixed bits-per-byte number on a fixed target, which is why the workers can search: the ruler is a file none of them can edit. The 62% figure is progress toward a model that already exists, which is the design, giving the coordination run a concrete target. A matched comparison would be needed to price the benefit of the DAG.
 
-**Why it matters:** The portfolio runs one writer per repo per session, and the two-lane rule exists because two agents editing one working tree collide. Agora is the other answer: many writers, no shared working tree, an append-only DAG, and every contribution reproducible from its ancestry. The 165 independent reproductions are the number to notice, because they follow from the record being the DAG and not a transcript. The event ledger the portfolio already keeps is a flat log; the paper argues the log should have parents.
+**Why it matters:** The portfolio runs one writer per repo per session, and the two-lane rule exists because two agents editing one working tree collide. Agora is the other answer: many writers, no shared working tree, an append-only DAG, and every contribution reproducible from its ancestry. The 165 independent reproductions are the number to notice, because the DAG makes their ancestry inspectable. The event ledger the portfolio already keeps is a flat log; the paper argues the log should have parents.
 
 **Reusable pattern:** Make the shared memory an append-only DAG with a fixed external evaluator, and let workers branch from any node instead of serializing through one tree.
 
 **Action surface:** architecture
 
-**Try this week:** Take one factory task's run ledger and rewrite it as a DAG: each run's parent is the run whose output it started from. Count how many runs have no parent, which is the number of times a worker started from nothing when it could have started from a sibling.
+**Try this week:** Take one factory task's run ledger and rewrite it as a DAG: each run's parent is the run whose output it started from. Count runs with no recorded parent, then check which had a reusable sibling. A missing link and a fresh start are different findings.
 
 **Systems map:** workers append commits with parents -> evaluator fixed and external -> any node reproducible from ancestry -> search proceeds in parallel without a shared tree -> coordination cost moves from locking to merging.
 
@@ -260,7 +260,7 @@ Last week the thing outside the model got measured and did poorly. This week the
 
 **Transferable principle:** Authorization has to bind to the same representation the executor uses, and an edit to an authorized action has to leave both the original and the edit in the record. Change-control and financial approval systems learned this the expensive way.
 
-**Falsification test:** If the portfolio's approval and validation steps already share one object and edited calls already record the original, the three fixes describe frameworks the portfolio does not run.
+**Falsification test:** If the portfolio's approval and validation steps already share one object and edited calls already record the original, these two gaps are already covered locally.
 
 **Adoption ladder:**
   - Minimum viable: the approval and validation points located in the policy engine and compared.
@@ -298,9 +298,9 @@ Last week the thing outside the model got measured and did poorly. This week the
 | Inventory repos with both AGENTS.md and CLAUDE.md and diff each pair | config | S | low | Count of repos with two files and count of differing pairs |
 | Run the three-input probe against the portfolio's fetch wrapper | security | S | low | Which of a mixed-case blocked domain, an IPv6 zone literal, and a ten-megabyte page is refused, and the parse time of the third |
 | Enable gateway hint headers on one factory session and group cost by request class | observability | S | low | Five headers visible in the gateway log; cost per class for one day |
-| Cluster fifty frozen failure cases into patterns and write one constraint each | eval | M | low | Abnormal-run and completion rates on the next ten matching tasks |
+| Cluster fifty frozen failure cases into patterns and write one constraint each | eval | M | low | Abnormal-run and completion rates with and without constraints on the same ten held-out tasks |
 | Compute retrospective ledger confidence for one hundred graded runs | workflow | M | low | Whether dropping the ten least-confident would have raised the pass rate on the rest |
-| Rewrite one task's run ledger as a parent-child graph | architecture | S | low | Count of orphan runs that could have started from a sibling |
+| Rewrite one task's run ledger as a parent-child graph | architecture | S | low | Runs with missing parent records; fresh runs with a reusable sibling |
 | Replay a proposed policy change against twenty recorded trajectories before running it live | experiment | M | low | Whether the replay score predicted the live score |
 | Check that approval and validation in the policy engine see the same call object | tool-policy | S | low | Runs where validated arguments differ from approved ones; edited calls that lost the original |
 
@@ -311,7 +311,7 @@ Last week the thing outside the model got measured and did poorly. This week the
 | claude-code-changelog | portfolio repos | config | List repos carrying both instruction files and diff each pair | Repos with two files; differing pairs | Read-only; nothing to undo | No repo carries both files |
 | agent-frameworks | portfolio fetch wrapper | security | Feed the wrapper a mixed-case blocked domain, an IPv6 zone literal, and a ten-megabyte page | Which inputs are refused; parse time of the large page | Read-only against a test wrapper | All three refused and the large page parses within budget |
 | claude-code-changelog | factory gateway sessions | observability | Set `CLAUDE_CODE_GATEWAY_HINT_HEADERS=1` on one session and log the headers beside token counts | Cost grouped by request class and compaction flag | Unset the flag | No session runs through a gateway |
-| arxiv-cs-se | factory run ledger | eval | Cluster fifty frozen failures into patterns and inject one constraint per pattern on matching tasks | Abnormal-run rate and completion rate over ten tasks | Remove the constraints; frozen cases untouched | Completion unchanged after ten tasks |
+| arxiv-cs-se | factory run ledger | eval | Cluster fifty frozen failures into patterns and inject one constraint per pattern on matching tasks | Abnormal-run rate and completion rate over ten tasks | Remove the constraints; frozen cases untouched | No completion gain or new failures on repeated paired held-out runs |
 | arxiv-cs-ai | factory run ledger | workflow | Compute nearest-episode confidence for one hundred graded runs from the fifty before each | Pass rate on the ninety kept versus all hundred | Read-only; retrospective | Confidence has no discrimination against actual grades |
 | arxiv-cs-ma | factory run ledger | architecture | Add a parent field to one task's runs and count orphans | Orphan runs; reproductions per node | Field is additive; drop it | Every run already names a parent |
 | arxiv-cs-ai | factory replay tooling | experiment | Score one policy change against twenty recorded trajectories before the live run | Replay score versus live score | Read-only; the live run happens anyway | Replay fails to predict live for five changes running |
@@ -323,7 +323,7 @@ Last week the thing outside the model got measured and did poorly. This week the
 |---|---|---|---|
 | [ScienceIDE](https://arxiv.org/abs/2609.19134) | Submitted 2026-09-16: agents turn scientific code repositories into executable environments with task generation, execution and verification, guided by expert-defined cases and acceptance criteria, and the verified trajectories train a model family the authors report as gaining on held-out scientific-code repair | Whether repository-to-environment conversion works on code without expert acceptance criteria | A second group converting a repo the authors did not choose |
 | [Benchmark Radar](https://arxiv.org/abs/2609.11115) | Revised 2026-09-13: a living catalogue of 1,283 source records from 4 benchmark catalogs and 12,916 numeric observations on 790 records, with daily discovery from 37 sources, aimed at the question of which settings sit behind a reported score | Whether harness version and extraction settings become catalogued fields, which is the gap 2026-W37 named | Scores in the catalogue carrying a harness identifier |
-| [Agora's 165 reproductions](https://arxiv.org/abs/2609.18094) | The reproduction count follows from the DAG being the record; if it holds outside the authors' run it is a coordination result, not a research one | Whether anyone reproduces a node from the published ancestry alone | An independent reproduction from ancestry without author assistance |
+| [Agora's 165 reproductions](https://arxiv.org/abs/2609.18094v2) | The DAG makes the ancestry behind 165 reported reproductions inspectable; a matched run would need to measure what that buys coordination | Whether anyone reproduces a node from the published ancestry alone | An independent reproduction from ancestry without author assistance |
 | [Codex rust-v0.155.0 voice conversations](https://github.com/openai/codex/releases/tag/rust-v0.155.0) | Experimental `/voice` conversations with live transcripts on 2026-09-17; a new input channel into a coding agent, with the transcript as the record | Whether voice transcripts enter the same permission and audit path as typed input | A transcript-driven tool call appearing in a run record |
 
 ## Watchlist

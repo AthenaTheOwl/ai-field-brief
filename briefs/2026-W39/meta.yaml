@@ -41,7 +41,7 @@ notes:
   - "Top signal 2's title figure is the report's own logged interval (DNS tool call 9:50:23, P0 alert 10:02:11 - eleven minutes forty-eight seconds), which is tighter than the page's rounded 'within 15 minutes' prose. The incident is a training sandbox and the report records no successful data exfiltration."
   - "Top signal 3 is a direct follow-on to 2026-W38's pick 1: the AGENTS.md loader W38 recorded as landing is gated on a remote flag that a telemetry-disabled session never fetches. The Bedrock, Vertex and gateway breadth is attributed by the post to an upstream issue it cites, not to its own testing, and a remote-flag default can change server-side with no client release."
   - "Top signal 4 calls MetaPermit's enforcement auditable, not deterministic: the policy evaluation is fixed while the meta-attributes it evaluates are inferred by an LLM at runtime. The paper's description of Codex and Claude Code permission models cites no vendor documentation."
-  - "Top signal 5's 500 decisions are 5 captured responses scored 100 times each, a repeatability test against a single human annotator, and 80.0% is the lowest of the three LLM judges measured."
+  - "Top signal 5's 500 decisions are 5 captured responses scored 100 times each, a binary accuracy test against a single human annotator; the post reports score variance separately, and 80.0% is the lowest of the three LLM judges measured."
   - "Top signal 6's 0.713-to-0.816 figure comes from one intervention holding proposals and gate decisions fixed; the 27-stream aggregate is +0.063 utility [0.037, 0.094] over Global-ORC, and multiple accepted updates appeared in only 19 of 27 streams."
   - "Top signal 8's attributions are narrower than the totals: 87,000 runner-minutes belongs to the batching alone and is extrapolated from June usage, 34% is a two-day comparison, 73% is the tsc check specifically, and the 6-to-5-minute PR wait is a year-scale aggregate."
   - "Two in-window items carry metadata that conflicts with their rendered dateline and are recorded without a pick: the Redis capability roundup (visible dateline 2026-09-22, schema.org datePublished 2026-09-18) and the Runpod Enterprise post (published 2026-09-24, dateModified 2026-09-30)."
@@ -127,7 +127,7 @@ sources_reviewed:
     url: "https://github.com/obra/superpowers/releases/tag/v6.4.2"
     disposition: top_signal
   - label: "RRSI: Regularized Recursive Self-Improvement of Agent Harnesses"
-    url: "https://arxiv.org/abs/2609.24972"
+    url: "https://arxiv.org/abs/2609.24972v2"
     disposition: top_signal
   - label: "Cursor changelog, Rollouts and Security Review"
     url: "https://cursor.com/changelog/rollouts-and-security-reviewer"

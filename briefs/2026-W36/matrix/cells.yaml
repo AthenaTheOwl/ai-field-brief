@@ -113,10 +113,10 @@ cells:
     source_item_id: src-w36-openai-api-changelog
     lens_id: runtime-adapter
     mode: extractive
-    content: "The OpenAI API changelog entry dated 2026-09-02 splits overload semantics: rapid traffic increases return 429 with a slow_down code while temporary model overload returns 503 with server_is_overloaded, both potentially carrying a Retry-After header."
+    content: "The OpenAI API changelog entry dated 2026-09-02 splits overload semantics: rapid traffic increases return 429 with a slow_down code while temporary model overload returns 503 with server_is_overloaded, both potentially carrying a Retry-After header. The same entry says to wait at least the header's duration when present and use exponential backoff when absent."
     source_refs:
       - uri: "https://developers.openai.com/api/docs/changelog"
-        quote_or_span: "Traffic spikes now return 429 errors with slow_down codes, while overload conditions return 503 errors with server_is_overloaded codes, both potentially including Retry-After headers."
+        quote_or_span: "Traffic spikes now return 429 errors with slow_down codes, while overload conditions return 503 errors with server_is_overloaded codes, both potentially including Retry-After headers. When the header is present, wait at least as long as it specifies before retrying. If it is missing, use exponential backoff."
         ref_type: quote
     confidence: high
     faithfulness_status: passed

@@ -1,0 +1,193 @@
+matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 6
+  cells_verified_passed: 6
+cells:
+- id: MTRX-W23-EARLY-01
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'OpenAI''s April 15 SDK update adds a model-native agent
+
+    loop and native sandbox execution for agents that inspect files, run
+
+    commands, edit code, and work across long tasks in controlled
+
+    environments. The same post describes Manifest-backed workspaces,
+
+    provider sandboxes, snapshotting, and rehydration.'
+  source_refs:
+  - uri: https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+    quote_or_span: 'April 15, 2026; Native sandbox execution and Separating harness from compute: manifests,
+      isolated execution, externalized state, snapshot and rehydration into a fresh container. Resume
+      is not an identical-output guarantee.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. OpenAI Agents SDK sandbox + RunState - replay moves into the runtime'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W23-EARLY-02
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'OpenAI says Codex now has more than five million weekly
+
+    users. Knowledge workers are about one-fifth of the user base and are
+
+    growing faster than developers. The June 2 product release adds
+
+    role-specific plugins, annotations, and shareable sites.'
+  source_refs:
+  - uri: https://openai.com/index/codex-for-every-role-tool-workflow/
+    quote_or_span: June 2; six role-specific plugins, 62 apps/110 skills, Sites preview and annotations.
+    ref_type: chunk
+  - uri: https://openai.com/index/codex-for-knowledge-work/
+    quote_or_span: 'June 2 opening: company-reported knowledge-work usage; report does not measure this
+      brief''s proposed artifact gate.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. Codex role plugins + knowledge-work report - artifact work moves outside engineering'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W23-EARLY-03
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Langfuse now runs Python or TypeScript evaluators against
+
+    observations and experiments, returning native scores for trace views,
+
+    experiment comparisons, filters, dashboards, and score analytics.'
+  source_refs:
+  - uri: https://langfuse.com/docs/evaluation/evaluation-methods/code-evaluators
+    quote_or_span: 'Code evaluators introduction: Python/TypeScript exact match, regex, JSON/schema, tool
+      arguments and business rules; semantic judgment remains a separate evaluator.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. Langfuse code evaluators - deterministic checks join trace review'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W23-EARLY-04
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'AgentTrust proposes runtime safety evaluation and
+
+    interception for agent tool use. SLEIGHT-Bench studies monitor blind
+
+    spots with 40 harmful coding-agent transcript attacks across 11
+
+    categories.'
+  source_refs:
+  - uri: https://arxiv.org/abs/2605.04785
+    quote_or_span: 'AgentTrust abstract: runtime interception of real tool side effects, standardized
+      action information and local policy evaluation.'
+    ref_type: chunk
+  - uri: https://alignment.anthropic.com/2026/sleight-bench/
+    quote_or_span: 'Background, approach and harms: monitor detection failures on evasive transcripts.
+      Better monitor results alone do not discharge runtime authorization.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. AgentTrust + SLEIGHT-Bench - monitors need a pre-execute policy layer'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W23-EARLY-05
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'IBM Research and Artificial Analysis published ITBench-AA,
+
+    a benchmark whose first release tests SRE diagnosis on 59 Kubernetes
+
+    incident snapshots, repeated three times per task. They report frontier
+
+    models below 50 percent under recall-gated precision, not live deployment success.'
+  source_refs:
+  - uri: https://huggingface.co/blog/ibm-research/itbench-aa
+    quote_or_span: 'May 27; SRE overview: 59 Kubernetes incident snapshot tasks, 100-turn cap, 3 repeats,
+      recall-gated precision, same Stirrup harness across models.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. ITBench-AA - enterprise agent tasks need stateful ops evals'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W23-EARLY-06
+  matrix_run_id: MTRX-W23-EDITORIAL-2026-10-21
+  source_item_id: editorial-w23-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'OpenAI launched Rosalind Biodefense on May 29 for vetted
+
+    defensive partners. The earlier GPT-Rosalind launch includes a Codex
+
+    life-sciences plugin with more than 50 tools and data sources, plus a
+
+    trusted-access model for qualified users.'
+  source_refs:
+  - uri: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/
+    quote_or_span: 'May 29: trusted defensive developers and expanded vetted government/allied access.'
+    ref_type: chunk
+  - uri: https://openai.com/index/introducing-gpt-rosalind/
+    quote_or_span: 'April 16; Connecting to tools and Trusted access: public plugin with 50+ tools/data
+      sources, model access for qualified customers. No causal incident-rate comparison between access
+      policies.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. Rosalind Biodefense - domain agents ship with access review attached'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

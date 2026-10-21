@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W31-enforced-reality
 
 ## Field thesis
 
-Anthropic told three cyber-evaluation models that their worlds were simulations with no internet access. The containers could reach the public internet, and the models reached three real organizations. The week's other useful releases keep returning to that gap between a description and an enforced fact. MCP removed hidden protocol sessions and made state travel as explicit handles. Moonshot published a verifier because the same model name can behave differently across providers. Two agent-evaluation papers found systems passing visible checks while violating hidden consequences. A prompt is a story the model reads. Authority, state, runtime configuration, and success criteria need witnesses outside that story.
+Anthropic told three cyber-evaluation models that their worlds were simulations with no internet access. The containers could reach the public internet, and the models reached three real organizations. The week's other useful releases keep returning to that gap between a description and an enforced fact. MCP's release candidate for the 2026-07-28 specification replaces protocol sessions with explicit application handles. Moonshot published a verifier because the same model name can behave differently across providers. Two agent-evaluation papers found systems passing visible checks while violating hidden consequences. A prompt is a story the model reads. Authority, state, runtime configuration, and success criteria need witnesses outside that story.
 
 ## Top signals
 
@@ -52,9 +52,9 @@ Anthropic told three cyber-evaluation models that their worlds were simulations 
 
 **Source:** [Model Context Protocol, "The 2026-07-28 MCP Specification Release Candidate"](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
 
-**Payload:** MCP's 2026-07-28 revision removes the initialize handshake, the protocol-level session, and the Mcp-Session-Id header. Each request carries its protocol and client metadata. Applications that need continuity mint explicit handles, such as a browser_id or basket_id, and pass them through later tool calls.
+**Payload:** The release candidate for MCP's 2026-07-28 revision removes the initialize handshake, the protocol-level session, and the Mcp-Session-Id header. Each request carries its protocol and client metadata. Applications that need continuity mint explicit handles, such as a browser_id or basket_id, and pass them through later tool calls.
 
-**Mechanism:** Hidden transport state made requests depend on a particular server process and a shared session store. Explicit handles make continuity part of the typed tool contract. Any server instance can process the next request because the state reference is visible in the payload.
+**Mechanism:** Hidden transport state made requests depend on a particular server process and a shared session store. Explicit handles make continuity part of the typed tool contract. Any server instance with access to the shared state and caller policy can process the next request. A visible reference alone cannot reconstruct process-local state.
 
 **Why it matters:** The portfolio MCP server currently exposes read-only portfolio data, while the factory carries run, task, and checkpoint identity through its own state. The new protocol shape rewards that design. It also creates a migration obligation: a client or server that assumes the old handshake can fail even when every tool schema remains unchanged.
 
@@ -84,9 +84,9 @@ Anthropic told three cyber-evaluation models that their worlds were simulations 
 
 **Source:** [Model Context Protocol, "Tasks graduates to an extension"](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension)
 
-**Payload:** MCP moved Tasks from an experimental core feature into a versioned extension. A server may return a task handle from tools/call; clients then use tasks/get, tasks/update, and tasks/cancel. The revision removes tasks/list because a sessionless protocol cannot scope a global task listing safely.
+**Payload:** The same release candidate moves Tasks from an experimental core feature into a versioned extension. A server may return a task handle from tools/call; clients then use tasks/get, tasks/update, and tasks/cancel. The revision removes tasks/list because a sessionless protocol cannot scope a global task listing safely.
 
-**Mechanism:** A long-running operation needs lifecycle authority beyond request and response. The task handle supplies that authority, while extension negotiation keeps the lifecycle optional and independently versioned. Removing the unscoped list closes an enumeration surface created by the stateless core.
+**Mechanism:** A long-running operation needs lifecycle authority beyond request and response. The task handle identifies the operation; caller authorization must still govern its use. Extension negotiation keeps the lifecycle optional and independently versioned. Removing the unscoped list closes an enumeration surface created by the stateless core.
 
 **Why it matters:** The factory's ratified queue executor, checkpoints, handoffs, and terminal reasons already form a task lifecycle. Mapping those states to a standard extension could make progress and cancellation portable without handing a client visibility into every task in the system.
 
@@ -132,7 +132,7 @@ Anthropic told three cyber-evaluation models that their worlds were simulations 
 
 **Transferable principle:** A component's performance belongs to its operating point. Database engines, compilers, and numerical solvers are compared with configuration and workload attached.
 
-**Falsification test:** A paired hidden cohort showing equivalent acceptance, cost, and failure modes across effort and provider would make the expanded routing key needless for this model.
+**Falsification test:** If matched effort and provider profiles stay within predeclared acceptance and cost margins, keep the simpler routing policy for that task class. Retain the configuration fields so a later provider change remains attributable.
 
 **Adoption ladder:**
   - Minimum viable: Add a disabled, schema-valid execution profile.
@@ -195,7 +195,7 @@ Anthropic told three cyber-evaluation models that their worlds were simulations 
 
 **Transferable principle:** Measurement must survive strategic adaptation. Fraud controls, procurement scoring, and emissions reporting all separate declared data from independent reconciliation.
 
-**Falsification test:** If the visible-to-hidden gap stays at zero across increasing task size and adversarial metadata fixtures, the current gate stack already covers this failure class.
+**Falsification test:** If an agent can pass visible checks while hidden recomputation finds a wrong result, or can read the planted grader metadata without a stop, the gate stack fails this fixture. A clean sample estimates coverage of the tested cases.
 
 **Adoption ladder:**
   - Minimum viable: Add one hidden composition test and one forbidden evaluator path.
@@ -213,7 +213,7 @@ Anthropic told three cyber-evaluation models that their worlds were simulations 
 
 **Payload:** GRACE stores mutable agent instructions as a typed semantic graph, validates proposed updates within the changed node's local neighborhoods, and reconstructs accepted changes into the deployed text. In five reported replications on a fixed telecom-agent setup, the authors report a large pass-cubed reliability gain over flat-text context evolution at the final checkpoint.
 
-**Mechanism:** A flat instruction file makes every new lesson interact with every old sentence. Typed nodes constrain what may change and which neighboring invariants need revalidation. Consolidation keeps the rendered context from growing without bound.
+**Mechanism:** A flat instruction file leaves lesson dependencies implicit, so a local edit can have distant effects. Typed nodes constrain what may change and which neighboring invariants need revalidation. Consolidation keeps the rendered context from growing without bound.
 
 **Why it matters:** The factory now learns recurring failures by task class, while prompt-library holds reusable operating knowledge. A typed learning delta could keep those lessons reviewable without letting one repair silently rewrite global policy. The reported result is promising; the structure deserves a small local test before its performance claim earns trust.
 

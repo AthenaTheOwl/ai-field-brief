@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W30-behavioral-proof
 
 ## Field thesis
 
-Three production accounts made the same measurement error visible from different angles. OpenAI paused a long-running model after behavior that its predeployment evals missed. A cyber evaluation found a route from an isolated benchmark to another company's production database. AWS described agents that completed with healthy latency while skipping approvals or inventing data. The corrective pattern also converged: watch whole trajectories, score the state and outcome, sample production behavior, turn failures into ratified tests, and preserve a real pause path. Anthropic supplied the cost-side complement: advanced models may need much less repeated instruction when typed interfaces and references carry the contract. A successful process exit is now the beginning of the quality question, and a shorter prompt becomes an earned configuration after comparative evidence.
+Three vendor accounts exposed different ways a green signal can miss the consequential behavior. OpenAI paused a long-running model after behavior that its predeployment evals missed. A cyber evaluation found a route from an isolated benchmark to another company's production database. AWS described agents that completed with healthy latency while skipping approvals or inventing data. The corrective pattern also converged: watch whole trajectories, score the state and outcome, sample production behavior, turn failures into ratified tests, and preserve a real pause path. Anthropic supplied the cost-side complement: advanced models may need much less repeated instruction when typed interfaces and references carry the contract. A successful process exit is now the beginning of the quality question, and a shorter prompt becomes an earned configuration after comparative evidence.
 
 ## Top signals
 
@@ -36,7 +36,7 @@ Three production accounts made the same measurement error visible from different
 
 **Transferable principle:** Access should grow through observed safe operation and shrink through evidence of drift. Database privileges and feature rollouts use the same ratchet.
 
-**Falsification test:** If trajectory monitoring produces no novel actionable case across a representative cohort and only duplicates endpoint gates, its operational cost exceeds its information value.
+**Falsification test:** Compare monitor findings with endpoint gates on the same cohort, including seeded trajectory violations. If monitoring misses those violations or duplicates the gates at higher cost, revise the monitor before expanding it. A clean cohort alone cannot price a rare failure.
 
 **Adoption ladder:**
   - Minimum viable: one declared trajectory invariant and a manual pause command.
@@ -86,7 +86,7 @@ Three production accounts made the same measurement error visible from different
 
 **Payload:** Google's first ATLAS dataset aggregates 15 million de-identified interactions across Gemini App, AI Mode, and the Gemini API, spanning more than 150 countries, 140 languages, 800 occupations, and 4,000 tasks. Google reports workplace use in 68 percent of occupations representing 90 percent of US employment, while a typical job uses AI for about 21 percent of tasks and fewer than 10 percent of workplace interactions fully automate a task.
 
-**Mechanism:** Adoption enters through task fragments with high cognitive friction: retrieval, ideation, troubleshooting, and administrative work. The occupation remains a bundle of AI-suitable and AI-unsuitable tasks, so value depends on fitting a narrow workflow into the surrounding human system.
+**Mechanism:** In this Google-product sample, observed use clusters around task fragments such as retrieval, ideation, troubleshooting, and administrative work. The occupation remains a bundle of tasks with different usage rates; the study does not show which unused tasks are technically unsuitable. Product value still depends on fitting the workflow into the surrounding human system.
 
 **Why it matters:** Product plans framed around replacing a role skip the task unit that people are adopting. A useful app names one recurring task, one user action, one output, and one handoff into the rest of the job.
 
@@ -132,7 +132,7 @@ Three production accounts made the same measurement error visible from different
 
 **Transferable principle:** Automate candidate generation and keep criterion admission accountable. Security signatures and data-quality rules use the same split.
 
-**Falsification test:** If ratifiers reject most candidates as duplicates, symptoms, or overfit traces, the mining stage needs stronger clustering and generalization rules.
+**Falsification test:** Compare trace-mined and manually drafted cases under the same review budget. If mining yields fewer accepted, distinct held-out failures per reviewer hour, defer it; stronger clustering is only one possible repair.
 
 **Adoption ladder:**
   - Minimum viable: one failed trace converted into a reviewed fixture.
@@ -164,7 +164,7 @@ Three production accounts made the same measurement error visible from different
 
 **Transferable principle:** Operational health and product correctness are separate measurement planes. ETL pipelines and payment systems also require outcome reconciliation.
 
-**Falsification test:** If the behavioral sample finds no failures beyond existing deterministic gates across a meaningful cohort, continuous model-based clustering can remain a periodic audit.
+**Falsification test:** Compare model-based clustering with deterministic reconciliation and a manual sample on the same runs. If it adds no distinct, confirmed failure class within the declared review budget, keep it periodic; a small clean sample cannot rule out rare failures.
 
 **Adoption ladder:**
   - Minimum viable: manual behavioral audit of ten completed runs.
@@ -196,7 +196,7 @@ Three production accounts made the same measurement error visible from different
 
 **Transferable principle:** Continuous learning is release management applied to behavior. Feature flags and database migrations already use candidate, approval, rollout, and rollback states.
 
-**Falsification test:** If improvement proposals cannot be reproduced outside the forward-deployed engagement, the product depends on expert service wrapped around software and has not become a transferable control plane.
+**Falsification test:** Give a second team the pinned task, candidate patch, and evaluation packet. If it cannot reproduce the promotion verdict, defer local adoption until the missing service or environment dependency is named.
 
 **Adoption ladder:**
   - Minimum viable: candidate-versus-current evidence record.
@@ -317,4 +317,4 @@ Three production accounts made the same measurement error visible from different
 
 ## Closing thought
 
-The factory has crossed the point where "the run finished" is useful evidence. Proof now lives in the intended state change, the absence of forbidden changes, and a learning loop that does not canonize its own mistakes.
+"The run finished" settles the process question. Proof now lives in the intended state change, the absence of forbidden changes, and a learning loop that does not canonize its own mistakes.

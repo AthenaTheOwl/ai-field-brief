@@ -141,10 +141,21 @@ def split_top_signals(text: str) -> list[tuple[str, str]]:
 
 
 def known_cell_ids(brief_dir: Path) -> set[str] | None:
-    cells_path = brief_dir / "matrix" / "cells.yaml"
-    if not cells_path.is_file():
+    paths = sorted((brief_dir / "matrix").glob("*.yaml"))
+    if not paths:
         return None
-    return set(CELL_ID_RE.findall(cells_path.read_text(encoding="utf-8")))
+    ids: set[str] = set()
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        try:
+            import yaml
+        except ImportError:
+            ids.update(CELL_ID_RE.findall(text))
+            continue
+        data = yaml.safe_load(text)
+        if isinstance(data, dict) and isinstance(data.get("cells"), list):
+            ids.update(cell["id"] for cell in data["cells"] if isinstance(cell, dict) and isinstance(cell.get("id"), str))
+    return ids
 
 
 def check_pick(

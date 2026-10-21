@@ -84,14 +84,17 @@ cells:
     source_item_id: src-w29-cow-scoring
     lens_id: eval
     mode: interpretive
-    content: "Scoring final application state in an isolated copy catches unrelated writes and tool-vocabulary failures that task-completion and trajectory-only graders can miss."
+    content: "Scoring final application state in an isolated copy can catch unrelated writes. In the Plane study, vocabulary repair was followed by one additional trial; score deltas compare that trial with the mean of the first two. Valid alternative states need comparators."
     source_refs:
       - uri: "https://arxiv.org/abs/2607.14336"
         quote_or_span: "PostgreSQL copy-on-write evaluation on Plane; extra writes, vocabulary mismatch, and post-fix score deltas"
         ref_type: url
     confidence: medium
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: distinguish diagnostic before/after evidence from a replicated causal estimate; score gains are 0.47 and 0.54 on the overall-score scale."
+
 summary:
   cells_produced: 6
   cells_verified_passed: 6

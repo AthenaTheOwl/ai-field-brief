@@ -1,0 +1,199 @@
+matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 5
+  cells_verified_passed: 5
+cells:
+- id: MTRX-W20-EARLY-01
+  matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+  source_item_id: editorial-w20-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Anthropic launched Claude for Small Business on
+
+    May 13. The package wraps Claude with connectors into QuickBooks,
+
+    PayPal, HubSpot, Canva, Docusign, Google Workspace, and Microsoft
+
+    365, and ships 15 pre-built agentic workflows across finance, sales,
+
+    marketing, HR, and customer service. The framing language calls out
+
+    payroll forecasting, monthly reconciliation, cash-flow analysis,
+
+    campaign management, and contract review by name.
+
+    [anthropic.com/news/claude-for-small-business](https://www.anthropic.com/news/claude-for-small-business)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/claude-for-small-business
+    quote_or_span: 'May 13, 2026 launch; opening and Small business workflows sections: seven named connectors
+      and 15 workflows.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Claude for Small Business — pick the buyer persona your AI feature sells to today'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W20-EARLY-02
+  matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+  source_item_id: editorial-w20-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Two Anthropic announcements landed within hours
+
+    of each other on May 14. PwC is deploying Claude across consulting
+
+    practices and product teams (the language is "build technology,
+
+    execute deals, and reinvent enterprise functions"). The Gates partnership combines $200
+
+    million in grants, Claude usage credits, and technical support over four years covering global health,
+    education,
+
+    and economic mobility, with the largest portion targeted at health
+
+    work in low- and middle-income countries.
+
+    [pwc-expanded-partnership](https://www.anthropic.com/news/pwc-expanded-partnership) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/pwc-expanded-partnership
+    quote_or_span: 'May 14, 2026; opening and Bringing Claude to the PwC workforce: rollout plans and
+      30,000-person training commitment.'
+    ref_type: chunk
+  - uri: https://www.anthropic.com/news/gates-foundation-partnership
+    quote_or_span: 'May 14, 2026 opening: $200 million combines grant funding, Claude usage credits, and
+      technical support over four years; program areas and LMIC health focus.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## PwC + Gates in one day — three questions to prepare for your security partner'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W20-EARLY-03
+  matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+  source_item_id: editorial-w20-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Simon picked up Mitchell Hashimoto''s observation
+
+    that programming languages used to be lock-in technologies and
+
+    increasingly aren''t. The post is anchored on a real example: a
+
+    company rewrote its iPhone and Android apps to React Native via
+
+    coding agents, confident they could revert if the migration soured.
+
+    [simonwillison.net/2026/May/14/not-so-locked-in](https://simonwillison.net/2026/May/14/not-so-locked-in/)'
+  source_refs:
+  - uri: https://simonwillison.net/2026/May/14/not-so-locked-in/
+    quote_or_span: 'May 14 firsthand conference account: a company rewrote native phone apps in React
+      Native and expected it could revert. No measured revert or two-week migration result.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Simon Willison, *Not so locked in* — write down the one technology decision you
+      are still afraid to revisit'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W20-EARLY-04
+  matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+  source_item_id: editorial-w20-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Last week (May 6) Anthropic announced an
+
+    agreement to take all the compute at xAI''s Colossus 1 facility:
+
+    "more than 300 megawatts of new capacity (over 220,000 NVIDIA GPUs)
+
+    within the month." The same announcement doubled Claude Code rate
+
+    five-hour limits for Pro/Max/Team/seat-based Enterprise and removed
+
+    peak-hour reductions for Pro and Max. The deal joins future commitments:
+
+    Amazon up to 5GW, Google + Broadcom 5GW starting in 2027, and
+
+    Microsoft/NVIDIA Azure capacity worth $30B. Those are different
+
+    delivery schedules, not capacity already switched on.
+
+    [higher-limits-spacex](https://www.anthropic.com/news/higher-limits-spacex)'
+  source_refs:
+  - uri: https://www.anthropic.com/news/higher-limits-spacex
+    quote_or_span: 'May 6 announcement: more than 300 MW and 220,000 GPUs within a month; doubled five-hour
+      Claude Code limits; Pro/Max peak-hour reductions removed; future Amazon, Google/Broadcom and Azure
+      commitments have different schedules.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## SpaceX compute deal — re-rank your inference vendors before the quarter closes'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W20-EARLY-05
+  matrix_run_id: MTRX-W20-EDITORIAL-2026-10-21
+  source_item_id: editorial-w20-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Hamel''s late-March post argues that the eval
+
+    discipline most teams ship is unscientific in the literal sense:
+
+    LLM judges deployed without train/dev/test splits, vague
+
+    helpfulness scores in place of task-specific metrics, no precision
+
+    or recall reporting. The fix is to treat every LLM judge as a
+
+    classifier that needs validation against human labels.
+
+    [hamel.dev/blog/posts/revenge](https://hamel.dev/blog/posts/revenge/)'
+  source_refs:
+  - uri: https://hamel.dev/blog/posts/revenge/
+    quote_or_span: 'March 26, 2026; Treat LLM judges as classifiers and train/dev/test discussion: validate
+      against human labels, measure precision/recall and uncertainty. The proposed 50-case pilot and local
+      thresholds are editorial choices.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '## Hamel Husain, *Revenge of the Data Scientist* — pick one LLM judge and validate
+      it as a classifier this week'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

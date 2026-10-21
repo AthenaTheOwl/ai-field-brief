@@ -3,6 +3,10 @@
 Extract operational signal from a repo, startup project, changelog,
 demo, talk, or release note.
 
+Read `prompts/editorial_contract.md`. Pin the release or revision used.
+Separate code existence, a sample fixture, a reported benchmark and a
+local execution. State which one supports the claimed change.
+
 Output:
 - shipped_change
 - proof_surface: code / docs / demo / benchmark / customer_case / maintainer_note

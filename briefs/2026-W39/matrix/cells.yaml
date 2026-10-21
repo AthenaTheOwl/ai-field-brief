@@ -366,11 +366,14 @@ cells:
       - uri: "https://www.langchain.com/blog/jev-agent-evals-langsmith"
         quote_or_span: "post byline dateline Daniel Shea Sean Roche September 20, 2026 9 min"
         ref_type: timestamp
+      - uri: "https://www.langchain.com/blog/jev-agent-evals-langsmith"
+        quote_or_span: "Accuracy measures agreement with the human oracle; per-case quality-score variance measures repeatability. Jev had lower observed score variance than the LLM judges on the five fixed responses."
+        ref_type: chunk
     confidence: medium
     faithfulness_status: passed
     status: verified
     warnings:
-      - "The 500 decisions are 5 captured weather-agent responses evaluated 100 times each, not 500 distinct cases. The test measures repeatability over 5 fixed examples, so it should not be read as n=500 independent cases."
+      - "The 500 decisions are 5 captured weather-agent responses evaluated 100 times each, not 500 distinct cases. Binary accuracy measures agreement with one human reviewer over 5 fixed examples, not verdict changes between repetitions; it should not be read as n=500 independent cases. The post separately reports continuous-score variance as its repeatability measure."
       - "80.0% is Claude Sonnet 4.6 specifically, the lowest of three LLM judges tested; GPT-5.6 Terra matched 99.8% and GPT-5.6 Luna 96.4%. Citing one frontier judge at 80.0% takes the worst of the range."
       - "The oracle is a single human reviewer labelling each fixed response against the rubric, so 'matched the oracle' measures agreement with one annotator."
       - "Jev is a third-party model (TypeSafe AI) benchmarked by LangChain, which owns the eval platform being promoted. The post calls the result 'promising, but early' and 'a narrow test'."
@@ -590,10 +593,10 @@ cells:
     mode: extractive
     content: "RRSI (arXiv 2609.24972, submitted 2026-09-21) constrains automated agent-harness evolution (prompts, control flow, tooling, memory, context management) with a temporally annealed per-candidate edit budget, a critic that screens benchmark-specific proposals, and a pruner that drops edits that are too small, too expensive, or no longer useful. Across eight benchmarks the regularized version gains up to 14.1 points on the split it evolves against but only up to 4.7 on five out-of-distribution benchmarks, while cutting policy tokens 30% versus unregularized evolution."
     source_refs:
-      - uri: "https://arxiv.org/abs/2609.24972"
+      - uri: "https://arxiv.org/abs/2609.24972v2"
         quote_or_span: "RRSI gains up to 14.1 points on the split it evolves against and up to 4.7 points on the five out-of-distribution benchmarks, while producing a harness that runs on 30% fewer policy tokens than the unregularized evolution."
         ref_type: quote
-      - uri: "https://arxiv.org/abs/2609.24972"
+      - uri: "https://arxiv.org/abs/2609.24972v2"
         quote_or_span: "arXiv abs submission history: [v1] Mon, 21 Sep 2026 17:54:49 UTC (v2 Wed, 23 Sep 2026, also in-window)"
         ref_type: timestamp
     confidence: medium

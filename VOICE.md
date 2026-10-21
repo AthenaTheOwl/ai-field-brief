@@ -219,6 +219,34 @@ patterns. The funny is not lintable — that's on the writer.
 
 ---
 
+## reasoning tools, same voice
+
+Adapted from the twelve [writing-skills](https://github.com/3orionkings/writing-skills/tree/442a2b08f2e5c57855a5a70c17db3e6e7ee2987f)
+forms, reviewed at revision `442a2b08f2e5c57855a5a70c17db3e6e7ee2987f`.
+Use their reasoning moves inside the brief. This voice contract wins over
+their templates, word counts, image quotas and prescribed anecdotes.
+
+| Tool | What it contributes here |
+|---|---|
+| humanizer | Protect facts and the author's phrasing before editing generic copy. |
+| mechanism essay | Put the causal steps before the verdict; give the rival account a test. |
+| strategy pattern | Follow who pays, who waits and who can change the rule. |
+| technical principles | Name the metric, baseline and conditions; separate a result from its proposed use. |
+| field guide | Let one real artifact carry the advice; order checks by cost. |
+| thesis-first note | Put a narrow view near the start and concede the limit that matters. |
+| one-idea post | Give a short pick one point and one concrete next move. |
+| principle column | Define the reusable rule and where it stops working. |
+| patterns survey | Compare techniques by evidence, conditions and cost. |
+| reportage | Attribute company accounts; use only reporting that was done. |
+| taxonomy explainer | Group methods by a difference that changes a decision. |
+| curated evidence page | Date the entry, keep its source and state the selection limits. |
+
+The working checks live in `prompts/editorial_contract.md`. Keep the
+brief's existing form and each issue's historical window. An editorial
+correction does not turn an old issue into this week's news. Keep the
+short jokes, deliberate repetitions and blunt endings that work. A
+checker finding is a reason to read the line, not to replace the writer.
+
 ## who maintains this
 
 The repo owner edits this file when the voice drifts and they catch it.

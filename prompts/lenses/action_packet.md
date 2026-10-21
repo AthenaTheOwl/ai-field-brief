@@ -2,6 +2,10 @@
 
 Turn a source item into a small, testable move.
 
+Read `prompts/editorial_contract.md`. Keep the test bounded and proposed.
+Name the baseline and a condition that could favor leaving the current
+system alone. A proof metric needs its unit and observation window.
+
 Output:
 - target_repo_or_surface
 - action_surface

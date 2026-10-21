@@ -15,21 +15,21 @@ meta:
 
 ## Field thesis
 
-The week's center of gravity sat in the agent runtime, hardening into infrastructure on every front at once while the Fable 5 export-control aftershock kept reshaping the supply chain underneath it. Three vendors shipped near-identical primitives in the same five days (Anthropic's IdP-managed MCP + auto-mode git denylist, OpenAI's Record-and-Replay + scheduled-tasks GA, DeepMind's capability-tiered control roadmap), and two independent frameworks (Vercel Eve, Google OKF) committed to the same filesystem-as-contract pattern that AGENTS.md has been previewing for months. Underneath, a second convergence: benchmark authors stopped trusting final-answer grades — ALE, WeaveBench, SciAgentArena, AutoResearch, MosaicLeaks, and ABC-Bench all require stepwise checks, channel-cooperation, reseeded verification, or physical execution. The Fable 5 fallout drove the strategic backdrop (export-control risk is now a real entry in your provider matrix; GLM-5.2 at MIT-license, 1M context, $0.06/task is the substitute), but the operational story is that the policy engine, the identity layer, the trigger surface, the eval gate, and the role-contract directory are all becoming first-class artifacts. The control plane the user has been arguing for is now the dominant industry shape — and the typed-artifact discipline (directories, manifests, stepwise gates) is winning over framework-driven registration.
+The week's center of gravity sat in the agent runtime, hardening into infrastructure on every front at once while the Fable 5 export-control aftershock kept reshaping the supply chain underneath it. Three vendors worked on different runtime controls in this catch-up (Anthropic's IdP-managed MCP + auto-mode git denylist, OpenAI's Record-and-Replay + scheduled-tasks GA, DeepMind's capability-tiered control roadmap), and two independent frameworks (Vercel Eve, Google OKF) committed to the same filesystem-as-contract pattern that AGENTS.md has been previewing for months. Underneath, a second convergence: benchmark authors stopped trusting final-answer grades — ALE, WeaveBench, SciAgentArena, AutoResearch, MosaicLeaks, and ABC-Bench all require stepwise checks, channel-cooperation, reseeded verification, or physical execution. The Fable 5 fallout drove the strategic backdrop (export-control risk is now a real entry in your provider matrix; GLM-5.2 brings an MIT license and 1M context as another candidate), but the operational story is that the policy engine, the identity layer, the trigger surface, the eval gate, and the role-contract directory are all becoming first-class artifacts. Those releases make the policy engine, manifest, and eval gate worth comparing. Three vendors do not establish an industry default.
 
 7 top signals, 6 watchlist items, 39 sources reviewed (7 failed).
 
 ## Top signals
 
-### 1. Claude Code auto-mode blocks destructive git, ships artifacts and IdP-managed MCP in the same week
+### 1. Claude Code blocks unrequested destructive git; Claude adds artifacts and managed MCP auth
 
-**Source:** [Anthropic / GitHub (Claude Code changelog)](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+**Source:** [Claude Code v2.1.183](https://github.com/anthropics/claude-code/releases/tag/v2.1.183), [Claude Code artifacts](https://claude.com/blog/artifacts-in-claude-code), [Enterprise-managed MCP authorization](https://claude.com/blog/enterprise-managed-auth)
 
 **Payload:** Three Anthropic releases landed in five days: 2.1.183 blocks destructive git verbs in auto mode unless explicitly authorized, artifacts publish live versioned web pages from a Claude Code session, and MCP connectors now provision through Okta groups.
 
-**Mechanism:** Safety enforcement moved from prompt to tool-policy gate (auto mode intercepts git reset --hard, force push, branch -D pre-execution); artifact delivery moved from chat transcript to its own URL with version history; MCP auth moved from per-user OAuth flow to IdP group mapping at admin time.
+**Mechanism:** The v2.1.183 list includes reset --hard, checkout -- ., clean -fd, and stash drop when discarding work was not requested. Artifacts and enterprise-managed MCP auth are separate product surfaces; the auth launch starts with Okta. A classifier review is not proof that every destructive command is blocked.
 
-**Why it matters:** Confirms auto-mode is the default agent surface and that Anthropic is hardening it at three independent layers simultaneously — execution policy, delivery surface, and identity. Anyone running their own agent harness can copy the same three gates instead of inventing them.
+**Why it matters:** Three concrete places to inspect in your harness: destructive action policy, artifact sharing, and connector identity. Their arrival does not establish auto mode as the default.
 
 **Reusable pattern:** Policy at the gate, not in the prompt
 
@@ -43,6 +43,8 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Confidence:** high
 
+**Evidence:** MTRX-W25-EARLY-01
+
 ---
 
 ### 2. DeepMind's AI Control Roadmap treats internal agents as insider threats
@@ -51,7 +53,7 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Payload:** Defense-in-depth framework with MITRE-ATT&CK-style tactics, trusted AI supervisors that can block actions pre-execution, and defenses scaled across a D1-D4 detection-evasion × R1-R3 harm-execution grid.
 
-**Mechanism:** Live monitoring grounded in ~1M coding-agent trajectories where most flagged incidents trace to misinterpretation or overeagerness instead of adversarial intent; supervisor agents sit between the actor and the tool call and can veto pre-execution.
+**Mechanism:** DeepMind reports reviewing a million coding-agent tasks with an asynchronous prototype, escalating flags to humans. Most flagged events were described as misinterpretation or overeagerness. Its roadmap separately calls for synchronous prevention on high-risk actions; that is not a measured pre-execution catch rate for the whole million-task corpus.
 
 **Why it matters:** Provides a concrete capability-tiered taxonomy to borrow instead of invent; aligns directly with the role-contracts + policy-engine + event-ledger pattern. The empirical finding that overeagerness dominates adversariality changes what your detector should optimize for.
 
@@ -61,23 +63,25 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Try:** Map your agent fleet to the D1-D4 / R1-R3 grid on one page; identify the highest D×R cell with zero supervisor coverage and decide whether you write a supervisor or remove the capability.
 
-**Systems map:** A trusted-but-bounded second model wraps the actor model the same way an OS kernel mediates a user-mode process — the asymmetry is that the supervisor's job is narrower than the actor's, so it can be smaller and more verifiable.
+**Systems map:** Actor -> supervisor -> escalation or intervention. Measure monitoring coverage, missed harms, false blocks, and response time; a narrower supervisor can still share the actor's blind spot.
 
 **Transferable principle:** Pair every capable actor with a narrower verifier sitting on the action path — applies to code review (lint as actor-verifier), to financial controls (the four-eyes principle), and to any agent role contract where the action surface exceeds the trust budget.
 
 **Confidence:** high
 
+**Evidence:** MTRX-W25-EARLY-02
+
 ---
 
-### 3. GLM-5.2 ships MIT-licensed at 1M context and crosses the price threshold below Opus
+### 3. GLM-5.2 ships MIT-licensed at 1M context — price a completed task
 
-**Source:** [Simon Willison weblog](https://simonwillison.net/2026/Jun/17/glm-52/)
+**Source:** [Z.ai model card](https://huggingface.co/zai-org/GLM-5.2) and [Simon Willison's first impressions](https://simonwillison.net/2026/Jun/17/glm-52/)
 
-**Payload:** Z.ai released GLM-5.2, a 744B-MoE / 40B-active MIT-licensed model with 1M context that ranks #1 on Artificial Analysis's open-weight Intelligence Index and hits $2.40/task on AA-Briefcase vs Opus 4.8 at $10.40.
+**Payload:** Z.ai released GLM-5.2 with MIT-licensed weights and 1M context. Its model card reports 81.0 on Terminal-Bench 2.1 using Terminus-2; a separately listed best-reported harness scores 82.7. Keep the harness attached to the number.
 
-**Mechanism:** IndexShare sparse-attention reuses top-k indices across layer groups, cutting 1M-context inference cost ~2.9x; day-zero deployment in vLLM, SGLang, Ollama, OpenRouter, Cloudflare Workers AI, Baseten; Terminal-Bench 2.1 first open model over 80.
+**Mechanism:** Z.ai says IndexShare reuses an indexer across four sparse-attention layers, reducing per-token FLOPs by 2.9x at 1M context. That is an architecture claim, not a 2.9x reduction in your hosted bill.
 
-**Why it matters:** The pricing curve crossed the threshold where defaulting to Opus for agentic batch work is hard to justify, and arrived precisely as Fable 5 export controls created the substitute-demand vacuum. Open-weight share on OpenRouter moved from 40% to 60% in three months.
+**Why it matters:** An open-weight option is worth a matched coding-task comparison. License, hardware, token count, latency, and accepted output all enter the substitute cost; a leaderboard rank cannot settle the route.
 
 **Reusable pattern:** Architectural lever (IndexShare) plus license (MIT) plus day-zero ecosystem coverage is what makes an open model substitutable
 
@@ -91,41 +95,45 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Confidence:** high
 
+**Evidence:** MTRX-W25-EARLY-03
+
 ---
 
-### 4. Anthropic finds domain expertise, not coding background, predicts how much work Claude does
+### 4. Anthropic finds domain expertise tracks how much work Claude does
 
 **Source:** [Anthropic Research](https://www.anthropic.com/research/claude-code-expertise)
 
 **Payload:** Analysis of ~400k Claude Code sessions from ~235k users (Oct 2025–Apr 2026) decomposes each session into planning vs execution decisions: users contribute ~70% of planning, Claude ~80% of execution, and higher user domain expertise correlates with longer effective Claude turns per instruction.
 
-**Mechanism:** Per-session decision attribution lets the team separate the 'who specifies' axis from the 'who types' axis; domain expertise turns out to be the variable that lengthens the productive Claude turn, not coding ability.
+**Mechanism:** Anthropic uses transcript classifiers to infer task-specific expertise and attribute planning/execution decisions. The observed correlation does not isolate expertise from task mix, selection, or model changes, and longer turns are not by themselves better output.
 
-**Why it matters:** Directly reframes hiring and team composition for agent-using orgs: the bottleneck is people who can specify the right thing, not people who can type code. Maps cleanly onto role-contract design — the planner role is the scarce one.
+**Why it matters:** Bring the person who knows the task into the review. This study supports testing better specification; it does not establish that coding skills stopped mattering or prescribe a hiring mix.
 
 **Reusable pattern:** Separate the planning role from the execution role and measure each
 
 **Action surface:** agent-role
 
-**Try:** For one repo, log who triggers each Claude Code session and rate planning specificity 1-5; over a week compare specificity score vs PR merge rate and look at whether the curve is monotonic.
+**Try:** On comparable tasks, log specification quality and accepted output, review defects, and total time. Use an independent reviewer; PR merge rate alone can rise while correctness falls.
 
 **Systems map:** The agent absorbs execution decisions cheaply, which shifts the marginal value of the human upstream into specification — the same shift that happened when compilers absorbed register allocation.
 
-**Transferable principle:** Whenever an agent reliably handles execution, the binding constraint moves to specification — applies to legal drafting (the brief, not the citation lookup), ops runbooks (the right question, not the right kubectl), and CDCP role design (the planner contract is where the scarce knowledge lives).
+**Transferable principle:** When the agent takes more execution work, test whether clearer specification improves the accepted result. Keep the expertise claim scoped to the task and the measured outcome.
 
 **Confidence:** high
+
+**Evidence:** MTRX-W25-EARLY-04
 
 ---
 
 ### 5. Vercel Eve and Google OKF commit to filesystem-as-contract on the same axis
 
-**Source:** [Vercel](https://vercel.com/changelog/introducing-eve-an-open-source-agent-framework)
+**Source:** [Vercel Eve](https://vercel.com/changelog/introducing-eve-an-open-source-agent-framework) and [Google Cloud OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)
 
-**Payload:** Vercel released Eve at Ship 26 London, an Apache-2.0 TypeScript framework where every agent is a directory (instructions.md, tools/, skills/, connections/, channels/, schedules/, subagents/) compiled to a Vercel Function — and Google Cloud independently shipped OKF v0.1, a markdown-plus-YAML spec for portable agent context bundles.
+**Payload:** Vercel put Eve in public preview on June 17: agents are directories with instructions, tools, and other runtime files. Google Cloud's June 12 OKF v0.1 announcement describes portable Markdown/YAML knowledge bundles. One defines agent behavior; the other packages context.
 
 **Mechanism:** Eve does build-time discovery from file paths and prepends instructions.md to every model call with no decorator-based registration; OKF requires only a 'type' field in YAML frontmatter and renders to an interactive graph via one self-contained HTML file; both treat the directory layout as the source of truth.
 
-**Why it matters:** The AGENTS.md / skills / decisions / dreams directory pattern the user has been building toward is now the de facto industry convention for both runtime (Eve) and portable knowledge (OKF). Worth lifting both as references when finalizing CDCP role-contract directory layout.
+**Why it matters:** Both make a useful reference for role-contract files. Neither establishes a de facto industry convention or proves a directory beats explicit registration for every repo.
 
 **Reusable pattern:** Filesystem layout as the API surface, build-time discovery over runtime registration
 
@@ -133,23 +141,25 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Try:** Clone github.com/vercel/eve, scaffold one agent with a single tool and a skills/onboarding.md, then diff its compiled manifest against an equivalent CDCP role contract to see what registration boilerplate disappears.
 
-**Systems map:** A directory is diffable, reviewable, and grep-able in a way a runtime registry never is; making the directory authoritative converts framework state into git state, which makes the whole system more inspectable for free.
+**Systems map:** A checked-in directory makes changes visible to git review. Code-based registration can also be versioned; inspectability depends on where the authoritative configuration lives and how the runtime reads it.
 
-**Transferable principle:** When the framework's authoritative state lives in code instead of the filesystem, you've imported a parallel source-of-truth — same anti-pattern as ORM migrations diverging from schema or IaC diverging from console state. Push state to the filesystem and the diff tools you already have start working.
+**Transferable principle:** Choose one authoritative configuration and test that the runtime uses it. A directory is easy to diff; permissions still need enforcement.
 
 **Confidence:** high
 
+**Evidence:** MTRX-W25-EARLY-05
+
 ---
 
-### 6. Benchmark authors converge on stepwise verification, ditch final-answer grading
+### 6. Benchmark authors add checks beyond the final answer
 
-**Source:** [arXiv (cs.AI)](https://arxiv.org/abs/2606.12736)
+**Source:** [SciAgentArena](https://arxiv.org/abs/2606.12736v1), [WeaveBench](https://arxiv.org/abs/2606.09426v2), [AutoResearch](https://arxiv.org/abs/2606.20394v1), [ABC-Bench](https://arxiv.org/abs/2606.11150v1)
 
-**Payload:** Six independent agent benchmarks released in-window — ALE, WeaveBench, SciAgentArena, AutoResearch, MosaicLeaks, ABC-Bench — all reject single-score evaluation in favor of stepwise checks, trajectory audits, reseeded verification, channel cooperation, information-flow probes, or wet-lab execution.
+**Payload:** SciAgentArena uses stepwise verification on roughly 200 scientific tasks. WeaveBench checks mixed GUI/CLI trajectories. AutoResearch tests aerospace-policy improvements against seed noise, reseeded runs, and edit ablations. ABC-Bench reports wet-lab validation of generated robot scripts on one task type. These are different checks, not one new grading standard.
 
-**Mechanism:** SciAgentArena requires 3-5 checkpoint assertions per task; WeaveBench fails GUI-only or CLI-only agents (<3.5%) and audits full action sequences for fabricated screenshots; AutoResearch's audit layer requires seed-noise threshold, reseeded verification, and leave-one-out pruning before any improvement is credited; ABC-Bench validates one task on a physical OpenTrons robot.
+**Mechanism:** Each check targets a specific shortcut: skipping a required step, fabricating evidence, mistaking noise for improvement, or failing outside simulation. Earlier June papers are catch-up context here; AutoResearch arrived June 18.
 
-**Why it matters:** Final-answer scoring is now the weak default. If your eval reports a single score per task, you're already behind the methodology curve — and you're vulnerable to agents that learn to fabricate the final answer without doing the work.
+**Why it matters:** Add the check that catches your actual failure. A final-answer test remains useful when the answer is independently verifiable; step counts alone can reward a longer wrong trajectory.
 
 **Reusable pattern:** Verification gates per checkpoint, not per task
 
@@ -157,11 +167,13 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Try:** Split one of your existing single-score evals into 3-5 checkpoint assertions; add a 'no result credited until reseeded' gate to any auto-tuning agent and log how many of its self-reported wins disappear.
 
-**Systems map:** Final-answer grading creates an attack surface (Goodhart on the score) that stepwise verification closes by forcing the trajectory to be coherent at each checkpoint — same logic as why type systems catch more bugs than test suites alone.
+**Systems map:** Proposed result -> independent evidence -> accepted result. These checks reduce named failure modes; they do not close reward hacking in general.
 
-**Transferable principle:** Wherever a metric can be optimized without the underlying behavior changing, replace it with a sequence of independent checks — applies to code review (CI matrix), to scientific results (preregistration + ablations), and to any agent eval where the agent could short-circuit the work.
+**Transferable principle:** Keep the outcome check and add independent checks where the agent can fake the path. Test the verifier with a shortcut fixture before trusting a green result.
 
 **Confidence:** high
+
+**Evidence:** MTRX-W25-EARLY-06
 
 ---
 
@@ -169,9 +181,9 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Source:** [Stratechery](https://stratechery.com/2026/the-state-of-fable-the-jailbreak-problem-spacex-acquires-cursor/)
 
-**Payload:** Commerce's BIS export-control order on Fable 5 and Mythos 5 forced Anthropic into a global pull; The Information separately reports Commerce is not currently planning to extend the same action to OpenAI or Google.
+**Payload:** Anthropic's June 12 statement says a US government directive forced it to suspend Fable 5 and Mythos 5 for all customers, while other Claude models stayed available. The provider disputed the directive's technical basis. That statement establishes the disruption, not the full reasoning of the government.
 
-**Mechanism:** The trigger was a manual multi-prompt sequence (Katie Moussouris clarified researchers used 'fix this code' prompting, not a universal jailbreak), meaning 'AI safety incident' classification can be triggered by routine prompt engineering — and the resulting export action operates on a few-days timeline.
+**Mechanism:** A provider-specific access decision can break a pinned route with little warning. Keep disputed claims about the triggering research attributed; the availability failure is observable without settling them.
 
 **Why it matters:** Builders now have two new supply-chain fields to add per dependency: jurisdiction and owner. The Anthropic-specific scoping changes the timing of multi-vendor routing work (this quarter for Anthropic-heavy stacks, less urgent for others) but does not eliminate it.
 
@@ -181,11 +193,13 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
 
 **Try:** In your model/tool registry add 'jurisdiction' and 'owner' fields per dependency; tag Anthropic as 'active US export-control risk'; write a one-page contingency for (a) Claude frontier access disappearing for 72h and (b) Cursor's default routing changing to xAI under SpaceX ownership.
 
-**Systems map:** Sovereign-policy actions on closed-weight models behave like sudden vendor deprecation, but with no migration period and no public roadmap — the only mitigation is a pre-exercised fallback path with a different jurisdiction and owner.
+**Systems map:** Provider, owner, serving cloud, jurisdiction, hardware, and access policy can create correlated failures. Exercise a permitted fallback against the failure you want to survive; a different owner or country alone does not guarantee independence.
 
-**Transferable principle:** Treat any single-jurisdiction closed-source critical dependency as a 72-hour outage risk and pre-build the swap — same playbook as cloud-region failover, payments-processor redundancy, or DNS-provider diversity. The premium is small until the day it's infinite.
+**Transferable principle:** Write and test a short-outage plan for a critical dependency. Include data permissions and task quality before treating a model swap as continuity.
 
 **Confidence:** high
+
+**Evidence:** MTRX-W25-EARLY-07
 
 ---
 
@@ -203,7 +217,7 @@ The week's center of gravity sat in the agent runtime, hardening into infrastruc
   - rationale: Jason Liu's three-mechanism routing is the cheapest, highest-yield import this week — turns 'one agent does everything' into a policy artifact you can diff.
 - **Stand up a fallback-router config with one open-weight primary (GLM-5.2) and one closed-weight premium, threshold on cost/capability, log which path each request took for a week.**
   - surface: tool-policy
-  - rationale: Fable 5 fallout + GLM-5.2's $0.06-vs-$0.49 cost gap means single-vendor defaults are now a vendor-risk decision, not a default.
+  - rationale: Fable 5 fallout makes a fallback worth testing. Price the same accepted task on both routes; the roundup's unnamed per-task denominator cannot price your workload.
 - **Audit every long-lived token in your agent harness; for each MCP/connector, mark IdP-eligible vs not and stub the short-lived-credential issuer that replaces it.**
   - surface: tool-policy
   - rationale: Anthropic enterprise-managed MCP and Vercel Passport landed in the same week — the runtime is moving to IdP-issued short-lived creds and your inventory is the prerequisite work.

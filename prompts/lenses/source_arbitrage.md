@@ -2,6 +2,10 @@
 
 Decide whether this source is useful before it becomes obvious.
 
+Read `prompts/editorial_contract.md`. Separate evidence of an early
+shipped change from a prediction of later adoption. A funding total,
+low follower count or repeated headline cannot measure either by itself.
+
 Output:
 - early_signal: yes / no / unclear
 - why_others_might_miss_it

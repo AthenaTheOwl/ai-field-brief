@@ -72,11 +72,11 @@ transcription, retrieval, billing, integrations, and the publishing surface —
 each gated behind a fixture, an eval, a rollback path, and a traceable
 requirement before it ships.
 
-Seventeen Python script gates run in CI on every pull request and push to
+Eighteen Python script gates run in CI on every pull request and push to
 main: `spec_check`, `voice_lint`, `validate_sensitive_disclosures`,
 `cadence_check`, `check_no_bom`, `validate_schemas`, `validate_registry`,
 `validate_decisions`, `validate_roles`, `validate_tools`, `validate_policies`,
-`validate_brief_fields`, `validate_matrix_cells`, `validate_skills`,
+`validate_brief_fields`, `validate_editorial_evidence`, `validate_matrix_cells`, `validate_skills`,
 `validate_dreams`, `check_schema_cache_freshness`, `validate_run_evidence`.
 `validate_brief_fields` reads the brief itself and fails the build when a Top signal is missing
 its systems map, transferable principle, falsification test, adoption ladder,

@@ -36,28 +36,32 @@ cells:
     source_item_id: src-w31-mcp-state
     lens_id: architecture
     mode: interpretive
-    content: "MCP 2026-07-28 removes protocol sessions and carries continuity through explicit application handles, making state ownership visible in typed tool arguments and allowing requests to reach any server instance."
+    content: "The release candidate for MCP 2026-07-28 removes protocol sessions and carries continuity through explicit application handles. Stateless replicas still need access to application state and caller authorization."
     source_refs:
       - uri: "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
         quote_or_span: "initialize and Mcp-Session-Id removed; self-contained requests; explicit basket_id and browser_id handle pattern"
         ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: linked post labels this a release candidate and currently displays May 21; it does not by itself establish final-release timing."
 
   - id: MTRX-W31-MCP-TASKS
     matrix_run_id: MTRX-W31-enforced-reality
     source_item_id: src-w31-mcp-tasks
     lens_id: workflow
     mode: interpretive
-    content: "The MCP Tasks extension gives long-running work an explicit handle and get, update, and cancel lifecycle while removing the globally scoped task listing that became unsafe without sessions."
+    content: "The MCP release candidate moves Tasks to a versioned extension with get, update, and cancel methods and removes global listing. A task handle identifies an operation; authorization remains a separate obligation."
     source_refs:
       - uri: "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension"
         quote_or_span: "Tasks extension; task handle from tools/call; tasks/get, tasks/update, tasks/cancel; tasks/list removed"
         ref_type: url
     confidence: high
     faithfulness_status: passed
-    status: created
+    status: patched
+    warnings:
+      - "2026-10-21 editorial review: an explicit handle is not sufficient proof of caller authority."
 
   - id: MTRX-W31-KIMI-EFFORT
     matrix_run_id: MTRX-W31-enforced-reality

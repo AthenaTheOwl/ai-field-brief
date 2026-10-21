@@ -1,4 +1,4 @@
-# Anthropic shipped four products to four different buyers in five days
+# Anthropic sold the same model to four kinds of buyer
 
 **week of 2026-05-11 · audience: builder-tpms thinking about AI · vol. 003**
 
@@ -7,7 +7,7 @@ each Top Signal now carries Systems map, Transferable principle,
 Falsification test, and Adoption ladder. No new evidence; the four
 fields sharpen what vol. 2 already supported.*
 
-Tuesday: Claude for Small Business. Thursday: PwC and the Gates Foundation. Still echoing from last week: the SpaceX compute deal. Anthropic sold the same model to four different buyer types in five days. Pick which one your feature is for.
+Wednesday: Claude for Small Business. Thursday: PwC and the Gates Foundation. Still echoing from last week: the SpaceX compute deal. Four kinds of buyer across the announcements. Pick which one your feature is for.
 
 Write down the buyer persona your AI feature ships for today. Write down the behavior change you expect from that persona next quarter.
 
@@ -24,7 +24,7 @@ payroll forecasting, monthly reconciliation, cash-flow analysis,
 campaign management, and contract review by name.
 [anthropic.com/news/claude-for-small-business](https://www.anthropic.com/news/claude-for-small-business)
 
-**Insight.** PwC and Gates landed two days after the small-business launch. Same model, three buyers: a ten-seat QuickBooks shop, a 100k-seat CIO office, Gates. One product page cannot honestly sell to a ten-seat shop, a CIO, and a foundation at the same time.
+**Insight.** PwC and Gates landed the day after the small-business launch. Same model, three buyers: a ten-seat QuickBooks shop, a large-firm CIO office, Gates. One product page cannot honestly sell to a ten-seat shop, a CIO, and a foundation at the same time.
 
 **Action surface:** prompt, architecture
 
@@ -75,10 +75,9 @@ UI, and the compression shows up as muddled positioning.
 **Transferable principle:** When one vendor's surface spans
 incompatible buyer behaviors, the seller below them must pick one
 shape per page or the page reads as muddled. Example beyond AI:
-horizontal SaaS dashboards (analytics, CRM) that try to land both
-self-serve SMB sign-ups and enterprise procurement on the same
-landing page consistently underperform single-shape pages on either
-conversion or ACV.
+a SaaS dashboard selling both self-serve sign-ups and enterprise
+procurement can test separate pages. Keep traffic mix and acquisition
+cost comparable; a different ACV alone does not settle the page question.
 
 **Falsification test:** The buyer-shape thesis breaks if a product
 page that explicitly spans two of the three shapes (small business +
@@ -103,20 +102,23 @@ controlled A/B over a quarter. That observation would mean the
     per shape, inbound support load per seat by shape, share of
     sales calls that get redirected vs progressed.
 
+**Evidence:** MTRX-W20-EARLY-01
+
 ---
 
-## PwC + Gates in one day — three numbers your security partner will get asked about by July
+**Confidence:** medium
+## PwC + Gates in one day — three questions to prepare for your security partner
 
 **What changed.** Two Anthropic announcements landed within hours
 of each other on May 14. PwC is deploying Claude across consulting
 practices and product teams (the language is "build technology,
-execute deals, and reinvent enterprise functions"). Gates is a $200
-million, four-year partnership covering global health, education,
+execute deals, and reinvent enterprise functions"). The Gates partnership combines $200
+million in grants, Claude usage credits, and technical support over four years covering global health, education,
 and economic mobility, with the largest portion targeted at health
 work in low- and middle-income countries.
-[pwc-expanded-partnership](https://www.anthropic.com/news/anthropic-pwc-partnership) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership)
+[pwc-expanded-partnership](https://www.anthropic.com/news/pwc-expanded-partnership) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership)
 
-**Insight.** Three questions are about to land on your security partner. PwC: does our vendor stack include a sub-processor PwC also uses? Gates: our partner ships to LMIC clinics — what data leaves the country? Both: can we pull every API call our workspace made last quarter? Pre-write the answers before they ask.
+**Insight.** Three questions to put to your security partner. PwC: does our vendor stack include a sub-processor PwC also uses? Gates: our partner ships to LMIC clinics — what data leaves the country? Both: can we pull every API call our workspace made last quarter? Pre-write the answers before they ask.
 
 **Action surface:** tool-policy
 
@@ -126,7 +128,7 @@ shared drive, links from your security@ inbox auto-responder, and
 saves you a 5pm Friday scramble when sales asks.
 
 ```markdown
-# ai-vendor-faq.md — pre-written answers to the three questions you will get this quarter
+# ai-vendor-faq.md — pre-written answers to the three questions to check this quarter
 
 ## Q1: Sub-processor list
 The current sub-processors for our AI features are:
@@ -137,14 +139,13 @@ Last reviewed: 2026-MM-DD. Next review: <date + 90 days>.
 ## Q2: Data-residency
 Customer prompts and outputs route to <region>.
 EU / India / LMIC routing options: <available | on roadmap | not supported>.
-We do NOT train any third-party model on customer data; the contract
-clause is at <link to MSA section>.
+Use for model training: <yes/no; scope and contract clause>.
+Use for evals or red-teaming: <yes/no; scope and contract clause>.
 
 ## Q3: Audit log
-Every API call we make on behalf of a customer is logged with:
-prompt-hash, model, timestamp, sub-processor, tokens-in, tokens-out.
-Retention: <N days>. Customer-pull on demand: yes, via <endpoint>.
-Format: NDJSON with one record per call.
+Available log fields: <verified fields and any gaps>.
+Retention: <N days>. Customer-pull on demand: <yes/no; endpoint>.
+Export format: <format>. Do not put raw customer prompts in a public FAQ.
 ```
 
 Three blanks filled in is the difference between a one-day reply
@@ -190,8 +191,11 @@ a doc.
     engineering interrupt, count of audit-log pulls per quarter,
     sub-processor changes per quarter.
 
+**Evidence:** MTRX-W20-EARLY-02
+
 ---
 
+**Confidence:** medium
 ## Simon Willison, *Not so locked in* — write down the one technology decision you are still afraid to revisit
 
 **What changed.** Simon picked up Mitchell Hashimoto's observation
@@ -201,20 +205,15 @@ company rewrote its iPhone and Android apps to React Native via
 coding agents, confident they could revert if the migration soured.
 [simonwillison.net/2026/May/14/not-so-locked-in](https://simonwillison.net/2026/May/14/not-so-locked-in/)
 
-**Insight.** Coding-agent productivity changes the math on
-reversible architecture choices. The decisions most teams have
-been afraid to revisit — language migrations, database swaps,
-front-end framework changes — are now closer to two-week experiments
-than two-quarter rewrites. The architectural conservatism that made
-sense in 2023 is a tax in 2026. The teams that move first to
-revisit one of those choices have a one-cycle window before
-everyone else does the same calculation.
+**Insight.** The anecdote makes one old decision worth reopening.
+It does not measure a migration or a revert. Try a two-week spike
+on one endpoint before pricing the whole database swap as a two-week job.
 
 **Action surface:** architecture
 
 **Concrete move this week.** Write down the one technology
 decision your team has been afraid to revisit. Score it on the
-table below. If two of the three scores are green, run the spike
+table below. If blast radius is green, neither other score is red, and at least two are green, run the spike
 this quarter — two weeks, one engineer plus a coding agent, one
 specific deliverable. If the answer is no, the table tells you
 exactly why, and that's the artifact your CTO needs anyway.
@@ -234,25 +233,16 @@ spike review date: <2 weeks out>
 rollback path: <one sentence>
 ```
 
-Two of three green is the threshold because all-green almost never
-shows up. The reversibility argument from the post is what makes the
-yellow squares acceptable, where they weren't before.
+These are proposed spike gates, not results from the post. A green
+coding-agent score cannot cancel a red production blast radius.
 
-**Systems map:** Coding-agent productivity collapses migration cost,
-which moves architecture decisions from the "irreversible bet"
-category to the "two-week experiment" category. The architectural
-conservatism that priced in 2023's migration cost is a tax once the
-cost line shifts; the teams that re-price first get a one-cycle lead
-before the market re-prices.
+**Systems map:** Faster code changes may lower migration cost. Data
+conversion, operational behavior, and rollback still need their own
+checks. The spike buys a cost estimate before the migration buys an outage.
 
-**Transferable principle:** When a tool reduces the cost of reversing
-a decision by an order of magnitude, the decision moves up the
-reversibility ladder and the conservatism that priced the old cost
-becomes a tax. Example beyond language migrations: feature flags
-moved A/B testing from a quarter-long release decision to a same-day
-experiment, and teams that kept treating launches as one-way doors
-underperformed teams that started running 10x more experiments per
-quarter.
+**Transferable principle:** Reprice a decision when the cost of
+reversing it changes. Measure the return trip too. A feature flag can
+reverse exposure; it cannot reverse a destructive data migration.
 
 **Falsification test:** The reversibility thesis breaks if teams
 running coding-agent migration spikes report median time-to-revert
@@ -265,8 +255,7 @@ sum forward and reverse cost.
 **Adoption ladder:**
 
   - Minimum viable: write down the one decision your team has been
-    afraid to revisit and score it on the three-axis table. If two
-    of three are green, you have an artifact; if not, you have the
+    afraid to revisit and score it on the three-axis table. If the blast-radius gate passes, you have a candidate spike; if not, you have the
     explanation your CTO wanted anyway.
   - Mid: run the two-week spike with one engineer plus a coding
     agent against one specific deliverable. Document the rollback
@@ -278,24 +267,28 @@ sum forward and reverse cost.
     that ship vs revert, median spike duration vs estimate, dollar
     impact of each shipped spike at the 90-day mark.
 
+**Evidence:** MTRX-W20-EARLY-03
+
 ---
 
+**Confidence:** medium
 ## SpaceX compute deal — re-rank your inference vendors before the quarter closes
 
 **What changed.** Last week (May 6) Anthropic announced an
 agreement to take all the compute at xAI's Colossus 1 facility:
 "more than 300 megawatts of new capacity (over 220,000 NVIDIA GPUs)
 within the month." The same announcement doubled Claude Code rate
-limits for Pro/Max/Team/Enterprise and removed peak-hour
-restrictions. The capacity deal stacks on top of the Amazon (5GW),
-Google + Broadcom (5GW), and Microsoft/NVIDIA Azure ($30B)
-commitments already in place.
+five-hour limits for Pro/Max/Team/seat-based Enterprise and removed
+peak-hour reductions for Pro and Max. The deal joins future commitments:
+Amazon up to 5GW, Google + Broadcom 5GW starting in 2027, and
+Microsoft/NVIDIA Azure capacity worth $30B. Those are different
+delivery schedules, not capacity already switched on.
 [higher-limits-spacex](https://www.anthropic.com/news/higher-limits-spacex)
 
 **Insight.** Capacity expansions arrive at the user as rate-limit
 expansions. Last six months of vendor selection assumed scarcity:
 queues at peak hours, hard daily caps on Opus calls, "Claude Code is
-slow on Wednesday afternoons" tickets. That scarcity is dissolving
+slow on Wednesday afternoons" tickets. The announced headroom is a reason to retest scarcity
 for Anthropic at the same time multiple OSS-on-cloud paths are
 maturing. The team that benchmarked vendors in November and
 shipped a routing decision in January is now ranking by stale data.
@@ -309,10 +302,10 @@ have your last quarter's traffic logs handy.
 ```
                    latency-p95    cost/1M out    rate-limit-headroom    quality-on-task
                    (ms)           ($)            (current vs Q2 need)   (eval score)
-Claude Opus 4.7    <fill>         <fill>         <fill>                 <fill>
-Claude Sonnet 4.7  <fill>         <fill>         <fill>                 <fill>
-GPT-5.x            <fill>         <fill>         <fill>                 <fill>
-Gemini Flash 3.5   <fill>         <fill>         <fill>                 <fill>
+Current Claude route    <fill>         <fill>         <fill>                 <fill>
+Alternate Claude route  <fill>         <fill>         <fill>                 <fill>
+Current GPT route            <fill>         <fill>         <fill>                 <fill>
+Current Gemini route   <fill>         <fill>         <fill>                 <fill>
 Llama-3.3-70B OSS  <fill>         <fill>         <fill>                 <fill>
 
 primary route:     <model>
@@ -338,12 +331,11 @@ region selection during a major provider's regional buildout — teams
 that locked in us-east-1 in 2018 paid latency and capacity tax for
 years vs teams that ran a quarterly region-selection review.
 
-**Falsification test:** The re-rank thesis breaks if a team that
-re-runs the four-axis table monthly produces the same primary route
-for four consecutive quarters with no measurable cost or latency
-improvement vs a team that re-ran it once at the start. That would
-mean the capacity landscape is more stable than the SpaceX headline
-suggests and the re-rank cadence is overhead, not signal.
+**Falsification test:** On the same task mix and quality floor, compare
+the proposed route with the current route, including switching and
+review cost. If the savings and headroom do not cover that cost, keep
+the route and lengthen the review interval. The same winner can still
+get cheaper; an unchanged vendor name alone proves nothing.
 
 **Adoption ladder:**
 
@@ -363,8 +355,11 @@ suggests and the re-rank cadence is overhead, not signal.
     rate-limit hit rate, P95 latency by route, eval-score by route,
     monthly inference bill variance vs the cap.
 
+**Evidence:** MTRX-W20-EARLY-04
+
 ---
 
+**Confidence:** medium
 ## Hamel Husain, *Revenge of the Data Scientist* — pick one LLM judge and validate it as a classifier this week
 
 **What changed.** Hamel's late-March post argues that the eval
@@ -375,22 +370,23 @@ or recall reporting. The fix is to treat every LLM judge as a
 classifier that needs validation against human labels.
 [hamel.dev/blog/posts/revenge](https://hamel.dev/blog/posts/revenge/)
 
-**Insight.** PwC and Gates won't accept "we use GPT-4 to judge helpfulness on a 1-5 scale" as an answer to "how do you know the model output is correct?" Three new buyer shapes (small business, PwC-scale enterprise, foundation), three new audit pressures on the eval pipeline. The new enterprise/foundation buyers will demand precision/recall numbers on your LLM judge.
+**Insight.** A buyer may ask how you know the output is correct.
+A score of 4/5 from another model does not answer that by itself.
+Validate the judge before handing its score to procurement.
 
 **Action surface:** eval
 
 **Concrete move this week.** Pick one LLM judge already running
-in your stack. Label 50 historical responses by hand. Compute
+in your stack. Start with 50 historical responses by hand. Compute
 precision and recall against the judge's verdict. The judge prompt
-below is a starting point; the labeling pass is the part that
-matters.
+below is a diagnostic, not a release certificate. Keep a separate
+held-out set once you start tuning the judge.
 
 ```python
 # eval/validate_judge.py — run this against 50 labeled samples
 # from your last 30 days of production traffic.
 
 import json
-from collections import Counter
 
 # 1. Hand-labeled gold set (you sit down for 90 minutes and label).
 gold = [
@@ -402,7 +398,7 @@ gold = [
 # 2. Run your existing judge against the same 50 responses.
 judge_verdicts = [run_judge(r["id"]) for r in gold]
 
-# 3. Confusion matrix.
+# 3. Confusion matrix: "pass" is the positive class.
 tp = sum(1 for g, j in zip(gold, judge_verdicts)
          if g["label"] == "pass" and j["verdict"] == "pass")
 fp = sum(1 for g, j in zip(gold, judge_verdicts)
@@ -410,28 +406,27 @@ fp = sum(1 for g, j in zip(gold, judge_verdicts)
 fn = sum(1 for g, j in zip(gold, judge_verdicts)
          if g["label"] == "pass" and j["verdict"] == "fail")
 
-precision = tp / (tp + fp) if (tp + fp) else 0
-recall    = tp / (tp + fn) if (tp + fn) else 0
+precision = tp / (tp + fp) if (tp + fp) else None
+recall    = tp / (tp + fn) if (tp + fn) else None
 
-print(json.dumps({"precision": precision, "recall": recall}, indent=2))
+print(json.dumps({"positive_class": "pass", "tp": tp, "fp": fp, "fn": fn,
+                  "precision": precision, "recall": recall}, indent=2))
 
-# 4. If precision < 0.85 or recall < 0.85, the judge prompt needs
-#    work before it can gate releases. Common failure modes:
-#    - judge over-favors verbose answers (precision drop)
-#    - judge under-flags hallucination (recall drop on "fail" class)
+# 4. Set release thresholds from the cost of false passes/blocks.
+#    Missing hallucinations raises fp and lowers pass precision.
+#    Also report fail-class recall: the fraction of real failures caught.
+#    A zero denominator is undefined (None), not a measured score of zero.
 ```
 
-The 50-sample pass is one afternoon. The output is the
-spreadsheet you hand your security partner when the question
-arrives — which, on the timeline implied by the W20 news, lands
-some time in July.
+The first pass fits an afternoon. Rare failures need more examples
+and uncertainty bounds before a release gate. Keep the spreadsheet;
+the security partner can ask for the denominator too.
 
 **Systems map:** An LLM judge is a classifier whether or not the
 team treats it as one. Skipping train/dev/test splits and
 precision/recall reporting does not make the judge less of a
-classifier; it makes its error rate undocumented. Three new buyer
-shapes (small business, enterprise, foundation) are three new
-auditors who will ask for the documented number.
+classifier; it makes its error rate undocumented. A procurement review is another place the undocumented number can
+become awkward.
 
 **Transferable principle:** Any decision-maker priced in human
 authority that gets delegated to an automated component must be
@@ -442,21 +437,17 @@ transactions still needs a labeled holdout to report precision and
 recall, or downstream chargeback rates surprise the team months
 later.
 
-**Falsification test:** The judge-as-classifier thesis breaks if a
-team that runs the 50-sample labeling pass and reports precision
-and recall to a procurement buyer gets the same procurement outcome
-as a team that ships a "we use GPT-4 to score helpfulness 1-5"
-answer, across a sample of 10+ enterprise sales cycles over the
-next two quarters. That would mean buyers are not asking the
-classifier question on the timeline implied here, and the eval
-discipline is internal-quality work, not procurement work.
+**Falsification test:** Compare the judge with a cheap rule baseline
+on held-out human labels. If it catches no more real failures at the
+same false-block rate, do not pay for it as a release gate. Track
+buyer questions separately; winning a sale does not validate a classifier.
 
 **Adoption ladder:**
 
   - Minimum viable: pick one LLM judge in production; sit down for
     90 minutes; hand-label 50 historical responses; compute
     precision and recall against the judge's verdict; write the
-    two numbers in a doc.
+    two numbers and their denominators in a doc; mark this a pilot.
   - Mid: extend the labeled set to 200+; split into train/dev/test;
     track precision and recall per class (pass/fail) over time; gate
     releases on a precision-and-recall floor, not a vibe score.
@@ -469,8 +460,11 @@ discipline is internal-quality work, not procurement work.
     answered with the eval report vs deferred to engineering,
     release-gate hit rate.
 
+**Evidence:** MTRX-W20-EARLY-05
+
 ---
 
+**Confidence:** medium
 ## Worth your time
 
 **Simon Willison, *LLM in a shebang line*** (May 11). A short TIL

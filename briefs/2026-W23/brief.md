@@ -16,7 +16,7 @@ meta:
 
 ## Field thesis
 
-Three releases this week describe the same thing from three angles. OpenAI's Agents SDK adds a model-native loop, a sandbox, a Manifest, snapshots, and state rehydration. OpenAI's June 2 Codex update extends agent work into reports, spreadsheets, contracts, dashboards, and small apps. Langfuse ships deterministic code evaluators that sit next to traces and experiments. Same shape every time: the artifact needs a replay record, a deterministic gate where one exists, a reviewer, and a rollback path. Shipping the output without those four is shipping a demo.
+Three releases in this catch-up describe the same thing from three angles. OpenAI's April Agents SDK update adds a model-native loop, a sandbox, a Manifest, snapshots, and state rehydration. OpenAI's June 2 Codex update extends agent work into reports, spreadsheets, contracts, dashboards, and small apps. Langfuse ships deterministic code evaluators that sit next to traces and experiments. Same shape every time: the artifact needs a replay record, a deterministic gate where one exists, a reviewer, and a rollback path. Shipping the output without those four is shipping a demo.
 
 Catch-up issue. Six Top signals, 24 verified cells, three Action packets.
 
@@ -37,7 +37,7 @@ executes the work. A container can fail, expire, or be replaced while a
 serialized run continues from the last checkpoint.
 
 **Why it matters:** This turns "can the agent finish" into "can we
-prove the same run conditions can resume." That is the bridge between
+test whether a checkpoint can resume under recorded conditions." That is the bridge between
 agent demos and CI. It also gives the portfolio a concrete next step:
 map OpenAI RunState snapshots to CDCP Run records and trace-to-eval
 packets.
@@ -78,7 +78,7 @@ of truth.
 
 **Confidence:** high
 
-**Evidence:** MTRX-W23-openai-agents-sdk-source_gist, MTRX-W23-openai-agents-sdk-mechanism_extraction, MTRX-W23-openai-agents-sdk-adoption_action, MTRX-W23-openai-agents-sdk-systems_thinking
+**Evidence:** MTRX-W23-EARLY-01
 
 ---
 
@@ -118,9 +118,10 @@ not the old job title.
 artifact changes risk. A dashboard needs data-lineage review; a contract
 needs legal review; a report needs source review.
 
-**Falsification test:** If non-engineering Codex use grows without new
-artifact defects, approval misses, or data-scope incidents over one
-quarter, the artifact-gate urgency is lower than this brief claims.
+**Falsification test:** Compare reviewed defects per artifact, task
+class, and exposure before and after the gate. If the gate catches
+no additional material errors at acceptable review cost, narrow it.
+No reported incidents alone does not measure its value.
 
 **Adoption ladder:**
 
@@ -134,7 +135,7 @@ quarter, the artifact-gate urgency is lower than this brief claims.
 
 **Confidence:** high
 
-**Evidence:** MTRX-W23-codex-role-source_gist, MTRX-W23-codex-role-mechanism_extraction, MTRX-W23-codex-role-adoption_action, MTRX-W23-codex-role-systems_thinking
+**Evidence:** MTRX-W23-EARLY-02
 
 ---
 
@@ -173,9 +174,10 @@ and explainable.
 be tested as code before a judge model sees the output. This applies to
 briefs, support responses, tool calls, contract drafts, and dashboards.
 
-**Falsification test:** If deterministic checks create too many false
-failures after two weekly briefs, keep them as advisory scores and gate
-only source-link presence plus schema validity.
+**Falsification test:** Run known-good and deliberately broken fixtures.
+A presence check must catch the missing field without claiming to
+verify its meaning. Fix false failures rule by rule; keep semantic
+source review for claims code cannot settle.
 
 **Adoption ladder:**
 
@@ -187,7 +189,7 @@ only source-link presence plus schema validity.
 
 **Confidence:** high
 
-**Evidence:** MTRX-W23-langfuse-code-eval-source_gist, MTRX-W23-langfuse-code-eval-mechanism_extraction, MTRX-W23-langfuse-code-eval-adoption_action, MTRX-W23-langfuse-code-eval-systems_thinking
+**Evidence:** MTRX-W23-EARLY-03
 
 ---
 
@@ -226,9 +228,9 @@ completion. Missing any one of the three leaves a blind spot.
 before it happens. The same pattern applies to shell commands, emails,
 database writes, deploys, and outbound HTTP.
 
-**Falsification test:** If SLEIGHT-style transcripts no longer bypass
-frontier monitors on the same attack categories, then the pre-execute
-layer should run only on high-risk paths.
+**Falsification test:** Test the gate on held-out harmful and benign
+actions, recording missed harms and false blocks by category. A better
+monitor score does not remove authorization requirements on real writes.
 
 **Adoption ladder:**
 
@@ -241,7 +243,7 @@ layer should run only on high-risk paths.
 
 **Confidence:** medium-high
 
-**Evidence:** MTRX-W23-agenttrust-source_gist, MTRX-W23-sleight-source_gist, MTRX-W23-agenttrust-sleight-mechanism_extraction, MTRX-W23-agenttrust-sleight-adoption_action
+**Evidence:** MTRX-W23-EARLY-04
 
 ---
 
@@ -250,8 +252,9 @@ layer should run only on high-risk paths.
 **Source:** [Hugging Face / IBM Research, "ITBench-AA"](https://huggingface.co/blog/ibm-research/itbench-aa)
 
 **Payload:** IBM Research and Artificial Analysis published ITBench-AA,
-a benchmark for agentic enterprise IT tasks, and report frontier models
-below 50 percent on the first release.
+a benchmark whose first release tests SRE diagnosis on 59 Kubernetes
+incident snapshots, repeated three times per task. They report frontier
+models below 50 percent under recall-gated precision, not live deployment success.
 
 **Mechanism:** Enterprise IT tasks force an agent to handle partial logs,
 symptoms, changing state, remediation choices, and rollback. A static
@@ -292,7 +295,7 @@ dimension. Add the real failure trace to the suite.
 
 **Confidence:** high
 
-**Evidence:** MTRX-W23-itbench-source_gist, MTRX-W23-itbench-mechanism_extraction, MTRX-W23-itbench-adoption_action, MTRX-W23-itbench-systems_thinking
+**Evidence:** MTRX-W23-EARLY-05
 
 ---
 
@@ -331,9 +334,10 @@ The access contract decides who can turn capability into action.
 an unfinished product. The same rule applies to legal, finance, medical,
 security, and procurement agents.
 
-**Falsification test:** If open domain plugins show lower incident rates
-than trusted-access domain plugins over the same period and task class,
-the access-review burden should shrink.
+**Falsification test:** Compare access policies only with matched
+capabilities, task risk, exposure, and incident measurement. Fewer
+reported incidents in a differently selected user group cannot isolate
+the effect of trusted access.
 
 **Adoption ladder:**
 
@@ -346,7 +350,8 @@ the access-review burden should shrink.
 
 **Confidence:** medium
 
-**Evidence:** MTRX-W23-rosalind-biodefense-source_gist, MTRX-W23-rosalind-plugin-source_gist, MTRX-W23-rosalind-mechanism_extraction, MTRX-W23-rosalind-adoption_action
+**Evidence:** MTRX-W23-EARLY-06
+
 
 ## Reusable patterns
 

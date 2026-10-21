@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W29-external-control
 
 ## Field thesis
 
-This week's useful work happened at boundaries the model does not own. An authorization gateway checked identity and arguments before a tool call. A copy-on-write database let an agent work against real application state without touching the base rows. A repository carried specs between agent clients. Hugging Face kept a local model ready for incident evidence that hosted APIs would not process. Even Inkling's self-tuning demo placed a checkpoint and an eval between new weights and activation. A clear operating rule follows: give the model room to reason, then put authority, state, and promotion decisions in systems it cannot quietly rewrite.
+This week's useful work happened at boundaries the model does not own. An authorization gateway checked identity and arguments before a tool call. A copy-on-write database let an agent work against real application state without touching the base rows. A repository carried specs between agent clients. Hugging Face kept a local model ready for incident evidence that hosted APIs would not process. Even Inkling's self-tuning demo placed a checkpoint and an eval between new weights and activation. Put authority, state, and promotion decisions in systems the worker cannot quietly rewrite. Each boundary still needs a test for the alternate path around it.
 
 ## Top signals
 
@@ -22,7 +22,7 @@ This week's useful work happened at boundaries the model does not own. An author
 
 **Payload:** The aiAuthZ technical report evaluated 15 models on eight attack scenarios and found refusal rates ranging from 100 percent to 38 percent. Its off-host gateway verifies signed caller identity, nonce freshness, role, and tool arguments before execution. The authors report zero residual dangerous calls in their tests and no more than 0.03 ms of policy-decision latency.
 
-**Mechanism:** The gateway treats the agent's request as an untrusted proposal. A policy store outside the agent host decides whether the verified person may perform that exact action with those exact arguments, then records the decision in a hash-chained log. The model can follow an injected instruction and still fail to acquire permission.
+**Mechanism:** The gateway treats the agent's request as an untrusted proposal. A policy store outside the agent host decides whether the verified caller may perform that exact action with those exact arguments, then records the decision in a hash-chained log. The model can follow an injected instruction and still fail to acquire permission.
 
 **Why it matters:** Prompt defenses ask the same component that may be confused to recognize the confusion. An external authorization point supplies an independent invariant. The paper's own boundary matters: any built-in or alternate tool path that bypasses the gateway remains dangerous.
 
@@ -36,7 +36,7 @@ This week's useful work happened at boundaries the model does not own. An author
 
 **Transferable principle:** Put the final authority check in a component that cannot benefit from the proposed action. Payment approval and deployment promotion use the same separation.
 
-**Falsification test:** If a worker can reach the same side effect through any ungated shell, SDK, or built-in tool path, the gateway adds ceremony without containment.
+**Falsification test:** If a worker can reach the same side effect through any ungated shell, SDK, or built-in tool path, that route defeats containment even if other calls are checked.
 
 **Adoption ladder:**
   - Minimum viable: one high-impact tool behind an external argument check.
@@ -118,7 +118,7 @@ This week's useful work happened at boundaries the model does not own. An author
 
 **Payload:** Hugging Face disclosed an autonomous-agent intrusion that began in dataset-processing code execution, escalated through credentials and clusters, and produced more than 17,000 recorded actions. Its response team used agents to reconstruct the attack in hours. Hosted frontier APIs blocked the exploit commands and command-and-control artifacts needed for analysis, so the team ran GLM 5.2 locally.
 
-**Mechanism:** The attacker could send arbitrary offensive content through its own control loop. The defender's hosted model path applied general safety filters to incident evidence and rejected the work. A vetted local model restored both analytical capability and data locality.
+**Mechanism:** The attacker could send arbitrary offensive content through its own control loop. The defender's hosted model path applied general safety filters to incident evidence and rejected the work. Running GLM 5.2 locally let this response team process the blocked artifacts and keep the data in its environment. Isolation and redaction remain responder obligations.
 
 **Why it matters:** A security response plan that first tests its analysis model during an incident has already lost time. The sensitive evidence may also contain active credentials that should never leave the environment.
 
@@ -180,9 +180,9 @@ This week's useful work happened at boundaries the model does not own. An author
 
 **Source:** [Copy-on-Write Scoring: Application-Specific Agent Evaluations](https://arxiv.org/abs/2607.14336)
 
-**Payload:** Copy-on-Write Scoring intercepts PostgreSQL writes into per-session change tables, compares an agent's final application state with a reviewed ground-truth session, and scores structure and content. In the Plane study, one agent produced 47 unrelated rows in one workflow and 44 in another. A vocabulary fix to the tool surface raised reported scores for two weaker models by 0.47 and 0.54.
+**Payload:** Copy-on-Write Scoring intercepts PostgreSQL writes into per-session change tables, compares an agent's final application state with a reviewed ground-truth session, and scores structure and content. In the Plane study, one agent produced 47 unrelated rows in one workflow and 44 in another. After a vocabulary fix, one additional trial reported overall-score gains of 0.47 for GPT-4.1 and 0.54 for Gemini 2.5 Pro against their first two trials. This is a before/after diagnostic, with limited repeats.
 
-**Mechanism:** The agent reads realistic application state while every write lands in an isolated overlay. The scorer compares desired and actual final state, so it catches missing, extra, and wrong writes even when the user-visible task appears complete.
+**Mechanism:** The agent reads realistic application state while every write lands in an isolated overlay. The scorer compares desired and actual final state, so it can catch missing, extra, and wrong writes even when the user-visible task appears complete. Equivalent valid outcomes need comparators; a single golden state can reject legitimate alternatives.
 
 **Why it matters:** Tool-call validity and final-answer quality can both pass while the application accumulates collateral changes. State-delta scoring measures the consequence the user inherits.
 

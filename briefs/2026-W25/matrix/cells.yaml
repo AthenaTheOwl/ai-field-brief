@@ -1,0 +1,213 @@
+matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
+cells:
+- id: MTRX-W25-EARLY-01
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Three Anthropic releases landed in five days: 2.1.183 blocks destructive git verbs in auto
+    mode unless explicitly authorized, artifacts publish live versioned web pages from a Claude Code session,
+    and MCP connectors now provision through Okta groups.'
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.183
+    quote_or_span: 'June 19: specified destructive git operations blocked when discarding work was not
+      requested; includes reset --hard, checkout -- ., clean -fd, stash drop.'
+    ref_type: chunk
+  - uri: https://claude.com/blog/artifacts-in-claude-code
+    quote_or_span: 'June 18: live shareable artifacts from Claude Code session context; separate artifact
+      delivery surface.'
+    ref_type: chunk
+  - uri: https://claude.com/blog/enterprise-managed-auth
+    quote_or_span: 'June 18 launch text below later August update: admin-managed connector authorization
+      starts with Okta. App/enterprise connector feature, not proof auto mode is default.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. Claude Code blocks unrequested destructive git; Claude adds artifacts and managed
+      MCP auth'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-02
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: Defense-in-depth framework with MITRE-ATT&CK-style tactics, trusted AI supervisors that can
+    block actions pre-execution, and defenses scaled across a D1-D4 detection-evasion × R1-R3 harm-execution
+    grid.
+  source_refs:
+  - uri: https://deepmind.google/blog/securing-the-future-of-ai-agents/
+    quote_or_span: 'June 18; AI Control Roadmap: D1–D4/R1–R3, coverage/recall/response time, million-task
+      asynchronous monitoring prototype, and synchronous prevention proposed for high-risk actions.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. DeepMind''s AI Control Roadmap treats internal agents as insider threats'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-03
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: Z.ai released GLM-5.2 with MIT-licensed weights and 1M context. Its model card reports 81.0
+    on Terminal-Bench 2.1 using Terminus-2; a separately listed best-reported harness scores 82.7. Keep
+    the harness attached to the number.
+  source_refs:
+  - uri: https://huggingface.co/zai-org/GLM-5.2
+    quote_or_span: 'Model card Introduction/Benchmark: MIT license, 1M context; IndexShare per-token FLOPs
+      2.9x at 1M; Terminal Bench 2.1 81.0 Terminus-2 versus 82.7 best-reported harness. Not a hosted task-cost
+      comparison.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. GLM-5.2 ships MIT-licensed at 1M context — price a completed task'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-04
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Analysis of ~400k Claude Code sessions from ~235k users (Oct 2025–Apr 2026) decomposes each
+    session into planning vs execution decisions: users contribute ~70% of planning, Claude ~80% of execution,
+    and higher user domain expertise correlates with longer effective Claude turns per instruction.'
+  source_refs:
+  - uri: https://www.anthropic.com/research/claude-code-expertise
+    quote_or_span: June 16; ~400k sessions/~235k people October–April; classifier attribution ~70% human
+      planning/~80% Claude execution. Expertise inferred from same transcripts, task-specific and observational;
+      longer turns do not alone measure quality.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. Anthropic finds domain expertise tracks how much work Claude does'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-05
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: 'Vercel put Eve in public preview on June 17: agents are directories with instructions, tools,
+    and other runtime files. Google Cloud''s June 12 OKF v0.1 announcement describes portable Markdown/YAML
+    knowledge bundles. One defines agent behavior; the other packages context.'
+  source_refs:
+  - uri: https://vercel.com/changelog/introducing-eve-an-open-source-agent-framework
+    quote_or_span: 'June 17 public preview: agent directory includes agent.ts, instructions, tools, skills,
+      subagents, channels and schedules; build-time discovery.'
+    ref_type: chunk
+  - uri: https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing
+    quote_or_span: 'June 12 OKF v0.1: Markdown/YAML knowledge bundle, no new runtime. Distinct from Eve
+      execution configuration.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. Vercel Eve and Google OKF commit to filesystem-as-contract on the same axis'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-06
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: SciAgentArena uses stepwise verification on roughly 200 scientific tasks. WeaveBench checks
+    mixed GUI/CLI trajectories. AutoResearch tests aerospace-policy improvements against seed noise, reseeded
+    runs, and edit ablations. ABC-Bench reports wet-lab validation of generated robot scripts on one task
+    type. These are different checks, not one new grading standard.
+  source_refs:
+  - uri: https://arxiv.org/abs/2606.12736v1
+    quote_or_span: 'June 10 SciAgentArena abstract: ~200 tasks, stepwise verification, interactive agent-agnostic
+      environment.'
+    ref_type: chunk
+  - uri: https://arxiv.org/abs/2606.09426v2
+    quote_or_span: 'June 10 version of WeaveBench: 114 hybrid GUI/CLI tasks, trajectory-aware judging
+      of artifacts and shortcuts. Avoid later July v3 score in historical issue.'
+    ref_type: chunk
+  - uri: https://arxiv.org/abs/2606.20394v1
+    quote_or_span: 'June 18 abstract: measured seed noise, reseeded best configuration, leave-one-out
+      pruning; two aerospace control problems, LLM remains offline.'
+    ref_type: chunk
+  - uri: https://arxiv.org/abs/2606.11150v1
+    quote_or_span: 'June 9 abstract: three biology task types; three wet-lab validation experiments on
+      generated liquid-handler scripts, not validation of every benchmark task.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. Benchmark authors add checks beyond the final answer'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W25-EARLY-07
+  matrix_run_id: MTRX-W25-EDITORIAL-2026-10-21
+  source_item_id: editorial-w25-signal-07
+  lens_id: editorial_source_review
+  mode: critique
+  content: Anthropic's June 12 statement says a US government directive forced it to suspend Fable 5 and
+    Mythos 5 for all customers, while other Claude models stayed available. The provider disputed the
+    directive's technical basis. That statement establishes the disruption, not the full reasoning of
+    the government.
+  source_refs:
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: 'June 12 provider statement: Fable/Mythos suspended globally to comply with government
+      directive; other Claude models unaffected. The provider disputes the concern. No guarantee that
+      changing jurisdiction eliminates correlated access risk.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 7. Fable 5 export controls reframe Anthropic dependency as a supply-chain risk
+      with jurisdiction'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

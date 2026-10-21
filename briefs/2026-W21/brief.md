@@ -22,14 +22,15 @@ OpenAI contract has not arrived; that confirmation, when it comes, is
 its own signal.
 [anthropic.com/news/anthropic-acquires-stainless](https://www.anthropic.com/news/anthropic-acquires-stainless)
 
-**Insight.** Stainless ships SDK defaults: retry policy, error shape, timeouts. Now Stainless reports to Anthropic. Error handling is where the drift lands first.
+**Insight.** Stainless ships SDK defaults: retry policy, error shape, timeouts. Now Stainless reports to Anthropic. Error handling is one place to watch for drift; the acquisition alone does not show any.
 
 **Action surface:** config, eval
 
 **Concrete moves this week.**
 
-1. Stop using `anthropic@latest` in `package.json` or `pyproject.toml`.
-   Pin a minor: `"anthropic": "^0.42.0"` (or whatever you're on).
+1. Pin the tested version of `@anthropic-ai/sdk` in `package.json`
+   (or `anthropic` in `pyproject.toml`) and commit the lockfile.
+   Upgrade deliberately; the TypeScript and Python packages have different names.
 2. Add a one-file SDK contract test to CI that exercises the two or
    three call shapes you rely on day to day. When a future SDK update
    silently re-shapes an error, the contract test fails before your
@@ -42,23 +43,32 @@ its own signal.
 // apps/web/test/sdk-contract.test.ts
 import Anthropic from "@anthropic-ai/sdk";
 
-it("Messages.create returns a 400 with invalid_request_error on empty content", async () => {
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+it("preserves our required 400 error shape from a local fixture", async () => {
+  const client = new Anthropic({
+    apiKey: "local-fixture", maxRetries: 0,
+    fetch: async () => new Response(JSON.stringify({
+      type: "error",
+      error: { type: "invalid_request_error", message: "fixture" },
+    }), { status: 400, headers: { "content-type": "application/json" } }),
+  });
   const result = await client.messages.create({
     model: "claude-opus-4-7",
     max_tokens: 1,
-    messages: [{ role: "user", content: "" }],
+    messages: [{ role: "user", content: "fixture" }],
   }).catch(e => e);
 
   expect(result.status).toBe(400);
-  expect(result.error?.type).toBe("invalid_request_error");
+  expect(result).toBeInstanceOf(Anthropic.APIError);
+  expect(result.error?.error?.type).toBe("invalid_request_error");
 });
 ```
 
-The test costs you nothing — it never reaches the model — and it's the
-canary for an upstream contract change.
+The fetch stub makes this an offline SDK regression test. It cannot
+prove the live API still returns that error. A live canary needs its
+own budget and a documented expected response.
 
-**Systems map:** When the API vendor owns the SDK generator, retry/error/timeout defaults drift toward what the vendor wants.
+**Systems map:** SDK ownership changed. Retry, error, and timeout
+behavior are the dependency surfaces to compare on the next upgrade.
 
 **Transferable principle:** When a vendor acquires the tooling that
 generates client SDKs against its own API, pin minor versions and add
@@ -67,10 +77,10 @@ cloud-provider SDKs (AWS, GCP), payment-processor clients, and
 auth-provider SDKs whenever the upstream vendor brings generation
 in-house.
 
-**Falsification test:** This claim breaks if the next four Anthropic
-SDK minor releases ship without a single change to retry policy,
-default timeouts, or error-shape semantics. Two clean changelogs over
-60 days would falsify the consolidation-pressure read.
+**Falsification test:** Compare the next four minor releases with the
+previous four on retry, timeout, and error changes, and run the same
+fixtures. No increase weakens the ownership-drift story. Either way,
+keep the dependency test.
 
 **Adoption ladder:**
 
@@ -87,17 +97,21 @@ default timeouts, or error-shape semantics. Two clean changelogs over
     "default timeout adjusted"; CI contract-test failures on SDK
     bumps; vendor blog posts naming an SDK ownership change.
 
+**Evidence:** MTRX-W21-EARLY-01
+
 ---
 
+**Confidence:** medium
 ## KPMG, PwC, Gates in five days — build the AI incident playbook before someone asks for it
 
 **What changed.** Three deployment headlines between May 14 and May 19.
-Gates is $200M over multiple years, focused on global health. PwC
-calls its rollout a "core function" deployment. KPMG names 276,000
-seats.
+The Gates partnership combines $200M in grants, usage credits, and
+technical support over four years. PwC announced a rollout across
+core functions. KPMG says its 276,000+ employees will gain access;
+that is an access commitment, not a count of active users.
 [anthropic-kpmg](https://www.anthropic.com/news/anthropic-kpmg) · [gates-foundation-partnership](https://www.anthropic.com/news/gates-foundation-partnership) · [pwc-expanded-partnership](https://www.anthropic.com/news/pwc-expanded-partnership)
 
-**Insight.** At 100k+ seats, incident response and audit playbooks break first. Nobody has updated them since the Slack rollout.
+**Insight.** A 100k-seat access announcement is a good time to open the incident playbook. Check its date before blaming the Slack rollout.
 
 **Action surface:** workflow
 
@@ -107,8 +121,7 @@ seats.
    runbook. Three sections: model-output incident, data-exposure
    incident, vendor-outage incident. Each one with detect / contain /
    communicate sub-steps.
-2. If you sell to large firms: your security questionnaire just grew
-   by about 30%. Pre-write the answers to the dozen most common
+2. If you sell to large firms: expect more AI-specific security questions. Pre-write the answers to the dozen most common
    questions (data residency, sub-processors, model-isolation, audit
    logging, deletion SLAs) before sales pings you at 5pm Friday.
 3. If you build internal tooling that uses Claude/OpenAI: today is a
@@ -117,6 +130,10 @@ seats.
    weekend hostage.
 
 ```markdown
+
+**Confidence:** medium
+
+
 ## Model-output incident — generated PII in customer-facing channel
 
 ### Detect
@@ -126,14 +143,14 @@ seats.
 - Trigger: review-queue rule + Sentry breadcrumb on output token tag.
 
 ### Contain
-1. Rotate the workspace API key (`anthropic console > keys > revoke`).
-2. Disable the offending route in the feature flag dashboard.
-3. Snapshot the conversation transcript before any deletion.
+1. Disable the offending route in the feature flag dashboard.
+2. Restrict affected outputs and preserve only authorized incident evidence.
+3. Revoke/rotate credentials if compromise or continued access is in scope.
 
 ### Communicate
-- Legal + comms: within 2 hours.
-- Impacted users: within 24 hours per DPA terms.
-- Internal post-mortem: within 7 days, link in #incidents.
+- Legal + comms: <owner and internal escalation deadline>.
+- Impacted users/regulators: <counsel-confirmed contractual/legal deadline>.
+- Internal post-mortem: <owner, due date, restricted incident link>.
 ```
 
 One page. Write the playbook now, before there's an incident.
@@ -151,12 +168,10 @@ rewritten before the first incident — not after. Same pattern held for
 Slack rollouts past 10k seats in 2015, for Workday rollouts at large
 firms in 2019, and for cloud-IAM rollouts at financial firms in 2020.
 
-**Falsification test:** The "runbook gap" claim breaks if KPMG, PwC,
-or a peer publishes a model-incident retrospective in the next 90
-days showing detect/contain/communicate steps already in place at
-rollout. Either an incident with a clean response, or the lack of any
-reported incident over a quarter at 276k seats, would weaken the
-claim.
+**Falsification test:** Run a tabletop against the existing playbook
+first. If it already detects, contains, and assigns communication for
+the three incident classes within your risk limits, patch only the
+gaps. No publicly reported incident tells us little about coverage.
 
 **Adoption ladder:**
 
@@ -173,8 +188,11 @@ claim.
     questionnaires returned per month; runbook last-updated date;
     incidents detected by audit-log query vs reported by user.
 
+**Evidence:** MTRX-W21-EARLY-02
+
 ---
 
+**Confidence:** medium
 ## Project Glasswing — add five items to your AI vendor review
 
 **What changed.** Anthropic published an update on a collaborative
@@ -203,9 +221,9 @@ them.
 4. **Audit-log retention + export.** Can you pull every API call your
    workspace made last quarter, with prompts, on demand?
 5. **API-key compromise SLA.** Ask: "What's your published SLA for
-   revoking an API key after a customer reports it compromised?" The
-   answer you want is < 1 minute. Any answer over 15 min is a
-   procurement red flag worth escalating.
+   revoking an API key after a customer reports it compromised?" Set a revocation target from your threat model, then test it.
+   The minute and 15-minute thresholds below are proposed intake
+   targets, not Glasswing findings or universal SLAs.
 
 ```
 # vendor-review-ai.yaml — drop this into procurement intake
@@ -226,7 +244,7 @@ model_isolation:
   used_for_red_teaming: false
 audit_log:
   pull_quarter_on_demand: yes|no
-api_key_compromise_sla_seconds: <int>  # required: < 60
+api_key_compromise_sla_seconds: <int>  # proposed target: < 60; approve per risk
 ```
 
 **Systems map:** AI vendors now occupy the role cloud vendors filled
@@ -261,14 +279,16 @@ read.
     filled; vendors with SLA > 15 min on API-key compromise; vendors
     with SOC2 reports more than 18 months old.
 
+**Evidence:** MTRX-W21-EARLY-03
+
 ---
 
-## Gemini 3.5 Flash GA across Workspace — rerun your unit economics this week
+**Confidence:** medium
+## Gemini 3.5 Flash GA — rerun your unit economics this week
 
-**What changed.** Google launched Gemini 3.5 Flash directly to general
-availability and embedded it across Gmail, Calendar, and other
-Workspace surfaces. The new Flash costs more than the prior Flash, and
-Google made the new one the default for users without a paid plan.
+**What changed.** Google launched Gemini 3.5 Flash to general availability
+and made it the default in the Gemini app and AI Mode in Search.
+That app default does not migrate a pinned API route or its contract.
 [simonwillison.net coverage](https://simonwillison.net/2026/May/19/gemini-35-flash/)
 
 **Insight.** When the cheap-tier model's price goes up, the customer
@@ -278,16 +298,17 @@ Most teams haven't reopened the sheet.
 **Action surface:** config
 
 **Concrete moves this week.** Pull last quarter's LLM cost line. Build
-the table below for your actual call volume; the directional shape of
-this example is wrong for you, but the spreadsheet shape is the move.
+the table below for your actual call volume; use dated API or contract rates and separate input from output tokens.
+Bill = input millions × input rate + output millions × output rate.
 
 ```
-                     input cost     output cost   Q2 cost @ current vol   Q2 cost @ +30% vol
-Flash 2.5 (old)      $0.075/1M      $0.30/1M      $42k                    $55k
-Flash 3.5 (new)      $0.13/1M       $0.50/1M      $71k                    $92k
-Claude Haiku 4.5     $0.25/1M       $1.25/1M      $115k                   $150k
-60% on Llama-OSS     mix            mix           $61k                    $80k
-                                                  + infra carry: ~$24k
+route              input $/1M   output $/1M   input M   output M   period bill
+current API route  <dated rate> <dated rate>  <logs>    <logs>     I*Ri + O*Ro
+Flash 3.5          <dated rate> <dated rate>  <same>    <same>     <compute>
+OSS/managed mix    <mix>        <mix>         <same>    <same>     <plus hosting>
+
++30% volume scenario: bill * 1.30 only if token mix and rates stay fixed.
+Include cache, reasoning tokens, retries, tools, and serving costs separately.
 ```
 
 Three decisions fall out of this table:
@@ -295,26 +316,24 @@ Three decisions fall out of this table:
 1. If Flash 3.5 at +30% growth breaks your gross margin: your default
    model selection has to change before someone notices in a board
    review.
-2. If you've been routing 100% of traffic to Flash on price alone, the
-   premise of that routing is gone.
+2. If you route on price alone, rerun the comparison at a fixed
+   task-quality floor. A higher rate can still buy a cheaper completed task.
 3. If your enterprise contract was signed assuming Flash 2.5 unit
    economics, the renewal conversation just got harder. Pre-write the
    talking points.
 
-**Systems map:** Flash 3.5's default-tier price doesn't show up in your code. It shows up in the spreadsheet that routed on Flash 2.5. If your routing is priced on the default tier, a default-tier price hike silently rewrites your cost model.
+**Systems map:** A proposed model upgrade changes the rate and may
+change the token count. Price both before changing the API route;
+the app default is a separate product decision.
 
-**Transferable principle:** When a vendor moves the default tier's
-price, every cost projection downstream of "we'll just use the
-default" silently breaks. Same shape applies to default-tier S3
-pricing changes, default-tier database storage rate changes, and
-default-tier CDN egress changes — anywhere a routing decision was made
-on the default tier and never revisited.
+**Transferable principle:** A model name is not a unit-cost contract.
+Keep the dated rates, token mix, and completed-task denominator
+next to the routing decision.
 
-**Falsification test:** The unit-economics claim breaks if a sample
-of teams currently routing primarily to Flash 2.5 do the new sheet and
-find Q2 cost growth under 10% under Flash 3.5 pricing at current
-volumes. A small enough delta would mean the routing decision did not
-in fact depend on the price line that moved.
+**Falsification test:** Replay a fixed workload on both routes, with
+the same acceptance test. If cost per accepted task and latency stay
+inside the existing budget, there is no cost case for a reroute.
+This is a proposed comparison, not a measured Q2 bill.
 
 **Adoption ladder:**
 
@@ -331,8 +350,11 @@ in fact depend on the price line that moved.
     OpenAI; enterprise renewal cycle dates against vendor pricing
     moves.
 
+**Evidence:** MTRX-W21-EARLY-04
+
 ---
 
+**Confidence:** medium
 ## Simon Willison's *Last Six Months in LLMs* — forward to one specific person
 
 **What changed.** Simon published annotated slides from a PyCon US
@@ -357,18 +379,16 @@ priors that drive their decisions.
 **Systems map:** Stale priors in a few teammates cascade through hiring, vendor picks, and tooling.
 
 **Transferable principle:** When a domain's underlying tech base
-churns faster than ordinary team-knowledge maintenance, deliberate
-priors-update rituals (a forwarded annotated talk, a 15-minute
-weekly read, a one-slide-per-week deck) outperform ad-hoc reading.
+churns faster than ordinary team-knowledge maintenance, a short
+shared review is worth testing against ad-hoc reading.
 Same pattern shows up in security teams tracking exploit-class
 shifts, finance teams tracking macro-regime shifts, and platform
 teams tracking cloud-feature deprecations.
 
-**Falsification test:** Non-falsifiable; this is a normative claim
-about how teams should maintain shared priors in a fast-moving
-domain. There is no clean observation that would prove "forwarding
-the talk is not useful" — only weak proxies like whether the
-recipient changes a decision after the discussion.
+**Falsification test:** Name one pending vendor decision before the
+read. Afterward, check which factual assumptions changed and whether
+they survive a source check. If the discussion only changes confidence,
+keep it as a conversation. A decision-quality claim needs more.
 
 **Adoption ladder:**
 
@@ -385,8 +405,11 @@ recipient changes a decision after the discussion.
     self-reported confidence shift on a 1-5 scale before and after;
     follow-on Slack threads referencing the talk.
 
+**Evidence:** MTRX-W21-EARLY-05
+
 ---
 
+**Confidence:** medium
 ## Three more, in shorter form
 
 **Eugene Yan, *How to Work and Compound with AI*** (May 3). Four

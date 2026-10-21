@@ -1,0 +1,294 @@
+{
+  "review_date": "2026-10-21",
+  "checked_at": "2026-10-21T20:20:11.195913+00:00",
+  "content_commit": "2fe6bedad10f92bf4990550e01d693fb2c8f8c3d",
+  "canonical_briefs": 23,
+  "python_gates": [
+    {
+      "name": "spec_check",
+      "exit_code": 0
+    },
+    {
+      "name": "voice_lint",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_sensitive_disclosures",
+      "exit_code": 0
+    },
+    {
+      "name": "cadence_check",
+      "exit_code": 0
+    },
+    {
+      "name": "check_no_bom",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_schemas",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_registry",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_decisions",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_roles",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_tools",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_policies",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_brief_fields",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_editorial_evidence",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_matrix_cells",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_skills",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_dreams",
+      "exit_code": 0
+    },
+    {
+      "name": "check_schema_cache_freshness",
+      "exit_code": 0
+    },
+    {
+      "name": "validate_run_evidence",
+      "exit_code": 0
+    }
+  ],
+  "python_tests": {
+    "passed": 348,
+    "skipped": 20,
+    "skip_basis": "retained historical rerun count discrepancy or missing optional summary declarations"
+  },
+  "evidence_regressions_passed": 56,
+  "javascript_tests": {
+    "sources": 18,
+    "db": 25,
+    "web": 23,
+    "total": 66
+  },
+  "typecheck": "passed",
+  "build": {
+    "status": "passed",
+    "timing": "built from the frozen publication content before the content commit; all 46 body and metadata input files match the committed tree",
+    "canonical_routes": 23,
+    "feed_routes": [
+      "/feed.xml",
+      "/atom.xml",
+      "/feed.json"
+    ]
+  },
+  "limits": [
+    "Reference integrity is separate from source entailment.",
+    "No historical full matrix rerun, paid model benchmark or subscriber broadcast.",
+    "Package lint commands and the eval package contain placeholders."
+  ],
+  "brief_build_inputs": [
+    {
+      "path": "briefs/2026-W20/brief.md",
+      "sha256": "0b996741b46c39e8a5aff3ed8a0072053360845e866e6830be14777e54f35285"
+    },
+    {
+      "path": "briefs/2026-W20/meta.yaml",
+      "sha256": "7edf4d4507b8fbfcbe84590c821bd4ea9d2ba1fb596a1471b0226e46b48aeeb1"
+    },
+    {
+      "path": "briefs/2026-W21/brief.md",
+      "sha256": "7fd8e5cd1943242a0c39d19e26e21beacc75ffb2c637dd2728c72b80dc505fbb"
+    },
+    {
+      "path": "briefs/2026-W21/meta.yaml",
+      "sha256": "ed5d5625a2b1893a1b4d6d2be7d4b8107d57783af7345f031e7ea14ff3bf6a4b"
+    },
+    {
+      "path": "briefs/2026-W22/brief.md",
+      "sha256": "e5193bd544450908ce1a71e296684d3779bc0880a033a9a8835d3af6764f99d6"
+    },
+    {
+      "path": "briefs/2026-W22/meta.yaml",
+      "sha256": "e925a97fdb1b18079dce235646d87c5782eaf644e94846359f11b57894bf6f8b"
+    },
+    {
+      "path": "briefs/2026-W23/brief.md",
+      "sha256": "df580c8c6386ec5ef9fa30bbbb3b57d61859b79e802cba3d6599a26032248469"
+    },
+    {
+      "path": "briefs/2026-W23/meta.yaml",
+      "sha256": "3c9f368b5cc1fea6ce36b68d1083800c516cb6084dd8bbf91523013204215cd2"
+    },
+    {
+      "path": "briefs/2026-W24/brief.md",
+      "sha256": "3764dc1bd4fcd70b524c6f7840c61e513182d57b0930290838f79ccbb6e0c203"
+    },
+    {
+      "path": "briefs/2026-W24/meta.yaml",
+      "sha256": "7c0ea72f1a922ee22bb448fc5ac3c6eed3f569577a0769aa9c9e8c0de431e540"
+    },
+    {
+      "path": "briefs/2026-W25/brief.md",
+      "sha256": "24b6da80346b7908640222e9a3b4c5591da990cacfbcdb37a88fcfa56248e967"
+    },
+    {
+      "path": "briefs/2026-W25/meta.yaml",
+      "sha256": "b10499895478b552aff1583b206b150bf48465270654ee9471baa326d6179768"
+    },
+    {
+      "path": "briefs/2026-W26/brief.md",
+      "sha256": "866b463d7ea5e7953da79b5a428f687a35f61ff1b9be8c4c6b9e5cd0e68e6c98"
+    },
+    {
+      "path": "briefs/2026-W26/meta.yaml",
+      "sha256": "c72ee1b29df28c6f1e2a0376a43ee5d03f962d38615b44efa363cc35e950dd16"
+    },
+    {
+      "path": "briefs/2026-W27/brief.md",
+      "sha256": "5625eb4fd34f027a432b5292898b6266059d8298cccb152ef0a6bd17ce26d170"
+    },
+    {
+      "path": "briefs/2026-W27/meta.yaml",
+      "sha256": "f8e5d8f46f1f7db2d17ab9e2f121ce6bfc93a1c13c5c425ae8b7974908a9ce14"
+    },
+    {
+      "path": "briefs/2026-W28/brief.md",
+      "sha256": "8a347538ef7e8fc67523976452c15caa7ae1ce36d9190c11be5beef360026a53"
+    },
+    {
+      "path": "briefs/2026-W28/meta.yaml",
+      "sha256": "0406b4c5d1779bf5c9c64a895dc8ca5546fc34ea3648dda95f9178f4a727b1a2"
+    },
+    {
+      "path": "briefs/2026-W29/brief.md",
+      "sha256": "54fbd4b3a2ea076ff7e2453d474aa725fdeb6b288a7806c3c91c42ad03273ceb"
+    },
+    {
+      "path": "briefs/2026-W29/meta.yaml",
+      "sha256": "7d6d35234012032ea7dcdb835e0b84b32be7fbb700bdfa8b9acf7ed24fa6bdbc"
+    },
+    {
+      "path": "briefs/2026-W30/brief.md",
+      "sha256": "920fb4d84fbd7b7391743eb6758f8ad26e41a97d1ccc7923827767922442f7ee"
+    },
+    {
+      "path": "briefs/2026-W30/meta.yaml",
+      "sha256": "8955bef586030d9d125e2f430fcacbf9e6a03ce792ec35445f1d3e937c38dab3"
+    },
+    {
+      "path": "briefs/2026-W31/brief.md",
+      "sha256": "e0a5a2c9301b5d23566b0a2a7c94e43a5b484f167bff312a3d857bf9352679b9"
+    },
+    {
+      "path": "briefs/2026-W31/meta.yaml",
+      "sha256": "220841a5481790294a81e9e04cc61939072104818caffd5c56f39b0faa15ef70"
+    },
+    {
+      "path": "briefs/2026-W32/brief.md",
+      "sha256": "99c88e3e9e9f2b27569f7e7a29105579f9ef12d205ccb33a51782cac20c00237"
+    },
+    {
+      "path": "briefs/2026-W32/meta.yaml",
+      "sha256": "a773cbbf997645197117100699310de4709a287b4d35f2366dafca2183c75da3"
+    },
+    {
+      "path": "briefs/2026-W33/brief.md",
+      "sha256": "c11252130444be826c89581c805b3a58023df75437f8309bcca9a6ebc9729927"
+    },
+    {
+      "path": "briefs/2026-W33/meta.yaml",
+      "sha256": "cf6f35cf40980677e4e8ef1f4f0960bf390b1f625f6245c8278da6670595ab53"
+    },
+    {
+      "path": "briefs/2026-W34/brief.md",
+      "sha256": "284f55bda9f0b68372cc8bc2f952a2e900abfcf2d1a36cbf211f2f5d4ee0c62e"
+    },
+    {
+      "path": "briefs/2026-W34/meta.yaml",
+      "sha256": "b8309ca875d0ed456641bf5ada0c65723ccdbe5401a8533bd10426060a03fa20"
+    },
+    {
+      "path": "briefs/2026-W35/brief.md",
+      "sha256": "756d9860f0fb243a5d24df9de5d4e8ecfe2d005290a09658193a2840d72c605c"
+    },
+    {
+      "path": "briefs/2026-W35/meta.yaml",
+      "sha256": "d9518a6805ff75ff6613eb3be928fbe63ce8d97a62228203dae4e7750518bde8"
+    },
+    {
+      "path": "briefs/2026-W36/brief.md",
+      "sha256": "be3a473571a3998ad7875f643b8fe1269a0dcf21794b26a5037b18a30100812c"
+    },
+    {
+      "path": "briefs/2026-W36/meta.yaml",
+      "sha256": "5f26dca503fabc17531e46473352d0dde9596e627be4cd8b2d6379f0a5d5d7c0"
+    },
+    {
+      "path": "briefs/2026-W37/brief.md",
+      "sha256": "6072128e2caf323c528ae736cfac461cf0a136db099bf82a269521e30170fcca"
+    },
+    {
+      "path": "briefs/2026-W37/meta.yaml",
+      "sha256": "b3e82eef72c4bc0cacb89c18222b17eeef78c8ab0be28706dc0297cdebf78c4f"
+    },
+    {
+      "path": "briefs/2026-W38/brief.md",
+      "sha256": "8db93190093fa3ae30d0358aa1d435a71549e490d749b9a82cda644cde8da5d5"
+    },
+    {
+      "path": "briefs/2026-W38/meta.yaml",
+      "sha256": "8f90c54aaf4bcc535f7035d7fe4b8767c33eecb6601f347c2e3da96a795c0a0e"
+    },
+    {
+      "path": "briefs/2026-W39/brief.md",
+      "sha256": "c377febadf837c42dfca6ac3c1bb17545ab77c289d0fb34823c22244ecd6121f"
+    },
+    {
+      "path": "briefs/2026-W39/meta.yaml",
+      "sha256": "846237437bdabb1023a701c4c27facb9acf9b1955ddb9b211aa199f600eca3d5"
+    },
+    {
+      "path": "briefs/2026-W40/brief.md",
+      "sha256": "bb621188b472c4fd335d4b3a7792acc891d511c47a18939bcfe1a90371728aab"
+    },
+    {
+      "path": "briefs/2026-W40/meta.yaml",
+      "sha256": "a41bdfc641443e9ee4cf5df66bc73735c284f316c94e6ef010df1b18bf24e17a"
+    },
+    {
+      "path": "briefs/2026-W41/brief.md",
+      "sha256": "68dcaece5e42a556eee0e5c5706f8ae0714590bd23f903f99e7cfeca03a9210d"
+    },
+    {
+      "path": "briefs/2026-W41/meta.yaml",
+      "sha256": "d2aef93f0c613c041b561c4e4055b757e4e125edb9d4820062b17eb06613c1b5"
+    },
+    {
+      "path": "briefs/2026-W42/brief.md",
+      "sha256": "c16805a0c4e4d386d6d16448445b6969fcefbfe688e4dee5d315b8a0b986eb87"
+    },
+    {
+      "path": "briefs/2026-W42/meta.yaml",
+      "sha256": "68099537b4652e6459042980d4834af090f47760fa4e4dc7c0656594d25cb868"
+    }
+  ]
+}

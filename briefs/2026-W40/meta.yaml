@@ -2,7 +2,7 @@ iso_week: 2026-W40
 through_date: 2026-10-02
 generated_at: 2026-10-02T23:15:00Z
 generated_by: claude-w40-same-configuration-run-twice
-title: "Fifty-four percent of the difference between two agent configurations was the same configuration run twice."
+title: "The same configuration, run again, explained fifty-four percent of the variance."
 volume: 23
 profile_id: builder-tpm
 registry_version: 14
@@ -84,7 +84,7 @@ sources_reviewed:
     url: "https://arxiv.org/abs/2610.01349"
     disposition: top_signal
   - label: "Aletheia: Permission-Minimality Testing for Coding-Agent Rules"
-    url: "https://arxiv.org/abs/2609.39678"
+    url: "https://arxiv.org/abs/2609.39678v1"
     disposition: top_signal
   - label: "Testing memory placement against compaction cliff"
     url: "https://mem0.ai/blog/testing-memory-placement-against-compaction-cliff"
@@ -208,8 +208,8 @@ failures:
   - "builder-practice/feeds:reddit-prompt-engineering: HTTP 403 from the same fetcher; one in-window finding, not cited"
 next_run:
   - "Measure the within-configuration spread before the next model comparison. Repeat one fixed configuration five times on one factory task and publish the spread beside the comparison gap; at 54 percent within-configuration variance a one-run-per-config table is a coin flip."
-  - "Add a harness column to the factory comparison table and re-check the model decision when the harness changes. One task, two models, two harnesses, four runs."
-  - "Mark every gateway-derived cost figure taken before 2026-09-30 as a floor and re-price one week of factory threads against a fixed mid-tier default. The 2.1.286 meter fix touched 1-hour cache writes and streamed server-side-tool turns, which is the portfolio's normal traffic."
+  - "Add a harness column to the factory comparison table and re-check the model decision when the harness changes. One task, two models, two harnesses, repeated runs of each pairing."
+  - "Mark affected Claude apps gateway cost figures taken before 2026-09-30 for re-pricing and re-price one week of factory threads against a fixed mid-tier default. The 2.1.286 meter fix touched 1-hour cache writes and streamed server-side-tool turns, which is the portfolio's normal traffic."
   - "Run the permission-minimality test on the three AGENTS.md files that grant the most authority: one representative task per removed permission, dispensable grants recorded. Extends W38's and W39's AGENTS.md items, which are about which file is read; this one is about what the file asks for."
   - "Inventory write-capable tools and mark which verify the originating request instead of only the caller's permission. The exposed set is the deliverable."
   - "Audit the telemetry pipeline for redaction rules keyed on a field name, starting with `prompt` against `prompt_text`, and add an alert for an expected trace field that stops arriving."

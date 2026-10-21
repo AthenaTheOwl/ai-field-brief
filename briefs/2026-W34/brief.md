@@ -20,13 +20,13 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Source:** [Thinkingbox and WorkflowArena](https://arxiv.org/abs/2608.19741)
 
-**Payload:** Thinkingbox evaluates 507 stateful business workflows against terminal backend state and unintended extra effects. The strongest evaluated agent reached 65.36 percent pass@1 and 25.25 percent pass^20, meaning far fewer tasks remained correct across all twenty repetitions.
+**Payload:** Thinkingbox evaluates 507 stateful business workflows against terminal backend state and unintended extra effects. GPT-5.4, the strongest evaluated agent, reached 65.36 percent estimated single-attempt success and passed all twenty attempts on 128 of 507 tasks, or 25.25 percent pass^20. The two rates summarize the same twenty-attempt task sample in different ways.
 
 **Mechanism:** One attempt samples one trajectory. Repetition exposes unstable planning, nondeterministic tool selection, partial updates, and cleanup paths that a first-run score cannot distinguish. Terminal-state grading also catches the agent that says the right thing after changing the wrong record.
 
 **Why it matters:** The factory currently records first-pass acceptance and hidden-check outcomes per attempt. Its promotion decision still needs a case-level reliability view. A candidate that passes most attempts while failing a critical task once in five should not inherit greater autonomy from an average score.
 
-**Reusable pattern:** Report both at-least-one success and all-repetitions success. Keep every attempt in the denominator, including timeouts, parse failures, and infrastructure failures. Grade terminal state and extra effects independently from the final message.
+**Reusable pattern:** Report single-attempt success beside at-least-one-in-k and all-k success, with k and the task denominator named. Keep every attempt in the denominator, including timeouts, parse failures, and infrastructure failures. Grade terminal state and extra effects independently from the final message.
 
 **Action surface:** eval
 
@@ -36,7 +36,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A single success is one sample, and a score built from one sample per case cannot distinguish a system that succeeds habitually from one that succeeded once. Flaky-test triage, canaries judged on a single rollout, and hiring loops scored by one panel carry the same error.
 
-**Falsification test:** If three repetitions of the factory's held-out set return the same outcome on every case, first-pass acceptance already describes the run class and the repeated-run spend buys no information.
+**Falsification test:** If first-pass acceptance clears promotion while a critical case fails on a later repetition, the one-run admission rule is too weak. Three matching outcomes provide bounded evidence on those cases; they cannot establish that the run class is deterministic.
 
 **Adoption ladder:**
   - Minimum viable: run three repetitions per held-out case and list the case IDs whose outcome changed between them.
@@ -68,7 +68,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A result is attributable only when every input that shapes behavior is versioned, so a harness that ships unversioned turns each comparison into a confound. Benchmark scores, A/B readouts, and cost-per-run figures all need the same pinning.
 
-**Falsification test:** If two harness hashes produce identical per-case outcomes on the same cases under the same scorer version, the harness carries no behavioral weight here and hashing it only adds bookkeeping.
+**Falsification test:** If a claimed harness improvement disappears under paired repetitions with the same model, cases, and scorer, withhold the improvement claim. Keep both hashes: a null comparison still needs attributable inputs.
 
 **Adoption ladder:**
   - Minimum viable: bind every factory run to its compiled prompt hash, tool-surface hash, context profile, model policy, and source commit.
@@ -100,7 +100,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A rule about order or budget cannot be checked from the current request alone, so the decision point needs a trusted history or the rule stays advice. Rate limits, segregation of duties, and idempotency keys all read the same stored past.
 
-**Falsification test:** If the factory's existing per-action leases already reject a missing review, a stale review, a mismatched digest, and a duplicate commit while admitting the valid sequence, the invariant holds without a temporal evaluator and the new runtime earns nothing.
+**Falsification test:** Compare the temporal rule with the existing lease checks on the same five sequences. If both produce the required verdicts, retain the simpler implementation for this invariant. Missing or stale history must still deny, including after a restart.
 
 **Adoption ladder:**
   - Minimum viable: write one deterministic rule over factory events: a commit for patch digest D requires a passed review event for D.
@@ -120,7 +120,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Mechanism:** A summary can preserve facts while weakening recency, prohibitions, recovery instructions, or unfinished obligations. Token count and semantic similarity miss these control losses. The error appears later as a malformed tool call, a repeated action, or a failure to stop.
 
-**Why it matters:** The factory now has a clean `lean-v2` context profile that cuts static prompt content substantially. That branch should stay opt-in until a paired held-out campaign measures behavior at the compaction boundary. A universal compression ratio would ignore the papers' strongest shared result: each control context has its own frontier.
+**Why it matters:** The factory now has a clean `lean-v2` context profile that cuts static prompt content. That branch should stay opt-in until a paired held-out campaign measures behavior at the compaction boundary. A universal compression ratio would ignore the papers' strongest shared result: each control context has its own frontier.
 
 **Reusable pattern:** Evaluate a context change from the same checkpoint, with the same task and environment, under repeated continuations. Measure completion, repeated actions, blocked actions, tool-parse failures, cost, and pass^k together.
 
@@ -132,7 +132,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A compression scored on preserved content can still drop the control signals the system acts on, so the test has to be behavioral and start from the same state. Log sampling, cache eviction, and schema trimming fail the same way.
 
-**Falsification test:** If `legacy-v1` and `lean-v2` run from identical checkpoints show no change in repeated actions, blocked actions, or tool-parse failures across three repetitions, this profile sits inside its reliability frontier on those cases and the paired campaign has no behavioral finding to produce.
+**Falsification test:** If `lean-v2` worsens critical-case pass^3, loses a prohibition, or increases repeated or malformed actions beyond the declared tolerance, hold promotion. Compare completion and cost too. Three repeats with no observed regression are an initial estimate, with limited power.
 
 **Adoption ladder:**
   - Minimum viable: run one paired continuation on one held-out case from the same checkpoint under both profiles.
@@ -152,7 +152,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Mechanism:** A single event log can drive replay, persistence, UI projection, policy checks, and recovery without maintaining a second mutable conversation state. Typed dispatch modes also distinguish ordered checkpoints from independent observers.
 
-**Why it matters:** The portfolio already emits JSONL event ledgers, but several consumers still infer state from summaries or final records. Divergent projections recreate the drift an event-sourced design avoids. The useful import is the invariant, not the plugin framework: each model-visible fact and externally relevant effect needs one durable origin.
+**Why it matters:** The portfolio already emits JSONL event ledgers, but several consumers still infer state from summaries or final records. Divergent projections recreate the drift an event-sourced design avoids. The useful import is the invariant: each model-visible fact and externally relevant effect needs one durable origin.
 
 **Reusable pattern:** Declare which events are durable facts, which are transient control signals, and which projection builds model history. Give events monotonic sequence numbers. Test crash recovery by rebuilding state solely from the log.
 
@@ -164,7 +164,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A fact with two writable homes will eventually hold two values, so one durable origin with the rest derived costs less than reconciling them. Reporting tables, caches, and denormalized counters all drift on this.
 
-**Falsification test:** If one completed factory run rebuilds terminal status, worker choices, gate outcomes, artifact refs, and stop reason from events alone, the ledger is already the origin and the remaining work is a regression test instead of a redesign.
+**Falsification test:** If any audited field requires an unpinned mutable summary, the log is insufficient for that replay. Repeat after interruption and recovery; one completed run cannot establish every terminal path.
 
 **Adoption ladder:**
   - Minimum viable: audit one completed run and list every field that cannot be rebuilt from the event ledger.
@@ -196,7 +196,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** An authorization model built around a person at a browser breaks when the caller is a process acting later with narrower authority, so identity, authority, and transport state need separate contracts. Service accounts, CI tokens, and webhook callbacks all cross that line.
 
-**Falsification test:** If the identity fixture shows the current approval path already separating a parent agent from a delegated subagent and rejecting both an expired grant and a replayed proof, the gap the roadmap names does not reach this server.
+**Falsification test:** If the verifier accepts the wrong audience, an expired grant, or replayed proof, the delegated identity contract fails. Passing the design fixture supports those cases; remote deployment and key rotation still need conformance evidence.
 
 **Adoption ladder:**
   - Minimum viable: add the design-only identity fixture to the MCP security lab, with a parent agent, a delegated subagent, an audience-bound read grant, an expired grant, and a replayed proof.
@@ -228,7 +228,7 @@ The best result in a new benchmark for stateful business agents was 65.36 percen
 
 **Transferable principle:** A test is hidden from its subject only when the boundary is attestable by something the subject cannot reach, and the cost of watching that boundary belongs in the test budget. Blind code review, red-team exercises, and audit sampling all pay it.
 
-**Falsification test:** If canaries planted in the private case bundle, the controller environment, and the scorer root appear in none of a run's output, diff, stdout, event ledger, run record, handoff, or error paths, and the canary ran under an external sandbox issuer, the boundary already holds and the hardening work has no finding to produce.
+**Falsification test:** If the worker can read a planted canary or alter the scorer, the isolation claim fails even when no canary appears in output. Probe access directly, then scan every output sink. An external issuer and signed receipt must bind those checks to the actual worker and substrate.
 
 **Adoption ladder:**
   - Minimum viable: plant one canary in the private case bundle and check the run's output, diff, stdout, event ledger, run record, handoff, and error paths for it.
@@ -284,7 +284,7 @@ Select one completed factory run. Rebuild terminal status, worker choices, gate 
 
 ### Packet F - containment canary
 
-Plant generated canaries in the private case bundle, controller environment, and scorer root. The worker output, diff, stdout, event ledger, run record, handoff, and error paths must contain none. Run the canary inside an external sandbox issuer so the test proves a boundary instead of exercising an in-process mock.
+Plant generated canaries in the private case bundle, controller environment, and scorer root. The worker output, diff, stdout, event ledger, run record, handoff, and error paths must contain none. Run direct read and mutation probes under an external sandbox issuer, require denials, and bind the evidence to the worker identity. Output scans supplement those probes; silence alone cannot prove denied access.
 
 ## Framework-runtime scout
 

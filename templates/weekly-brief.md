@@ -15,10 +15,10 @@ meta:
 
 ## Field thesis
 
-<One paragraph — the deepest pattern across the week. Not a TL;DR; a
-viewpoint. Names the frame that threads the picks together. The kind
-of opening you'd find in Farnam Street's *Brain Food*, Stratechery's
-day-after note, or a considered weekly letter.>
+<One paragraph. Start with the concrete change the picks support, then
+give the narrow view that joins them. Keep a proposed connection visibly
+proposed. Read VOICE.md and prompts/editorial_contract.md; the brief
+keeps its own voice.>
 
 ## Top signals
 
@@ -37,7 +37,7 @@ software-control-plane, personal-knowledge-base>
 **Try:** <small testable action the reader runs before next Friday>
 **Systems map:** <1-2 sentences naming the underlying mechanism>
 **Transferable principle:** <1 sentence + 1 example of where else it applies>
-**Falsification test:** <what observation would prove this wrong>
+**Falsification test:** <comparison, baseline and observation that would count against the claim>
 **Adoption ladder:**
   - Minimum viable: <smallest useful step>
   - Mid: <incremental expansion>
@@ -60,7 +60,7 @@ longer comment.>
 **Try:** <...>
 **Systems map:** <1-2 sentences naming the underlying mechanism>
 **Transferable principle:** <1 sentence + 1 example of where else it applies>
-**Falsification test:** <what observation would prove this wrong>
+**Falsification test:** <comparison, baseline and observation that would count against the claim>
 **Adoption ladder:**
   - Minimum viable: <smallest useful step>
   - Mid: <incremental expansion>
@@ -82,7 +82,7 @@ longer comment.>
 **Try:** <...>
 **Systems map:** <1-2 sentences naming the underlying mechanism>
 **Transferable principle:** <1 sentence + 1 example of where else it applies>
-**Falsification test:** <what observation would prove this wrong>
+**Falsification test:** <comparison, baseline and observation that would count against the claim>
 **Adoption ladder:**
   - Minimum viable: <smallest useful step>
   - Mid: <incremental expansion>
@@ -151,8 +151,8 @@ honest about what the week contained.
 
 ## Closing thought
 
-<One sentence or short paragraph. A frame, a question, or a quote from
-a primary source. Not a summary.>
+<Optional. Stop on the last concrete move unless a sourced fact or dry
+aside earns another line. Do not manufacture a closing ritual.>
 
 ---
 
@@ -179,19 +179,6 @@ a primary source. Not a summary.>
   - no forced action angle: if a source has nothing actionable, it
     belongs in Archive notes, not Top signals
 
-  action surface labels (from config/action_surface_taxonomy.yaml):
-    prompt
-    config
-    eval
-    workflow
-    agent-role
-    tool-policy
-    runtime-adapter
-    source-registry
-    architecture
-    experiment
-    watchlist
-    creative-os
-    software-control-plane
-    personal-knowledge-base
+  action surface labels: use canonical ids from
+    config/action_surface_taxonomy.yaml
 -->

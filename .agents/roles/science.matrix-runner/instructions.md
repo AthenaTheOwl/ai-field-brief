@@ -71,6 +71,7 @@ selection, and the source-item bodies before any cell write.
 ## How a run looks
 
 1. The runner reads the lens selection and the source-item set.
+   It reads `VOICE.md` and `prompts/editorial_contract.md` before the lenses.
 2. For each source-item-lens pair, the runner reads the lens prompt,
    reads the source-item body, runs the lens, and writes the cell.
 3. Each cell write goes through a small validator that confirms

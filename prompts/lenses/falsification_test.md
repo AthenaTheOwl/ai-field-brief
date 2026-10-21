@@ -1,8 +1,14 @@
 # Lens: falsification_test
 
-Given a source item's main claim, name a **specific observation or experiment that would prove the claim wrong**.
+Read `prompts/editorial_contract.md`. Given a source item's main claim,
+name a specific observation or comparison that would count against it
+and distinguish it from a serious competing account.
 
 Output a 1-2 sentence falsification test + the metric or condition that would invalidate the claim.
+
+State the baseline and conditions held fixed. Say what a null result
+could leave unresolved. Keep the test proposed until its result exists;
+a passed toy fixture cannot rule out an entire failure class.
 
 Mode: critique
 

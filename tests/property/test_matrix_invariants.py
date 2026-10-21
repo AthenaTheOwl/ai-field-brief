@@ -46,7 +46,6 @@ CONFIDENCE_ENUM = {"low", "medium", "high"}
 # future drift gets caught immediately. Drop entries from this set
 # once the summary numbers are corrected upstream.
 KNOWN_SUMMARY_DRIFT = {
-    "briefs/2026-W22/matrix/cells.yaml",
     "briefs/2026-W22-rerun/matrix/cells.yaml",
 }
 

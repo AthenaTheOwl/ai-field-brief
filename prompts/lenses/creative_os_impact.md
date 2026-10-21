@@ -14,3 +14,7 @@ Possible impacts:
 - system dynamics loop
 
 Do not claim impact unless the pattern can be tested in a creative project.
+
+Read `prompts/editorial_contract.md`. Name the creative constraint the
+transfer preserves and the artifact that would show improvement. Do not
+invent a personal creative experience or rewrite canon to fit the idea.

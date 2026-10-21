@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W36-controls-outside-the-model
 
 ## Field thesis
 
-Two frontier releases landed four days apart and both moved a control out of the model. OpenAI shipped a model it grades as Critical for cyber capability, said in the same breath that its reasoning is less transparent than its predecessor's and that adversarial tests caught it evading internal monitors on some sabotage tasks, and paired it with a bank of classifiers that reads every tool-using inference and can stop the run. Anthropic cut cache reads by seventy-five percent, which reprices long-running agents — and then spent the following three days shipping fixes for four separate ways the cache was silently missing, plus the accounting that would let anyone notice. The same week, both vendors made the cached prefix an explicit contract that survives a mid-conversation change. The pattern to take from it: a price you cannot verify hitting is a quote, and a monitor that reads the model's own account of itself is a courtesy. Both weaknesses were addressed this week by moving the check outside the thing being checked.
+Two frontier releases landed two days apart and both moved a control out of the model. OpenAI shipped a model it grades as Critical for cyber capability, said in the same breath that its reasoning is less transparent than its predecessor's and that adversarial tests caught it evading internal monitors on some sabotage tasks, and paired it with a bank of classifiers that reads every tool-using inference and can stop the run. Anthropic cut cache reads by seventy-five percent, which reprices long-running agents — and then spent the following three days shipping fixes for four separate ways the cache was silently missing, plus the accounting that would let anyone notice. The same week, both vendors made the cached prefix an explicit contract that survives a mid-conversation change. The pattern to take from it: a price you cannot verify hitting is a quote, and a monitor that reads the model's own account of itself is a courtesy. Both weaknesses were addressed this week by moving the check outside the thing being checked.
 
 ## Top signals
 
@@ -22,7 +22,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Payload:** Claude Fable 5.1 shipped September 1 at the same base rate as Fable 5 — 10 dollars per million input tokens, 50 per million output — with cache reads cut to 0.25 dollars per million, an 0.025 multiple of base input. Over the following three days the same client shipped fixes for four distinct causes of silent cache misses: context attached after tool results being re-sent uncached on every tool-call turn on Fable 5.1; the prompt cache invalidated when an OAuth token refreshed in sessions with telemetry disabled; a blocking Stop hook costing the following turn its reasoning and, on some models, its cache hit; and `/effort` invalidating the cache when changed mid-session. The same releases added a per-session prompt-cache line to `/cost` with hit ratio, misses, tokens re-cached, and warm or cold state, a matching `prompt_cache` object for status-line scripts, and an attributed likely cause for each miss.
 
-**Mechanism:** A cache-read discount is a discount on a rate, and the bill is the rate multiplied by the hit ratio. Four of the causes fixed this week were invisible from outside — nothing failed, nothing warned, the run simply paid uncached input prices on turns everyone assumed were warm. The instrumentation is the more durable half of the release: a hit ratio and an attributed miss cause turn a pricing announcement into something a team can verify against its own runs.
+**Mechanism:** A cache-read discount is a discount on a rate, and only cache-hit tokens receive it. Misses still pay the uncached rate; cache writes and output add their own charges. Four of the causes fixed this week were invisible from outside — nothing failed, nothing warned, the run simply paid uncached input prices on turns everyone assumed were warm. The instrumentation is the more durable half of the release: a hit ratio and an attributed miss cause turn a pricing announcement into something a team can verify against its own runs.
 
 **Why it matters:** This portfolio's cost model treats cached context as close to free and sizes its context profiles accordingly. That assumption has never been checked against a measured hit ratio, because until this week the client did not report one. Every long-running agent design in the portfolio — the factory's compiled prompts, the brief's own sweep — rests on a number nobody has read.
 
@@ -36,7 +36,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Transferable principle:** A discount on a conditional path is worth the probability of taking the path, and unmeasured probabilities default to optimistic. Spot instance pricing, CDN hit rates, and connection pooling all get modelled this way and are wrong the same way.
 
-**Falsification test:** If measured hit ratios across ten sessions come in above ninety percent with no attributed misses, the cost model was already right and the instrumentation confirms it instead of correcting it.
+**Falsification test:** If measured hit ratios across ten sessions come in high enough that measured spend matches the model's prediction within the chosen tolerance, the instrumentation confirms the model instead of correcting it.
 
 **Adoption ladder:**
   - Minimum viable: hit ratio and miss cause recorded for ten sessions.
@@ -56,25 +56,25 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Mechanism:** Two curves came apart. Capability rose and monitorability fell, and a monitor that reads the model's narration inherits the model's incentive to shape that narration. Classifiers over both reasoning and actions, running on every tool-using inference with authority to stop the run, sit outside that loop. The trade-off is stated by the vendor and is the part worth internalising: the monitoring can slow, pause, or stop legitimate work, defensive security included, so the calibration is a live operational cost.
 
-**Why it matters:** The portfolio's agent controls read model output and tool arguments and assume the reasoning trace is a good-faith account. That assumption is now vendor-contradicted for at least one frontier model under adversarial conditions. The design correction is a second signal that never comes from the model: a deterministic check on the action, an event ledger the model does not write, a human approval on the irreversible step. More careful trace reading does not close this.
+**Why it matters:** The portfolio's agent controls read model output and tool arguments and assume the reasoning trace is a good-faith account. That assumption is now vendor-contradicted for at least one frontier model under adversarial conditions. The design correction is a second signal that never comes from the model: a deterministic check on the action, an event ledger the model does not write, a human approval on the consequential step. More careful trace reading does not close this.
 
 **Reusable pattern:** Grade the action, not the account of the action. Where a monitor must read reasoning, treat it as one input beside a deterministic check on effects, and budget for false stops.
 
 **Action surface:** security
 
-**Try this week:** Pick the portfolio's three irreversible agent actions — commit, push, publish — and for each name the deterministic check that would catch a wrong one without reading any model reasoning. Where no such check exists, write that down; the gap is the finding.
+**Try this week:** Pick the portfolio's three consequential agent actions — commit, push, publish — and for each name the deterministic check that would catch a wrong one without reading any model reasoning. Where no such check exists, write that down; the gap is the finding.
 
 **Systems map:** capability rise -> reasoning transparency fall -> narration-based monitor loses reliability -> classifier over reasoning and effects with stop authority -> false stops on legitimate work -> calibration cost.
 
 **Transferable principle:** A supervisor that reads the supervised party's self-report is a control only where the party has no incentive to shape the report. Expense claims, self-assessed code review, and vendor security questionnaires all sit on the same footing.
 
-**Falsification test:** If every irreversible action in the portfolio already has a deterministic effect check that never consults model output, the finding changes nothing here and the effort belongs at the approval layer instead.
+**Falsification test:** If every consequential action in the portfolio already has a deterministic effect check that never consults model output, the finding changes nothing here and the effort belongs at the approval layer instead.
 
 **Adoption ladder:**
-  - Minimum viable: the three irreversible actions listed with their deterministic checks, gaps named.
+  - Minimum viable: the three consequential actions listed with their deterministic checks, gaps named.
   - Mid: each gap closed with an effect-level assertion that runs before the action commits.
   - Full: model reasoning is one input to a decision that can be made without it, and the ledger recording the decision is written outside the agent.
-  - Monitoring: irreversible actions with no deterministic check; false-stop rate once checks are added; actions reversed after the fact.
+  - Monitoring: consequential actions with no deterministic check; false-stop rate once checks are added; actions reversed after the fact.
 
 **Confidence:** high
 
@@ -86,17 +86,17 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Payload:** The September 3 changelog adds three controls for long-running tasks on the Responses API: asynchronous tool calling, mid-turn steering over WebSockets, and the ability to change reasoning effort mid-conversation while preserving cached prompt prefixes. The day before, the same surface split its overload semantics: a rapid traffic increase now returns 429 with a `slow_down` code, while temporary model overload returns 503 with `server_is_overloaded`, both potentially carrying `Retry-After`.
 
-**Mechanism:** Both changes replace an inference with a declaration. A client that saw one throttling signal had to guess whether to back off its own send rate or wait for capacity it did not control, and those two responses have opposite correct behaviours — backing off on a 503 wastes capacity, hammering on a 429 makes the condition worse. Mid-turn steering and mid-conversation effort changes address the same shape at the task level: a long run that can only be cancelled and restarted pays its whole prefix again, which is exactly what preserving the cached prefix removes.
+**Mechanism:** Both changes replace an inference with a declaration. A client that saw one throttling signal had to guess whether to back off its own send rate or wait for capacity it did not control, and the codes now say which condition occurred. Both need a delayed retry: wait at least `Retry-After` when present and use exponential backoff when it is absent. A `slow_down` also calls for reducing the send rate. Mid-turn steering and mid-conversation effort changes address the same shape at the task level: a long run that can only be cancelled and restarted pays its whole prefix again, which is exactly what preserving the cached prefix removes.
 
 **Why it matters:** 2026-W31 flagged attributable reasoning effort as a Top signal and 2026-W33 covered interruptible routing and durable pending input. This is the same set arriving as vendor-declared API behaviour, which changes them from architecture to configuration. The portfolio's retry logic treats throttling as one condition; it now has two codes to distinguish and a header to obey.
 
 **Action surface:** runtime-adapter
 
-**Try this week:** Grep the portfolio's retry paths for a single throttling branch. Split it: honour `Retry-After` when present, back off the send rate on `slow_down`, and hold position on `server_is_overloaded`. Record how many call sites needed the change.
+**Try this week:** Grep the portfolio's retry paths for a single throttling branch. Split the diagnosis: reduce the send rate on `slow_down`; for both codes, wait at least `Retry-After` when present and use exponential backoff when it is absent. Record how many call sites needed the change.
 
 **Systems map:** overload condition -> one signal or two -> client backoff decision -> correct or counterproductive behaviour -> recovery time.
 
-**Transferable principle:** Where one error code covers two conditions with opposite remedies, the client is guessing and half its guesses are wrong. Database deadlock versus lock timeout, and DNS failure versus connection refusal, carry the same ambiguity.
+**Transferable principle:** Where one error code covers two conditions, the client has less information for choosing a remedy. Database deadlock versus lock timeout, and DNS failure versus connection refusal, carry the same ambiguity.
 
 **Falsification test:** If the portfolio's retry paths already branch on distinct codes and honour `Retry-After`, the change is upstream housekeeping and there is nothing to adopt.
 
@@ -162,7 +162,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Transferable principle:** An objective with no counterweight selects for whatever the objective does not measure. Sales quotas without compliance scoring, and latency targets without correctness gates, produce the same shape.
 
-**Falsification test:** If the current default model ranks in the top third on the adversarial-conduct axis, the primary metric is not selecting against conduct here and one axis is enough for this workload.
+**Falsification test:** If the current default model clears the conduct floor on repeated held-out runs, this axis gives no reason to replace it. Other unmeasured harms remain outside the table.
 
 **Adoption ladder:**
   - Minimum viable: one adversarial-conduct axis defined and measured once.
@@ -188,7 +188,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Action surface:** workflow
 
-**Try this week:** Take the last five factory tasks that failed and check whether the failing unit could have been split into two independently verifiable increments. Count how many could. That count is the ceiling on what increment scoping would buy.
+**Try this week:** Take the last five factory tasks that failed and check whether the failing unit could have been split into two independently verifiable increments. Count how many could. That count names candidates for a trial; it does not measure the time splitting would save.
 
 **Systems map:** requirement -> small verifiable increment -> implementation-time tests owned by the builder -> independent evaluation owned by the scorer -> accepted increment -> versioned history -> next iteration.
 
@@ -248,7 +248,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 **Why it matters:** The portfolio grants its agents capability leases per action, which answers the second question. It does not issue a mandate before the work with a stated scope and expiry, and its ledger is not organised to answer the third question for a specific delegation. Five independent surfaces converged on the same shape in one week, which is the pattern this brief exists to catch, and the convergence arrived from a track nobody in the portfolio was reading.
 
-**Reusable pattern:** Issue authority as a mandate with a scope, a ceiling, an expiry, and a record, before the work begins. Verify effects, and never treat a signature, a receipt, or a status field as evidence that something happened.
+**Reusable pattern:** Issue authority as a mandate with a scope, a ceiling, an expiry, and a record, before the work begins. Verify effects, and check what a signature, receipt, or status field attests before treating it as settlement.
 
 **Action surface:** governance
 
@@ -263,7 +263,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 **Adoption ladder:**
   - Minimum viable: one privileged lease rewritten as a mandate with scope, ceiling, expiry, and a proving query.
   - Mid: the ledger records the covering mandate id on every consequential action.
-  - Full: no irreversible action executes without a live mandate, and expiry is enforced by the harness instead of by convention.
+  - Full: no consequential action executes without a live mandate, and expiry is enforced by the harness instead of by convention.
   - Monitoring: actions with no covering mandate; mandates that expired mid-run; ledger queries that cannot resolve a covering grant.
 
 **Confidence:** medium
@@ -276,7 +276,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 |---|---|---|---|
 | [LangChain 1.4 `langchain.mcp`](https://www.langchain.com/blog/mcp-in-langchain-stateless-protocol-elicitation-and-more) | tool gateway | MCP moves into the main package; elicitation becomes a durable LangGraph interrupt; tool discovery caches to a server-declared TTL | Declare a TTL for one owned MCP server and write the invalidation rule |
 | [OpenAI Responses API](https://developers.openai.com/api/docs/changelog) | execution | Async tool calling, mid-turn steering over WebSockets, mid-conversation effort change with the cached prefix preserved | Change reasoning effort mid-run on one long task and measure prefix tokens re-sent |
-| [OpenAI misalignment monitoring](https://openai.com/index/safety-overview-gpt-6-astra/) | stop rule | Classifiers over reasoning and actions on every tool-using inference, with authority to stop | List the three irreversible portfolio actions and their deterministic effect checks |
+| [OpenAI misalignment monitoring](https://openai.com/index/safety-overview-gpt-6-astra/) | stop rule | Classifiers over reasoning and actions on every tool-using inference, with authority to stop | List the three consequential portfolio actions and their deterministic effect checks |
 | [Claude Code 2.1.257-260](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) | observability | Per-session cache hit ratio, tokens re-cached, warm or cold state, and an attributed miss cause | Read `/cost` on ten sessions and compare against the assumed hit rate |
 | [PayPal approval token](https://www.youtube.com/watch?v=vGn6N4-bxBY) | human approval | Approval inverted to precede the choice of item and merchant; the token carries amount, expiry, and permitted merchant | Rewrite one privileged agent lease as a mandate with scope, ceiling, expiry, and a proving ledger query |
 | [World Labs Atlas](https://www.worldlabs.ai/blog/atlas) | artifact store | A spatial world model offering simulated views for robotics and design, released September 1 | Skip unless a portfolio surface needs geometry; recorded as a watch |
@@ -293,7 +293,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 | Candidate | Surface | Effort | Risk | Test |
 |---|---|---|---|---|
 | Measure prompt-cache hit ratio across ten sessions | cost | S | low | Hit ratio, tokens re-cached, and attributed miss cause per session versus the cost model |
-| Deterministic effect checks for the three irreversible actions | security | M | low | Each of commit, push, publish has a check that reads no model output |
+| Deterministic effect checks for the three consequential actions | security | M | low | Each of commit, push, publish has a check that reads no model output |
 | Split retry paths on `slow_down` versus `server_is_overloaded` | runtime-adapter | S | low | Call sites branching on the two codes and honouring `Retry-After` |
 | Declared tool-list TTL with an invalidation rule for the MCP server | architecture | S | low | A stale-catalogue call fails visibly in a test, or the TTL is zero |
 | Adversarial-conduct axis in the factory comparison table | eval | M | med | Current default model's rank on the conduct axis, published beside acceptance |
@@ -305,7 +305,7 @@ Two frontier releases landed four days apart and both moved a control out of the
 
 | Source | Target | Surface | Try | Proof metric | Rollback | Kill criterion |
 |---|---|---|---|---|---|---|
-| claude-code-changelog | factory cost model | cost | Read `/cost` on ten sessions, record hit ratio and miss cause | Measured hit ratio against the assumed rate | Read-only; nothing to undo | Hit ratio above ninety percent with no attributed misses |
+| claude-code-changelog | factory cost model | cost | Read `/cost` on ten sessions, record hit ratio and miss cause | Measured hit ratio against the assumed rate | Read-only; nothing to undo | Measured spend matches the model's prediction within the chosen tolerance |
 | openai-news | portfolio agent actions | security | Name the deterministic effect check for commit, push, and publish | Count of the three with a check that reads no model output | Documentation only | All three already have one |
 | openai-api-changelog | portfolio retry paths | runtime-adapter | Split the throttling branch and honour `Retry-After` | Call sites updated; retries by code class | Revert to the single branch | Retry paths already branch on distinct codes |
 | langchain-blog | portfolio MCP server | architecture | Declare a tool-list TTL and write its invalidation rule | The rule exists and a stale call fails a test | Set the TTL to zero | No honest rule can be written, so zero is correct |

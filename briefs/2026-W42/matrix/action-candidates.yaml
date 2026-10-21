@@ -31,13 +31,14 @@ candidates:
   - MTRX-W42-RUNTIME-source_gist
   - MTRX-W42-RUNTIME-mechanism_extraction
   surface: runtime-adapter
-  test_plan: Use a mocked write counter to interrupt before approval, compact and resume twice; separately
+  test_plan: Interrupt a mocked write before approval, request compaction and confirm zero effects
+    while approval stays pending; approve the action and resume twice for exactly one effect. Separately
     block a child and inspect the parent result.
   expected_benefit: Catch duplicate effects and misleading parent outcomes before a runtime change.
   risk: Release notes establish described fixes, not their frequency or a reproduced local defect. The
     grouped sources implement different runtimes.
   disposition: prototype
-  success_metric: Exactly one effect plus intact pending approval and child stop.
+  success_metric: Zero effects while approval is pending; exactly one after approval and two resumes; child stop preserved.
   rollback: Remove the isolated mocked fixture.
   kill_criterion: Stop before any real outbound effect or credential use.
   scoring:

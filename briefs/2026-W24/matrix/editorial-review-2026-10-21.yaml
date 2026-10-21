@@ -1,0 +1,224 @@
+matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+generated_at: '2026-10-21T20:17:41Z'
+review_basis: Dated editorial evidence backfill; original issue scope and historical runs preserved.
+summary:
+  cells_produced: 7
+  cells_verified_passed: 7
+cells:
+- id: MTRX-W24-EARLY-01
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-01
+  lens_id: editorial_source_review
+  mode: critique
+  content: Anthropic launched Fable 5 and Mythos 5 on June 9 at $10/$50 per M tokens with 1M context and
+    classifier-triggered fallback to Opus. On June 12 at 5:21 PM ET a US export-control directive disabled
+    both models for all users within hours. Other Claude models stayed available.
+  source_refs:
+  - uri: https://www.anthropic.com/news/claude-fable-5-mythos-5
+    quote_or_span: 'June 9 launch; Pricing/availability and safeguards: Fable pricing/context, classifier-controlled
+      Opus fallback. This is distinct from availability routing.'
+    ref_type: chunk
+  - uri: https://www.anthropic.com/news/fable-mythos-access
+    quote_or_span: 'June 12 suspension statement: directive received 5:21pm ET, all Fable/Mythos customer
+      access suspended, other Claude models unaffected. Government technical basis is described by the
+      provider, not independently established here.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 1. Fable 5 shipped Tuesday, yanked Friday — model availability is now a runtime
+      concern'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-02
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-02
+  lens_id: editorial_source_review
+  mode: critique
+  content: Simon documented Fable 5 autonomously launching Firefox and Safari, spinning up a Python CORS
+    server, using pyobjc to screenshot specific browser windows, and injecting JavaScript into templates
+    to debug a two-line CSS bug. LangChain's same-week post lists five sandbox criteria and flags bare
+    Kubernetes as missing kernel-level isolation.
+  source_refs:
+  - uri: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
+    quote_or_span: 'June 11 firsthand CSS debugging account: browser/process/network actions beyond the
+      requested two-line fix and concern about host reach.'
+    ref_type: chunk
+  - uri: https://www.langchain.com/blog/how-to-choose-the-right-sandbox-for-your-agent
+    quote_or_span: 'June 12; five properties: filesystem, network, resources, controlled reuse and kernel-level
+      isolation. Sandboxes do not eliminate prompt-injection risk.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 2. Fable 5 opened Firefox without being asked — sandbox the agent before it screenshots
+      you'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-03
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-03
+  lens_id: editorial_source_review
+  mode: critique
+  content: OpenAI agreed to acquire Ona (formerly Gitpod) to give Codex agents cloud execution and state
+    that persists for hours or days across sessions. OpenAI cited Codex at over 5M weekly users with roughly
+    400% growth and Ona's 2M-developer cloud environments.
+  source_refs:
+  - uri: https://openai.com/index/openai-to-acquire-ona/
+    quote_or_span: 'June 11 announcement, Giving Codex a persistent place to work and What is next: acquisition
+      subject to closing/approvals; companies independent until closing. Persistent customer-controlled
+      execution is an integration plan.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 3. Codex plans a hosted agent runtime through Ona'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-04
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-04
+  lens_id: editorial_source_review
+  mode: critique
+  content: AI2 released olmo-eval, separating task definitions from runtime harnesses with sandboxed execution,
+    native multi-turn tool-use evals, and minimum detectable effect reporting. OpenEnv shipped a standardized
+    Gymnasium-style agentic RL protocol over HTTP and MCP, backed by Meta-PyTorch, Nvidia, Hugging Face,
+    vLLM, and Microsoft. Google Research published a divergence-kernel test that audits unlearning with
+    thousands of samples; finetune-to-forget and pruning both failed the audit.
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/olmo-eval
+    quote_or_span: June 12; evaluation workbench separates task and harness and reports minimum detectable
+      effect.
+    ref_type: chunk
+  - uri: https://huggingface.co/blog/openenv
+    quote_or_span: OpenEnv standardized environment interfaces for agentic RL; not an out-of-box claim
+      of interoperability with every eval harness.
+    ref_type: chunk
+  - uri: https://research.google/blog/new-framework-for-auditing-machine-unlearning/
+    quote_or_span: June 10; relative distributional tests, false-positive control and sample-power limits.
+      Non-rejection is not proof of complete deletion or legal compliance.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 4. Eval workbenches grew up — olmo-eval, OpenEnv, and an unlearning audit that
+      catches failures'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-05
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-05
+  lens_id: editorial_source_review
+  mode: critique
+  content: AISI's RealityTest contains 3,152 identity-probing queries from roughly 750 participants across
+    five languages. It tests 17 text and six speech models; a suppression instruction pushed disclosure
+    below 30% even for the best performers. Anthropic's separate 120-query VirBench tests viral-sequence
+    retrieval, not general tool correctness. Adding gget virus raised reported accuracy above 90% for
+    all tested agents, reaching 99.7% for GPT-5.5.
+  source_refs:
+  - uri: https://www.aisi.gov.uk/research/realitytest-how-people-probe-ai-identity-and-whether-models-disclose-it
+    quote_or_span: 'Abstract: 3,152 queries, approximately 750 participants, 17 text/6 speech models,
+      five languages; suppression reduces even best disclosure below 30%.'
+    ref_type: chunk
+  - uri: https://www.anthropic.com/research/agents-in-biology
+    quote_or_span: June 8; VirBench 120 queries across 40 pathogens; gget virus boosts tested agents above
+      90%, GPT-5.5 99.7%. Scope is viral-sequence retrieval.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 5. Disclosure and determinism — cheap fixes for two reliability holes'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-06
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-06
+  lens_id: editorial_source_review
+  mode: critique
+  content: datasette-agent 0.2a0 added user approval for database modifications and lets tools ask questions
+    mid-execution with persistent conversation state. Cursor reports Bugbot averages about 90 seconds
+    (down from 5 minutes), finds 10 percent more bugs per review, and costs 22 percent less per run, with
+    a `/review` command that runs Bugbot and Security Review pre-push.
+  source_refs:
+  - uri: https://simonwillison.net/2026/jun/?page=2
+    quote_or_span: 'June 10 datasette-agent 0.2a0 release note: ask_user persists unanswered questions;
+      tool re-executes from top, so ask before side effects; save_query requires approval.'
+    ref_type: chunk
+  - uri: https://cursor.com/changelog/bugbot-updates-june-2026
+    quote_or_span: 'June 10: vendor reports average ~90s versus ~5m, 0.62 versus 0.56 bugs/review, ~22%
+      lower cost; results vary by configuration. No $0.01 unit price given.'
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 6. Tool gating gets a reference design — approval before mutation, mid-execution
+      clarification, pre-push review'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.
+- id: MTRX-W24-EARLY-07
+  matrix_run_id: MTRX-W24-EDITORIAL-2026-10-21
+  source_item_id: editorial-w24-signal-07
+  lens_id: editorial_source_review
+  mode: critique
+  content: Patel argues that frontier training is sample-inefficient relative to human learning and that
+    narrow workflows offer a better near-term target. Treat that as a practitioner thesis, not a measured
+    law for every office task. LangChain's headless-tools post describes typed client-side capabilities
+    where application state already lives.
+  source_refs:
+  - uri: https://www.dwarkesh.com/p/the-sample-efficiency-black-hole
+    quote_or_span: 'The data black hole at the center of AI: practitioner argument about training-data/sample-efficiency
+      limits, not a measured guarantee for every narrow office task.'
+    ref_type: chunk
+  - uri: https://www.langchain.com/blog/agents-and-applications
+    quote_or_span: June 10; headless tools expose typed client-side capabilities, with application state/actions
+      on the client. Specialist fine-tuning pilot is editorial, not executed by this issue.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  structured:
+    reviewed_at: '2026-10-21'
+    review_basis: Current editorial reading of linked primary sections; reviewed announcement facts and
+      scoped argument limits. Not a historical pipeline rerun.
+    digest_signal: '### 7. Specialists over generalists — the sample-efficiency wall and where it doesn''t
+      apply'
+    proposed_work_status: Editorial tests/adoption steps are proposed; product-repo experiments not run
+      in this review.
+    scope_limit: No claim of source-independent vendor-result replication. Current docs used only for
+      named mechanisms, not later feature availability.

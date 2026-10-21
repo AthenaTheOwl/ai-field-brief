@@ -58,17 +58,20 @@ Added this week:
 
 **Action surface:** `eval`, `run-evidence`, `workflow`
 
-**Try this week:** Pick one failed run record and create a failing eval from it before changing the prompt.
+**Try this week:** Pick one failed run record and create a failing eval before changing the prompt. Google uses model-based graders and user-approved optimization; keep a human-checked holdout so the optimizer does not merely learn its grader.
 
 **Systems map:** run trace -> failure label -> eval case -> implementation patch -> next run packet
 
 **Transferable principle:** The loop learns only when a trace becomes a checked artifact.
 
-**Falsification test:** If a failed trace cannot produce an eval, the system is observing behavior without a repair path.
+**Falsification test:** Compare the patched agent with the baseline on an untouched, human-checked set at the same budget. If only the optimizer's own grader improves, hold the patch. A trace can also end in an explicit hold.
 
 **Adoption ladder:** store traces -> label failures -> write evals -> gate patches -> cite run ids in release notes.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W27-EARLY-01
+
 
 ### 2. LangChain is moving orchestration into generated code
 
@@ -90,21 +93,24 @@ Added this week:
 
 **Transferable principle:** A fan-out plan should be inspectable before its outputs are trusted.
 
-**Falsification test:** If the subagent split cannot be replayed from the run record, the system gained throughput and lost auditability.
+**Falsification test:** Compare dynamic fan-out with the static split on the same tasks, total budget, and verifier. If it adds latency or loses coverage without improving accepted output, keep the static split. Saving the plan alone does not prove throughput.
 
 **Adoption ladder:** static packets -> generated packet preview -> bounded fan-out -> verifier merge -> orchestration replay.
 
-**Confidence:** Medium-high.
+**Confidence:** medium
 
-### 3. Wiki memory is a better default than raw retrieval for long-lived agents
+**Evidence:** MTRX-W27-EARLY-02
 
-**Source:** [LangChain: Wiki memory for agents](https://www.langchain.com/blog/wiki-memory-for-agents), [Mem0 Blog](https://mem0.ai/blog)
 
-**Payload:** LangChain's memory post argues for an agent-readable wiki layer: a maintained summary of durable facts, preferences, decisions, and context. Mem0 is pushing a similar market signal from the memory-product side.
+### 3. Wiki memory gives long-lived agents a reviewable context file
+
+**Source:** [LangChain: Wiki memory for agents](https://www.langchain.com/blog/wiki-memory), [Mem0 Blog](https://mem0.ai/blog)
+
+**Payload:** LangChain's memory post argues for an agent-readable wiki layer: a maintained summary of durable domain facts, decisions, and context. The post places Mem0 among adjacent memory approaches; it does not benchmark them against a wiki.
 
 **Mechanism:** Memory shifts from "retrieve chunks from the past" to "maintain a compact knowledge object the agent can inspect." The object can be reviewed, versioned, and pruned.
 
-**Why this matters:** Long-running agents fail when every run has to rediscover old decisions from noisy logs. A wiki memory gives the runtime a smaller, auditable state surface.
+**Why this matters:** A wiki can save repeated synthesis of durable domain knowledge. Chase explicitly excludes some conversation state and fast event logs from that fit. The smaller file still needs links back to the facts it compressed.
 
 **Reusable pattern:** Add `ops/agent-memory.md` to repos with recurring agents. Sections: current objective, durable decisions, failed approaches, open questions, and forbidden shortcuts.
 
@@ -116,11 +122,14 @@ Added this week:
 
 **Transferable principle:** Memory should be edited like code.
 
-**Falsification test:** If the memory file cannot name what changed after a run, it is another summary, not state.
+**Falsification test:** On the same held-out questions, compare the wiki with raw retrieval for source fidelity, stale answers, and cost. If compression drops the fact that changes the answer, keep retrieval or use both.
 
 **Adoption ladder:** handoff notes -> wiki memory -> review gate -> stale-section detector -> memory diff in release notes.
 
-**Confidence:** Medium.
+**Confidence:** medium
+
+**Evidence:** MTRX-W27-EARLY-03
+
 
 ### 4. AgentCore and Strands package the runtime layer AWS wants builders to standardize on
 
@@ -130,7 +139,7 @@ Added this week:
 
 **Mechanism:** The cloud provider is carving the agent system into hosted control points. Runtime, identity, memory, and gateway are no longer side scripts; they are platform objects.
 
-**Why this matters:** This is the clearest enterprise path for agent systems that need audit, identity, and managed tool access without hand-rolled infra.
+**Why this matters:** This is one managed path for agent systems that need audit, identity, and managed tool access without hand-rolled infra.
 
 **Reusable pattern:** Maintain a runtime-primitives matrix for every agent repo: execution, memory, identity, tool gateway, observability, artifact store, eval gate, and human stop rule.
 
@@ -142,11 +151,14 @@ Added this week:
 
 **Transferable principle:** Agent architecture is becoming a set of named platform contracts.
 
-**Falsification test:** If two repos use different words for the same runtime primitive, cross-repo evaluation will stay messy.
+**Falsification test:** Map one local and one hosted runtime, then run the same permission and recovery probes. If the matrix cannot predict which probe fails, add the missing behavior before using it to pick a platform.
 
 **Adoption ladder:** name primitives -> map ownership -> add evidence fields -> gate drift -> compare hosted and local runtimes.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W27-EARLY-04
+
 
 ### 5. Sandbox access is becoming a grant, not a convenience
 
@@ -162,17 +174,20 @@ Added this week:
 
 **Action surface:** `security`, `runtime-adapter`, `run-evidence`
 
-**Try this week:** Run one repo test in a temp workspace and write the grant object before the command runs.
+**Try this week:** Write the grant, enforce it in the runner, then attempt a harmless read of one denied fixture path. A temp working directory alone does not restrict filesystem access.
 
 **Systems map:** task -> sandbox grant -> tool call -> artifact sink -> grant audit -> run record
 
 **Transferable principle:** A sandbox without a grant log is only a different place to make the same mistake.
 
-**Falsification test:** If the run can read a path that the grant did not name, the boundary is documentation, not enforcement.
+**Falsification test:** Under the real runner identity, attempt the explicitly denied fixture read and a disallowed network request. Either success fails the grant test. The grant log records the policy; the runner has to enforce it.
 
 **Adoption ladder:** temp workspace -> explicit grant -> denied-path test -> artifact sink -> replay from grant.
 
-**Confidence:** Medium-high.
+**Confidence:** medium
+
+**Evidence:** MTRX-W27-EARLY-05
+
 
 ### 6. MCP needs to be tracked as a protocol source, not only as a tool directory
 
@@ -194,11 +209,14 @@ Added this week:
 
 **Transferable principle:** A registry is not a standard.
 
-**Falsification test:** If a spec change does not appear in any drift report, the gate is watching implementation shape only.
+**Falsification test:** Change one protocol field the snapshot declares relevant. The drift gate must catch it; an unrelated spec edit need not change the hash.
 
 **Adoption ladder:** add spec source -> pin spec version -> hash dependent fields -> gate surface drift -> write DEC on changes.
 
-**Confidence:** High.
+**Confidence:** high
+
+**Evidence:** MTRX-W27-EARLY-06
+
 
 ### 7. The framework comparison should become a repo test, not a paragraph
 
@@ -220,11 +238,14 @@ Added this week:
 
 **Transferable principle:** Framework taste should be measured against a task, not a launch post.
 
-**Falsification test:** If the comparison cannot name the losing failure mode, it is a feature checklist.
+**Falsification test:** Run both adapters repeatedly under the same cost and timeout limits. Compare accepted outputs, missing citations, recovery, and trace export. A tie is valid; do not invent a loser to justify a migration.
 
 **Adoption ladder:** common fixture -> two adapters -> trace export -> eval gate -> comparison memo -> promoted pattern.
 
-**Confidence:** Medium.
+**Confidence:** medium
+
+**Evidence:** MTRX-W27-EARLY-07
+
 
 ## Reusable patterns
 
@@ -250,19 +271,29 @@ Added this week:
 
 ## Action packets
 
+Proposed prototypes; the brief has not run these repo tests.
+
 ### Packet A: framework source scout
 
 **Target:** ai-field-brief
 
+**Disposition:** prototype
+
 **Change:** Keep the v6 source additions active and add a weekly `framework-runtime` scout section to the brief template. The section lists new framework posts, new docs pages, runtime primitives touched, and whether the item is top-signal, context, or scout.
 
-**Acceptance:** The next issue names at least five framework/runtime sources and promotes only items with primary links.
+**Acceptance:** Reviewed framework items have primary support and a disposition. No source-count or promotion quota; an empty scout section passes.
 
 **Why now:** The old registry missed LangChain Blog while it was publishing exactly the patterns this brief needed.
+
+**Surface:** source-registry, scout. **Expected benefit:** primary-backed dispositions without a promotion quota.
+
+**Risk:** extra feeds crowd out better evidence. **Rollback:** remove the proposed scout section. **Kill:** archive if no reviewed source changes a named build decision.
 
 ### Packet B: trace-to-change sidecar
 
 **Target:** trace-to-eval-harness
+
+**Disposition:** prototype
 
 **Change:** Add a small schema for converting a failed run into one of three next artifacts: eval case, implementation patch, or hold decision.
 
@@ -270,9 +301,15 @@ Added this week:
 
 **Why now:** Google and OpenAI are both pointing at the same flywheel. The portfolio already has run evidence; it needs the next-action mapping.
 
+**Surface:** eval, run-evidence. **Expected benefit:** a failure has a tested repair or a reasoned hold.
+
+**Risk:** a generated eval rewards the same mistaken assumption. **Rollback:** restore the baseline and retain the failed case. **Kill:** hold if an independent label does not confirm the failure.
+
 ### Packet C: runtime-primitives matrix
 
 **Target:** procurement-negotiation-lab
+
+**Disposition:** prototype
 
 **Change:** Extend factory task packets with a `runtime_primitives` section: execution, memory, identity, gateway, observability, artifact store, eval gate, stop rule.
 
@@ -280,9 +317,15 @@ Added this week:
 
 **Why now:** AgentCore/Strands makes the platform breakdown explicit. Local factory tasks should carry the same vocabulary.
 
+**Surface:** runtime-adapter, deployment. **Expected benefit:** permission and recovery probes match the ownership map.
+
+**Risk:** a tidy matrix hides provider limits. **Rollback:** restore the previous task schema. **Kill:** stop if the fields cannot predict a concrete probe result.
+
 ### Packet D: MCP spec pin
 
 **Target:** mcp-security-lab
+
+**Disposition:** prototype
 
 **Change:** Extend MCP surface diff reports with `spec_url`, `spec_checked_at`, and `hash_fields`.
 
@@ -290,15 +333,25 @@ Added this week:
 
 **Why now:** The registry now watches the official MCP spec. The gate should know which spec it is enforcing against.
 
+**Surface:** tool-policy, schema. **Expected benefit:** a relevant protocol-field mutation triggers drift.
+
+**Risk:** unrelated edits cause false blocks. **Rollback:** restore the old snapshot gate. **Kill:** drop fields that cannot be tied to a runtime assumption.
+
 ### Packet E: sandbox grant fixture
 
 **Target:** procurement-negotiation-lab
+
+**Disposition:** prototype
 
 **Change:** Add a fixture that grants one writable temp path, denies one sibling path, runs a harmless command, and records the grant in run evidence.
 
 **Acceptance:** The denied-path read fails; the run record carries visible paths, writable paths, denied paths, network mode, max runtime, and artifact sink.
 
 **Why now:** Code execution is moving behind sandboxes. The portfolio needs a grant contract before it needs another sandbox provider.
+
+**Surface:** security, runtime-adapter. **Expected benefit:** denied fixture reads and network calls fail.
+
+**Risk:** a recorded grant is mistaken for enforcement. **Rollback:** return to the existing restricted runner. **Kill:** stop on any successful denied operation.
 
 ## Scout radar
 
@@ -317,11 +370,11 @@ Added this week:
 
 ## Watchlist
 
-1. Dynamic subagents can hide bad decomposition unless the fan-out plan is captured.
-2. Wiki memory can turn stale decisions into fake certainty unless it has a review date.
-3. Managed runtimes can make evidence harder to export if the platform owns the trace.
-4. Sandbox providers reduce blast radius, but grant logs still need local tests.
-5. Framework comparisons will stay slippery until they share task fixtures and failure labels.
+1. Dynamic subagents can hide bad decomposition. Revisit when a saved plan misses inputs or exceeds the static baseline budget.
+2. Wiki memory can turn stale decisions into fake certainty. Revisit when its source changes or the review date expires.
+3. Managed runtimes may limit trace export. Revisit when a run cannot export the fields the local verifier needs.
+4. Sandbox grant logs still need local tests. Revisit when a denied read, write, or network probe succeeds.
+5. Framework comparisons need shared fixtures. Revisit a selection when the task mix, budget, or required recovery behavior changes.
 
 ## Sources reviewed
 

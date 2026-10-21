@@ -35,7 +35,7 @@ sources_reviewed:
     url: "google-drive://Weekly Gen AI Digest"
     disposition: continuity_input
   - label: "How many of your agent's calls actually need a frontier model?"
-    url: "https://blog.langchain.com/how-many-of-your-agents-calls-actually-need-a-frontier-model/"
+    url: "https://www.langchain.com/blog/switchyard-agent-routing-benchmark"
     disposition: top_signal
   - label: "OpenAI Agents SDK 0.21"
     url: "https://github.com/openai/openai-agents-python/releases/tag/v0.21.0"

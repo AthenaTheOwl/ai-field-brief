@@ -12,7 +12,7 @@ matrix_run_id: MTRX-W28-late-legible-harness
 
 ## Field thesis
 
-Four disclosures landed this week that would have been internal documents a year ago. OpenAI priced its new model family as a three-tier menu and left the routing decision to the buyer. Anthropic published what 1.2 million Cowork sessions delegate. LangChain published the playbook it used to tune an open-weights model's harness, with scores. And the prompt-capture archives had GPT-5.6's working instructions on file within a day of launch. The operating layer around the models is becoming readable from outside the vendor wall, and a team that reads it can build routing tables, delegation ledgers, and harness diffs from evidence instead of guesswork.
+Four public artifacts made the operating layer easier to inspect this week. OpenAI priced its new model family as a three-tier menu and left the routing decision to the buyer. Anthropic published a classification of 1.2 million sampled Cowork sessions. LangChain published the playbook it used to tune an open-weights model's harness, with scores. And prompt-capture archives posted files labeled as GPT-5.6 instructions the day after launch. The operating layer around the models is becoming readable from outside the vendor wall, and a team that reads it can build routing tables, delegation ledgers, and harness diffs from evidence instead of guesswork.
 
 ## Top signals
 
@@ -20,23 +20,23 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Source:** [OpenAI, "GPT-5.6: Frontier intelligence that scales with your ambition"](https://openai.com/index/gpt-5-6/), [TechCrunch launch report](https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/)
 
-**Payload:** GPT-5.6 launched July 9 in three tiers - Sol at $5 input / $30 output per million tokens, Terra at $2.50 / $15, Luna at $1 / $6. The generation number and the capability tier are now separate axes: 5.6 names the generation, Sol/Terra/Luna name tiers that advance on their own cadence. The Agents SDK shipped GPT-5.6 request controls in v0.18.1 within two days.
+**Payload:** GPT-5.6 launched July 9 in three tiers - Sol at $5 input / $30 output per million tokens, Terra at $2.50 / $15, Luna at $1 / $6. The generation number and the capability tier are now separate axes: 5.6 names the generation, Sol/Terra/Luna name tiers that advance on their own cadence. The Agents SDK added GPT-5.6 model defaults in [v0.18.1](https://github.com/openai/openai-agents-python/releases/tag/v0.18.1) the same day.
 
 **Mechanism:** The vendor now publishes the cost structure of the routing decision instead of hiding it behind one flagship price. Luna costs one fifth of Sol on both input and output, so the break-even question - which tasks clear the quality bar on the cheap tier - moved from vendor marketing into the buyer's eval harness.
 
-**Why it matters:** Teams that route every task to the top tier are now paying a visible 5x premium for the subset of tasks the small tier handles. The price list is an invitation to measure that subset.
+**Why it matters:** Sol carries a 5x per-token price over Luna at launch. Cost per accepted task still depends on token use, retries, and escalation. The price list is an invitation to measure that subset.
 
 **Reusable pattern:** A routing policy per task class: start on the cheapest tier, promote on gate failure, and log the tier that produced each accepted artifact.
 
 **Action surface:** `config`, `eval`
 
-**Try this week:** Take one recurring task, run ten cases on the cheapest tier behind your existing quality gate, and record how many cleared without escalation.
+**Try this week:** Take one recurring task, run the same ten cases under cheap-first and top-tier policies behind your existing quality gate, and record accepted-task cost, latency, and escalation.
 
 **Systems map:** task class -> tier policy -> gate check -> escalate or accept -> per-tier cost and pass-rate ledger.
 
 **Transferable principle:** When a vendor exposes a price axis, build the measurement that tells you where on the axis each workload belongs. The same applies to context-window sizes and sandbox compute classes.
 
-**Falsification test:** If a quarter of ledger entries show cheap-tier outputs failing gates and escalating anyway, the routing overhead is buying nothing and a flat top-tier policy is honest.
+**Falsification test:** If cheap-first routing costs more per accepted task than the top-tier baseline at the same quality bar, or breaches the declared latency budget, hold the routing change. Escalation rate alone cannot settle the bill.
 
 **Adoption ladder:**
   - Minimum viable: one task class pinned to the cheap tier behind a gate.
@@ -52,11 +52,11 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Source:** [Anthropic, "Claude Cowork on web and mobile"](https://claude.com/blog/cowork-web-mobile), [Axios on ChatGPT Work](https://www.axios.com/2026/07/09/ai-openai-gpt-release)
 
-**Payload:** Cowork reached web and mobile on July 7 with background and scheduled tasks that keep running after the laptop closes; a task started at a desk can be reviewed and redirected from a phone. OpenAI's ChatGPT Work, launched July 9, folds Codex into ChatGPT to produce documents, sites, and presentations for non-coders. Anthropic also published its session census: over 90 percent of Cowork usage is non-coding, with business operations at 33.4 percent and content creation at 16.4 percent.
+**Payload:** Anthropic announced a phased Cowork web and mobile beta on July 7, starting with Max users, with background and scheduled tasks that keep running after the laptop closes; a task started at a desk can be reviewed and redirected from a phone. OpenAI's July 9 announcement places GPT-5.6 in [ChatGPT Work](https://openai.com/index/gpt-5-6/), with documents, presentations, and interactive artifacts among its work surfaces. Anthropic also published a [study of 1.2 million sampled sessions](https://claude.com/resources/articles/how-people-are-using-claude-cowork) from May 11-31: business operations accounted for 33.4 percent and content creation for 16.4 percent. These are shares of a capped session sample; they do not count workers or the whole workload.
 
 **Mechanism:** The agent session stopped being a window you watch and became a queue you review. Once tasks run without a device attached, the operative unit shifts from conversation to standing grant: connectors, skills, schedules, and the permissions they carry.
 
-**Why it matters:** A standing agent with inbox, file, and calendar connectors is a standing capability, and it stays live while nobody is looking at it. Approval, revocation, and action history become the safety surface, and the vendors are shipping the persistence faster than the audit tooling.
+**Why it matters:** A standing agent with inbox, file, and calendar connectors is a standing capability, and it stays live while nobody is looking at it. Approval, revocation, and action history become the safety surface. Check what the account exports before calling that surface auditable.
 
 **Reusable pattern:** A standing-grant inventory per agent account: every connector, skill, schedule, and scope, with an owner and a revocation path.
 
@@ -68,7 +68,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Transferable principle:** Persistence converts a UX feature into an access-control problem. The same shift happened when cron jobs got credentials.
 
-**Falsification test:** If background runs ship with complete, exportable action ledgers by default across vendors this quarter, the audit gap named here closed on its own.
+**Falsification test:** If the chosen account already exports every scheduled action with actor, scope, approval, and revocation history, use that ledger before building another one. Verify it with a revoked-grant run.
 
 **Adoption ladder:**
   - Minimum viable: written inventory of standing grants.
@@ -82,13 +82,13 @@ Four disclosures landed this week that would have been internal documents a year
 
 ### 3. The harness playbook went open-weights and got written down
 
-**Source:** [LangChain, "Tuning the harness, not the model: a Nemotron 3 Ultra playbook"](https://www.langchain.com/blog/tuning-the-harness-not-the-model-nemotron-playbook), [LangChain, "Improving Agents is a Data Mining Problem"](https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem)
+**Source:** [LangChain, "Tuning the harness, not the model: a Nemotron 3 Ultra playbook"](https://www.langchain.com/blog/tuning-the-harness-not-the-model-a-nemotron-3-ultra-playbook), [LangChain, "Improving Agents is a Data Mining Problem"](https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem)
 
-**Payload:** A week after reporting a 52.8-to-66.5 Terminal Bench jump from harness changes on a fixed model, LangChain published the procedure itself as a playbook against NVIDIA's open-weights Nemotron 3 Ultra, alongside a companion post that frames agent improvement as mining a trace corpus for failure patterns. The NemoClaw blueprint adds a governed code-execution path for teams that cannot send code to a hosted model.
+**Payload:** LangChain's July 8 playbook describes tuning NVIDIA's open-weights Nemotron 3 Ultra while holding the model and generation settings fixed. It cites the team's earlier 52.8-to-66.5 Terminal-Bench result on GPT-5.2-Codex, published in February; those numbers belong to that earlier experiment. A companion post frames agent improvement as mining a trace corpus for failure patterns.
 
-**Mechanism:** Harness tuning moved from a result you read to a procedure you can rerun: collect traces, mine failure classes, patch the harness, re-score. Running it against open weights removes the confound of silent vendor model updates - the model is pinned, so the delta is yours.
+**Mechanism:** Harness tuning moved from a result you read to a procedure you can rerun: collect traces, mine failure classes, patch the harness, re-score. Pinning the weights removes silent model updates as one confound. Keep sampling, task cases, tool behavior, and scorer versions fixed too; open weights alone do not make a score delta attributable.
 
-**Why it matters:** W28's claim was that harness beats model at fixed model quality. The written playbook makes that claim checkable on your own agent, and the open-weights target makes the baseline reproducible.
+**Why it matters:** The experiments show that harness changes can improve a fixed model on the tested tasks. They do not rank harness work against every model upgrade. The written procedure gives your own agent a testable starting point.
 
 **Reusable pattern:** Treat every model swap as a harness re-tune, and keep the tuning procedure in the repo next to the harness it tunes.
 
@@ -100,7 +100,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Transferable principle:** A published procedure beats a published score; you can audit a procedure. The same standard applies to eval claims in vendor launch posts.
 
-**Falsification test:** If replaying the playbook on a different agent yields no measurable gain over ad-hoc prompt editing, the playbook was a writeup, and the W28 result stays a one-off.
+**Falsification test:** Compare trace-led harness tuning with an equal-budget prompt-editing baseline on held-out tasks. If it buys no acceptance or cost gain, defer the procedure for that agent; a failed transfer does not erase the published result.
 
 **Adoption ladder:**
   - Minimum viable: store traces from one agent with failure labels.
@@ -120,7 +120,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Mechanism:** The failing boundary sits between what the user asked for and what the tools permit. Attacks live in tool-response content and in scope gaps, so a guard that sees only the user prompt misses both; the working defense reads the integration context around each tool response.
 
-**Why it matters:** Most agent deployments gate the user input and trust the tool path. This benchmark puts numbers on how wrong that default is for SaaS-connected agents, and shows a deterministic pre-execution check earning its keep.
+**Why it matters:** The benchmark measures attacks that arrive through the tool path. Its learned integration-aware guard reduced attack success on the reported panel; that result is an empirical defense score, with a residual failure rate.
 
 **Reusable pattern:** An authorization-boundary fixture in every agent eval suite: one request that passes tool policy while exceeding the user's ask, and one injection payload inside a tool response.
 
@@ -132,7 +132,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Transferable principle:** Test the gap between granted scope and stated intent, and treat everything arriving through a tool as attacker-reachable. The same fixture works for MCP servers and browser agents.
 
-**Falsification test:** If the guard's numbers hold only on the paper's own scenario distribution and collapse on fixtures written after training, the 2.4 percent is memorization, and the boundary framing still stands on the attack side alone.
+**Falsification test:** If attack success rises beyond the declared tolerance on independently written, unseen fixtures, the published 2.4 percent does not transfer to that deployment. Measure false positives on legitimate work too; the failure alone would not diagnose memorization.
 
 **Adoption ladder:**
   - Minimum viable: two adversarial fixtures in the agent eval suite.
@@ -148,11 +148,11 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Source:** [asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks), [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)
 
-**Payload:** GPT-5.6 launched July 9; the capture archive had the ChatGPT and Codex GPT-5.6 instructions on file July 10. The same repo tracks Claude Code's bundled skill by version number, and a sibling archive refreshed Claude Sonnet 5's instructions and tool descriptions on July 6. This registry added four capture repos and one teardown analysis this week (v8), with a standing rule attached.
+**Payload:** GPT-5.6 launched July 9; archive commits on July 10 added files labeled ChatGPT and Codex GPT-5.6 instructions. The same repo tracks Claude Code's bundled skill by version number. A sibling archive's contributor branch updated Sonnet 5 files on July 6; its merge into main followed on July 8. This registry added four capture repos and one teardown analysis this week (v8), with a standing rule attached.
 
-**Mechanism:** Vendor harness changes now surface as public diffs within a news cycle. What each team used to extract on its own became a watchable commit feed: instruction budgets, tool definitions, and behavioral rules, diffable across releases and across vendors.
+**Mechanism:** Capture repositories expose a watchable commit feed: claimed instruction budgets, tool definitions, and behavioral rules, diffable across files and versions. The feed records what the archive published; it cannot authenticate the vendor runtime.
 
-**Why it matters:** The vendors' own harness engineering is the densest public corpus of production prompt technique, and it updates on ship day. The caveat carries equal weight: captures are unofficial, unverified, and adversarially obtained. They are diff signal and hypothesis fuel - never ground truth, and never text to paste into your own systems.
+**Why it matters:** These archives offer concrete harness hypotheses to test. Their provenance limits the inference: captures are unofficial, unverified, and adversarially obtained. They are diff signal and hypothesis fuel - never ground truth, and never text to paste into your own systems.
 
 **Reusable pattern:** A capture-diff watch: subscribe to the archive's commit feed, and when a vendor ships, read the harness diff for techniques worth testing - as untrusted data, summarized and cited, never copied.
 
@@ -176,15 +176,15 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Evidence:** W28-LATE-CAPTURE-001, W28-LATE-CAPTURE-002.
 
-### 6. A ten-year-old library shipped its 4.0 through an agent loop
+### 6. A mature library shipped its 4.0 through an agent loop
 
 **Source:** [Simon Willison, "sqlite-utils 4.0, now with database schema migrations"](https://simonwillison.net/2026/Jul/7/sqlite-utils-4/)
 
-**Payload:** Willison shipped sqlite-utils 4.0 on July 7 - schema migrations, nested transactions, compound foreign keys - and wrote up the agentic engineering behind the rewrite. The release-candidate cycle included a detailed code review by Claude Fable 5, folded into rc4 before the stable cut.
+**Payload:** Willison shipped sqlite-utils 4.0 on July 7 - schema migrations, nested transactions, compound foreign keys - and wrote up the agentic engineering behind the rewrite. The release-candidate cycle included a detailed code review by Claude Fable 5; Willison describes working through its findings before the stable cut.
 
 **Mechanism:** Mature-library maintenance ran through an agent loop with the maintainer as gate: agents drafted the rewrite labor, the RC cycle plus a model code review served as verifier, and the human owned the merge. The writeup names the workflow, so the pattern is inspectable end to end on a real release.
 
-**Why it matters:** The common story for agentic coding is greenfield demos. A 4.0 of a widely-installed decade-old library is the harder case - backwards compatibility, real users, real blame - and it shipped with the loop documented by a maintainer with a reputation to lose.
+**Why it matters:** The common story for agentic coding is greenfield demos. A major release of a library designed in 2018 is a harder case - backwards compatibility, real users, real blame - and it shipped with the loop documented by a maintainer with a reputation to lose.
 
 **Reusable pattern:** Agent-drafted upgrades behind the project's existing release gates, with a model code review as one verifier among several, and the human sign-off kept at the merge.
 
@@ -196,7 +196,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 **Transferable principle:** The verifier stack, and the human's position in it, matters more than which layer wrote the diff. The same holds for infra-as-code changes and data migrations.
 
-**Falsification test:** If the post-release defect rate on 4.0 runs above the project's hand-written baseline, the loop optimized for shipping speed over the maintenance bar it claims to hold.
+**Falsification test:** Compare escaped defects with earlier releases of similar change size and review depth. A worse rate would challenge the maintenance claim; release complexity and usage still need accounting before blaming the agent loop.
 
 **Adoption ladder:**
   - Minimum viable: one agent-drafted dependency bump behind existing tests.
@@ -210,28 +210,28 @@ Four disclosures landed this week that would have been internal documents a year
 
 ### 7. Wiki memory shipped as a product
 
-**Source:** [LangChain, "Introducing OpenWiki Brains, general-purpose wiki memory for agents"](https://www.langchain.com/blog/introducing-openwiki-brains)
+**Source:** [LangChain, "Introducing OpenWiki Brains, general-purpose wiki memory for agents"](https://www.langchain.com/blog/introducing-openwiki-brains-general-purpose-wiki-memory-for-agents)
 
 **Payload:** LangChain shipped OpenWiki Brains on July 10: a general-purpose, editable wiki that agents read and write as persistent memory. W27 scouted wiki memory as an early pattern; W28's watchlist asked whether memory governance would move from papers into tooling. This is a partial trigger fire - the substrate arrived, the governance fields have not.
 
-**Mechanism:** Memory as a document store humans can read: pages, edits, and history instead of opaque embeddings. A wrong memory becomes a wrong sentence on a page - findable by reading, fixable by editing, revertible by history.
+**Mechanism:** Memory arrives as plain Markdown on the filesystem. A wrong memory becomes a wrong sentence on a page, findable by reading and fixable by editing. Put the wiki under version control if reviewable diffs and reverts are part of the contract.
 
-**Why it matters:** W28's governed-memory frame asked for provenance, review, and expiry on every durable write. Those controls need a substrate a reviewer can inspect, and a wiki is the first shipped memory product where review means reading.
+**Why it matters:** W28's governed-memory frame asked for provenance, review, and expiry on every durable write. Those controls need a substrate a reviewer can inspect. A wiki supplies readable pages; an assigned owner and review cadence still have to turn readability into review.
 
 **Reusable pattern:** Route durable agent memory through a reviewable document with edit history before reaching for a specialized memory stack.
 
 **Action surface:** `personal-knowledge-base`, `architecture`
 
-**Try this week:** Give one agent a wiki page as its durable memory for a week, then read the history and count the wrong entries you caught by eye.
+**Try this week:** Give one agent a versioned wiki page as durable memory for a week. Assign a reviewer, read the diff, and record wrong entries and correction time.
 
 **Systems map:** run output -> memory candidate -> wiki edit -> human-readable diff -> future context assembly.
 
-**Transferable principle:** Reviewability comes from the storage format, and formats humans read get reviewed. Flat-file agent memory and AGENTS.md conventions bank on the same property.
+**Transferable principle:** A readable format lowers review cost. Ownership, provenance, and a review gate decide whether anyone pays that cost. Flat-file agent memory and AGENTS.md conventions need the same discipline.
 
 **Falsification test:** If agents fill the wiki with confident stale claims faster than reading catches them, legibility without a review gate reproduced the corruption problem in a prettier format.
 
 **Adoption ladder:**
-  - Minimum viable: one agent, one wiki page, edit history on.
+  - Minimum viable: one agent, one versioned wiki page, named reviewer.
   - Mid: weekly human read of the diff, wrong entries tombstoned.
   - Full: provenance and expiry fields per entry, per the W28 governance frame.
   - Monitoring: stale-claim count per review, and time-to-correction.
@@ -245,7 +245,7 @@ Four disclosures landed this week that would have been internal documents a year
 - **Tier-routing ledger.** Where it applies: any vendor with a published price ladder; factory task routing. Caveats: needs a real quality gate first, or the cheap tier's failures arrive silently.
 - **Standing-grant inventory.** Where it applies: background agents, scheduled tasks, connector-heavy accounts. Caveats: an inventory nobody reviews is a compliance document, and the review needs a calendar slot.
 - **Harness playbook in-repo.** Where it applies: any agent with a trace corpus and a pinned model. Caveats: playbooks overfit to the model they were tuned on; re-verify on swap.
-- **Authorization-boundary fixture.** Where it applies: SaaS-connected agents, MCP servers, browser agents. Caveats: two fixtures prove the gap exists, a distribution of fixtures proves the guard works.
+- **Authorization-boundary fixture.** Where it applies: SaaS-connected agents, MCP servers, browser agents. Caveats: two fixtures can expose a gap; a broader held-out set estimates guard performance within that distribution.
 - **Capture-diff watch.** Where it applies: prompt-library research, harness-engineering scouting. Caveats: unverified, adversarially sourced, and legally fragile; pointers and summaries only.
 
 ## Action queue
@@ -262,7 +262,7 @@ Four disclosures landed this week that would have been internal documents a year
 
 | Source | Target | Surface | Try | Proof metric | Rollback | Kill criterion |
 |---|---|---|---|---|---|---|
-| gpt-5.6-tiers | factory | config | Add per-tier routing with gate-failure escalation for one task class | ledger shows tier, cost, and pass-rate per artifact | pin the class back to the top tier | escalation rate above 25 percent after ten runs |
+| gpt-5.6-tiers | factory | config | Add per-tier routing with gate-failure escalation for one task class | ledger shows tier, cost, and pass-rate per artifact | pin the class back to the top tier | higher accepted-task cost or a breached latency budget on the same ten cases |
 | cowork-grants | portfolio agent accounts | tool-policy | Write the standing-grant inventory and run one revocation drill | drill revokes a grant and the next scheduled run fails as expected | restore the grant from the inventory | inventory goes stale within two weeks |
 | agentredbench | llm-evals | eval | Add the two-fixture authorization-boundary set to one suite | scope-exceeds-intent fixture blocked pre-execution | mark fixtures advisory | fixtures pass trivially against every model tested |
 | capture-archives | prompt-library | source-registry | Add a capture-diff note template and file the GPT-5.6 diff as the first entry | one dated note with a tested hypothesis | drop the template, keep the watch | two ship cycles produce no testable hypothesis |
@@ -273,9 +273,9 @@ Four disclosures landed this week that would have been internal documents a year
 | Item | Why it might matter early | What to watch | Revisit trigger |
 |---|---|---|---|
 | Microsoft Project Solara | An agent-first device platform moves the agent shell below the app layer. | Enterprise pilots converting to procurement; badge and kiosk reference devices. | A named customer deployment with seat counts. |
-| Anthropic-TeraWulf 20-year lease | A frontier lab locking 400 MW for two decades is behaving like a hyperscaler. | Whether other labs sign multi-decade capacity or stay asset-light. | A second lab signs a comparable lease. |
-| MaxText elastic training | Google reports TPU failure mid-training recovering in seconds as a catchable exception. | Whether elastic recovery reaches public training stacks beyond Pathways. | An open-source training run publishes recovery-time numbers. |
-| Norm AI $120M raise | Compliance-as-agent is a wedge where regulation writes the eval criteria. | Whether shipped agents carry auditable decision trails regulators accept. | A regulator publicly accepts agent-produced compliance evidence. |
+| [Anthropic-TeraWulf 20-year lease](https://www.sec.gov/Archives/edgar/data/1083301/000110465926080583/tm2619468d1_8k.htm) | A frontier lab contracting approximately 401 MW of critical IT load for two decades is behaving like a hyperscaler. | Whether other labs sign multi-decade capacity or stay asset-light. | A second lab signs a comparable lease. |
+| [MaxText elastic training](https://developers.googleblog.com/we-terminated-a-tpu-mid-training-and-it-recovered-in-seconds-introduction-to-elastic-training-with-maxtext/) | Google reports TPU failure mid-training recovering in seconds as a catchable exception. | Whether elastic recovery reaches public training stacks beyond Pathways. | An open-source training run publishes recovery-time numbers. |
+| [Norm AI $120M raise](https://www.norm.ai/resources/norm-ai-raises-20-million-at-a-1-2-billion-valuation) | Compliance-as-agent is a wedge where regulation writes the eval criteria. | Whether shipped agents carry auditable decision trails regulators accept. | A regulator publicly accepts agent-produced compliance evidence. |
 | LangGraph prebuilt deploy images | CLI 0.4.31 allows prebuilt images for deploys - runtime packaging is standardizing. | Whether agent deploys converge on container contracts like web apps did. | A second framework ships the same primitive. |
 | Anthropic usage reflection | A vendor surface for reviewing your own Claude usage patterns. | Whether reflection data exports, and whether it reaches team plans. | An exportable usage ledger lands in the API. |
 
@@ -321,4 +321,4 @@ Four disclosures landed this week that would have been internal documents a year
 
 ## Closing thought
 
-A year ago the harness was the vendor's secret. This week it had a price list, a session census, a tuning playbook, and a public diff history. Read it before you rebuild it.
+This week the operating layer had a price list, a session study, a tuning playbook, and an unofficial public diff history. Read it before you rebuild it.

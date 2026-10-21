@@ -76,6 +76,7 @@ faithfulness report before any synthesis line.
 
 1. The editor reads the verified cell set and groups cells by source
    item.
+   It reads `VOICE.md` and `prompts/editorial_contract.md` before drafting.
 2. The editor writes one row summary per source item, every
    sentence anchored to one or more cell ids.
 3. The editor clusters cells across rows by lens category and by
