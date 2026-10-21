@@ -294,3 +294,27 @@ Each entry has the shape:
     off-topic, seven survived
   - the same brief's Sources reviewed row for the daily-candidate route: 85
     candidate URLs, 7 in-window findings
+
+## 2026-10-21 — 2fe6bed AI field brief archive, voice and evidence pass
+
+- scope: reviews all 23 canonical briefs, W20–W42, preserving the author's
+  voice and historical issue windows. Updates voice notes, all eighteen
+  existing prompts and the weekly authoring instructions. Corrects
+  unsupported claims, backfills 62 evidence cells as current reviews,
+  reconciles retained W22 counts, and records source-audit dispositions.
+  DEC-PUB-015 adds per-signal reference checks across legacy layouts.
+- proof:
+  - `ops/editorial-reviews/2026-10-21.md` — coverage, corrections,
+    provenance and verification limits
+  - `ops/editorial-reviews/2026-10-21-validation.json` — all 18 Python
+    gates rerun on content commit 2fe6bed; 348 Python tests passed,
+    20 historical/optional-summary skips; 56 evidence regressions;
+    66 JavaScript tests and TypeScript checks passed
+  - production build — all 23 canonical routes and three feeds built
+    from the frozen content; all 46 body/metadata input files match
+    content commit 2fe6bed, with their hashes in the validation record
+  - `ops/source-audits/2026-10-21.md` — six retirement-review candidates
+    retained with reasons; 152 unreviewed feeds remain a coverage limit
+  - publication verification — compare every deployed brief body,
+    title, publication notes and source link with the tested build,
+    plus the archive and all three feeds, after CI and deployment pass
