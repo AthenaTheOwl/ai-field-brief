@@ -8,11 +8,21 @@ import {
   SITE_URL,
 } from "./feeds";
 
+// Inverse of feeds.ts xmlEscape, so titles with quotes or apostrophes compare as written.
+function xmlUnescape(value: string): string {
+  return value
+    .replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&gt;/g, ">")
+    .replace(/&lt;/g, "<")
+    .replace(/&amp;/g, "&");
+}
+
 function tagValues(source: string, tagName: string): string[] {
   const tag = tagName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return Array.from(
     source.matchAll(new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)</${tag}>`, "g")),
-    (match) => match[1] ?? "",
+    (match) => xmlUnescape(match[1] ?? ""),
   );
 }
 
