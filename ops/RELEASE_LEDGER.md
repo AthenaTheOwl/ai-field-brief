@@ -318,3 +318,21 @@ Each entry has the shape:
   - publication verification — compare every deployed brief body,
     title, publication notes and source link with the tested build,
     plus the archive and all three feeds, after CI and deployment pass
+
+## 2026-10-30 — 49ff23c brief: publish the 2026-W43 and 2026-W44 field briefs
+
+- scope: W43 (October 19–23) with five Top signals and 18 cells; W44 (October 24–30) with six Top
+  signals and 24 cells. Discovery dated digest leads by their own primaries, ran a GitHub release
+  scout and swept 30 and 38 vendor and practitioner surfaces; the full registry was not swept.
+- acceptance: an independent skeptic re-opened 46 primaries and corrected nine claims, including
+  W43's original title figure (already published in an August report); records in
+  `ops/w43/skeptic-review.json` and `ops/w44/skeptic-review.json`.
+- proof:
+  - nineteen repository gates passed locally on the content tree; 362 Python tests passed, 24 skipped
+  - 109 of 109 quoted spans verified verbatim against live sources
+  - `ops/run-records/run-w43-20261030.json` and `run-w44-20261030.json` bind to
+    49ff23c6ba0b1982d3791d3620c5025ee521c3c7
+  - replay records under `ops/replay-records/run-w4{3,4}-20261030/` report equivalent at that HEAD;
+    no live LLM re-execution is claimed
+- publication: pull request for branch CI and owner review; this record does not claim a deployment
+  or email delivery.
