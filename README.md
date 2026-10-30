@@ -16,14 +16,12 @@ every week.
 when `RESEND_API_KEY`, `RESEND_SEGMENT_ID`, `DIGEST_FROM_EMAIL`, and
 `CRON_SECRET` are set on the deployed app.
 
-**Latest:** [The instructions arrived after the tools had already run. (2026-W42)](https://ai-field-brief.vercel.app/briefs/2026-W42)
+**Latest:** [A rejected prompt came back as a successful answer, with another customer's data in it. (2026-W44)](https://ai-field-brief.vercel.app/briefs/2026-W44)
 
-The W42 catch-up checks twenty public primary surfaces and records four picks
-with 36 evidence cells. It keeps the scope of that check separate from the full
-source registry. Run `python scripts/cadence_check.py --today 2026-10-18 --json`
-to inspect gaps against the Friday deadline, including older weeks a fresh
-latest issue could otherwise hide. The check also rejects future through-dates
-and excludes rerun folders from canonical coverage.
+W43 and W44 were written in one run: scripted candidate dating from the daily digests, a GitHub release
+scout and a primary sweep of vendor and practitioner feeds, then one independent skeptic over every
+published signal. Run `python scripts/cadence_check.py --today 2026-10-30 --json` to inspect gaps
+against the Friday deadline, including older weeks a fresh latest issue could otherwise hide.
 
 ## What it does
 

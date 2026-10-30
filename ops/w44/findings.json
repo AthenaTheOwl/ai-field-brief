@@ -1,0 +1,167 @@
+{
+ "window": "2026-10-24..2026-10-30",
+ "method": "Discovery by script; every candidate dated from its own primary (arXiv v1 line, page datePublished/article:published_time/<time>, URL date path, GitHub API published_at/created_at, Hugging Face createdAt). Digest dates never used.",
+ "counts": {
+  "digest_candidates": {
+   "files": "daily/claude 2026-10-24..30 + weekly 2026-10-30 (private, discovery only)",
+   "attempted": 105,
+   "in_window": 21,
+   "out_of_window": 70,
+   "undated_fetch_failed": 11,
+   "undated_no_date_on_page": 3,
+   "out_of_window_by_month": {
+    "2026-10": 47,
+    "2026-09": 8,
+    "2026-04": 2,
+    "2026-03": 2,
+    "2026-02": 3,
+    "2025-12": 2,
+    "2026-01": 2,
+    "2025-09": 1,
+    "2026-05": 2,
+    "2026-08": 1
+   }
+  },
+  "github_scout": {
+   "repos_checked": 32,
+   "repos_with_in_window_release": 19,
+   "in_window_releases": 125
+  },
+  "feed_sweep": {
+   "surfaces_attempted": 38,
+   "surfaces_ok": 35,
+   "surfaces_failed": [
+    {
+     "id": "openai-news",
+     "error": "failed: HTTP Error 403: Forbidden"
+    },
+    {
+     "id": "openai-research",
+     "error": "failed: HTTP Error 403: Forbidden"
+    },
+    {
+     "id": "openai-harness-engineering",
+     "error": "failed: HTTP Error 403: Forbidden"
+    }
+   ],
+   "surfaces_with_in_window_leads": 15,
+   "in_window_leads": 79
+  },
+  "primaries_fetched_in_full": {
+   "pages": 30,
+   "pages_failed": 3,
+   "pages_failed_note": "three LangChain blog slugs guessed from index titles returned 404; those posts were not cited",
+   "release_bodies": 18
+  }
+ },
+ "top_signals": [
+  {
+   "key": "CFKV",
+   "surface": "security",
+   "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/",
+   "date": "2026-10-26",
+   "how": "datePublished 2026-10-26T22:01:23Z",
+   "lead": "digest 2026-10-29 and feed index"
+  },
+  {
+   "key": "BTMCP",
+   "surface": "observability",
+   "url": "https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.42.0",
+   "date": "2026-10-29",
+   "how": "GitHub published_at 2026-10-29T14:04:53Z; 3.41.0 2026-10-28T16:14:41Z; PR 2690 merged 2026-10-29T09:45:00Z",
+   "lead": "github scout"
+  },
+  {
+   "key": "NOVELTY",
+   "surface": "eval",
+   "url": "https://huggingface.co/blog/allenai/novelty-bench",
+   "date": "2026-10-27",
+   "how": "datePublished 2026-10-27T16:12:42Z",
+   "lead": "huggingface-blog index"
+  },
+  {
+   "key": "TRUST",
+   "surface": "tool-policy",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.314",
+   "date": "2026-10-30",
+   "how": "GitHub published_at 2026-10-30T01:06:26Z; deepagents-code 0.2.2 2026-10-26T20:39:32Z",
+   "lead": "github scout"
+  },
+  {
+   "key": "JIT",
+   "surface": "workflow",
+   "url": "https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/",
+   "date": "2026-10-29",
+   "how": "datePublished 2026-10-29T16:00:12Z",
+   "lead": "meta-engineering feed"
+  },
+  {
+   "key": "VMODEL",
+   "surface": "config",
+   "url": "https://vercel.com/blog/ai-gateway-virtual-models",
+   "date": "2026-10-28",
+   "how": "page byline 28 Oct 2026; vercel feed pubDate 2026-10-28",
+   "lead": "vercel-news feed"
+  }
+ ],
+ "in_window_not_picked": [
+  {
+   "title": "Gemini 4 Carbon",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "date": "2026-10-28",
+   "disposition": "watchlist",
+   "why": "limited to a subset of cyber defenders; no developer access yet"
+  },
+  {
+   "title": "Mistral Large 4 open weights",
+   "url": "https://mistral.ai/news/mistral-large-4-oss/",
+   "date": "2026-10-29",
+   "disposition": "archive",
+   "why": "vendor benchmark claims only"
+  },
+  {
+   "title": "Anthropic S-1 filing",
+   "url": "https://www.anthropic.com/news/s1-sec",
+   "date": "2026-10-26",
+   "disposition": "archive",
+   "why": "corporate filing; no builder action"
+  },
+  {
+   "title": "Microsoft Research synthetic enterprise evaluation",
+   "url": "https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence/",
+   "date": "2026-10-30",
+   "disposition": "scout",
+   "why": "method description without reported outcome numbers"
+  },
+  {
+   "title": "Google Research sleep framework",
+   "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
+   "date": "2026-10-27",
+   "disposition": "archive",
+   "why": "research method; not read in full for a cell"
+  },
+  {
+   "title": "Drew Breunig, The State of Context Engineering",
+   "url": "https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html",
+   "date": "2026-10-24",
+   "disposition": "archive",
+   "why": "talk transcript restating earlier failure-mode taxonomy"
+  },
+  {
+   "title": "Microsoft Copilot harness",
+   "url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
+   "date": "2026-10-28",
+   "disposition": "archive",
+   "why": "blogs.microsoft.com is on the cannot-carry-a-cell host list"
+  }
+ ],
+ "fetch_blocked": [
+  "openai.com (all index and article pages: HTTP 403)",
+  "reuters.com 401",
+  "bloomberg.com 403",
+  "benzinga.com 403",
+  "tipranks.com 403",
+  "dealroom.co 403",
+  "techspot.com TLS failure"
+ ]
+}

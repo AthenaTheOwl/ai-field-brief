@@ -1,0 +1,143 @@
+matrix_run_id: MTRX-W44-reported-success
+profile_id: personal
+candidates:
+- cell_id: MTRX-W44-CFKV-adoption_action
+  source_published_at: '2026-10-26'
+  interpretation: true
+  source_support:
+  - MTRX-W44-CFKV-source_gist
+  - MTRX-W44-CFKV-mechanism_extraction
+  - MTRX-W44-CFKV-risk_and_caveats
+  surface: security
+  test_plan: Assert configured context length is at or below measured cache capacity; send one canary prompt just over
+    capacity and require an explicit error.
+  expected_benefit: A capacity mismatch fails a test before launch instead of returning a plausible answer.
+  risk: Applies directly only to self-hosted inference; hosted-API users cannot see provider pool sizes.
+  disposition: prototype
+  success_metric: Over-capacity canary returns an error on every run; no canary text from one request appears in another.
+  rollback: Remove the boundary test; no serving config changes.
+  kill_criterion: Stop if no self-hosted inference path exists in the target project.
+  scoring:
+    source_quality: 5.0
+    profile_relevance: 4.0
+    actionability: 4.0
+    penalties_total: 0
+    final_score: 17.6
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W44-BTMCP-adoption_action
+  source_published_at: '2026-10-29'
+  interpretation: true
+  source_support:
+  - MTRX-W44-BTMCP-source_gist
+  - MTRX-W44-BTMCP-mechanism_extraction
+  surface: observability
+  test_plan: Call one MCP tool with canary argument and result; search exported spans for both before and after an SDK
+    upgrade; set the capture flag explicitly.
+  expected_benefit: A tracing default change cannot silently widen what the trace store holds.
+  risk: Release and pull request establish the default change, not what any given deployment records today.
+  disposition: adopt_now
+  success_metric: Canary strings present or absent exactly as the explicit flag says, across two SDK versions.
+  rollback: Revert the pin and the flag.
+  kill_criterion: Stop if the project does not trace MCP calls with this SDK.
+  scoring:
+    source_quality: 4.5
+    profile_relevance: 4.5
+    actionability: 5.0
+    penalties_total: 0
+    final_score: 18.5
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W44-NOVELTY-adoption_action
+  source_published_at: '2026-10-27'
+  interpretation: true
+  source_support:
+  - MTRX-W44-NOVELTY-source_gist
+  - MTRX-W44-NOVELTY-mechanism_extraction
+  - MTRX-W44-NOVELTY-risk_and_caveats
+  surface: eval
+  test_plan: Run one production LLM judge with two reasonable prompt variants over 30 recent items; report the flipped-verdict
+    share.
+  expected_benefit: Measures judge instability without gold labels.
+  risk: Ai2's task is research-idea novelty; transfer to other judge tasks is untested.
+  disposition: prototype
+  success_metric: Flip rate per judge, recorded before and after any prompt change.
+  rollback: Delete the variant prompt; production judge unchanged.
+  kill_criterion: Stop if the judge's verdicts feed no decision.
+  scoring:
+    source_quality: 4.5
+    profile_relevance: 4.5
+    actionability: 4.5
+    penalties_total: 0
+    final_score: 18.0
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W44-TRUST-adoption_action
+  source_published_at: 2026-10-26/2026-10-30
+  interpretation: true
+  source_support:
+  - MTRX-W44-TRUST-source_gist
+  - MTRX-W44-TRUST-mechanism_extraction
+  - MTRX-W44-TRUST-risk_and_caveats
+  surface: tool-policy
+  test_plan: In a disposable repo on Claude Code 2.1.314, enable the write block, request an edit one directory up,
+    check the file system; trigger a deny rule and check the collapsed tool group marks the call blocked.
+  expected_benefit: Confirms the boundary from the file system, with the interface checked second.
+  risk: Release notes record fixes, not incident frequency; the write block is a new setting.
+  disposition: adopt_now
+  success_metric: Zero writes outside the working directory; every denied call labelled blocked.
+  rollback: Remove the setting from the disposable repo's settings file.
+  kill_criterion: Stop if the setting breaks a required cross-directory workflow and no narrower rule covers it.
+  scoring:
+    source_quality: 5.0
+    profile_relevance: 5.0
+    actionability: 4.5
+    penalties_total: 0
+    final_score: 19.5
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+- cell_id: MTRX-W44-JIT-adoption_action
+  source_published_at: '2026-10-29'
+  interpretation: true
+  source_support:
+  - MTRX-W44-JIT-source_gist
+  - MTRX-W44-JIT-mechanism_extraction
+  - MTRX-W44-JIT-risk_and_caveats
+  surface: workflow
+  test_plan: For ten agent-authored diffs, generate tests that pass on the parent and fail on the diff; keep deterministic
+    failures; label each intended, bug or noise.
+  expected_benefit: Review attention goes to concrete behavior changes instead of rereading the diff.
+  risk: Meta's figures are self-reported on its own codebase; the true-positive rate is engineer-reported and the SEV
+    reduction is attributed without a control.
+  disposition: prototype
+  success_metric: Share of surviving failing tests labelled real bug or unintended change.
+  rollback: Discard generated tests; no CI change.
+  kill_criterion: Stop if fewer than one in ten surviving tests is labelled a real bug or unintended change.
+  scoring:
+    source_quality: 4.0
+    profile_relevance: 4.0
+    actionability: 3.5
+    penalties_total: 1
+    final_score: 14.5
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+    penalty_note: hype_vs_evidence 1 for the uncontrolled 20% SEV attribution.
+- cell_id: MTRX-W44-VMODEL-adoption_action
+  source_published_at: '2026-10-28'
+  interpretation: true
+  source_support:
+  - MTRX-W44-VMODEL-source_gist
+  - MTRX-W44-VMODEL-mechanism_extraction
+  - MTRX-W44-VMODEL-risk_and_caveats
+  surface: config
+  test_plan: List settings on the current model alias, mark provider-specific ones, point a candidate alias at another
+    provider, inspect the outgoing request.
+  expected_benefit: A provider switch cannot drop a setting without someone seeing it.
+  risk: Product announcement with no measured outcome; the dropped-setting behavior is Vercel's own description.
+  disposition: prototype
+  success_metric: Count of settings present before the switch and absent after it.
+  rollback: Delete the candidate alias.
+  kill_criterion: Stop if the project calls one provider only.
+  scoring:
+    source_quality: 4.0
+    profile_relevance: 3.5
+    actionability: 4.0
+    penalties_total: 1
+    final_score: 14.3
+    formula: (0.40 * source_quality + 0.35 * profile_relevance + 0.25 * actionability) * 4 - penalties_total
+    penalty_note: vendor_promo 1 for a product launch post.

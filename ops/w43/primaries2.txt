@@ -1,0 +1,2 @@
+https://developers.cloudflare.com/changelog/post/2026-10-19-cloudflare-mcp-step-up/
+https://developers.cloudflare.com/changelog/post/2026-10-22-cloudflare-mcp-servers-retire-sse/

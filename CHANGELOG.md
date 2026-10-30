@@ -5,6 +5,14 @@ go at the top.
 
 ## [Unreleased]
 
+### W43 and W44 issues
+
+- Add W43 (October 19–23, five signals, 18 cells) and W44 (October 24–30, six signals, 24 cells).
+  Discovery dated every digest lead by its own primary; 114 of 176 leads fell outside their window.
+  An independent skeptic re-opened 46 primaries and corrected nine claims, including W43's
+  original title figure, which an August report had already published. All 109 quoted spans
+  verified verbatim against live sources.
+
 ### Archive evidence and voice review (spec 0007)
 
 - Review all 23 canonical issues, W20–W42, against their source support

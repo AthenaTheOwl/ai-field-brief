@@ -1,0 +1,146 @@
+iso_week: 2026-W44
+through_date: 2026-10-30
+generated_at: '2026-10-30T20:05:00Z'
+generated_by: claude-agent (Claude Opus 5.5 via Claude Code; W44 lane of a two-issue run, orchestrator updates index and run records)
+title: A rejected prompt came back as a successful answer, with another customer's data in it.
+volume: 27
+profile_id: personal
+registry_version: 14
+matrix_run_id: MTRX-W44-reported-success
+sweep:
+  attempted: 175
+  succeeded: 158
+  failed: 17
+  skipped: 0
+source_mix:
+  primary_pages_cited: 8
+  framework_releases_cited: 11
+  pull_requests_cited: 1
+  framework_release_indexes: 32
+  registry_feed_surfaces: 38
+  failed_feed_surfaces: 3
+  internal_digest_inputs: 8
+top_signal_count: 6
+action_packet_count: 6
+scout_count: 2
+cell_count: 24
+notes:
+- 'Coverage: Saturday October 24 through Friday October 30, generated October 30. W43 covers October 19–23 and is being
+  written in parallel; items dated in that span were kept out of the headline even where this week''s leads repeated
+  them.'
+- 'Discovery ran by script (ops/w44/). mine_candidates.py extracted 105 primary-looking URLs from the seven daily
+  digests for October 24–30 and the October 30 weekly digest. date_candidates.py fetched each URL and dated it from
+  its own page: arXiv v1 line, page datePublished / article:published_time / time element, URL date path, GitHub
+  created_at or Hugging Face createdAt. The digest date was never used.'
+- 'Digest leads by their own dates: 21 in window, 70 out of window, 14 undated. Of the 70, 47 were dated earlier in
+  October and 23 before October (back to September 2025). Of the 14 undated, 11 failed to fetch (openai.com 403 on
+  four, plus reuters, bloomberg, benzinga, tipranks, dealroom and techspot) and 3 pages carried no readable date.'
+- 'scout_github.py queried 32 framework repositories through the GitHub API and found 125 releases published inside
+  the window across 19 of them. Release dates are GitHub published_at.'
+- 'sweep_feeds.py fetched 38 active registry surfaces for Anthropic, Claude, OpenAI, Google/DeepMind, Microsoft, AWS,
+  LangChain, LlamaIndex, MCP, Cloudflare, Vercel, Cursor, NVIDIA, Mistral, Meta, Hugging Face and seven practitioner
+  blogs. 35 returned; openai-news, openai-research and openai-harness-engineering returned HTTP 403. 15 surfaces
+  produced 79 in-window leads from feed dates or index text; each pick was re-dated from its own page.'
+- 'Sweep counts: attempted 175 = 105 digest leads + 32 release indexes + 38 feed surfaces; failed 17 = 11 lead fetch
+  failures + 3 feed 403s + 3 guessed LangChain blog slugs that returned 404 (those posts were dated from the index
+  only and not cited); succeeded is attempted minus failed. The 30 full-page and 18 release-body primary fetches in
+  fetch_primaries.py are counted inside those surfaces, not added.'
+- 'Seven private digest issues (daily) and one weekly digest supplied discovery leads only. Their text, document ids
+  and links are not reproduced or cited; every claim cites a public primary.'
+- 'Six Top signals on six distinct action surfaces: security, observability, eval, tool-policy, workflow, config.
+  Primary dates: Cloudflare October 26 (datePublished 22:01 UTC); Braintrust 3.41.0 October 28 and 3.42.0 October 29
+  (GitHub published_at), pull request 2690 merged October 29; Ai2 October 27; Claude Code 2.1.314 October 30 01:06 UTC;
+  deepagents-code 0.2.2 October 26; Meta October 29; Vercel October 28. The Cloudflare incident itself ran August 27 to
+  September 9; only its disclosure is in window, and the brief says so.'
+- 'Six source-item groups each received four lenses (source_gist, mechanism_extraction, risk_and_caveats,
+  adoption_action): 24 cells. ops/w44/verify_quotes.py matched all 56 quote-typed spans verbatim against live sources
+  (GitHub release and pull-request bodies through the API, other pages as tag-stripped HTML). One span containing a
+  banned lint word was replaced with a different verbatim span from the same page rather than paraphrased.'
+- 'All cells received a same-author seven-question faithfulness reread; three were patched (see matrix/faithfulness.yaml).
+  No independent reviewer ran. Before finishing, the primary behind each Top signal headline number was reopened and the
+  number, date and attribution rechecked.'
+- 'Number caveats carried into prose and cell warnings: the Ai2 93.5% prompt gave the judge the answer''s structure and
+  the generated-idea labels are weak; Meta''s 60% true-positive rate is engineer-reported with no denominator and its
+  20% privacy-SEV drop has no control; Vercel''s 125-model count is its own catalog; Cloudflare''s 155 is its own tally.'
+- 'Independent skeptic pass: re-opened 23 primaries live and checked 33 claims; 30 held, 3 corrected, 0 dropped
+  (ops/w44/skeptic-review.json). Claude Code 2.1.314''s blocked-as-run bug is now scoped to the collapsed tool group
+  display, as its release note says.'
+- Action scores use config/scoring_model.yaml and the personal profile; scores live on matrix/action-candidates.yaml.
+  No proposed test was executed. No paid model calls, registration, email, push or deployment occurred.
+sources_reviewed:
+- label: Cloudflare GLM-5.3 KV cache disclosure
+  url: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+  disposition: top_signal
+- label: Braintrust JS SDK 3.42.0
+  url: https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.42.0
+  disposition: top_signal
+- label: Braintrust JS SDK 3.41.0
+  url: https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.41.0
+  disposition: top_signal
+- label: Braintrust pull request 2690
+  url: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+  disposition: top_signal
+- label: Ai2 novelty judges
+  url: https://huggingface.co/blog/allenai/novelty-bench
+  disposition: top_signal
+- label: Claude Code 2.1.314
+  url: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+  disposition: top_signal
+- label: deepagents-code 0.2.2
+  url: https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code%3D%3D0.2.2
+  disposition: top_signal
+- label: Meta Catching JiTTests
+  url: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+  disposition: top_signal
+- label: Vercel Virtual Models
+  url: https://vercel.com/blog/ai-gateway-virtual-models
+  disposition: top_signal
+- label: Codex rust-v0.166.0
+  url: https://github.com/openai/codex/releases/tag/rust-v0.166.0
+  disposition: scout
+- label: LangGraph 1.2.18
+  url: https://github.com/langchain-ai/langgraph/releases/tag/1.2.18
+  disposition: scout
+- label: LangGraph checkpoint 4.3.1
+  url: https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.3.1
+  disposition: scout
+- label: Langfuse 4.72.0
+  url: https://github.com/langfuse/langfuse/releases/tag/v4.72.0
+  disposition: scout
+- label: CrewAI 1.15.33
+  url: https://github.com/crewAIInc/crewAI/releases/tag/1.15.33
+  disposition: scout
+- label: AgentCore SDK 1.25.1
+  url: https://github.com/aws/bedrock-agentcore-sdk-python/releases/tag/v1.25.1
+  disposition: scout
+- label: Cloudflare Agents 0.31.0
+  url: https://github.com/cloudflare/agents/releases/tag/agents%400.31.0
+  disposition: scout_radar
+- label: Microsoft Research synthetic enterprise evaluation
+  url: https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence/
+  disposition: scout_radar
+- label: Gemini 4 Carbon
+  url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/
+  disposition: watchlist
+- label: Anthropic S-1 filing
+  url: https://www.anthropic.com/news/s1-sec
+  disposition: archive
+- label: Mistral Large 4 open weights
+  url: https://mistral.ai/news/mistral-large-4-oss/
+  disposition: archive
+- label: OpenAI News
+  url: https://openai.com/news
+  disposition: failed_current_index
+failures:
+- 'openai.com: HTTP 403 on the news index, the research index, the harness-engineering page and four article leads. No
+  OpenAI page carries a claim in this issue.'
+- 'Lead fetch failures: reuters.com 401; bloomberg.com, benzinga.com, tipranks.com and dealroom.co 403; techspot.com TLS
+  certificate failure.'
+- 'Three LangChain blog slugs guessed from index titles returned 404; the posts were dated from the index and not cited.'
+- 'blogs.microsoft.com feed returned, but the host cannot carry a cell under this pipeline''s fetch rules; the October
+  28 Copilot harness post stays in Archive notes.'
+next_run:
+- Run the over-capacity canary and the Braintrust canary-span check before claiming local validation of either.
+- Measure one production judge's flip rate; Ai2's numbers come from research-novelty judging only.
+- Check Braintrust's MCP capture docs and whether a later release changes the default again.
+- Reprice Gemini 4 Carbon when developer access opens.

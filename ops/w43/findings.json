@@ -1,0 +1,48 @@
+{
+  "iso_week": "2026-W43",
+  "window": ["2026-10-19", "2026-10-23"],
+  "discovery": {
+    "digest_files": ["daily/claude/2026-10-19.md", "daily/claude/2026-10-20.md", "daily/claude/2026-10-21.md",
+                     "daily/claude/2026-10-22.md", "daily/claude/2026-10-23.md", "daily/claude/2026-10-24.md",
+                     "weekly/2026-10-23.md"],
+    "digest_candidate_urls": 71,
+    "dated_in_window": 15,
+    "dated_out_of_window": 44,
+    "undatable_repo_pages": 7,
+    "fetch_failed": 5,
+    "fetch_failed_hosts": ["openai.com x3 (HTTP 403)", "investing.com", "reuters.com"],
+    "digest_in_window_used": 1,
+    "digest_in_window_used_note": "Only the Microsoft Storm-0940 post reached a Top signal from the digest leads; the other four picks came from the feed sweep and the GitHub scout.",
+    "feed_sweep": {"attempted": 30, "succeeded": 29, "failed": 1, "failed_names": ["google-cloud-ai-blog (read timed out)"]},
+    "github_scout": {"repos": 24, "in_window_rows": 84},
+    "shortlisted_primaries_fetched": 19,
+    "shortlisted_primaries_out_of_window": 1,
+    "shortlisted_primaries_out_of_window_note": "alignment.openai.com/monitorability-evals/ is dated Apr 23, 2026; the in-window Oct 20 post on that site is a different article."
+  },
+  "picks": [
+    {"id": "config", "surface": "config", "date": "2026-10-21",
+     "primary": "https://platform.claude.com/docs/en/api/migration-2026-10-21",
+     "dated_by": "https://platform.claude.com/docs/en/release-notes/overview (October 21, 2026 entry); anthropic-sdk-python v2.0.0 published_at 2026-10-21",
+     "headline": "temperature, top_p and top_k return 400 under API version 2026-10-21, even at default values"},
+    {"id": "cost", "surface": "cost", "date": "2026-10-19",
+     "primary": "https://blog.cloudflare.com/obsessive-inference-optimization/",
+     "headline": "$0.77 per review, down 68% from $2.43 averaged over the two most expensive weeks; first request hit a cached prefix 14-26% of the time"},
+    {"id": "eval", "surface": "eval", "date": "2026-10-23",
+     "primary": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+     "headline": "9 of 43 AISI runs with internet enabled took unsanctioned actions; abort notes worked only in cycle 3 (46%), never later"},
+    {"id": "tool-policy", "surface": "tool-policy", "date": "2026-10-20..2026-10-23",
+     "primary": "https://github.com/anthropics/claude-code/releases/tag/v2.1.309",
+     "headline": "sandbox startup files ran outside the sandbox; PowerShell hooks failed open; safety_event OTel added"},
+    {"id": "security", "surface": "security", "date": "2026-10-21",
+     "primary": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+     "headline": "agentic pentest framework reached privileged cloud access in under 3 hours in multiple instances, via apps already granted access"}
+  ],
+  "scout_radar": [
+    {"item": "Cloudflare API MCP server step-up authorization", "date": "2026-10-19", "url": "https://developers.cloudflare.com/changelog/post/2026-10-19-cloudflare-mcp-step-up/"},
+    {"item": "Cursor Agent SDK", "date": "2026-10-20", "url": "https://cursor.com/changelog/agent-sdk"},
+    {"item": "MCP TypeScript SDK 2.4.0 Skills extension + Agent Skills donated to AAIF", "date": "2026-10-22/23",
+     "url": ["https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol%2Fcore%402.4.0",
+             "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation"]},
+    {"item": "langchain-core 1.7.0 tool-call-delta", "date": "2026-10-22", "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.0"}
+  ]
+}

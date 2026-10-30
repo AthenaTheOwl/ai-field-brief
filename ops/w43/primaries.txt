@@ -1,0 +1,17 @@
+https://platform.claude.com/docs/en/api/migration-2026-10-21
+https://cursor.com/changelog/agent-sdk
+https://blog.cloudflare.com/obsessive-inference-optimization/
+https://www.anthropic.com/research/alignment-assessment-ukaisi
+https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization
+https://alignment.openai.com/monitorability-evals/
+https://www.langchain.com/blog/context-engineering-starts-with-retrieval
+https://blog.cloudflare.com/webmcp-commerce/
+https://huggingface.co/blog/microsoft/thinkingbox-training
+https://simonwillison.net/2026/Oct/23/kimi-k31-pro/
+https://simonwillison.net/2026/Oct/19/my-obituary-for-programming/
+https://simonwillison.net/2026/Oct/22/armin-ronacher/
+https://mistral.ai/news/voxtral-3
+https://www.anthropic.com/research/claude-scorpion-toxin-binder-design
+https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/
+https://blog.cloudflare.com/clairic-extraction-model/
+https://www.langchain.com/blog/how-numan-built-an-eval-first-ai-health-coach-with-langgraph-and-langsmith

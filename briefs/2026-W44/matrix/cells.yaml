@@ -1,0 +1,670 @@
+matrix_run_id: MTRX-W44-reported-success
+generated_at: '2026-10-30T22:30:00Z'
+schema_ref: schemas/matrix_cell.schema.json
+profile_id: personal
+source_items:
+- src-w44-cloudflare-kv
+- src-w44-braintrust-mcp
+- src-w44-ai2-novelty
+- src-w44-agent-trust-boundaries
+- src-w44-meta-jittests
+- src-w44-vercel-virtual-models
+lenses:
+- source_gist
+- mechanism_extraction
+- risk_and_caveats
+- adoption_action
+cells:
+
+# 1. Cloudflare GLM-5.3 cross-request KV cache exposure (security)
+- id: MTRX-W44-CFKV-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-cloudflare-kv
+  lens_id: source_gist
+  mode: extractive
+  content: Cloudflare disclosed on October 26 that its GLM-5.3 Workers AI deployment returned other customers'
+    data in 155 responses between August 27 and September 9, all to prompts longer than 681,280 tokens. The model
+    was advertised with a 1,048,576-token context window while the prefill KV cache pool held 681,280 tokens.
+  structured:
+    source_published_at: '2026-10-26'
+    interpretation: false
+  source_refs:
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: In total, 155 responses were affected, all to prompts longer than 681,280 tokens.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We deployed GLM 5.3 with a 1,048,576-token context window, but the KV cache pool on our prefill
+      GPUs only had room for 681,280 tokens.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: Between August 27 and September 9, a small number of customers using the GLM 5.3 Workers AI model
+      received responses that contained data from other customers' requests made to the same model shortly before
+      theirs.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We have remediated the issue, and we restored the model on September 9.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: Today we are publishing this report alongside a post from SGLang, the open-source inference engine
+      that we use, as a coordinated disclosure.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: 'Page metadata datePublished 2026-10-26T22:01:23.889Z; byline date October 26, 2026.'
+    ref_type: timestamp
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The incident window is August 27 to September 9; only the disclosure is dated inside this issue's window. The
+    155 count is Cloudflare's own tally of affected responses, excluding nothing it states beyond its own and the
+    researcher's testing.
+- id: MTRX-W44-CFKV-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-cloudflare-kv
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: An over-length prompt was marked rejected inside SGLang's disaggregated prefill/decode path and replaced
+    with a one-token placeholder. Prefill still transferred a cache, decode received "transfer complete" and generated
+    over stale pages from earlier requests. Cloudflare expected an error; its long-context tests returned successful
+    responses, so the mismatch was not treated as an issue before launch.
+  structured:
+    source_published_at: '2026-10-26'
+    interpretation: false
+  source_refs:
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We expected the engine to return an error for any prompt it could not process, and our long-context
+      tests returned successful responses, so we did not believe this to be an issue.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: The decode node received a "transfer complete" message and assumed that prefill overwrote the KV
+      cache from previous requests with the full prompt for this request, when in fact it left the majority of the
+      previous state intact.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: In both cases the result is corrupted output, or one user's data in another user's response, with
+      no error raised.
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The no-error sentence describes the related race and page-lifetime bug classes; Cloudflare says this incident's
+    rejected request went through the handoff every time, not by a timing accident, with the same result.
+- id: MTRX-W44-CFKV-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-cloudflare-kv
+  lens_id: risk_and_caveats
+  mode: critique
+  content: Cloudflare reports no evidence of deliberate exploitation and says no other Workers AI model was affected.
+    It calls pool size alone a fragile guard because quantization, tensor parallelism, CUDA graph sizes or a new model
+    version can change it, and now checks pool size against context length on every disaggregated deployment change.
+    Operators are told to move to SGLang v0.5.22 or later.
+  structured:
+    source_published_at: '2026-10-26'
+    interpretation: false
+  source_refs:
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We found no evidence of deliberate exploitation.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: 'Relying on pool size alone is fragile: any change to quantization, tensor parallelism, CUDA graph
+      sizes, or a future model version changes the pool size in a way that''s easy to miss.'
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: 'Added a check to every disaggregated deployment change: KV pool size measured against context length,
+      deferred release on both roles, transfer batch bounds inside the release timeout, and all required patches applied.'
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We highly recommend all operators update SGLang dependencies to v0.5.22 or later.
+    ref_type: quote
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: the prefill KV pool now holds about 2.04 million tokens, roughly twice the 1,048,576-token context
+      length.
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The fix applies to operators running SGLang in disaggregated prefill/decode mode. API customers cannot inspect a
+    provider's pool size; for them the transferable part is the test design, not the patch.
+- id: MTRX-W44-CFKV-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-cloudflare-kv
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. For any self-hosted inference config, assert that the configured
+    context length does not exceed the measured cache capacity, and add one boundary test that sends a prompt just
+    over the capacity with a unique canary and requires an explicit error. A successful response to that prompt fails
+    the test.
+  structured:
+    source_published_at: '2026-10-26'
+    interpretation: true
+  source_refs:
+  - uri: https://blog.cloudflare.com/kv-cache-exposure-remediation/
+    quote_or_span: We validated both changes against the researcher's reproduction script and our own canary-marker
+      tests before restoring the model.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Editor's proposal derived from the incident. Cloudflare's own canary-marker tests are mentioned but not specified.
+
+# 2. Braintrust MCP content capture default (observability)
+- id: MTRX-W44-BTMCP-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-braintrust-mcp
+  lens_id: source_gist
+  mode: extractive
+  content: Braintrust's JavaScript SDK added MCP server tracing in 3.41.0, published October 28, with content capture
+    off. 3.42.0, published October 29, captures MCP tool arguments, prompt arguments, resource URIs, results and tool
+    error text by default.
+  structured:
+    source_published_at: 2026-10-28/2026-10-29
+    interpretation: false
+  source_refs:
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.41.0
+    quote_or_span: 'feat(mcp): Add MCP server tracing'
+    ref_type: quote
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.42.0
+    quote_or_span: 'feat(mcp): Capture MCP tool and prompt content by default'
+    ref_type: quote
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+    quote_or_span: Capture MCP tool arguments, prompt arguments, resource URIs, results, and tool error text by default.
+    ref_type: quote
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/releases/tag/braintrust%403.42.0
+    quote_or_span: GitHub release published_at 2026-10-29T14:04:53Z; 3.41.0 published_at 2026-10-28T16:14:41Z.
+    ref_type: timestamp
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W44-BTMCP-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-braintrust-mcp
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: The pull request states the behavior change directly. Anyone upgrading from 3.41.0 starts recording MCP
+    content unless they set captureContent to false. The stated rationale is consistency, since the SDK already records
+    LLM prompts by default.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: false
+  source_refs:
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+    quote_or_span: v3.41.0 shipped with this off by default, so users upgrading will start recording MCP content unless
+      they opt out.
+    ref_type: quote
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+    quote_or_span: We already record LLM prompts by default, so MCP content should follow suit.
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W44-BTMCP-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-braintrust-mcp
+  lens_id: risk_and_caveats
+  mode: critique
+  content: The pull request notes that the documentation still described the old default when it merged. A semver
+    minor bump carries the change, so a caret range picks it up on the next install. Whether a given trace store may
+    hold tool results is a deployment question the release cannot answer.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+    quote_or_span: The docs page describing the old default ("Braintrust doesn't record tool and prompt arguments or
+      results by default") needs a matching update.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The caret-range point is the editor's inference from semver, not a Braintrust statement. No local upgrade was run.
+- id: MTRX-W44-BTMCP-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-braintrust-mcp
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. Pin the tracing SDK, call one MCP tool with a canary argument and a
+    canary result, and search the exported spans for both strings before and after an upgrade. Set the capture flag
+    explicitly either way so the next default change cannot alter it.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/braintrustdata/braintrust-sdk-javascript/pull/2690
+    quote_or_span: E2E is explained in the pull request's Testing section; every e2e variant sets captureContent explicitly.
+    ref_type: chunk
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+
+# 3. Ai2 novelty judges (eval)
+- id: MTRX-W44-NOVELTY-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-ai2-novelty
+  lens_id: source_gist
+  mode: extractive
+  content: Ai2 published a benchmark of LLM novelty judges on October 27. Switching GPT-5.4 from a prompt that said
+    exactly one idea per pair was novel to one that simply asked which idea was novel dropped its accuracy on
+    human-versus-generated pairs from 93.5% to 40.9% and changed more than half its verdicts. The same change moved
+    accuracy about seven points on human-only pairs.
+  structured:
+    source_published_at: '2026-10-27'
+    interpretation: false
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: When we switched to the simpler prompt, accuracy dropped from 93.5% to 40.9% – below chance – and the
+      model changed its verdict on more than half of the same pairs.
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: By contrast, the same prompt change shifted accuracy by only about seven percentage points on the Human-Only
+      dataset
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: 'Page byline: Published October 27, 2026.'
+    ref_type: timestamp
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The 93.5% prompt told the model that reviewers had found exactly one idea in each pair novel, which gives the judge
+    the answer's structure. The drop measures sensitivity to that framing on one model, not a typical prompt-wording
+    effect.
+  - Labels for generated ideas are weak; Ai2 assumed they were less novel than the paired top-10% ICLR ideas.
+- id: MTRX-W44-NOVELTY-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-ai2-novelty
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: A judge validated on human-written work can behave differently on generated work. Across prompt changes,
+    a quarter to a third of verdicts comparing two generators flipped on average, a disagreement Ai2 notes can be
+    measured without trusting any label. A simple three-call Claude Opus 4.6 prompt scored 0.854 macro-F1 for $2.59
+    total, against 0.642 for $30.66 and 0.772 for $82.05 from two purpose-built evaluators.
+  structured:
+    source_published_at: '2026-10-27'
+    interpretation: false
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: Across the tested prompt changes, roughly a quarter to a third of verdicts changed on average across
+      six judges.
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: On the Human+Generated set, a simple Claude Opus 4.6 prompt using low reasoning and majority voting
+      across three calls achieved 0.854 macro-F1 at a total evaluation cost of $2.59.
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: Idea Novelty Checker, a literature-grounded retrieval and reranking pipeline, scored 0.642 at $30.66,
+      while Sakana AI's AI Scientist, whose novelty evaluator iteratively searches Semantic Scholar, scored 0.772 at
+      $82.05.
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The macro-F1 and cost comparisons rely on the weak labels for generated ideas. The verdict-flip rate does not.
+- id: MTRX-W44-NOVELTY-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-ai2-novelty
+  lens_id: risk_and_caveats
+  mode: critique
+  content: The judge task is research-idea novelty, a narrow and label-poor task. Human-only pairs were not immune;
+    the same change moved Claude Opus 4.6 by 21 points. Ai2 recommends testing judges on the kinds of items they will
+    grade in production and measuring sensitivity across prompts and models. Transfer to code-review or summary judges is
+    a hypothesis.
+  structured:
+    source_published_at: '2026-10-27'
+    interpretation: true
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: the same change moved Claude Opus 4.6 accuracy by 21 points
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: Future work should test judges on the kinds of ideas they will actually evaluate, measure sensitivity
+      across prompts and models
+    ref_type: quote
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: We assumed the generated ideas were less novel than their human-authored counterparts; these are weak
+      labels, not verified judgments for every idea.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W44-NOVELTY-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-ai2-novelty
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. Take one LLM judge already used in a pipeline, write two reasonable
+    prompt variants, run both over 30 recent items of the kind it grades in production, and report the share of
+    flipped verdicts. A flip rate needs no gold labels.
+  structured:
+    source_published_at: '2026-10-27'
+    interpretation: true
+  source_refs:
+  - uri: https://huggingface.co/blog/allenai/novelty-bench
+    quote_or_span: If two reasonable evaluation setups give opposite answers for the same pair of ideas, that disagreement
+      itself reveals instability.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+
+# 4. Coding-agent trust boundaries: Claude Code 2.1.314 and deepagents-code 0.2.2 (tool-policy)
+- id: MTRX-W44-TRUST-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-agent-trust-boundaries
+  lens_id: source_gist
+  mode: extractive
+  content: Claude Code 2.1.314, published October 30 UTC, adds a setting that makes Write, Edit and NotebookEdit refuse
+    paths outside the working directories in every permission mode. The same release fixes blocked shell and MCP calls
+    reading as if they ran in a collapsed tool group, sandbox protections missing from a worktree entered by a resumed headless session, and an
+    excluded settings file still supplying auto mode rules and saved permission consents.
+  structured:
+    source_published_at: '2026-10-30'
+    interpretation: false
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: 'Added `permissions.blockWritesOutsideWorkingDirectories`: Write, Edit and NotebookEdit refuse paths
+      outside the working directories in every permission mode'
+    ref_type: quote
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: Fixed shell and MCP calls that auto mode, a deny rule or a PreToolUse hook blocked, or that otherwise
+      did not run, reading as if they ran in a collapsed tool group
+    ref_type: quote
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: Fixed sandbox protections not applying to a worktree entered by `claude -p --resume` or `--continue`
+    ref_type: quote
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: Fixed a settings file excluded with `--setting-sources` still supplying some settings, such as auto
+      mode rules and saved permission consents
+    ref_type: quote
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: GitHub release published_at 2026-10-30T01:06:26Z.
+    ref_type: timestamp
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - Release notes record fixes. They do not say how many sessions hit the bugs or which versions introduced them.
+- id: MTRX-W44-TRUST-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-agent-trust-boundaries
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: LangChain's deepagents-code 0.2.2, published October 26, closes a similar path from the repository side.
+    A project .env file could set extension, shell, plugin and skill trust; the release prevents it, and restricts the
+    Git options allowed on auto mode's read-only fast path to an allowlist. In both tools a file or path the user did
+    not choose as a policy source could widen what the agent was allowed to do.
+  structured:
+    source_published_at: '2026-10-26'
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code%3D%3D0.2.2
+    quote_or_span: Prevent project `.env` files from setting extension, shell, plugin, and skill trust
+    ref_type: quote
+  - uri: https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code%3D%3D0.2.2
+    quote_or_span: Restrict Git options in Auto mode's read-only fast path to an allowlist
+    ref_type: quote
+  - uri: https://github.com/langchain-ai/deepagents/releases/tag/deepagents-code%3D%3D0.2.2
+    quote_or_span: GitHub release published_at 2026-10-26T20:39:32Z.
+    ref_type: timestamp
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The cross-tool comparison is the editor's grouping. The two releases fix different code in different products.
+- id: MTRX-W44-TRUST-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-agent-trust-boundaries
+  lens_id: risk_and_caveats
+  mode: critique
+  content: The new Claude Code write block appears to be opt-in. The release also changes the Recently blocked review
+    so a call that cannot be read in full cannot be approved. A collapsed tool group that shows a blocked call as run
+    would mislead a reviewer skimming it, so the setting needs a test on disk.
+  structured:
+    source_published_at: '2026-10-30'
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: Changed `/permissions` Recently blocked to refuse approving a call you can't read in full, including
+      one the terminal is too short to show
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - That the setting is opt-in is read from its being added as a named permissions key; the notes do not state a
+    default value.
+- id: MTRX-W44-TRUST-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-agent-trust-boundaries
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. In a disposable repo on 2.1.314, enable the write block, ask the
+    agent to edit a file one directory above the working directory, and confirm the refusal in the file system, not
+    only in the interface. Then plant a deny-triggering command and confirm the collapsed tool group marks it blocked.
+  structured:
+    source_published_at: '2026-10-30'
+    interpretation: true
+  source_refs:
+  - uri: https://github.com/anthropics/claude-code/releases/tag/v2.1.314
+    quote_or_span: 'Added `permissions.blockWritesOutsideWorkingDirectories`: Write, Edit and NotebookEdit refuse paths
+      outside the working directories in every permission mode'
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+
+# 5. Meta Catching JiTTests at scale (workflow)
+- id: MTRX-W44-JIT-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-meta-jittests
+  lens_id: source_gist
+  mode: extractive
+  content: Meta reported on October 29 that its LLM-generated catching tests, built to fail on a risky diff's behavior
+    change, reached 589 engineers, 64% of those contacted. Engineers reported a 60% true-positive rate. Meta credits
+    the system with a key role in catching 74 serious (SEV) privacy bugs at the diff stage in the first half of 2026 and a
+    20% drop in privacy SEVs over that period.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: false
+  source_refs:
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: As of this writing, 589 engineers at Meta (64% of our outreach) have engaged with Catching JiTTests.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: These engineers have reported that Catching JiTTests surfaces genuinely actionable findings, with a
+      60% rate of true positives.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: In the first half of 2026, Catching JiTTests played a key role in catching 74 serious (SEV) privacy
+      bugs at the diff stage, before they landed in production and lowering the overall occurrence of privacy SEVs by
+      20% during that timeframe.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: Page metadata datePublished 2026-10-29T16:00:12+00:00.
+    ref_type: timestamp
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The 60% is reported by engaged engineers, not a labeled audit, and its denominator is not given.
+  - The 20% privacy-SEV reduction is attributed with "played a key role"; the post gives no counterfactual or control
+    period, so the drop is an author's claim, not a measured effect of the system.
+- id: MTRX-W44-JIT-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-meta-jittests
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: The system runs overnight on the previous day's risky diffs and generates executable tests meant to fail
+    on a behavior change. Failing tests are ranked by an ensemble of LLM judges plus a deterministic rule-based assessor
+    called RubFake, and engineers are contacted only for candidates ranked high enough. Humans set the criteria and
+    review outcomes in aggregate.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: false
+  source_refs:
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: JiTTests are automatically generated and designed to fail, surfacing bugs in code changes (diffs) before
+      they land in production.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: LLM-as-Judge has rich semantics, but its judgements are non-deterministic and challenging to verify.
+      By contrast, RubFake provides verified, deterministic judgments.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: human engineers set criteria and review outcomes at an aggregate level rather than supervising every
+      output.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: engineers rarely need to read test code and only need to confirm whether an observed behavioral change
+      was intended.
+    ref_type: quote
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: The system runs overnight on spare capacity and targets diffs submitted the previous day
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W44-JIT-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-meta-jittests
+  lens_id: risk_and_caveats
+  mode: critique
+  content: This is a company account of an internal system on Meta's codebase and risk model, with figures that are
+    not reproduced. A 60% true-positive rate still means engineers handle wrong catches; the rule-based assessor and the
+    ranking threshold, not the generator, decide that cost. The post states the reusable rule as criteria first,
+    aggregate monitoring, and policy-level intervention.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: true
+  source_refs:
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: 'The approach is generalizable: Engineers define success criteria early, let AI execute the testing,
+      monitor the outcomes at an aggregate level, and intervene at the policy level rather than per item.'
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The generalizability sentence is Meta's claim; no outside deployment is reported.
+- id: MTRX-W44-JIT-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-meta-jittests
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. For ten recent agent-authored diffs, have a model write tests that
+    pass on the parent commit and fail on the diff, keep only those that compile and fail deterministically twice, and
+    record how many a reviewer marks as an intended change, a real bug or noise.
+  structured:
+    source_published_at: '2026-10-29'
+    interpretation: true
+  source_refs:
+  - uri: https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/
+    quote_or_span: Tests are generated to kill each mutant (i.e., distinguish mutant behavior from parent).
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+
+# 6. Vercel AI Gateway virtual models (config)
+- id: MTRX-W44-VMODEL-source_gist
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-vercel-virtual-models
+  lens_id: source_gist
+  mode: extractive
+  content: Vercel introduced virtual models on AI Gateway on October 28. A task-level ID carries the model, fallbacks,
+    Zero Data Retention and tags, and editing it changes every caller without a deploy. Vercel counts 125 new models
+    from more than 10 labs on the gateway in the last 90 days.
+  structured:
+    source_published_at: '2026-10-28'
+    interpretation: false
+  source_refs:
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: In the last 90 days, 125 new models from more than 10 labs became available on AI Gateway.
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: Settings on a virtual model win over the same settings in a request, so callers can't override the
+      provider order, fallbacks, or service tier you chose.
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: 'Page byline: 28 Oct 2026.'
+    ref_type: timestamp
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The 125-model count is Vercel's own catalog figure for its gateway, not an industry count.
+- id: MTRX-W44-VMODEL-mechanism_extraction
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-vercel-virtual-models
+  lens_id: mechanism_extraction
+  mode: extractive
+  content: Settings that apply to every provider move with the alias; provider options do not. Vercel says an
+    Anthropic-specific setting stops applying when the alias points at an OpenAI model, and tells users to review
+    provider options on every switch and to point the original back if quality drops.
+  structured:
+    source_published_at: '2026-10-28'
+    interpretation: false
+  source_refs:
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: Provider options apply per provider, so an Anthropic-specific setting stops applying when you point
+      the virtual model at an OpenAI model.
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: Review your provider options whenever you switch providers.
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: If quality drops after the switch, point the original back at the previous model.
+    ref_type: quote
+  confidence: high
+  faithfulness_status: passed
+  status: verified
+- id: MTRX-W44-VMODEL-risk_and_caveats
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-vercel-virtual-models
+  lens_id: risk_and_caveats
+  mode: critique
+  content: A switch made in a dashboard leaves no diff in the repository that calls the alias. Vercel's own advice is
+    to evaluate a candidate alias before moving production traffic. The post is a product announcement with no
+    measured outcome.
+  structured:
+    source_published_at: '2026-10-28'
+    interpretation: true
+  source_refs:
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: Before you switch a virtual model that serves production traffic, point a second one, like
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: at the new model and run your evals against it.
+    ref_type: quote
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: The Virtual Models page shows requests, spend, and success rate for each task.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
+  warnings:
+  - The missing-diff point is the editor's inference; the gateway shows requests, spend and success rate per virtual
+    model, which is a separate record.
+- id: MTRX-W44-VMODEL-adoption_action
+  matrix_run_id: MTRX-W44-reported-success
+  source_item_id: src-w44-vercel-virtual-models
+  lens_id: adoption_action
+  mode: interpretive
+  content: Proposed test, not run for this issue. In whatever routing layer a project uses, list each setting attached
+    to the current model alias, mark which are provider-specific, switch a candidate alias to another provider, and
+    check which settings still appear on the outgoing request.
+  structured:
+    source_published_at: '2026-10-28'
+    interpretation: true
+  source_refs:
+  - uri: https://vercel.com/blog/ai-gateway-virtual-models
+    quote_or_span: Settings such as fallbacks, Zero Data Retention, and tags stay with the virtual model when you switch
+      models.
+    ref_type: quote
+  confidence: medium
+  faithfulness_status: passed
+  status: verified
