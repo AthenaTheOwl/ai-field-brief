@@ -1,0 +1,102 @@
+matrix_run_id: MTRX-W44-reported-success
+reviewer: claude agent (same-author source reread; no independent reviewer)
+method: Each cell read against the fetched primary body or GitHub release/pull-request body. Every quote-typed span
+  (56) matched verbatim after whitespace and HTML-entity normalization by ops/w44/verify_quotes.py. Chunk and timestamp
+  refs were checked by reading, not by script.
+checks_applied:
+- unsupported_claim
+- overstated_certainty
+- missing_caveat
+- invented_consensus
+- wrong_source_span
+- too_generic
+- unsupported_action
+results:
+- cell_id: MTRX-W44-CFKV-source_gist
+  verdict: PASS
+  caveat: The incident window is August 27 to September 9; only the disclosure is dated inside this issue's window.
+    The 155 count is Cloudflare's own tally of affected responses, excluding nothing it states beyond its own and
+    the researcher's testing.
+- cell_id: MTRX-W44-CFKV-mechanism_extraction
+  verdict: PASS
+  caveat: The no-error sentence describes the related race and page-lifetime bug classes; Cloudflare says this incident's
+    rejected request went through the handoff every time, not by a timing accident, with the same result.
+- cell_id: MTRX-W44-CFKV-risk_and_caveats
+  verdict: PASS
+  caveat: The fix applies to operators running SGLang in disaggregated prefill/decode mode. API customers cannot
+    inspect a provider's pool size; for them the transferable part is the test design, not the patch.
+- cell_id: MTRX-W44-CFKV-adoption_action
+  verdict: PASS
+  caveat: Editor's proposal derived from the incident. Cloudflare's own canary-marker tests are mentioned but not
+    specified.
+- cell_id: MTRX-W44-BTMCP-source_gist
+  verdict: PASS
+- cell_id: MTRX-W44-BTMCP-mechanism_extraction
+  verdict: PASS
+- cell_id: MTRX-W44-BTMCP-risk_and_caveats
+  verdict: PASS
+  caveat: The caret-range point is the editor's inference from semver, not a Braintrust statement. No local upgrade
+    was run.
+- cell_id: MTRX-W44-BTMCP-adoption_action
+  verdict: PASS
+- cell_id: MTRX-W44-NOVELTY-source_gist
+  verdict: PASS
+  caveat: The 93.5% prompt told the model that reviewers had found exactly one idea in each pair novel, which gives
+    the judge the answer's structure. The drop measures sensitivity to that framing on one model, not a typical
+    prompt-wording effect. Labels for generated ideas are weak; Ai2 assumed they were less novel than the paired
+    top-10% ICLR ideas.
+- cell_id: MTRX-W44-NOVELTY-mechanism_extraction
+  verdict: PASS
+  caveat: The macro-F1 and cost comparisons rely on the weak labels for generated ideas. The verdict-flip rate does
+    not.
+- cell_id: MTRX-W44-NOVELTY-risk_and_caveats
+  verdict: PASS
+- cell_id: MTRX-W44-NOVELTY-adoption_action
+  verdict: PASS
+- cell_id: MTRX-W44-TRUST-source_gist
+  verdict: PASS
+  caveat: Release notes record fixes. They do not say how many sessions hit the bugs or which versions introduced
+    them.
+- cell_id: MTRX-W44-TRUST-mechanism_extraction
+  verdict: PASS
+  caveat: The cross-tool comparison is the editor's grouping. The two releases fix different code in different products.
+- cell_id: MTRX-W44-TRUST-risk_and_caveats
+  verdict: PASS
+  caveat: That the setting is opt-in is read from its being added as a named permissions key; the notes do not state
+    a default value.
+- cell_id: MTRX-W44-TRUST-adoption_action
+  verdict: PASS
+- cell_id: MTRX-W44-JIT-source_gist
+  verdict: PASS
+  caveat: The 60% is reported by engaged engineers, not a labeled audit, and its denominator is not given. The 20%
+    privacy-SEV reduction is attributed with "played a key role"; the post gives no counterfactual or control period,
+    so the drop is an author's claim, not a measured effect of the system.
+- cell_id: MTRX-W44-JIT-mechanism_extraction
+  verdict: PASS
+- cell_id: MTRX-W44-JIT-risk_and_caveats
+  verdict: PASS
+  caveat: The generalizability sentence is Meta's claim; no outside deployment is reported.
+- cell_id: MTRX-W44-JIT-adoption_action
+  verdict: PASS
+- cell_id: MTRX-W44-VMODEL-source_gist
+  verdict: PASS
+  caveat: The 125-model count is Vercel's own catalog figure for its gateway, not an industry count.
+- cell_id: MTRX-W44-VMODEL-mechanism_extraction
+  verdict: PASS
+- cell_id: MTRX-W44-VMODEL-risk_and_caveats
+  verdict: PASS
+  caveat: The missing-diff point is the editor's inference; the gateway shows requests, spend and success rate per
+    virtual model, which is a separate record.
+- cell_id: MTRX-W44-VMODEL-adoption_action
+  verdict: PASS
+patches:
+- cell_id: MTRX-W44-NOVELTY-source_gist
+  verdict: PATCH_CELL
+  note: Added the warning that the 93.5% prompt told the judge exactly one idea per pair was novel; without it the
+    drop reads as a generic wording effect.
+- cell_id: MTRX-W44-JIT-source_gist
+  verdict: PATCH_CELL
+  note: 'Added warnings: true-positive rate is engineer-reported; the 20% SEV drop is attributed without a control.'
+- cell_id: MTRX-W44-CFKV-mechanism_extraction
+  verdict: PATCH_CELL
+  note: Scoped the no-error quote to the related bug classes, as the source does.

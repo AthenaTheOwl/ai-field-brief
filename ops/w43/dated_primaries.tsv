@@ -1,0 +1,18 @@
+url	status	date	window	how	slug
+https://platform.claude.com/docs/en/api/migration-2026-10-21	ok		?	none	platform-claude-com-docs-en-api-migration-2026-10-21-214d45
+https://cursor.com/changelog/agent-sdk	ok		?	none	cursor-com-changelog-agent-sdk-4108d4
+https://blog.cloudflare.com/obsessive-inference-optimization/	ok	2026-10-19	in	datePublished	blog-cloudflare-com-obsessive-inference-optimization--6f1913
+https://www.anthropic.com/research/alignment-assessment-ukaisi	ok	2026-10-23	in	datePublished	www-anthropic-com-research-alignment-assessment-ukaisi-beab1a
+https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization	ok	2026-10-21	in	datePublished	huggingface-co-blog-Dharma-AI-vocabx-vocabulary-specialization-47ba5d
+https://alignment.openai.com/monitorability-evals/	ok		?	none	alignment-openai-com-monitorability-evals--a8e68d
+https://www.langchain.com/blog/context-engineering-starts-with-retrieval	ok	2026-10-23	in	datePublished	www-langchain-com-blog-context-engineering-starts-with-retrieval-d21787
+https://blog.cloudflare.com/webmcp-commerce/	ok	2026-10-21	in	datePublished	blog-cloudflare-com-webmcp-commerce--a390cb
+https://huggingface.co/blog/microsoft/thinkingbox-training	ok	2026-10-22	in	datePublished	huggingface-co-blog-microsoft-thinkingbox-training-2ff716
+https://simonwillison.net/2026/Oct/23/kimi-k31-pro/	ok		?	none	simonwillison-net-2026-Oct-23-kimi-k31-pro--6b4083
+https://simonwillison.net/2026/Oct/19/my-obituary-for-programming/	ok		?	none	simonwillison-net-2026-Oct-19-my-obituary-for-programming--0e01cc
+https://simonwillison.net/2026/Oct/22/armin-ronacher/	ok		?	none	simonwillison-net-2026-Oct-22-armin-ronacher--656497
+https://mistral.ai/news/voxtral-3	ok	2026-10-22	in	datePublished	mistral-ai-news-voxtral-3-8b3184
+https://www.anthropic.com/research/claude-scorpion-toxin-binder-design	ok	2026-10-20	in	datePublished	www-anthropic-com-research-claude-scorpion-toxin-binder-design-d4747c
+https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/	ok	2026-10-21	in	datePublished	www-microsoft-com-en-us-research-blog-solving-a-31-year-old-grand-challenge-in-m-499fd8
+https://blog.cloudflare.com/clairic-extraction-model/	ok	2026-10-19	in	datePublished	blog-cloudflare-com-clairic-extraction-model--7307b2
+https://www.langchain.com/blog/how-numan-built-an-eval-first-ai-health-coach-with-langgraph-and-langsmith	ok	2026-10-19	in	datePublished	www-langchain-com-blog-how-numan-built-an-eval-first-ai-health-coach-with-langgr-f5aaa0

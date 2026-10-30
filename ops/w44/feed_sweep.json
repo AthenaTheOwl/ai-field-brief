@@ -1,0 +1,768 @@
+[
+ {
+  "id": "anthropic-news",
+  "url": "https://www.anthropic.com/news",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "Oct 26, 2026",
+    "title": "Investing in the public benefit We’re committing a portion of Anthropic’s shares to the Anthropic Public Benefit Fund, a",
+    "url": "https://www.anthropic.com/news/public-benefit-fund",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 26, 2026",
+    "title": "Announcements",
+    "url": "https://www.anthropic.com/news/announcements",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "Science",
+    "url": "https://www.anthropic.com/science",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 28, 2026",
+    "title": "We’re highlighting 20 scientific foundations, institutions, and research groups around the world that we’ve partnered wi",
+    "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "We're at the start of a major effort to speed up drug development with Claude. Over the past several months, our scienti",
+    "url": "https://www.anthropic.com/research/early-progress-drug-development",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "We are expanding our partnership with the General Services Administration (GSA) through a new agreement that gives gover",
+    "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "Partnerships",
+    "url": "https://www.anthropic.com/news/partnerships",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 26, 2026",
+    "title": "Today, Anthropic, PBC filed a registration statement on Form S-1 with the U.S. Securities and Exchange Commission relati",
+    "url": "https://www.anthropic.com/news/s1-sec",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "anthropic-engineering",
+  "url": "https://www.anthropic.com/engineering",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 5
+ },
+ {
+  "id": "claude-blog",
+  "url": "https://claude.com/blog",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "Oct 28, 2026",
+    "title": "Article Oct 28, 2026 Smart reports, surveys, and pooled group budgets for Claude Enterprise In many organizations, membe",
+    "url": "https://claude.com/resources/articles/smart-reports-surveys-pooled-budgets",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 28, 2026",
+    "title": "Article Oct 28, 2026 IDC brings Quanta into Claude and adopts Claude across the company IDC integrated Claude as part of",
+    "url": "https://claude.com/resources/articles/idc-brings-quanta-into-claude-and-adopts-claude-across-the-company",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 28, 2026",
+    "title": "Article Oct 28, 2026 Introducing artifacts for legal work Claude for Legal now includes ready-to-use artifacts for legal",
+    "url": "https://claude.com/resources/articles/introducing-artifacts-for-legal-work",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "Article Oct 27, 2026 Manage costs and demonstrate ROI for Claude Code on Google Cloud Best practices for managing costs ",
+    "url": "https://claude.com/resources/articles/how-to-manage-costs-and-demonstrate-roi-for-claude-code-on-google-cloud",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 27, 2026",
+    "title": "Article Oct 27, 2026 Claude for Financial Advisors Financial advisors can now connect Claude to the custodians, portfoli",
+    "url": "https://claude.com/resources/articles/claude-for-financial-advisors",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 26, 2026",
+    "title": "Article Oct 26, 2026 Expanding Claude for Nonprofits Our new Claude for Nonprofits plugin brings new skills to every ver",
+    "url": "https://claude.com/resources/articles/expanding-claude-for-nonprofits",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "anthropic-alignment",
+  "url": "https://alignment.anthropic.com",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "openai-news",
+  "url": "https://openai.com/news",
+  "status": "failed: HTTP Error 403: Forbidden",
+  "hits": []
+ },
+ {
+  "id": "openai-research",
+  "url": "https://openai.com/research",
+  "status": "failed: HTTP Error 403: Forbidden",
+  "hits": []
+ },
+ {
+  "id": "deepmind-blog",
+  "url": "https://deepmind.google/discover/blog/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "google-ai-blog",
+  "url": "https://research.google/blog/",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "October 27, 2026",
+    "title": "October 27, 2026 The sleep framework: A new way for LLMs to retain knowledge in continual learning Education Innovation ",
+    "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "google-research-blog",
+  "url": "https://research.google/blog/rss/",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-27",
+    "title": "The sleep framework: A new way for LLMs to retain knowledge in continual learning",
+    "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "aws-ml-blog",
+  "url": "https://aws.amazon.com/blogs/machine-learning/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "aws-open-source-blog",
+  "url": "https://aws.amazon.com/blogs/opensource/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "huggingface-blog",
+  "url": "https://huggingface.co/blog",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "October 30, 2026",
+    "title": "nemotron-halloween 3 October 30, 2026",
+    "url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 29, 2026",
+    "title": "Granite Switch 4.1.1 — Update models like you update software 18 October 29, 2026",
+    "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 29, 2026",
+    "title": "open-source science datasets Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready +3 16 October 29, 202",
+    "url": "https://huggingface.co/blog/announcing-project-protostar",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 29, 2026",
+    "title": "transformers mistral vllm Welcome Le Chonk: Mistral Large 4 on Hugging Face +7 47 October 29, 2026",
+    "url": "https://huggingface.co/blog/mistral-large4",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 29, 2026",
+    "title": "swift mlx coreml Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Pla",
+    "url": "https://huggingface.co/blog/anydecisionmodel",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 27, 2026",
+    "title": "Build specialized multimodal models with LFM3 77 October 27, 2026",
+    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "October 27, 2026",
+    "title": "Can we trust LLMs to judge whether a research idea is novel? 14 October 27, 2026",
+    "url": "https://huggingface.co/blog/allenai/novelty-bench",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "langchain-blog",
+  "url": "https://www.langchain.com/blog",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 8
+ },
+ {
+  "id": "google-developers-ai-blog",
+  "url": "https://developers.googleblog.com/en/search/?query=agents",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "llamaindex-blog",
+  "url": "https://www.llamaindex.ai/blog",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "Oct 29, 2026",
+    "title": "Extract V2.6: Max Effort",
+    "url": "https://www.llamaindex.ai/blog/introducing-max-effort-for-extract-agentic-plus",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct 28, 2026",
+    "title": "Introducing the Document Parsing Protocol",
+    "url": "https://www.llamaindex.ai/blog/introducing-the-document-parsing-protocol",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "mcp-official-blog",
+  "url": "https://blog.modelcontextprotocol.io/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "cloudflare-agents-changelog",
+  "url": "https://developers.cloudflare.com/changelog/product/agents/",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "2026-10-28",
+    "title": "r2-skills ↗︎",
+    "url": "https://github.com/cloudflare/agents/tree/main/examples/r2-skills",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "openai-api-changelog",
+  "url": "https://developers.openai.com/api/docs/changelog",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "claude-platform-release-notes",
+  "url": "https://platform.claude.com/docs/en/release-notes/api",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "October 29, 2026",
+    "title": "complete CHANGELOG.md",
+    "url": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "microsoft-research-blog",
+  "url": "https://www.microsoft.com/en-us/research/blog/feed/",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-30",
+    "title": "From synthetic enterprise data evaluations to real Microsoft Copilot AI confidence",
+    "url": "https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence/",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "microsoft-official-blog",
+  "url": "https://blogs.microsoft.com/feed/",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-28",
+    "title": "Introducing the Microsoft Copilot harness: Unlocking the potential of truly multi-model agentic work",
+    "url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "The platform approach to becoming Frontier",
+    "url": "https://blogs.microsoft.com/blog/2026/10/27/the-platform-approach-to-becoming-frontier/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Introducing a Voluntary Exit Offer",
+    "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "vercel-news",
+  "url": "https://vercel.com/blog/feed.xml",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-30",
+    "title": "Introducing Geist Serif",
+    "url": "https://vercel.com/blog/introducing-geist-serif",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-30",
+    "title": "Simplifying runtime caching on Vercel",
+    "url": "https://vercel.com/blog/simplifying-runtime-caching-on-vercel",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-30",
+    "title": "Data Cache is moving to Runtime Cache",
+    "url": "https://vercel.com/changelog/data-cache-is-moving-to-runtime-cache",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-30",
+    "title": "Ling 3.1 Flash 1019 now available on AI Gateway for free",
+    "url": "https://vercel.com/changelog/ling-3-1-flash-1019-now-available-on-ai-gateway-for-free",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-30",
+    "title": "Add liveness checks to your Daemons",
+    "url": "https://vercel.com/changelog/add-liveness-checks-to-your-daemons",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Strix now supports Vercel AI Gateway",
+    "url": "https://vercel.com/changelog/strix-now-supports-vercel-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "IP geolocation now covers more visitors at higher resolution",
+    "url": "https://vercel.com/changelog/improved-ip-geolocation-data",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Vercel Flags starts 7x faster and no longer extends function duration",
+    "url": "https://vercel.com/changelog/vercel-flags-starts-7x-faster-and-no-longer-extends-function-duration",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "The fx adapter now runs the harness on the host",
+    "url": "https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Node.js 26 LTS is now Generally Available on Vercel",
+    "url": "https://vercel.com/changelog/node-js-26-lts-is-now-generally-available-on-vercel",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Vercel Connect adds webhook triggers for more providers",
+    "url": "https://vercel.com/changelog/vercel-connect-adds-webhook-triggers-for-more-providers",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Control AI crawlers and assistants separately in Vercel Firewall",
+    "url": "https://vercel.com/changelog/block-ai-crawlers-and-assistants-independently-with-managed-rules",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Vercel Plugin is now available in Antigravity",
+    "url": "https://vercel.com/changelog/vercel-plugin-is-now-available-in-antigravity",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-29",
+    "title": "Mistral Large 4 updated weights and lower pricing on AI Gateway",
+    "url": "https://vercel.com/changelog/mistral-large-4-updated-weights-and-lower-pricing-on-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Vercel CI is now in beta",
+    "url": "https://vercel.com/changelog/vercel-ci-is-now-in-beta",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Box Mount now runs in Vercel Sandbox",
+    "url": "https://vercel.com/changelog/box-mount-now-runs-in-vercel-sandbox",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Vercel Container Registry now supports 2 GB compressed image layers",
+    "url": "https://vercel.com/changelog/vercel-container-registry-now-supports-2-gb-compressed-image-layers-new",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Introducing Virtual Models on AI Gateway",
+    "url": "https://vercel.com/blog/ai-gateway-virtual-models",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Introducing Vercel CI",
+    "url": "https://vercel.com/blog/introducing-vercel-ci",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Vercel Agent can now validate alerts before paging",
+    "url": "https://vercel.com/changelog/vercel-agent-can-now-validate-alerts-before-paging-you",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Virtual models now available on AI Gateway",
+    "url": "https://vercel.com/changelog/virtual-models-now-available-on-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Run Paseo agents on Vercel Sandbox",
+    "url": "https://vercel.com/changelog/run-paseo-agents-on-vercel-sandbox",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Particle-1 is now available on AI Gateway",
+    "url": "https://vercel.com/changelog/particle-1-is-now-available-on-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Agents can now enable Web Analytics and Observability Plus with Vercel CLI",
+    "url": "https://vercel.com/changelog/agents-can-now-enable-web-analytics-and-observability-plus-with-vercel-cli",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "fx is now available in T3 Code",
+    "url": "https://vercel.com/changelog/fx-is-now-available-in-t3-code",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Vercel Plugin now available in OpenCode",
+    "url": "https://vercel.com/changelog/vercel-plugin-now-available-in-opencode",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "AI traffic insights now available in Vercel Observability",
+    "url": "https://vercel.com/changelog/ai-traffic-insights-now-available-in-vercel-observability",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "ElevenLabs on AI Gateway",
+    "url": "https://vercel.com/blog/elevenlabs-on-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "Deploy a container from a plain Dockerfile",
+    "url": "https://vercel.com/changelog/deploy-a-container-from-a-plain-dockerfile",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "Vercel Agent sessions now cost 67% less",
+    "url": "https://vercel.com/changelog/vercel-agent-sessions-now-cost-67-percent-less",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "HarnessAgent now supports image inputs for all harness adapters",
+    "url": "https://vercel.com/changelog/harness-agent-image-inputs",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Discover 1000+ services on Vercel Connect from the CLI",
+    "url": "https://vercel.com/changelog/discover-1000-services-on-vercel-connect-from-the-cli",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Run Scale AI’s AgentEnv evals on Vercel Sandbox",
+    "url": "https://vercel.com/changelog/run-scale-ais-agentenv-evals-on-vercel-sandbox",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Create custom monitors in Vercel Observability",
+    "url": "https://vercel.com/changelog/create-custom-monitors-in-vercel-observability",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Vercel Sandbox commands now support stdin",
+    "url": "https://vercel.com/changelog/vercel-sandbox-commands-now-support-stdin",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Customizable widgets for project cards",
+    "url": "https://vercel.com/changelog/customizable-widgets-for-project-cards",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "GPT-6.1 Terra now available on AI Gateway",
+    "url": "https://vercel.com/changelog/gpt-6-1-terra-now-available-on-ai-gateway",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Faster pnpm installs",
+    "url": "https://vercel.com/changelog/faster-pnpm-installs",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "cursor-changelog",
+  "url": "https://cursor.com/changelog/rss.xml",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "nvidia-dev-blog",
+  "url": "https://developer.nvidia.com/blog/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 9
+ },
+ {
+  "id": "mistral-news",
+  "url": "https://mistral.ai/news/",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "October 29, 2026",
+    "title": "Research Le Chonk: Built for Coders, Trusted by Defenders. We release the weights of Le Chonk, advancing the frontier of",
+    "url": "https://mistral.ai/news/mistral-large-4-oss/",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "meta-ai-blog",
+  "url": "https://ai.meta.com/blog/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "meta-engineering",
+  "url": "https://engineering.fb.com/feed/",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-29",
+    "title": "Catching Bugs Before They Land: JiTTesting’s Human-on-the-Loop Approach at Full Scale",
+    "url": "https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-28",
+    "title": "Meta Andromeda: Powering the Next Generation of Ads Retrieval Through Model-System Co-Design",
+    "url": "https://engineering.fb.com/2026/10/28/ml-applications/meta-andromeda-next-gen-ads-retrieval-gpu-co-design/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "PrivacyLib: Privacy Controls at the Data Access Boundary",
+    "url": "https://engineering.fb.com/2026/10/27/security/privacylib/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-27",
+    "title": "Python Typing Survey 2026: AI Tools and the Shifting Checker Landscape",
+    "url": "https://engineering.fb.com/2026/10/27/developer-tools/python-typing-survey-2026-ai-tools-checker-landscape/",
+    "how": "feed date"
+   },
+   {
+    "date": "2026-10-26",
+    "title": "Meta Networking at the 2026 OCP Global Summit: Open Innovation for Scale-Up, Scale-Out, and Scale-Across AI Networks",
+    "url": "https://engineering.fb.com/2026/10/26/open-source/ocp-summit-2026-meta-networking-talks/",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "simon-willison",
+  "url": "https://simonwillison.net",
+  "status": "ok",
+  "hits": [
+   {
+    "date_text": "Oct. 28, 2026",
+    "title": "ai",
+    "url": "https://simonwillison.net/tags/ai/",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct. 28, 2026",
+    "title": "llms",
+    "url": "https://simonwillison.net/tags/llms/",
+    "how": "index text near link"
+   },
+   {
+    "date_text": "Oct. 28, 2026",
+    "title": "The October inflection point for vibe game development",
+    "url": "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+    "how": "index text near link"
+   }
+  ],
+  "kind": "html"
+ },
+ {
+  "id": "drew-breunig",
+  "url": "https://www.dbreunig.com/feed.xml",
+  "status": "ok",
+  "hits": [
+   {
+    "date": "2026-10-24",
+    "title": "The State of Context Engineering",
+    "url": "https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html",
+    "how": "feed date"
+   }
+  ],
+  "kind": "feed"
+ },
+ {
+  "id": "hamel-husain",
+  "url": "https://hamel.dev",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "chip-huyen",
+  "url": "https://huyenchip.com/feed",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "swyx-blog",
+  "url": "https://www.swyx.io/rss.xml",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "addy-osmani",
+  "url": "https://addyosmani.com/blog/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 0
+ },
+ {
+  "id": "lilianweng-blog-rss",
+  "url": "https://lilianweng.github.io/index.xml",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "karpathy-bearblog",
+  "url": "https://karpathy.bearblog.dev/feed/",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "redis-ai-blog",
+  "url": "https://redis.io/blog/",
+  "status": "ok",
+  "hits": [],
+  "kind": "html",
+  "in_window_text_dates": 2
+ },
+ {
+  "id": "replicate-blog",
+  "url": "https://replicate.com/blog/rss",
+  "status": "ok",
+  "hits": [],
+  "kind": "feed"
+ },
+ {
+  "id": "openai-harness-engineering",
+  "url": "https://openai.com/index/harness-engineering/",
+  "status": "failed: HTTP Error 403: Forbidden",
+  "hits": []
+ }
+]

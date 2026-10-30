@@ -1,0 +1,145 @@
+iso_week: 2026-W43
+through_date: 2026-10-23
+generated_at: '2026-10-30T20:05:00Z'
+generated_by: claude-agent (Claude Opus 5.5 via Claude Code; W43 lane of a two-issue run, orchestrator updates index and run records)
+title: An abort note stopped Mythos 5 in 46% of samples at cycle 3. After that, none did.
+volume: 26
+profile_id: personal
+registry_version: 14
+matrix_run_id: MTRX-W43-live-boundaries
+sweep:
+  attempted: 120
+  succeeded: 114
+  failed: 6
+  skipped: 0
+source_mix:
+  primary_docs: 2
+  vendor_changelogs: 9
+  framework_release_indexes: 24
+  vendor_research_posts: 1
+  vendor_security_posts: 1
+  practitioner_blogs: 1
+  internal_digest_inputs: 7
+top_signal_count: 5
+action_packet_count: 5
+scout_count: 3
+cell_count: 18
+notes:
+- 'Coverage: October 19 through October 23, following W42''s October 18 through-date. Generated October 30 as a
+  catch-up alongside W44; the actual generation date is recorded above.'
+- 'Discovery by script. ops/w43/mine_candidates.py mined 71 primary-looking URLs from six private daily digests
+  (October 19 to 24; the 24th was included because a daily often reports the previous day) and the October 23 weekly
+  digest. ops/w43/date_candidates.py fetched each and read the date from the item''s own page (arXiv v1 line,
+  datePublished, article time, dateline or URL path): 15 in window, 44 out of window, 7 undatable repository pages,
+  5 fetch failures (three openai.com pages at HTTP 403, investing.com, reuters.com). Most out-of-window items were
+  September and early-October papers repeated as background. One in-window digest lead, the Microsoft Storm-0940
+  post, reached a Top signal.'
+- 'Private digests are discovery leads only. Their text, document ids and links are not reproduced or cited; every
+  claim in the issue cites a public primary.'
+- 'Primary feed sweep: ops/w43/sweep_feeds.py fetched 30 vendor and practitioner indexes and feeds drawn from active
+  registry entries (Anthropic news, engineering, research and alignment; Claude Platform and Claude app release notes;
+  OpenAI news RSS, API changelog and alignment blog; DeepMind; Google Research; Google Developers AI; Google Cloud AI;
+  Gemini API changelog; Microsoft Research and Security blogs; AWS ML and Open Source blogs; Mistral; Hugging Face;
+  Simon Willison; LangChain; LlamaIndex; MCP blog; Cloudflare Agents changelog and blog; Vercel; Cursor; GitHub
+  changelog; Meta AI). 29 returned; the Google Cloud AI blog index timed out.'
+- 'GitHub scout: ops/w43/scout_github.py read releases and CHANGELOG commits for 24 framework repositories, dated by
+  GitHub published_at, for 2026-10-19T00:00Z to 2026-10-24T00:00Z: 84 in-window rows.'
+- 'Nineteen shortlisted primaries were fetched to .tmp/w43/pages and dated from their own pages. One was out of window
+  (alignment.openai.com/monitorability-evals/, April 23). The Claude API migration guide carries no date of its own;
+  it is dated by the October 21 release-notes entry and anthropic-sdk-python v2.0.0 published_at.'
+- 'Sweep arithmetic: attempted 120 = 71 digest URLs + 30 feeds + 19 shortlisted primaries; failed 6 = 5 digest fetch
+  failures + 1 feed timeout. The 24 GitHub repositories were read through the API and are counted in source_mix, not
+  in attempted.'
+- 'Five Top signals on five distinct surfaces: eval, tool-policy, cost, config, security. Candidates without a
+  measurement or a testable mechanism went to Scout radar (Cloudflare MCP step-up, Cursor Agent SDK, Agent Skills and
+  the MCP Skills extension) or Archive notes.'
+- 'Every ref_type=quote span (53 across 18 cells) was matched verbatim against the live source by
+  ops/w43/verify_quotes.py after whitespace normalization; 0 failed. The W43 copy sends the fuller User-Agent the
+  dating pass used, because microsoft.com returns 403 to a bare "Mozilla/5.0"; the matching rule is unchanged.
+  GitHub release quotes are matched against the API release body.'
+- 'Faithfulness: same-author seven-question reread of each cell against the fetched primary; no independent reviewer.
+  Conditional or maximum figures carry cell warnings: Cloudflare''s 68% baseline is its two most expensive weeks (about
+  35% against April), its cost split is not a controlled experiment, Storm-0940''s under-three-hours is the fastest
+  observed cases, the AISI run predates the window and the replay rates cover only the next few turns.'
+- 'Self-check before finishing: the primary behind each Top signal headline number was re-opened and the number, date
+  and attribution confirmed (AISI 9 of 43 and 46%, Claude Code 2.1.309 published 2026-10-22, Cloudflare $0.77 / 68% /
+  $2.43 and 14% to 26%, API 2026-10-21 400 at default values, Microsoft less than 3 hours).'
+- 'Independent skeptic pass: re-opened 23 primaries live (including AISI''s August 4 and October 23 reports) and
+  checked 37 claims; 31 held, 6 corrected, 0 dropped (ops/w43/skeptic-review.json). The original title''s nine-of-43
+  count already followed from AISI''s August 4 report, so the title now uses the in-window replay figure.'
+- 'No action scores are stored for this issue; picks were chosen by the editor against config/scoring_model.yaml
+  criteria without writing per-axis numbers. Proposed tests have not been executed. No paid model calls, push or
+  deployment occurred.'
+sources_reviewed:
+- label: Anthropic alignment assessment of the UK AISI cybertesting incident
+  url: https://www.anthropic.com/research/alignment-assessment-ukaisi
+  disposition: top_signal
+- label: Claude Code 2.1.305
+  url: https://github.com/anthropics/claude-code/releases/tag/v2.1.305
+  disposition: top_signal
+- label: Claude Code 2.1.307
+  url: https://github.com/anthropics/claude-code/releases/tag/v2.1.307
+  disposition: top_signal
+- label: Claude Code 2.1.309
+  url: https://github.com/anthropics/claude-code/releases/tag/v2.1.309
+  disposition: top_signal
+- label: Claude Code 2.1.310
+  url: https://github.com/anthropics/claude-code/releases/tag/v2.1.310
+  disposition: top_signal
+- label: Cloudflare inference cost post
+  url: https://blog.cloudflare.com/obsessive-inference-optimization/
+  disposition: top_signal
+- label: Migrating to Claude API version 2026-10-21
+  url: https://platform.claude.com/docs/en/api/migration-2026-10-21
+  disposition: top_signal
+- label: Claude Platform release notes
+  url: https://platform.claude.com/docs/en/release-notes/overview
+  disposition: top_signal
+- label: anthropic-sdk-python v2.0.0
+  url: https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.0.0
+  disposition: top_signal
+- label: Microsoft Storm-0940 ARTEX report
+  url: https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/
+  disposition: top_signal
+- label: Cloudflare API MCP step-up authorization
+  url: https://developers.cloudflare.com/changelog/post/2026-10-19-cloudflare-mcp-step-up/
+  disposition: scout
+- label: Cloudflare MCP servers retire /sse
+  url: https://developers.cloudflare.com/changelog/post/2026-10-22-cloudflare-mcp-servers-retire-sse/
+  disposition: archive
+- label: Cursor Agent SDK
+  url: https://cursor.com/changelog/agent-sdk
+  disposition: scout
+- label: Donating Agent Skills to the Agentic AI Foundation
+  url: https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation
+  disposition: scout
+- label: MCP TypeScript SDK core 2.4.0
+  url: https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol%2Fcore%402.4.0
+  disposition: scout
+- label: langchain-core 1.7.0
+  url: https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.0
+  disposition: scout
+- label: Deep Agents 0.7.30
+  url: https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.7.30
+  disposition: scout
+- label: pydantic-ai 2.59.0
+  url: https://github.com/pydantic/pydantic-ai/releases/tag/v2.59.0
+  disposition: scout
+- label: OpenAI news RSS (in-window posts)
+  url: https://openai.com/news/rss.xml
+  disposition: failed_current_index
+- label: Google Cloud AI blog
+  url: https://cloud.google.com/blog/products/ai-machine-learning
+  disposition: failed_current_index
+- label: OpenAI monitorability evaluations
+  url: https://alignment.openai.com/monitorability-evals/
+  disposition: out_of_window
+failures:
+- 'openai.com article pages: HTTP 403 to the fetcher (three digest leads, including the October 21 coordinated
+  disclosure post). The RSS feed returned and dated them; no cell could be verified, so none was promoted.'
+- 'Google Cloud AI blog index: read timed out.'
+- 'investing.com and reuters.com digest leads: fetch failed; both were market news with no builder action.'
+next_run:
+- Run the broken-hook and sandbox startup-file canaries before claiming any local exposure.
+- Re-read Cloudflare's promised high-effort results for its security and performance reviewers.
+- Find a fetch path for openai.com articles that the quote verifier can use, or keep them out of cells.

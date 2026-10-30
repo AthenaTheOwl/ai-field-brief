@@ -1,0 +1,106 @@
+n	digest_date	date	window	how	status	title	url
+1	2026-10-24	2026-10-21	out	datePublished	ok	AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise |	https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/
+2	2026-10-24	2026-10-19	out	arxiv v1	ok	CXBench: A Benchmark for Process-Compliant LLM Agents in Regulated Customer-Experience Wor	https://arxiv.org/abs/2610.25954
+3	2026-10-24	2026-10-22	out	datePublished	ok	LLMs are making formal software verification feasible at a much larger scale \ Anthropic	https://www.anthropic.com/research/formal-verification
+4	2026-10-24		undated		fail: HTTP Error 401: HTTP Forbidden		https://www.reuters.com/business/healthcare-pharmaceuticals/microsoft-develops-ai-tool-that-can-diagnose-sequentially-like-doctor-2026-10-23/
+5	2026-10-24	2026-10-22	out	datePublished	ok	Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘m	https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/
+6	2026-10-24	2026-10-23	out	datePublished	ok	Wayve, Stellantis, and NVIDIA Collaborate to Advance Safe and Responsible Autonomous Vehic	https://wayve.ai/press/wayve-stellantis-nvidia-collaborate-on-deployment-across-france/
+7	2026-10-24	2026-10-02	out	arxiv v1	ok	Passing the Test You Trained On: Re-evaluating Prompt-Injection Detectors for LLM Agents	https://arxiv.org/abs/2610.03448
+8	2026-10-24	2026-10-05	out	arxiv v1	ok	Towards a Unified Misuse Monitoring Benchmark	https://arxiv.org/abs/2610.07089
+9	2026-10-24	2026-09-21	out	arxiv v1	ok	Embedded Assessments for Frontier AI	https://arxiv.org/abs/2609.25413
+10	2026-10-25		undated		fail: HTTP Error 403: Forbidden		https://www.benzinga.com/etfs/specialty-etfs/26/10/62545840/nvidias-ai-warning-111-oil-why-soxl-just-suffered-a-brutal-20-wipeout
+11	2026-10-25		undated		fail: HTTP Error 403: Forbidden		https://dealroom.co/news/160271-jensen-huangs-son-in-law-nico-caprez-runs-nvidias-push-to-finance-the-ne/
+12	2026-10-25	2026-09-16	out	arxiv v1	ok	The Other Half of the Memory Wall: Serving 35B MoEs from SSD with Trained Routing Predicti	https://arxiv.org/abs/2609.18063
+13	2026-10-25	2026-10-23	out	datePublished	ok	An alignment assessment of the UK AISI cybertesting incident \ Anthropic	https://www.anthropic.com/research/alignment-assessment-ukaisi
+14	2026-10-25	2026-10-19	out	arxiv v1	ok	LeakBench: Auditing Reward Hacking through Prediction-Time Leakage in Clinical Modeling Ag	https://arxiv.org/abs/2610.26088
+15	2026-10-25	2026-10-06	out	arxiv v1	ok	nanoMuse: An Open-Source Personal Agent for Every Device You Own	https://arxiv.org/abs/2610.08699
+16	2026-10-25	2026-10-20	out	arxiv v1	ok	Scaling in Games: Continued Pre-Training For Embodied Agents In Diverse Virtual Worlds	https://arxiv.org/abs/2610.28698
+17	2026-10-25	2026-10-09	out	arxiv v1	ok	Reward Hacking as a Transmissible Strategy in Multi-Agent Coding Systems	https://arxiv.org/abs/2610.12822
+18	2026-10-25	2026-10-09	out	arxiv v1	ok	Harness^2: Recursive Agent Harnessing for an Open World	https://arxiv.org/abs/2610.14224
+19	2026-10-25	2026-10-09	out	arxiv v1	ok	Harness^2: Recursive Agent Harnessing for an Open World	https://huggingface.co/papers/2610.14224
+20	2026-10-25	2026-10-06	out	arxiv v1	ok	nanoMuse: An Open-Source Personal Agent for Every Device You Own	https://huggingface.co/papers/2610.08699
+21	2026-10-25	2026-09-16	out	arxiv v1	ok	The Other Half of the Memory Wall: Serving 35B MoEs from SSD with Trained Routing Predicti	https://huggingface.co/papers/2609.18063
+22	2026-10-25	2026-10-20	out	arxiv v1	ok	Scaling in Games: Continued Pre-Training For Embodied Agents In Diverse Virtual Worlds	https://huggingface.co/papers/2610.28698
+23	2026-10-26		undated		fail: HTTP Error 403: Forbidden		https://openai.com/index/securing-our-frontier-model-training-environment/
+24	2026-10-26	2026-10-22	out	datePublished	ok	Introducing Agent Compute Engine and expanding agent governance | Google Cloud Blog	https://cloud.google.com/blog/topics/ai-infrastructure/introducing-agent-compute-engine-and-expanded-agent-governance
+25	2026-10-26	2026-10-23	out	article:published_time	ok	Introducing Infinity: a runtime for extreme agent concurrency | AWS Open Source Blog	https://aws.amazon.com/blogs/opensource/introducing-infinity-a-runtime-for-extreme-agent-concurrency/
+26	2026-10-26	2026-10-23	out	datePublished	ok	Closing Look — Friday, October 23, 2026	https://cappnotes.substack.com/p/closing-look-friday-october-23-2026
+27	2026-10-26	2026-04-13	out	github repo created_at	ok	An agent runtime and tool protocol for principled agent concurrency	https://github.com/hydro-project/infinity
+28	2026-10-26	2026-10-22	out	datePublished	ok	Donating Agent Skills to the Agentic AI Foundation \ Anthropic	https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation
+29	2026-10-26	2026-10-23	out	datePublished	ok	The Epoch Brief - October 23, 2026	https://epochai.substack.com/p/the-epoch-brief-october-23-2026
+30	2026-10-26		undated	no date found	ok	What's New in Cursor — Latest Updates & Release Notes	https://cursor.com/changelog
+31	2026-10-26	2026-09-26	out	arxiv v1	ok	Reward Hacking and Agent Containment Failure: A Monte Carlo Study Based on the 2026 Huggin	https://arxiv.org/abs/2609.32390
+32	2026-10-26	2026-03-01	out	arxiv v1	ok	Quantifying Frontier LLM Capabilities for Container Sandbox Escape	https://arxiv.org/abs/2603.02277
+33	2026-10-27		undated		fail: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate 		https://www.techspot.com/news/114333-nvidia-ai-chips-already-make-billions-now-jensen.html
+34	2026-10-27	2026-10-07	out	arxiv v1	ok	Package Hallucination Attacks on Coding Agents through Prompt Injection in Rule Files	https://arxiv.org/abs/2610.09264v1
+35	2026-10-27		undated		fail: HTTP Error 403: Forbidden		https://www.tipranks.com/news/meta-launches-95-billion-stock-offering-plan-to-fund-ai-expansion-nvidia-amd-and-broadcom-weigh-5-billion-purchase
+36	2026-10-27	2026-10-26	in	datePublished	ok	Microsoft offers buyouts to around 60,000 employees | TechCrunch	https://techcrunch.com/2026/10/26/microsoft-offers-buyouts-to-around-60000-employees-reports-say/
+37	2026-10-27	2026-10-25	in	datePublished	ok	Nvidia eyes converting old nuclear plants into massive AI data centers — reusing shut-down	https://www.tomshardware.com/tech-industry/data-centers/nvidia-eyes-converting-old-nuclear-plants-into-massive-ai-data-centers-reusing-shut-down-german-energy-sites-could-reduce-the-cost-and-timeline-of-building-from-scratch
+38	2026-10-27	2026-10-24	in	datePublished	ok	Global TV, Film & Media Industry News Roundup, Weekend 24-25 October 2026	https://furtherandbetter.substack.com/p/global-tv-film-and-media-industry-cbc
+39	2026-10-27	2026-10-08	out	datePublished	ok	The Epoch Brief - October 8, 2026 - by Elliot Stewart	https://epochai.substack.com/p/the-epoch-brief-october-8-2026
+40	2026-10-27	2026-10-26	in	arxiv v1	ok	Skill$^{\infty}$: Recursive Self-Improvement for Agent Skill Optimization	https://arxiv.org/abs/2610.35434
+41	2026-10-27	2026-10-25	in	arxiv v1	ok	RynnVLA-Latent: Scaling Robotic Manipulation Foundation Models with 3D-Grounded Latent Act	https://arxiv.org/abs/2610.34356
+42	2026-10-28	2026-10-28	in	datePublished	ok	Nvidia Stock $217.94 Before MSFT, GOOGL Capex: Bull $243	https://financefeeds.com/nvidia-nvda-stock-217-94-wednesday-fed-day-microsoft-alphabet-capex-tonight-bull-243-bear-190/
+43	2026-10-28	2026-10-28	in	datePublished	ok	AI Daily Digest — 2026-10-28 · Issue #196 · diclogic/ai-daily-digest · GitHub	https://github.com/diclogic/ai-daily-digest/issues/196
+44	2026-10-28	2026-10-23	out	hf createdAt	ok	LiquidAI/LFM3-1.7B	https://huggingface.co/LiquidAI/LFM3-1.7B
+45	2026-10-28	2026-10-24	in	hf createdAt	ok	LiquidAI/LFM3-1.7B-GGUF	https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF
+46	2026-10-28	2026-02-07	out	github repo created_at	ok	Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO,	https://github.com/AgriciDaniel/claude-seo
+47	2026-10-28	2026-03-16	out	github repo created_at	ok		https://github.com/android/skills
+48	2026-10-28	2025-12-28	out	github repo created_at	ok	Annotate and review coding agent plans and code diffs visually, share with your team, send	https://github.com/backnotprop/plannotator
+49	2026-10-28	2026-10-22	out	datePublished	ok	Microsoft's MAI-DxO Beats Doctors 83% to 36% on NEJM Cases | AI Weekly	https://aiweekly.co/alerts/microsofts-mai-dxo-beats-doctors-83-to-36-on-nejm-cases
+50	2026-10-28	2026-10-27	in	datePublished	ok	We’re announcing Genie 4, our new world model for real-time interactive simulation.	https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4/
+51	2026-10-28	2026-10-19	out	arxiv v1	ok	Agent World Model in the Wild: Computer-Use Agent Environment Synthesis	https://arxiv.org/abs/2610.26828
+52	2026-10-28	2026-09-30	out	github repo created_at	ok	Agent World Model in the Wild: Computer-Use Agent Environment Synthesis	https://github.com/MSR-Orchard/WildAWM
+53	2026-10-28	2026-10-25	in	arxiv v1	ok	DynaFlow: Learning Free-Form Multi-Agent Orchestration	https://arxiv.org/abs/2610.34467
+54	2026-10-28	2026-10-22	out	github repo created_at	ok	DynaFlow: Learning Free-Form Multi-Agent Orchestration	https://github.com/amiya-special/Dynaflow
+55	2026-10-28	2026-10-22	out	arxiv v1	ok	An Introduction to World Models for Generalist Agents	https://arxiv.org/html/2610.30789
+56	2026-10-29	2026-10-26	in	datePublished	ok	Cross-request KV cache exposure in the GLM-5.3 Workers AI model, and our remediation with 	https://blog.cloudflare.com/kv-cache-exposure-remediation/
+57	2026-10-29	2026-10-05	out	arxiv v1	ok	Can CaMeLs Talk? Securing Multi-Agent Systems Against Indirect Prompt Injection Attacks	https://arxiv.org/abs/2610.05640
+58	2026-10-29	2026-10-28	in	datePublished	ok	Microsoft’s cloud growth accelerates, and so too does the spending | Fortune	https://fortune.com/2026/10/28/microsofts-cloud-growth-accelerates-and-so-too-does-the-spending/
+59	2026-10-29		undated		fail: HTTP Error 403: Forbidden		https://openai.com/index/oracle-apps-in-chatgpt/
+60	2026-10-29	2026-10-27	in	datePublished	ok	Expanding our partnership with GSA to bring Claude to all levels of government \ Anthropic	https://www.anthropic.com/news/expanding-partnership-gsa
+61	2026-10-29	2026-10-27	in	datePublished	ok	Early progress on accelerating drug development with Claude \ Anthropic	https://www.anthropic.com/research/early-progress-drug-development
+62	2026-10-29		undated	no date found	ok		https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/
+63	2026-10-29	2026-09-10	out	datePublished	ok	Nvidia is reportedly being investigated by the DOJ over its biggest ever deal, a $20 billi	https://pcgamer.com/hardware/nvidia-is-reportedly-being-investigated-by-the-doj-over-its-biggest-ever-deal-a-usd20-billion-non-exclusive-agreement-with-groq
+64	2026-10-29	2026-10-14	out	arxiv v1	ok	Beyond LLM Judge: Mechanical Verification for Agentic Autoformalization	https://arxiv.org/abs/2610.20573
+65	2026-10-29	2026-09-19	out	arxiv v1	ok	Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injectio	https://arxiv.org/abs/2609.22949
+66	2026-10-29	2026-10-15	out	arxiv v1	ok	The Model Knows Better: Defending Medical Multi-Agent Systems Against Prompt Injection	https://arxiv.org/abs/2610.22594
+67	2026-10-29	2026-10-08	out	arxiv v1	ok	An Exploration of Attacks on AI Agent Systems	https://arxiv.org/abs/2610.12524
+68	2026-10-29	2026-10-13	out	github repo created_at	ok	FLMF Chapter 7: Error Functions, Dawson's and Fresnel Integrals — dataset and standalone L	https://github.com/annamei1/FLMF-Ch7ErrFunc-Release
+69	2026-10-29	2026-10-04	out	arxiv v1	ok	AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolv	https://arxiv.org/abs/2610.05367
+70	2026-10-29	2026-10-22	out	arxiv v1	ok	PaperFormalizer: Author-in-the-Loop Autoformalization of Research Papers in Lean	https://arxiv.org/abs/2610.31810
+71	2026-10-30	2026-10-28	in	datePublished	ok	Introducing Gemini 4 Carbon	https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/
+72	2026-10-30	2026-10-09	out	arxiv v1	ok	Long-Horizon-Terminal-Bench 2.0: Automating Diverse Task Construction and Measuring Sustai	https://arxiv.org/html/2610.14146v1
+73	2026-10-30	2026-10-14	out	arxiv v1	ok	Doc2Harness: Benchmarking LLMs on Long-Horizon Harness Engineering of Coding Agents	https://arxiv.org/abs/2610.20344
+74	2026-10-30	2026-10-25	in	arxiv v1	ok	Continual Learning Exam: Benchmarking Long-Horizon RSI and Experiential Learning in LLM Ag	https://arxiv.org/abs/2610.33956
+75	2026-10-30	2026-10-28	in	datePublished	ok	Microsoft Q1 Revenue Hits $92.3B, Azure Up 48% as Capex Jumps to $39.4B With $175B FY27 Gu	https://aiweekly.co/alerts/microsoft-q1-revenue-hits-923b-azure-up-48-as-capex-jumps-to-394b-with-175b
+76	2026-10-30	2026-10-29	in	datePublished	ok	Google and Microsoft missed AI spending estimates in Q3 2026 earnings	https://qz.com/google-microsoft-ai-spending-estimates-miss-neocloud-stocks-102926
+77	2026-10-30	2026-10-28	in	datePublished	ok	Nvidia's $12.93B Hugging Face Deal Draws DOJ Antitrust Probe | AI Weekly	https://aiweekly.co/alerts/nvidias-1293b-hugging-face-deal-draws-doj-antitrust-probe
+78	2026-10-30		undated		fail: HTTP Error 403: Forbidden		https://openai.com/index/openai-servicenow-partnership-expansion/
+79	2026-10-30		undated		fail: HTTP Error 403: Forbidden		https://www.bloomberg.com/news/articles/2026-10-28/furiosaai-quadruples-valuation-to-2-9-billion-in-nvidia-chase
+80	2026-10-30		undated		fail: HTTP Error 403: Forbidden		https://www.bloomberg.com/news/articles/2026-10-29/canada-nvidia-back-cohere-in-round-at-over-20-billion-value
+81	2026-10-30		undated	no date found	ok	Introducing the Document Parsing Protocol	https://www.llamaindex.ai/blog/introducing-the-document-parsing-protocol
+82	2026-10-30	2026-10-15	out	arxiv v1	ok	TokenEconomizer: Experience-Driven Black-Box Cost Control for Coding Agents	https://arxiv.org/abs/2610.22732
+83	2026-10-30	2026-10-17	out	hf createdAt	ok	deepseek-ai/DeepSeek-V4.1-Flash-1017	https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
+84	2026-10-30	2026-10-07	out	hf createdAt	ok	nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B	https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B
+85	2026-10-30	2026-10-27	in	arxiv v1	ok	Hy-Nomas: Towards Free-form Interactive World Generation	https://huggingface.co/papers/2610.36729
+86	2026-10-30		undated		fail: HTTP Error 403: Forbidden		https://openai.com/index/the-future-of-the-firm/
+87	2026-10-30	2026-01-09	out	arxiv v1	ok	Don't Break the Cache: An Evaluation of Prompt Caching for Long-Horizon Agentic Tasks	https://arxiv.org/html/2601.06007v2
+88	2026-10-30	2025-09-29	out	datePublished	ok	Effective context engineering for AI agents \ Anthropic	https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+89	2026-10-30	2025-12-19	out	arxiv v1	ok	Keyword search is all you need: Achieving RAG-Level Performance without vector databases u	https://arxiv.org/abs/2602.23368
+90	2026-10-30	2026-10-12	out	datePublished	ok	AI models may be capable of self-replicating without access to a datacenter \ Anthropic	https://www.anthropic.com/research/self-replicating-ai
+91	2026-10-30	2026-10-05	out	arxiv v1	ok	Fork-and-Flush: Escaping Idea Basins in Autoresearch Agents	https://arxiv.org/html/2610.07447v1
+92	2026-10-30	2026-10-06	out	arxiv v1	ok	Stateless Language Agents: Scaling Long-Horizon Automated Research	https://arxiv.org/html/2610.07625v1
+93	2026-10-30	2026-10-14	out	arxiv v1	ok	Scaling Discovery Requires Forgetting	https://arxiv.org/abs/2610.20563
+94	2026-10-30	2026-10-24	in	datePublished	ok	The State of Context Engineering	https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html
+95	2026-10-30	2026-05-19	out	arxiv v1	ok	Do as I Say, Not as I Do: Instruction-Induction Conflict in LLMs	https://arxiv.org/html/2605.20382v3
+96	2026-10-30	2026-04-08	out	datePublished	ok	Scaling Managed Agents with stable interfaces \ Anthropic	https://www.anthropic.com/engineering/managed-agents
+97	2026-10-30	2026-08-24	out	arxiv v1	ok	"When ""Do Not"" Is Not Deny: Security Rules in CLAUDE.md vs Built-In Controls"	https://arxiv.org/abs/2608.23550
+98	2026-10-30	2026-02-12	out	arxiv v1	ok	Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?	https://arxiv.org/abs/2602.11988
+99	2026-10-30	2026-02-17	out	datePublished	ok	Improving Deep Agents with harness engineering	https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering
+100	2026-10-30	2026-10-12	out	arxiv v1	ok	When Agent Evaluation Becomes Unreliable: An Empirical Study of Oracle Failures and Config	https://arxiv.org/abs/2610.16067
+101	2026-10-30	2026-05-22	out	arxiv v1	ok	EvoCode-Bench: Evaluating Coding Agents in Multi-Turn Iterative Interactions	https://arxiv.org/abs/2605.24110
+102	2026-10-30	2026-09-30	out	datePublished	ok	Is sandboxing sufficient to contain rogue agents? – A Few Thoughts on Cryptographic Engine	https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/
+103	2026-10-30	2026-10-03	out	time element	ok	Archive for Saturday, 3rd October 2026	https://simonwillison.net/2026/Oct/3/
+104	2026-10-30	2026-10-12	out	arxiv v1	ok	When Agent Evaluation Becomes Unreliable: An Empirical Study of Oracle Failures and Config	https://arxiv.org/pdf/2610.16067v1
+105	2026-10-30	2026-01-03	out	arxiv v1	ok	ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions	https://arxiv.org/abs/2601.06112
